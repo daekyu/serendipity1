@@ -54,7 +54,7 @@
 			  
 			  <div class="form-group">
 				<label>이름: <span class="required">*</span></label>
-                <input type="text" class="form-control" name="fullName" data-bv-trigger="keyup" required data-bv-notempty-message="The full name cannot be empty">
+                <input type="text" class="form-control" name="name" data-bv-trigger="keyup" required data-bv-notempty-message="The full name cannot be empty">
               </div>
 
 			  <div class="form-group">

@@ -1,0 +1,93 @@
+@CHARSET "UTF-8";
+/* line 701, ../sass/_header.scss */
+.fixed-header .header {
+	left: 0;
+	margin: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 870;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	width: auto;
+}
+/* line 711, ../sass/_header.scss */
+.fixed-header .header .header-wrapper {
+	background: #fff;
+	-webkit-transition: background 0.2s linear;
+	transition: background 0.2s linear;
+}
+/* line 716, ../sass/_header.scss */
+.fixed-header.loaded .header {
+	-webkit-transition: margin-top 0.2s linear;
+	transition: margin-top 0.2s linear;
+}
+/* line 719, ../sass/_header.scss */
+.fixed-header.background-opacity .header .header-wrapper {
+	background: rgba(255, 255, 255, 0.97);
+	-webkit-transition: background 0.2s linear;
+	transition: background 0.2s linear;
+}
+
+/* Fixed Header */
+/* line 726, ../sass/_header.scss */
+.fixed-header {
+	margin-top: 0;
+}
+
+.fixed-header .header, .boxed.fixed-header .header, .boxed.fixed-header.fixed .header,
+	.fixed-header.hidden-top.visible-top .header {
+	box-shadow: none;
+	position: static;
+	top: inherit;
+	z-index: inherit;
+	-webkit-backface-visibility: inherit;
+	-webkit-transform: inherit;
+}
+
+.fixed-header .header-two + * {
+    margin-top: 0;
+  }
+
+  .hidden-top #top-box,
+  .boxed.hidden-top #top-box,
+  .boxed.fixed-header.hidden-top #top-box {
+    margin-top: 0;
+    margin-bottom: 0;
+    position: static;
+  }
+  
+   .hidden-top .header,
+  .fixed-header.hidden-top .header {
+    margin-top: 0;
+    position: static;
+  }
+
+  /* line 112, ../sass/_responsive.scss */
+  .fixed-header.hidden-top.visible-top .header,
+  .fixed-header.hidden-top.fixed #top-box,
+  .fixed-header.hidden-top.visible-top.fixed #top-box {
+    margin-top: 0;
+  }
+  
+    .fixed-header.fixed-top #top-box,
+  .boxed.fixed-header.fixed-top #top-box,
+  .boxed.fixed-header.fixed-top.fixed #top-box {
+    position: static;
+  }
+  
+  /* line 1680, ../sass/_responsive.scss */
+.touch-device.fixed-header .page-box {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+/* line 1686, ../sass/_responsive.scss */
+.touch-device.fixed-header .header, .touch-device.boxed.fixed-header .header, .touch-device.boxed.fixed-header.fixed .header, .touch-device.hidden-top.visible-top .header {
+  box-shadow: none;
+  position: static;
+  top: inherit;
+  -webkit-backface-visibility: inherit;
+  -webkit-transform: inherit;
+}

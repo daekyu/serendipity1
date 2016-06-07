@@ -1,0 +1,30 @@
+* pom.xml에서 dependency를 추가하면 꼭 여기에 어떤 것을 추가했는지 기록하자.
+-------------------------------------------------------------------------------------------------------------
+ - 16.06.07 대규 추가
+ 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- 오라클 드라이버 -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>11</version>
+		</dependency>
+		
+		<!-- Mybatis Spring -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+
+		<!-- Mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.1.1</version>
+		</dependency> 
+----------------------------------------------------------------------------------------------------------

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	@Project : Serendipity
+	@File name : TravelInfoDAO.xml
+	@Author : 강대규
+	@Date : 16.06.08
+	@Desc : TravelInfoDAO의 Mapper / 실제 DB연동을 위한 Query가 들어가는 부분
+ -->
+
+<mapper namespace="kr.co.serendipity.model.TravelInfoDAO">	
+	<select id="getLocalList" resultType="kr.co.serendipity.model.LocalDTO">
+		select * from local
+	</select>
+	
+	<select id="getLocalInfo" resultType="kr.co.serendipity.model.TravelInfoDTO">
+		select * from travel_info where local_code=#{local_code}
+	</select>
+</mapper>

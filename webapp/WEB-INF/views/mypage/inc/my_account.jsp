@@ -64,6 +64,11 @@
 				</tr>
 				
 				<tr>
+					<th class="danger">취미</th>
+					<td>롤, 리그오브레전드, 엘오엘</td>
+				</tr>
+				
+				<tr>
 					<th class="danger">관심사</th>
 					<td>술, 음식</td>
 				</tr>
@@ -74,35 +79,7 @@
 		</div>
       </article><!-- .content -->
 	  
-	  <div id="sidebar" class="sidebar col-sm-3 col-md-3">
-		<aside class="widget menu">
-		  <header>
-			<h3 class="title">My Account</h3>
-		  </header>
-		  <nav>
-			<ul>
-			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page.htm"><i class="fa fa-user item-icon"></i>My Profile</a>
-			  </li>
-			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_modifyform.htm"><i class="fa fa-gears item-icon"></i>Update Profile</a>
-			  </li>
-			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm"><i class="fa fa-mail-reply item-icon"></i>받은 요청</a>
-			  </li>
-			  <li class="active">
-				<a href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm"><i class="fa fa-mail-forward item-icon"></i>보낸 요청</a>
-			  </li>
-			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_notification.htm"><i class="fa fa-bell-o item-icon"></i>Etc</a>
-			  </li>
-			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_withdraw.htm"><i class="fa fa-times item-icon"></i>Withdraw from Serendipity</a>
-			  </li>
-			</ul>
-		  </nav>
-		</aside><!-- .menu-->
-	  </div>
+	  <jsp:include page="my_page_sidebar.jsp"></jsp:include>
     </div>
   </div>
 </section><!-- #main -->

@@ -70,6 +70,6 @@ public class BoardController {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.write(dto);
 		
-		return "/board/traveler_list";
+		return "redirect:/board/traveler_list.htm";
 	}
 }

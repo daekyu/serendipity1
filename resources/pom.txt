@@ -1,13 +1,13 @@
-* pom.xml¿¡¼­ dependency¸¦ Ãß°¡ÇÏ¸é ²À ¿©±â¿¡ ¾î¶² °ÍÀ» Ãß°¡Çß´ÂÁö ±â·ÏÇÏÀÚ.
+* pom.xmlï¿½ï¿½ï¿½ï¿½ dependencyï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½î¶² ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 -------------------------------------------------------------------------------------------------------------
- - 16.06.07 ´ë±Ô Ãß°¡
+ - 16.06.07 ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
  		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-		<!-- ¿À¶óÅ¬ µå¶óÀÌ¹ö -->
+		<!-- ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ -->
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc</artifactId>
@@ -27,4 +27,11 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.1.1</version>
 		</dependency> 
+		
+		<!-- 06.08 19:30 ëŒ€ê·œ ì¶”ê°€ -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.5</version>
+		</dependency>
 ----------------------------------------------------------------------------------------------------------

@@ -1,5 +1,12 @@
 package kr.co.serendipity.model;
 
+/*
+ * @Class : BoardController
+ * @Date : 16.06.08
+ * @Author : 김민규
+ * @Desc : 여행자가 가이드 구하는 게시판 글 DTO
+ */
+
 import java.sql.Date;
 
 public class BoardDTO {
@@ -18,6 +25,14 @@ public class BoardDTO {
 	private String board_Longitude;
 	private String local_Code;
 	private int category_Num;
+	private int price;
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getBoard_Num() {
 		return board_Num;
 	}

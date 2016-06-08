@@ -4,6 +4,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.serendipity.model.BoardDAO">
-	<insert id="">
+	<insert id="write">
+	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
+	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price) 
+	 VALUES( board_seq.NEXTVAL, 6, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , '위도33', '경도 22', '02', 1, #{price})
 	</insert>
 </mapper>

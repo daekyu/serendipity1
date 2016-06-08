@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.serendipity.model.ReviewDAO">
+	<insert id="reviewWrite">
+		insert into review(review_num, user_num, review_title, review_content, review_content1, review_content2, review_content3, review_content3, review_content4, review_content5, review_picture1, review_picture2, review_picture3, review_picture4, review_picture5, like_count, review_date, local_code)
+		values(review_seq.nextval, 6, #{review_title}, #{review_content}, #{review_content1}, #{review_content2}, #{review_content3}, #{review_content4}, #{review_content5}, #{review_picture1}, #{review_picture2}, #{review_picture3}, #{review_picture4}, #{review_picture5}, 0, SYSDATE,#{local_code})
+	</insert>
+	
+	<select id="localList" resultType="kr.co.serendipity.model.LocalDTO">
+		select local_code, local_name from local order by local_code asc
+	</select>
+</mapper>

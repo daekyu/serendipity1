@@ -181,7 +181,7 @@
 		  
 		  
 		
-		<div class="pagination-box">
+		<div class="pagination-box" align="center">
 		  <ul class="pagination">
 			<li class="disabled"><a href="#"><i class="fa fa-angle-left"></i></a></li>
 			<li class="active"><span>1</span></li>
@@ -191,8 +191,10 @@
 			<li><a href="#">9</a></li>
 			<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 		  </ul>
-		  <i class="pagination-text">Displaying 1 to 10 (of 100 posts)</i>
 		</div><!-- .pagination-box -->
+		<div align="right">
+			<a href="${pageContext.request.contextPath}/travel_review/review_writeform.htm" class="btn btn-default">후기작성</a>
+		</div>
       </div><!-- .content -->
     </div>
   </div><!-- .container -->

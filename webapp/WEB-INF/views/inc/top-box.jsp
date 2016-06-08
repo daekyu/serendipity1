@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Header보다 상단에 위치해 언어선택/로그인/회원가입 등을 할 수 있는 부분 -->
 
 <div id="top-box">
@@ -23,7 +23,19 @@
 			  <ul class="nav navbar-nav navbar-right">
 				
 				<li><a href="#">My Account<span class="count">2</span></a></li>
-				<li><a href="${pageContext.request.contextPath}/member/join_login.htm">Log in / Join us <i class="fa fa-lock after"></i></a></li>
+				
+				<%-- <li><a href="${pageContext.request.contextPath}/member/join_login.htm">Log in / Join us <i class="fa fa-lock after"></i></a></li>
+				<li><a href="#">Logout<i class="fa fa-lock after"></i></a></li> --%>
+				
+				<c:choose>
+					<c:when test="${empty sessionScope.id}">
+						<li><a href="${pageContext.request.contextPath}/member/join_login.htm">Log in / Join us <i class="fa fa-lock after"></i></a></li>
+					</c:when>
+					
+					<c:otherwise>
+						<li><a href="#">Logout<i class="fa fa-lock after"></i></a></li>
+					</c:otherwise>
+				</c:choose>
 			  </ul>
 			</nav>
 		  </div>

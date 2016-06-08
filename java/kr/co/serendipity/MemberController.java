@@ -7,10 +7,19 @@
 
 package kr.co.serendipity;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import kr.co.serendipity.model.MemberDAO;
+import kr.co.serendipity.model.MemberDTO;
 
 @Controller
 @RequestMapping("/member/")
@@ -20,10 +29,32 @@ public class MemberController {
 	private SqlSession sqlsession;
 	
 	@RequestMapping("join_login.htm")
-	public String joinLogin() {
+	public ModelAndView joinLogin() {
+		ModelAndView mav = new ModelAndView("/member/join_login");
+		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
+		mav.addObject("local_list", dao.localList());
+		mav.addObject("country_list", dao.countryList());
+		return mav;
+	}
+	
+	@RequestMapping(value="joinMember.htm", method=RequestMethod.POST)
+	public String joinMember(MemberDTO dto) {
+		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
+		dao.joinMember(dto);
+		
 		return "/member/join_login";
 	}
 	
-	/*@RequestMapping("join.htm")
-	public */
+	@RequestMapping(value="login.htm", method=RequestMethod.POST)
+	public String login(MemberDTO dto, HttpSession session) {
+		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
+		List<MemberDTO> list = dao.login(dto);
+		
+		if(list == null) {
+			
+		} else {
+			session.setAttribute("id", dto.getId());
+		}
+		return "redirect:/index.htm";
+	}
 }

@@ -22,6 +22,9 @@
 			<nav class="collapse collapsing navbar-collapse">
 			  <ul class="nav navbar-nav navbar-right">
 				
+			   <li><a href="changeLocale.htm?locale=ko">한국어<span class="locale"></span></a></li>
+				<li><a href="changeLocale.htm?locale=en">영어<span class="locale1"></span></a></li>
+				
 				<li><a href="#">My Account<span class="count">2</span></a></li>
 				
 				<%-- <li><a href="${pageContext.request.contextPath}/member/join_login.htm">Log in / Join us <i class="fa fa-lock after"></i></a></li>

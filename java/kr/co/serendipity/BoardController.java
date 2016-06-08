@@ -45,12 +45,5 @@ public class BoardController {
 		return "/board/traveler_writeform";
 	}
 	
-	@RequestMapping(value="traveler_writeform.htm", method=RequestMethod.POST)
-	public String travelerWriteform(BoardDTO dto) throws ClassNotFoundException, SQLException {
-		System.out.println("traveler_writeform POST entrance");
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		dao.write(dto);
-		
-		return "/board/traveler_writeform";
-	}
+
 }

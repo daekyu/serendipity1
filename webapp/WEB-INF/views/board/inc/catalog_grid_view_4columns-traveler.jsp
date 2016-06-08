@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
 @Project : 1조프로젝트
 @File name : catalog_grid_view_4columns-traveler.jsp
@@ -76,8 +77,11 @@
 		
 		<div class="clearfix"></div>
 		
-	
+		
+		
 		<div class="products grid row">
+		
+		<c:forEach var="i" begin="1" end="11" step="1">
 		  <div class="col-sm-3 col-md-3 product rotation">
 			<div class="default">
 			  <span class="sale top"></span>
@@ -87,7 +91,7 @@
 			  <div class="product-description">
 				<div class="vertical">
 				  <h3 class="product-name">
-					<a href="shop-product-view.html">여행자가 올린 글 제목1</a>
+					<a href="shop-product-view.html">여행자가 올린 글 제목${i}</a>
 				  </h3>
 				  <div class="price">여행자 이름1</div>	
 				</div>
@@ -112,8 +116,10 @@
 			  <span class="">하고싶은 여행: <a href="#">이소라는 예쁘다. 조인성은 인성이 좋다. 김하남은 이미 집에갔다.</a></span>
 			</div><!-- .product-hover -->
 		  </div><!-- .product -->
+		  </c:forEach>
+		  
 	
-		  <div class="col-sm-3 col-md-3 product rotation">
+		 <!--  <div class="col-sm-3 col-md-3 product rotation">
 			<div class="default">
 			  <a href="shop-product-view.html" class="product-image">
 				<img class="replace-2x" src="content/img/product-7.jpg" alt="" title="" width="270" height="270">
@@ -171,9 +177,9 @@
 					<path fill="#1e1e1e" d="M15,7H3V5L0,7.938L3,11V9h12c0.553,0,1-0.447,1-1S15.553,7,15,7z"></path>
 				  </svg>
 				</a>
-			  </div><!-- .actions -->
-			</div><!-- .product-hover -->
-		  </div><!-- .product -->
+			  </div>.actions
+			</div>.product-hover
+		  </div>.product
 		  
 		  <div class="col-sm-3 col-md-3 product rotation">
 			<div class="default">
@@ -234,9 +240,9 @@
 					<path fill="#1e1e1e" d="M15,7H3V5L0,7.938L3,11V9h12c0.553,0,1-0.447,1-1S15.553,7,15,7z"></path>
 				  </svg>
 				</a>
-			  </div><!-- .actions -->
-			</div><!-- .product-hover -->
-		  </div><!-- .product -->
+			  </div>.actions
+			</div>.product-hover
+		  </div>.product -->
 		
 		<div class="pagination-box">
 		  <ul class="pagination">

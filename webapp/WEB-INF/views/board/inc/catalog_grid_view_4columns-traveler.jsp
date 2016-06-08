@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
 @Project : 1조프로젝트
 @File name : catalog_grid_view_4columns-traveler.jsp
@@ -76,8 +77,8 @@
 		
 		<div class="clearfix"></div>
 		
-	
 		<div class="products grid row">
+		<c:forEach var="i" items="${list}">
 		  <div class="col-sm-3 col-md-3 product rotation">
 			<div class="default">
 			  <span class="sale top"></span>
@@ -112,6 +113,8 @@
 			  <span class="">하고싶은 여행: <a href="#">이소라는 예쁘다. 조인성은 인성이 좋다. 김하남은 이미 집에갔다.</a></span>
 			</div><!-- .product-hover -->
 		  </div><!-- .product -->
+		   </c:forEach>
+		 
 	
 		  <div class="col-sm-3 col-md-3 product rotation">
 			<div class="default">

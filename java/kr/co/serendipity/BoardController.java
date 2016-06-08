@@ -7,10 +7,13 @@
 package kr.co.serendipity;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,7 +28,23 @@ public class BoardController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping("traveler_list.htm")
-	public String travelerList() {
+	public String travelerList(String pg, Model model) throws ClassNotFoundException, SQLException {
+		System.out.println("travelerList entrance");
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		
+		int page = 1;
+		
+		if(pg != null && pg.equals("")){
+			page = Integer.parseInt(pg);
+		}
+		
+		System.out.println("page = " + page);
+		
+		List boardList = dao.getBoardList(page);
+		System.out.println("boardList : " + boardList.size());
+		
+		model.addAttribute("list", boardList);
+		
 		return "/board/traveler_list";
 	}
 	
@@ -51,6 +70,6 @@ public class BoardController {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.write(dto);
 		
-		return "/board/traveler_writeform";
+		return "/board/traveler_list";
 	}
 }

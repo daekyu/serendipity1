@@ -9,4 +9,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price) 
 	 VALUES( board_seq.NEXTVAL, 6, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , '위도33', '경도 22', '02', 1, #{price})
 	</insert>
+	
+	<select id="getBoardList" resultType="kr.co.serendipity.model.BoardDTO">
+     <!-- 
+      int srow = 1 + (page-1)*5; 
+      int erow = 5 + (page-1)*5;
+     -->
+     SELECT * FROM
+               ( SELECT ROWNUM NUM, N.* FROM 
+                     ( SELECT * FROM BOARD ORDER BY BOARD_DATE DESC) N
+                ) WHERE NUM BETWEEN 1 + (#{page}-1)*5 AND 5 + (#{page}-1)*5
+    </select>
 </mapper>

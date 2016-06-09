@@ -33,23 +33,88 @@ public class BoardController {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		
 		int page = 1;
+		int startpage = 0;
+		int endpage = 0;
+		int maxpage = 0;
 		
-		if(pg != null && pg.equals("")){
+		
+		if(pg != null){
 			page = Integer.parseInt(pg);
 		}
-		
+		System.out.println("pg = " + pg);
 		System.out.println("page = " + page);
 		
 		List boardList = dao.getBoardList(page);
+		int listCount = dao.getListCount();
 		System.out.println("boardList : " + boardList.size());
+		System.out.println("listCount : " + listCount);
+		
+		maxpage = (int) ((double) listCount / 6 + 0.95);
+		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+		endpage = startpage + 10 - 1;
+		
+		if (endpage > maxpage) {
+			endpage = maxpage;
+		}
 		
 		model.addAttribute("list", boardList);
+		model.addAttribute("page", page);
+		model.addAttribute("maxpage", maxpage);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("listCount", listCount);
+		
+		System.out.println("page= " + page);
+		System.out.println("maxpage= " + maxpage);
+		System.out.println("startpage= " + startpage);
+		System.out.println("endpage= " + endpage);
 		
 		return "/board/traveler_list";
 	}
 	
 	@RequestMapping("guide_list.htm")
-	public String guideList() {
+	public String guideList(String pg, Model model) throws ClassNotFoundException, SQLException {
+		
+		System.out.println("guideList entrance");
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		
+		int page = 1;
+		int startpage = 0;
+		int endpage = 0;
+		int maxpage = 0;
+		
+		
+		if(pg != null){
+			page = Integer.parseInt(pg);
+		}
+		System.out.println("pg = " + pg);
+		System.out.println("page = " + page);
+		
+		List boardList = dao.getGBoardList(page);
+		int listCount = dao.getGListCount();
+		System.out.println("boardList : " + boardList.size());
+		System.out.println("listCount : " + listCount);
+		
+		maxpage = (int) ((double) listCount / 6 + 0.95);
+		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+		endpage = startpage + 10 - 1;
+		
+		if (endpage > maxpage) {
+			endpage = maxpage;
+		}
+		
+		model.addAttribute("list", boardList);
+		model.addAttribute("page", page);
+		model.addAttribute("maxpage", maxpage);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("listCount", listCount);
+		
+		System.out.println("page= " + page);
+		System.out.println("maxpage= " + maxpage);
+		System.out.println("startpage= " + startpage);
+		System.out.println("endpage= " + endpage);
+		
 		return "/board/guide_list";
 	}
 	

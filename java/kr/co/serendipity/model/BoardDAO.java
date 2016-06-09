@@ -15,6 +15,20 @@ public interface BoardDAO {
 	//글쓰기
 	public void write(BoardDTO dto) throws ClassNotFoundException, SQLException;
 	
+	//총 글 수
+	public int getListCount() throws ClassNotFoundException, SQLException;
+	
 	//글 목록
 	public List getBoardList(int page) throws ClassNotFoundException, SQLException;
+	
+	
+	//    -----------------여행자 구함 게시판 
+	//여행자 구함 글쓰기
+	public void gWrite(BoardDTO dto) throws ClassNotFoundException, SQLException;
+	
+	//여행자 구함 총 글 수
+	public int getGListCount() throws ClassNotFoundException, SQLException;
+		
+	//여행자 구함 글 목록
+	public List getGBoardList(int page) throws ClassNotFoundException, SQLException;
 }

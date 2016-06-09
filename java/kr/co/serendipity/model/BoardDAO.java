@@ -24,7 +24,7 @@ public interface BoardDAO {
 	
 	//    -----------------여행자 구함 게시판 
 	//여행자 구함 글쓰기
-	public void gWrite(BoardDTO dto) throws ClassNotFoundException, SQLException;
+	public void Gwrite(BoardDTO dto) throws ClassNotFoundException, SQLException;
 	
 	//여행자 구함 총 글 수
 	public int getGListCount() throws ClassNotFoundException, SQLException;

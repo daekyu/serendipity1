@@ -32,11 +32,11 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form>
+			<form action="" method="post">
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>
-						<td colspan="5"><input class="form-control" type="text"></td>
+						<td colspan="5"><input class="form-control" type="text" name="board_Title"></td>
 					</tr>
 					<tr>
 						<td>인원수</td>
@@ -44,11 +44,11 @@ $(function() {
 						<td>날짜</td>
 						<td><input class="form-control" type="text"></td>
 						<td>가격</td>
-						<td><input class="form-control" type="text"></td>
+						<td><input class="form-control" type="text" name="price"></td>
 					</tr>
 					<tr>
 						<td>설명</td>
-						<td colspan="5"><textarea class="form-control" style="resize:none; height:400px;" wrap="soft"></textarea></td>
+						<td colspan="5"><textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea></td>
 					</tr>
 					<tr>
 						<td>Meeting Point</td>

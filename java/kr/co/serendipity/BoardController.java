@@ -118,9 +118,19 @@ public class BoardController {
 		return "/board/guide_list";
 	}
 	
-	@RequestMapping("guide_writeform.htm")
+	@RequestMapping(value="guide_writeform.htm", method=RequestMethod.GET)
 	public String guideWriteform() {
+		System.out.println("guide_writeform GET entrance");
 		return "/board/guide_writeform";
+	}
+	
+	@RequestMapping(value="guide_writeform.htm", method=RequestMethod.POST)
+	public String guideWriteform(BoardDTO dto) throws ClassNotFoundException, SQLException {
+		System.out.println("guide_writeform POST entrance");
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		dao.Gwrite(dto);
+		
+		return "redirect:/board/guide_list.htm";
 	}
 	
 	@RequestMapping(value="traveler_writeform.htm", method=RequestMethod.GET)

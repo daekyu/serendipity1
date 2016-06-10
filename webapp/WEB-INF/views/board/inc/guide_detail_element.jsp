@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-=======
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -14,7 +13,7 @@
 			});
 		});
 	</script>
->>>>>>> ed227e95bf3b5ab9cbe6949635f536f18ef315c1
+
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 
@@ -102,11 +101,11 @@
 			  <span class="price">${dto.price} / a day</span>
 			</div>
 			
-<<<<<<< HEAD
+
 			<c:choose>
-				<c:when test="${sessionScope.user_num == content_detail.user_num }">
-					<a class="btn btn-default btn-sm" href="#promo4"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
-					<a class="btn btn-danger btn-sm" href="#promo4"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+				<c:when test="${sessionScope.user_num == dto.user_Num}">
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${dto.board_Num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
+					<a class="btn btn-danger btn-sm" id="delete"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
 				</c:when>
 				
 				<c:otherwise>
@@ -127,24 +126,8 @@
 					</form>
 				</c:otherwise>
 			</c:choose>
-=======
-			<form class="form-inline add-cart-form">
-			<select>
-					<option>16.06.02 - 2명남음</option>
-					<option>16.06.04 - 0명남음</option>
-				</select>
-			  <div class="number">
-				<label>인원수:</label>
-				<input type="text" value="1" class="form-control">
-				<div class="regulator">
-				  <a href="#" class="number-up"><i class="fa fa-angle-up"></i></a>
-				  <a href="#" class="number-down"><i class="fa fa-angle-down"></i></a>
-				</div>
-			  </div><br>
-			  <button class="btn add-cart btn-default btn-lg">신청하기</button><br>
-			  <a class="btn btn-default" id="delete">삭제</a>
-			</form>
->>>>>>> ed227e95bf3b5ab9cbe6949635f536f18ef315c1
+
+			
 		  </div>
 		</div>
 		

@@ -169,7 +169,7 @@ public class BoardController {
 		
 		BoardDTO dto = dao.getBoardDetail(board_num);
 		model.addAttribute("dto", dto);
-		
+		System.out.println("adawewqe : " + dto.getUser_Num());
 		
 		return "/board/guide_detail";
 	}
@@ -188,6 +188,16 @@ public class BoardController {
 		}else{
 			return "redirect:/board/guide_list.htm";
 		}
+	}
+	
+	@RequestMapping(value="guide_modify.htm")
+	public ModelAndView modifyGuideForm(int board_num) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		
+		ModelAndView mav = new ModelAndView("/board/guide_modifyform");
+		mav.addObject("dto", dao.getBoardDetail(board_num));
+		
+		return mav;
 	}
 	
 }

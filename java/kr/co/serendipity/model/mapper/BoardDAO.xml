@@ -17,7 +17,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      -->
      SELECT * FROM
                ( SELECT ROWNUM NUM, N.* FROM 
-                     ( SELECT * FROM BOARD ORDER BY BOARD_DATE DESC) N
-                ) WHERE NUM BETWEEN 1 + (#{page}-1)*5 AND 5 + (#{page}-1)*5
+                     ( SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N
+                ) WHERE NUM BETWEEN 1 + (#{page}-1)*6 AND 6 + (#{page}-1)*6
     </select>
+    
+    <select id="getListCount" resultType="Integer">
+    	SELECT count(*) FROM board where category_num=1
+    </select>
+    
+    <select id="getBoardDetail" resultType="kr.co.serendipity.model.BoardDTO">
+    	SELECT * FROM board where board_num=#{board_num}
+    </select>
+    
+    <insert id="Gwrite">
+	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
+	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price) 
+	 VALUES( board_seq.NEXTVAL, 6, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , '위도33', '경도 22', '02', 2, #{price})
+	</insert>
+	
+	<select id="getGBoardList" resultType="kr.co.serendipity.model.BoardDTO">
+     SELECT * FROM
+               ( SELECT ROWNUM NUM, N.* FROM 
+                     ( SELECT * FROM BOARD where category_num=2 ORDER BY BOARD_NUM DESC) N
+                ) WHERE NUM BETWEEN 1 + (#{page}-1)*6 AND 6 + (#{page}-1)*6
+    </select>
+    
+    <select id="getGListCount" resultType="Integer">
+    	SELECT count(*) FROM board where category_num=2
+    </select>
+    
+    <delete id="deleteBoard" >
+    	DELETE board WHERE board_num=#{board_num}
+ 	</delete>
+
+ 	<select id="getIndexTravelerRecent" resultType="kr.co.serendipity.model.BoardDTO">
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
+		( SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N) 
+		WHERE NUM <![CDATA[ <= ]]>4
+ 	</select>
+ 	
+ 	<select id="getIndexGuideRecent" resultType="kr.co.serendipity.model.BoardDTO">
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
+		( SELECT * FROM BOARD where category_num=2 ORDER BY BOARD_NUM DESC) N) 
+		WHERE NUM <![CDATA[ <= ]]>4
+ 	</select>
+ 	
 </mapper>

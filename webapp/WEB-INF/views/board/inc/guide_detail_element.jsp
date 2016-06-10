@@ -1,4 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#delete').click(function(){
+				if(confirm("글을 삭제 하시겠습니까?") == true){
+				location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=2";
+				}else{
+				    return false;
+				}
+			});
+		});
+	</script>
 
 
 <div class="breadcrumb-box breadcrumb-none"></div>
@@ -59,7 +73,7 @@
 		  
 		  <div class="col-sm-7 col-md-7">
 			<div class="reviews-box table-responsive">
-			  <a href="#reviews" class="add-review">충남으로 오셔유</a>
+			  <a href="#reviews" class="add-review">${dto.board_Title}</a>
 			</div>
 			<table class="table table-striped table-bordered text-center my-orders-table">
 				<thead>
@@ -84,25 +98,36 @@
 			</div>
 			
 			<div class="price-box">
-			  <span class="price">$15 / a day</span>
+			  <span class="price">${dto.price} / a day</span>
 			</div>
 			
-			<form class="form-inline add-cart-form">
-			<select>
-					<option>16.06.02 - 2명남음</option>
-					<option>16.06.04 - 0명남음</option>
-				</select>
-			  <button class="btn add-cart btn-default btn-lg">신청하기</button>
-			  <div class="number">
-			  	
-				<label>인원수:</label>
-				<input type="text" value="1" class="form-control">
-				<div class="regulator">
-				  <a href="#" class="number-up"><i class="fa fa-angle-up"></i></a>
-				  <a href="#" class="number-down"><i class="fa fa-angle-down"></i></a>
-				</div>
-			  </div>
-			</form>
+
+			<c:choose>
+				<c:when test="${sessionScope.user_num == dto.user_Num}">
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${dto.board_Num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
+					<a class="btn btn-danger btn-sm" id="delete"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+				</c:when>
+				
+				<c:otherwise>
+					<form class="form-inline add-cart-form">
+						<select>
+							<option>16.06.02 - 2명남음</option>
+						</select>
+					  <button class="btn add-cart btn-default btn-lg">신청하기</button>
+					  <div class="number">
+					  	
+						<label>인원수:</label>
+						<input type="text" value="1" class="form-control">
+						<div class="regulator">
+						  <a href="#" class="number-up"><i class="fa fa-angle-up"></i></a>
+						  <a href="#" class="number-down"><i class="fa fa-angle-down"></i></a>
+						</div>
+					  </div>
+					</form>
+				</c:otherwise>
+			</c:choose>
+
+			
 		  </div>
 		</div>
 		
@@ -113,8 +138,10 @@
 		  </ul><!-- .nav-tabs -->	
 		  <div class="tab-content">
 			<div class="tab-pane active" id="description">
-				여행 상세 설명~~~~~~~~~~~<br>
-				스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
+				${dto.board_Content}<br><br><br><br>
+				
+				추가사항
+				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
 			</div>
 			<div class="tab-pane" id="reviews">
 			  <div class="timeline-content border border-danger" data-appear-animation="fadeInRight">

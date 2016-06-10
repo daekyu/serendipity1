@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section id="main">
   <header class="page-header">
     <div class="container">
@@ -71,10 +71,47 @@
 		<div class="clearfix"></div>
 		
 		<div class="products list row">
+		<c:forEach var="i" items="${reviewlist}">
 		  <div class="product">
 			<div class="col-sm-4 col-md-4">
 			  <a href="shop-product-view.html" class="product-image">
 				<!-- <span class="sale"></span> -->
+				<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
+			  </a>
+			</div>
+			<div class="col-sm-8 col-md-8">
+			  <h3 class="price">
+				<a href="review_detail.htm">${i.review_title}</a>
+			  </h3>
+			  <div class="excerpt">
+				<span>user_num: ${i.user_num}</span><br>
+				<span>지역: ${i.local_code}</span><br>
+			  	<span>작성일 : ${i.review_date}</span>
+			  </div>
+			  <div class="excerpt">
+				<a href="#">${i.review_content}</a>
+			  </div>
+			  <div class="price-box">
+				<a href="#" class="add-review"><span class="excerpt">${i.like_count} Like(s)</span></a>
+			  </div>	
+			  <div class="actions">
+			  	<!-- 좋아요버튼 -->
+				<a href="#" class="add-wishlist">
+				  <svg x="0" y="0" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+				  <path fill="#1e1e1e" d="M11.335,0C10.026,0,8.848,0.541,8,1.407C7.153,0.541,5.975,0,4.667,0C2.088,0,0,2.09,0,4.667C0,12,8,16,8,16
+					s8-4,8-11.333C16.001,2.09,13.913,0,11.335,0z M8,13.684C6.134,12.49,2,9.321,2,4.667C2,3.196,3.197,2,4.667,2C6,2,8,4,8,4
+					s2-2,3.334-2c1.47,0,2.666,1.196,2.666,2.667C14.001,9.321,9.867,12.49,8,13.684z"></path>
+				  </svg>
+				</a>
+				<!-- 좋아요버튼 끝 -->
+			  </div><!-- .actions -->
+			</div>
+		  </div><!-- .product -->
+		 </c:forEach>
+		  <!-- <div class="product">
+			<div class="col-sm-4 col-md-4">
+			  <a href="shop-product-view.html" class="product-image">
+				<span class="sale"></span>
 				<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
 			  </a>
 			</div>
@@ -94,7 +131,7 @@
 				<a href="#" class="add-review"><span class="excerpt">5 Like(s)</span></a>
 			  </div>	
 			  <div class="actions">
-			  	<!-- 좋아요버튼 -->
+			  	좋아요버튼
 				<a href="#" class="add-wishlist">
 				  <svg x="0" y="0" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
 				  <path fill="#1e1e1e" d="M11.335,0C10.026,0,8.848,0.541,8,1.407C7.153,0.541,5.975,0,4.667,0C2.088,0,0,2.09,0,4.667C0,12,8,16,8,16
@@ -102,15 +139,15 @@
 					s2-2,3.334-2c1.47,0,2.666,1.196,2.666,2.667C14.001,9.321,9.867,12.49,8,13.684z"></path>
 				  </svg>
 				</a>
-				<!-- 좋아요버튼 끝 -->
-			  </div><!-- .actions -->
+				좋아요버튼 끝
+			  </div>.actions
 			</div>
-		  </div><!-- .product -->
+		  </div>.product
 		  
 		  <div class="product">
 			<div class="col-sm-4 col-md-4">
 			  <a href="shop-product-view.html" class="product-image">
-				<!-- <span class="sale"></span> -->
+				<span class="sale"></span>
 				<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
 			  </a>
 			</div>
@@ -130,7 +167,7 @@
 				<a href="#" class="add-review"><span class="excerpt">5 Like(s)</span></a>
 			  </div>	
 			  <div class="actions">
-			  	<!-- 좋아요버튼 -->
+			  	좋아요버튼
 				<a href="#" class="add-wishlist">
 				  <svg x="0" y="0" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
 				  <path fill="#1e1e1e" d="M11.335,0C10.026,0,8.848,0.541,8,1.407C7.153,0.541,5.975,0,4.667,0C2.088,0,0,2.09,0,4.667C0,12,8,16,8,16
@@ -138,50 +175,14 @@
 					s2-2,3.334-2c1.47,0,2.666,1.196,2.666,2.667C14.001,9.321,9.867,12.49,8,13.684z"></path>
 				  </svg>
 				</a>
-				<!-- 좋아요버튼 끝 -->
-			  </div><!-- .actions -->
+				좋아요버튼 끝
+			  </div>.actions
 			</div>
-		  </div><!-- .product -->
-		  
-		  <div class="product">
-			<div class="col-sm-4 col-md-4">
-			  <a href="shop-product-view.html" class="product-image">
-				<!-- <span class="sale"></span> -->
-				<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
-			  </a>
-			</div>
-			<div class="col-sm-8 col-md-8">
-			  <h3 class="price">
-				<a href="#">ABCD</a>
-			  </h3>
-			  <div class="excerpt">
-				<span>이름: 조인성</span><br>
-				<span>장소: 발리</span><br>
-			  	<span>작성일 : 16.06.01</span>
-			  </div>
-			  <div class="excerpt">
-				<a href="#">간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 </a>
-			  </div>
-			  <div class="price-box">
-				<a href="#" class="add-review"><span class="excerpt">5 Like(s)</span></a>
-			  </div>	
-			  <div class="actions">
-			  	<!-- 좋아요버튼 -->
-				<a href="#" class="add-wishlist">
-				  <svg x="0" y="0" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
-				  <path fill="#1e1e1e" d="M11.335,0C10.026,0,8.848,0.541,8,1.407C7.153,0.541,5.975,0,4.667,0C2.088,0,0,2.09,0,4.667C0,12,8,16,8,16
-					s8-4,8-11.333C16.001,2.09,13.913,0,11.335,0z M8,13.684C6.134,12.49,2,9.321,2,4.667C2,3.196,3.197,2,4.667,2C6,2,8,4,8,4
-					s2-2,3.334-2c1.47,0,2.666,1.196,2.666,2.667C14.001,9.321,9.867,12.49,8,13.684z"></path>
-				  </svg>
-				</a>
-				<!-- 좋아요버튼 끝 -->
-			  </div><!-- .actions -->
-			</div>
-		  </div><!-- .product -->
+		  </div>.product -->
 		  
 		  
 		
-		<div class="pagination-box">
+		<div class="pagination-box" align="center">
 		  <ul class="pagination">
 			<li class="disabled"><a href="#"><i class="fa fa-angle-left"></i></a></li>
 			<li class="active"><span>1</span></li>
@@ -191,8 +192,10 @@
 			<li><a href="#">9</a></li>
 			<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 		  </ul>
-		  <i class="pagination-text">Displaying 1 to 10 (of 100 posts)</i>
 		</div><!-- .pagination-box -->
+		<div align="right">
+			<a href="${pageContext.request.contextPath}/travel_review/review_writeform.htm" class="btn btn-default">후기작성</a>
+		</div>
       </div><!-- .content -->
     </div>
   </div><!-- .container -->

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -35,20 +35,20 @@ $(function() {
 			<form action="" method="post">
 				<table class="table center">
 					<tr>
-						<td><h6>글 제목</h6></td>
-						<td colspan="5"><input class="form-control" type="text" name="board_Title"></td>
+						<td><h6>제목: </h6></td>
+						<td colspan="5"><input class="form-control" type="text" name="board_Title" value="${dto.board_Title}"></td>
 					</tr>
 					<tr>
 						<td>인원수</td>
-						<td><input class="form-control" type="text"></td>
+						<td><input class="form-control" type="text" value="${dto.board_Capacity}"></td>
 						<td>날짜</td>
 						<td><input class="form-control" type="text"></td>
 						<td>가격</td>
-						<td><input class="form-control" type="text" name="price"></td>
+						<td><input class="form-control" type="text" name="price" value="${dto.price}"></td>
 					</tr>
 					<tr>
 						<td>설명</td>
-						<td colspan="5"><textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea></td>
+						<td colspan="5"><textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content">${dto.board_Content}</textarea></td>
 					</tr>
 					<tr>
 						<td>Meeting Point</td>

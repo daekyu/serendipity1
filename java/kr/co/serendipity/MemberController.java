@@ -48,17 +48,20 @@ public class MemberController {
 	@RequestMapping(value="login.htm", method=RequestMethod.POST)
 	public String login(MemberDTO dto, HttpSession session) {
 		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
-		List<MemberDTO> list = dao.login(dto);
-		
-		if(list == null) {
-			System.out.println("null 입니까?");
+		MemberDTO member = dao.login(dto);
+
+		if(member == null) {
+			
 		} else {
-			System.out.println("session 성공 입니까?");
-			System.out.println("dto.getUser_num() : " + dto.getUser_num());
-			System.out.println("session 성공 입니까?");
-			session.setAttribute("id", dto.getId());
-			session.setAttribute("user_num", dto.getUser_num());
+			session.setAttribute("id", member.getId());
+			session.setAttribute("user_num", member.getUser_num());
+			System.out.println("user_num : " + member.getUser_num() + "/" + member.getId() + "/" + member.getPw());
 		}
 		return "redirect:/index.htm";
+	}
+	
+	@RequestMapping("logout.htm")
+	public String logout() {
+		return "/member/logout";
 	}
 }

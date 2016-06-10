@@ -27,7 +27,7 @@
 			</div>
 		  
 			<div class="employee-description col-sm-8 col-md-8">
-			  <h3 class="name">Mett Rayan</h3>
+			  <h3 class="name">${dto.name}</h3>
 			  <div class="role"></div>
 			  <div>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae corporis porro ad deleniti odio pariatur fugit dignissimos vero architecto placeat nemo cum ipsum molestiae quae eos et omnis sed magni.</p>
@@ -55,22 +55,22 @@
 				
 				<tr>
 					<th class="danger">지역</th>
-					<td>${dto.local_code} join으로 지역명 변환</td>
+					<td>${dto.local_code} ----join 으로 지역명 변환</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">언어</th>
-					<td>페이지 고정 한국어, 영어, 일본어 join필요</td>
+					<td>한국어, 영어, 일본어 ------- join 필요</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">취미</th>
-					<td>롤, 리그오브레전드, 엘오엘 join필요</td>
+					<td>롤, 리그오브레전드, 엘오엘 ------ join 필요</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">관심사</th>
-					<td>술, 음식 join필요</td>
+					<td>술, 음식 join ------ join 필요</td>
 				</tr>
 			</table>
 			</div>

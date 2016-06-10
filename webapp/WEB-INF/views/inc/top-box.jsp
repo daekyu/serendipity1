@@ -43,7 +43,7 @@
 					</c:when>
 					
 					<c:otherwise>
-						<li><a href="#">Logout<i class="fa fa-lock after"></i></a></li>
+						<li><a href="${pageContext.request.contextPath}/member/logout.htm">Logout<i class="fa fa-lock after"></i></a></li>
 					</c:otherwise>
 				</c:choose>
 			  </ul>

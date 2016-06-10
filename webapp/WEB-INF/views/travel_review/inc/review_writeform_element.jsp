@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
-<script src="../js/jquery-2.1.3.min.js"></script>
+<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('#table_pic1').hide();
@@ -9,6 +10,7 @@ $(function() {
 	$('#table_pic3').hide();
 	$('#table_pic4').hide();
 	$('#table_pic5').hide(); 
+	
 	var index=1;
 	
 	$('#addBtn').click(function() {
@@ -45,23 +47,26 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form>
+			<form action="" method="post"> <!-- enctype="multipart/form-data" -->
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>
-						<td colspan="4"><input class="form-control" type="text"></td>
+						<td colspan="4"><input class="form-control" type="text" name="review_title"></td>
 						<td>
 							<button type="button" id="addBtn" class="btn btn-success">사진추가</button>
 							<button type="button" id="minusBtn" class="btn btn-danger">사진빼기</button>
 						</td>
 					</tr>
 					<tr>
-						<td>여행테마</td>
-						<td><input class="form-control" type="text"></td>
 						<td>지역</td>
-						<td><input class="form-control" type="text"></td>
-						<td>날짜</td>
-						<td><input class="form-control" type="text"></td>
+						<td><!-- <input class="form-control" type="text" name="local_code"> -->
+							<select class="form-group" name="local_code">
+                				<option value="-">--</option>
+                				<c:forEach var="i" items="${local_list}">
+                					<option value="${i.local_code}">${i.local_name} / ${i.local_code}</option>
+                				</c:forEach>
+                			</select>
+						</td>
 					</tr>
 					
 					<tr>
@@ -76,7 +81,7 @@ $(function() {
 							<div class="tab-content">
 							
 								<div class="tab-pane active" id="description">
-									<textarea class="form-control" style="resize:none; height:200px;" wrap="soft"></textarea>
+									<textarea class="form-control" style="resize:none; height:200px;" wrap="soft" name="review_content"></textarea>
 								</div>
 
 								<div class="tab-pane active" id="tab_pic">
@@ -88,17 +93,12 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" name="pic1"></td>
-										</tr>
-										
-										<tr>
-											<td>제목 : </td>
-											<td><input type="text" class="form-control" name="title_pic1"></td>
+											<td><input type="file" name="review_picture1"></td>
 										</tr>
 										
 										<tr>
 											<td>설명 : </td>
-											<td><textarea name="desc_pic1" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
+											<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="review_content1"></textarea></td>
 										</tr>
 									</table>
 									
@@ -110,17 +110,12 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic2" name="pic2"></td>
-										</tr>
-										
-										<tr>
-											<td>제목 : </td>
-											<td><input type="text" id="title_pic2" class="form-control" name="title_pic2"></td>
+											<td><input type="file" id="pic2" name="review_picture2"></td>
 										</tr>
 										
 										<tr>
 											<td>설명 : </td>
-											<td><textarea name="desc_pic2" id="desc_pic2" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
+											<td><textarea name="review_content2" id="desc_pic2" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
 										</tr>
 									</table>
 									
@@ -132,17 +127,12 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic3" name="pic3"></td>
-										</tr>
-										
-										<tr>
-											<td>제목 : </td>
-											<td><input type="text" id="title_pic3" class="form-control" name="title_pic3"></td>
+											<td><input type="file" id="pic3" name="review_picture3"></td>
 										</tr>
 										
 										<tr>
 											<td>설명 : </td>
-											<td><textarea name="desc_pic3" id="desc_pic3" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
+											<td><textarea name="review_content3" id="desc_pic3" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
 										</tr>
 									</table>
 									
@@ -154,17 +144,12 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic4" name="pic1"></td>
-										</tr>
-										
-										<tr>
-											<td>제목 : </td>
-											<td><input type="text" id="title_pic4" class="form-control" name="title_pic1"></td>
+											<td><input type="file" id="pic4" name="review_picture4"></td>
 										</tr>
 										
 										<tr>
 											<td>설명 : </td>
-											<td><textarea name="desc_pic1" id="desc_pic4" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
+											<td><textarea name="review_content4" id="desc_pic4" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
 										</tr>
 									</table>
 									
@@ -176,17 +161,12 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic5" name="pic1"></td>
+											<td><input type="file" id="pic5" name="review_picture5"></td>
 										</tr>
-										
-										<tr>
-											<td>제목 : </td>
-											<td><input type="text" id="title_pic5" class="form-control" name="title_pic1"></td>
-										</tr>
-										
+
 										<tr>
 											<td>설명 : </td>
-											<td><textarea name="desc_pic1" id="desc_pic5" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
+											<td><textarea name="review_content5" id="desc_pic5" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
 										</tr>
 									</table>
 								</div> 

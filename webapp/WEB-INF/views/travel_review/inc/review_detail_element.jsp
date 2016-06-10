@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section id="main">
   <header class="page-header">
     <div class="container">
       <h1 class="title">여행기 상세보기</h1>
     </div>
   </header>
-  
   <div class="container">
     <div class="row">
       <div class="content portfolio col-sm-12 col-md-12">
@@ -20,8 +19,7 @@
 					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <h1 class="title">사진1에 대한 제목</h1>
-					  <p class="descriptions">사진1에 대한 내용</p>
+					  <p class="descriptions">${reviewdetail.review_content1}</p>
 					</div>
 				  </div>
 				</div>
@@ -32,8 +30,7 @@
 					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <h1 class="title">사진1에 대한 제목</h1>
-					  <p class="descriptions">사진1에 대한 내용</p>
+					  <p class="descriptions">${reviewdetail.review_content2}</p>
 					</div>
 				  </div>
 				</div>
@@ -44,8 +41,7 @@
 					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <h1 class="title">사진1에 대한 제목</h1>
-					  <p class="descriptions">사진1에 대한 내용</p>
+					  <p class="descriptions">${reviewdetail.review_content3}</p>
 					</div>
 				  </div>
 				</div>
@@ -56,8 +52,7 @@
 					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <h1 class="title">사진1에 대한 제목</h1>
-					  <p class="descriptions">사진1에 대한 내용</p>
+					  <p class="descriptions">${reviewdetail.review_content4}</p>
 					</div>
 				  </div>
 				</div>
@@ -68,8 +63,7 @@
 					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <h1 class="title">사진1에 대한 제목</h1>
-					  <p class="descriptions">사진1에 대한 내용</p>
+					  <p class="descriptions">${reviewdetail.review_content5}</p>
 					</div>
 				  </div>
 				</div>
@@ -97,14 +91,14 @@
 		<div class="row">
 		  <div class="portfolio-tags bottom-padding col-sm-4 col-md-4">
 			<p><b>여행테마: </b><span>자연경관, 야경, 맛집....</span></p>
-			<p><b>지역: </b><span>충남</span></p>
-			<p><b>Date: </b><span>March 2013</span></p><br>
-			<h4><span>5 Like(s)</span></h4>
-			<button type="button" class="btn btn-border btn-danger"><i class="fa fa-heart"></i>  Like</button>
+			<p><b>지역: </b><span>${reviewdetail.local_code}</span></p>
+			<p><b>Date: </b><span>${reviewdetail.review_date}</span></p><br>
+			<h4><span>${reviewdetail.like_count} Like(s)</span></h4>
+			<button type="button" class="btn btn-border btn-danger"><i class="fa fa-heart"></i>${reviewdetail.like_count} Like</button>
 		  </div>
 		  
 		  <div class="bottom-padding col-sm-8 col-md-8">
-			<p>전반적인 느낌 및 뭐 하고싶은말 아무거나</p>
+			<p>${reviewdetail.review_content}</p>
 		  </div>
 		</div>
 		  

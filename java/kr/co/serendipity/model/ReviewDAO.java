@@ -1,7 +1,6 @@
 package kr.co.serendipity.model;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ReviewDAO {
@@ -18,4 +17,10 @@ public interface ReviewDAO {
 	//게시글 상세보기
 	public ReviewDTO reviewDetail() throws ClassNotFoundException, SQLException;
 	
+	//게시글 수정
+	public void reviewUpdate(ReviewDTO dto) throws ClassNotFoundException, SQLException;
+	
+	//게시글 삭제
+	public void reviewDelete(int review_num) throws ClassNotFoundException, SQLException;
+
 }

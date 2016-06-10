@@ -49,5 +49,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <delete id="deleteBoard" >
     	DELETE board WHERE board_num=#{board_num}
  	</delete>
+ 	
+ 	<select id="getIndexTravelerRecent" resultType="kr.co.serendipity.model.BoardDTO">
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
+		( SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N) 
+		WHERE NUM <![CDATA[ <= ]]>4
+ 	</select>
+ 	
+ 	<select id="getIndexGuideRecent" resultType="kr.co.serendipity.model.BoardDTO">
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
+		( SELECT * FROM BOARD where category_num=2 ORDER BY BOARD_NUM DESC) N) 
+		WHERE NUM <![CDATA[ <= ]]>4
+ 	</select>
     
 </mapper>

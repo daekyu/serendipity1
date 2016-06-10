@@ -37,4 +37,12 @@ public interface BoardDAO {
 		
 	//여행자 구함 글 목록
 	public List getGBoardList(int page) throws ClassNotFoundException, SQLException;
+	
+	// -------------------------index 페이지 여행자 구함, 가이드 구함 게시판 최신글 4개만 보기
+	
+	//가이드 구함 최신글 4개만 보기
+	public List getIndexTravelerRecent();
+	
+	//여행자 구함 최신글 4개만 보기
+	public List getIndexGuideRecent();
 }

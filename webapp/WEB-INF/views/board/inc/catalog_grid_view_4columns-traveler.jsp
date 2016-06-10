@@ -42,8 +42,7 @@
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Price</a></li>
-								<li><a href="#">Rating</a></li>
-								<li><a href="#">Name</a></li>
+								<li><a href="#">Date</a></li>
 							</ul>
 						</div>
 						<!-- .sort-by -->

@@ -101,7 +101,7 @@
 
 						<div class="col-sm-3 col-md-3 product rotation">
 							<div class="default">
-								<span class="sale top"></span> <a href="shop-product-view.html"
+								<span class="sale top"></span> <a href="guide_detail.htm?board_num=${i.board_Num}"
 									class="product-image"> <img class="replace-2x"
 									src="content/img/product-1.jpg" alt="" title="" width="270"
 									height="270">
@@ -109,7 +109,7 @@
 								<div class="product-description">
 									<div class="vertical">
 										<h3 class="product-name">
-											<a href="shop-product-view.html">${i.board_Title}</a>
+											<a href="guide_detail.htm?board_num=${i.board_Num}">${i.board_Title}</a>
 										</h3>
 										<div class="price">가이드 번호 : ${i.user_Num}</div>
 									</div>
@@ -118,10 +118,10 @@
 
 							<div class="product-hover">
 								<h3 class="product-name">
-									<a href="shop-product-view.html">${i.board_Title}</a>
+									<a href="guide_detail.htm?board_num=${i.board_Num}">${i.board_Title}</a>
 								</h3>
 								<div class="price">가이드 번호 : ${i.user_Num}</div>
-								<a href="shop-product-view.html" class="product-image"> <img
+								<a href="guide_detail.htm?board_num=${i.board_Num}" class="product-image"> <img
 									class="replace-2x" src="content/img/product-1.jpg" alt=""
 									title="" width="70" height="70">
 								</a>
@@ -131,7 +131,7 @@
 									<li>언어: 영어, 한국어</li>
 									<li>관심사: 맛집, 술, 술</li>
 								</ul>
-								<br> <span class="">여행 계획: <a href="#">이소라는
+								<br> <span class="">여행 계획: <a href="guide_detail.htm?board_num=${i.board_Num}">이소라는
 										예쁘다. 조인성은 인성이 좋다. 김하남은 이미 집에갔다.</a></span>
 							</div>
 							<!-- .product-hover -->

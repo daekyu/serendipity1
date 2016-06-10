@@ -25,6 +25,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	SELECT count(*) FROM board where category_num=1
     </select>
     
+    <select id="getBoardDetail" resultType="kr.co.serendipity.model.BoardDTO">
+    	SELECT * FROM board where board_num=#{board_num}
+    </select>
+    
     <insert id="Gwrite">
 	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
 	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price) 
@@ -41,4 +45,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getGListCount" resultType="Integer">
     	SELECT count(*) FROM board where category_num=2
     </select>
+    
+    <delete id="deleteBoard" >
+    	DELETE board WHERE board_num=#{board_num}
+ 	</delete>
+    
 </mapper>

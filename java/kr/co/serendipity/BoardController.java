@@ -147,4 +147,46 @@ public class BoardController {
 		
 		return "redirect:/board/traveler_list.htm";
 	}
+	
+	@RequestMapping(value="traveler_detail.htm")
+	public String travelerDetail(int board_num, Model model) throws ClassNotFoundException, SQLException {
+		System.out.println("travelerDetail entrance");
+		System.out.println("board_num : " + board_num);
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		
+		BoardDTO dto = dao.getBoardDetail(board_num);
+		model.addAttribute("dto", dto);
+		
+		return "/board/travel_detail";
+	}
+	
+	@RequestMapping(value="guide_detail.htm")
+	public String guideDetail(int board_num, Model model) throws ClassNotFoundException, SQLException {
+		System.out.println("guideDetail entrance");
+		System.out.println("board_num : " + board_num);
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		
+		BoardDTO dto = dao.getBoardDetail(board_num);
+		model.addAttribute("dto", dto);
+		
+		
+		return "/board/guide_detail";
+	}
+	
+	@RequestMapping(value="board_delete.htm")
+	public String boardDelete(int board_num, int check) throws ClassNotFoundException, SQLException {
+		System.out.println("boardDelete entrance");
+		System.out.println("board_num : " + board_num);
+		System.out.println("check : " + check);
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		
+		dao.deleteBoard(board_num);
+		
+		if(check == 1){
+			return "redirect:/board/traveler_list.htm";
+		}else{
+			return "redirect:/board/guide_list.htm";
+		}
+	}
+	
 }

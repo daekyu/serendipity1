@@ -1,4 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#delete').click(function(){
+				if(confirm("글을 삭제 하시겠습니까?") == true){
+				location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=1";
+				}else{
+				    return false;
+				}
+			});
+		});
+	</script>
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 
@@ -58,7 +70,7 @@
 		  
 		  <div class="col-sm-7 col-md-7">
 			<div class="reviews-box table-responsive">
-			  <a href="#reviews" class="add-review">글 제목</a>
+			  <a href="#reviews" class="add-review">${dto.board_Title}</a>
 			</div>
 			<table class="table table-striped table-bordered text-center my-orders-table">
 				<thead>
@@ -83,11 +95,12 @@
 			</div>
 			
 			<div class="price-box">
-			  <span class="price">$15 / a day</span>
+			  <span class="price">${dto.price} / a day</span>
 			</div>
 			
 			<form class="form-inline add-cart-form">
-			  <button class="btn add-cart btn-default btn-lg">신청하기</button>
+			  <button class="btn add-cart btn-default btn-lg">신청하기</button><br>
+			  <a class="btn btn-default" id="delete">삭제</a>
 			  <!-- <div class="number">
 			  	
 				<label>인원수:</label>
@@ -108,8 +121,10 @@
 		  </ul><!-- .nav-tabs -->	
 		  <div class="tab-content">
 			<div class="tab-pane active" id="description">
-				여행 상세 설명~~~~~~~~~~~<br>
-				스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
+				${dto.board_Content}<br><br><br><br>
+				
+				추가사항
+				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
 			</div>
 			<div class="tab-pane" id="reviews">
 			  <div class="timeline-content border border-danger" data-appear-animation="fadeInRight">

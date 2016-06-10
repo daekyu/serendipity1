@@ -7,12 +7,21 @@
 
 package kr.co.serendipity;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import kr.co.serendipity.model.MemberDTO;
+import kr.co.serendipity.model.MyPageDAO;
 
 @Controller
 @RequestMapping("/mypage/")
 public class MyPageController {
+	
+	@Autowired
+	private SqlSession sqlsession;
 	
 	@RequestMapping("my_page.htm")
 	public String myPage() {
@@ -20,8 +29,14 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("my_page_modifyform.htm")
-	public String modifyAccount() {
-		return "/mypage/my_page_modifyform";
+	public ModelAndView modifyAccount(MemberDTO dto) {
+		
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		ModelAndView mav = new ModelAndView("/mypage/my_page_modifyform");
+		mav.addObject("hobby_list", dao.getHobbyList());
+		mav.addObject("language_list", dao.getLanguageList());
+		mav.addObject("member_info", dao.getMemberInfo(dto));
+		return mav;
 	}
 	
 	@RequestMapping("my_page_accept_history.htm")

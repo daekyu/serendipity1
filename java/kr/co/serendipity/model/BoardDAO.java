@@ -37,4 +37,7 @@ public interface BoardDAO {
 		
 	//여행자 구함 글 목록
 	public List getGBoardList(int page) throws ClassNotFoundException, SQLException;
+	
+	// 글 수정할 때 글 내용 가져오기
+	public BoardDTO getDetail(int board_num) throws ClassNotFoundException, SQLException;
 }

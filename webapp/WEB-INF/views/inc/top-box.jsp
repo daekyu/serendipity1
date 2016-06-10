@@ -7,8 +7,18 @@
 	<div class="container">
 	  <div class="row">
 		<div class="col-xs-9 col-sm-5">
-		  
-		  
+		  <div class="btn-group language btn-select">
+			<a class="btn dropdown-toggle btn-default" role="button" data-toggle="dropdown" href="#">
+			  <span class="hidden-xs">Language</span><span class="visible-xs">Lang</span><!-- 
+			  -->: English
+			  <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+			  <li><a href="#"><img src="./resources/img/eng-flag.png" alt="">English</a></li>
+			  <li><a href="#"><img src="./resources/img/fra-flag.png" alt="">France</a></li>
+			  <li><a href="#"><img src="./resources/img/ger-flag.png" alt="">Germany</a></li>
+			</ul>
+		  </div>
 		</div>
 		
 		<div class="col-xs-3 col-sm-7">

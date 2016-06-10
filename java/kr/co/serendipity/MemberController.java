@@ -54,6 +54,7 @@ public class MemberController {
 			
 		} else {
 			session.setAttribute("id", dto.getId());
+			session.setAttribute("user_num", dto.getUser_num());
 		}
 		return "redirect:/index.htm";
 	}

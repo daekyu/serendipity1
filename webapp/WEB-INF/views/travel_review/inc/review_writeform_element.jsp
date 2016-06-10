@@ -47,7 +47,7 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form action="" method="post" enctype="multipart/form-data">
+			<form action="" method="post"> <!-- enctype="multipart/form-data" -->
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>

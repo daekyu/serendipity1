@@ -62,7 +62,7 @@
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/mypage/my_page.htm">마이페이지</a>
+					  <a href="${pageContext.request.contextPath}/mypage/my_page.htm?user_num=${sessionScope.user_num}">마이페이지</a>
 					</li>
 				  </ul>
 				</nav>

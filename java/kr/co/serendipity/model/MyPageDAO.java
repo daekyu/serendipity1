@@ -13,4 +13,7 @@ public interface MyPageDAO {
 	List<HobbyDTO> getHobbyList();
 	List<LanguageDTO> getLanguageList();
 	MemberDTO getMemberInfo(MemberDTO dto);
+	
+	// mypage 를 위한 사용자 정보
+	public MemberDTO myPageGetMemberInfo(int user_num);
 }

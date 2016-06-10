@@ -51,8 +51,11 @@ public class MemberController {
 		List<MemberDTO> list = dao.login(dto);
 		
 		if(list == null) {
-			
+			System.out.println("null 입니까?");
 		} else {
+			System.out.println("session 성공 입니까?");
+			System.out.println("dto.getUser_num() : " + dto.getUser_num());
+			System.out.println("session 성공 입니까?");
 			session.setAttribute("id", dto.getId());
 			session.setAttribute("user_num", dto.getUser_num());
 		}

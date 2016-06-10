@@ -50,27 +50,27 @@
 				</tr>
 				<tr>
 					<th class="danger">이름</th>
-					<td>강대규</td>
+					<td>${dto.name}</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">지역</th>
-					<td>경기</td>
+					<td>${dto.local_code} join으로 지역명 변환</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">언어</th>
-					<td>한국어, 영어, 일본어, 독일어, 프랑스어, 스페인어</td>
+					<td>페이지 고정 한국어, 영어, 일본어 join필요</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">취미</th>
-					<td>롤, 리그오브레전드, 엘오엘</td>
+					<td>롤, 리그오브레전드, 엘오엘 join필요</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">관심사</th>
-					<td>술, 음식</td>
+					<td>술, 음식 join필요</td>
 				</tr>
 			</table>
 			</div>

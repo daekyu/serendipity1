@@ -36,18 +36,18 @@ $(function() {
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>
-						<td colspan="5"><input class="form-control" type="text" name="board_Title"></td>
+						<td colspan="5"><input class="form-control" type="text" name="board_Title" value="${dto.board_Title}"></td>
 					</tr>
 					<tr>
 						<td>날짜</td>
 						<td><input class="form-control" type="text"></td>
 						<td>지불할 가격</td>
-						<td><input class="form-control" type="text" name="price"></td>
+						<td><input class="form-control" type="text" name="price" value="${dto.price}"></td>
 					</tr>
 					<tr>
 						<td>설명</td>
 						<td colspan="5">
-						<textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea></td>
+						<textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content">${dto.board_Content}</textarea></td>
 					</tr>
 					<tr>
 						<td>Meeting Point</td>

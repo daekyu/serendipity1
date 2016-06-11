@@ -9,22 +9,13 @@
 		  <nav>
 			<ul>
 			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page.htm"><i class="fa fa-user item-icon"></i>My Profile</a>
+				<a href="#"><i class="fa fa-bar-chart-o item-icon"></i>통계</a>
 			  </li>
 			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_modifyform.htm?id=${sessionScope.id}"><i class="fa fa-gears item-icon"></i>Update Profile</a>
+				<a href="${pageContext.request.contextPath}/admin/member_list.htm"><i class="fa fa-users item-icon"></i>회원 목록</a>
 			  </li>
 			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm"><i class="fa fa-mail-reply item-icon"></i>받은 요청</a>
-			  </li>
-			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm"><i class="fa fa-mail-forward item-icon"></i>보낸 요청</a>
-			  </li>
-			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_notification.htm"><i class="fa fa-bell-o item-icon"></i>Etc</a>
-			  </li>
-			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_withdraw.htm"><i class="fa fa-times item-icon"></i>Withdraw from Serendipity</a>
+				<a href="${pageContext.request.contextPath}/admin/report_list.htm"><i class="fa fa-warning item-icon"></i>신고 내역</a>
 			  </li>
 			</ul>
 		  </nav>

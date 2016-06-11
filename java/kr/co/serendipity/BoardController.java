@@ -7,7 +7,6 @@
 package kr.co.serendipity;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -162,17 +161,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="guide_detail.htm")
-	public String guideDetail(int board_num, Model model) throws ClassNotFoundException, SQLException {
+	public String guideDetail(int board_num, int user_num, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("guideDetail entrance");
 		System.out.println("board_num : " + board_num);
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		
-		BoardDTO dto = dao.getBoardDetail(board_num);
-		model.addAttribute("dto", dto);
-		System.out.println("adawewqe : " + dto.getUser_Num());
-		
+
+		model.addAttribute("dto", dao.getBoardDetail(board_num));
+		model.addAttribute("memberdto", dao.getWriterDetail(user_num));
 		return "/board/guide_detail";
 	}
+	
 	
 	@RequestMapping(value="board_delete.htm")
 	public String boardDelete(int board_num, int check) throws ClassNotFoundException, SQLException {
@@ -195,6 +193,16 @@ public class BoardController {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		
 		ModelAndView mav = new ModelAndView("/board/guide_modifyform");
+		mav.addObject("dto", dao.getBoardDetail(board_num));
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="traveler_modify.htm")
+	public ModelAndView modifyTravelerForm(int board_num) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		
+		ModelAndView mav = new ModelAndView("/board/traveler_modifyform");
 		mav.addObject("dto", dao.getBoardDetail(board_num));
 		
 		return mav;

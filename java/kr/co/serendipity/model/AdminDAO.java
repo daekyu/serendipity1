@@ -11,4 +11,5 @@ import java.util.List;
 
 public interface AdminDAO {
 	List<MemberDTO> getMemberList(); // 회원 목록을 가져오는 메소드
+	List<ReportDTO> getReportList(); // 신고 목록을 가져오는 메소드
 }

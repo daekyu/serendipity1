@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -98,19 +100,16 @@
 			  <span class="price">${dto.price} / a day</span>
 			</div>
 			
-			<form class="form-inline add-cart-form">
-			  <button class="btn add-cart btn-default btn-lg">신청하기</button><br>
-			  <a class="btn btn-default" id="delete">삭제</a>
-			  <!-- <div class="number">
-			  	
-				<label>인원수:</label>
-				<input type="text" value="1" class="form-control">
-				<div class="regulator">
-				  <a href="#" class="number-up"><i class="fa fa-angle-up"></i></a>
-				  <a href="#" class="number-down"><i class="fa fa-angle-down"></i></a>
-				</div>
-			  </div> -->
-			</form>
+			<c:choose>
+				<c:when test="${sessionScope.user_num == dto.user_Num}">
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${dto.board_Num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
+					<a class="btn btn-danger btn-sm" id="delete"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+				</c:when>
+				
+				<c:otherwise>
+					<a class="btn add-cart btn-default btn-lg" href="">신청하기</a>
+				</c:otherwise>
+			</c:choose>
 		  </div>
 		</div>
 		

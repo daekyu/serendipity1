@@ -62,4 +62,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE NUM <![CDATA[ <= ]]>4
  	</select>
  	
+ 	<select id="getWriterDetail" resultType="kr.co.serendipity.model.MemberDTO">
+ 		select * from member where user_num=#{user_num}
+ 	</select>
+ 	
 </mapper>

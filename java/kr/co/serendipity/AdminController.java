@@ -30,4 +30,13 @@ public class AdminController {
 		mav.addObject("member_list", dao.getMemberList());
 		return mav;
 	}
+	
+	@RequestMapping("report_list.htm")
+	public ModelAndView reportList() {
+		ModelAndView mav = new ModelAndView("/admin/admin_report_list");
+		
+		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
+		mav.addObject("report_list", dao.getReportList());
+		return mav;
+	}
 }

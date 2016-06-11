@@ -5,25 +5,25 @@ import java.util.List;
 
 public interface ReviewDAO {
 	
-	//ì—¬í–‰í›„ê¸° ì“°ê¸°
+	//¿©ÇàÈÄ±â ¾²±â
 	public void reviewWrite(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 	
-	//ì—¬í–‰í›„ê¸° ì‘ì„±ì‹œ ì§€ì—­ ë°›ì•„ì˜¤ê¸°
+	//¿©ÇàÈÄ±â ÀÛ¼º½Ã Áö¿ª ¹Ş¾Æ¿À±â
 	List<LocalDTO> localList();
 	
-	//ì—¬í–‰í›„ê¸° ê²Œì‹œíŒ ëª©ë¡
+	//¿©ÇàÈÄ±â °Ô½ÃÆÇ ¸ñ·Ï
 	public List<ReviewDTO> reviewList() throws ClassNotFoundException, SQLException;
 	
-	//ê²Œì‹œê¸€ ìƒì„¸ë³´ê¸°
+	//°Ô½Ã±Û »ó¼¼º¸±â
 	public ReviewDTO reviewDetail() throws ClassNotFoundException, SQLException;
 	
-	//í˜ì´ì§• ì²˜ë¦¬ë¥¼ ìœ„í•œ ì´ ê¸€ ê°œìˆ˜ êµ¬í•˜ê¸°
+	//ÆäÀÌÂ¡ Ã³¸®¸¦ À§ÇÑ ÃÑ ±Û °³¼ö ±¸ÇÏ±â
 	public int getReviewListCount() throws ClassNotFoundException, SQLException;
 	
-	//ê²Œì‹œê¸€ ìˆ˜ì •
+	//°Ô½Ã±Û ¼öÁ¤
 	public void reviewUpdate(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 	
-	//ê²Œì‹œê¸€ ì‚­ì œ
+	//°Ô½Ã±Û »èÁ¦
 	public void reviewDelete(int review_num) throws ClassNotFoundException, SQLException;
 
 

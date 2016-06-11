@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.serendipity.model.ReplyDAO">
 	
-	<select id="replyList" resultType="kr.co.serendipity.model.replyDTO">
+	<select id="replyList" resultType="kr.co.serendipity.model.ReplyDTO">
 		select user_num, reply_content, reply_date from reply
 	</select>
 	

@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.serendipity.model.ReplyDAO;
+import kr.co.serendipity.model.ReplyDTO;
 import kr.co.serendipity.model.ReviewDAO;
 import kr.co.serendipity.model.ReviewDTO;
 
@@ -80,9 +82,12 @@ public class TravelReviewController {
 	@RequestMapping("review_detail.htm")
 	public ModelAndView reviewDetail() throws ClassNotFoundException, SQLException{
 		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
-		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-		ReviewDTO reviewdetail = dao.reviewDetail();
+		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
+		ReviewDTO reviewdetail = reviewdao.reviewDetail();
+		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
+		List<ReplyDTO> replylist = replydao.replyList();
 		mav.addObject("reviewdetail",reviewdetail);
+		mav.addObject("replylist",replylist);
 		return mav;
 	}
 

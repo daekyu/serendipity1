@@ -6,11 +6,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.co.serendipity.model.ReviewLikeDAO">
 	
 	<select id="reviewLikeCount" resultType="java.util.Integer">
-		select count(review_num) from reply where review_num=#{review_num}
+		select count(user_num) from review_like where review_num=#{review_num}
 	</select>
 	
 	<insert id="likeInsert">
-		insert into reply(reply_num,user_num,review_num,reply_content,reply_date)
-		values(reply_seq.nextval, #{user_num}, #{review_num}, #{reply_content}, sysdate)
+		insert into review_like(like_num, review_num, user_num) values(like_seq.nextval, #{review_num}, #{user_num})
 	</insert>
+	
+	<delete id="likeDelete">
+		delete from review_like where review_num=#{review_num} and user_num = #{user_num}
+	</delete>
+	
+	<select id="isLike" resultType="java.util.Integer">
+		select count(user_num) from review_like where review_num=#{review_num} and user_num=#{user_num}
+	</select>
 </mapper>

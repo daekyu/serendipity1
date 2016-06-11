@@ -32,11 +32,47 @@ public class TravelReviewController {
 	
 	//게시판 목록
 	@RequestMapping("review_list.htm")
-	public ModelAndView reviewList() throws ClassNotFoundException, SQLException {
+	public ModelAndView reviewList(String pg) throws ClassNotFoundException, SQLException {
+		System.out.println("reviewList entrance");
 		ModelAndView mav = new ModelAndView("/travel_review/review_list");
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-		List<ReviewDTO> reviewlist = dao.reviewList();
-		mav.addObject("reviewlist",reviewlist);
+		
+		int page = 1;
+		int startpage = 0;
+		int endpage = 0;
+		int maxpage = 0;
+		
+		if(pg != null){
+			page = Integer.parseInt(pg);
+		}
+		System.out.println("pg = " + pg);
+		System.out.println("page = " + page);
+		
+		List<ReviewDTO> reviewList = dao.reviewList();
+		int listCount = dao.getReviewListCount();
+		
+		System.out.println("reviewList size : " + reviewList.size());
+		System.out.println("listCount : " + listCount);
+		
+		maxpage = (int) ((double) listCount / 6 + 0.95);
+		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+		endpage = startpage + 10 - 1;
+		
+		if (endpage > maxpage) {
+			endpage = maxpage;
+		}
+		
+		mav.addObject("reviewList",reviewList);
+		mav.addObject("page", page);
+		mav.addObject("maxpage", maxpage);
+		mav.addObject("startpage", startpage);
+		mav.addObject("endpage", endpage);
+		mav.addObject("listCount", listCount);
+		
+		System.out.println("page= " + page);
+		System.out.println("maxpage= " + maxpage);
+		System.out.println("startpage= " + startpage);
+		System.out.println("endpage= " + endpage);
 		return mav;
 	}
 	

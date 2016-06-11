@@ -9,7 +9,7 @@
 		  <nav>
 			<ul>
 			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page.htm"><i class="fa fa-user item-icon"></i>My Profile</a>
+				<a href="${pageContext.request.contextPath}/mypage/my_page.htm?user_num=${sessionScope.user_num}"><i class="fa fa-user item-icon"></i>My Profile</a>
 			  </li>
 			  <li>
 				<a href="${pageContext.request.contextPath}/mypage/my_page_modifyform.htm?id=${sessionScope.id}"><i class="fa fa-gears item-icon"></i>Update Profile</a>

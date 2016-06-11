@@ -18,4 +18,7 @@ public interface ReviewDAO {
 	//게시글 상세보기
 	public ReviewDTO reviewDetail() throws ClassNotFoundException, SQLException;
 	
+	//페이징 처리를 위한 총 글 개수 구하기
+	public int getReviewListCount() throws ClassNotFoundException, SQLException;
+	
 }

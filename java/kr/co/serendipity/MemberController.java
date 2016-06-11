@@ -49,7 +49,7 @@ public class MemberController {
 	public String login(MemberDTO dto, HttpSession session) {
 		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
 		MemberDTO member = dao.login(dto);
-		
+
 		if(member == null) {
 			
 		} else {

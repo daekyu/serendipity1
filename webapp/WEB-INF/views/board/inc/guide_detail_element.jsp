@@ -14,37 +14,42 @@
 		});
 	</script>
 
-
 <div class="breadcrumb-box breadcrumb-none"></div>
 
 <div id="main" class="page">
-  <header class="page-header">
-    <div class="container">
-      <h1 class="title">여행자구함</h1>
-    </div>	
-  </header>
-  
-  <div class="container">
-    <div class="row">
-      <article class="content product-page col-sm-12 col-md-12">
+	<header class="page-header">
+		<div class="container">
+			<h1 class="title">여행자구함</h1>
+		</div>
+	</header>
+
+	<div class="container">
 		<div class="row">
-		  <div class="col-sm-5 col-md-5">
-			<div class="image-box">
-			  <span class="sale top"></span>
-			  <div class="general-img">
-				<img class="replace-2x" alt="" src="../content/1212.JPG" data-zoom-image="../content/1212.JPG" width="500" height="500">
-			  </div><!-- .general-img -->
-			  
-			  <div class="thumblist-box load">
-				<a href="#" class="prev">
-				  <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
-					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+			<article class="content product-page col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-5 col-md-5">
+						<div class="image-box">
+							<span class="sale top"></span>
+							<div class="general-img">
+								<img class="replace-2x" alt="" src="../content/1212.JPG"
+									data-zoom-image="../content/1212.JPG" width="500" height="500">
+							</div>
+							<!-- .general-img -->
+
+							<div class="thumblist-box load">
+								<a href="#" class="prev"> <svg x="0" y="0" width="9px"
+										height="16px" viewBox="0 0 9 16"
+										enable-background="new 0 0 9 16" xml:space="preserve">
+					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc"
+											points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
 				  </svg>
-				</a>
-				<a href="#" class="next">
-				  <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
-					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+								</a> <a href="#" class="next"> <svg x="0" y="0" width="9px"
+										height="16px" viewBox="0 0 9 16"
+										enable-background="new 0 0 9 16" xml:space="preserve">
+					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc"
+											points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
 				  </svg>
+
 				</a>
 				
 				<div id="thumblist" class="thumblist">
@@ -160,9 +165,6 @@
 			</div><!-- #reviews -->
 		  </div><!-- .tab-content -->
 		</div>
-		  
-		<div class="clearfix"></div>
-      </article><!-- .content -->
-    </div>
-  </div>
-</div><!-- #main -->
+	</div>
+</div>
+<!-- #main -->

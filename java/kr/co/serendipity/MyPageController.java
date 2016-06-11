@@ -10,6 +10,7 @@ package kr.co.serendipity;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +25,15 @@ public class MyPageController {
 	private SqlSession sqlsession;
 	
 	@RequestMapping("my_page.htm")
-	public String myPage() {
+	public String myPage(int user_num, Model model) {
+		System.out.println("myPage entrance");
+		//int user_num = (Integer)session.getAttribute("user_num");
+		System.out.println("user_num : " + user_num);
+		
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		MemberDTO dto = dao.myPageGetMemberInfo(user_num);
+		model.addAttribute("dto", dto);
+		
 		return "/mypage/my_page";
 	}
 	

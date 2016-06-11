@@ -1,7 +1,6 @@
 package kr.co.serendipity.model;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ReviewDAO {
@@ -21,4 +20,11 @@ public interface ReviewDAO {
 	//페이징 처리를 위한 총 글 개수 구하기
 	public int getReviewListCount() throws ClassNotFoundException, SQLException;
 	
+	//게시글 수정
+	public void reviewUpdate(ReviewDTO dto) throws ClassNotFoundException, SQLException;
+	
+	//게시글 삭제
+	public void reviewDelete(int review_num) throws ClassNotFoundException, SQLException;
+
+
 }

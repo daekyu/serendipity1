@@ -112,43 +112,24 @@
 			<div class="tab-pane active" id="reviews">
 			  <h3 class="title slim">Comments</h3>
 		<ul class="commentlist">
+		<c:forEach var="i" items="${replylist}">
 		  <li>
 			<img class="replace-2x avatar" width="84" height="84" src="content/img/avatar-1.jpg" alt="">
 			<div class="meta">
-			  <span>Mike Example</span>, 
-			  <span class="time">03.11.2013, 10:45:</span>
+			  <span>${i.user_num}</span>, 
+			  <span class="time">${i.reply_date}</span>
 			</div>
 			<p class="description">
-			  Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet. Maecenas tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum adipiscing, eros quis lobortis dictum.  It enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			  ${i.reply_content}
 			</p>
 		  </li>
-		  <li>
-			<img class="replace-2x avatar" width="84" height="84" src="content/img/avatar-2.jpg" alt="">
-			<div class="meta">
-			  <span>Mike Example</span>, 
-			  <span class="time">03.11.2013, 10:45:</span>
-			</div>
-			<p class="description">
-			  Etiam mollis volutpat odio, id euismod justo gravida a. Aliquam erat volutpat. Phasellus faucibus venenatis lorem, vitae commodo elit pretium et. Duis rhoncus lobortis congue. Vestibulum et purus dui, vel porta lectus. Sed vulputate pulvinar adipiscing. It enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-			</p>
-		  </li>
-		  <li>
-			<img class="replace-2x avatar" width="84" height="84" src="content/img/avatar-3.jpg" alt="">
-			<div class="meta">
-			  <span>Mike Example</span>, 
-			  <span class="time">03.11.2013, 10:45:</span>
-			</div>
-			<p class="description">
-			  Etiam mollis volutpat odio, id euismod justo gravida a. Aliquam erat volutpat. Phasellus faucibus venenatis lorem, vitae commodo elit pretium et. Duis rhoncus lobortis congue. Vestibulum et purus dui, vel porta lectus. Sed vulputate pulvinar adipiscing. It enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-			</p>
-		  </li>
+		  </c:forEach>
 		</ul>
-			  
-			  <form class="comments-form">
+			  <form class="comments-form" action="" method="post">
 				<div class="row">
 				  <div class="col-sm-7 col-md-7">
-					<label>Review: <span class="required">*</span></label>
-					<input type="text" class="form-control"></input>
+					<label>댓글: <span class="required">*</span></label>
+					<input type="text" class="form-control" name="reply_content"></input>
 					<i>Note: HTML is not translated!</i>
 				  </div>
 				  <div class="col-sm-12 col-md-12">

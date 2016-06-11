@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	@Project : Serendipity
+	@File name : AdminDAO.xml
+	@Author : 강대규
+	@Date : 16.06.10
+	@Desc : AdminDAO의 Mapper / 실제 DB연동을 위한 Query가 들어가는 부분
+ -->
+
+<mapper namespace="kr.co.serendipity.model.AdminDAO">
+	<select id="getMemberList" resultType="kr.co.serendipity.model.MemberDTO">
+		select * from member
+	</select>
+</mapper>

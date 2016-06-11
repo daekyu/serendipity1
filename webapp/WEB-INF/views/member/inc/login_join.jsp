@@ -128,7 +128,7 @@
               <div class="form-group">
 				<label>국적: <span class="required">*</span></label>
                 <select class="form-group" name="country_code" id="country">
-                	<option value="-">--</option>
+                	<option>--</option>
                 	<c:forEach var="i" items="${country_list}">
                 		<option value="${i.country_code}">${i.country_name}</option>
                 	</c:forEach>
@@ -139,7 +139,7 @@
               <div class="form-group" id="local">
 				<label>거주지역: <span class="required">*</span></label>
                 <select class="form-group" name="local_code">
-                	<option value="-">--</option>
+                	<option>--</option>
                 	<c:forEach var="i" items="${local_list}">
                 		<option value="${i.local_code}">${i.local_name} / ${i.local_code}</option>
                 	</c:forEach>

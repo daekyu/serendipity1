@@ -7,10 +7,6 @@
 		<div class="col-xs-6 col-md-2 col-lg-3 logo-box">
 		  <div class="logo">
 				<a href="${pageContext.request.contextPath}/index.htm">
-					<c:if test="">
-						<img src=".././resources/img/logo.svg" class="logo-img" alt="">
-					</c:if>
-					
 					<c:choose>
 						<c:when test="${index == 'index'}">
 							<img src="./resources/img/logo.svg" class="logo-img" alt="">
@@ -64,6 +60,12 @@
 					<li class="item-danger item-bg text-danger">
 					  <a href="${pageContext.request.contextPath}/mypage/my_page.htm">마이페이지</a>
 					</li>
+					
+					<c:if test="${sessionScope.id == 'admin' }">
+						<li class="item-danger item-bg text-danger">
+						  <a href="${pageContext.request.contextPath}/admin/member_list.htm">관리자페이지</a>
+						</li>
+					</c:if>
 				  </ul>
 				</nav>
 			  </div>

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.serendipity.model.ReviewLikeDAO">
 	
-	<select id="reviewLikeCount" resultType="java.util.Integer">
+	<select id="reviewLikeCount" resultType="Integer">
 		select count(user_num) from review_like where review_num=#{review_num}
 	</select>
 	
@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from review_like where review_num=#{review_num} and user_num = #{user_num}
 	</delete>
 	
-	<select id="isLike" resultType="java.util.Integer">
+	<select id="isLike" resultType="Integer">
 		select count(user_num) from review_like where review_num=#{review_num} and user_num=#{user_num}
 	</select>
 </mapper>

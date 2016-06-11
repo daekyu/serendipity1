@@ -79,7 +79,7 @@ public class TravelReviewController {
 	}
 	
 	//게시글 상세보기
-	@RequestMapping("review_detail.htm")
+	@RequestMapping(value="review_detail.htm", method=RequestMethod.GET)
 	public ModelAndView reviewDetail() throws ClassNotFoundException, SQLException{
 		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
 		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
@@ -97,6 +97,21 @@ public class TravelReviewController {
 		ModelAndView mav = new ModelAndView("/travel_review/review_writeform");
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
 		mav.addObject("local_list", dao.localList());
+		return mav;
+	}
+	
+	// 댓글쓰기 
+	@RequestMapping(value="review_detail.htm", method=RequestMethod.POST)
+	public ModelAndView replyWrite(ReplyDTO dto) throws ClassNotFoundException, SQLException{
+		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
+		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
+		ReviewDTO reviewdetail = reviewdao.reviewDetail();
+		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
+		replydao.replyWrite(dto);
+		List<ReplyDTO> replylist = replydao.replyList();
+		
+		mav.addObject("reviewdetail",reviewdetail);
+		mav.addObject("replylist",replylist);
 		return mav;
 	}
 

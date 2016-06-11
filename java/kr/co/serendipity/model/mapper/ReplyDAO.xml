@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="replyWrite">
 		insert into reply(reply_num, user_num, review_num, reply_content, reply_date) 
-		values(reply_seq.nextval, #{user_num}, #{review_num}, #{reply_content}, sysdate)
+		values(reply_seq.nextval, 6, 1, #{reply_content}, sysdate)
 	</insert>
 	
 	<update id="replyUpdate">

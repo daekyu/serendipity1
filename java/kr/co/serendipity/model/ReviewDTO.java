@@ -1,9 +1,7 @@
 package kr.co.serendipity.model;
 
 import java.sql.Date;
-import java.util.List;
 
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class ReviewDTO {
 	private int review_num;

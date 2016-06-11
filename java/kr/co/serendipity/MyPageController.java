@@ -7,6 +7,13 @@
 
 package kr.co.serendipity;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,10 +32,8 @@ public class MyPageController {
 	private SqlSession sqlsession;
 	
 	@RequestMapping("my_page.htm")
-	public String myPage(int user_num, Model model) {
+	public String myPage(int user_num, Model model) throws IOException{
 		System.out.println("myPage entrance");
-		//int user_num = (Integer)session.getAttribute("user_num");
-		System.out.println("user_num : " + user_num);
 		
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		MemberDTO dto = dao.myPageGetMemberInfo(user_num);

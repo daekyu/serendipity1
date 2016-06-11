@@ -60,10 +60,11 @@
 					<li class="item-danger item-bg text-danger">
 					  <a href="${pageContext.request.contextPath}/travel_review/review_list.htm">여행후기</a>
 					</li>
-					
+					<c:if test="${!empty sessionScope.user_num}">
 					<li class="item-danger item-bg text-danger">
 					  <a href="${pageContext.request.contextPath}/mypage/my_page.htm?user_num=${sessionScope.user_num}">마이페이지</a>
 					</li>
+					</c:if>
 				  </ul>
 				</nav>
 			  </div>

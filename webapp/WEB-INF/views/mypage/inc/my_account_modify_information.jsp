@@ -20,6 +20,16 @@
 				$('#local').hide();	
 			}
 		});
+		
+		$('#btnSubmit').click(function(){
+			if($('#pw').val() != $('#confirm_pw').val()){
+				alert("비밀번호와 확인 입력값이 일치하지 않습니다.");
+				return false;
+			}else{
+				mo.submit();
+			}
+		});
+		
 	});
 </script>
 
@@ -93,19 +103,19 @@
 		  
 		  <!-- 기본정보수정 Form태그 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
-			<form class="form-box register-form form-validator" action="joinMember.htm" method="post">
+			<form name="mo" class="form-box register-form form-validator" action="InfoModify2.htm?user_num=${sessionScope.user_num}" method="post">
 			  <h3 class="title">기본정보 수정</h3>
 			  <p>여기는 그냥 회원가입/로그인하고 그냥 같음</p>
 			  
 			  <div class="form-group">
 				<label>이름: <span class="required">*</span></label>
-				<input type="text" class="form-control" name="name" value="${member_info.name}">
+				<input type="text" class="form-control" name="name" value="${member_info.name}" readonly>
                 <!-- <input type="text" class="form-control" name="name" data-bv-trigger="keyup" required data-bv-notempty-message="The name is required and cannot be empty"> -->
               </div>
 
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
-				<input type="text" class="form-control" name="id" value="${member_info.id}">
+				<input type="text" class="form-control" name="id" value="${member_info.id}" readonly>
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
 				  data-bv-message="The username is not valid"
@@ -125,7 +135,7 @@
 			  
 			  <div class="form-group">
 				<label>성별: <span class="required">*</span></label>
-                <select class="form-group" name="gender">
+                <select class="form-group" name="gender" disabled>
                 	<option value="-">--</option>
                 	<option value="M">남자</option>
                 	<option value="F">여자</option>
@@ -139,7 +149,7 @@
               
               <div class="form-group">
 				<label>국적: <span class="required">*</span></label>
-                <select class="form-group" name="country_code" id="country">
+                <select class="form-group" name="country_code" id="country" disabled>
                 	<option value="-">--</option>
                 	<c:forEach var="i" items="${country_list}">
                 		<option value="${i.country_code}">${i.country_name}</option>
@@ -160,17 +170,18 @@
               
               <div class="form-group">
 				<label>전화번호: <span class="required">*</span></label>
-                <input class="form-control" id="hp" name="hp" type="text" placeholder="01012345678과 같이 '-'를 뺀 형식으로 입력하세요.">
+                <input class="form-control" id="hp" name="hp" type="text" placeholder="01012345678과 같이 '-'를 뺀 형식으로 입력하세요." value="${member_info.hp}">
               </div>
 			  
 			  <div class="form-group">
 				<label>Email: <span class="required">*</span></label>
-				<input class="form-control" name="email" type="email" required data-bv-emailaddress-message="The input is not a valid email address">
+				<input class="form-control" name="email" type="email" required data-bv-emailaddress-message="The input is not a valid email address" value="${member_info.email}">
               </div>
 
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Create my account</button> -->
-				<input type="submit" class="btn btn-default" value="정보 수정">
+				<!-- <input type="submit" class="btn btn-default" value="정보 수정"> -->
+				<input type="button" class="btn btn-default" value="정보 수정" id="btnSubmit">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>
 			</form><!-- .form-box -->

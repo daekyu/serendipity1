@@ -192,8 +192,6 @@
 
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
-	
-
 </script>
 <section id="main">
 	<header class="page-header">
@@ -204,7 +202,7 @@
 
 	<article class="content">
 		<div class="container">
-			<form action="" method="post">
+			<form name="form" action="" method="post">
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>

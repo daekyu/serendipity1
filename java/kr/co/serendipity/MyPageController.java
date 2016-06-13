@@ -118,5 +118,32 @@ public class MyPageController {
 
 		return "redirect:/mypage/my_page.htm?user_num="+user_num;
 	}
+	
+	@RequestMapping(value = "InfoModify2.htm", method = RequestMethod.POST)
+	public String infoModify2(String pw, String hp, String email, int user_num)
+			throws ClassNotFoundException, SQLException {
+		System.out.println("InfoModify2.htm POST entrance");
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		
+		if (pw.equals("")) {
+
+		} else {
+			dao.updatePw(user_num, pw);
+		}
+
+		if (hp.equals("")) {
+
+		} else {
+				dao.updateHp(user_num, hp);
+		}
+
+		if (email.equals("")) {
+
+		} else {
+			dao.updateEmail(user_num, email);
+		}
+
+		return "redirect:/mypage/my_page.htm?user_num="+user_num;
+	}
 
 }

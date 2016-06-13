@@ -2,6 +2,12 @@ package kr.co.serendipity.model;
 
 import java.sql.Date;
 
+/*
+ * @Class : ReviewDTO
+ * @Date : 16.06.09
+ * @Author : 이소라
+ * @Desc : 여행후기 게시판 DTO
+ */
 
 public class ReviewDTO {
 	private int review_num;

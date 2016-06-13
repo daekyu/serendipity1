@@ -37,4 +37,13 @@ public interface MyPageDAO {
 	
 	//추가 정보 수정 (DB에 저장된 자기소개가 있는지 체크)
 	public void updateContent(int user_num, String profile);
+	
+	//기본 정보 수정 (비밀번호 수정)
+	public void updatePw(int user_num, String pw);
+	
+	//기본 정보 수정 (전화번호 수정)
+	public void updateHp(int user_num, String hp);
+	
+	//기본 정보 수정 (이메일 수정)
+	public void updateEmail(int user_num, String Email);
 }

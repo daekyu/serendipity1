@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	@Project : Serendipity
+	@File name : MessageDAO.xml
+	@Author : 강대규
+	@Date : 16.06.13
+	@Desc : MessageDAO의 Mapper / 실제 DB연동을 위한 Query가 들어가는 부분
+ -->
+
+<mapper namespace="kr.co.serendipity.model.MessageDAO">
+	<select id="getSendMsgList" resultType="map">
+		select msg.message_num, msg.message_content, msg.message_date, msg.message_title, m1.id as receiver, m2.id as sender
+		from message msg, member m1, member m2 
+		where msg.receiver=m1.user_num and msg.sender=m2.user_num and msg.sender=#{user_num}
+	</select>
+	
+	<select id="getReceiveMsgList" resultType="map">
+		select rm.message_num, rm.message_content, rm.message_date, rm.message_title, m1.id as receiver, m2.id as sender
+		from rcv_message rm, member m1, member m2 
+		where rm.receiver=m1.user_num and rm.sender=m2.user_num and rm.receiver=#{user_num}
+	</select>
+	
+	<select id="getMemberList" resultType="kr.co.serendipity.model.MemberDTO">
+		select * from member where id like '%${id}%'
+	</select>
+	
+	<select id="getReceiverNum" resultType="kr.co.serendipity.model.MemberDTO">
+		select * from member where id = #{id}
+	</select>
+	
+	<insert id="sendMessage_1">
+		insert into rcv_message(message_num, sender, receiver, message_content, message_title, message_date)
+		values(message_seq.nextval, #{sender}, #{receiver}, #{message_content}, #{message_title}, sysdate)
+	</insert>
+	
+	<insert id="sendMessage_2">
+		insert into message(message_num, sender, receiver, message_content, message_title, message_date)
+		values(message_seq.nextval, #{sender}, #{receiver}, #{message_content}, #{message_title}, sysdate)
+	</insert>
+	
+	<delete id="deleteSendMessage">
+		delete from message where message_num=#{message_num}
+	</delete>
+	
+	<delete id="deleteReceiverMessage">
+		delete from rcv_message where message_num=#{message_num}
+	</delete>
+</mapper>

@@ -36,48 +36,49 @@
 		<div class="row filter-elements hidden">
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
 			<div class="info-box">
-			  <h3 class="title">New costumers</h3>
-			  <p class="descriptions">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register">Create an Account</button>
+			  <h3 class="title">기본정보 수정</h3>
+			  <p class="descriptions">기본 정보 수정은 아래 버튼을 클릭해 주세요.</p>
+			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register">기본 정보 수정</button>
 			</div>
 		  </div>
 		  
 		  
 		  <!-- 로그인하는 Form태그가 있는 부분 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
-			<form class="form-box" action="login.htm" method="post">
+			<form class="form-box" action="InfoModify.htm?user_num=${sessionScope.user_num}" method="post">
+			<%-- <input type="hidden" name="user_name" value="${sessionScope.user_num}"> --%>
 			  <h3 class="title">추가정보 수정</h3>
 			  <p>요 밑에 테이블 이상하게 보이는건 나중에 수정해보자...</p>
 			  
               <table class="table">
               	<tr>
-              		<td>취미/관심사</td>
-              		<td>언어</td>
+              		<td width="150">취미/관심사</td>
+              		<td width="150">언어 </td>
               	</tr>
               	<tr>
               		
               		<td>
               			<c:forEach var="i" items="${hobby_list}" varStatus="j">
-						  	<input type="checkbox" name="hobby">${i.hobby_name}<br>
+						  	<input type="checkbox" name="hobby" value="${i.hobby_code}">${i.hobby_name}<br>
 						</c:forEach>
               		</td>
               		
               		
               		<td>
               			<c:forEach var="i" items="${language_list}" varStatus="j">
-						  	<input type="checkbox" name="language">${i.language_name}<br>
+						  	<input type="checkbox" name="language" value="${i.language_code}">${i.language_name}<br>
 						</c:forEach>
               		</td>
               	</tr>
               	
               	<tr>
               		<th>사진: </th>
-              		<td><input type="file"></td>
+              		<td><input type="file" name="pic"></td>
               	</tr>
               	
               	<tr>
               		<th>자기소개: </th>
-              		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="board_Content"></textarea></td>
+              		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="profile">${member_info.profile_description}</textarea></td>
               	</tr>
               </table>
 			  
@@ -169,7 +170,7 @@
 
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Create my account</button> -->
-				<input type="submit" class="btn btn-default" value="Create my account">
+				<input type="submit" class="btn btn-default" value="정보 수정">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>
 			</form><!-- .form-box -->
@@ -178,9 +179,9 @@
 
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
 			<div class="info-box">
-			  <h3 class="title">My Account</h3>
-			  <p class="descriptions">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login">Login an Account</button>
+			  <h3 class="title">추가 정보 수정</h3>
+			  <p class="descriptions">추가 정보를 수정하려면 아래 버튼을 클릭해 주세요.</p>
+			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login">추가 정보 수정</button>
 			</div>
 		  </div>
 		</div>

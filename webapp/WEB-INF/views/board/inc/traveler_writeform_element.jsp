@@ -3,6 +3,7 @@
 
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+        <!-- <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
 		<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 
 <script type="text/javascript">
@@ -39,7 +40,7 @@
 	    // prepare Geocoder
 	    geocoder = new google.maps.Geocoder();
 
-	    // set initial position (New York)
+	    // set initial position (삼성역)
 	    var myLatlng = new google.maps.LatLng(37.5088652,127.0609603);
 
 	    var myOptions = { // default map options
@@ -157,20 +158,37 @@
 	        title: obj.name
 	    });
 	    markers.push(mark);
+	    
+	  /*   var geocoder = new google.maps.Geocoder();
+		  geocoder.geocode({
+		   LatLng: latlng
+		  }, function(results, status) {
+		   if (status == google.maps.GeocoderStatus.OK) {
+		       if (results[0].geometry) {
+		           var address = results[0].formatted_address;
+		       }
+		   }
+		  }); */
 
 	    // prepare info window
 	    var infowindow = new google.maps.InfoWindow({
 	        content: '<img src="' + obj.icon + '" /><font style="color:#000;">' + obj.name + 
-	        '<br />Rating: ' + obj.rating + '<br />Vicinity: ' + obj.vicinity + '</font>'
+	        '<br />Rating: ' + obj.rating + '<br />Vicinity: ' + obj.vicinity+
+	        '<br />latlng: ' + obj.latitude + '</font>'
 	    });
 
 	    // add event handler to current marker
-	    google.maps.event.addListener(mark, 'click', function() {
+	    google.maps.event.addListener(mark, 'click', function(){
 	        clearInfos();
 	        infowindow.open(map,mark);
+	        
 	    });
 	    infos.push(infowindow);
 	}
+	
+	//위도 경도 얻어오기
+	
+
 
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
@@ -243,8 +261,8 @@
 											<option value="5000">5000</option>
 										</select>
 									</div>
-									 <input type="hidden" id="lat" name="lat" value="40.7143528" />
-									<input type="hidden" id="lng" name="lng" value="-74.0059731" />
+									 <input type="hidden" id="lat" name="board_Latitude" value="00" />
+									 <input type="hidden" id="lng" name="board_Longitude" value="00" />
 									<div id="button1" class="btn btn-success"
 										onclick="findPlaces(); return false;">Search for objects</div>
 								</div>

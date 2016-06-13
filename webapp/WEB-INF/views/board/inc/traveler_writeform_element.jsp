@@ -21,6 +21,10 @@ $(function() {
 			alert('더 이상 삭제할 수 없습니다.');
 		}
 	});
+	
+	$(form).submit(function(){
+		if($('#pw'))
+	});
 });
 </script>
 <section id="main">
@@ -32,7 +36,7 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form action="" method="post">
+			<form name="form" action="" method="post">
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>

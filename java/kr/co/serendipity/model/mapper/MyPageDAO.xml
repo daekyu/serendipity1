@@ -58,4 +58,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update member set profile_description=#{param2} where user_num=#{param1}
 	</update>
 	
+	<update id="updatePw">
+		update member set pw=#{param2} where user_num=#{param1}
+	</update>
+	
+	<update id="updateHp">
+		update member set hp=#{param2} where user_num=#{param1}
+	</update>
+	
+	<update id="updateEmail">
+		update member set email=#{param2} where user_num=#{param1}
+	</update>
+	
 </mapper>

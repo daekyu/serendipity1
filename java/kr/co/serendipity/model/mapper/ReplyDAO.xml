@@ -6,17 +6,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.co.serendipity.model.ReplyDAO">
 	
 	<select id="replyList" resultType="kr.co.serendipity.model.ReplyDTO">
-		select user_num, reply_content, reply_date from reply
+		select reply_num,user_num, reply_content, reply_date from reply
 	</select>
 	
 	<insert id="replyWrite">
 		insert into reply(reply_num, user_num, review_num, reply_content, reply_date) 
-		values(reply_seq.nextval, 6, 1, #{reply_content}, sysdate)
+		values(reply_seq.nextval, #{user_num}, #{review_num}, #{reply_content}, sysdate)
 	</insert>
-	
-	<update id="replyUpdate">
-		update reply set reply_content=#{reply_content}, reply_date=sysdate where reply_num=#{reply_num}
-	</update>
 	
 	<delete id="replyDelete">
 		delete from reply where reply_num=#{reply_num}

@@ -1,8 +1,8 @@
 /*
  * @Class : TravelReviewController
- * @Date : 16.06.07
- * @Author : 강대규
- * @Desc : 여행후기 게시판 처리를 위한 컨트롤러
+ * @Date : 16.06.09
+ * @Author : 이소라
+ * @Desc : 여행후기 게시판 컨트롤러
  */
 
 package kr.co.serendipity;
@@ -13,18 +13,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.ReplyDAO;
 import kr.co.serendipity.model.ReplyDTO;
 import kr.co.serendipity.model.ReviewDAO;
 import kr.co.serendipity.model.ReviewDTO;
+import kr.co.serendipity.model.ReviewLikeDAO;
+import kr.co.serendipity.model.ReviewLikeDTO;
 
 @Controller
 @RequestMapping("/travel_review/")
@@ -80,18 +84,33 @@ public class TravelReviewController {
 	
 	//게시글 상세보기
 	@RequestMapping(value="review_detail.htm", method=RequestMethod.GET)
-	public ModelAndView reviewDetail() throws ClassNotFoundException, SQLException{
+	public ModelAndView reviewDetail(ReviewDTO dto, HttpSession session) throws ClassNotFoundException, SQLException{
 		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
 		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
-		ReviewDTO reviewdetail = reviewdao.reviewDetail();
+		ReviewDTO reviewdetail = reviewdao.reviewDetail(dto);
 		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
 		List<ReplyDTO> replylist = replydao.replyList();
+		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
+		ReviewLikeDTO likedto = new ReviewLikeDTO();
+		int user_num = (Integer)session.getAttribute("user_num");
+		likedto.setReview_num(dto.getReview_num());
+		likedto.setUser_num(user_num);
+		int result = likedao.isLike(likedto);
+		int count = likedao.reviewLikeCount(dto.getReview_num());
 		mav.addObject("reviewdetail",reviewdetail);
 		mav.addObject("replylist",replylist);
+		mav.addObject("result",result);
+		mav.addObject("count",count);
 		return mav;
 	}
+	
+	@RequestMapping(value="is_like.htm", method=RequestMethod.POST)
+	public @ResponseBody int isLike(ReviewLikeDTO likedto) {
+		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
+		return likedao.isLike(likedto);
+	}
 
-	// 후기 글쓰기 페이지
+	// 후기 글쓰기 페이지폼
 	@RequestMapping("review_writeform.htm")
 	public ModelAndView reviewWriteForm() {
 		ModelAndView mav = new ModelAndView("/travel_review/review_writeform");
@@ -100,19 +119,118 @@ public class TravelReviewController {
 		return mav;
 	}
 	
+	/*@RequestMapping(value="review_like.htm", method=RequestMethod.POST)
+	public ModelAndView reviewLike(ReviewLikeDTO dto, HttpSession session) throws ClassNotFoundException, SQLException{
+		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
+		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
+		int user_num = (Integer)session.getAttribute("user_num");
+		ReviewDTO reviewdto = new ReviewDTO();
+		reviewdto.setReview_num(dto.getReview_num());
+		reviewdto.setUser_num(user_num);
+		ReviewDTO reviewdetail = reviewdao.reviewDetail(reviewdto);
+		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
+		likedao.likeInsert(dto);
+		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
+		List<ReplyDTO> replylist = replydao.replyList();
+		int result = likedao.isLike(dto);
+		int count = likedao.reviewLikeCount(dto.getReview_num());
+		mav.addObject("reviewdetail",reviewdetail);
+		mav.addObject("replylist",replylist);
+		mav.addObject("result",result);
+		mav.addObject("count",count);
+		return mav;
+	}*/
+	
+	//좋아요 누르기
+	@RequestMapping(value="review_like.htm", method=RequestMethod.POST)
+	public @ResponseBody int reviewLike(ReviewLikeDTO dto) throws ClassNotFoundException, SQLException{
+		//int user_num = (Integer)session.getAttribute("user_num");
+		System.out.println("들어왔니?");
+		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
+		likedao.likeInsert(dto);
+		System.out.println("review_num : "+dto.getReview_num());
+		System.out.println("user_num : "+dto.getUser_num());
+		List<Integer> list = null;
+		//int result = likedao.isLike(dto);
+		int count = likedao.reviewLikeCount(dto.getReview_num());
+		return count;
+	}
+	
+	/*@RequestMapping(value="delete_review_like.htm", method=RequestMethod.POST)
+	public ModelAndView likeDelete(ReviewLikeDTO dto, HttpSession session) throws ClassNotFoundException, SQLException{
+		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
+		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
+		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
+		int user_num = (Integer)session.getAttribute("user_num");
+		ReviewDTO reviewdto = new ReviewDTO();
+		reviewdto.setReview_num(dto.getReview_num());
+		reviewdto.setUser_num(user_num);
+		ReviewDTO reviewdetail = reviewdao.reviewDetail(reviewdto);
+		likedao.likeDelete(dto);
+		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
+		List<ReplyDTO> replylist = replydao.replyList();
+		int result = likedao.isLike(dto);
+		int count = likedao.reviewLikeCount(dto.getReview_num());
+		mav.addObject("reviewdetail",reviewdetail);
+		mav.addObject("replylist",replylist);
+		mav.addObject("result",result);
+		mav.addObject("count",count);
+		return mav;
+	}*/
+	
+	//좋아요 취소
+	@RequestMapping(value="delete_review_like.htm", method=RequestMethod.POST)
+	public @ResponseBody int likeDelete(ReviewLikeDTO dto) throws ClassNotFoundException, SQLException{
+		System.out.println("들어왔니?");
+		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
+		//int user_num = (Integer)session.getAttribute("user_num");
+		likedao.likeDelete(dto);
+		System.out.println("review_num : "+dto.getReview_num());
+		System.out.println("user_num : "+dto.getUser_num());
+		//int result = likedao.isLike(dto);
+		int count = likedao.reviewLikeCount(dto.getReview_num());
+		return count;
+	}
+	
 	// 댓글쓰기 
 	@RequestMapping(value="review_detail.htm", method=RequestMethod.POST)
 	public ModelAndView replyWrite(ReplyDTO dto) throws ClassNotFoundException, SQLException{
 		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
 		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
-		ReviewDTO reviewdetail = reviewdao.reviewDetail();
+		ReviewDTO reviewdto = new ReviewDTO();
+		reviewdto.setReview_num(dto.getReview_num());
+		reviewdto.setUser_num(dto.getUser_num());
+		ReviewDTO reviewdetail = reviewdao.reviewDetail(reviewdto);
 		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
 		replydao.replyWrite(dto);
 		List<ReplyDTO> replylist = replydao.replyList();
-		
+		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
+		ReviewLikeDTO likedto = new ReviewLikeDTO();
+		likedto.setReview_num(dto.getReview_num());
+		likedto.setUser_num(dto.getUser_num());
+		int result = likedao.isLike(likedto);
+		int count = likedao.reviewLikeCount(likedto.getReview_num());
 		mav.addObject("reviewdetail",reviewdetail);
 		mav.addObject("replylist",replylist);
+		mav.addObject("result",result);
+		mav.addObject("count",count);
 		return mav;
+	}
+	
+	//댓글삭제
+	@RequestMapping("reply_delete.htm")
+	public String replyDelete(ReplyDTO dto) throws ClassNotFoundException, SQLException{
+		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
+		replydao.replyDelete(dto);
+		return "redirect:/travel_review/review_detail.htm?review_num="+dto.getReview_num()+"&user_num="+dto.getUser_num();
+	}
+	
+	//여행후기 게시글 삭제
+	@RequestMapping("review_delete.htm")
+	public String reviewDelete(int review_num) throws ClassNotFoundException, SQLException{
+		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
+		reviewdao.reviewDelete(review_num);
+		return "redirect:/travel_review/review_list.htm";
 	}
 
 	// 글쓰기 처리 페이지
@@ -163,6 +281,6 @@ public class TravelReviewController {
 		System.out.println("content : " + dto.getReview_content());
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
 		dao.reviewWrite(dto);
-		return "redirect:/travel_review/review_list";
+		return "redirect:/travel_review/review_list.htm";
 	}
 }

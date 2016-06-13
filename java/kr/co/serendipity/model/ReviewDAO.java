@@ -3,27 +3,34 @@ package kr.co.serendipity.model;
 import java.sql.SQLException;
 import java.util.List;
 
+/*
+ * @Class : ReviewDAO
+ * @Date : 16.06.09
+ * @Author : ì´ì†Œë¼
+ * @Desc : ì—¬í–‰í›„ê¸° ê²Œì‹œíŒ DAO
+ */
+
 public interface ReviewDAO {
 	
-	//¿©ÇàÈÄ±â ¾²±â
+	//ì—¬í–‰í›„ê¸° ì‘ì„±
 	public void reviewWrite(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 	
-	//¿©ÇàÈÄ±â ÀÛ¼º½Ã Áö¿ª ¹Ş¾Æ¿À±â
+	//ì§€ì—­ë¦¬ìŠ¤íŠ¸
 	List<LocalDTO> localList();
 	
-	//¿©ÇàÈÄ±â °Ô½ÃÆÇ ¸ñ·Ï
+	//ì—¬í–‰í›„ê¸° ëª©ë¡
 	public List<ReviewDTO> reviewList() throws ClassNotFoundException, SQLException;
 	
-	//°Ô½Ã±Û »ó¼¼º¸±â
-	public ReviewDTO reviewDetail() throws ClassNotFoundException, SQLException;
+	//ì—¬í–‰í›„ê¸° ìƒì„¸ë³´ê¸°
+	public ReviewDTO reviewDetail(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 	
-	//ÆäÀÌÂ¡ Ã³¸®¸¦ À§ÇÑ ÃÑ ±Û °³¼ö ±¸ÇÏ±â
+	//ì—¬í–‰í›„ê¸° í˜ì´ì§•í•  ë•Œ
 	public int getReviewListCount() throws ClassNotFoundException, SQLException;
 	
-	//°Ô½Ã±Û ¼öÁ¤
+	//ì—¬í–‰í›„ê¸° ìˆ˜ì •
 	public void reviewUpdate(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 	
-	//°Ô½Ã±Û »èÁ¦
+	//ì—¬í–‰í›„ê¸° ì‚­ì œ
 	public void reviewDelete(int review_num) throws ClassNotFoundException, SQLException;
 
 

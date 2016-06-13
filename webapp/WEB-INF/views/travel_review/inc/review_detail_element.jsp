@@ -1,5 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript"> 
+	$(function() {
+		$('#btn_like').hide();
+		$('#btn_like2').hide();
+		function isLike() {
+			$.ajax({
+				type : "post",
+				url : "is_like.htm",
+				data : {
+					"user_num" : <%=session.getAttribute("user_num")%>,
+					"review_num" : <%= request.getParameter("review_num")%>
+				},
+				success : function(data) {
+					if(data>0) {
+						$('#btn_like').hide();
+						$('#btn_like2').show();
+					} else {
+						$('#btn_like2').hide();
+						$('#btn_like').show();
+					}
+				}
+			});
+		}
+		
+		isLike();
+		
+		$('#btn_like').click(function() {
+			$.ajax({
+				type : "post",
+				url : "review_like.htm",
+				data : {"user_num" : <%=session.getAttribute("user_num")%>,
+						"review_num" : <%= request.getParameter("review_num")%>		
+				},
+				success : function(data) {
+					
+					console.log("user_num1 : "+data);
+					$('#likeCount').text(data);
+					$('#btn_like2').text(data+" Likeㅎㅎ");
+					
+					isLike();
+				}
+			});
+		});
+		
+		$('#btn_like2').click(function() {
+			$.ajax({
+				type : "post",
+				url : "delete_review_like.htm",
+				data : {"user_num" : <%=session.getAttribute("user_num")%>,
+						"review_num" : <%= request.getParameter("review_num")%>		
+				},
+				success : function(data) {
+					
+					console.log("user_num2 : "+data);
+					$('#likeCount').text(data);
+					$('#btn_like').text(data+" Like");
+					isLike();
+				}
+			});
+		});
+	});
+</script>
+
 <section id="main">
   <header class="page-header">
     <div class="container">
@@ -93,8 +157,16 @@
 			<p><b>여행테마: </b><span>자연경관, 야경, 맛집....</span></p>
 			<p><b>지역: </b><span>${reviewdetail.local_code}</span></p>
 			<p><b>Date: </b><span>${reviewdetail.review_date}</span></p><br>
-			<h4><span>${reviewdetail.like_count} Like(s)</span></h4>
-			<button type="button" class="btn btn-border btn-danger"><i class="fa fa-heart"></i>${reviewdetail.like_count} Like</button>
+			<h4><span id="likeCount">${count}</span> Like(s)</h4>
+			
+			<button type="button" class="btn btn-danger" id="btn_like2"><i class="fa fa-heart"></i> ${count} Like</button><button type="button" class="btn btn-primary" id="btn_like"><i class="fa fa-heart"></i> ${count} Like</button><br><br>
+			
+			<c:choose>
+				<c:when test="${sessionScope.user_num == reviewdetail.user_num}">
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${dto.board_Num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
+					<a class="btn btn-danger btn-sm" id="delete" href="review_delete.htm?review_num=${reviewdetail.review_num}"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+				</c:when>
+			</c:choose>
 		  </div>
 		  
 		  <div class="bottom-padding col-sm-8 col-md-8">
@@ -105,6 +177,7 @@
 		<div class="clearfix"></div>
 		  
 		<div class="product-tab">
+		  <!-- <form class="comments-form" action="reply_delete.htm?" method="post"> -->
 		  <ul class="nav nav-tabs">
 			<li><a href="#reviews">댓글</a></li>
 		  </ul><!-- .nav-tabs -->	
@@ -120,12 +193,18 @@
 			  <span class="time">${i.reply_date}</span>
 			</div>
 			<p class="description">
-			  ${i.reply_content}
+			  ${i.reply_content}&nbsp;&nbsp;&nbsp;
+			  <c:choose>
+				<c:when test="${sessionScope.user_num == i.user_num}">
+			  		<a href="reply_delete.htm?reply_num=${i.reply_num}&review_num=${reviewdetail.review_num}">삭제</a>
+			  	</c:when>
+			  </c:choose>
 			</p>
 		  </li>
 		  </c:forEach>
 		</ul>
-			  <form class="comments-form" action="" method="post">
+		<!-- </form> -->
+			  <form class="comments-form" action="review_detail.htm?user_num=${sessionScope.user_num}&review_num=${reviewdetail.review_num}" method="post">
 				<div class="row">
 				  <div class="col-sm-7 col-md-7">
 					<label>댓글: <span class="required">*</span></label>
@@ -133,7 +212,7 @@
 					<i>Note: HTML is not translated!</i>
 				  </div>
 				  <div class="col-sm-12 col-md-12">
-					<button class="btn btn-default">Submit</button>
+				  	<input type="submit" class="btn btn-default" value="submit">
 				  </div>
 				</div>
 			  </form><!-- .comments-form -->

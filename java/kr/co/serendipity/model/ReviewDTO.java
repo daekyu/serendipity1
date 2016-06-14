@@ -1,6 +1,9 @@
 package kr.co.serendipity.model;
 
 import java.sql.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 /*
  * @Class : ReviewDTO
@@ -114,13 +117,13 @@ public class ReviewDTO {
 	}
 	
 	// 멀티 파일 업로드///////////////////////////////
-	/*private List<CommonsMultipartFile> files;
+	private List<CommonsMultipartFile> files;
 	public List<CommonsMultipartFile> getFiles() {
 		return files;
 	}
 	public void setFiles(List<CommonsMultipartFile> files) {
 		this.files = files;
-	}*/
+	}
 	////////////////////////////////////////////////
 	
 	public int getLike_count() {

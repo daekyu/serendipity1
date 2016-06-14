@@ -303,7 +303,7 @@ public class TravelReviewController {
                     //long fileSize = mf.get(i).getSize(); // 파일 사이즈
      
                     mf.get(i).transferTo(new File(savePath)); // 파일 저장
-                   
+                    System.out.println("파일명 : "+saveFileName);
                     filenames.add(saveFileName); // 실 DB Insert 작업시 .. 파일명
             	}
                 

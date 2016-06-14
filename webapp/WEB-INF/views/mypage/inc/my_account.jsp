@@ -41,9 +41,7 @@
 			  <h3 class="name">${dto.name}</h3>
 			  <div class="role"></div>
 			  <div>
-				<p><br>
-					  ${pageContext.request.contextPath}<br>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae corporis porro ad deleniti odio pariatur fugit dignissimos vero architecto placeat nemo cum ipsum molestiae quae eos et omnis sed magni.</p>
+				<p>${dto.profile_description}</p>
 			  </div>
 			  <div class="social">
 <!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>

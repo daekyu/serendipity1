@@ -50,7 +50,7 @@ import kr.co.serendipity.model.UsersMessageDTO;
 *    -------        -------     -------------------
 *    2014. 11. 27.    이영지
 *
-*/
+*/ //원래 밑의 어노테이션 밸류는 room
 @ServerEndpoint(value = "/chat/{room}", encoders={MessageEncoder.class}, decoders={MessageDecoder.class}, configurator=ChatServerAppConfig.class)
 public class ChatServerEndPoint {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ChatServerEndPoint.class);
@@ -79,10 +79,10 @@ public class ChatServerEndPoint {
 
 		ChatMessageDTO incomingChatMessage = (ChatMessageDTO)incomingMessage;
 		ChatMessageDTO outgoingChatMessage = new ChatMessageDTO();
-
+		System.out.println("들어온거 : " + incomingChatMessage.getMessage());
+		
 		String id = (String) userSession.getUserProperties().get("id");
 		if (id == null) {
-
 			id = incomingChatMessage.getMessage();
 			if (id != null) {
 				userSession.getUserProperties().put("id", id);
@@ -94,7 +94,7 @@ public class ChatServerEndPoint {
 				}
 			}
 		} else {
-			outgoingChatMessage.setName(id);
+			outgoingChatMessage.setId(id);
 			outgoingChatMessage.setMessage(incomingChatMessage.getMessage());
 
 			for (Session session : chatroomUsers){

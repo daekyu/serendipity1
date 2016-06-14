@@ -64,7 +64,7 @@ public class MessageEncoder implements Encoder.Text<Message>{
 		if (message instanceof ChatMessageDTO) {
 			 ChatMessageDTO chatMessage = (ChatMessageDTO) message;
 			 result = Json.createObjectBuilder().add("messageType", chatMessage.getClass().getSimpleName())
-					 .add("name", chatMessage.getName())
+					 .add("name", chatMessage.getId())
 					 .add("message", chatMessage.getMessage())
 					 .build().toString();
 		} else if (message instanceof UsersMessageDTO) {

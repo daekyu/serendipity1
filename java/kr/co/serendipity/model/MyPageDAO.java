@@ -9,6 +9,8 @@ package kr.co.serendipity.model;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface MyPageDAO {
 	List<HobbyDTO> getHobbyList();
 	List<LanguageDTO> getLanguageList();
@@ -46,4 +48,11 @@ public interface MyPageDAO {
 	
 	//기본 정보 수정 (이메일 수정)
 	public void updateEmail(int user_num, String Email);
+	
+	//추가 정보 수정 (프로필 사진 경로 저장)
+	public void updatePic(int user_num, String uploadPath);
+	
+	//추가 정보 수정 (전 프로필 사진 경로 불러오기 - 파일 삭제를 위해)
+	public String selectPic(int user_num);
+	
 }

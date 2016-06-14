@@ -7,13 +7,11 @@
 
 package kr.co.serendipity;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.Iterator;
+import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +19,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.BoardDAO;
-import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.MemberDAO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.MyPageDAO;
 
@@ -42,6 +39,8 @@ public class MyPageController {
 
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		MemberDTO dto = dao.myPageGetMemberInfo(user_num);
+		String pic = dto.getProfile_picture();
+		System.out.println("원본 사진명 : " + pic);
 		model.addAttribute("dto", dto);
 
 		return "/mypage/my_page";
@@ -50,7 +49,7 @@ public class MyPageController {
 	@RequestMapping("my_page_modifyform.htm")
 	public ModelAndView modifyAccount(MemberDTO dto) {
 		System.out.println("myPage_modifyform entrance");
-		
+
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		ModelAndView mav = new ModelAndView("/mypage/my_page_modifyform");
 		mav.addObject("hobby_list", dao.getHobbyList());
@@ -80,16 +79,16 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "InfoModify.htm", method = RequestMethod.POST)
-	public String infoModify(String[] hobby, String[] language, String profile, int user_num)
-			throws ClassNotFoundException, SQLException {
+	public String infoModify(String[] hobby, String[] language, String profile, int user_num,
+			MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("InfoModify.htm POST entrance");
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		
+
 		if (hobby == null) {
 
 		} else {
 			int cnt = dao.countHobby(user_num);
-			
+
 			if (cnt != 0) {
 				dao.deleteHobby(user_num);
 			}
@@ -116,15 +115,56 @@ public class MyPageController {
 			dao.updateContent(user_num, profile);
 		}
 
-		return "redirect:/mypage/my_page.htm?user_num="+user_num;
+		MultipartFile mf = request.getFile("file");
+		
+		if(mf != null) {
+			
+			String uploadPath = request.getSession().getServletContext().getRealPath("resources/img/profile_picture");
+		    //logger.info("실제 파일 업로드 경로 : "+uploadPath);
+		    System.out.println("실제 파일 업로드 경로 : " + uploadPath);
+			
+			//업데이트 전 프로필 사진 삭제
+			String beforeFile = dao.selectPic(user_num);
+			System.out.println("beforeFile : " + beforeFile);
+			if(beforeFile != null){
+				File file = new File(uploadPath+"\\"+beforeFile);
+			    if(file.exists()){
+			    	file.delete();
+			    }
+			}
+			
+			// 파일 업로드
+			System.out.println("파라미터이름 : " + mf.getName());
+			System.out.println("파일명 : " + mf.getOriginalFilename());
+		    System.out.println("파일사이즈 : " + mf.getSize());
+		    
+		    String name = mf.getName(); //필드 이름 얻기
+			String fileName = mf.getOriginalFilename(); //파일명 얻기
+			String contentType = mf.getContentType(); //컨텐츠 타입 얻기
+			//업로드 파일명을 변경후 저장			
+			String uploadedFileName =System.currentTimeMillis() 
+					+ UUID.randomUUID().toString()+fileName;
+			//fileName.substring(fileName.lastIndexOf("."))
+		    
+		    /*dao.updatePic(user_num, uploadPath+"\\"+uploadedFileName);*/
+		    dao.updatePic(user_num, uploadedFileName);
+		    
+		    //지정한주소에 파일 저장	    
+		    if(mf.getSize() != 0) {	    	
+		    	mf.transferTo(new File(uploadPath+"\\"+uploadedFileName));	    	
+		    }
+		}
+		System.out.println();
+		System.out.println();
+		return "redirect:/mypage/my_page.htm?user_num=" + user_num;
 	}
-	
+
 	@RequestMapping(value = "InfoModify2.htm", method = RequestMethod.POST)
 	public String infoModify2(String pw, String hp, String email, int user_num)
 			throws ClassNotFoundException, SQLException {
 		System.out.println("InfoModify2.htm POST entrance");
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		
+
 		if (pw.equals("")) {
 
 		} else {
@@ -134,7 +174,7 @@ public class MyPageController {
 		if (hp.equals("")) {
 
 		} else {
-				dao.updateHp(user_num, hp);
+			dao.updateHp(user_num, hp);
 		}
 
 		if (email.equals("")) {
@@ -143,7 +183,7 @@ public class MyPageController {
 			dao.updateEmail(user_num, email);
 		}
 
-		return "redirect:/mypage/my_page.htm?user_num="+user_num;
+		return "redirect:/mypage/my_page.htm?user_num=" + user_num;
 	}
 
 }

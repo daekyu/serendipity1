@@ -5,7 +5,7 @@
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/serendipity/resources/ckeditor/ckeditor.js"></script>
+	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
 
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 <script type="text/javascript">

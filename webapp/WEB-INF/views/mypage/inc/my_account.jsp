@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 <section id="main" class="page ">
@@ -18,7 +19,17 @@
 			  <div class="carousel-box load" data-carousel-pagination="true" data-carousel-nav="false" data-carousel-one="true" data-autoplay-disable="true">
 				  <div class="carousel">
 					<div class="image">
-					  <img class="replace-2x" src="content/img/team-big-1.jpg" alt="" title="" width="768" height="768">
+					<%-- <c:set var="i" value="${dto.profile_picture}" />
+					<c:choose>
+					    <c:when test="${empty i}">
+					       <img class="replace-2x" src="content/img/team-big-1.jpg" alt="" title="" width="768" height="768">
+					    </c:when>
+					    <c:otherwise>
+					       <img class="replace-2x" src="${i}" alt="" title="" width="768" height="768">
+					    </c:otherwise>
+					</c:choose> --%>
+					  <img class="replace-2x" src="${pageContext.request.contextPath}/resources/img/profile_picture/${dto.profile_picture}" alt="프로필사진" title="프로필사진" width="768" height="768">
+					  
 					</div>
 				  </div>
 				<div class="clearfix"></div>
@@ -30,7 +41,9 @@
 			  <h3 class="name">${dto.name}</h3>
 			  <div class="role"></div>
 			  <div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae corporis porro ad deleniti odio pariatur fugit dignissimos vero architecto placeat nemo cum ipsum molestiae quae eos et omnis sed magni.</p>
+				<p><br>
+					  ${pageContext.request.contextPath}<br>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae corporis porro ad deleniti odio pariatur fugit dignissimos vero architecto placeat nemo cum ipsum molestiae quae eos et omnis sed magni.</p>
 			  </div>
 			  <div class="social">
 <!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>

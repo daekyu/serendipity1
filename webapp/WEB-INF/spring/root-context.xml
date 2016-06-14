@@ -35,6 +35,7 @@
 	<!-- 추가(트랜잭션) : Spring이 제공하는 것 사용 -->
 	
 	
+	
 	<!-- File Upload Resolver -->
 	<bean id="multipartResolver" 
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

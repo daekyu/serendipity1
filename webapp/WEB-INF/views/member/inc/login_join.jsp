@@ -5,12 +5,14 @@
 	@Date : 16.06.08
 	@Desc : 로그인/회원가입을 하는 부분.
  --%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
+
 	/*
 	@Author : 강대규
 	@Date : 16.06.08
@@ -29,6 +31,176 @@
 			}
 		});
 	});
+	
+
+
+
+
+/* $(document).ready(function(){
+	
+	
+	$("#loginbutton").click(function(){
+		
+	var tell_pattern =/(^01[016789]$)/;
+		
+	  
+      //alert("ok");
+      if ($("#name").val() == "") {
+          alert("이름을 꼭 입력하세요!");
+          $("#name").focus();
+          
+      } else if ($("#id_1").val() == "") {
+          alert("아이디를 꼭 입력하세요!");
+          $("#id_1").focus();
+          
+      } 
+     
+         else if ($("#pw_1").val() == "") {
+          alert("비밀번호를 꼭 입력하세요!");
+          $("#pw_1").focus();
+
+      }else if ($("#confirm_pw").val() == "") {
+          alert("비밀번호확인을 꼭 입력하세요!");
+          $("#confirm_pw").focus();
+
+      } else if ($("#pw_1").val() != $("#confirm_pw").val()) {
+          alert("비밀번호와 비밀번호 확인이 일치하지않습니다.");
+          $("#pw_1").val("");
+          $("#confirm_pw").val("");
+          $("#pw_1").focus();
+
+      } else if ($("#gender").val() =="") {
+          alert("성별을 꼭 입력하세요!");
+          $("#gender").focus();
+
+      } else if ($("#age").val() == "") {
+          alert("나이를 꼭 입력하세요!");
+          $("#age").focus();
+
+      } else if ($("#country_code").val() == "") {
+          alert("국가코드를 꼭 입력하세요!");
+          $("#country_code").focus();
+          
+      }else if ($("#tel").val() == "") {
+          alert("전화번호 첫번째자리 입력하세요!");
+          $("#tel").focus();
+
+      } else if ($("#tel").val().length != 11 & $("#tel").val().length > 9) {
+
+          alert("전화번호를 올바르게 입력하세요!");
+          $("#tel").val("");
+          $("#tel").focus();
+
+      } else if (isNaN($("#tel").val())) {
+          alert("전화번호를 올바르게 입력하세요!");
+          $("#tel").val("");
+          $("#tel").focus();
+
+      } */
+      
+   
+      
+      /*
+      
+      if($("#tel1").val() != "" & $("#tel1").val().length ==3 & !isNaN($("#tel1").val()) ){
+      alert("okkkkkkk");
+      var pattern = /(^01[016789]$)/; //정규식 슬래쉬(/)로 시작해서, 슬래쉬(/)로 끝났다.
+      var tel1=$("#tel1").val();
+      if(! pattern.test(tel1)){
+      //틀리면
+      alert("010, 011, 016, 017, 018, 019,o19만 가능합니다.")  
+      $("#tel").val("")
+      $("#tel").focus();
+             
+          }
+      }*/
+
+      
+    /*   else if ($("#email").val() == "") {
+          alert("이메일을 꼭 입력하세요!");
+          $("#email").focus();
+          
+      } else {
+          alert("회원가입이 완료 되었습니다");
+      }
+
+		
+	});
+	
+	
+	
+}); */
+
+
+
+$(document).ready(function(){
+	
+	
+	$("#loginbutton").click(function(){
+		
+						var reg_name = /^[0-9a-zA-Z가-힣]/g; //한글10자, 영문20자, 한글,영문,숫자 사용가능
+						var reg_id = /^[a-z0-9_-]{4,12}$/;
+						var reg_email = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
+						var reg_pw = /^[a-z0-9_-]{4,12}$/; // 비밀번호 검사식
+						var reg_hp = /^[a-z0-9_-]{10,20}$/;
+						var reg_age = /^[0-9]{1,4}$/;
+						var name= $('#name'), id = $('#id_1'), pw_1 = $('#pw_1'), confirm_pw = $('confirm_pw'), hp = $('#hp'), email = $('#email'), gender = $('#gender'), age=$('#age'), country_code=$('#country_code'), local_code=$('#local_code');
+
+						if (!reg_name.test(name.val()) == true) {
+							alert("이름을 입력해주세요");
+							name.focus();
+							return false;
+							
+						} else if (!reg_id.test(id.val()) == true) {
+							alert("아이디는 4-12자 이여야 하며 \n"
+									+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.");
+							id.focus();
+							return false;
+						}else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
+							alert('비밀번호가 맞질 않습니다.(최소 4자리 이상)');
+							pw_1.focus();
+							return false;
+						} else if ($('#pw_1').val()!=$('#confirm_pw').val()){ // 비밀번호 확인 검사
+							alert('비밀번호가 일치하지 않습니다');
+							confirm_pw.focus();
+							return false;
+						} else if (gender.val() == "") { // 이름 검사
+							alert('성별 선택해 주세요.');
+							gender.focus();
+							return false;
+						} else if (!reg_age.test(age.val()) == true) {
+							alert("나이를 숫자로 입력해주세요");
+							age.focus();
+							return false;
+						}else if (country_code.val() == "") { // 이름 검사
+							alert('국적을 선택해 주세요.');
+							country_code.focus();
+							return false;
+
+						} else if (!reg_hp.test(hp.val()) == true) { //휴대폰 유효성
+							alert('휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)');
+							hp.focus();
+							return false;
+						} else if (!reg_email.test(email.val()) == true) {
+							alert('이메일 주소는 @와.를 입력해야합니다.');
+							email.focus();
+							return false;
+						}else{
+							alert("로그인 성공");
+						} 
+
+			});
+    }); // 유효성체크
+    
+
+
+
+
+
+
+
+
+
 </script>
 
 <!-- 로그인/회원가입부분 -->
@@ -87,13 +259,13 @@
 			  
 			  <div class="form-group">
 				<label>이름: <span class="required">*</span></label>
-				<input type="text" class="form-control" name="name">
+				<input type="text" class="form-control" name="name" id="name">
                 <!-- <input type="text" class="form-control" name="name" data-bv-trigger="keyup" required data-bv-notempty-message="The name is required and cannot be empty"> -->
               </div>
 
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
-				<input type="text" class="form-control" name="id">
+				<input type="text" class="form-control" name="id_1" id="id_1">
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
 				  data-bv-message="The username is not valid"
@@ -103,7 +275,7 @@
 				
 			  <div class="form-group">
 				<label>비밀번호: <span class="required">*</span></label>
-                <input class="form-control" name="pw" id="pw" type="password"><!-- 속성에 required를 이용해보자 -->
+                <input class="form-control" name="pw_1" id="pw_1" type="password"><!-- 속성에 required를 이용해보자 -->
               </div>
 			  
 			  <div class="form-group">
@@ -113,8 +285,8 @@
 			  
 			  <div class="form-group">
 				<label>성별: <span class="required">*</span></label>
-                <select class="form-group" name="gender">
-                	<option value="-">--</option>
+                <select class="form-group" name="gender" id="gender">
+                	<option value="">--</option>
                 	<option value="M">남자</option>
                 	<option value="F">여자</option>
                 </select>
@@ -127,8 +299,10 @@
               
               <div class="form-group">
 				<label>국적: <span class="required">*</span></label>
-                <select class="form-group" name="country_code" id="country">
-                	<option>--</option>
+
+                <select class="form-group" name="country_code" id="country_code">
+                	<option value="">--</option>
+
                 	<c:forEach var="i" items="${country_list}">
                 		<option value="${i.country_code}">${i.country_name}</option>
                 	</c:forEach>
@@ -138,8 +312,13 @@
               <!-- 한국 어느지역 사람인지 나타내주는 코드. 외국인일경우 숨기고, 한국인이면 보여주게하자. 그리고 한국인이 입력안하면 넘어가지 못하게 하자 -->
               <div class="form-group" id="local">
 				<label>거주지역: <span class="required">*</span></label>
+<<<<<<< HEAD
                 <select class="form-group" name="local_code">
                 	<option>--</option>
+=======
+                <select class="form-group" name="local_code" id="local_code">
+                	<option value="-">--</option>
+>>>>>>> locale
                 	<c:forEach var="i" items="${local_list}">
                 		<option value="${i.local_code}">${i.local_name} / ${i.local_code}</option>
                 	</c:forEach>
@@ -147,18 +326,18 @@
               </div>
               
               <div class="form-group">
-				<label>전화번호: <span class="required">*</span></label>
+				<label>휴대전화: <span class="required">*</span></label>
                 <input class="form-control" id="hp" name="hp" type="text" placeholder="01012345678과 같이 '-'를 뺀 형식으로 입력하세요.">
               </div>
 			  
 			  <div class="form-group">
 				<label>Email: <span class="required">*</span></label>
-				<input class="form-control" name="email" type="email" required data-bv-emailaddress-message="The input is not a valid email address">
+				<input class="form-control" type="text" name="email" id="email" >
               </div>
 
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Create my account</button> -->
-				<input type="submit" class="btn btn-default" value="Create my account">
+				<input type="button" class="btn btn-default" id="loginbutton" value="Create my account">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>
 			</form><!-- .form-box -->

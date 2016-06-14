@@ -1,12 +1,14 @@
 /*
  * @Class : BoardController
  * @Date : 16.06.08
- * @Author : 김민규
- * @Desc : 여행자가 가이드 구하는 게시판 글쓰기
+ * @Author : 源�誘쇨퇋
+ * @Desc : �뿬�뻾�옄媛� 媛��씠�뱶 援ы븯�뒗 寃뚯떆�뙋 湲��벐湲�
  */
 package kr.co.serendipity;
 
+import java.io.File;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDAO;
@@ -207,5 +211,4 @@ public class BoardController {
 		
 		return mav;
 	}
-	
 }

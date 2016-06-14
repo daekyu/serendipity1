@@ -29,5 +29,18 @@
 	
 	<context:component-scan base-package="kr.co.serendipity" />
 	
+		<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<!-- properties파일의 이름을 등록한다. 등록되 있지 않을 시에 디폴트로 message.properties파일을 찾는다. -->
+				<beans:value>message</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<beans:property name="defaultLocale" value="ko" />
+	</beans:bean>
+	
 	
 </beans:beans>

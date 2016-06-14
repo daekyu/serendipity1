@@ -7,7 +7,7 @@
                   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                   http://www.springframework.org/schema/context
                   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-	
+	 
 	<bean id="driverManagerDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
@@ -33,4 +33,12 @@
 	
 	
 	<!-- 추가(트랜잭션) : Spring이 제공하는 것 사용 -->
+	
+	
+	<!-- File Upload Resolver -->
+	<bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- maximum file size in bytes 50MB -->
+		<property name="maxUploadSize" value="52428800" />
+	</bean>
 </beans>

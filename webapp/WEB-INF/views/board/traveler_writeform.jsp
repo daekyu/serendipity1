@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
 		
 		<!-- Font -->
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
-		
+	
 		<!-- Plugins CSS -->
 		<link rel="stylesheet" href=".././resources/css/bootstrap.css">
 		<link rel="stylesheet" href=".././resources/css/font-awesome.min.css">
@@ -42,6 +43,13 @@
 		
 		<!-- IE Styles-->
 		<!-- <link rel='stylesheet' href="../css/ie/ie.css"> -->
+		
+		<!-- jQuery -->
+		<script src="//code.jquery.com/jquery.min.js"></script>
+		
+		<!-- ckeditor -->
+		<script type="text/javascript" src="http://localhost:8080/serendipity/resources/ckeditor/ckeditor.js"></script> 
+		
 	</head>
 
 

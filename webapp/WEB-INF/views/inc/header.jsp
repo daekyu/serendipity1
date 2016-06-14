@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 	<header class="header header-two">
   <div class="header-wrapper">
 	<div class="container">
@@ -33,6 +34,8 @@
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
+				
+				
 	  
 				<nav class="collapse collapsing navbar-collapse">
 				  <ul class="nav navbar-nav navbar-center">
@@ -42,23 +45,24 @@
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/travel_info/travel_info.htm">여행정보<span class="item-new">New</span></a>
+					  <a href="${pageContext.request.contextPath}/travel_info/travel_info.htm"><spring:message code="index.header"/><span class="item-new">New</span></a>
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/board/traveler_list.htm">가이드구함</a>
+					  <a href="${pageContext.request.contextPath}/board/traveler_list.htm"><spring:message code="index.header1"/></a>
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/board/guide_list.htm">여행자구함<span class="item-new">New</span></a>
+					  <a href="${pageContext.request.contextPath}/board/guide_list.htm"><spring:message code="index.header2"/><span class="item-new">New</span></a>
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/travel_review/review_list.htm">여행후기</a>
+					  <a href="${pageContext.request.contextPath}/travel_review/review_list.htm"><spring:message code="index.header3"/></a>
 					</li>
 					
 					<c:if test="${!empty sessionScope.user_num}">
 					<li class="item-danger item-bg text-danger">
+
 					  <a href="${pageContext.request.contextPath}/mypage/my_page.htm?user_num=${sessionScope.user_num}">마이페이지</a>
 					</li>
 					</c:if>
@@ -68,6 +72,7 @@
 						  <a href="${pageContext.request.contextPath}/admin/member_list.htm">관리자페이지</a>
 						</li>
 					</c:if>
+
 					
 				  </ul>
 				</nav>

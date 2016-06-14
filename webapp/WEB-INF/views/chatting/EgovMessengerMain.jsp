@@ -13,6 +13,7 @@
 <script>
 	//chat 팝업창을 여러개 띄우기 위함	
 	var webSocket = null;
+	
 	$(document).ready(function() {
 		var url = 'ws://' + window.location.host + '${pageContext.request.contextPath}/usersServerEndpoint';
 		webSocket = connection(url);
@@ -63,7 +64,7 @@
 		if (jsonData.enterChatId != null) {
 			var roomId = jsonData.enterChatId;
 			$("#roomId").val(roomId);
-			$("#id").val(jsonData.username);
+			$("#id").val(jsonData.id);
 			openPopup(roomId);
 		}
 	}
@@ -90,9 +91,9 @@
 		$("#ids tr:not(:first)").remove();
 		for (var i=0; i<userList.length; i++) {
 			if("${id}"==userList[i]) {
-				username = userList[i]+"(me!)";
-			} else{
-				username = userList[i];
+				id = userList[i]+"(me!)";
+			} else {
+				id = userList[i];
 			}
 			$.newTr = $("<tr id="+userList[i]+" onclick='trClick(this)'><td>"+ id +"</td></tr>");
 			//append

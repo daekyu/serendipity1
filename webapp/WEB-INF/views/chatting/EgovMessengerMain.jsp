@@ -64,7 +64,7 @@
 		if (jsonData.enterChatId != null) {
 			var roomId = jsonData.enterChatId;
 			$("#roomId").val(roomId);
-			$("#id").val(jsonData.username);
+			$("#id").val(jsonData.id);
 			openPopup(roomId);
 		}
 	}

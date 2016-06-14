@@ -79,10 +79,10 @@ public class ChatServerEndPoint {
 
 		ChatMessageDTO incomingChatMessage = (ChatMessageDTO)incomingMessage;
 		ChatMessageDTO outgoingChatMessage = new ChatMessageDTO();
-
+		System.out.println("들어온거 : " + incomingChatMessage.getMessage());
+		
 		String id = (String) userSession.getUserProperties().get("id");
 		if (id == null) {
-
 			id = incomingChatMessage.getMessage();
 			if (id != null) {
 				userSession.getUserProperties().put("id", id);

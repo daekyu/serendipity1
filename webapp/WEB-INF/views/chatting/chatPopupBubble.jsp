@@ -61,7 +61,7 @@
 		if (jsonData.messageType == "ChatMessage") {
 			message = jsonData.name + " : "+ jsonData.message + '\n';
 			display(message);
-			
+			colsole.log(message);
 			displaybubble(jsonData);
 		} else if (jsonData.messageType == "UsersMessage") {
 			var other = "";
@@ -102,11 +102,11 @@
 	
 	function displaybubble(data) {
 		//message = jsonData.name + " : "+ jsonData.message + '\n';
-		if (data.name == "${id}") {
-			$('#chat').append(data.name+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
+		if (data.id == "${id}") {
+			$('#chat').append(data.id+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
 	      	    
 		} else {
-		    $('#chat').append(data.name+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
+		    $('#chat').append(data.id+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
 		}
 	}
 

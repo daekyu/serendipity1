@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/com/ext/msg/bubbleChat.css'/>"/>
+<link type="text/css" rel="stylesheet" href="<c:url value='.././resources/css/bubbleChat.css'/>"/>
 
 <title>WebSocket messenger</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -27,10 +27,11 @@
 
 		websocket.onmessage = function(message) {
 			processMessage(message);
+			//console.log(message); //나중에 지우자
 		};
 		
 		websocket.onclose = function() {
-			Console.log('Info: WebSocket closed.');
+			//console.log('Info: WebSocket closed.');
 		};
 		
 		websocket.onerror = function(message) {
@@ -56,19 +57,21 @@
 	});
 
 	function processMessage(message) {
+		
 		var jsonData = JSON.parse(message.data);
+		
 		//alert("jsonData: " + jsonData.messageType + "," + jsonData.name +  "," + jsonData.message + "," + jsonData.users  );
-		if (jsonData.messageType == "ChatMessage") {
+		if (jsonData.messageType == "ChatMessageDTO") {
 			message = jsonData.name + " : "+ jsonData.message + '\n';
-			display(message);
-			colsole.log(message);
+			//display(message);
+			
 			displaybubble(jsonData);
-		} else if (jsonData.messageType == "UsersMessage") {
+		} else if (jsonData.messageType == "UsersMessageDTO") {
 			var other = "";
-			for(var i=0; i<jsonData.users.length; i++) {
-				if ("${id}"!=jsonData.users[i]) {
-					$('#ids').append(jsonData.users[i]+"님과 대화중입니다.");
-					other = jsonData.users[i];
+			for(var i = 0; i<jsonData.ids.length; i++) {
+				if ("${id}"!=jsonData.ids[i]) {
+					$('#ids').append(jsonData.ids[i]+"님과 대화중입니다.");
+					other = jsonData.ids[i];
 					first = "false";
 				}
 			}
@@ -101,12 +104,14 @@
 	}
 	
 	function displaybubble(data) {
+		console.log(data);
 		//message = jsonData.name + " : "+ jsonData.message + '\n';
-		if (data.id == "${id}") {
-			$('#chat').append(data.id+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
+		if (data.name == "${id}") {
+			
+			$('#chat').append(data.name+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
 	      	    
 		} else {
-		    $('#chat').append(data.id+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
+		    $('#chat').append(data.name+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
 		}
 	}
 

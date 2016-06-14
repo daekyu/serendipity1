@@ -70,4 +70,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update member set email=#{param2} where user_num=#{param1}
 	</update>
 	
+	<update id="updatePic">
+		update member set PROFILE_PICTURE=#{param2} where user_num=#{param1}
+	</update>
+	
+	<select id="selectPic" resultType="String">
+		select profile_picture from member where user_num=#{user_num}
+	</select>
+	
 </mapper>

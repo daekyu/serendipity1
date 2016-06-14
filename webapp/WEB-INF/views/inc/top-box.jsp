@@ -46,6 +46,9 @@
 			  <ul class="nav navbar-nav navbar-right">
 				<li><a href="javascript:doPop()">Message</a></li>
 				<li><a href="javascript:doPop2()">Chatting</a></li>
+			   <li><a href="changeLocale.htm?locale=ko">한국어<span class="locale"></span></a></li>
+				<li><a href="changeLocale.htm?locale=en">English<span class="locale1"></span></a></li>
+				<li><a href="changeLocale.htm?locale=ja">日本語<span class="locale2"></span></a></li>
 				<li><a href="#">My Account<span class="count">2</span></a></li>
 				
 				<%-- <li><a href="${pageContext.request.contextPath}/member/join_login.htm">Log in / Join us <i class="fa fa-lock after"></i></a></li>

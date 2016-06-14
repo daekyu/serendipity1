@@ -8,10 +8,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
-   
+
+
 <div class="breadcrumb-box">
 </div>
 

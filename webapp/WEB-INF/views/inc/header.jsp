@@ -47,23 +47,23 @@
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/travel_info/travel_info.htm"><spring:message code="title.user.form"/><span class="item-new">New</span></a>
+					  <a href="${pageContext.request.contextPath}/travel_info/travel_info.htm"><spring:message code="index.header"/><span class="item-new">New</span></a>
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/board/traveler_list.htm"><spring:message code="title.user.form1"/></a>
+					  <a href="${pageContext.request.contextPath}/board/traveler_list.htm"><spring:message code="index.header1"/></a>
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/board/guide_list.htm"><spring:message code="title.user.form2"/><span class="item-new">New</span></a>
+					  <a href="${pageContext.request.contextPath}/board/guide_list.htm"><spring:message code="index.header2"/><span class="item-new">New</span></a>
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/travel_review/review_list.htm"><spring:message code="title.user.form3"/></a>
+					  <a href="${pageContext.request.contextPath}/travel_review/review_list.htm"><spring:message code="index.header3"/></a>
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/mypage/my_page.htm"><spring:message code="title.user.form4"/></a>
+					  <a href="${pageContext.request.contextPath}/mypage/my_page.htm"><spring:message code="index.header4"/></a>
 					</li>
 					
 				  </ul>

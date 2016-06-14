@@ -23,7 +23,8 @@
 			  <ul class="nav navbar-nav navbar-right">
 				
 			   <li><a href="changeLocale.htm?locale=ko">한국어<span class="locale"></span></a></li>
-				<li><a href="changeLocale.htm?locale=en">영어<span class="locale1"></span></a></li>
+				<li><a href="changeLocale.htm?locale=en">English<span class="locale1"></span></a></li>
+				<li><a href="changeLocale.htm?locale=ja">日本語<span class="locale2"></span></a></li>
 				
 				<li><a href="#">My Account<span class="count">2</span></a></li>
 				

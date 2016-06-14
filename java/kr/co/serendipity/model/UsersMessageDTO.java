@@ -34,18 +34,18 @@ public class UsersMessageDTO implements Message{
 	/**
 	 * 연결되어있는 사용자들
 	 */
-	private Set<String> users = null;
+	private Set<String> ids = null;
 
-	public UsersMessageDTO(Set<String> users) {
-		this.users = users;
+	public UsersMessageDTO(Set<String> ids) {
+		this.ids = ids;
 	}
 
-	public Set<String> getUsers() {
-		return users;
+	public Set<String> getIds() {
+		return ids;
 	}
 
-	public void setUsers(Set<String> users) {
-		this.users = users;
+	public void setIds(Set<String> ids) {
+		this.ids = ids;
 	}
 
 }

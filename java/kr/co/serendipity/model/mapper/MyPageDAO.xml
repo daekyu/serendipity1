@@ -78,4 +78,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select profile_picture from member where user_num=#{user_num}
 	</select>
 	
+	<select id="parseLocal" resultType="String">
+		select local_name from local where local_code=#{local}
+	</select>
+	
 </mapper>

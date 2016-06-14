@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
@@ -41,7 +42,12 @@ public class MyPageController {
 		MemberDTO dto = dao.myPageGetMemberInfo(user_num);
 		String pic = dto.getProfile_picture();
 		System.out.println("원본 사진명 : " + pic);
+		int local = dto.getLocal_code();
+		String Slocal = dao.parseLocal(local);
+		
+		
 		model.addAttribute("dto", dto);
+		model.addAttribute("Slocal", Slocal);
 
 		return "/mypage/my_page";
 	}
@@ -116,8 +122,8 @@ public class MyPageController {
 		}
 
 		MultipartFile mf = request.getFile("file");
-		
-		if(mf != null) {
+		System.out.println("mf.getSize() : " + mf.getSize());
+		if(mf.getSize()!=0) {
 			
 			String uploadPath = request.getSession().getServletContext().getRealPath("resources/img/profile_picture");
 		    //logger.info("실제 파일 업로드 경로 : "+uploadPath);

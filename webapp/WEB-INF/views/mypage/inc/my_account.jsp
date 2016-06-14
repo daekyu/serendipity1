@@ -66,7 +66,7 @@
 				
 				<tr>
 					<th class="danger">지역</th>
-					<td>${dto.local_code} ----join 으로 지역명 변환</td>
+					<td>${Slocal}</td>
 				</tr>
 				
 				<tr>

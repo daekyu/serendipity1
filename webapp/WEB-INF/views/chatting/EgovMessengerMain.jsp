@@ -91,9 +91,9 @@
 		$("#ids tr:not(:first)").remove();
 		for (var i=0; i<userList.length; i++) {
 			if("${id}"==userList[i]) {
-				username = userList[i]+"(me!)";
-			} else{
-				username = userList[i];
+				id = userList[i]+"(me!)";
+			} else {
+				id = userList[i];
 			}
 			$.newTr = $("<tr id="+userList[i]+" onclick='trClick(this)'><td>"+ id +"</td></tr>");
 			//append

@@ -33,6 +33,8 @@
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
+				
+				
 	  
 				<nav class="collapse collapsing navbar-collapse">
 				  <ul class="nav navbar-nav navbar-center">

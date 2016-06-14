@@ -55,4 +55,7 @@ public interface MyPageDAO {
 	//추가 정보 수정 (전 프로필 사진 경로 불러오기 - 파일 삭제를 위해)
 	public String selectPic(int user_num);
 	
+	//정보 출력(지역)
+	public String parseLocal(int local);
+	
 }

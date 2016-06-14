@@ -80,7 +80,14 @@
 				<div class="col-sm-12 col-md-12">
 				  <div class="slid row">
 					<div class="col-sm-12 col-md-12">
-					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+					<c:choose>
+						<c:when test="${reviewdetail.review_picture1 eq '사진없음'}">
+							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+						</c:when>
+						<c:otherwise>
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture1}" width="620" height="550" alt="">
+						</c:otherwise>
+					</c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
 					  <p class="descriptions">${reviewdetail.review_content1}</p>
@@ -91,7 +98,14 @@
 				<div class="col-sm-12 col-md-12">
 				  <div class="slid row">
 					<div class="col-sm-12 col-md-12">
-					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+					 <c:choose>
+						<c:when test="${reviewdetail.review_picture2 eq '사진없음'}">
+							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+						</c:when>
+						<c:otherwise>
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture2}" width="620" height="550" alt="">
+						</c:otherwise>
+					</c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
 					  <p class="descriptions">${reviewdetail.review_content2}</p>
@@ -102,7 +116,14 @@
 				<div class="col-sm-12 col-md-12">
 				  <div class="slid row">
 					<div class="col-sm-12 col-md-12">
-					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+					  <c:choose>
+						<c:when test="${reviewdetail.review_picture3 eq '사진없음'}">
+							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+						</c:when>
+						<c:otherwise>
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture3}" width="620" height="550" alt="">
+						</c:otherwise>
+					</c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
 					  <p class="descriptions">${reviewdetail.review_content3}</p>
@@ -113,7 +134,14 @@
 				<div class="col-sm-12 col-md-12">
 				  <div class="slid row">
 					<div class="col-sm-12 col-md-12">
-					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+					  <c:choose>
+						<c:when test="${reviewdetail.review_picture4 eq '사진없음'}">
+							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+						</c:when>
+						<c:otherwise>
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture4}" width="620" height="550" alt="">
+						</c:otherwise>
+					</c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
 					  <p class="descriptions">${reviewdetail.review_content4}</p>
@@ -124,7 +152,14 @@
 				<div class="col-sm-12 col-md-12">
 				  <div class="slid row">
 					<div class="col-sm-12 col-md-12">
-					  <img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+					  <c:choose>
+						<c:when test="${reviewdetail.review_picture5 eq '사진없음'}">
+							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
+						</c:when>
+						<c:otherwise>
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture5}" width="620" height="550" alt="">
+						</c:otherwise>
+					  </c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
 					  <p class="descriptions">${reviewdetail.review_content5}</p>

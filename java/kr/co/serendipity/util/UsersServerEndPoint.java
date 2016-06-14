@@ -63,7 +63,6 @@ public class UsersServerEndPoint {
 	@OnOpen
 	public void handleOpen(Session userSession) {
 		connectedAllUsers.add(userSession);
-		System.out.println("OnOpen");
 	}
 
 	/**
@@ -75,7 +74,6 @@ public class UsersServerEndPoint {
 	 */
 	@OnMessage
 	public void handleMessage(String message, Session userSession) throws IOException, EncodeException {
-		System.out.println("OnMessage");
 		String id = (String) userSession.getUserProperties().get("id");
 
 		JsonObject jsonObject = Json.createReader(new StringReader(message)).readObject();
@@ -90,7 +88,7 @@ public class UsersServerEndPoint {
 			LOGGER.info(id + " is entered.");
 
 			if (id != null && !isExisted(id)) {
-				userSession.getUserProperties().put("username", id);
+				userSession.getUserProperties().put("id", id);
 
 				for (Session session : connectedAllUsers) {
 					session.getBasicRemote().sendText(buildJsonUserData(getUsers()));
@@ -188,10 +186,10 @@ public class UsersServerEndPoint {
 	 * @param username 사용자이름
 	 * @return 존재여부
 	 */
-	private boolean isExisted(String username) {
+	private boolean isExisted(String id) {
 		// 이미 username을 가진 session이 있는지 검사.
 		for (Session existedUser : connectedAllUsers) {
-			if (username.equals(existedUser.getUserProperties().get("id"))) {
+			if (id.equals(existedUser.getUserProperties().get("id"))) {
 				return true;
 			}
 		}

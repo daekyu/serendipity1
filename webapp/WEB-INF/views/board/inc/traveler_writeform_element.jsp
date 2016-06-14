@@ -5,7 +5,7 @@
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8080/serendipity/resources/ckeditor/ckeditor.js"></script>
+	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
 
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 <script type="text/javascript">
@@ -107,8 +107,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	            map.setCenter(addrLocation);
 
 	            // store current coordinates into hidden variables
-	            // document.getElementById('lat').value = results[0].geometry.location.Xa;
-	            // document.getElementById('lng').value = results[0].geometry.location.Ya;
 	            document.getElementById('lat').value = results[0].geometry.location.lat();
 	            document.getElementById('lng').value = results[0].geometry.location.lng();
 
@@ -131,7 +129,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	    // prepare variables (filter)
 	    var type = document.getElementById('gmap_type').value;
 	    var radius = document.getElementById('gmap_radius').value;
-	    var keyword = document.getElementById('gmap_keyword').value;
+	    
 
 	    var lat = document.getElementById('lat').value;
 	    var lng = document.getElementById('lng').value;
@@ -143,9 +141,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	        radius: radius,
 	        types: [type]
 	    };
-	    if (keyword) {
-	        request.keyword = [keyword];
-	    }
+	   
 
 	    // send request
 	    service = new google.maps.places.PlacesService(map);
@@ -179,16 +175,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	    });
 	    markers.push(mark);
 	    
-	  /*   var geocoder = new google.maps.Geocoder();
-		  geocoder.geocode({
-		   LatLng: latlng
-		  }, function(results, status) {
-		   if (status == google.maps.GeocoderStatus.OK) {
-		       if (results[0].geometry) {
-		           var address = results[0].formatted_address;
-		       }
-		   }
-		  }); */
+	
 
 	    // prepare info window
 	    var infowindow = new google.maps.InfoWindow({
@@ -273,11 +260,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 								</div>
 								<div id="button2" class="btn btn-success"
 									onclick="findAddress(); return false;">Search for address</div>
-								<div class="button">
-									<label for="gmap_keyword">Keyword (optional):</label> <input
-										class="form-control" id="gmap_keyword" type="text"
-										name="gmap_keyword" />
-								</div>
 								<div class="button">
 									<label for="gmap_type">Type:</label> <select id="gmap_type">
 										<option value="art_gallery">art_gallery</option>

@@ -22,14 +22,26 @@
 		<div class="col-xs-9 col-sm-5">
 		  <div class="btn-group language btn-select">
 			<a class="btn dropdown-toggle btn-default" role="button" data-toggle="dropdown" href="#">
-			  <span class="hidden-xs">Language</span><span class="visible-xs">Lang</span><!-- 
-			  -->: English
+			  <c:choose>
+			  	<c:when test="${sessionScope.locale == 'ko' }">
+			  		<span class="hidden-xs">언어</span><span class="visible-xs">Lang</span><!-- -->: 한국어
+			  	</c:when>
+			  	
+			  	<c:when test="${sessionScope.locale == 'en'}">
+			  		<span class="hidden-xs">Language</span><span class="visible-xs">Lang</span><!-- -->: English
+			  	</c:when>
+			  	
+			  	<c:when test="${sessionScope.locale == 'ja'}">
+			  		<span class="hidden-xs">言語</span><span class="visible-xs">Lang</span><!-- -->: 日本語
+			  	</c:when>
+			  </c:choose>
+			  
 			  <span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu">
-			  <li><a href="#"><img src="./resources/img/eng-flag.png" alt="">English</a></li>
-			  <li><a href="#"><img src="./resources/img/fra-flag.png" alt="">France</a></li>
-			  <li><a href="#"><img src="./resources/img/ger-flag.png" alt="">Germany</a></li>
+				<li><a href="${pageContext.request.contextPath}/locale/changeLocale.htm?locale=ko"><img src="./resources/img/kor-flag.png">한국어<span class="locale"></span></a></li>
+				<li><a href="${pageContext.request.contextPath}/locale/changeLocale.htm?locale=en"><img src="./resources/img/eng-flag.png">English<span class="locale1"></span></a></li>
+				<li><a href="${pageContext.request.contextPath}/locale/changeLocale.htm?locale=ja"><img src="./resources/img/jap-flag.png">日本語<span class="locale2"></span></a></li>
 			</ul>
 		  </div>
 		</div>
@@ -46,9 +58,8 @@
 			  <ul class="nav navbar-nav navbar-right">
 				<li><a href="javascript:doPop()">Message</a></li>
 				<li><a href="javascript:doPop2()">Chatting</a></li>
-			   <li><a href="changeLocale.htm?locale=ko">한국어<span class="locale"></span></a></li>
-				<li><a href="changeLocale.htm?locale=en">English<span class="locale1"></span></a></li>
-				<li><a href="changeLocale.htm?locale=ja">日本語<span class="locale2"></span></a></li>
+			   
+				
 				<li><a href="#">My Account<span class="count">2</span></a></li>
 				
 				<%-- <li><a href="${pageContext.request.contextPath}/member/join_login.htm">Log in / Join us <i class="fa fa-lock after"></i></a></li>

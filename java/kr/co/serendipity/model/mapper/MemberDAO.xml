@@ -32,4 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="withdrawAccount">
 		delete from member where user_num=#{user_num}
 	</delete>
+	
+	<select id="loginCheck" resultType="Integer">
+		select count(*) from member where id=#{id} and pw=#{pw}
+	</select>
 </mapper>

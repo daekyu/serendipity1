@@ -162,12 +162,6 @@ public class UsersServerEndPoint {
 		for (Session session : connectedAllUsers) {
 			if (session.getUserProperties().get("id") != null) {
 				returnSet.add(session.getUserProperties().get("id").toString());
-				Iterator it = connectedAllUsers.iterator();
-				
-				while(it.hasNext()) {
-					
-					System.out.println("1111111111111 : " + it.next());
-				}
 			};
 		}
 		return returnSet;

@@ -19,15 +19,46 @@
 	@Desc : 외국인일 경우 지역을 입력하는 칸을 보이지 않게 하고, 한국인일 경우에만 보이게 하는 JQuery 메소드
 	*/
 	$(function() {
+		var check;
+		
 		$('#local').hide();
 		
-		$('#country').change(function() {
+		$('#country_code').change(function() {
 			if($(this).val() == '82') {
 				console.log($(this).val());
 				$('#local').show();
 			}else {
 				console.log($(this).val());
 				$('#local').hide();	
+			}
+		});
+		
+		$('#btn_login_form').click(function() {
+			if($('#id_login').val() == '') {
+				alert('아이디를 입력해주세요');
+				$('#id_login').focus();
+				return false;
+			} else if($('#pw_login').val() == '') {
+				alert('비밀번호를 입력해주세요');
+				$('#pw_login').focus();
+				return false;
+			} else if ($('#id_login').val() != '' && $('#pw_login').val() != ''){
+				
+				// 아이디, 비밀번호 비교하는거 비동기로 검사하기
+				$.ajax({
+		        	  type : "post",
+		        	  url : "loginCheck.htm",
+		        	  data : {"id" : $('#id_login').val(), "pw" : $('#pw_login').val()},
+		        	  success : function(data) {
+		        		  if(data == 0) {
+		        			  alert("비밀번호가 틀렸거나 존재하지 않는 아이디입니다.");
+		        			  $('#id_login').focus();
+		        			  return false;
+		        		  } else {
+		        			  $('#login_form').submit();
+		        		  }
+		        	  }
+		          });
 			}
 		});
 	});
@@ -138,7 +169,7 @@ $(document).ready(function(){
 	
 	$("#loginbutton").click(function(){
 		
-						var reg_name = /^[0-9a-zA-Z가-힣]/g; //한글10자, 영문20자, 한글,영문,숫자 사용가능
+						var reg_name = /^[a-zA-Z가-힣]/g; //한글10자, 영문20자, 한글,영문,숫자 사용가능
 						var reg_id = /^[a-z0-9_-]{4,12}$/;
 						var reg_email = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
 						var reg_pw = /^[a-z0-9_-]{4,12}$/; // 비밀번호 검사식
@@ -225,23 +256,24 @@ $(document).ready(function(){
 		  
 		  <!-- 로그인하는 Form태그가 있는 부분 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
-			<form class="form-box login-form form-validator" action="login.htm" method="post">
+			<form class="form-box login-form form-validator" id="login_form" action="${pageContext.request.contextPath}/member/login.htm" method="post">
 			  <h3 class="title">Login customers</h3>
 			  <p>If you have an account with us, please log in.</p>
 			  
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
-				<input class="form-control" name="id" type="text" required> <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
+				<input class="form-control" name="id" id="id_login" type="text"> <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
               </div>
 			  
 			  <div class="form-group">
 				<label>Password: <span class="required">*</span></label>
-                <input class="form-control" name="pw" type="password" required>
+                <input class="form-control" name="pw" id="pw_login" type="password">
               </div>
 			  
 			  <div class="buttons-box clearfix">
-				<!-- <button class="btn btn-default">Login</button> -->
-				<input type="submit" class="btn btn-default" value="Login">
+				<input type="submit" id="btn_login_form" class="btn btn-default" value="Login">
+				
+				<!-- 각종 SNS로 로그인하는 버튼 만드는 부분 -->
 				<button class="btn btn-info"><i class="fa fa-twitter"></i> Login with Twitter</button>
 				<a href="shop-forgot.html" class="forgot">Forgot Your Password?</a>
 				<span class="required"><b>*</b> Required Field</span>
@@ -312,13 +344,9 @@ $(document).ready(function(){
               <!-- 한국 어느지역 사람인지 나타내주는 코드. 외국인일경우 숨기고, 한국인이면 보여주게하자. 그리고 한국인이 입력안하면 넘어가지 못하게 하자 -->
               <div class="form-group" id="local">
 				<label>거주지역: <span class="required">*</span></label>
-<<<<<<< HEAD
-                <select class="form-group" name="local_code">
-                	<option>--</option>
-=======
+
                 <select class="form-group" name="local_code" id="local_code">
                 	<option value="-">--</option>
->>>>>>> locale
                 	<c:forEach var="i" items="${local_list}">
                 		<option value="${i.local_code}">${i.local_name} / ${i.local_code}</option>
                 	</c:forEach>

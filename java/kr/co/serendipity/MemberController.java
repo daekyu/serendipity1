@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.MemberDAO;
@@ -63,5 +64,11 @@ public class MemberController {
 	@RequestMapping("logout.htm")
 	public String logout() {
 		return "/member/logout";
+	}
+	
+	@RequestMapping("loginCheck.htm")
+	public @ResponseBody int loginCheck(MemberDTO memberdto) {
+		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
+		return dao.loginCheck(memberdto);
 	}
 }

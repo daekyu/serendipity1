@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/com/ext/msg/button.css'/>"/>
+<link type="text/css" rel="stylesheet" href="<c:url value='.././resources/css/button.css'/>"/>
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>

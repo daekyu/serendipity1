@@ -46,13 +46,13 @@ public class ChattingController {
 	 * @param model 모델
 	 * @return view name
 	 */
-	@RequestMapping(value="/cop/msg/websocketMessengePopup.do")
+	@RequestMapping(value="chattingPopup.htm")
 	public String websocketMessengePopup(@RequestParam(value="roomId") String roomId,
-										 @RequestParam(value="username") String username,
+										 @RequestParam(value="id") String id,
 										 HttpSession session, ModelMap model) {
-		model.addAttribute("loginVO", session.getAttribute("loginVO"));
+		model.addAttribute("id", session.getAttribute("id"));
 		model.addAttribute("roomId", roomId);
-		model.addAttribute("username", username);
-		return "egovframework/com/ext/msg/popup/chatPopupBubble";
+		model.addAttribute("id", id);
+		return "chatting/chatPopupBubble";
 	}
 }

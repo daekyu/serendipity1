@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>messenger</title>
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/com/ext/msg/table.css'/>"/>
+<link type="text/css" rel="stylesheet" href="<c:url value='.././resources/css/table.css'/>"/>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- <script src="resource/js/json2.js"></script>-->
@@ -41,8 +41,8 @@
 	
 	function processOpen() {
 		connectionType = "firstConnection";
-		username = "${loginVO.name}";
-		webSocket.send(JSON.stringify({ "connectionType" : connectionType, "username" : username }));
+		id = "${id}";
+		webSocket.send(JSON.stringify({ "connectionType" : connectionType, "id" : id }));
 	}
 		
 	//server에서 메시지가 넘어왔을때
@@ -63,7 +63,7 @@
 		if (jsonData.enterChatId != null) {
 			var roomId = jsonData.enterChatId;
 			$("#roomId").val(roomId);
-			$("#username").val(jsonData.username);
+			$("#id").val(jsonData.username);
 			openPopup(roomId);
 		}
 	}
@@ -71,7 +71,7 @@
 	function openPopup(roomId) {
 		var popOptions = "width= 500, height= 700, resizable=yes, status= no, scrollbar= yes"; 
 		var targetTitle = random(roomId); //두명의 사용자가 다른 팝업으로 뜨기 위해서 targetTitle을 랜덤으로 만들어준다.
-		popupPost("<c:url value='/cop/msg/websocketMessengePopup.do'/>", targetTitle, popOptions);
+		popupPost("<c:url value='/chatting/chattingPopup.htm'/>", targetTitle, popOptions);
 	}
 	
 	function popupPost(url, target, option) {
@@ -86,17 +86,17 @@
 	
 	
 	function displayUsers(userList) {
-		var username;
-		$("#users tr:not(:first)").remove();
+		var id;
+		$("#ids tr:not(:first)").remove();
 		for (var i=0; i<userList.length; i++) {
-			if("${loginVO.name}"==userList[i]) {
+			if("${id}"==userList[i]) {
 				username = userList[i]+"(me!)";
 			} else{
 				username = userList[i];
 			}
-			$.newTr = $("<tr id="+userList[i]+" onclick='trClick(this)'><td>"+username+"</td></tr>");
+			$.newTr = $("<tr id="+userList[i]+" onclick='trClick(this)'><td>"+ id +"</td></tr>");
 			//append
-			$("#users").last().append($.newTr);
+			$("#ids").last().append($.newTr);
 			
 		}
 	}
@@ -141,12 +141,12 @@
 	</select> -->
 	<form name="usersForm">
 		<input type="hidden" id="roomId" name="roomId"/>
-		<input type="hidden" id="username" name="username"/>
+		<input type="hidden" id="id" name="id"/>
 	<br/>
 	<div id="content">Web MESSENGER!!</div>
 	본인 외의 대화상태를 선택하면 대화창이 뜹니다. <br/>
 	<!-- List -->
-	<table id="users" name="users" cellspacing='0'><!-- cellspacing='0' is important, must stay -->
+	<table id="ids" name="ids" cellspacing='0'><!-- cellspacing='0' is important, must stay -->
     	<tr><th>Web Messenger Users</th></tr><!-- Table Header -->
     	<tr><td>There is no one to chat</td></tr>
     </table>

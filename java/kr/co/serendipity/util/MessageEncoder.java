@@ -69,7 +69,7 @@ public class MessageEncoder implements Encoder.Text<Message>{
 					 .build().toString();
 		} else if (message instanceof UsersMessageDTO) {
 			UsersMessageDTO userMessage = (UsersMessageDTO) message;
-			result = buildJsonUserData(userMessage.getUsers(), userMessage.getClass().getSimpleName());
+			result = buildJsonUserData(userMessage.getIds(), userMessage.getClass().getSimpleName());
 		}
 		return result;
 	}
@@ -81,7 +81,7 @@ public class MessageEncoder implements Encoder.Text<Message>{
 			jsonArrayBuilder.add(user);
 		}
 		return Json.createObjectBuilder().add("messageType", messageType)
-										 .add("users", jsonArrayBuilder)
+										 .add("ids", jsonArrayBuilder)
 										 .build().toString();
 	}
 

@@ -80,21 +80,21 @@ public class ChatServerEndPoint {
 		ChatMessageDTO incomingChatMessage = (ChatMessageDTO)incomingMessage;
 		ChatMessageDTO outgoingChatMessage = new ChatMessageDTO();
 
-		String username = (String) userSession.getUserProperties().get("username");
-		if (username == null) {
+		String id = (String) userSession.getUserProperties().get("id");
+		if (id == null) {
 
-			username = incomingChatMessage.getMessage();
-			if (username != null) {
-				userSession.getUserProperties().put("username", username);
+			id = incomingChatMessage.getMessage();
+			if (id != null) {
+				userSession.getUserProperties().put("id", id);
 			}
 
 			synchronized (chatroomUsers) {
 				for (Session session : chatroomUsers){
-					session.getBasicRemote().sendObject(new UsersMessageDTO(getUsers()));
+					session.getBasicRemote().sendObject(new UsersMessageDTO(getIds()));
 				}
 			}
 		} else {
-			outgoingChatMessage.setName(username);
+			outgoingChatMessage.setName(id);
 			outgoingChatMessage.setMessage(incomingChatMessage.getMessage());
 
 			for (Session session : chatroomUsers){
@@ -110,7 +110,7 @@ public class ChatServerEndPoint {
 		chatroomUsers.remove(userSession);
 
 		for (Session session : chatroomUsers){
-			session.getBasicRemote().sendObject(new UsersMessageDTO(getUsers()));
+			session.getBasicRemote().sendObject(new UsersMessageDTO(getIds()));
 		}
 	}
 
@@ -131,12 +131,12 @@ public class ChatServerEndPoint {
 	 * 사용자 정보를 가져오는 함수
 	 * @return
 	 */
-	private Set<String> getUsers() {
+	private Set<String> getIds() {
 		HashSet<String> returnSet = new HashSet<String>();
 
 		for (Session session : chatroomUsers){
-			if (session.getUserProperties().get("username") != null) {
-				returnSet.add(session.getUserProperties().get("username").toString());
+			if (session.getUserProperties().get("id") != null) {
+				returnSet.add(session.getUserProperties().get("id").toString());
 			}
 		}
 		return returnSet;

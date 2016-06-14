@@ -95,7 +95,7 @@ public class TravelReviewController {
 		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
 		ReviewDTO reviewdetail = reviewdao.reviewDetail(dto);
 		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
-		List<ReplyDTO> replylist = replydao.replyList();
+		List<ReplyDTO> replylist = replydao.replyList(dto.getReview_num());
 		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
 		ReviewLikeDTO likedto = new ReviewLikeDTO();
 		int user_num = (Integer)session.getAttribute("user_num");
@@ -209,7 +209,7 @@ public class TravelReviewController {
 		ReviewDTO reviewdetail = reviewdao.reviewDetail(reviewdto);
 		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
 		replydao.replyWrite(dto);
-		List<ReplyDTO> replylist = replydao.replyList();
+		List<ReplyDTO> replylist = replydao.replyList(dto.getReview_num());
 		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
 		ReviewLikeDTO likedto = new ReviewLikeDTO();
 		likedto.setReview_num(dto.getReview_num());
@@ -280,14 +280,19 @@ public class TravelReviewController {
 		System.out.println("3번째 : "+mf.get(3).getOriginalFilename());
 		System.out.println("4번째 : "+mf.get(4).getOriginalFilename());
 		
-		System.out.println("size : "+mf.size());
-		String realFolder = mrequest.getSession().getServletContext().getRealPath("WEB-INF/views/travel_review/upload");
-		//for (int i = 0; i < mf.size(); i++) {
+		System.out.println("size1 : "+mf.size());
+		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
         if (mf.size()==1 && mf.get(0).getOriginalFilename().equals("")) {
              
         } else {
+        	System.out.println("size2 : "+mf.size());
             for (int i = 0; i < mf.size(); i++){
+            	
+            		String saveFileName = null;
             		if(mf.get(i).getOriginalFilename().equals("")){
+            			saveFileName = null;
+            		}
+            		else{
             		// 파일 중복명 처리
                     String genId = UUID.randomUUID().toString(); 
                     // 본래 파일명
@@ -295,28 +300,26 @@ public class TravelReviewController {
                     
                     System.out.println("filename : "+originalfileName);
                      
-                    String saveFileName = genId + "_" + originalfileName;
+                    saveFileName = genId + "_" + originalfileName;
                     // 저장되는 파일 이름
      
                     String savePath = realFolder +"\\"+ saveFileName; // 저장 될 파일 경로
      
-                    //long fileSize = mf.get(i).getSize(); // 파일 사이즈
-     
                     mf.get(i).transferTo(new File(savePath)); // 파일 저장
-                    System.out.println("파일명 : "+saveFileName);
                     filenames.add(saveFileName); // 실 DB Insert 작업시 .. 파일명
             	}
-                
+            	filenames.add("사진없음");
             }
+            
         
         }
-
-		dto.setReview_picture1(filenames.get(0)); // 파일명 1
-		dto.setReview_picture2(filenames.get(1)); // 파일명 2
-		dto.setReview_picture3(filenames.get(2)); // 파일명 3
-		dto.setReview_picture4(filenames.get(3)); // 파일명 4
-		dto.setReview_picture5(filenames.get(4)); // 파일명 5
-
+         
+        dto.setReview_picture1(filenames.get(0)); // 파일명1
+        dto.setReview_picture2(filenames.get(1)); // 파일명2
+        dto.setReview_picture3(filenames.get(2)); // 파일명3
+        dto.setReview_picture4(filenames.get(3)); // 파일명4
+        dto.setReview_picture5(filenames.get(4)); // 파일명5
+        
 		System.out.println("title : " + dto.getReview_title());
 		System.out.println("content : " + dto.getReview_content());
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);

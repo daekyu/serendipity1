@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.co.serendipity.model.ReplyDAO">
 	
 	<select id="replyList" resultType="kr.co.serendipity.model.ReplyDTO">
-		select reply_num,user_num, reply_content, reply_date from reply
+		select reply_num,user_num, reply_content, reply_date from reply where review_num=#{review_num}
 	</select>
 	
 	<insert id="replyWrite">

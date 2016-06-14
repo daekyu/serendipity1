@@ -194,10 +194,30 @@ $(document).ready(function(){
     
 
 
+    $(document).ready(function(){
+    	
+    	
+    	$("#login").click(function(){
 
+    		var id_login=('#id') , password=('#pw');
+			var reg_id = /^[a-z0-9_-]{4,12}$/;
+			var reg_pw = /^[a-z0-9_-]{4,12}$/; // 비밀번호 검사식
+			
+			
+    		if (!reg_id.test(id_login.val()) == true) {
+				alert("아이디는 4-12자 이여야 하며 \n"
+						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.");
+				id_login.focus();
+				return false;
+			}else if (!reg_pw.test(password.val()) == true) { //비밀번호 검사
+				alert('비밀번호가 맞질 않습니다.(최소 4자리 이상)');
+				password.focus();
+				return false;
+			}
 
-
-
+		});
+    }); // 유효성체크
+    
 
 
 
@@ -231,17 +251,17 @@ $(document).ready(function(){
 			  
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
-				<input class="form-control" name="id" type="text" required> <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
+				<input class="form-control" name="id_2" type="text" id="id" > <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
               </div>
 			  
 			  <div class="form-group">
 				<label>Password: <span class="required">*</span></label>
-                <input class="form-control" name="pw" type="password" required>
+                <input class="form-control" name="pw" type="password" id='pw' >
               </div>
 			  
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Login</button> -->
-				<input type="submit" class="btn btn-default" value="Login">
+				<input type="submit" class="btn btn-default" value="Login" id="login">
 				<button class="btn btn-info"><i class="fa fa-twitter"></i> Login with Twitter</button>
 				<a href="shop-forgot.html" class="forgot">Forgot Your Password?</a>
 				<span class="required"><b>*</b> Required Field</span>
@@ -258,13 +278,13 @@ $(document).ready(function(){
 			  <p>If you have an account with us, please log in.</p>
 			  
 			  <div class="form-group">
-				<label>이름: <span class="required">*</span></label>
+				<label>이름: <span class="required" >*</span></label>
 				<input type="text" class="form-control" name="name" id="name">
                 <!-- <input type="text" class="form-control" name="name" data-bv-trigger="keyup" required data-bv-notempty-message="The name is required and cannot be empty"> -->
               </div>
 
 			  <div class="form-group">
-				<label>아이디: <span class="required">*</span></label>
+				<label>아이디: <span class="required" id="help_text"></span></label>
 				<input type="text" class="form-control" name="id_1" id="id_1">
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"

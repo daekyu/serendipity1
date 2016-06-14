@@ -51,7 +51,6 @@ import org.slf4j.LoggerFactory;
 public class UsersServerEndPoint {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UsersServerEndPoint.class);
 	private static Set<Session> connectedAllUsers = Collections.synchronizedSet(new HashSet<Session>());
-
 	//Spring bean과 연동하기 위해서는 ServerAppConfig를 configurator로 등록해주면 된다.
 	/*
 	 * @Resource(name="TestService") TestService testService;
@@ -64,6 +63,7 @@ public class UsersServerEndPoint {
 	@OnOpen
 	public void handleOpen(Session userSession) {
 		connectedAllUsers.add(userSession);
+		System.out.println("OnOpen");
 	}
 
 	/**
@@ -75,21 +75,22 @@ public class UsersServerEndPoint {
 	 */
 	@OnMessage
 	public void handleMessage(String message, Session userSession) throws IOException, EncodeException {
-		String username = (String) userSession.getUserProperties().get("username");
+		System.out.println("OnMessage");
+		String id = (String) userSession.getUserProperties().get("id");
 
 		JsonObject jsonObject = Json.createReader(new StringReader(message)).readObject();
 
 		String connectionType = jsonObject.getString("connectionType");
 
-		if ("firstConnection".equals(connectionType) && username == null) {
+		if ("firstConnection".equals(connectionType) && id == null) {
 			// 맨 처음 접속 시,
 			// 사용자의 이름을 가져옴
-			username = jsonObject.getString("username");
+			id = jsonObject.getString("id");
 
-			LOGGER.info(username + " is entered.");
+			LOGGER.info(id + " is entered.");
 
-			if (username != null && !isExisted(username)) {
-				userSession.getUserProperties().put("username", username);
+			if (id != null && !isExisted(id)) {
+				userSession.getUserProperties().put("username", id);
 
 				for (Session session : connectedAllUsers) {
 					session.getBasicRemote().sendText(buildJsonUserData(getUsers()));
@@ -111,10 +112,10 @@ public class UsersServerEndPoint {
 			// 선택한 사용자를 사용자들 안에서 찾기.
 			String connectingUser = jsonObject.getString("connectingUser");
 
-			if (connectingUser != null && !username.equals(connectingUser)) {
+			if (connectingUser != null && !id.equals(connectingUser)) {
 				// 사용자들 중 선택한 유저와 연결
 				for (Session session : connectedAllUsers) {
-					if (connectingUser.equals(session.getUserProperties().get("username"))) {
+					if (connectingUser.equals(session.getUserProperties().get("id"))) {
 						// 선택한 사용자면 chatroomMember로 추가.
 						chatroomMembers.add(session);
 					}
@@ -124,7 +125,7 @@ public class UsersServerEndPoint {
 				for (Session session : chatroomMembers) {
 
 					session.getBasicRemote().sendText(
-							Json.createObjectBuilder().add("enterChatId", chatroomId).add("username", (String) session.getUserProperties().get("username")).build().toString());
+							Json.createObjectBuilder().add("enterChatId", chatroomId).add("id", (String) session.getUserProperties().get("id")).build().toString());
 				}
 			}
 		}
@@ -140,7 +141,7 @@ public class UsersServerEndPoint {
 	@OnClose
 	public void handleClose(Session userSession) throws IOException, EncodeException {
 
-		String disconnectedUser = (String) userSession.getUserProperties().get("username");
+		String disconnectedUser = (String) userSession.getUserProperties().get("id");
 		connectedAllUsers.remove(userSession);
 
 		if (disconnectedUser != null) {
@@ -160,8 +161,8 @@ public class UsersServerEndPoint {
 		HashSet<String> returnSet = new HashSet<String>();
 
 		for (Session session : connectedAllUsers) {
-			if (session.getUserProperties().get("username") != null) {
-				returnSet.add(session.getUserProperties().get("username").toString());
+			if (session.getUserProperties().get("id") != null) {
+				returnSet.add(session.getUserProperties().get("id").toString());
 			};
 		}
 		return returnSet;
@@ -190,7 +191,7 @@ public class UsersServerEndPoint {
 	private boolean isExisted(String username) {
 		// 이미 username을 가진 session이 있는지 검사.
 		for (Session existedUser : connectedAllUsers) {
-			if (username.equals(existedUser.getUserProperties().get("username"))) {
+			if (username.equals(existedUser.getUserProperties().get("id"))) {
 				return true;
 			}
 		}

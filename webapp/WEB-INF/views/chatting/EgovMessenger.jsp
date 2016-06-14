@@ -12,7 +12,7 @@
 	$(document).ready(function() {
 		$('#connectMsgBtn').click(function() {
 			var form = $("form[name=msgForm]");
-			form.attr("action", "<c:url value='/cop/msg/websocketMessengerMain.do'/>");
+			form.attr("action", "<c:url value='enterChatting.htm'/>");
 			form.attr("method", "post");
 			form.submit();
 		});		
@@ -21,11 +21,11 @@
 </head>
 <body>
 <form name="msgForm" id="msgForm" action="<c:url value='  '/>" method="post">
-	<c:if test="${loginVO!= null}">
-		${loginVO.name}님, 메신저에 접속 합니다. 
+	<c:if test="${id != null}">
+		${id}님, 메신저에 접속 합니다. 
 		<input type="button" id="connectMsgBtn" name="connectMsgBtn" value="메신저 접속"/>
 	</c:if>
-	<c:if test="${loginVO==null}">
+	<c:if test="${id == null}">
 		접속 후 가능한 메뉴입니다. <br/>
 		로그인 후 이용해주시기 바랍니다.
 	</c:if>

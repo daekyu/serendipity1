@@ -6,6 +6,7 @@
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8080/serendipity/resources/ckeditor/ckeditor.js"></script>
+
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 <script type="text/javascript">
 
@@ -241,12 +242,12 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
 
 
-							<textarea name="board_Content" id="ckeditor"></textarea> <script
-								type="text/javascript">
-					     CKEDITOR.replace( 'ckeditor',{
+							<textarea name="board_Content" id="ckeditor"></textarea> 
+							<script type="text/javascript">
+					        CKEDITOR.replace( 'ckeditor',{
 	       				 	width:'90%',
 	      				  	height:'400px'
-	 						  
+	 						
 					   });
 					 </script>
 
@@ -254,60 +255,12 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 
 						</td>
 					</tr>
-					<tr>
-						<td>Meeting Point</td>
-						<td colspan="5">
-							<div class="map-box bottom-padding">
-								<div class="map-canvas" data-zoom="17" data-lat="37.548441"
-									data-lng="126.985664" data-title="Bryant Park"
-									data-content="New York, NY" style="height: 700px;"></div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>사진</td>
-						<td id="addPic" colspan="4"><input type="file" id="pic0"
-							name="pic0"></td>
-						<td align="center">
-							<button type="button" id="addBtn" class="btn btn-success">추가</button>
-							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="6" align="center"><input type="submit"
-							id="submit3" class="btn btn-success" value="등록"> <input
-							type="reset" class="btn btn-danger" value="취소"> <input
-							type="hidden" name="board_Content" id="board_Content"></td>
-					</tr>
-				</table>
-			</form>
-		</div>
-	</article>
-	<!-- .content -->
-</section>
+					
+					
+			
 
-<<<<<<< HEAD =======
-<article class="content">
-	<div class="container">
-		<form name="form" action="" method="post">
-			<table class="table center">
-				<tr>
-					<td><h6>글 제목</h6></td>
-					<td colspan="5"><input class="form-control" type="text"
-						name="board_Title"></td>
-				</tr>
-				<tr>
-					<td>날짜</td>
-					<td><input class="form-control" type="text"></td>
-					<td>지불할 가격</td>
-					<td><input class="form-control" type="text" name="price"></td>
-				</tr>
-				<tr>
-					<td>설명</td>
-					<td colspan="5"><textarea class="form-control"
-							style="resize: none; height: 400px;" wrap="soft"
-							name="board_Content"></textarea></td>
-				</tr>
+
+
 				<tr>
 					<td>Meeting Point</td>
 					<td colspan="5">
@@ -375,4 +328,4 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 <!-- .content -->
 </section>
 <!-- #main -->
->>>>>>> 41ff06721415e9e17c90b2c86c769bb24fe595a1
+

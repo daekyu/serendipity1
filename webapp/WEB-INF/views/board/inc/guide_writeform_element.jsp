@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
+   pageEncoding="UTF-8"%>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="http://localhost:8080/serendipity/resources/ckeditor/ckeditor.js"></script> 
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 <script type="text/javascript">
+
+window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
+
 $(function() {
+	
 	var index=1;
+	
+	$('#ckeditor').keyup(function() {
+		  console.log($('#ckeditor').val()); 
+	   });
+	
 	$('#addBtn').click(function() {
 		if(index<=4) {
 			$('#addPic').append('<input type="file" id="pic' + index + '" name="pic' + index + '">');
@@ -21,6 +31,19 @@ $(function() {
 			alert('더 이상 삭제할 수 없습니다.');
 		}
 	});
+	
+	 
+	   $('#submit3').click(function() {
+	         // ckeditor 내용 추출
+	         var sendNoteData = CKEDITOR.instances.ckeditor.getData();
+	         console.log(CKEDITOR.instances.ckeditor.getData());
+	         // 히든 인풋에 추출한 내용 삽입.
+	         $('#board_Content').val(sendNoteData);
+	      
+	         // 강제 서브밋
+	         $('#bofom').submit();
+	      });
+	
 });
 </script>
 <section id="main">
@@ -32,7 +55,7 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form action="" method="post">
+			<form action="" id="bofom" method="post">
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>
@@ -48,7 +71,21 @@ $(function() {
 					</tr>
 					<tr>
 						<td>설명</td>
-						<td colspan="5"><textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea></td>
+						<td colspan="5">
+						<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
+						
+							<textarea name="board_Content" id="ckeditor"></textarea>
+                  	
+                  	 <script type="text/javascript">
+					     CKEDITOR.replace( 'ckeditor',{
+	       				 	width:'90%',
+	      				  	height:'400px'
+	 						  
+					   });
+					 </script>
+							
+						
+						</td>
 					</tr>
 					<tr>
 						<td>Meeting Point</td>

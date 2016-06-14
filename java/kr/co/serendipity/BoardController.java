@@ -211,11 +211,4 @@ public class BoardController {
 		
 		return mav;
 	}
-	
-	
-	
-	
-	
-	
-	}
-
+}

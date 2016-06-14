@@ -93,7 +93,6 @@
 
 				<div class="products grid row">
 					<c:forEach var="i" items="${list}">
-
 						<div class="col-sm-3 col-md-3 product rotation">
 							<div class="default">
 								<span class="sale top"></span> <a href="traveler_detail.htm?board_num=${i.board_Num}"

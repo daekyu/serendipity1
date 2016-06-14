@@ -28,4 +28,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member where user_num=#{user_num}
 	</select>
 	
+	<select id="countHobby" resultType="Integer">
+		select count(*) from hobby_select where user_num=#{user_num}
+	</select>
+	
+	<insert id="insertHobby">
+	 	INSERT INTO hobby_select(user_num, hobby_code) 
+	 	VALUES(#{param1}, #{param2})
+	</insert>
+	
+	<delete id="deleteHobby">
+		delete from hobby_select where user_num=#{user_num}
+	</delete>
+	
+	<select id="countLanguage" resultType="Integer">
+		select count(*) from lang_select where user_num=#{user_num}
+	</select>
+	
+	<delete id="deleteLanguage">
+		delete from lang_select where user_num=#{user_num}
+	</delete>
+	
+	<insert id="insertLanguage">
+	 	INSERT INTO lang_select(user_num, language_code) 
+	 	VALUES(#{param1}, #{param2})
+	</insert>
+	
+	<update id="updateContent">
+		update member set profile_description=#{param2} where user_num=#{param1}
+	</update>
+	
+	<update id="updatePw">
+		update member set pw=#{param2} where user_num=#{param1}
+	</update>
+	
+	<update id="updateHp">
+		update member set hp=#{param2} where user_num=#{param1}
+	</update>
+	
+	<update id="updateEmail">
+		update member set email=#{param2} where user_num=#{param1}
+	</update>
+	
 </mapper>

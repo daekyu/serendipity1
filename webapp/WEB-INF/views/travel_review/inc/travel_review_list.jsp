@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <section id="main">
 	<header class="page-header">
 		<div class="container">
@@ -86,28 +87,32 @@
 				<div class="clearfix"></div>
 
 				<div class="products list row">
+				<c:choose>
+					<c:when test="${sessionScope.user_num == null}">
+						<p>로그인 후 사용하세요</p>
+					</c:when>
+					<c:otherwise>
 					<c:forEach var="i" items="${reviewList}">
 						<div class="product">
 							<div class="col-sm-4 col-md-4">
-								<a href="shop-product-view.html" class="product-image"> <!-- <span class="sale"></span> -->
+								<a href="review_detail.htm?review_num=${i.review_num}" class="product-image"> <!-- <span class="sale"></span> -->
 									<img class="replace-2x" src="content/img/product-1.jpg" alt=""
 									title="" width="270" height="270">
 								</a>
 							</div>
 							<div class="col-sm-8 col-md-8">
 								<h3 class="price">
-									<a href="review_detail.htm">${i.review_title}</a>
+									<a href="review_detail.htm?review_num=${i.review_num}">${i.review_title}</a>
 								</h3>
 								<div class="excerpt">
 									<span>user_num: ${i.user_num}</span><br> <span>지역:
 										${i.local_code}</span><br> <span>작성일 : ${i.review_date}</span>
 								</div>
 								<div class="excerpt">
-									<a href="#">${i.review_content}</a>
+									<a href="review_detail.htm?review_num=${i.review_num}">${i.review_content}</a>
 								</div>
 								<div class="price-box">
-									<a href="#" class="add-review"><span class="excerpt">${i.like_count}
-											Like(s)</span></a>
+									<span class="excerpt">${i.like_count} Like(s)</span>
 								</div>
 								<div class="actions">
 									<!-- 좋아요버튼 -->
@@ -127,6 +132,8 @@
 						</div>
 						<!-- .product -->
 					</c:forEach>
+					</c:otherwise>
+				</c:choose>
 					<!-- <div class="product">
 			<div class="col-sm-4 col-md-4">
 			  <a href="shop-product-view.html" class="product-image">
@@ -251,9 +258,12 @@
 					</div>
 					<!-- .pagination-box -->
 					<div align="right">
-						<a
-							href="${pageContext.request.contextPath}/travel_review/review_writeform.htm"
-							class="btn btn-default">후기작성</a>
+					<c:choose>
+						<c:when test="${sessionScope.user_num != null}">
+							<a href="${pageContext.request.contextPath}/travel_review/review_writeform.htm?user_num=${sessionScope.user_num}"
+								class="btn btn-default">후기작성</a>
+						</c:when>
+					</c:choose>
 					</div>
 				</div>
 				<!-- .content -->

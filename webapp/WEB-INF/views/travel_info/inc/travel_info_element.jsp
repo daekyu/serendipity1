@@ -8,10 +8,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
-   
+
+
 <div class="breadcrumb-box">
 </div>
 
@@ -71,13 +71,7 @@
     			      center: new google.maps.LatLng(36, 127.1),
     			      mapTypeId: google.maps.MapTypeId.ROADMAP
     			    });
-    			    var infowindow = new google.maps.InfoWindow();
-    			    var marker, i;
-    			    for (i = 0; i < locations.length; i++) {  
-    			      marker = new google.maps.Marker({
-    			        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    			        map: map
-    			      });
+    			
     			      google.maps.event.addListener(marker, 'click', (function(marker, i) {
     			        return function() {
     			          infowindow.setContent(locations[i][0]);
@@ -97,19 +91,18 @@
     			        		  $('#famous_food').text(data.famous_food);
     			        		  $('#attraction').text(data.attraction);
     			        		  $('#airport').text(data.airport);
-    			        		  
     			        	  }
     			          });
     			          
     			        }
     			      })(marker, i));
     			    }
-    	}
     });
     
 
   });
   </script> 
+  
 		   
 	  </div>
 	  <div class="title-box"><h3 class="title slim">관련 글</h3></div>

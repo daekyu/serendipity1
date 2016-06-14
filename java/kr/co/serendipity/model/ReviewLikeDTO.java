@@ -1,5 +1,12 @@
 package kr.co.serendipity.model;
 
+/*
+ * @Class : ReviewDTO
+ * @Date : 16.06.09
+ * @Author : 이소라
+ * @Desc : 여행후기 게시판 좋아요 DTO
+ */
+
 public class ReviewLikeDTO {
 	private int like_num;
 	private int review_num;

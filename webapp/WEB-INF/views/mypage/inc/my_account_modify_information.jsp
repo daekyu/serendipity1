@@ -20,6 +20,16 @@
 				$('#local').hide();	
 			}
 		});
+		
+		$('#btnSubmit').click(function(){
+			if($('#pw').val() != $('#confirm_pw').val()){
+				alert("비밀번호와 확인 입력값이 일치하지 않습니다.");
+				return false;
+			}else{
+				mo.submit();
+			}
+		});
+		
 	});
 </script>
 
@@ -36,48 +46,49 @@
 		<div class="row filter-elements hidden">
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
 			<div class="info-box">
-			  <h3 class="title">New costumers</h3>
-			  <p class="descriptions">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register">Create an Account</button>
+			  <h3 class="title">기본정보 수정</h3>
+			  <p class="descriptions">기본 정보 수정은 아래 버튼을 클릭해 주세요.</p>
+			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register">기본 정보 수정</button>
 			</div>
 		  </div>
 		  
 		  
 		  <!-- 로그인하는 Form태그가 있는 부분 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
-			<form class="form-box" action="login.htm" method="post">
+			<form class="form-box" action="InfoModify.htm?user_num=${sessionScope.user_num}" method="post">
+			<%-- <input type="hidden" name="user_name" value="${sessionScope.user_num}"> --%>
 			  <h3 class="title">추가정보 수정</h3>
 			  <p>요 밑에 테이블 이상하게 보이는건 나중에 수정해보자...</p>
 			  
               <table class="table">
               	<tr>
-              		<td>취미/관심사</td>
-              		<td>언어</td>
+              		<td width="150">취미/관심사</td>
+              		<td width="150">언어 </td>
               	</tr>
               	<tr>
               		
               		<td>
               			<c:forEach var="i" items="${hobby_list}" varStatus="j">
-						  	<input type="checkbox" name="hobby">${i.hobby_name}<br>
+						  	<input type="checkbox" name="hobby" value="${i.hobby_code}">${i.hobby_name}<br>
 						</c:forEach>
               		</td>
               		
               		
               		<td>
               			<c:forEach var="i" items="${language_list}" varStatus="j">
-						  	<input type="checkbox" name="language">${i.language_name}<br>
+						  	<input type="checkbox" name="language" value="${i.language_code}">${i.language_name}<br>
 						</c:forEach>
               		</td>
               	</tr>
               	
               	<tr>
               		<th>사진: </th>
-              		<td><input type="file"></td>
+              		<td><input type="file" name="pic"></td>
               	</tr>
               	
               	<tr>
               		<th>자기소개: </th>
-              		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="board_Content"></textarea></td>
+              		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="profile">${member_info.profile_description}</textarea></td>
               	</tr>
               </table>
 			  
@@ -92,19 +103,19 @@
 		  
 		  <!-- 기본정보수정 Form태그 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
-			<form class="form-box register-form form-validator" action="joinMember.htm" method="post">
+			<form name="mo" class="form-box register-form form-validator" action="InfoModify2.htm?user_num=${sessionScope.user_num}" method="post">
 			  <h3 class="title">기본정보 수정</h3>
 			  <p>여기는 그냥 회원가입/로그인하고 그냥 같음</p>
 			  
 			  <div class="form-group">
 				<label>이름: <span class="required">*</span></label>
-				<input type="text" class="form-control" name="name" value="${member_info.name}">
+				<input type="text" class="form-control" name="name" value="${member_info.name}" readonly>
                 <!-- <input type="text" class="form-control" name="name" data-bv-trigger="keyup" required data-bv-notempty-message="The name is required and cannot be empty"> -->
               </div>
 
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
-				<input type="text" class="form-control" name="id" value="${member_info.id}">
+				<input type="text" class="form-control" name="id" value="${member_info.id}" readonly>
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
 				  data-bv-message="The username is not valid"
@@ -124,7 +135,7 @@
 			  
 			  <div class="form-group">
 				<label>성별: <span class="required">*</span></label>
-                <select class="form-group" name="gender">
+                <select class="form-group" name="gender" disabled>
                 	<option value="-">--</option>
                 	<option value="M">남자</option>
                 	<option value="F">여자</option>
@@ -138,7 +149,7 @@
               
               <div class="form-group">
 				<label>국적: <span class="required">*</span></label>
-                <select class="form-group" name="country_code" id="country">
+                <select class="form-group" name="country_code" id="country" disabled>
                 	<option value="-">--</option>
                 	<c:forEach var="i" items="${country_list}">
                 		<option value="${i.country_code}">${i.country_name}</option>
@@ -159,17 +170,18 @@
               
               <div class="form-group">
 				<label>전화번호: <span class="required">*</span></label>
-                <input class="form-control" id="hp" name="hp" type="text" placeholder="01012345678과 같이 '-'를 뺀 형식으로 입력하세요.">
+                <input class="form-control" id="hp" name="hp" type="text" placeholder="01012345678과 같이 '-'를 뺀 형식으로 입력하세요." value="${member_info.hp}">
               </div>
 			  
 			  <div class="form-group">
 				<label>Email: <span class="required">*</span></label>
-				<input class="form-control" name="email" type="email" required data-bv-emailaddress-message="The input is not a valid email address">
+				<input class="form-control" name="email" type="email" required data-bv-emailaddress-message="The input is not a valid email address" value="${member_info.email}">
               </div>
 
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Create my account</button> -->
-				<input type="submit" class="btn btn-default" value="Create my account">
+				<!-- <input type="submit" class="btn btn-default" value="정보 수정"> -->
+				<input type="button" class="btn btn-default" value="정보 수정" id="btnSubmit">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>
 			</form><!-- .form-box -->
@@ -178,9 +190,9 @@
 
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
 			<div class="info-box">
-			  <h3 class="title">My Account</h3>
-			  <p class="descriptions">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login">Login an Account</button>
+			  <h3 class="title">추가 정보 수정</h3>
+			  <p class="descriptions">추가 정보를 수정하려면 아래 버튼을 클릭해 주세요.</p>
+			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login">추가 정보 수정</button>
 			</div>
 		  </div>
 		</div>

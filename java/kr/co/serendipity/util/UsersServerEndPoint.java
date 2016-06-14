@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.json.Json;
@@ -47,7 +48,7 @@ import org.slf4j.LoggerFactory;
 *    2014. 11. 27.    이영지
 *
 */
-@ServerEndpoint(value = "/usersServerEndpoint"/* ,configurator=ServerAppConfig.class*/)
+@ServerEndpoint(value = "/usersServerEndpoint", configurator=ServerAppConfig.class)
 public class UsersServerEndPoint {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UsersServerEndPoint.class);
 	private static Set<Session> connectedAllUsers = Collections.synchronizedSet(new HashSet<Session>());
@@ -160,7 +161,13 @@ public class UsersServerEndPoint {
 
 		for (Session session : connectedAllUsers) {
 			if (session.getUserProperties().get("id") != null) {
-				returnSet.add(session.getUserProperties().get("id").toString());
+				
+				Iterator<String> it = returnSet.iterator();
+				
+				while(it.hasNext()) {
+					returnSet.add(session.getUserProperties().get("id").toString());
+					System.out.println("1111111111111 : " + it.next());
+				}
 			};
 		}
 		return returnSet;

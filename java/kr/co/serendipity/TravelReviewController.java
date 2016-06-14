@@ -7,10 +7,13 @@
 
 package kr.co.serendipity;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +24,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.ReplyDAO;
@@ -235,48 +241,82 @@ public class TravelReviewController {
 
 	// 글쓰기 처리 페이지
 	@RequestMapping(value = "review_writeform.htm", method = RequestMethod.POST)
-	public String reviewWrite(ReviewDTO dto, HttpServletRequest request)
+	public String reviewWrite(ReviewDTO dto, MultipartHttpServletRequest mrequest, HttpServletRequest request)
 			throws IOException, ClassNotFoundException, SQLException {
+		System.out.println("들어오니");
 
-		/*
-		 * System.out.println("실제 글 등록 처리"); System.out.println("title : " +
-		 * dto.getReview_title()); System.out.println("content : " +
-		 * dto.getReview_content()); System.out.println("picture1 : " +
-		 * dto.getFiles().get(0).getName()); // 첨부 // 파일(CommonsMultipartFile //
-		 * > // file) System.out.println("picture2 : " +
-		 * dto.getFiles().get(1).getName());
-		 * 
-		 * // 추후 다중 파일 업로드 // <input type="file" name="files[0]" // <input
-		 * type="file" name="files[1]" // files[0] > 1.jpg // files[1] > 2.jpg
-		 * 
-		 * List<CommonsMultipartFile> files = dto.getFiles(); List<String>
-		 * filenames = new ArrayList<String>(); // 파일명만 추출
-		 * 
-		 * if (files != null && files.size() > 0) { // 업로드한 파일이 하나라도 있다면
-		 * 
-		 * for (CommonsMultipartFile multipartfile : files) {
-		 * 
-		 * String fname = multipartfile.getOriginalFilename(); // 파일명 얻기 String
-		 * path = request.getSession().getServletContext().getRealPath(
-		 * "/travel_review/upload"); String fullpath = path + "\\" + fname;
-		 * 
-		 * System.out.println(fname + " / " + path + " / " + fullpath);
-		 * 
-		 * if (!fname.equals("")) { // 서버에 파일 쓰기 작업 FileOutputStream fs = new
-		 * FileOutputStream(fullpath); fs.write(multipartfile.getBytes());
-		 * fs.close(); } filenames.add(fname); // 실 DB Insert 작업시 .. 파일명 }
-		 * 
-		 * }
-		 * 
-		 * // DB저장작업 // DB 저장할 파일 명 dto.setReview_picture1(filenames.get(0)); //
-		 * 파일명 1 dto.setReview_picture2(filenames.get(1)); // 파일명 2
-		 * dto.setReview_picture3(filenames.get(2)); // 파일명 3
-		 * dto.setReview_picture4(filenames.get(3)); // 파일명 4
-		 * dto.setReview_picture5(filenames.get(4)); // 파일명 5
-		 * 
-		 * // 실DB저장 // jdbcTemplate // noticeDao.insert(n);
-		 * 
-		 */
+		/*List<CommonsMultipartFile> files = dto.getFiles();
+		List<String> filenames = new ArrayList<String>(); // 파일명만 추출
+
+		if (files != null && files.size() > 0) { // 업로드한 파일이 하나라도 있다면
+
+			for (CommonsMultipartFile multipartfile : files) {
+
+				String fname = multipartfile.getOriginalFilename(); // 파일명 얻기
+				String path = request.getSession().getServletContext().getRealPath("WEB-INF/view/travel_review/upload");
+				String fullpath = path + "\\" + fname;
+				String uploadedFileName =System.currentTimeMillis() 
+			               + UUID.randomUUID().toString()+fname.substring(fname.lastIndexOf("."));
+
+				System.out.println(fname + " / " + path + " / " + fullpath);
+
+				if (!fname.equals("")) {
+					// 서버에 파일 쓰기 작업
+					FileOutputStream fs = new FileOutputStream(fullpath);
+					fs.write(multipartfile.getBytes());
+					fs.close();
+				}
+				filenames.add(fname); // 실 DB Insert 작업시 .. 파일명
+			}
+
+		}*/
+		
+		List<MultipartFile> mf = mrequest.getFiles("review_picture");
+		List<String> filenames = new ArrayList<String>();
+		
+		System.out.println("0번째 : "+mf.get(0).getOriginalFilename());
+		System.out.println("1번째 : "+mf.get(1).getOriginalFilename());
+		System.out.println("2번째 : "+mf.get(2).getOriginalFilename());
+		System.out.println("3번째 : "+mf.get(3).getOriginalFilename());
+		System.out.println("4번째 : "+mf.get(4).getOriginalFilename());
+		
+		System.out.println("size : "+mf.size());
+		String realFolder = mrequest.getSession().getServletContext().getRealPath("WEB-INF/views/travel_review/upload");
+		//for (int i = 0; i < mf.size(); i++) {
+        if (mf.size()==1 && mf.get(0).getOriginalFilename().equals("")) {
+             
+        } else {
+            for (int i = 0; i < mf.size(); i++){
+            		if(mf.get(i).getOriginalFilename().equals("")){
+            		// 파일 중복명 처리
+                    String genId = UUID.randomUUID().toString(); 
+                    // 본래 파일명
+                    String originalfileName = mf.get(i).getOriginalFilename(); 
+                    
+                    System.out.println("filename : "+originalfileName);
+                     
+                    String saveFileName = genId + "_" + originalfileName;
+                    // 저장되는 파일 이름
+     
+                    String savePath = realFolder +"\\"+ saveFileName; // 저장 될 파일 경로
+     
+                    //long fileSize = mf.get(i).getSize(); // 파일 사이즈
+     
+                    mf.get(i).transferTo(new File(savePath)); // 파일 저장
+                   
+                    filenames.add(saveFileName); // 실 DB Insert 작업시 .. 파일명
+            	}
+                
+            }
+        
+        }
+
+		dto.setReview_picture1(filenames.get(0)); // 파일명 1
+		dto.setReview_picture2(filenames.get(1)); // 파일명 2
+		dto.setReview_picture3(filenames.get(2)); // 파일명 3
+		dto.setReview_picture4(filenames.get(3)); // 파일명 4
+		dto.setReview_picture5(filenames.get(4)); // 파일명 5
+
 		System.out.println("title : " + dto.getReview_title());
 		System.out.println("content : " + dto.getReview_content());
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);

@@ -47,7 +47,7 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form action="" method="post"> <!-- enctype="multipart/form-data" -->
+			<form action="" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>
@@ -93,7 +93,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" name="review_picture1"></td>
+											<td><input type="file" name="review_picture"></td>
 										</tr>
 										
 										<tr>
@@ -110,7 +110,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic2" name="review_picture2"></td>
+											<td><input type="file" id="pic2" name="review_picture"></td>
 										</tr>
 										
 										<tr>
@@ -127,7 +127,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic3" name="review_picture3"></td>
+											<td><input type="file" id="pic3" name="review_picture"></td>
 										</tr>
 										
 										<tr>
@@ -144,7 +144,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic4" name="review_picture4"></td>
+											<td><input type="file" id="pic4" name="review_picture"></td>
 										</tr>
 										
 										<tr>
@@ -161,7 +161,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic5" name="review_picture5"></td>
+											<td><input type="file" id="pic5" name="review_picture"></td>
 										</tr>
 
 										<tr>

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('#delete').click(function(){
@@ -12,6 +15,49 @@
 				}
 			});
 		});
+		
+		var map;
+		var geocoder;
+		
+		function initialize() {
+		    // prepare Geocoder
+		    geocoder = new google.maps.Geocoder();
+
+		    // set initial position (삼성역)
+		    var myLatlng = new google.maps.LatLng(37.4909201, 127.00675260000003);
+		    /* +${dto.board_Latlng} */
+		    
+		    var myOptions = { // default map options
+		        zoom: 14,
+		        center: myLatlng,
+		        mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+		    
+		    var mark = new google.maps.Marker({
+		        position: myLatlng,
+		        map: map
+		    });
+		    
+		    map = new google.maps.Map(document.getElementById('gmap_detail'), myOptions);
+		}
+		
+		function createMarker(obj) {
+
+		    // prepare info window
+		    var infowindow = new google.maps.InfoWindow({
+		        content: '<img src="' + obj.icon + '" /><font style="color:#000;">' + obj.name + 
+		        '<br />Rating: ' + obj.rating + '<br />Vicinity: ' + obj.vicinity+
+		        '<br />LatLng: ' + obj.geometry.location+'</font>'
+		    });
+
+		    // add event handler to current marker
+		    google.maps.event.addListener(mark, 'click', function(){
+		        clearInfos();
+		        infowindow.open(map,mark);
+		    });
+		}		
+		
+		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 
 <div class="breadcrumb-box breadcrumb-none"></div>
@@ -113,38 +159,30 @@
 		  </div>
 		</div>
 		
-		<div class="product-tab">
-		  <ul class="nav nav-tabs">
-			<li class="active"><a href="#description">Description</a></li>
-			<li><a href="#reviews">Meeting Point</a></li>
-		  </ul><!-- .nav-tabs -->	
-		  <div class="tab-content">
-			<div class="tab-pane active" id="description">
-				${dto.board_Content}<br><br><br><br>
-				
-				추가사항
-				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
-			</div>
-			<div class="tab-pane" id="reviews">
-			  <div class="timeline-content border border-danger" data-appear-animation="fadeInRight">
-			<div class="entry-content">
-			  <div class="map-box not-margin">
-				<div
-				  class="map-canvas img-rounded"
-				  data-zoom="6"
-				  data-lat="40.748441"
-				  data-lng="-73.985664"
-				  data-hue="#c3293a"
-				  data-title="Bryant Park"
-				  data-content="New York, NY"></div>
-			  </div>
-			</div>
-		  </div>
-			</div><!-- #reviews -->
-		  </div><!-- .tab-content -->
-		</div>
-		  
-		<div class="clearfix"></div>
+		
+        <ul class="nav nav-tabs">
+         <li><a href="#description">Description</a></li>
+         <li><a href="#reviews">Meeting Point</a></li>
+        </ul><!-- .nav-tabs -->   
+        <div class="tab-content">
+         <div class="tab-pane active" id="description">
+            ${dto.board_Content}<br><br><br><br>
+           		 추가사항
+           		 강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
+         </div>
+         <div class="tab-pane" id="reviews">
+           <div class="timeline-content border border-danger" data-appear-animation="fadeInRight">
+         <div class="entry-content">
+           <div class="map-box not-margin">
+            <div id="gmap_detail" style="height:500px"></div>
+           </div>
+         </div>
+        </div>
+         </div><!-- #reviews -->
+        </div><!-- .tab-content -->
+      
+        
+      <div class="clearfix"></div>
       </article><!-- .content -->
     </div>
   </div>

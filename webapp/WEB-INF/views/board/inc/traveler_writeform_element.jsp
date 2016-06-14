@@ -3,7 +3,6 @@
 
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-        <!-- <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
 		<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 
 <script type="text/javascript">
@@ -35,6 +34,7 @@
 	var map;
 	var markers = Array();
 	var infos = Array();
+	
 
 	function initialize() {
 	    // prepare Geocoder
@@ -42,7 +42,7 @@
 
 	    // set initial position (삼성역)
 	    var myLatlng = new google.maps.LatLng(37.5088652,127.0609603);
-
+	    
 	    var myOptions = { // default map options
 	        zoom: 14,
 	        center: myLatlng,
@@ -50,7 +50,7 @@
 	    };
 	    map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
 	}
-
+ 
 	// clear overlays function
 	function clearOverlays() {
 	    if (markers) {
@@ -92,7 +92,7 @@
 	            document.getElementById('lat').value = results[0].geometry.location.lat();
 	            document.getElementById('lng').value = results[0].geometry.location.lng();
 
-	            // and then - add new custom marker
+	            // and then - add marker
 	            var addrMarker = new google.maps.Marker({
 	                position: addrLocation,
 	                map: map,
@@ -116,6 +116,7 @@
 	    var lat = document.getElementById('lat').value;
 	    var lng = document.getElementById('lng').value;
 	    var cur_location = new google.maps.LatLng(lat, lng);
+	    
 
 	    // prepare request to Places
 	    var request = {
@@ -123,6 +124,7 @@
 	        radius: radius,
 	        types: [type]
 	    };
+	   
 	    if (keyword) {
 	        request.keyword = [keyword];
 	    }
@@ -150,6 +152,7 @@
 
 	// creare single marker function
 	function createMarker(obj) {
+		
 
 	    // prepare new Marker object
 	    var mark = new google.maps.Marker({
@@ -159,39 +162,29 @@
 	    });
 	    markers.push(mark);
 	    
-	  /*   var geocoder = new google.maps.Geocoder();
-		  geocoder.geocode({
-		   LatLng: latlng
-		  }, function(results, status) {
-		   if (status == google.maps.GeocoderStatus.OK) {
-		       if (results[0].geometry) {
-		           var address = results[0].formatted_address;
-		       }
-		   }
-		  }); */
 
 	    // prepare info window
 	    var infowindow = new google.maps.InfoWindow({
 	        content: '<img src="' + obj.icon + '" /><font style="color:#000;">' + obj.name + 
 	        '<br />Rating: ' + obj.rating + '<br />Vicinity: ' + obj.vicinity+
-	        '<br />latlng: ' + obj.latitude + '</font>'
+	        '<br />LatLng: ' + obj.geometry.location+'</font>'
 	    });
 
 	    // add event handler to current marker
 	    google.maps.event.addListener(mark, 'click', function(){
 	        clearInfos();
 	        infowindow.open(map,mark);
-	        
+	        document.getElementById('locations').value = obj.geometry.location;
 	    });
+	    
 	    infos.push(infowindow);
-	}
-	
-	//위도 경도 얻어오기
-	
-
+	    
+	}		
 
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
+	
+	
 </script>
 <section id="main">
 	<header class="page-header">
@@ -239,10 +232,9 @@
 										<input class="form-control" id="gmap_keyword" type="text" name="gmap_keyword" />
 									</div>
 									<div class="button">
-										<label for="gmap_type">Type:</label> <select id="gmap_type">
+										<label for="gmap_type">Type:</label> 
+										<select id="gmap_type">
 											<option value="art_gallery">art_gallery</option>
-											<option value="atm">atm</option>
-											<option value="bank">bank</option>
 											<option value="bar">bar</option>
 											<option value="cafe">cafe</option>
 											<option value="food">food</option>
@@ -259,8 +251,9 @@
 											<option value="5000">5000</option>
 										</select>
 									</div>
-									 <input type="hidden" id="lat" name="board_Latitude" value="00" />
-									 <input type="hidden" id="lng" name="board_Longitude" value="00" />
+									 <input type="hidden" id="locations" name="board_Latlng"/>
+									 <input type="hidden" id="lat"/>
+									 <input type="hidden" id="lng"/>
 									<div id="button1" class="btn btn-success"
 										onclick="findPlaces(); return false;">Search for objects</div>
 								</div>

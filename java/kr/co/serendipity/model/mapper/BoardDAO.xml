@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.co.serendipity.model.BoardDAO">
 	<insert id="write">
 	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
-	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price) 
-	 VALUES( board_seq.NEXTVAL, 6, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , #{board_Latitude}, #{board_Longitude}, '02', 1, #{price})
+	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng) 
+	 VALUES( board_seq.NEXTVAL, 6, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , #{board_Latitude}, #{board_Longitude}, '02', 1, #{price}, #{board_Latlng})
 	</insert>
 	
 	<select id="getBoardList" resultType="kr.co.serendipity.model.BoardDTO">
@@ -31,8 +31,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <insert id="Gwrite">
 	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
-	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price) 
-	 VALUES( board_seq.NEXTVAL, 6, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , '위도33', '경도 22', '02', 2, #{price})
+	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng) 
+	 VALUES( board_seq.NEXTVAL, 6, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , '위도33', '경도 22', '02', 2, #{price},#{board_Latlng})
 	</insert>
 	
 	<select id="getGBoardList" resultType="kr.co.serendipity.model.BoardDTO">

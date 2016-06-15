@@ -24,7 +24,7 @@
 		function initialize() {
 
 		    // set initial position (삼성역)
-		    myLatlng = new google.maps.LatLng(${dto.board_Latlng});
+		    myLatlng = new google.maps.LatLng(37.4909201, 127.00675260000003);
 		   
 		    var myOptions = { // default map options
 		        zoom: 16,

@@ -6,6 +6,10 @@
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
+		<input type="hidden" id="lat" value="${dto.board_Latitude}"/>
+		<input type="hidden" id="lng" value="${dto.board_Longitude}"/>
+		<input type="hidden" id="meeting_place" value="${dto.meeting_Place}"/>
+		<input type="hidden" id="meeting_address" value="${dto.meeting_Address}"/>
 	<script type="text/javascript">
 		$(function(){
 			$('#delete').click(function(){
@@ -20,20 +24,27 @@
 		var map;
 		var marker;
 		var myLatlng;
+		var lat = document.getElementById('lat').value;
+		var lng = document.getElementById('lng').value;
+		var meeting_place = document.getElementById('meeting_place').value;
+		var meeting_address = document.getElementById('meeting_address').value;
+
 		
 		function initialize() {
 
-		    // set initial position (삼성역)
-		    myLatlng = new google.maps.LatLng(37.4909201, 127.00675260000003);
+		    // set initial position
+		    myLatlng = new google.maps.LatLng(lat, lng);
 		   
 		    var myOptions = { // default map options
-		        zoom: 16,
+		        zoom: 17,
 		        center: myLatlng,
+		        icon: marker
 		    };
 		    
 		    map = new google.maps.Map(document.getElementById('gmap_detail'), myOptions);
 
 		    var request = {
+		    		radius: 50,
 			        location: myLatlng
 			    };
 			   
@@ -43,20 +54,19 @@
 		}
 		    	    
 		    	    
-		  function createMarker(obj){
+		  function createMarker(){
 		    	    marker = new google.maps.Marker({
 		                position: myLatlng,
 		                map: map
 		            });
 		    	    var infowindow = new google.maps.InfoWindow({
-		    	        content: '<img src="' + obj.icon + '" /><font style="color:#000;">' + obj.name + 
-		    	        '<br />Rating: ' + obj.rating + '<br />Vicinity: ' + obj.vicinity+
-		    	        '<br />latlng: ' + obj.latitude + '</font>'
+		    	        content: '<font style="color:#000;">' + meeting_place + 
+		    	        '<br />주소: ' + meeting_address+'</font>'
 		    	    });
 
 		    	    // add event handler to current marker
-		    	    google.maps.event.addListener(mark, 'click', function(){
-		    	        infowindow.open(map,mark);
+		    	    google.maps.event.addListener(marker, 'click', function(){
+		    	        infowindow.open(map,marker);
 		    	    });
 		}
 

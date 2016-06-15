@@ -82,4 +82,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select local_name from local where local_code=#{local}
 	</select>
 	
+	<select id="parseLang" resultType="String">
+		select l.language_name from 
+		lang_select ls join language l on ls.LANGUAGE_CODE = l.LANGUAGE_CODE 
+		where user_num=#{user_num}
+	</select>
+	
+	<select id="parseHobby" resultType="String">
+		select h.hobby_name from 
+		hobby_select hs join hobby h on hs.HOBBY_CODE = h.HOBBY_CODE 
+		where user_num=#{user_num}
+	</select>
+	
 </mapper>

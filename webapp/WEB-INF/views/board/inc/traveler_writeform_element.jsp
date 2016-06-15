@@ -142,7 +142,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	        types: [type]
 	    };
 	   
-
 	    // send request
 	    service = new google.maps.places.PlacesService(map);
 	    service.search(request, createMarkers);

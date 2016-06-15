@@ -25,6 +25,7 @@
 	 	<constructor-arg index="0" ref="sqlSessionFactoryBean"></constructor-arg>
 	 </bean>
 	 
+	 
 	 <!-- 공통빈 -->
 	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000000" />

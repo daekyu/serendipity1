@@ -6,6 +6,10 @@
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
+		<input type="hidden" id="lat" value="${dto.board_Latitude}"/>
+		<input type="hidden" id="lng" value="${dto.board_Longitude}"/>
+		<input type="hidden" id="meeting_place" value="${dto.meeting_Place}"/>
+		<input type="hidden" id="meeting_address" value="${dto.meeting_Address}"/>
 	<script type="text/javascript">
 		$(function(){
 			$('#delete').click(function(){
@@ -20,40 +24,50 @@
 		var map;
 		var marker;
 		var myLatlng;
+		var lat = document.getElementById('lat').value;
+		var lng = document.getElementById('lng').value;
+		var meeting_place = document.getElementById('meeting_place').value;
+		var meeting_address = document.getElementById('meeting_address').value;
+
 		
 		function initialize() {
 
-		    // set initial position (삼성역)
-		    myLatlng = new google.maps.LatLng(37.5088652, 127.06314900000007);
+		    // set initial position
+		    myLatlng = new google.maps.LatLng(lat, lng);
 		   
 		    var myOptions = { // default map options
-		        zoom: 10,
+		        zoom: 17,
 		        center: myLatlng,
-		        /* mapTypeId: google.maps.MapTypeId.ROADMAP */
+		        icon: marker
 		    };
 		    
 		    map = new google.maps.Map(document.getElementById('gmap_detail'), myOptions);
 
+		    var request = {
+		    		radius: 50,
+			        location: myLatlng
+			    };
+			   
+			    // send request
+			    service = new google.maps.places.PlacesService(map);
+			    service.search(request, createMarker);
 		}
 		    	    
 		    	    
-		  function createMarker(obj){
+		  function createMarker(){
 		    	    marker = new google.maps.Marker({
 		                position: myLatlng,
 		                map: map
 		            });
-		    
-		    var infowindow = new google.maps.InfoWindow({
-		        content: '<img src="' + obj.icon + '" /><font style="color:#000;">' + obj.name + 
-		        '<br />Vicinity: ' + obj.vicinity+ '</font>'
-		    });
+		    	    var infowindow = new google.maps.InfoWindow({
+		    	        content: '<font style="color:#000;">' + meeting_place + 
+		    	        '<br />주소: ' + meeting_address+'</font>'
+		    	    });
 
-		    // add event handler to current marker
-		    google.maps.event.addListener(marker, 'click', function(){
-		        infowindow.open(map,marker);
-		    });
-		    
-		    
+		    	    // add event handler to current marker
+		    	    google.maps.event.addListener(marker, 'click', function(){
+		    	        infowindow.open(map,marker);
+		    	    });
 		}
 
 		// initialization

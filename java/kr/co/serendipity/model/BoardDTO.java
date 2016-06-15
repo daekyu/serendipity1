@@ -26,6 +26,9 @@ public class BoardDTO {
 	private String local_Code;
 	private int category_Num;
 	private int price;
+	private String board_Latlng;
+	private String meeting_Place;
+	private String meeting_Address;
 	
 	public int getPrice() {
 		return price;
@@ -123,6 +126,27 @@ public class BoardDTO {
 	public void setCategory_Num(int category_Num) {
 		this.category_Num = category_Num;
 	}
+	public String getBoard_Latlng() {
+		return board_Latlng;
+	}
+	public void setBoard_Latlng(String board_Latlng) {
+		this.board_Latlng = board_Latlng;
+	}
+	public String getMeeting_Place() {
+		return meeting_Place;
+	}
+	public void setMeeting_Place(String meeting_Place) {
+		this.meeting_Place = meeting_Place;
+	}
+	public String getMeeting_Address() {
+		return meeting_Address;
+	}
+	public void setMeeting_Address(String meeting_Address) {
+		this.meeting_Address = meeting_Address;
+	}
+	
+	
+	
 	
 	
 }

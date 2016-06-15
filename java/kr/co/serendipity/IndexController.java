@@ -44,9 +44,7 @@ public class IndexController {
 		mav.addObject("index", "index");
 		mav.addObject("travelerList", travelerList);
 		mav.addObject("guideList", guideList);
-		/*if(session.getAttribute("locale").equals("ko") || session.getAttribute("locale").equals("")){
-			session.setAttribute("locale", "ko");
-		}*/
+
 
 		return mav;
 	}

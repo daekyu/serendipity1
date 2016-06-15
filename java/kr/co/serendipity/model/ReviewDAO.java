@@ -1,6 +1,7 @@
 package kr.co.serendipity.model;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 /*
@@ -19,10 +20,10 @@ public interface ReviewDAO {
 	List<LocalDTO> localList();
 	
 	//여행후기 목록
-	public List<ReviewDTO> reviewList() throws ClassNotFoundException, SQLException;
+	public List<HashMap<String, Object>> reviewList() throws ClassNotFoundException, SQLException;
 	
 	//여행후기 상세보기
-	public ReviewDTO reviewDetail(ReviewDTO dto) throws ClassNotFoundException, SQLException;
+	public HashMap<String, Object> reviewDetail(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 	
 	//여행후기 페이징할 때
 	public int getReviewListCount() throws ClassNotFoundException, SQLException;
@@ -33,5 +34,6 @@ public interface ReviewDAO {
 	//여행후기 삭제
 	public void reviewDelete(int review_num) throws ClassNotFoundException, SQLException;
 
-
+	//여행후기 게시판 사진 검색
+	public ReviewDTO selectPicture(int review_num) throws ClassNotFoundException, SQLException;
 }

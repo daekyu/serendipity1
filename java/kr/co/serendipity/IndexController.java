@@ -9,6 +9,8 @@ package kr.co.serendipity;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +28,7 @@ public class IndexController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping("index.htm")
-	public ModelAndView index() {
+	public ModelAndView index(HttpSession session) {
 		
 		System.out.println("index entrance");
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
@@ -42,6 +44,9 @@ public class IndexController {
 		mav.addObject("index", "index");
 		mav.addObject("travelerList", travelerList);
 		mav.addObject("guideList", guideList);
+		if(session.getAttribute("locale").equals("ko") || session.getAttribute("locale").equals("")){
+			session.setAttribute("locale", "ko");
+		}
 		return mav;
 	}
 	

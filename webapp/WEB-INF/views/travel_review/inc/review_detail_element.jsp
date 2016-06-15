@@ -198,8 +198,8 @@
 			
 			<c:choose>
 				<c:when test="${sessionScope.user_num == reviewdetail.user_num}">
-					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${dto.board_Num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
-					<a class="btn btn-danger btn-sm" id="delete" href="review_delete.htm?review_num=${reviewdetail.review_num}"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/travel_review/review_modify.htm?board_num=${reviewdetail.review_num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
+					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/travel_review/review_delete.htm?review_num=${reviewdetail.review_num}"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
 				</c:when>
 			</c:choose>
 		  </div>

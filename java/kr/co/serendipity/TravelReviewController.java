@@ -326,4 +326,13 @@ public class TravelReviewController {
 		dao.reviewWrite(dto);
 		return "redirect:/travel_review/review_list.htm";
 	}
+	
+	@RequestMapping("review_modify.htm")
+	public ModelAndView modifyReview(ReviewDTO dto) throws ClassNotFoundException, SQLException {
+		ModelAndView mav = new ModelAndView("/travel_review/review_modifyform");
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		mav.addObject("reviewdto", dao.reviewDetail(dto));
+		
+		return mav;
+	}
 }

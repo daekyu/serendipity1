@@ -44,10 +44,13 @@ public class MyPageController {
 		System.out.println("원본 사진명 : " + pic);
 		int local = dto.getLocal_code();
 		String Slocal = dao.parseLocal(local);
-		
+		List Slang = dao.parseLang(user_num);
+		List Shobby = dao.parseHobby(user_num);
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("Slocal", Slocal);
+		model.addAttribute("Slang", Slang);
+		model.addAttribute("Shobby", Shobby);
 
 		return "/mypage/my_page";
 	}

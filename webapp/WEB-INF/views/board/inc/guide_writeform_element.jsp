@@ -194,6 +194,7 @@ function createMarker(obj) {
 // initialization
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+
 <section id="main">
 	<header class="page-header">
 		<div class="container">
@@ -201,12 +202,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		</div>
 	</header>
 
+
+
 	<article class="content">
-		<div class="container">
-			<form action="" id="bofom" method="post">
-				<table class="table center">
+		<div class="container form-group">
+			<form action="" id="bofom"  method="post">
+				<table class="table table-responsive center">
 					<tr>
-						<td><h6>글 제목</h6></td>
+						<td><h5>글 제목</h5></td>
 						<td colspan="5"><input class="form-control" type="text" name="board_Title"></td>
 					</tr>
 					<tr>
@@ -232,15 +235,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					   });
 					 </script>
 							
-						
 						</td>
 					</tr>
 					<tr>
 						<td>Meeting Point</td>
 						<td colspan="5">
-													<div id="container" class="container">
-							<div id="gmap_canvas" style="height: 500px"></div>
-							<div class="actions">
+													<div id="container" class="row">
+							<div class="row" id="gmap_canvas" style="height: 400px;"></div>
+							<div class="actions form-group row">
 								<div class="button">
 									<label for="gmap_where">Where:</label> <input id="gmap_where"
 										class="form-control" type="text" name="gmap_where">

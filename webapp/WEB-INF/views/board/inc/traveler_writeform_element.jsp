@@ -180,22 +180,18 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	    var infowindow = new google.maps.InfoWindow({
 	        content: '<img src="' + obj.icon + '" /><font style="color:#000;">' + obj.name + 
 	        '<br />Rating: ' + obj.rating + '<br />Vicinity: ' + obj.vicinity+
-	        '<br />latlng: ' + obj.latitude + '</font>'
+	        '<br />latlng: ' + obj.geometry.location + '</font>'
 	    });
 
 	    // add event handler to current marker
 	    google.maps.event.addListener(mark, 'click', function(){
 	        clearInfos();
 	        infowindow.open(map,mark);
-	        
+	        document.getElementById('locations').value = obj.geometry.location;
 	    });
 	    infos.push(infowindow);
 	}
 	
-	//위도 경도 얻어오기
-	
-
-
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
@@ -280,8 +276,9 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 										<option value="5000">5000</option>
 									</select>
 								</div>
-								<input type="hidden" id="lat" name="board_Latitude" value="00" />
-								<input type="hidden" id="lng" name="board_Longitude" value="00" />
+								<input type="hidden" id="locations" name="board_Latlng"/>
+								<input type="hidden" id="lat" />
+								<input type="hidden" id="lng" />
 								<div id="button1" class="btn btn-success"
 									onclick="findPlaces(); return false;">Search for objects</div>
 							</div>

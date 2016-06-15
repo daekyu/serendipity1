@@ -5,6 +5,7 @@
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('#delete').click(function(){
@@ -16,41 +17,43 @@
 			});
 		});
 		
-		var geocoder;
 		var map;
 		var marker;
-
+		var myLatlng;
+		
 		function initialize() {
-		    // prepare Geocoder
-		    geocoder = new google.maps.Geocoder();
 
 		    // set initial position (삼성역)
-		    var myLatlng = new google.maps.LatLng(37.5088652,127.0609603);
+		    myLatlng = new google.maps.LatLng(37.5088652, 127.06314900000007);
 		   
-
 		    var myOptions = { // default map options
 		        zoom: 10,
 		        center: myLatlng,
-		        mapTypeId: google.maps.MapTypeId.ROADMAP
+		        /* mapTypeId: google.maps.MapTypeId.ROADMAP */
 		    };
 		    
-		    	marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map
-            });
+		    map = new google.maps.Map(document.getElementById('gmap_detail'), myOptions);
+
+		}
+		    	    
+		    	    
+		  function createMarker(obj){
+		    	    marker = new google.maps.Marker({
+		                position: myLatlng,
+		                map: map
+		            });
 		    
 		    var infowindow = new google.maps.InfoWindow({
-		        content: '<img src="' + marker.icon + '" /><font style="color:#000;">' + marker.name + 
-		        '<br />Vicinity: ' + marker.vicinity+ '</font>'
+		        content: '<img src="' + obj.icon + '" /><font style="color:#000;">' + obj.name + 
+		        '<br />Vicinity: ' + obj.vicinity+ '</font>'
 		    });
 
 		    // add event handler to current marker
-		    google.maps.event.addListener(mark, 'click', function(){
-		        clearInfos();
-		        infowindow.open(map,mark);
-		        
+		    google.maps.event.addListener(marker, 'click', function(){
+		        infowindow.open(map,marker);
 		    });
-		    map = new google.maps.Map(document.getElementById('gmap_detail'), myOptions);
+		    
+		    
 		}
 
 		// initialization
@@ -158,17 +161,13 @@
 		
 		<div class="product-tab">
 		  <ul class="nav nav-tabs">
-			<li class="active"><a href="#description">Description</a></li>
-			<li><a href="#reviews">Meeting Point</a></li>
+		  <li class="active"><a href="#reviews">Meeting Point</a></li>
+			<li><a href="#description">Description</a></li>
+			
 		  </ul><!-- .nav-tabs -->	
 		  <div class="tab-content">
-			<div class="tab-pane active" id="description">
-				${dto.board_Content}<br><br><br><br>
-				
-				추가사항
-				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
-			</div>
-			<div class="tab-pane" id="reviews">
+		  <!-- 지도 들어가는 부분 시작 -->
+		  <div class="tab-pane active" id="reviews">
 			  <div class="timeline-content border border-danger" data-appear-animation="fadeInRight">
 			<div class="entry-content">
 			  <div class="map-box not-margin">
@@ -177,6 +176,16 @@
 			</div>
 		  </div>
 			</div><!-- #reviews -->
+		  <!-- 지도 끝 -->
+		  
+			<div class="tab-pane" id="description">
+				${dto.board_Content}<br><br><br><br>
+				
+				추가사항
+				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
+			</div>
+			
+			
 		  </div><!-- .tab-content -->
 		</div>
 		  

@@ -44,6 +44,8 @@
 				return false;
 			} else if ($('#id_login').val() != '' && $('#pw_login').val() != ''){
 				
+				
+				
 				// 아이디, 비밀번호 비교하는거 비동기로 검사하기
 				$.ajax({
 		        	  type : "post",
@@ -282,16 +284,11 @@ $(document).ready(function(){
 			  
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
-<<<<<<< HEAD
 				<input class="form-control" name="id" id="id_login" type="text"> <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
-=======
-				<input class="form-control" name="id_2" type="text" id="id" > <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
->>>>>>> locale
               </div>
 			  
 			  <div class="form-group">
 				<label>Password: <span class="required">*</span></label>
-<<<<<<< HEAD
                 <input class="form-control" name="pw" id="pw_login" type="password">
               </div>
 			  
@@ -299,14 +296,6 @@ $(document).ready(function(){
 				<input type="submit" id="btn_login_form" class="btn btn-default" value="Login">
 				
 				<!-- 각종 SNS로 로그인하는 버튼 만드는 부분 -->
-=======
-                <input class="form-control" name="pw" type="password" id='pw' >
-              </div>
-			  
-			  <div class="buttons-box clearfix">
-				<!-- <button class="btn btn-default">Login</button> -->
-				<input type="submit" class="btn btn-default" value="Login" id="login">
->>>>>>> locale
 				<button class="btn btn-info"><i class="fa fa-twitter"></i> Login with Twitter</button>
 				<a href="shop-forgot.html" class="forgot">Forgot Your Password?</a>
 				<span class="required"><b>*</b> Required Field</span>
@@ -330,7 +319,7 @@ $(document).ready(function(){
 
 			  <div class="form-group">
 				<label>아이디: <span class="required" id="help_text"></span></label>
-				<input type="text" class="form-control" name="id_1" id="id_1">
+				<input type="text" class="form-control" name="id" id="id_1">
 				<input type="button" name="" id="member_id_check_btn" value="아이디확인"/>
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
@@ -341,7 +330,7 @@ $(document).ready(function(){
 				
 			  <div class="form-group">
 				<label>비밀번호: <span class="required">*</span></label>
-                <input class="form-control" name="pw_1" id="pw_1" type="password"><!-- 속성에 required를 이용해보자 -->
+                <input class="form-control" name="pw" id="pw_1" type="password"><!-- 속성에 required를 이용해보자 -->
               </div>
 			  
 			  <div class="form-group">

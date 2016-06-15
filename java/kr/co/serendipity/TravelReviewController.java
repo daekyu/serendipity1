@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -244,59 +245,31 @@ public class TravelReviewController {
 	public String reviewWrite(ReviewDTO dto, MultipartHttpServletRequest mrequest, HttpServletRequest request)
 			throws IOException, ClassNotFoundException, SQLException {
 		System.out.println("들어오니");
-
-		/*List<CommonsMultipartFile> files = dto.getFiles();
-		List<String> filenames = new ArrayList<String>(); // 파일명만 추출
-
-		if (files != null && files.size() > 0) { // 업로드한 파일이 하나라도 있다면
-
-			for (CommonsMultipartFile multipartfile : files) {
-
-				String fname = multipartfile.getOriginalFilename(); // 파일명 얻기
-				String path = request.getSession().getServletContext().getRealPath("WEB-INF/view/travel_review/upload");
-				String fullpath = path + "\\" + fname;
-				String uploadedFileName =System.currentTimeMillis() 
-			               + UUID.randomUUID().toString()+fname.substring(fname.lastIndexOf("."));
-
-				System.out.println(fname + " / " + path + " / " + fullpath);
-
-				if (!fname.equals("")) {
-					// 서버에 파일 쓰기 작업
-					FileOutputStream fs = new FileOutputStream(fullpath);
-					fs.write(multipartfile.getBytes());
-					fs.close();
-				}
-				filenames.add(fname); // 실 DB Insert 작업시 .. 파일명
-			}
-
-		}*/
 		
-		List<MultipartFile> mf = mrequest.getFiles("review_picture");
+		List<MultipartFile> mflist = mrequest.getFiles("review_picture");
 		List<String> filenames = new ArrayList<String>();
 		
-		System.out.println("0번째 : "+mf.get(0).getOriginalFilename());
-		System.out.println("1번째 : "+mf.get(1).getOriginalFilename());
-		System.out.println("2번째 : "+mf.get(2).getOriginalFilename());
-		System.out.println("3번째 : "+mf.get(3).getOriginalFilename());
-		System.out.println("4번째 : "+mf.get(4).getOriginalFilename());
+		System.out.println("0번째 : "+mflist.get(0).getOriginalFilename());
+		System.out.println("1번째 : "+mflist.get(1).getOriginalFilename());
+		System.out.println("2번째 : "+mflist.get(2).getOriginalFilename());
+		System.out.println("3번째 : "+mflist.get(3).getOriginalFilename());
+		System.out.println("4번째 : "+mflist.get(4).getOriginalFilename());
 		
-		System.out.println("size1 : "+mf.size());
 		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
-        if (mf.size()==1 && mf.get(0).getOriginalFilename().equals("")) {
+        if (mflist.size()==1 && mflist.get(0).getOriginalFilename().equals("")) {
              
         } else {
-        	System.out.println("size2 : "+mf.size());
-            for (int i = 0; i < mf.size(); i++){
+            for (int i = 0; i < 5; i++){
             	
             		String saveFileName = null;
-            		if(mf.get(i).getOriginalFilename().equals("")){
-            			saveFileName = null;
+            		if(mflist.get(i).getOriginalFilename().equals("")){
+            			filenames.add("사진없음");
             		}
             		else{
             		// 파일 중복명 처리
                     String genId = UUID.randomUUID().toString(); 
                     // 본래 파일명
-                    String originalfileName = mf.get(i).getOriginalFilename(); 
+                    String originalfileName = mflist.get(i).getOriginalFilename(); 
                     
                     System.out.println("filename : "+originalfileName);
                      
@@ -305,15 +278,15 @@ public class TravelReviewController {
      
                     String savePath = realFolder +"\\"+ saveFileName; // 저장 될 파일 경로
      
-                    mf.get(i).transferTo(new File(savePath)); // 파일 저장
+                    mflist.get(i).transferTo(new File(savePath)); // 파일 저장
                     filenames.add(saveFileName); // 실 DB Insert 작업시 .. 파일명
             	}
-            	filenames.add("사진없음");
             }
-            
-        
         }
          
+        for(int i=0; i<filenames.size(); i++){
+        	System.out.println("filename : "+filenames.get(i));
+        }
         dto.setReview_picture1(filenames.get(0)); // 파일명1
         dto.setReview_picture2(filenames.get(1)); // 파일명2
         dto.setReview_picture3(filenames.get(2)); // 파일명3
@@ -327,7 +300,19 @@ public class TravelReviewController {
 		return "redirect:/travel_review/review_list.htm";
 	}
 	
-	@RequestMapping("review_modify.htm")
+	@RequestMapping("review_updateform.htm")
+	public ModelAndView updateReviewForm(ReviewDTO dto, HttpServletRequest request) throws ClassNotFoundException, SQLException{
+		ModelAndView mav = new ModelAndView("/travel_review/review_modifyform");
+		int review_num = Integer.parseInt(request.getParameter("review_num"));
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		ReviewDTO review_dto = dao.reviewDetail(dto);
+		mav.addObject("review_num", review_num);
+		mav.addObject("review_dto",review_dto);
+		mav.addObject("local_list", dao.localList());
+		return mav;
+	}
+	
+	@RequestMapping("review_update.htm")
 	public ModelAndView modifyReview(ReviewDTO dto) throws ClassNotFoundException, SQLException {
 		ModelAndView mav = new ModelAndView("/travel_review/review_modifyform");
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);

@@ -142,7 +142,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	        types: [type]
 	    };
 	   
-
 	    // send request
 	    service = new google.maps.places.PlacesService(map);
 	    service.search(request, createMarkers);
@@ -251,7 +250,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 				<tr>
 					<td>Meeting Point</td>
 					<td colspan="5">
-						<div id="container" class="container">
+						<div id="container" class="row">
 							<div id="gmap_canvas" style="height: 500px"></div>
 							<div class="actions">
 								<div class="button">

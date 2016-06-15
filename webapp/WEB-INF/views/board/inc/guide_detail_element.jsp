@@ -12,6 +12,57 @@
 				}
 			});
 		});
+		var map;
+		var marker;
+		var myLatlng;
+		var lat = document.getElementById('lat').value;
+		var lng = document.getElementById('lng').value;
+		var meeting_place = document.getElementById('meeting_place').value;
+		var meeting_address = document.getElementById('meeting_address').value;
+
+		
+		function initialize() {
+
+		    // set initial position
+		    myLatlng = new google.maps.LatLng(lat, lng);
+		   
+		    var myOptions = { // default map options
+		        zoom: 17,
+		        center: myLatlng,
+		        icon: marker
+		    };
+		    
+		    map = new google.maps.Map(document.getElementById('gmap_detail'), myOptions);
+
+		    var request = {
+		    		radius: 50,
+			        location: myLatlng
+			    };
+			   
+			    // send request
+			    service = new google.maps.places.PlacesService(map);
+			    service.search(request, createMarker);
+		}
+		    	    
+		    	    
+		  function createMarker(){
+		    	    marker = new google.maps.Marker({
+		                position: myLatlng,
+		                map: map
+		            });
+		    	    var infowindow = new google.maps.InfoWindow({
+		    	        content: '<font style="color:#000;">' + meeting_place + 
+		    	        '<br />주소: ' + meeting_address+'</font>'
+		    	    });
+
+		    	    // add event handler to current marker
+		    	    google.maps.event.addListener(marker, 'click', function(){
+		    	        infowindow.open(map,marker);
+		    	    });
+		}
+
+		// initialization
+		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 
 <div class="breadcrumb-box breadcrumb-none"></div>
@@ -147,16 +198,11 @@
 		  <div class="tab-pane active" id="reviews">
 		  
 		  <!-- 지도 들어가는 부분 시작 -->
+		  <div class="tab-pane active" id="reviews">
 			  <div class="timeline-content border border-danger" data-appear-animation="fadeInRight">
 			<div class="entry-content">
 			  <div class="map-box not-margin">
-				<div
-		  class="map-canvas"
-		  data-zoom="6"
-		  data-lat="40.748441"
-		  data-lng="-73.985664"
-		  data-title="Bryant Park"
-		  data-content="New York, NY"></div>
+				<div id="gmap_detail" style="height:400px"></div>
 			  </div>
 			</div>
 		  </div>

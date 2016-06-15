@@ -106,18 +106,40 @@ function findAddress() {
             // store current coordinates into hidden variables
             document.getElementById('lat').value = results[0].geometry.location.lat();
             document.getElementById('lng').value = results[0].geometry.location.lng();
+            var lat = document.getElementById('lat').value;
+            var lng = document.getElementById('lng').value;
+            var latlng = lat+', '+lng;
 
             // and then - add new custom marker
             var addrMarker = new google.maps.Marker({
                 position: addrLocation,
                 map: map,
-                title: results[0].formatted_address,
+                title: results[0].formatted_address
             });
             markers.push(addrMarker);
+            
+            google.maps.event.addListener(addrMarker,'click', function(){
+    	        findPlace();
+    		});
+            
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
+    
+}
+function findPlace(){
+	var lat = document.getElementById('lat').value;
+    var lng = document.getElementById('lng').value;
+    var cur_location = new google.maps.LatLng(lat, lng);
+    
+    var request = {
+    		radius: 1,
+	        location: cur_location,
+	       
+	    };
+    service = new google.maps.places.PlacesService(map);
+    service.search(request, createMarkers);
 }
 
 // find custom places function
@@ -138,8 +160,7 @@ function findPlaces() {
         radius: radius,
         types: [type]
     };
-   
-
+    
     // send request
     service = new google.maps.places.PlacesService(map);
     service.search(request, createMarkers);
@@ -178,21 +199,26 @@ function createMarker(obj) {
     var infowindow = new google.maps.InfoWindow({
         content: '<img src="' + obj.icon + '" /><font style="color:#000;">' + obj.name + 
         '<br />Rating: ' + obj.rating + '<br />Vicinity: ' + obj.vicinity+
-        '<br />latlng: ' + obj.latitude + '</font>'
+        '<br />latlng: ' + obj.geometry.location.lat()+', '+obj.geometry.location.lng()+'</font>'
     });
 
     // add event handler to current marker
     google.maps.event.addListener(mark, 'click', function(){
         clearInfos();
         infowindow.open(map,mark);
+        document.getElementById('lat').value = obj.geometry.location.lat();
+        document.getElementById('lng').value = obj.geometry.location.lng();
+        document.getElementById('meeting_place').value = obj.name;
+        document.getElementById('meeting_address').value = obj.vicinity;
         
     });
     infos.push(infowindow);
+    
 }
-
 
 // initialization
 google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
 
 <section id="main">

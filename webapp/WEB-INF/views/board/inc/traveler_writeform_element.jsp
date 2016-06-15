@@ -109,18 +109,40 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	            // store current coordinates into hidden variables
 	            document.getElementById('lat').value = results[0].geometry.location.lat();
 	            document.getElementById('lng').value = results[0].geometry.location.lng();
+	            var lat = document.getElementById('lat').value;
+	            var lng = document.getElementById('lng').value;
+	            var latlng = lat+', '+lng;
 
 	            // and then - add new custom marker
 	            var addrMarker = new google.maps.Marker({
 	                position: addrLocation,
 	                map: map,
-	                title: results[0].formatted_address,
+	                title: results[0].formatted_address
 	            });
 	            markers.push(addrMarker);
+	            
+	            google.maps.event.addListener(addrMarker,'click', function(){
+	    	        findPlace();
+	    		});
+	            
 	        } else {
 	            alert('Geocode was not successful for the following reason: ' + status);
 	        }
 	    });
+	    
+	}
+	function findPlace(){
+		var lat = document.getElementById('lat').value;
+	    var lng = document.getElementById('lng').value;
+	    var cur_location = new google.maps.LatLng(lat, lng);
+	    
+	    var request = {
+	    		radius: 1,
+		        location: cur_location,
+		       
+		    };
+	    service = new google.maps.places.PlacesService(map);
+	    service.search(request, createMarkers);
 	}
 
 	// find custom places function
@@ -141,8 +163,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	        radius: radius,
 	        types: [type]
 	    };
-	   
-
+	    
 	    // send request
 	    service = new google.maps.places.PlacesService(map);
 	    service.search(request, createMarkers);
@@ -195,10 +216,12 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	        
 	    });
 	    infos.push(infowindow);
+	    
 	}
-	
+
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
+	
 </script>
 <section id="main">
 	<header class="page-header">

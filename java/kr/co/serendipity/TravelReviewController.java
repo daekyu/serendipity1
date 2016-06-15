@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -271,32 +272,43 @@ public class TravelReviewController {
 
 		}*/
 		
-		List<MultipartFile> mf = mrequest.getFiles("review_picture");
-		List<String> filenames = new ArrayList<String>();
+		List<MultipartFile> mflist = mrequest.getFiles("review_picture");
+		//Collections.sort(mflist);
+		/*MultipartFile mf1 = mrequest.getFile("review_picture1");
+		//mflist.add(mf1);
+		MultipartFile mf2 = mrequest.getFile("review_picture2");
+		//mflist.add(mf2);
+		MultipartFile mf3 = mrequest.getFile("review_picture3");
+		//mflist.add(mf3);
+		MultipartFile mf4 = mrequest.getFile("review_picture4");
+		//mflist.add(mf4);
+		MultipartFile mf5 = mrequest.getFile("review_picture5");
+		//mflist.add(mf5);
+*/		List<String> filenames = new ArrayList<String>();
 		
-		System.out.println("0번째 : "+mf.get(0).getOriginalFilename());
-		System.out.println("1번째 : "+mf.get(1).getOriginalFilename());
-		System.out.println("2번째 : "+mf.get(2).getOriginalFilename());
-		System.out.println("3번째 : "+mf.get(3).getOriginalFilename());
-		System.out.println("4번째 : "+mf.get(4).getOriginalFilename());
+		System.out.println("0번째 : "+mflist.get(0).getOriginalFilename());
+		System.out.println("1번째 : "+mflist.get(1).getOriginalFilename());
+		System.out.println("2번째 : "+mflist.get(2).getOriginalFilename());
+		System.out.println("3번째 : "+mflist.get(3).getOriginalFilename());
+		System.out.println("4번째 : "+mflist.get(4).getOriginalFilename());
 		
-		System.out.println("size1 : "+mf.size());
+		//System.out.println("size1 : "+mflist.size());
 		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
-        if (mf.size()==1 && mf.get(0).getOriginalFilename().equals("")) {
+        if (mflist.size()==1 && mflist.get(0).getOriginalFilename().equals("")) {
              
         } else {
-        	System.out.println("size2 : "+mf.size());
-            for (int i = 0; i < mf.size(); i++){
+        	//System.out.println("size2 : "+mflist.size());
+            for (int i = 0; i < 5; i++){
             	
             		String saveFileName = null;
-            		if(mf.get(i).getOriginalFilename().equals("")){
-            			saveFileName = null;
+            		if(mflist.get(i).getOriginalFilename().equals("")){
+            			filenames.add("사진없음");
             		}
             		else{
             		// 파일 중복명 처리
                     String genId = UUID.randomUUID().toString(); 
                     // 본래 파일명
-                    String originalfileName = mf.get(i).getOriginalFilename(); 
+                    String originalfileName = mflist.get(i).getOriginalFilename(); 
                     
                     System.out.println("filename : "+originalfileName);
                      
@@ -305,15 +317,15 @@ public class TravelReviewController {
      
                     String savePath = realFolder +"\\"+ saveFileName; // 저장 될 파일 경로
      
-                    mf.get(i).transferTo(new File(savePath)); // 파일 저장
+                    mflist.get(i).transferTo(new File(savePath)); // 파일 저장
                     filenames.add(saveFileName); // 실 DB Insert 작업시 .. 파일명
             	}
-            	filenames.add("사진없음");
             }
-            
-        
         }
          
+        for(int i=0; i<filenames.size(); i++){
+        	System.out.println("filename : "+filenames.get(i));
+        }
         dto.setReview_picture1(filenames.get(0)); // 파일명1
         dto.setReview_picture2(filenames.get(1)); // 파일명2
         dto.setReview_picture3(filenames.get(2)); // 파일명3

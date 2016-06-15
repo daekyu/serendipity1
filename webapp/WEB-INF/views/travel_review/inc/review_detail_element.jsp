@@ -79,6 +79,7 @@
 			  <div class="sliders-box">
 				<div class="col-sm-12 col-md-12">
 				  <div class="slid row">
+				  	<%-- <p>${reveiwdetail.review_picture1}</p> --%>
 					<div class="col-sm-12 col-md-12">
 					<c:choose>
 						<c:when test="${reviewdetail.review_picture1 eq '사진없음'}">

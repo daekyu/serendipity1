@@ -5,11 +5,11 @@
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	$('#table_pic1').hide();
+	/* $('#table_pic1').hide();
 	$('#table_pic2').hide();
 	$('#table_pic3').hide();
 	$('#table_pic4').hide();
-	$('#table_pic5').hide(); 
+	$('#table_pic5').hide();  */
 	
 	var index=1;
 	
@@ -47,7 +47,7 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form action="" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
+			<form action="review_update.htm?review_num=${review_num}" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>
@@ -84,7 +84,7 @@ $(function() {
 									<textarea class="form-control" style="resize:none; height:200px;" wrap="soft" name="review_content">${review_dto.review_content}</textarea>
 								</div>
 
-								<div class="tab-pane active" id="tab_pic">
+								<div class="tab-pane" id="tab_pic">
 									<table class="table" id="table_pic1">
 										<tr>
 											<th colspan="2">

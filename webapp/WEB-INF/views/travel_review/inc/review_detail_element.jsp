@@ -79,19 +79,18 @@
 			  <div class="sliders-box">
 				<div class="col-sm-12 col-md-12">
 				  <div class="slid row">
-				  	<%-- <p>${reveiwdetail.review_picture1}</p> --%>
 					<div class="col-sm-12 col-md-12">
 					<c:choose>
-						<c:when test="${reviewdetail.review_picture1 eq '사진없음'}">
+						<c:when test="${reviewdetail.REVIEW_PICTURE1 eq '사진없음'}">
 							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 						</c:when>
 						<c:otherwise>
-							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture1}" width="620" height="550" alt="">
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REVIEW_PICTURE1}" width="620" height="550" alt="">
 						</c:otherwise>
 					</c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <p class="descriptions">${reviewdetail.review_content1}</p>
+					  <p class="descriptions">${reviewdetail.REVIEW_CONTENT1}</p>
 					</div>
 				  </div>
 				</div>
@@ -100,16 +99,16 @@
 				  <div class="slid row">
 					<div class="col-sm-12 col-md-12">
 					 <c:choose>
-						<c:when test="${reviewdetail.review_picture2 eq '사진없음'}">
+						<c:when test="${reviewdetail.REVIEW_PICTURE2 eq '사진없음'}">
 							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 						</c:when>
 						<c:otherwise>
-							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture2}" width="620" height="550" alt="">
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REIVEW_PICTURE2}" width="620" height="550" alt="">
 						</c:otherwise>
 					</c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <p class="descriptions">${reviewdetail.review_content2}</p>
+					  <p class="descriptions">${reviewdetail.REVIEW_CONTENT2}</p>
 					</div>
 				  </div>
 				</div>
@@ -118,16 +117,16 @@
 				  <div class="slid row">
 					<div class="col-sm-12 col-md-12">
 					  <c:choose>
-						<c:when test="${reviewdetail.review_picture3 eq '사진없음'}">
+						<c:when test="${reviewdetail.REVIEW_PICTURE3 eq '사진없음'}">
 							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 						</c:when>
 						<c:otherwise>
-							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture3}" width="620" height="550" alt="">
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REVIEW_PICTURE3}" width="620" height="550" alt="">
 						</c:otherwise>
 					</c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <p class="descriptions">${reviewdetail.review_content3}</p>
+					  <p class="descriptions">${reviewdetail.REVIEW_CONTENT3}</p>
 					</div>
 				  </div>
 				</div>
@@ -136,16 +135,16 @@
 				  <div class="slid row">
 					<div class="col-sm-12 col-md-12">
 					  <c:choose>
-						<c:when test="${reviewdetail.review_picture4 eq '사진없음'}">
+						<c:when test="${reviewdetail.REVIEW_PICTURE4 eq '사진없음'}">
 							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 						</c:when>
 						<c:otherwise>
-							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture4}" width="620" height="550" alt="">
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REVIEW_PICTURE4}" width="620" height="550" alt="">
 						</c:otherwise>
 					</c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <p class="descriptions">${reviewdetail.review_content4}</p>
+					  <p class="descriptions">${reviewdetail.REVIEW_CONTENT4}</p>
 					</div>
 				  </div>
 				</div>
@@ -154,16 +153,16 @@
 				  <div class="slid row">
 					<div class="col-sm-12 col-md-12">
 					  <c:choose>
-						<c:when test="${reviewdetail.review_picture5 eq '사진없음'}">
+						<c:when test="${reviewdetail.REVIEW_PICTURE5 eq '사진없음'}">
 							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 						</c:when>
 						<c:otherwise>
-							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.review_picture5}" width="620" height="550" alt="">
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REVIEW_PICTURE5}" width="620" height="550" alt="">
 						</c:otherwise>
 					  </c:choose>
 					</div>
 					<div class="slid-content col-sm-4 col-md-4">
-					  <p class="descriptions">${reviewdetail.review_content5}</p>
+					  <p class="descriptions">${reviewdetail.REVIEW_CONTENT5}</p>
 					</div>
 				  </div>
 				</div>
@@ -191,22 +190,22 @@
 		<div class="row">
 		  <div class="portfolio-tags bottom-padding col-sm-4 col-md-4">
 			<p><b>여행테마: </b><span>자연경관, 야경, 맛집....</span></p>
-			<p><b>지역: </b><span>${reviewdetail.local_code}</span></p>
-			<p><b>Date: </b><span>${reviewdetail.review_date}</span></p><br>
+			<p><b>지역: </b><span>${reviewdetail.LOCAL_NAME}</span></p>
+			<p><b>Date: </b><span>${reviewdetail.REVIEW_DATE}</span></p><br>
 			<h4><span id="likeCount">${count}</span> Like(s)</h4>
 			
 			<button type="button" class="btn btn-danger" id="btn_like2"><i class="fa fa-heart"></i> ${count} Like</button><button type="button" class="btn btn-primary" id="btn_like"><i class="fa fa-heart"></i> ${count} Like</button><br><br>
 			
 			<c:choose>
-				<c:when test="${sessionScope.user_num == reviewdetail.user_num}">
-					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/travel_review/review_updateform.htm?review_num=${reviewdetail.review_num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
-					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/travel_review/review_delete.htm?review_num=${reviewdetail.review_num}"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+				<c:when test="${sessionScope.user_num == reviewdetail.USER_NUM}">
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/travel_review/review_updateform.htm?review_num=${reviewdetail.REIVEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
+					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/travel_review/review_delete.htm?review_num=${reviewdetail.REVIEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
 				</c:when>
 			</c:choose>
 		  </div>
 		  
 		  <div class="bottom-padding col-sm-8 col-md-8">
-			<p>${reviewdetail.review_content}</p>
+			<p>${reviewdetail.REVIEW_CONTENT}</p>
 		  </div>
 		</div>
 		  
@@ -225,14 +224,14 @@
 		  <li>
 			<img class="replace-2x avatar" width="84" height="84" src="content/img/avatar-1.jpg" alt="">
 			<div class="meta">
-			  <span>${i.user_num}</span>, 
-			  <span class="time">${i.reply_date}</span>
+			  <span>${i.ID}</span>, 
+			  <span class="time">${i.REPLY_DATE}</span>
 			</div>
 			<p class="description">
-			  ${i.reply_content}&nbsp;&nbsp;&nbsp;
+			  ${i.REPLY_CONTENT}&nbsp;&nbsp;&nbsp;
 			  <c:choose>
-				<c:when test="${sessionScope.user_num == i.user_num}">
-			  		<a href="reply_delete.htm?reply_num=${i.reply_num}&review_num=${reviewdetail.review_num}">삭제</a>
+				<c:when test="${sessionScope.user_num == i.USER_NUM}">
+			  		<a href="reply_delete.htm?reply_num=${i.REPLY_NUM}&review_num=${reviewdetail.REVIEW_NUM}">삭제</a>
 			  	</c:when>
 			  </c:choose>
 			</p>
@@ -240,7 +239,7 @@
 		  </c:forEach>
 		</ul>
 		<!-- </form> -->
-			  <form class="comments-form" action="review_detail.htm?user_num=${sessionScope.user_num}&review_num=${reviewdetail.review_num}" method="post">
+			  <form class="comments-form" action="review_detail.htm?user_num=${sessionScope.user_num}&review_num=${reviewdetail.REVIEW_NUM}" method="post">
 				<div class="row">
 				  <div class="col-sm-7 col-md-7">
 					<label>댓글: <span class="required">*</span></label>

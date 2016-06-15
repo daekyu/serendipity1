@@ -13,6 +13,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into review_like(like_num, review_num, user_num) values(like_seq.nextval, #{review_num}, #{user_num})
 	</insert>
 	
+	<update id="likeInsertPlus">
+		update review set like_count = like_count+1 where review_num=#{review_num}
+	</update>
+	
+	<update id="likeDeleteMinus">
+		update review set like_count = like_count-1 where review_num=#{review_num}
+	</update>
+	
 	<delete id="likeDelete">
 		delete from review_like where review_num=#{review_num} and user_num = #{user_num}
 	</delete>

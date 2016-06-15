@@ -84,7 +84,7 @@ $(function() {
 									<textarea class="form-control" style="resize:none; height:200px;" wrap="soft" name="review_content"></textarea>
 								</div>
 
-								<div class="tab-pane active" id="tab_pic">
+								<div class="tab-pane" id="tab_pic">
 									<table class="table" id="table_pic1">
 										<tr>
 											<th colspan="2">

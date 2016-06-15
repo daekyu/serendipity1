@@ -24,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
+import kr.co.serendipity.model.ReportDAO;
+import kr.co.serendipity.model.ReportDTO;
 
 @Controller
 @RequestMapping("/board/")
@@ -218,11 +220,28 @@ public class BoardController {
 		return mav;
 	}
 	
+
 	@RequestMapping(value="traveler_modify.htm", method=RequestMethod.POST)
 	public String modifyTravelerForm(BoardDTO dto) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.update(dto);
-		
 		return "redirect:/board/traveler_list.htm";
+	}
+
+	// 신고하는 글쓰기(가이드가 신고)
+	@RequestMapping(value = "report_write1.htm", method = RequestMethod.POST)
+	public String ReportWriteGuide(ReportDTO dto, int board_num) throws ClassNotFoundException, SQLException {
+		ReportDAO dao = sqlSession.getMapper(ReportDAO.class);
+		dao.ReportWrite(dto);
+		return "redirect:/board/guide_detail.htm?board_num=" + board_num + "&user_num=" + dto.getVillain();
+	}
+
+	// 신고하는 글쓰기(여행자가 신고)
+	@RequestMapping(value = "report_write2.htm", method = RequestMethod.POST)
+	public String ReportWriteTravler(ReportDTO dto, int board_num) throws ClassNotFoundException, SQLException {
+		ReportDAO dao = sqlSession.getMapper(ReportDAO.class);
+		dao.ReportWrite(dto);
+		return "redirect:/board/travel_detail.htm?board_num=" + board_num + "&user_num=" + dto.getVillain();
+
 	}
 }

@@ -138,17 +138,15 @@
 		
 		<div class="product-tab">
 		  <ul class="nav nav-tabs">
-			<li class="active"><a href="#description">Description</a></li>
-			<li><a href="#reviews">Meeting Point</a></li>
+		 	 <li class="active"><a href="#reviews">Meeting Point</a></li>
+			<li><a href="#description">Description</a></li>
+			
 		  </ul><!-- .nav-tabs -->	
 		  <div class="tab-content">
-			<div class="tab-pane active" id="description">
-				${dto.board_Content}<br><br><br><br>
-				
-				추가사항
-				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
-			</div>
-			<div class="tab-pane" id="reviews">
+		  
+		  <div class="tab-pane active" id="reviews">
+		  
+		  <!-- 지도 들어가는 부분 시작 -->
 			  <div class="timeline-content border border-danger" data-appear-animation="fadeInRight">
 			<div class="entry-content">
 			  <div class="map-box not-margin">
@@ -163,6 +161,14 @@
 			</div>
 		  </div>
 			</div><!-- #reviews -->
+		  <!-- 지도 끝 -->
+			<div class="tab-pane" id="description">
+				${dto.board_Content}<br><br><br><br>
+				
+				추가사항
+				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
+			</div>
+			
 		  </div><!-- .tab-content -->
 		</div>
 	</div>

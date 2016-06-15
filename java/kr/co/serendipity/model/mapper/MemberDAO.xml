@@ -28,4 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="login" parameterType="kr.co.serendipity.model.MemberDTO" resultType="kr.co.serendipity.model.MemberDTO">
 		select * from member where id=#{id} and pw=#{pw}
 	</select>
+	
+	<select id="logincheck" parameterType="kr.co.serendipity.medel.IdCheckDTO" resultType="kr.co.serendipity.medel.IdCheckDTO">
+	select * from member where id=#{id}
+	</select>
+
 </mapper>

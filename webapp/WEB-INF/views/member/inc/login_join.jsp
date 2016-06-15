@@ -286,6 +286,7 @@ $(document).ready(function(){
 			  <div class="form-group">
 				<label>아이디: <span class="required" id="help_text"></span></label>
 				<input type="text" class="form-control" name="id_1" id="id_1">
+				<input type="button" name="" id="member_id_check_btn" value="아이디확인"/>
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
 				  data-bv-message="The username is not valid"

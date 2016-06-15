@@ -71,17 +71,20 @@
 				
 				<tr>
 					<th class="danger">언어</th>
-					<td>한국어, 영어, 일본어 ------- join 필요</td>
+					<td>
+						<c:forEach var="i" items="${Slang}">
+							${i},  
+						</c:forEach>
+					</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">취미</th>
-					<td>롤, 리그오브레전드, 엘오엘 ------ join 필요</td>
-				</tr>
-				
-				<tr>
-					<th class="danger">관심사</th>
-					<td>술, 음식 join ------ join 필요</td>
+					<td>
+						<c:forEach var="i" items="${Shobby}">
+							${i},  
+						</c:forEach>
+					</td>
 				</tr>
 			</table>
 			</div>

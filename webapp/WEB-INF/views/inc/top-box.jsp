@@ -23,7 +23,7 @@
 		  <div class="btn-group language btn-select">
 			<a class="btn dropdown-toggle btn-default" role="button" data-toggle="dropdown" href="#">
 			  <c:choose>
-			  	<c:when test="${sessionScope.locale == 'ko' }">
+			  	<c:when test="${sessionScope.locale == 'ko' || empty sessionScope.locale}">
 			  		<span class="hidden-xs">언어</span><span class="visible-xs">Lang</span><!-- -->: 한국어
 			  	</c:when>
 			  	

@@ -28,7 +28,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="login" parameterType="kr.co.serendipity.model.MemberDTO" resultType="kr.co.serendipity.model.MemberDTO">
 		select * from member where id=#{id} and pw=#{pw}
 	</select>
-	
 
 	<delete id="withdrawAccount">
 		delete from member where user_num=#{user_num}
@@ -37,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="loginCheck" resultType="Integer">
 		select count(*) from member where id=#{id} and pw=#{pw}
 	</select>
-
+	
 	<select id="IdCheck" parameterType="kr.co.serendipity.model.IdCheckDTO" resultType="kr.co.serendipity.model.IdCheckDTO">
 	select * from member where id=#{id}
 	</select>

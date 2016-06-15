@@ -44,7 +44,7 @@ public class IndexController {
 		mav.addObject("index", "index");
 		mav.addObject("travelerList", travelerList);
 		mav.addObject("guideList", guideList);
-		
+
 		return mav;
 	}
 	

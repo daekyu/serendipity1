@@ -26,6 +26,7 @@ public class BoardDTO {
 	private String local_Code;
 	private int category_Num;
 	private int price;
+	private String board_Latlng;
 	
 	public int getPrice() {
 		return price;
@@ -123,6 +124,13 @@ public class BoardDTO {
 	public void setCategory_Num(int category_Num) {
 		this.category_Num = category_Num;
 	}
+	public String getBoard_Latlng() {
+		return board_Latlng;
+	}
+	public void setBoard_Latlng(String board_Latlng) {
+		this.board_Latlng = board_Latlng;
+	}
+	
 	
 	
 }

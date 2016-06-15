@@ -284,8 +284,12 @@ $(document).ready(function(){
 			  
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
+<<<<<<< HEAD
 				<input class="form-control" name="id" id="id_login" type="text"> <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
 
+=======
+				<input class="form-control" name="id" type="text" id="id" > <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
+>>>>>>> locale
               </div>
 			  
 			  <div class="form-group">

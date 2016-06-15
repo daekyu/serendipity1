@@ -8,6 +8,7 @@ package kr.co.serendipity;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class BoardController {
 		System.out.println("page = " + page);
 		
 		List boardList = dao.getBoardList(page);
+		
 		int listCount = dao.getListCount();
 		System.out.println("boardList : " + boardList.size());
 		System.out.println("listCount : " + listCount);
@@ -123,8 +125,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="guide_writeform.htm", method=RequestMethod.GET)
-	public String guideWriteform() {
+	public String guideWriteform(String user_num, Model model) {
 		System.out.println("guide_writeform GET entrance");
+		
+		model.addAttribute("user_num", user_num);
 		return "/board/guide_writeform";
 	}
 	
@@ -138,8 +142,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="traveler_writeform.htm", method=RequestMethod.GET)
-	public String travelerWriteform() {
+	public String travelerWriteform(String user_num, Model model) {
 		System.out.println("traveler_writeform GET entrance");
+		System.out.println("user_num : " + user_num);
+		model.addAttribute("user_num", user_num);
 		return "/board/traveler_writeform";
 	}
 	
@@ -202,7 +208,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value="traveler_modify.htm")
+	@RequestMapping(value="traveler_modify.htm", method=RequestMethod.GET)
 	public ModelAndView modifyTravelerForm(int board_num) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		
@@ -210,5 +216,13 @@ public class BoardController {
 		mav.addObject("dto", dao.getBoardDetail(board_num));
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="traveler_modify.htm", method=RequestMethod.POST)
+	public String modifyTravelerForm(BoardDTO dto) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		dao.update(dto);
+		
+		return "redirect:/board/traveler_list.htm";
 	}
 }

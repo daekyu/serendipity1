@@ -30,6 +30,9 @@ public interface BoardDAO {
 	//글 작성자 정보 가져오기
 	public MemberDTO getWriterDetail(int user_num) throws ClassNotFoundException, SQLException;
 	
+	//글 수정
+	public void update(BoardDTO dto) throws ClassNotFoundException, SQLException;
+	
 	//    -----------------여행자 구함 게시판 
 	//여행자 구함 글쓰기
 	public void Gwrite(BoardDTO dto) throws ClassNotFoundException, SQLException;

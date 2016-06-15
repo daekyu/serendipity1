@@ -6,7 +6,7 @@
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-
+	
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 <script type="text/javascript">
 
@@ -233,6 +233,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	<article class="content">
 		<div class="container">
 			<form action="" id="bofom" method="post">
+				<input type="hidden" name="user_Num" value="${user_num}">
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>
@@ -254,7 +255,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 
 							<textarea name="board_Content" id="ckeditor"></textarea> 
 							<script type="text/javascript">
-					        CKEDITOR.replace( 'ckeditor',{
+							CKEDITOR.replace( 'ckeditor',{
 	       				 	width:'90%',
 	      				  	height:'400px'
 	 						

@@ -121,8 +121,10 @@
 								</a>
 								<ul>
 									<li>지역: 붓싼</li>
-									<li>가격상한: $10</li>
-									<li>언어: 영어, 한국어</li>
+									<li>가격상한: ${i.price}</li>
+									<li>
+										언어: 
+									</li>
 									<li>관심사: 맛집, 술, 술</li>
 								</ul>
 								<br> <span class="">하고싶은 여행: <a href="traveler_detail.htm?board_num=${i.board_Num}">이소라는
@@ -300,7 +302,7 @@
 						<br>page: ${page}<br> nowpage: ${nowpage}<br>
 						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
 						endpage: ${endpage}<br> listCount: ${listCount}<br> <a
-							href="${pageContext.request.contextPath}/board/traveler_writeform.htm"
+							href="${pageContext.request.contextPath}/board/traveler_writeform.htm?user_num=${sessionScope.user_num}"
 							class="btn btn-default">글작성<span
 							class="glyphicon glyphicon-arrow-right"></span></a>
 					</div>

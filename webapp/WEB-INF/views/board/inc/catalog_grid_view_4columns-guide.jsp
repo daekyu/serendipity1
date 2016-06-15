@@ -184,7 +184,7 @@
 						<br>page: ${page}<br> nowpage: ${nowpage}<br>
 						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
 						endpage: ${endpage}<br> listCount: ${listCount}<br> <a
-							href="${pageContext.request.contextPath}/board/guide_writeform.htm"
+							href="${pageContext.request.contextPath}/board/guide_writeform.htm?user_num=${sessionScope.user_num}"
 							class="btn btn-default">글작성<span
 							class="glyphicon glyphicon-arrow-right"></span></a>
 

@@ -70,4 +70,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from member where user_num=#{user_num}
  	</select>
  	
+ 	<update id="update">
+	 update board set board_Num=#{board_Num}, user_Num=#{user_Num}, 
+	 board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='사진', 
+	 board_Capacity=3, board_Date=SYSDATE, board_Latitude=#{board_Latitude}, 
+	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=1, price=#{price})
+	</update>
+ 	
 </mapper>

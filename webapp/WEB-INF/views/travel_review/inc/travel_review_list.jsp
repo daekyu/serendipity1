@@ -95,30 +95,30 @@
 					<c:forEach var="i" items="${reviewList}">
 						<div class="product">
 							<div class="col-sm-4 col-md-4">
-								<a href="review_detail.htm?review_num=${i.review_num}" class="product-image"> <!-- <span class="sale"></span> -->
+								<a href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image"> <!-- <span class="sale"></span> -->
 									<c:choose>
-										<c:when test="${i.review_picture1 eq '사진없음'}">
+										<c:when test="${i.REVIEW_PICTURE1 eq '사진없음'}">
 											<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
 										</c:when>
 										<c:otherwise>
-											<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${i.review_picture1}" width="620" height="550" alt="">
+											<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${i.REVIEW_PICTURE1}" width="620" height="550" alt="">
 										</c:otherwise>
 									</c:choose>
 								</a>
 							</div>
 							<div class="col-sm-8 col-md-8">
 								<h3 class="price">
-									<a href="review_detail.htm?review_num=${i.review_num}">${i.review_title}</a>
+									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_TITLE}</a>
 								</h3>
 								<div class="excerpt">
-									<span>user_num: ${i.user_num}</span><br> <span>지역:
-										${i.local_code}</span><br> <span>작성일 : ${i.review_date}</span>
+									<span>ID : ${i.ID}</span><br> <span>지역:
+										${i.LOCAL_NAME}</span><br> <span>작성일 : ${i.REVIEW_DATE}</span>
 								</div>
 								<div class="excerpt">
-									<a href="review_detail.htm?review_num=${i.review_num}">${i.review_content}</a>
+									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_CONTENT}</a>
 								</div>
 								<div class="price-box">
-									<span class="excerpt">${i.like_count} Like(s)</span>
+									<span class="excerpt">${i.LIKE_COUNT} Like(s)</span>
 								</div>
 								<div class="actions">
 									<!-- 좋아요버튼 -->

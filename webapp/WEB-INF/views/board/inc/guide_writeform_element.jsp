@@ -233,6 +233,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 	<article class="content">
 		<div class="container form-group">
 			<form action="" id="bofom"  method="post">
+			<input type="hidden" name="user_Num" value="${user_num}">
 				<table class="table table-responsive center">
 					<tr>
 						<td><h5>글 제목</h5></td>
@@ -241,7 +242,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					<tr>
 						<td>인원수</td>
 						<td><input class="form-control" type="text" name="board_Capacity"></td>
-						<td>날짜</td>
+						<td>날짜</td> <!-- datepicker to be continue -->
 						<td><input class="form-control" type="text"></td>
 						<td>가격</td>
 						<td><input class="form-control" type="text" name="price"></td>
@@ -259,7 +260,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                         CKEDITOR.replace( 'ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
                             width:'100%',
                             height:'400px',
-                            filebrowserImageUploadUrl: 'resource/img/board_picture' //여기 경로로 파일을 전달하여 업로드 시킨다.
+                            filebrowserImageUploadUrl: '' //여기 경로로 파일을 전달하여 업로드 시킨다.
                         });
                          
                          
@@ -267,10 +268,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
                             var dialogName = ev.data.name;
                             var dialogDefinition = ev.data.definition;
                           
-                            switch (dialogName) {
+                           switch (dialogName) {
                                 case 'image': //Image Properties dialog
-                                    //dialogDefinition.removeContents('info');
-                          			
+                                    dialogDefinition.removeContents('info');
+                                	dialogDefinition.removeContents('Link');
+                                    dialogDefinition.removeContents('advanced');
                                     break;
                             }
                         });

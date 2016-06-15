@@ -282,16 +282,11 @@ $(document).ready(function(){
 			  
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
-<<<<<<< HEAD
 				<input class="form-control" name="id" id="id_login" type="text"> <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
-=======
-				<input class="form-control" name="id_2" type="text" id="id" > <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
->>>>>>> locale
               </div>
 			  
 			  <div class="form-group">
 				<label>Password: <span class="required">*</span></label>
-<<<<<<< HEAD
                 <input class="form-control" name="pw" id="pw_login" type="password">
               </div>
 			  
@@ -299,14 +294,6 @@ $(document).ready(function(){
 				<input type="submit" id="btn_login_form" class="btn btn-default" value="Login">
 				
 				<!-- 각종 SNS로 로그인하는 버튼 만드는 부분 -->
-=======
-                <input class="form-control" name="pw" type="password" id='pw' >
-              </div>
-			  
-			  <div class="buttons-box clearfix">
-				<!-- <button class="btn btn-default">Login</button> -->
-				<input type="submit" class="btn btn-default" value="Login" id="login">
->>>>>>> locale
 				<button class="btn btn-info"><i class="fa fa-twitter"></i> Login with Twitter</button>
 				<a href="shop-forgot.html" class="forgot">Forgot Your Password?</a>
 				<span class="required"><b>*</b> Required Field</span>

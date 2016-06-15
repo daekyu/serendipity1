@@ -96,8 +96,14 @@
 						<div class="product">
 							<div class="col-sm-4 col-md-4">
 								<a href="review_detail.htm?review_num=${i.review_num}" class="product-image"> <!-- <span class="sale"></span> -->
-									<img class="replace-2x" src="content/img/product-1.jpg" alt=""
-									title="" width="270" height="270">
+									<c:choose>
+										<c:when test="${i.review_picture1 eq '사진없음'}">
+											<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
+										</c:when>
+										<c:otherwise>
+											<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${i.review_picture1}" width="620" height="550" alt="">
+										</c:otherwise>
+									</c:choose>
 								</a>
 							</div>
 							<div class="col-sm-8 col-md-8">

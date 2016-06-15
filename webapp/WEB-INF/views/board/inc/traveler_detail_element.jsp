@@ -26,7 +26,7 @@
 
 		    // set initial position (삼성역)
 		    var myLatlng = new google.maps.LatLng(37.5088652,127.0609603);
-		    /*+${dto.board_Latlng}  */
+		   
 
 		    var myOptions = { // default map options
 		        zoom: 10,
@@ -172,7 +172,7 @@
 			  <div class="timeline-content border border-danger" data-appear-animation="fadeInRight">
 			<div class="entry-content">
 			  <div class="map-box not-margin">
-				<div id="gmap_detail" style="height:500px"></div>
+				<div id="gmap_detail" style="height:400px"></div>
 			  </div>
 			</div>
 		  </div>

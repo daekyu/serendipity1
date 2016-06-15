@@ -251,7 +251,7 @@ $(document).ready(function(){
 			  
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
-				<input class="form-control" name="id_2" type="text" id="id" > <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
+				<input class="form-control" name="id" type="text" id="id" > <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
               </div>
 			  
 			  <div class="form-group">
@@ -296,7 +296,7 @@ $(document).ready(function(){
 				
 			  <div class="form-group">
 				<label>비밀번호: <span class="required">*</span></label>
-                <input class="form-control" name="pw_1" id="pw_1" type="password"><!-- 속성에 required를 이용해보자 -->
+                <input class="form-control" name="pw" id="pw_1" type="password"><!-- 속성에 required를 이용해보자 -->
               </div>
 			  
 			  <div class="form-group">

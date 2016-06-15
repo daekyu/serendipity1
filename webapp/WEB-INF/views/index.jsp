@@ -42,6 +42,7 @@
 		
 		<!-- IE Styles-->
 		<!-- <link rel='stylesheet' href="../css/ie/ie.css"> -->
+		<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	</head>
 
 
@@ -49,7 +50,7 @@
 	<body class="fixed-header hidden-top">
 		<div class="page-box">
 			<div class="page-box-content">
-				
+				<jsp:include page="inc/notificationCheck.jsp"></jsp:include>
 				<!-- 로그인/회원가입 들어갈 수 있는 버튼 나와있는 부분 -->
 				<jsp:include page="inc/top-box.jsp"></jsp:include>
 				<!-- 상단 메뉴 -->
@@ -66,6 +67,7 @@
 						<jsp:include page="inc/carousel-box-recommended-guide.jsp"></jsp:include>					
 						<jsp:include page="inc/carousel-box-newguide.jsp"></jsp:include>
 						<jsp:include page="inc/carousel-box-newtraveler.jsp"></jsp:include>
+						<jsp:include page="inc/user_modal.jsp"></jsp:include>
 					</article>
 				</section><!-- #main -->
 			</div><!-- .page-box-content -->

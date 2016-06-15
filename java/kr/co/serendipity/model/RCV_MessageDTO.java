@@ -16,8 +16,15 @@ public class RCV_MessageDTO {
 	private String message_title;
 	private String message_content;
 	private Date message_date;
+	private int msg_alarm;
 	
 	
+	public int getMsg_alarm() {
+		return msg_alarm;
+	}
+	public void setMsg_alarm(int msg_alarm) {
+		this.msg_alarm = msg_alarm;
+	}
 	public int getMessage_num() {
 		return message_num;
 	}

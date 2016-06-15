@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="reviewDetail" resultType="kr.co.serendipity.model.ReviewDTO">
-		select review_num,user_num,review_title, review_date, review_content, review_content1, review_content2, review_content3, review_content4, review_content5,like_count,local_code from review where review_num=#{review_num}
+		select review_num,user_num,review_title, review_date, review_content, review_content1, review_content2, review_content3, review_content4, review_content5,review_picture1, review_picture2, review_picture3, review_picture4, review_picture5, like_count,local_code from review where review_num=#{review_num}
 	</select>
 	
 	<select id="getReviewListCount" resultType="Integer">

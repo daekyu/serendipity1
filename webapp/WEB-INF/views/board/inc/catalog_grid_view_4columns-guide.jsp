@@ -184,15 +184,10 @@
 						<br>임시 출력창
 						<br>page: ${page}<br> nowpage: ${nowpage}<br>
 						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
-						endpage: ${endpage}<br> listCount: ${listCount}<br> <a
-<<<<<<< HEAD
-							href="${pageContext.request.contextPath}/board/guide_writeform.htm?user_num=${sessionScope.user_num}"
-							class="btn btn-default">글작성<span
-=======
-							href="${pageContext.request.contextPath}/board/guide_writeform.htm"
-							class="btn btn-default"><spring:message code="board.traveler1"/><span
->>>>>>> locale
-							class="glyphicon glyphicon-arrow-right"></span></a>
+						endpage: ${endpage}<br> listCount: ${listCount}<br> 
+						<a href="${pageContext.request.contextPath}/board/guide_writeform.htm"
+							class="btn btn-default"><spring:message code="board.traveler1"/>
+							<span class="glyphicon glyphicon-arrow-right"></span></a>
 
 				</div>
 				<!-- .pagination-box -->

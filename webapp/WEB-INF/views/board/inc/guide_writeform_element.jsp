@@ -313,8 +313,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 										<option value="5000">5000</option>
 									</select>
 								</div>
-								<input type="hidden" id="lat" name="board_Latitude" value="00" />
-								<input type="hidden" id="lng" name="board_Longitude" value="00" />
+								<input type="hidden" id="lat" name="board_Latitude"/>
+								<input type="hidden" id="lng" name="board_Longitude"/>
 								<input type="hidden" id="meeting_place" name="meeting_Place"/>
 								<input type="hidden" id="meeting_address" name="meeting_Address"/>
 								<div id="button1" class="btn btn-success"

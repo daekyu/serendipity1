@@ -44,7 +44,7 @@ public class TravelReviewController {
 	
 	//寃뚯떆�뙋 紐⑸줉
 	@RequestMapping("review_list.htm")
-	public ModelAndView reviewList(String pg) throws ClassNotFoundException, SQLException {
+	public ModelAndView reviewList(String pg, HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		System.out.println("reviewList entrance");
 		ModelAndView mav = new ModelAndView("/travel_review/review_list");
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);

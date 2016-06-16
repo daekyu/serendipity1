@@ -25,4 +25,7 @@ public interface ReportDAO {
 	//신고글 갯수(페이징 할때)
 	public int getReportListCount() throws ClassNotFoundException, SQLException;
 	
+	//신고하면 신고당한 사람 신고횟수 증가
+	public void updateReportCount(int villain) throws ClassNotFoundException, SQLException;
+	
 }

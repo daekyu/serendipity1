@@ -51,6 +51,18 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
          $('#bofom').submit();
       });
 	
+	 
+	 
+	 
+	 $(function() {
+		 $("#datepicker").datepicker();
+	 
+	 });
+	 
+	 
+	 
+	 
+	 
 	var geocoder;
 	var map;
 	var markers = Array();
@@ -93,8 +105,10 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	    }
 	}
 
+	
 	// find address function
 	function findAddress() {
+		clearOverlays();
 	    var address = document.getElementById("gmap_where").value;
 
 	    // script uses our 'geocoder' in order to find location by address name
@@ -216,6 +230,8 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	    });
 	    infos.push(infowindow);
 	    
+	    
+	    
 	}
 
 	// initialization
@@ -241,7 +257,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 					</tr>
 					<tr>
 						<td>날짜</td>
-						<td><input class="form-control" type="text"></td>
+						<td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
 						<td>지불할 가격</td>
 						<td><input class="form-control" type="text" name="price"></td>
 					</tr>

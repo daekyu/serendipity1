@@ -8,6 +8,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+
 <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 
@@ -20,7 +23,7 @@
 <section id="main">
   <header class="page-header">
     <div class="container">
-      <h1 class="title">여행정보</h1>
+      <h1 class="title"><spring:message code="travel.info"/></h1>
     </div>	
   </header>
   
@@ -37,91 +40,88 @@
 		  data-content="New York, NY"
 		   style="height:700px;"></div> -->
 		   <div id="map" style="height: 700px;"></div>
-  <script type="text/javascript">
-  
-  var locations = [];
-  
-  $(function() {
-    /* var locations = [
-                     
-      ['삼익사이버 아파트', 37.0211403, 127.0971617],
-      ['국립축산과학원 축산자원개발부', 36.93309333, 127.10487485]
-    ]; */
+    <script type="text/javascript">
     
+    var locations = [];
     
-	
-    $.ajax({
-    	type : "post", 
-    	url : "getLocalList.htm",
-    	success : function(data) {
-    			
-    			$.each(data, function(index, item) {
-    				var loc = [];
-    				loc.push(item.local_name);
-    				loc.push(item.local_latitude); 
-    				loc.push(item.local_longitude);
-    				loc.push(item.local_code);
-    				//console.log(loc + "/" + index);
-    				
-    				locations[index] = loc;
-    			});
-    			
-    			var map = new google.maps.Map(document.getElementById('map'), {
-    			      zoom: 7,
-    			      center: new google.maps.LatLng(36, 127.1),
-    			      mapTypeId: google.maps.MapTypeId.ROADMAP
-    			    });
-    			
-    			     var infowindow = new google.maps.InfoWindow();
-    			     var marker, i;
-    			                  
-    			         for (i = 0; i < locations.length; i++) {  
-    			            marker = new google.maps.Marker({
-    			            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    			            map: map
-    			               });
-    			         }
-    			  
-
-    			
-    			      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    			        return function() {
-    			          infowindow.setContent(locations[i][0]);
-    			          infowindow.open(map, marker);
-    			          console.log(locations[i][3]);
-    			          
-    			          $.ajax({
-    			        	  type : "post",
-    			        	  url : "getLocalInfo.htm",
-    			        	  data : {"local_code" : locations[i][3]},
-    			        	  success : function(data) {
-    			        		  console.log(data);
-    			        		  $('#local_name').text(locations[i][0]);
-    			        		  $('#local_code').text(data.local_code);
-    			        		  $('#bus_fee').text(data.bus_fee);
-    			        		  $('#taxi_fee').text(data.taxi_fee);
-    			        		  $('#famous_food').text(data.famous_food);
-    			        		  $('#attraction').text(data.attraction);
-    			        		  $('#airport').text(data.airport);
-    			        	  }
-    			          });
-    			          
-    			        }
-    			      })(marker, i));
-    			    }
+    $(function() {
+      /* var locations = [
+                       
+        ['삼익사이버 아파트', 37.0211403, 127.0971617],
+        ['국립축산과학원 축산자원개발부', 36.93309333, 127.10487485]
+      ]; */
+      
+      
+      
+      $.ajax({
+          type : "post", 
+          url : "getLocalList.htm",
+          success : function(data) {
+                  
+                  $.each(data, function(index, item) {
+                      var loc = [];
+                      loc.push(item.local_name);
+                      loc.push(item.local_latitude); 
+                      loc.push(item.local_longitude);
+                      loc.push(item.local_code);
+                      //console.log(loc + "/" + index);
+                      
+                      locations[index] = loc;
+                  });
+                  
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 7,
+                        center: new google.maps.LatLng(36, 127.1),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                      });
+                      var infowindow = new google.maps.InfoWindow();
+                      var marker, i;
+                      for (i = 0; i < locations.length; i++) {  
+                        marker = new google.maps.Marker({
+                          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                          map: map
+                        });
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                          return function() {
+                            infowindow.setContent(locations[i][0]);
+                            infowindow.open(map, marker);
+                            console.log(locations[i][3]);
+                            
+                            $.ajax({
+                                type : "post",
+                                url : "getLocalInfo.htm",
+                                data : {"local_code" : locations[i][3]},
+                                success : function(data) {
+                                    console.log(data);
+                                    $('#local_name').text(locations[i][0]);
+                                    $('#local_code').text(data.local_code);
+                                    $('#bus_fee').text(data.bus_fee);
+                                    $('#taxi_fee').text(data.taxi_fee);
+                                    $('#famous_food').text(data.famous_food);
+                                    $('#attraction').text(data.attraction);
+                                    $('#airport').text(data.airport);
+                                    
+                                }
+                            });
+                            
+                          }
+                        })(marker, i));
+                      }
+          }
+      });
+      
+  
     });
-    
+    </script> 
 
-  });
-  </script> 
   
 		   
 	  </div>
-	  <div class="title-box"><h3 class="title slim">관련 글</h3></div>
+	  <div class="title-box"><h3 class="title slim"><spring:message code="travel.inca"/></h3></div>
 	  <div class="product-tab">
 		  <ul class="nav nav-tabs">
-			<li class="active"><a href="#description">여행정보</a></li>
-			<li><a href="#reviews">여행후기</a></li>
+			<li class="active"><a href="#description"><spring:message code="travel.inca1"/></a></li>
+			<li><a href="#reviews"><spring:message code="travel.inca2"/></a></li>
 		  </ul><!-- .nav-tabs -->	
 		  <div class="tab-content">
 		  
@@ -132,7 +132,7 @@
 		<table class="table table-bordered">
 		  	<thead>
 		  		<tr>
-		  			<th colspan="6" class=""><span id="local_name"></span>지역의 정보를 확인하세여</th>
+		  			<th colspan="6" class=""><span id="local_name"></span><spring:message code="travel.inca2.5"/></th>
 		  		</tr>
 		  	</thead>
 		  	
@@ -145,7 +145,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>지역번호</td>
+		  			<td><spring:message code="travel.inca3"/></td>
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInUp">
 		  				<div class="icon">
@@ -153,7 +153,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>버스요금</td>
+		  			<td><spring:message code="travel.inca4"/></td>
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInRight">
 		  				<div class="icon">
@@ -161,7 +161,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>택시요금</td>
+		  			<td><spring:message code="travel.inca5"/></td>
 		  		</tr>
 		  		<tr>
 		  			<td><span id="local_code"></span></td>
@@ -176,7 +176,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>유명한 먹거리</td>
+		  			<td><spring:message code="travel.inca6"/></td>
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInDown">
 		  				<div class="icon">
@@ -184,7 +184,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>유명 장소</td>
+		  			<td><spring:message code="travel.inca7"/></td>
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInRight">
 		  				<div class="icon">
@@ -192,7 +192,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>가까운 공항</td>
+		  			<td><spring:message code="travel.inca8"/></td>
 		  		</tr>
 		  		<tr>
 		  			<td><span id="famous_food"></span></td>

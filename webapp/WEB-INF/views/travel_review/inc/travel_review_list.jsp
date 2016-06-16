@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <section id="main">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">여행기를 올립시당~~~</h1>
+			<h1 class="title"><spring:message code="board.review"/></h1>
 		</div>
 	</header>
 

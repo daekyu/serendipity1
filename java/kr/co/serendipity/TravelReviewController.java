@@ -80,6 +80,7 @@ public class TravelReviewController {
 		mav.addObject("startpage", startpage);
 		mav.addObject("endpage", endpage);
 		mav.addObject("listCount", listCount);
+		mav.addObject("local_list", dao.localList());
 		
 		System.out.println("page= " + page);
 		System.out.println("maxpage= " + maxpage);

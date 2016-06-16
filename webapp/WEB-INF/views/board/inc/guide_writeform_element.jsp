@@ -281,6 +281,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
 						</td>
 					</tr>
 					<tr>
+						<td>사진</td>
+						<td id="addPic" colspan="4"><input type="file" id="pic0" name="pic0"></td>
+						<td align="center">
+							<button type="button" id="addBtn" class="btn btn-success">추가</button>
+							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
+						</td>
+					</tr>
+					<tr>
 						<td>Meeting Point</td>
 						<td colspan="5">
 													<div id="container" class="row">
@@ -321,14 +329,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
 									onclick="findPlaces(); return false;">Search for objects</div>
 							</div>
 						</div>
-						</td>
-					</tr>
-					<tr>
-						<td>사진</td>
-						<td id="addPic" colspan="4"><input type="file" id="pic0" name="pic0"></td>
-						<td align="center">
-							<button type="button" id="addBtn" class="btn btn-success">추가</button>
-							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
 						</td>
 					</tr>
 					<tr>

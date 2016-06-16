@@ -5,18 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.serendipity.model.BoardDAO">
 	<insert id="write">
-	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
+	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, board_Picture2, 
+	 board_Picture3, board_Picture4, board_Picture5,
 	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng,
 	 meeting_Place, meeting_Address) 
-	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , #{board_Latitude}, #{board_Longitude}, '02', 1, #{price}, '위도경도',
+	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, #{board_Picture1},
+	 #{board_Picture2}, #{board_Picture3}, #{board_Picture4}, #{board_Picture5},
+	 1, '날짜' , #{board_Latitude}, #{board_Longitude}, '02', 1, #{price}, '위도경도',
 	 #{meeting_Place}, #{meeting_Address})
 	</insert>
 	
+	<!-- 이부분 확인해볼것. 디벨로퍼에서 돌려보면 결과중에 BoardDTO객체에는 없는 NUM이라는 컬럼도 하나 같이 출력함.  -->
 	<select id="getBoardList" resultType="kr.co.serendipity.model.BoardDTO">
-     <!-- 
-      int srow = 1 + (page-1)*5; 
-      int erow = 5 + (page-1)*5;
-     -->
      SELECT * FROM
                ( SELECT ROWNUM NUM, N.* FROM 
                      ( SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
 	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng,
 	 meeting_Place,meeting_Address)
-	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , '위도33', '경도 22', '02', 2, #{price}, '위도경도',
+	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', #{board_Capacity}, '날짜' , '위도33', '경도 22', '02', 2, #{price}, '위도경도',
 	 #{meeting_Place}, #{meeting_Address})
 	</insert>
 	
@@ -55,9 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</delete>
 
  	<select id="getIndexTravelerRecent" resultType="kr.co.serendipity.model.BoardDTO">
- 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
-		( SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N) 
-		WHERE NUM <![CDATA[ <= ]]>4
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM (SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N) WHERE NUM <![CDATA[ <= ]]>4
  	</select>
  	
  	<select id="getIndexGuideRecent" resultType="kr.co.serendipity.model.BoardDTO">
@@ -72,8 +70,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	<update id="update">
 	 update board set user_Num=#{user_Num}, 
-	 board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='사진', 
-	 board_Capacity=1, board_Date=SYSDATE, board_Latitude=#{board_Latitude}, 
+	 board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='#{board_Picture1}', 
+	 board_Picture2='#{board_Picture2}', board_Picture3='#{board_Picture3}', 
+	 board_Picture4='#{board_Picture4}', board_Picture5='#{board_Picture5}',
+	 board_Capacity=1, board_Date=SYSDATE, board_Latitude=#{board_Latitude},
+	 meeting_Place=#{meeting_Place}, meeting_Address=#{meeting_Address}, 
 	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=1, price=#{price} 
 	 where board_Num=#{board_Num}
 	</update>
@@ -82,6 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 update board set user_Num=#{user_Num}, 
 	 board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='사진', 
 	 board_Capacity=3, board_Date=SYSDATE, board_Latitude=#{board_Latitude}, 
+	 meeting_Place=#{meeting_Place}, meeting_Address=#{meeting_Address},
 	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=2, price=#{price} 
 	 where board_Num=#{board_Num}
 	</update>

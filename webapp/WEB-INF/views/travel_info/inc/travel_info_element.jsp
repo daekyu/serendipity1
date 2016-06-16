@@ -37,83 +37,80 @@
 		  data-content="New York, NY"
 		   style="height:700px;"></div> -->
 		   <div id="map" style="height: 700px;"></div>
-  <script type="text/javascript">
-  
-  var locations = [];
-  
-  $(function() {
-    /* var locations = [
-                     
-      ['삼익사이버 아파트', 37.0211403, 127.0971617],
-      ['국립축산과학원 축산자원개발부', 36.93309333, 127.10487485]
-    ]; */
+    <script type="text/javascript">
     
+    var locations = [];
     
-	
-    $.ajax({
-    	type : "post", 
-    	url : "getLocalList.htm",
-    	success : function(data) {
-    			
-    			$.each(data, function(index, item) {
-    				var loc = [];
-    				loc.push(item.local_name);
-    				loc.push(item.local_latitude); 
-    				loc.push(item.local_longitude);
-    				loc.push(item.local_code);
-    				//console.log(loc + "/" + index);
-    				
-    				locations[index] = loc;
-    			});
-    			
-    			var map = new google.maps.Map(document.getElementById('map'), {
-    			      zoom: 7,
-    			      center: new google.maps.LatLng(36, 127.1),
-    			      mapTypeId: google.maps.MapTypeId.ROADMAP
-    			    });
-    			
-    			     var infowindow = new google.maps.InfoWindow();
-    			     var marker, i;
-    			                  
-    			         for (i = 0; i < locations.length; i++) {  
-    			            marker = new google.maps.Marker({
-    			            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-    			            map: map
-    			               });
-    			         }
-    			  
-
-    			
-    			      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    			        return function() {
-    			          infowindow.setContent(locations[i][0]);
-    			          infowindow.open(map, marker);
-    			          console.log(locations[i][3]);
-    			          
-    			          $.ajax({
-    			        	  type : "post",
-    			        	  url : "getLocalInfo.htm",
-    			        	  data : {"local_code" : locations[i][3]},
-    			        	  success : function(data) {
-    			        		  console.log(data);
-    			        		  $('#local_name').text(locations[i][0]);
-    			        		  $('#local_code').text(data.local_code);
-    			        		  $('#bus_fee').text(data.bus_fee);
-    			        		  $('#taxi_fee').text(data.taxi_fee);
-    			        		  $('#famous_food').text(data.famous_food);
-    			        		  $('#attraction').text(data.attraction);
-    			        		  $('#airport').text(data.airport);
-    			        	  }
-    			          });
-    			          
-    			        }
-    			      })(marker, i));
-    			    }
+    $(function() {
+      /* var locations = [
+                       
+        ['삼익사이버 아파트', 37.0211403, 127.0971617],
+        ['국립축산과학원 축산자원개발부', 36.93309333, 127.10487485]
+      ]; */
+      
+      
+      
+      $.ajax({
+          type : "post", 
+          url : "getLocalList.htm",
+          success : function(data) {
+                  
+                  $.each(data, function(index, item) {
+                      var loc = [];
+                      loc.push(item.local_name);
+                      loc.push(item.local_latitude); 
+                      loc.push(item.local_longitude);
+                      loc.push(item.local_code);
+                      //console.log(loc + "/" + index);
+                      
+                      locations[index] = loc;
+                  });
+                  
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 7,
+                        center: new google.maps.LatLng(36, 127.1),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                      });
+                      var infowindow = new google.maps.InfoWindow();
+                      var marker, i;
+                      for (i = 0; i < locations.length; i++) {  
+                        marker = new google.maps.Marker({
+                          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                          map: map
+                        });
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                          return function() {
+                            infowindow.setContent(locations[i][0]);
+                            infowindow.open(map, marker);
+                            console.log(locations[i][3]);
+                            
+                            $.ajax({
+                                type : "post",
+                                url : "getLocalInfo.htm",
+                                data : {"local_code" : locations[i][3]},
+                                success : function(data) {
+                                    console.log(data);
+                                    $('#local_name').text(locations[i][0]);
+                                    $('#local_code').text(data.local_code);
+                                    $('#bus_fee').text(data.bus_fee);
+                                    $('#taxi_fee').text(data.taxi_fee);
+                                    $('#famous_food').text(data.famous_food);
+                                    $('#attraction').text(data.attraction);
+                                    $('#airport').text(data.airport);
+                                    
+                                }
+                            });
+                            
+                          }
+                        })(marker, i));
+                      }
+          }
+      });
+      
+  
     });
-    
+    </script> 
 
-  });
-  </script> 
   
 		   
 	  </div>

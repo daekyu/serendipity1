@@ -37,4 +37,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select review_picture1, review_picture2, review_picture3, review_picture4, review_picture5 from review where review_num=#{review_num}
 	</select>
 	
+	<select id="filteringReviewList" resultType="hashmap">
+		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code and r.local_code=#{local_code}
+	</select>
+	
+	<select id="orderReviewList" resultType="hashmap">
+		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code and r.local_code=#{local_code} order by #{sort} desc
+	</select>
+	
 </mapper>

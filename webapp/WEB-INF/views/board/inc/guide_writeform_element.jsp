@@ -92,6 +92,7 @@ function clearInfos() {
 
 // find address function
 function findAddress() {
+	clearOverlays();
     var address = document.getElementById("gmap_where").value;
 
     // script uses our 'geocoder' in order to find location by address name

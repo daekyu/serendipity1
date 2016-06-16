@@ -2,7 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript"> 
+	$(function(){
+		$.ajax({
+			type : "post",
+			url : "review_list.htm",
+			data : {
+				"sort" : <%= request.getParameter("sort")%>
+				"local_code" : <%= request.getParameter("local_code")%>
+			},
+			success : function(data){
+				console.log("성공");
+			}
+		});
+	});
+</script>
 <section id="main">
 	<header class="page-header">
 		<div class="container">
@@ -28,6 +43,22 @@
 							class="glyphicon glyphicon-th-list"></span>
 						</span>
 					</div>
+					
+					<div class="sort-catalog">
+						<div class="btn-group show-by btn-select">
+							<a class="btn dropdown-toggle btn-default" role="button"
+								data-toggle="dropdown" href="#">지역: <span>12</span> <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+							<li><a href="">전체</a></li>
+							<c:forEach var="i" items="${local_list}">
+								<li><a href="review_list.htm?sort=${sort}&local_code=${i.local_code}">${i.local_name}</a></li>
+							</c:forEach>
+							</ul>
+						</div>
+						<!-- .show -->
+					</div>
+					<!-- .sort-catalog -->
 
 					<!-- 정렬기준을 바꾸는곳. 정해지면 바꾸자. -->
 					<div class="sort-catalog">
@@ -36,29 +67,16 @@
 								data-toggle="dropdown" href="#">Sort by: <span>Rating</span>
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">최신순</a></li>
-								<li><a href="#">좋아요순</a></li>
-								<li><a href="#">댓글순</a></li>
+								<li><a href="review_list.htm?sort=review_num&local_code=${local_code}">최신순</a></li>
+								<li><a href="review_list.htm?sort=like_count&local_code=${local_code}">좋아요순</a></li>
+								<li><a href="review_list.htm?sort=reply_count&local_code=${local_code}">댓글순</a></li>
 							</ul>
 						</div>
 						<!-- .sort-by -->
 					</div>
 					<!-- .sort-catalog -->
 
-					<div class="sort-catalog">
-						<div class="btn-group show-by btn-select">
-							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">지역: <span>12</span> <span
-								class="caret"></span></a>
-							<ul class="dropdown-menu">
-							<c:forEach var="i" items="${local_list}">
-								<li><a href="#">${i.local_name}</a></li>
-							</c:forEach>
-							</ul>
-						</div>
-						<!-- .show -->
-					</div>
-					<!-- .sort-catalog -->
+					
 
 					<!-- <div class="sort-catalog">
 						<div class="btn-group show-by btn-select">

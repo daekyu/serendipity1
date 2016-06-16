@@ -207,6 +207,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		<div class="container">
 			<form action="" method="post">
 			<input type="hidden" name="user_Num" value="${user_num}">
+			<input type="hidden" name="board_Num" value="${dto.board_Num}">
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>

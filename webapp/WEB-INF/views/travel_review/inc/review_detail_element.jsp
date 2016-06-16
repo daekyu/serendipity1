@@ -225,15 +225,17 @@
 			<img class="replace-2x avatar" width="84" height="84" src="content/img/avatar-1.jpg" alt="">
 			<div class="meta">
 			  <span>${i.ID}</span>, 
-			  <span class="time">${i.REPLY_DATE}</span>
-			</div>
-			<p class="description">
-			  ${i.REPLY_CONTENT}&nbsp;&nbsp;&nbsp;
-			  <c:choose>
+			  <span class="time">${i.REPLY_DATE}&nbsp;&nbsp;&nbsp;
+			  	<c:choose>
 				<c:when test="${sessionScope.user_num == i.USER_NUM}">
 			  		<a href="reply_delete.htm?reply_num=${i.REPLY_NUM}&review_num=${reviewdetail.REVIEW_NUM}">삭제</a>
 			  	</c:when>
 			  </c:choose>
+			  </span>
+			</div>
+			<p class="description">
+			  ${i.REPLY_CONTENT}
+			  
 			</p>
 		  </li>
 		  </c:forEach>

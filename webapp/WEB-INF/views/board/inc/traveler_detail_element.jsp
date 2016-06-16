@@ -91,8 +91,10 @@
 			<div class="image-box">
 			  <span class="sale top"></span>
 			  <div class="general-img">
-				<img class="replace-2x" alt="" src="../content/1212.JPG" data-zoom-image="../content/1212.JPG" width="500" height="500">
+				<img class="replace-2x" alt="" src="../content/1212.JPG" 
+				data-zoom-image="../content/1212.JPG" width="500" height="500">
 			  </div><!-- .general-img -->
+			  
 			  
 			  <div class="thumblist-box load">
 				<a href="#" class="prev">
@@ -137,18 +139,17 @@
 			<table class="table table-striped table-bordered text-center my-orders-table">
 				<thead>
 					<tr class="first last">
-						<th>aaaa</th>
-						<th>bbbb</th>
-						<th>cccc</th>
-						<th>dddd</th>
+						<th>작성자</th>
+						<th>언어</th>
+						<th>관심사</th>
+						<th>지역</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>aaaa</td>
-						<td>bbbb</td>
-						<td>cccc</td>
-						<td>dddd</td>
+						<td>한국어, 충남어</td>
+						<td>먹을거</td>
+						<td>충남</td>
 					</tr>
 				</tbody>
 			</table>

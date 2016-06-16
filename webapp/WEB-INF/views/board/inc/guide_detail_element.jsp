@@ -5,6 +5,11 @@
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src=".././resources/js/jquery-2.1.3.min.js"></script>
+		<input type="hidden" id="lat" value="${dto.board_Latitude}"/>
+		<input type="hidden" id="lng" value="${dto.board_Longitude}"/>
+		<input type="hidden" id="meeting_place" value="${dto.meeting_Place}"/>
+		<input type="hidden" id="meeting_address" value="${dto.meeting_Address}"/>
 	<script type="text/javascript">
 		$(function(){
 			$('#delete').click(function(){
@@ -15,6 +20,7 @@
 				}
 			});
 		});
+		
 		var map;
 		var marker;
 		var myLatlng;
@@ -70,40 +76,37 @@
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 
+
 <div id="main" class="page">
-	<header class="page-header">
-		<div class="container">
-			<h1 class="title">여행자구함</h1>
-		</div>
-	</header>
-
-	<div class="container">
+  <header class="page-header">
+    <div class="container">
+      <h1 class="title">여행자구함</h1>
+    </div>	
+  </header>
+  
+  <div class="container">
+    <div class="row">
+      <article class="content product-page col-sm-12 col-md-12">
 		<div class="row">
-			<article class="content product-page col-sm-12 col-md-12">
-				<div class="row">
-					<div class="col-sm-5 col-md-5">
-						<div class="image-box">
-							<span class="sale top"></span>
-							<div class="general-img">
-								<img class="replace-2x" alt="" src="../content/1212.JPG"
-									data-zoom-image="../content/1212.JPG" width="500" height="500">
-							</div>
-							<!-- .general-img -->
-
-							<div class="thumblist-box load">
-								<a href="#" class="prev"> <svg x="0" y="0" width="9px"
-										height="16px" viewBox="0 0 9 16"
-										enable-background="new 0 0 9 16" xml:space="preserve">
-					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc"
-											points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
+		  <div class="col-sm-5 col-md-5">
+			<div class="image-box">
+			  <span class="sale top"></span>
+			  <div class="general-img">
+				<img class="replace-2x" alt="" src="../content/1212.JPG" 
+				data-zoom-image="../content/1212.JPG" width="500" height="500">
+			  </div><!-- .general-img -->
+			  
+			  
+			  <div class="thumblist-box load">
+				<a href="#" class="prev">
+				  <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
 				  </svg>
-								</a> <a href="#" class="next"> <svg x="0" y="0" width="9px"
-										height="16px" viewBox="0 0 9 16"
-										enable-background="new 0 0 9 16" xml:space="preserve">
-					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc"
-											points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
+				</a>
+				<a href="#" class="next">
+				  <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
+					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
 				  </svg>
-
 				</a>
 				
 				<div id="thumblist" class="thumblist">
@@ -199,8 +202,6 @@
 		  </ul><!-- .nav-tabs -->	
 		  <div class="tab-content">
 		  
-		  <div class="tab-pane active" id="reviews">
-		  
 		  <!-- 지도 들어가는 부분 시작 -->
 		  <div class="tab-pane active" id="reviews">
 			  <div class="timeline-content border border-danger" data-appear-animation="fadeInRight">
@@ -218,12 +219,13 @@
 				추가사항
 				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
 			</div>
-			
+		
 		  </div><!-- .tab-content -->
 		</div>
+	</article><!-- .content -->
 	</div>
-</div>
-<!-- #main -->
+	</div>
+</div><!-- #main -->
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -356,4 +358,6 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
       </div>
     </div>
-  </div></div>
+  </div>
+  </div>
+  

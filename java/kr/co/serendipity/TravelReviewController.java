@@ -411,10 +411,7 @@ public class TravelReviewController {
 	
 	@RequestMapping("changeReplyState.htm")
 	public @ResponseBody int changeReplyNotification(ReplyDTO replydto) throws ClassNotFoundException, SQLException {
-		System.out.println("제발 여기좀 타자");
 		ReplyDAO dao = sqlsession.getMapper(ReplyDAO.class);
-		
-		System.out.println("여기는 타는거니?");
 		return dao.changeReplyNotificationState(replydto);
 	}
 }

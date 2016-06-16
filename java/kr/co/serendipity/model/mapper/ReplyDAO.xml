@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="replyNotificationCheck" resultType="hashmap">
-		select rp.user_num, rp.reply_num from reply rp, review rv where rp.review_num=rv.review_num and rv.user_num=#{user_num} and rp.reply_alarm=0
+		select rp.user_num, rp.reply_num, m.profile_picture, m.id from reply rp, review rv, member m where rp.review_num=rv.review_num and rp.user_num=m.user_num and rv.user_num=#{user_num} and rp.reply_alarm=0
 	</select>
 	
 	<update id="changeReplyNotificationState">

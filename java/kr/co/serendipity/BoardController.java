@@ -224,6 +224,9 @@ public class BoardController {
 	@RequestMapping(value="traveler_modify.htm", method=RequestMethod.POST)
 	public String modifyTravelerForm(BoardDTO dto) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		System.out.println("traveler_modify.htm post");
+		System.out.println("board_Num : " + dto.getBoard_Num());
+		System.out.println("board_Content : " + dto.getBoard_Content());
 		dao.update(dto);
 		return "redirect:/board/traveler_list.htm";
 	}

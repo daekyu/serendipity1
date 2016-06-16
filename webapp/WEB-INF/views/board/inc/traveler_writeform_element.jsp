@@ -42,6 +42,15 @@
 				alert('더 이상 삭제할 수 없습니다.');
 			}
 		});
+		
+		$('#gmap_where').keydown(function (e) {
+		    if(e.keyCode == 13)
+		    {
+		        $('#button2').trigger('click');
+
+		        return false;
+		    }
+		});
 	});
 
 	$('#ckeditor').keyup(function() {
@@ -63,6 +72,8 @@
 	       $("#datepicker").datepicker();
 	    
 	    });
+	
+	
 
 	var geocoder;
 	var map;
@@ -237,6 +248,7 @@
 			document.getElementById('lng').value = obj.geometry.location.lng();
 			document.getElementById('meeting_place').value = obj.name;
 			document.getElementById('meeting_address').value = obj.vicinity;
+			
 
 		});
 		infos.push(infowindow);
@@ -313,10 +325,11 @@
 						<td>Meeting Point</td>
 						<td colspan="5">
 							<div id="container" class="row">
-								<div id="gmap_canvas" style="height: 500px"></div>
+								<div id="gmap_canvas" style="height: 400px;width:auto"></div>
 								<div class="actions">
 									<div class="button">
-										<label for="gmap_where">Where:</label> <input id="gmap_where"
+										<label for="gmap_where">Where:</label> 
+										<input id="gmap_where"
 											class="form-control" type="text" name="gmap_where">
 									</div>
 									<div id="button2" class="btn btn-success"

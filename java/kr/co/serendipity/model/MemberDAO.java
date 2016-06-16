@@ -15,4 +15,5 @@ public interface MemberDAO {
 	int joinMember(MemberDTO dto); // 회원가입을 요청했을 때 실행되는 메소드
 	MemberDTO login(MemberDTO dto); // 로그인할 때 실행되는 메소드
 	int loginCheck(MemberDTO memberdto); // 로그인할때 아이디/비밀번호 맞는지 체크
+	int IdCheck(MemberDTO memberdto);
 }

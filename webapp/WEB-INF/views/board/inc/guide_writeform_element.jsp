@@ -8,6 +8,7 @@
    src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
    
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
+
 <script type="text/javascript">
 
 window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
@@ -59,10 +60,11 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
          $('#bofom').submit();
       });
     
-    $(function() {
-       $("#datepicker").datepicker();
-    
-    });
+
+	 $(function() {
+	$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());
+		});
+   
     
    var geocoder;
    var map;

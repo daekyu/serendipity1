@@ -168,6 +168,9 @@
 				</c:when>
 				
 				<c:otherwise>
+					<select>
+						<option>16.06.02 - 2명남음</option>
+					</select>
 					<a class="btn add-cart btn-default btn-lg" href="">신청하기</a>
 				</c:otherwise>
 			</c:choose>

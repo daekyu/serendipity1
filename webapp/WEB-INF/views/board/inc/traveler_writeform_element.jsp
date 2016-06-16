@@ -68,6 +68,7 @@
 		$('#bofom').submit();
 	});
 	
+<<<<<<< HEAD
 	$(function() {
 	       $("#datepicker").datepicker();
 	    
@@ -76,6 +77,16 @@
 	
 
 	var geocoder;
+=======
+	
+		 $(function() {
+ 		$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());
+ 			});
+	
+ 
+ 
+ var geocoder;
+>>>>>>> 1eb6fd2d7b277c1445e806bcdb52ad39a08726d7
 	var map;
 	var markers = Array();
 	var infos = Array();

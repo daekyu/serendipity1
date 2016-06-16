@@ -7,10 +7,7 @@
 
 package kr.co.serendipity;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.MessageDAO;
 import kr.co.serendipity.model.MessageDTO;
+import kr.co.serendipity.model.RCV_MessageDTO;
 
 @Controller
 @RequestMapping("/message/")
@@ -75,5 +73,18 @@ public class MessageController {
 		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
 		dao.deleteReceiverMessage(messagedto);
 		return "redirect:/message/message.htm?user_num=" + session.getAttribute("user_num");
+	}
+	
+	@RequestMapping("msgNotificationCheck.htm")
+	public @ResponseBody List<RCV_MessageDTO> msgNotificationCheck(RCV_MessageDTO rcv_messagedto) {
+		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
+		
+		return dao.msgNotificationCheck(rcv_messagedto);
+	}
+	
+	@RequestMapping("changeMsgNotificationState.htm")
+	public void changeNotificationStates(RCV_MessageDTO rcv_messagedto) {
+		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
+		dao.changeNotificationState(rcv_messagedto);
 	}
 }

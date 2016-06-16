@@ -1,8 +1,8 @@
 /*
  * @Class : TravelReviewController
  * @Date : 16.06.09
- * @Author : 이소라
- * @Desc : 여행후기 게시판 컨트롤러
+ * @Author : �씠�냼�씪
+ * @Desc : �뿬�뻾�썑湲� 寃뚯떆�뙋 而⑦듃濡ㅻ윭
  */
 
 package kr.co.serendipity;
@@ -41,7 +41,7 @@ public class TravelReviewController {
 	@Autowired
 	SqlSession sqlsession;
 	
-	//게시판 목록
+	//寃뚯떆�뙋 紐⑸줉
 	@RequestMapping("review_list.htm")
 	public ModelAndView reviewList(String pg) throws ClassNotFoundException, SQLException {
 		System.out.println("reviewList entrance");
@@ -87,7 +87,7 @@ public class TravelReviewController {
 		return mav;
 	}
 	
-	//게시글 상세보기
+	//寃뚯떆湲� �긽�꽭蹂닿린
 	@RequestMapping(value="review_detail.htm", method=RequestMethod.GET)
 	public ModelAndView reviewDetail(ReviewDTO dto, HttpSession session) throws ClassNotFoundException, SQLException{
 		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
@@ -115,7 +115,7 @@ public class TravelReviewController {
 		return likedao.isLike(likedto);
 	}
 
-	// 후기 글쓰기 페이지폼
+	// �썑湲� 湲��벐湲� �럹�씠吏��뤌
 	@RequestMapping("review_writeform.htm")
 	public ModelAndView reviewWriteForm() {
 		ModelAndView mav = new ModelAndView("/travel_review/review_writeform");
@@ -146,10 +146,10 @@ public class TravelReviewController {
 		return mav;
 	}*/
 	
-	//좋아요 누르기
+	//醫뗭븘�슂 �늻瑜닿린
 	@RequestMapping(value="review_like.htm", method=RequestMethod.POST)
 	public @ResponseBody int reviewLike(ReviewLikeDTO dto) throws ClassNotFoundException, SQLException{
-		System.out.println("들어왔니?");
+		System.out.println("�뱾�뼱�솕�땲?");
 		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
 		likedao.likeInsertPlus(dto.getReview_num());
 		likedao.likeInsert(dto);
@@ -182,10 +182,10 @@ public class TravelReviewController {
 		return mav;
 	}*/
 	
-	//좋아요 취소
+	//醫뗭븘�슂 痍⑥냼
 	@RequestMapping(value="delete_review_like.htm", method=RequestMethod.POST)
 	public @ResponseBody int likeDelete(ReviewLikeDTO dto) throws ClassNotFoundException, SQLException{
-		System.out.println("들어왔니?");
+		System.out.println("�뱾�뼱�솕�땲?");
 		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
 		likedao.likeDeleteMinus(dto.getReview_num());
 		likedao.likeDelete(dto);
@@ -196,7 +196,7 @@ public class TravelReviewController {
 		return count;
 	}
 	
-	// 댓글쓰기 
+	// �뙎湲��벐湲� 
 	@RequestMapping(value="review_detail.htm", method=RequestMethod.POST)
 	public ModelAndView replyWrite(ReplyDTO dto) throws ClassNotFoundException, SQLException{
 		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
@@ -221,7 +221,7 @@ public class TravelReviewController {
 		return mav;
 	}
 	
-	//댓글삭제
+	//�뙎湲��궘�젣
 	@RequestMapping("reply_delete.htm")
 	public String replyDelete(ReplyDTO dto) throws ClassNotFoundException, SQLException{
 		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
@@ -229,7 +229,7 @@ public class TravelReviewController {
 		return "redirect:/travel_review/review_detail.htm?review_num="+dto.getReview_num()+"&user_num="+dto.getUser_num();
 	}
 	
-	//여행후기 게시글 삭제
+	//�뿬�뻾�썑湲� 寃뚯떆湲� �궘�젣
 	@RequestMapping("review_delete.htm")
 	public String reviewDelete(int review_num, HttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException{
 		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
@@ -253,20 +253,20 @@ public class TravelReviewController {
 		return "redirect:/travel_review/review_list.htm";
 	}
 
-	// 글쓰기 처리 페이지
+	// 湲��벐湲� 泥섎━ �럹�씠吏�
 	@RequestMapping(value = "review_writeform.htm", method = RequestMethod.POST)
 	public String reviewWrite(ReviewDTO dto, MultipartHttpServletRequest mrequest, HttpServletRequest request)
 			throws IOException, ClassNotFoundException, SQLException {
-		System.out.println("들어오니");
+		System.out.println("�뱾�뼱�삤�땲");
 		
 		List<MultipartFile> mflist = mrequest.getFiles("review_picture");
 		List<String> filenames = new ArrayList<String>();
 		
-		System.out.println("0번째 : "+mflist.get(0).getOriginalFilename());
-		System.out.println("1번째 : "+mflist.get(1).getOriginalFilename());
-		System.out.println("2번째 : "+mflist.get(2).getOriginalFilename());
-		System.out.println("3번째 : "+mflist.get(3).getOriginalFilename());
-		System.out.println("4번째 : "+mflist.get(4).getOriginalFilename());
+		System.out.println("0踰덉㎏ : "+mflist.get(0).getOriginalFilename());
+		System.out.println("1踰덉㎏ : "+mflist.get(1).getOriginalFilename());
+		System.out.println("2踰덉㎏ : "+mflist.get(2).getOriginalFilename());
+		System.out.println("3踰덉㎏ : "+mflist.get(3).getOriginalFilename());
+		System.out.println("4踰덉㎏ : "+mflist.get(4).getOriginalFilename());
 		
 		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
         if (mflist.size()==1 && mflist.get(0).getOriginalFilename().equals("")) {
@@ -276,23 +276,23 @@ public class TravelReviewController {
             	
             		String saveFileName = null;
             		if(mflist.get(i).getOriginalFilename().equals("")){
-            			filenames.add("사진없음");
+            			filenames.add("�궗吏꾩뾾�쓬");
             		}
             		else{
-            		// 파일 중복명 처리
+            		// �뙆�씪 以묐났紐� 泥섎━
                     String genId = UUID.randomUUID().toString(); 
-                    // 본래 파일명
+                    // 蹂몃옒 �뙆�씪紐�
                     String originalfileName = mflist.get(i).getOriginalFilename(); 
                     
                     System.out.println("filename : "+originalfileName);
                      
                     saveFileName = genId + "_" + originalfileName;
-                    // 저장되는 파일 이름
+                    // ���옣�릺�뒗 �뙆�씪 �씠由�
      
-                    String savePath = realFolder +"\\"+ saveFileName; // 저장 될 파일 경로
+                    String savePath = realFolder +"\\"+ saveFileName; // ���옣 �맆 �뙆�씪 寃쎈줈
      
-                    mflist.get(i).transferTo(new File(savePath)); // 파일 저장
-                    filenames.add(saveFileName); // 실 DB Insert 작업시 .. 파일명
+                    mflist.get(i).transferTo(new File(savePath)); // �뙆�씪 ���옣
+                    filenames.add(saveFileName); // �떎 DB Insert �옉�뾽�떆 .. �뙆�씪紐�
             	}
             }
         }
@@ -300,11 +300,11 @@ public class TravelReviewController {
         for(int i=0; i<filenames.size(); i++){
         	System.out.println("filename : "+filenames.get(i));
         }
-        dto.setReview_picture1(filenames.get(0)); // 파일명1
-        dto.setReview_picture2(filenames.get(1)); // 파일명2
-        dto.setReview_picture3(filenames.get(2)); // 파일명3
-        dto.setReview_picture4(filenames.get(3)); // 파일명4
-        dto.setReview_picture5(filenames.get(4)); // 파일명5
+        dto.setReview_picture1(filenames.get(0)); // �뙆�씪紐�1
+        dto.setReview_picture2(filenames.get(1)); // �뙆�씪紐�2
+        dto.setReview_picture3(filenames.get(2)); // �뙆�씪紐�3
+        dto.setReview_picture4(filenames.get(3)); // �뙆�씪紐�4
+        dto.setReview_picture5(filenames.get(4)); // �뙆�씪紐�5
         
 		System.out.println("title : " + dto.getReview_title());
 		System.out.println("content : " + dto.getReview_content());
@@ -328,7 +328,7 @@ public class TravelReviewController {
 	@RequestMapping("review_update.htm")
 	public String updateReview(ReviewDTO dto, MultipartHttpServletRequest mrequest, HttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		
-		System.out.println("들어오니");
+		System.out.println("�뱾�뼱�삤�땲");
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
 		int review_num = Integer.parseInt(request.getParameter("review_num"));
 		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
@@ -351,11 +351,11 @@ public class TravelReviewController {
 		List<MultipartFile> mflist = mrequest.getFiles("review_picture");
 		List<String> filenames = new ArrayList<String>();
 		
-		System.out.println("0번째 : "+mflist.get(0).getOriginalFilename());
-		System.out.println("1번째 : "+mflist.get(1).getOriginalFilename());
-		System.out.println("2번째 : "+mflist.get(2).getOriginalFilename());
-		System.out.println("3번째 : "+mflist.get(3).getOriginalFilename());
-		System.out.println("4번째 : "+mflist.get(4).getOriginalFilename());
+		System.out.println("0踰덉㎏ : "+mflist.get(0).getOriginalFilename());
+		System.out.println("1踰덉㎏ : "+mflist.get(1).getOriginalFilename());
+		System.out.println("2踰덉㎏ : "+mflist.get(2).getOriginalFilename());
+		System.out.println("3踰덉㎏ : "+mflist.get(3).getOriginalFilename());
+		System.out.println("4踰덉㎏ : "+mflist.get(4).getOriginalFilename());
 		
 		
         if (mflist.size()==1 && mflist.get(0).getOriginalFilename().equals("")) {
@@ -365,23 +365,23 @@ public class TravelReviewController {
             	
             		String saveFileName = null;
             		if(mflist.get(i).getOriginalFilename().equals("")){
-            			filenames.add("사진없음");
+            			filenames.add("�궗吏꾩뾾�쓬");
             		}
             		else{
-            		// 파일 중복명 처리
+            		// �뙆�씪 以묐났紐� 泥섎━
                     String genId = UUID.randomUUID().toString(); 
-                    // 본래 파일명
+                    // 蹂몃옒 �뙆�씪紐�
                     String originalfileName = mflist.get(i).getOriginalFilename(); 
                     
                     System.out.println("filename : "+originalfileName);
                      
                     saveFileName = genId + "_" + originalfileName;
-                    // 저장되는 파일 이름
+                    // ���옣�릺�뒗 �뙆�씪 �씠由�
      
-                    String savePath = realFolder +"\\"+ saveFileName; // 저장 될 파일 경로
+                    String savePath = realFolder +"\\"+ saveFileName; // ���옣 �맆 �뙆�씪 寃쎈줈
      
-                    mflist.get(i).transferTo(new File(savePath)); // 파일 저장
-                    filenames.add(saveFileName); // 실 DB Insert 작업시 .. 파일명
+                    mflist.get(i).transferTo(new File(savePath)); // �뙆�씪 ���옣
+                    filenames.add(saveFileName); // �떎 DB Insert �옉�뾽�떆 .. �뙆�씪紐�
             	}
             }
         }
@@ -389,11 +389,11 @@ public class TravelReviewController {
         for(int i=0; i<filenames.size(); i++){
         	System.out.println("filename : "+filenames.get(i));
         }
-        dto.setReview_picture1(filenames.get(0)); // 파일명1
-        dto.setReview_picture2(filenames.get(1)); // 파일명2
-        dto.setReview_picture3(filenames.get(2)); // 파일명3
-        dto.setReview_picture4(filenames.get(3)); // 파일명4
-        dto.setReview_picture5(filenames.get(4)); // 파일명5
+        dto.setReview_picture1(filenames.get(0)); // �뙆�씪紐�1
+        dto.setReview_picture2(filenames.get(1)); // �뙆�씪紐�2
+        dto.setReview_picture3(filenames.get(2)); // �뙆�씪紐�3
+        dto.setReview_picture4(filenames.get(3)); // �뙆�씪紐�4
+        dto.setReview_picture5(filenames.get(4)); // �뙆�씪紐�5
         
 		System.out.println("title : " + dto.getReview_title());
 		System.out.println("content : " + dto.getReview_content());
@@ -401,5 +401,20 @@ public class TravelReviewController {
 		
 		dao.reviewUpdate(dto);
 		return "redirect:/travel_review/review_list.htm";
+	}
+	
+	@RequestMapping("replyNotificationCheck.htm")
+	public @ResponseBody List<HashMap<String, Object>> replyNotificationCheck(int user_num) throws ClassNotFoundException, SQLException {
+		ReplyDAO dao = sqlsession.getMapper(ReplyDAO.class);
+		return dao.replyNotificationCheck(user_num);
+	}
+	
+	@RequestMapping("changeReplyState.htm")
+	public @ResponseBody int changeReplyNotification(ReplyDTO replydto) throws ClassNotFoundException, SQLException {
+		System.out.println("제발 여기좀 타자");
+		ReplyDAO dao = sqlsession.getMapper(ReplyDAO.class);
+		
+		System.out.println("여기는 타는거니?");
+		return dao.changeReplyNotificationState(replydto);
 	}
 }

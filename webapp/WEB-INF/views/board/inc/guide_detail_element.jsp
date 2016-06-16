@@ -323,17 +323,17 @@
 			</div><!-- #reviews -->
 			
 			<div class="tab-pane" id="reporting">
-			<form action="">
+			<form action="report_write1.htm?reporter=${sessionScope.user_num}&villain=${memberdto.user_num}&board_num=${dto.board_Num}" method="post">
 				<table class="table center">
 					<tr>
 						<td>
-							<input type="text" class="form-control" placeholder="제목을 입력해주세요">
+							<input type="text" class="form-control" placeholder="제목을 입력해주세요" name="report_title">
 						</td>
 					</tr>
 					
 					<tr>
 						<td>
-							<textarea class="form-control" placeholder="상세한 이유를 작성해주세요" style="resize:none; height:100px;" wrap="soft" name=""></textarea>
+							<textarea class="form-control" placeholder="상세한 이유를 작성해주세요" name="report_content" style="resize:none; height:100px;" wrap="soft" name=""></textarea>
 						</td>
 					</tr>
 					

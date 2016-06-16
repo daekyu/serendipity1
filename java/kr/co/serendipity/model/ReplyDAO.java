@@ -21,4 +21,8 @@ public interface ReplyDAO {
 
 	// 댓글삭제
 	public void replyDelete(ReplyDTO dto) throws ClassNotFoundException, SQLException;
+	
+	public List<HashMap<String, Object>> replyNotificationCheck(int user_num) throws ClassNotFoundException, SQLException;
+	
+	public int changeReplyNotificationState(ReplyDTO replydto) throws ClassNotFoundException, SQLException;
 }

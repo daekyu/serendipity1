@@ -234,11 +234,11 @@
 			  </c:choose>
 			  </span>
 			</div>
-			<h6>
-			<!-- <p class="subtitle"> -->
+			
+			
 			  ${i.REPLY_CONTENT}
-			<!-- </p> -->
-			</h6>
+			
+			
 			<div class="meta">&nbsp;&nbsp;&nbsp;</div>
 			<div class="meta">&nbsp;&nbsp;&nbsp;</div>
 			</div>

@@ -3,20 +3,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-<script type="text/javascript"> 
-	$(function(){
-		$.ajax({
-			type : "post",
-			url : "review_list.htm",
-			data : {
-				"sort" : <%= request.getParameter("sort")%>
-				"local_code" : <%= request.getParameter("local_code")%>
-			},
-			success : function(data){
-				console.log("성공");
-			}
-		});
+<script type="text/javascript">
+function filteringReviewList(param1) {
+	$.ajax({
+		type : "post",
+		url : "filteringReviewList.htm",
+		data : {
+			"local_code" : param1
+		},
+		success : function(data){
+			console.log("성공");
+		}
 	});
+}
+
+function orderReviewList(param2){
+	$.ajax({
+		type : "post",
+		url : "orderReviewList.htm",
+		data : {
+			"sort" : param2
+		},
+		success : function(data){
+			console.log("성공");
+		}
+	});
+}
+
+	
 </script>
 <section id="main">
 	<header class="page-header">
@@ -51,14 +65,17 @@
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
 							<li><a href="">전체</a></li>
-							<c:forEach var="i" items="${local_list}">
-								<li><a href="review_list.htm?sort=${sort}&local_code=${i.local_code}">${i.local_name}</a></li>
+							<c:forEach var="i" items="${local_list}" varStatus="j">
+								<li id="aaa${j.index}"><a href="javascript:filteringReviewList(${i.local_code});">${i.local_name}</a></li>
 							</c:forEach>
 							</ul>
 						</div>
 						<!-- .show -->
 					</div>
 					<!-- .sort-catalog -->
+					<c:set value="like_count" var="like_count"/>
+					<c:set value="reply_count" var="reply_count"/>
+					<c:set value="review_num" var="review_num"/>
 
 					<!-- 정렬기준을 바꾸는곳. 정해지면 바꾸자. -->
 					<div class="sort-catalog">
@@ -67,9 +84,9 @@
 								data-toggle="dropdown" href="#">Sort by: <span>Rating</span>
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="review_list.htm?sort=review_num&local_code=${local_code}">최신순</a></li>
-								<li><a href="review_list.htm?sort=like_count&local_code=${local_code}">좋아요순</a></li>
-								<li><a href="review_list.htm?sort=reply_count&local_code=${local_code}">댓글순</a></li>
+								<li><a href="javascript:filteringReviewList(${review_num});">최신순</a></li>
+								<li><a href="javascript:filteringReviewList(${like_count});">좋아요순</a></li>
+								<li><a href="javascript:filteringReviewList(${reply_count});">댓글순</a></li>
 							</ul>
 						</div>
 						<!-- .sort-by -->

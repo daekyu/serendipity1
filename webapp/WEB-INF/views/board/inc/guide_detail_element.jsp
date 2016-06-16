@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript" src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -27,7 +30,7 @@
 		    myLatlng = new google.maps.LatLng(lat, lng);
 		   
 		    var myOptions = { // default map options
-		        zoom: 17,
+		        zoom: 18,
 		        center: myLatlng,
 		        icon: marker
 		    };

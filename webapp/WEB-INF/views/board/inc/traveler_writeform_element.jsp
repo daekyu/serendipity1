@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
@@ -64,7 +64,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	    var myLatlng = new google.maps.LatLng(37.5088652,127.0609603);
 
 	    var myOptions = { // default map options
-	        zoom: 14,
+	        zoom: 17,
 	        center: myLatlng,
 	        mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };

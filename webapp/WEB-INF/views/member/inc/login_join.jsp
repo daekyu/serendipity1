@@ -52,6 +52,7 @@
 		        	  url : "loginCheck.htm",
 		        	  data : {"id" : $('#id_login').val(), "pw" : $('#pw_login').val()},
 		        	  success : function(data) {
+		        		  console.log(data);
 		        		  if(data == 0) {
 		        			  alert("비밀번호가 틀렸거나 존재하지 않는 아이디입니다.");
 		        			  $('#id_login').focus();
@@ -190,7 +191,7 @@ $(document).ready(function(){
 							id.focus();
 							return false;
 						}else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
-							alert('비밀번호가 맞질 않습니다.(최소 4자리 이상)');
+							alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)');
 							pw_1.focus();
 							return false;
 						} else if ($('#pw_1').val()!=$('#confirm_pw').val()){ // 비밀번호 확인 검사
@@ -219,8 +220,12 @@ $(document).ready(function(){
 							email.focus();
 							return false;
 						}else{
-							alert("로그인 성공");
+							alert("회원가입 성공");
 						} 
+						
+						
+						
+									
 
 			});
     }); // 유효성체크
@@ -243,7 +248,7 @@ $(document).ready(function(){
 				id_login.focus();
 				return false;
 			}else if (!reg_pw.test(password.val()) == true) { //비밀번호 검사
-				alert('비밀번호가 맞질 않습니다.(최소 4자리 이상)');
+				alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)');
 				password.focus();
 				return false;
 			}
@@ -318,9 +323,9 @@ $(document).ready(function(){
               </div>
 
 			  <div class="form-group">
-				<label>아이디: <span class="required" id="help_text"></span></label>
+				<label>아이디: <span class="required" id="id_text"></span></label>
 				<input type="text" class="form-control" name="id" id="id_1">
-				<input type="button" name="" id="member_id_check_btn" value="아이디확인"/>
+				
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
 				  data-bv-message="The username is not valid"

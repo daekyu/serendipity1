@@ -8,6 +8,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+
 <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 
@@ -20,7 +23,7 @@
 <section id="main">
   <header class="page-header">
     <div class="container">
-      <h1 class="title">여행정보</h1>
+      <h1 class="title"><spring:message code="travel.info"/></h1>
     </div>	
   </header>
   
@@ -117,11 +120,11 @@
   
 		   
 	  </div>
-	  <div class="title-box"><h3 class="title slim">관련 글</h3></div>
+	  <div class="title-box"><h3 class="title slim"><spring:message code="travel.inca"/></h3></div>
 	  <div class="product-tab">
 		  <ul class="nav nav-tabs">
-			<li class="active"><a href="#description">여행정보</a></li>
-			<li><a href="#reviews">여행후기</a></li>
+			<li class="active"><a href="#description"><spring:message code="travel.inca1"/></a></li>
+			<li><a href="#reviews"><spring:message code="travel.inca2"/></a></li>
 		  </ul><!-- .nav-tabs -->	
 		  <div class="tab-content">
 		  
@@ -132,7 +135,7 @@
 		<table class="table table-bordered">
 		  	<thead>
 		  		<tr>
-		  			<th colspan="6" class=""><span id="local_name"></span>지역의 정보를 확인하세여</th>
+		  			<th colspan="6" class=""><span id="local_name"></span><spring:message code="travel.inca2.5"/></th>
 		  		</tr>
 		  	</thead>
 		  	
@@ -145,7 +148,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>지역번호</td>
+		  			<td><spring:message code="travel.inca3"/></td>
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInUp">
 		  				<div class="icon">
@@ -153,7 +156,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>버스요금</td>
+		  			<td><spring:message code="travel.inca4"/></td>
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInRight">
 		  				<div class="icon">
@@ -161,7 +164,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>택시요금</td>
+		  			<td><spring:message code="travel.inca5"/></td>
 		  		</tr>
 		  		<tr>
 		  			<td><span id="local_code"></span></td>
@@ -176,7 +179,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>유명한 먹거리</td>
+		  			<td><spring:message code="travel.inca6"/></td>
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInDown">
 		  				<div class="icon">
@@ -184,7 +187,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>유명 장소</td>
+		  			<td><spring:message code="travel.inca7"/></td>
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInRight">
 		  				<div class="icon">
@@ -192,7 +195,7 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td>가까운 공항</td>
+		  			<td><spring:message code="travel.inca8"/></td>
 		  		</tr>
 		  		<tr>
 		  			<td><span id="famous_food"></span></td>

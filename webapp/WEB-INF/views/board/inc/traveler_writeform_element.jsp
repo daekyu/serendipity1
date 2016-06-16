@@ -59,12 +59,14 @@
 		$('#bofom').submit();
 	});
 	
-	$(function() {
-	       $("#datepicker").datepicker();
-	    
-	    });
-
-	var geocoder;
+	
+		 $(function() {
+ 		$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());
+ 			});
+	
+ 
+ 
+ var geocoder;
 	var map;
 	var markers = Array();
 	var infos = Array();

@@ -121,9 +121,8 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	            });
 	            markers.push(addrMarker);
 	            
-	            google.maps.event.addListener(addrMarker,'click', function(){
-	    	        findPlace();
-	    		});
+	            findPlace();
+	            
 	            
 	        } else {
 	            alert('Geocode was not successful for the following reason: ' + status);

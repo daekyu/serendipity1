@@ -118,9 +118,7 @@ function findAddress() {
             });
             markers.push(addrMarker);
             
-            google.maps.event.addListener(addrMarker,'click', function(){
-    	        findPlace();
-    		});
+            findPlace();
             
         } else {
             alert('Geocode was not successful for the following reason: ' + status);

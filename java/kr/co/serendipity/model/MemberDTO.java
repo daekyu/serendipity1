@@ -13,6 +13,7 @@ public class MemberDTO {
 	private String email;
 	private String profile_picture;
 	private String profile_description;
+	private int report_count;
 	
 	public int getUser_num() {
 		return user_num;
@@ -85,6 +86,12 @@ public class MemberDTO {
 	}
 	public void setProfile_description(String profile_description) {
 		this.profile_description = profile_description;
+	}
+	public int getReport_count() {
+		return report_count;
+	}
+	public void setReport_count(int report_count) {
+		this.report_count = report_count;
 	}
 	
 	

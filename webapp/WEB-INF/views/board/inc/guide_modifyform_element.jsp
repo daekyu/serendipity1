@@ -205,6 +205,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 	<article class="content">
 		<div class="container">
 			<form action="" method="post">
+			<input type="hidden" name="user_Num" value="${user_num}">
+			<input type="hidden" name="board_Num" value="${dto.board_Num}">
 				<table class="table center">
 					<tr>
 						<td><h6>제목: </h6></td>
@@ -212,7 +214,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					</tr>
 					<tr>
 						<td>인원수</td>
-						<td><input class="form-control" type="text" value="${dto.board_Capacity}"></td>
+						<td><input class="form-control" type="text" name="board_Capacity" value="${dto.board_Capacity}"></td>
 						<td>날짜</td>
 						<td><input class="form-control" type="text"></td>
 						<td>가격</td>

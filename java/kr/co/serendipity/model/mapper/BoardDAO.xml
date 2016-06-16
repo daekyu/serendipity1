@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
 	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng,
 	 meeting_Place,meeting_Address)
-	 VALUES( board_seq.NEXTVAL, 6, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , '위도33', '경도 22', '02', 2, #{price}, '위도경도',
+	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', 3, SYSDATE , '위도33', '경도 22', '02', 2, #{price}, '위도경도',
 	 #{meeting_Place}, #{meeting_Address})
 	</insert>
 	
@@ -73,8 +73,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<update id="update">
 	 update board set user_Num=#{user_Num}, 
 	 board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='사진', 
-	 board_Capacity=3, board_Date=SYSDATE, board_Latitude=#{board_Latitude}, 
+	 board_Capacity=1, board_Date=SYSDATE, board_Latitude=#{board_Latitude}, 
 	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=1, price=#{price} 
+	 where board_Num=#{board_Num}
+	</update>
+	
+	<update id="Gupdate">
+	 update board set user_Num=#{user_Num}, 
+	 board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='사진', 
+	 board_Capacity=3, board_Date=SYSDATE, board_Latitude=#{board_Latitude}, 
+	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=2, price=#{price} 
 	 where board_Num=#{board_Num}
 	</update>
  	

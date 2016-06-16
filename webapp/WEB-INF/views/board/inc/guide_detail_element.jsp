@@ -169,6 +169,7 @@
 						<select>
 							<option>16.06.02 - 2명남음</option>
 						</select>
+						
 					  <button class="btn add-cart btn-default btn-lg">신청하기</button>
 					  <div class="number">
 					  	

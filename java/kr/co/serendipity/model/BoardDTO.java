@@ -20,7 +20,7 @@ public class BoardDTO {
 	private String board_Picture4;
 	private String board_Picture5;
 	private int board_Capacity;
-	private Date board_Date;
+	private String board_Date;
 	private String board_Latitude;
 	private String board_Longitude;
 	private String local_Code;

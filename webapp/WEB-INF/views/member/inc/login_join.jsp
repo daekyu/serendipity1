@@ -69,104 +69,6 @@
 
 
 
-
-/* $(document).ready(function(){
-	
-	
-	$("#loginbutton").click(function(){
-		
-	var tell_pattern =/(^01[016789]$)/;
-		
-	  
-      //alert("ok");
-      if ($("#name").val() == "") {
-          alert("이름을 꼭 입력하세요!");
-          $("#name").focus();
-          
-      } else if ($("#id_1").val() == "") {
-          alert("아이디를 꼭 입력하세요!");
-          $("#id_1").focus();
-          
-      } 
-     
-         else if ($("#pw_1").val() == "") {
-          alert("비밀번호를 꼭 입력하세요!");
-          $("#pw_1").focus();
-
-      }else if ($("#confirm_pw").val() == "") {
-          alert("비밀번호확인을 꼭 입력하세요!");
-          $("#confirm_pw").focus();
-
-      } else if ($("#pw_1").val() != $("#confirm_pw").val()) {
-          alert("비밀번호와 비밀번호 확인이 일치하지않습니다.");
-          $("#pw_1").val("");
-          $("#confirm_pw").val("");
-          $("#pw_1").focus();
-
-      } else if ($("#gender").val() =="") {
-          alert("성별을 꼭 입력하세요!");
-          $("#gender").focus();
-
-      } else if ($("#age").val() == "") {
-          alert("나이를 꼭 입력하세요!");
-          $("#age").focus();
-
-      } else if ($("#country_code").val() == "") {
-          alert("국가코드를 꼭 입력하세요!");
-          $("#country_code").focus();
-          
-      }else if ($("#tel").val() == "") {
-          alert("전화번호 첫번째자리 입력하세요!");
-          $("#tel").focus();
-
-      } else if ($("#tel").val().length != 11 & $("#tel").val().length > 9) {
-
-          alert("전화번호를 올바르게 입력하세요!");
-          $("#tel").val("");
-          $("#tel").focus();
-
-      } else if (isNaN($("#tel").val())) {
-          alert("전화번호를 올바르게 입력하세요!");
-          $("#tel").val("");
-          $("#tel").focus();
-
-      } */
-      
-   
-      
-      /*
-      
-      if($("#tel1").val() != "" & $("#tel1").val().length ==3 & !isNaN($("#tel1").val()) ){
-      alert("okkkkkkk");
-      var pattern = /(^01[016789]$)/; //정규식 슬래쉬(/)로 시작해서, 슬래쉬(/)로 끝났다.
-      var tel1=$("#tel1").val();
-      if(! pattern.test(tel1)){
-      //틀리면
-      alert("010, 011, 016, 017, 018, 019,o19만 가능합니다.")  
-      $("#tel").val("")
-      $("#tel").focus();
-             
-          }
-      }*/
-
-      
-    /*   else if ($("#email").val() == "") {
-          alert("이메일을 꼭 입력하세요!");
-          $("#email").focus();
-          
-      } else {
-          alert("회원가입이 완료 되었습니다");
-      }
-
-		
-	});
-	
-	
-	
-}); */
-
-
-
 $(document).ready(function(){
 	
 	
@@ -190,7 +92,30 @@ $(document).ready(function(){
 									+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.");
 							id.focus();
 							return false;
-						}else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
+							
+							
+				
+						/* else if ($('#id_1').val() != ''){
+							
+							$.ajax({
+					        	  type : "post",
+					        	  url : "IdCheck.htm",
+					        	  data : {"id" : $('#id_1').val()},
+					        	  success : function(data) {
+					        		  console.log(data);
+					        		  if(data == 0) {
+					        			  alert("사용가능한 아이디입니다.");
+					        			  $('#id_1').focus();
+					        			  return false;
+					        		  } else {
+					        			  $('#joinMember').submit();
+					        		  }
+					        	  }
+					          });
+						
+			
+					
+					} */ }else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
 							alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)');
 							pw_1.focus();
 							return false;
@@ -224,13 +149,46 @@ $(document).ready(function(){
 						} 
 						
 						
-						
-									
-
 			});
     }); // 유효성체크
     
-
+    
+    
+    //비동기 아이디 중복 체크
+  $(document).ready(function(){
+    	
+    	
+    	$("#id_button").click(function(){
+    
+    		if ($('#id_1').val() == ''){
+    			alert("ID를 입력해주세요");
+    			$("#id_1").focus();
+    			return false;
+    			
+    		}else{
+				$.ajax({
+		        	  type : "post",
+		        	  url : "IdCheck.htm",
+		        	  data : {"id" : $('#id_1').val()},
+		        	  success : function(data) {
+		        		  console.log(data);
+		        		  if(data == 0) {
+		        			  alert("사용가능한 아이디입니다.");
+		        			  $('#id_1').focus();
+		        			  return false;
+		        		  } else {
+		        			  alert("사용불가능한 아이디입니다.");
+		        			  $('#id_1').focus();
+		        			  return false;
+		        		  }
+		        	  }
+		          });
+    			
+    		}
+    	});
+    }); 
+    
+   
 
     $(document).ready(function(){
     	
@@ -312,7 +270,7 @@ $(document).ready(function(){
 		  
 		  <!-- 회원가입 Form태그 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
-			<form class="form-box register-form form-validator" action="joinMember.htm" method="post">
+			<form class="form-box register-form form-validator" action="joinMember.htm" method="post" id="joinMember">
 			  <h3 class="title">Registered customers</h3>
 			  <p>If you have an account with us, please log in.</p>
 			  
@@ -325,7 +283,7 @@ $(document).ready(function(){
 			  <div class="form-group">
 				<label>아이디: <span class="required" id="id_text"></span></label>
 				<input type="text" class="form-control" name="id" id="id_1">
-				
+				<input type="button" class="btn btn-default" id="id_button" value="아이디확인"/>
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
 				  data-bv-message="The username is not valid"

@@ -41,5 +41,5 @@ public interface ReviewDAO {
 	public List<HashMap<String, Object>> filteringReviewList(String local_code) throws ClassNotFoundException, SQLException;
 	
 	//여행후기 게시판 리스트 정렬
-	public List<HashMap<String, Object>> orderReviewList(String sort, String local_code) throws ClassNotFoundException, SQLException;
+	public List<HashMap<String, Object>> orderReviewList(String order) throws ClassNotFoundException, SQLException;
 }

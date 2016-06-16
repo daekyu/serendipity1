@@ -57,7 +57,7 @@
 					</li>
 					
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/travel_review/review_list.htm?sort=review_num&local_code=02"><spring:message code="index.header3"/></a>
+					  <a href="${pageContext.request.contextPath}/travel_review/review_list.htm"><spring:message code="index.header3"/></a>
 					</li>
 					
 					<c:if test="${!empty sessionScope.user_num}">

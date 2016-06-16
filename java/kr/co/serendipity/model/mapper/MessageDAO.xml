@@ -50,8 +50,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from rcv_message where message_num=#{message_num}
 	</delete>
 	
-	<select id="msgNotificationCheck" resultType="hashmap">
-		select m.id, m.profile_picture, rm.message_num from rcv_message rm, member m where rm.sender=m.user_num and rm.receiver=#{receiver} and rm.msg_alarm=0
+	<select id="msgNotificationCheck" resultType="kr.co.serendipity.model.RCV_MessageDTO">
+		select * from rcv_message where receiver=#{receiver} and msg_alarm=0
 	</select>
 	
 	<update id="changeNotificationState">

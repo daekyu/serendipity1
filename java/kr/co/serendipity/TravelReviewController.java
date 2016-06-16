@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -196,10 +197,9 @@ public class TravelReviewController {
 		return count;
 	}
 	
-	// �뙎湲��벐湲� 
+	// 댓글작성
 	@RequestMapping(value="review_detail.htm", method=RequestMethod.POST)
-	public ModelAndView replyWrite(ReplyDTO dto) throws ClassNotFoundException, SQLException{
-		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
+	public String replyWrite(ReplyDTO dto, Model model) throws ClassNotFoundException, SQLException{
 		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
 		ReviewDTO reviewdto = new ReviewDTO();
 		reviewdto.setReview_num(dto.getReview_num());
@@ -214,11 +214,16 @@ public class TravelReviewController {
 		likedto.setUser_num(dto.getUser_num());
 		int result = likedao.isLike(likedto);
 		int count = likedao.reviewLikeCount(likedto.getReview_num());
-		mav.addObject("reviewdetail",reviewdetail);
+		
+		model.addAttribute("reviewdetail", reviewdetail);
+		model.addAttribute("replylist", replylist);
+		model.addAttribute("result", result);
+		model.addAttribute("count", count);
+		/*mav.addObject("reviewdetail",reviewdetail);
 		mav.addObject("replylist",replylist);
 		mav.addObject("result",result);
-		mav.addObject("count",count);
-		return mav;
+		mav.addObject("count",count);*/
+		return "redirect:/travel_review/review_detail.htm?review_num="+dto.getReview_num()+"&user_num="+dto.getUser_num();
 	}
 	
 	//�뙎湲��궘�젣
@@ -411,7 +416,10 @@ public class TravelReviewController {
 	
 	@RequestMapping("changeReplyState.htm")
 	public @ResponseBody int changeReplyNotification(ReplyDTO replydto) throws ClassNotFoundException, SQLException {
+		System.out.println("제발 여기좀 타자");
 		ReplyDAO dao = sqlsession.getMapper(ReplyDAO.class);
+		
+		System.out.println("여기는 타는거니?");
 		return dao.changeReplyNotificationState(replydto);
 	}
 }

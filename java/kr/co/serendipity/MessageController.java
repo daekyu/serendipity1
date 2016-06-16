@@ -7,7 +7,6 @@
 
 package kr.co.serendipity;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -77,8 +76,9 @@ public class MessageController {
 	}
 	
 	@RequestMapping("msgNotificationCheck.htm")
-	public @ResponseBody List<HashMap<String, Object>> msgNotificationCheck(RCV_MessageDTO rcv_messagedto) {
+	public @ResponseBody List<RCV_MessageDTO> msgNotificationCheck(RCV_MessageDTO rcv_messagedto) {
 		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
+		
 		return dao.msgNotificationCheck(rcv_messagedto);
 	}
 	

@@ -158,7 +158,7 @@
 			</div>
 			
 			<div class="price-box">
-			  <span class="price">${dto.price} / a day</span>
+			  <span class="price">${dto.price} / a day / ${dto.board_Date}</span>
 			</div>
 			
 			<c:choose>
@@ -168,10 +168,9 @@
 				</c:when>
 				
 				<c:otherwise>
-					<select>
-						<option></option>
-						
-					</select>
+				
+					<td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
+				
 					
 					<select>
 						<option></option>

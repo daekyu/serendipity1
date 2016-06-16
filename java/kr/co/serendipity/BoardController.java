@@ -7,10 +7,12 @@
 package kr.co.serendipity;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,149 +33,195 @@ import kr.co.serendipity.model.ReportDTO;
 @Controller
 @RequestMapping("/board/")
 public class BoardController {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	@RequestMapping("traveler_list.htm")
 	public String travelerList(String pg, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("travelerList entrance");
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		
+
 		int page = 1;
 		int startpage = 0;
 		int endpage = 0;
 		int maxpage = 0;
-		
-		
-		if(pg != null){
+
+		if (pg != null) {
 			page = Integer.parseInt(pg);
 		}
 		System.out.println("pg = " + pg);
 		System.out.println("page = " + page);
-		
+
 		List boardList = dao.getBoardList(page);
-		
+		System.out.println("여기는?2");
 		int listCount = dao.getListCount();
 		System.out.println("boardList : " + boardList.size());
 		System.out.println("listCount : " + listCount);
-		
+
 		maxpage = (int) ((double) listCount / 6 + 0.95);
 		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 		endpage = startpage + 10 - 1;
-		
+
 		if (endpage > maxpage) {
 			endpage = maxpage;
 		}
-		
+
 		model.addAttribute("list", boardList);
 		model.addAttribute("page", page);
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("listCount", listCount);
-		
+
 		System.out.println("page= " + page);
 		System.out.println("maxpage= " + maxpage);
 		System.out.println("startpage= " + startpage);
 		System.out.println("endpage= " + endpage);
-		
+
 		return "/board/traveler_list";
 	}
-	
+
 	@RequestMapping("guide_list.htm")
 	public String guideList(String pg, Model model) throws ClassNotFoundException, SQLException {
-		
+
 		System.out.println("guideList entrance");
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		
+
 		int page = 1;
 		int startpage = 0;
 		int endpage = 0;
 		int maxpage = 0;
-		
-		
-		if(pg != null){
+
+		if (pg != null) {
 			page = Integer.parseInt(pg);
 		}
 		System.out.println("pg = " + pg);
 		System.out.println("page = " + page);
-		
+
 		List boardList = dao.getGBoardList(page);
 		int listCount = dao.getGListCount();
 		System.out.println("boardList : " + boardList.size());
 		System.out.println("listCount : " + listCount);
-		
+
 		maxpage = (int) ((double) listCount / 6 + 0.95);
 		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 		endpage = startpage + 10 - 1;
-		
+
 		if (endpage > maxpage) {
 			endpage = maxpage;
 		}
-		
+
 		model.addAttribute("list", boardList);
 		model.addAttribute("page", page);
 		model.addAttribute("maxpage", maxpage);
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("listCount", listCount);
-		
+
 		System.out.println("page= " + page);
 		System.out.println("maxpage= " + maxpage);
 		System.out.println("startpage= " + startpage);
 		System.out.println("endpage= " + endpage);
-		
+
 		return "/board/guide_list";
 	}
-	
-	@RequestMapping(value="guide_writeform.htm", method=RequestMethod.GET)
+
+	@RequestMapping(value = "guide_writeform.htm", method = RequestMethod.GET)
 	public String guideWriteform(String user_num, Model model) {
 		System.out.println("guide_writeform GET entrance");
 		System.out.println("user_num : " + user_num);
 		model.addAttribute("user_num", user_num);
 		return "/board/guide_writeform";
 	}
-	
-	@RequestMapping(value="guide_writeform.htm", method=RequestMethod.POST)
+
+	@RequestMapping(value = "guide_writeform.htm", method = RequestMethod.POST)
 	public String guideWriteform(BoardDTO dto) throws ClassNotFoundException, SQLException {
 		System.out.println("guide_writeform POST entrance");
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.Gwrite(dto);
-		
+
 		return "redirect:/board/guide_list.htm";
 	}
-	
-	@RequestMapping(value="traveler_writeform.htm", method=RequestMethod.GET)
+
+	@RequestMapping(value = "traveler_writeform.htm", method = RequestMethod.GET)
 	public String travelerWriteform(String user_num, Model model) {
 		System.out.println("traveler_writeform GET entrance");
 		System.out.println("user_num : " + user_num);
+
 		model.addAttribute("user_num", user_num);
 		return "/board/traveler_writeform";
 	}
-	
-	@RequestMapping(value="traveler_writeform.htm", method=RequestMethod.POST)
-	public String travelerWriteform(BoardDTO dto) throws ClassNotFoundException, SQLException {
+
+	@RequestMapping(value = "traveler_writeform.htm", method = RequestMethod.POST)
+	public String travelerWriteform(BoardDTO dto, MultipartHttpServletRequest request)
+			throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("traveler_writeform POST entrance");
+
+		List<MultipartFile> flist = request.getFiles("pic");
+		List<String> filenames = new ArrayList<String>();
+
+		System.out.println("0번 파일 : " + flist.get(0).getOriginalFilename());
+		System.out.println("1번 파일 : " + flist.get(1).getOriginalFilename());
+		System.out.println("2번 파일 : " + flist.get(2).getOriginalFilename());
+		System.out.println("3번 파일 : " + flist.get(3).getOriginalFilename());
+		System.out.println("4번 파일 : " + flist.get(4).getOriginalFilename());
+
+		System.out.println("flist.size() : " + flist.size());
+
+		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
+		System.out.println("실제 파일 업로드 경로 : " + realFolder);
+		if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
+
+		} else {
+			for (int i = 0; i < 5; i++) {
+
+				String saveFileName = null;
+				if (flist.get(i).getOriginalFilename().equals("")) {
+					filenames.add("no_picture");
+				} else {
+					String genId = UUID.randomUUID().toString();
+					String originalfileName = flist.get(i).getOriginalFilename();
+
+					System.out.println("filename : " + originalfileName);
+
+					saveFileName = genId + "_" + originalfileName;
+
+					String savePath = realFolder + "\\" + saveFileName;
+
+					flist.get(i).transferTo(new File(savePath));
+					filenames.add(saveFileName);
+				}
+			}
+		}
+		System.out.println("filenames.get(0) : " + filenames.get(0));
+		System.out.println("filenames.get(1) : " + filenames.get(1));
+		 dto.setBoard_Picture1(filenames.get(0));
+		 System.out.println("dto.getBoard_Picture1() : " + dto.getBoard_Picture1());
+	     dto.setBoard_Picture2(filenames.get(1));
+	     dto.setBoard_Picture3(filenames.get(2));
+	     dto.setBoard_Picture4(filenames.get(3)); 
+	     dto.setBoard_Picture5(filenames.get(4));
+
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.write(dto);
-		
+
 		return "redirect:/board/traveler_list.htm";
 	}
-	
-	@RequestMapping(value="traveler_detail.htm")
+
+	@RequestMapping(value = "traveler_detail.htm")
 	public String travelerDetail(int board_num, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("travelerDetail entrance");
 		System.out.println("board_num : " + board_num);
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		
+
 		BoardDTO dto = dao.getBoardDetail(board_num);
 		model.addAttribute("dto", dto);
-		
+
 		return "/board/travel_detail";
 	}
-	
-	@RequestMapping(value="guide_detail.htm")
+
+	@RequestMapping(value = "guide_detail.htm")
 	public String guideDetail(int board_num, int user_num, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("guideDetail entrance");
 		System.out.println("board_num : " + board_num);
@@ -183,35 +231,34 @@ public class BoardController {
 		model.addAttribute("memberdto", dao.getWriterDetail(user_num));
 		return "/board/guide_detail";
 	}
-	
-	
-	@RequestMapping(value="board_delete.htm")
+
+	@RequestMapping(value = "board_delete.htm")
 	public String boardDelete(int board_num, int check) throws ClassNotFoundException, SQLException {
 		System.out.println("boardDelete entrance");
 		System.out.println("board_num : " + board_num);
 		System.out.println("check : " + check);
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		
+
 		dao.deleteBoard(board_num);
-		
-		if(check == 1){
+
+		if (check == 1) {
 			return "redirect:/board/traveler_list.htm";
-		}else{
+		} else {
 			return "redirect:/board/guide_list.htm";
 		}
 	}
-	
-	@RequestMapping(value="guide_modify.htm", method=RequestMethod.GET)
+
+	@RequestMapping(value = "guide_modify.htm", method = RequestMethod.GET)
 	public ModelAndView modifyGuideForm(int board_num) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		
+
 		ModelAndView mav = new ModelAndView("/board/guide_modifyform");
 		mav.addObject("dto", dao.getBoardDetail(board_num));
-		
+
 		return mav;
 	}
-	
-	@RequestMapping(value="guide_modify.htm", method=RequestMethod.POST)
+
+	@RequestMapping(value = "guide_modify.htm", method = RequestMethod.POST)
 	public String modifyGuideForm(BoardDTO dto) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		System.out.println("guide_modify.htm post");
@@ -220,19 +267,18 @@ public class BoardController {
 		dao.Gupdate(dto);
 		return "redirect:/board/guide_list.htm";
 	}
-	
-	@RequestMapping(value="traveler_modify.htm", method=RequestMethod.GET)
+
+	@RequestMapping(value = "traveler_modify.htm", method = RequestMethod.GET)
 	public ModelAndView modifyTravelerForm(int board_num) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		
+
 		ModelAndView mav = new ModelAndView("/board/traveler_modifyform");
 		mav.addObject("dto", dao.getBoardDetail(board_num));
-		
+
 		return mav;
 	}
-	
 
-	@RequestMapping(value="traveler_modify.htm", method=RequestMethod.POST)
+	@RequestMapping(value = "traveler_modify.htm", method = RequestMethod.POST)
 	public String modifyTravelerForm(BoardDTO dto) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		System.out.println("traveler_modify.htm post");

@@ -185,21 +185,19 @@
 						<br>page: ${page}<br> nowpage: ${nowpage}<br>
 						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
 						endpage: ${endpage}<br> listCount: ${listCount}<br> 
-<%-- <<<<<<< HEAD
 
-							href="${pageContext.request.contextPath}/board/guide_writeform.htm?user_num=${sessionScope.user_num}"
+						<c:if test="${!empty sessionScope.user_num}">
+							<a href="${pageContext.request.contextPath}/board/guide_writeform.htm?user_num=${sessionScope.user_num}"
 							class="btn btn-default">글작성<span
-
-							<a href="${pageContext.request.contextPath}/board/guide_writeform.htm"
-							class="btn btn-default"> <spring:message code="board.traveler1"/><span
-
 							class="glyphicon glyphicon-arrow-right"></span></a>
-======= --%>
-						<a href="${pageContext.request.contextPath}/board/guide_writeform.htm"
-							class="btn btn-default"><spring:message code="board.traveler1"/>
-							<span class="glyphicon glyphicon-arrow-right"></span></a>
+						</c:if>
 
 
+							<%-- <a href="${pageContext.request.contextPath}/board/guide_writeform.htm"
+							class="btn btn-default"> <spring:message code="board.traveler1"/><span
+							class="glyphicon glyphicon-arrow-right"></span></a>
+ --%>
+						
 				</div>
 				<!-- .pagination-box -->
 				

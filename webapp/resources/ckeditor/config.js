@@ -14,7 +14,7 @@ CKEDITOR.editorConfig = function( config ) {
 	                 ['Bold','Italic','Underline','Strike', 'Subscript','Superscript'],
 	                 ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
 	                 ['NumberedList','BulletedList','Outdent','Indent','Blockquote','CreateDiv'],
-	                 ['Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+	                 /*['Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],*/
 	                 ['Styles','Format','Font','FontSize','TextColor','BGColor','Maximize', 'ShowBlocks']
 	             ];
 	

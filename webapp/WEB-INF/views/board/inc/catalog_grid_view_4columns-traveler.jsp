@@ -306,13 +306,10 @@
 						endpage: ${endpage}<br> listCount: ${listCount}<br>
 						
 						<c:if test="${!empty sessionScope.user_num}">
-						<%-- 	<a href="${pageContext.request.contextPath}/board/traveler_writeform.htm?user_num=${sessionScope.user_num}"
+						 	<a href="${pageContext.request.contextPath}/board/traveler_writeform.htm?user_num=${sessionScope.user_num}"
 								class="btn btn-default">글작성<span
-								class="glyphicon glyphicon-arrow-right"></span></a> --%>
-								
-								 <a href="${pageContext.request.contextPath}/board/traveler_writeform.htm"
-							class="btn btn-default"><spring:message code="board.guide2"/>
-							<span class="glyphicon glyphicon-arrow-right"></span></a>
+								class="glyphicon glyphicon-arrow-right"></span></a>
+								 
 						</c:if>
 					</div>
 					<!-- .pagination-box -->

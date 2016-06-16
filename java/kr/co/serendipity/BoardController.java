@@ -54,7 +54,7 @@ public class BoardController {
 		System.out.println("page = " + page);
 
 		List boardList = dao.getBoardList(page);
-		System.out.println("여기는?2");
+		
 		int listCount = dao.getListCount();
 		System.out.println("boardList : " + boardList.size());
 		System.out.println("listCount : " + listCount);

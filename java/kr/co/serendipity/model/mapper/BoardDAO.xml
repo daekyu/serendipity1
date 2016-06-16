@@ -4,19 +4,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.serendipity.model.BoardDAO">
-   <insert id="write">
-    INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
-    board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng,
-    meeting_Place, meeting_Address) 
-    VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', 3, #{board_Date} , #{board_Latitude}, #{board_Longitude}, '02', 1, #{price}, '위도경도',
-    #{meeting_Place}, #{meeting_Address})
-   </insert>
-   
-   <select id="getBoardList" resultType="kr.co.serendipity.model.BoardDTO">
-     <!-- 
-      int srow = 1 + (page-1)*5; 
-      int erow = 5 + (page-1)*5;
-     -->
+	<insert id="write">
+	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, board_Picture2, 
+	 board_Picture3, board_Picture4, board_Picture5,
+	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng,
+	 meeting_Place, meeting_Address) 
+	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, #{board_Picture1},
+	 #{board_Picture2}, #{board_Picture3}, #{board_Picture4}, #{board_Picture5},
+	 1, #{board_Date} , #{board_Latitude}, #{board_Longitude}, '02', 1, #{price}, '위도경도',
+	 #{meeting_Place}, #{meeting_Address})
+	</insert>
+	
+	<select id="getBoardList" resultType="kr.co.serendipity.model.BoardDTO">
      SELECT * FROM
                ( SELECT ROWNUM NUM, N.* FROM 
                      ( SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N
@@ -32,14 +31,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <insert id="Gwrite">
-    INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
-    board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng,
-    meeting_Place,meeting_Address)
-    VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', 3, #{board_Date} , '위도33', '경도 22', '02', 2, #{price}, '위도경도',
-    #{meeting_Place}, #{meeting_Address})
-   </insert>
-   
-   <select id="getGBoardList" resultType="kr.co.serendipity.model.BoardDTO">
+	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
+	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng,
+	 meeting_Place,meeting_Address)
+	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', #{board_Capacity}, #{board_Date} , '위도33', '경도 22', '02', 2, #{price}, '위도경도',
+	 #{meeting_Place}, #{meeting_Address})
+	</insert>
+	
+	<select id="getGBoardList" resultType="kr.co.serendipity.model.BoardDTO">
      SELECT * FROM
                ( SELECT ROWNUM NUM, N.* FROM 
                      ( SELECT * FROM BOARD where category_num=2 ORDER BY BOARD_NUM DESC) N
@@ -54,36 +53,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        DELETE board WHERE board_num=#{board_num}
     </delete>
 
-    <select id="getIndexTravelerRecent" resultType="kr.co.serendipity.model.BoardDTO">
-       SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
-      ( SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N) 
-      WHERE NUM <![CDATA[ <= ]]>4
-    </select>
-    
-    <select id="getIndexGuideRecent" resultType="kr.co.serendipity.model.BoardDTO">
-       SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
-      ( SELECT * FROM BOARD where category_num=2 ORDER BY BOARD_NUM DESC) N) 
-      WHERE NUM <![CDATA[ <= ]]>4
-    </select>
-    
-    <select id="getWriterDetail" resultType="kr.co.serendipity.model.MemberDTO">
-       select * from member where user_num=#{user_num}
-    </select>
-    
-    <update id="update">
-    update board set user_Num=#{user_Num}, 
-    board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='사진', 
-    board_Capacity=1, board_Date=SYSDATE, board_Latitude=#{board_Latitude}, 
-    board_Longitude=#{board_Longitude}, local_Code='02', category_Num=1, price=#{price} 
-    where board_Num=#{board_Num}
-   </update>
-   
-   <update id="Gupdate">
-    update board set user_Num=#{user_Num}, 
-    board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='사진', 
-    board_Capacity=3, board_Date=SYSDATE, board_Latitude=#{board_Latitude}, 
-    board_Longitude=#{board_Longitude}, local_Code='02', category_Num=2, price=#{price} 
-    where board_Num=#{board_Num}
-   </update>
-    
+ 	<select id="getIndexTravelerRecent" resultType="kr.co.serendipity.model.BoardDTO">
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM (SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N) WHERE NUM <![CDATA[ <= ]]>4
+ 	</select>
+ 	
+ 	<select id="getIndexGuideRecent" resultType="kr.co.serendipity.model.BoardDTO">
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
+		( SELECT * FROM BOARD where category_num=2 ORDER BY BOARD_NUM DESC) N) 
+		WHERE NUM <![CDATA[ <= ]]>4
+ 	</select>
+ 	
+ 	<select id="getWriterDetail" resultType="kr.co.serendipity.model.MemberDTO">
+ 		select * from member where user_num=#{user_num}
+ 	</select>
+ 	
+ 	<update id="update">
+	 update board set user_Num=#{user_Num}, 
+	 board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='#{board_Picture1}', 
+	 board_Picture2='#{board_Picture2}', board_Picture3='#{board_Picture3}', 
+	 board_Picture4='#{board_Picture4}', board_Picture5='#{board_Picture5}',
+	 board_Capacity=1, board_Date='날짜', board_Latitude=#{board_Latitude},
+	 meeting_Place=#{meeting_Place}, meeting_Address=#{meeting_Address}, 
+	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=1, price=#{price} 
+	 where board_Num=#{board_Num}
+	</update>
+	
+	<update id="Gupdate">
+	 update board set user_Num=#{user_Num}, 
+	 board_Title=#{board_Title}, board_Content=#{board_Content}, board_Picture1='사진', 
+	 board_Capacity=3, board_Date='날짜', board_Latitude=#{board_Latitude}, 
+	 meeting_Place=#{meeting_Place}, meeting_Address=#{meeting_Address},
+	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=2, price=#{price} 
+	 where board_Num=#{board_Num}
+	</update>
 </mapper>

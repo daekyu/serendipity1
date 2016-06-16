@@ -303,11 +303,19 @@
 						<br>임시 출력창
 						<br>page: ${page}<br> nowpage: ${nowpage}<br>
 						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
+						endpage: ${endpage}<br> listCount: ${listCount}<br>
+						
+						<c:if test="${!empty sessionScope.user_num}">
+							<a href="${pageContext.request.contextPath}/board/traveler_writeform.htm?user_num=${sessionScope.user_num}"
+								class="btn btn-default">글작성<span
+								class="glyphicon glyphicon-arrow-right"></span></a>
+						</c:if>
+<%-- =======
 <<<<<<< HEAD
 						endpage: ${endpage}<br> listCount: ${listCount}<br> <a
 
-							<%-- href="${pageContext.request.contextPath}/board/traveler_writeform.htm?user_num=${sessionScope.user_num}"
-							class="btn btn-default">글작성<span --%>
+							href="${pageContext.request.contextPath}/board/traveler_writeform.htm?user_num=${sessionScope.user_num}"
+							class="btn btn-default">글작성<span
 
 							href="${pageContext.request.contextPath}/board/traveler_writeform.htm"
 							class="btn btn-default"><spring:message code="board.guide2"/><span
@@ -319,6 +327,7 @@
 							class="btn btn-default"><spring:message code="board.guide2"/>
 							<span class="glyphicon glyphicon-arrow-right"></span></a>
 >>>>>>> 04c69521691ca1c0126b8f4d4d4b4bf94dbff683
+>>>>>>> adfe60b09d0a1a5b694655af45fafd0367851363 --%>
 					</div>
 					<!-- .pagination-box -->
 				</div>

@@ -50,18 +50,11 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
          // 강제 서브밋
          $('#bofom').submit();
       });
-   
-    
-    
     
     $(function() {
        $("#datepicker").datepicker();
     
     });
-    
-    
-    
-    
     
    var geocoder;
    var map;
@@ -239,115 +232,126 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
    
 </script>
 <section id="main">
-   <header class="page-header">
-      <div class="container">
-         <h1 class="title">여행자가 가이드를 구하기 위해 글 작성하는 곳</h1>
-      </div>
-   </header>
-
-   <article class="content">
-      <div class="container">
-         <form action="" id="bofom" method="post">
-            <input type="hidden" name="user_Num" value="${user_num}">
-            <table class="table center">
-               <tr>
-                  <td><h6>글 제목</h6></td>
-                  <td colspan="5"><input class="form-control" type="text"
-                     name="board_Title"></td>
-               </tr>
-               <tr>
-                  <td>날짜</td>
-                  <td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
-                  <td>지불할 가격</td>
-                  <td><input class="form-control" type="text" name="price"></td>
-               </tr>
-               <tr>
-                  <td>설명</td>
-                  <td colspan="5">
-                     <!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
-                     <!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
-
-
-                     <textarea name="board_Content" id="ckeditor"></textarea> 
-                     <script type="text/javascript">
-                     CKEDITOR.replace( 'ckeditor',{
-                          width:'90%',
-                          height:'400px'
-                      
-                  });
-                </script>
+	<header class="page-header">
+		<div class="container">
+			<h1 class="title">가이드가 여행자를 구하기 위해 글을 올리는 곳</h1>
+		</div>
+	</header>
 
 
 
-                  </td>
-               </tr>
-               
-               
-         
+	<article class="content">
+		<div class="container form-group">
+			<form action="" id="bofom"  method="post">
+			<input type="hidden" name="user_Num" value="${user_num}">
+				<table class="table table-responsive center">
+					<tr>
+						<td><h5>글 제목</h5></td>
+						<td colspan="5"><input class="form-control" type="text" name="board_Title"></td>
+					</tr>
+					<tr>
+						<td>인원수</td>
+						<td><input class="form-control" type="text" name="board_Capacity"></td>
+						<td>날짜</td>
+						<td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
+						<td>가격</td>
+						<td><input class="form-control" type="text" name="price"></td>
+					</tr>
+					<tr>
+						<td>설명</td>
+						<td colspan="5">
+						<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
+						
+							<textarea name="board_Content" id="ckeditor"></textarea>
+                  	
+                  	 <script>
+                  	$(function(){
+                        
+                        CKEDITOR.replace( 'ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
+                            width:'100%',
+                            height:'400px',
+                            filebrowserImageUploadUrl: '' //여기 경로로 파일을 전달하여 업로드 시킨다.
+                        });
+                         
+                         
+                        CKEDITOR.on('dialogDefinition', function( ev ){
+                            var dialogName = ev.data.name;
+                            var dialogDefinition = ev.data.definition;
+                          
+                           switch (dialogName) {
+                                case 'image': //Image Properties dialog
+                                    dialogDefinition.removeContents('info');
+                                	dialogDefinition.removeContents('Link');
+                                    dialogDefinition.removeContents('advanced');
+                                    break;
+                            }
+                        });
+                         
+                    });
+					 </script>
+							
+						</td>
+					</tr>
+					<tr>
+						<td>사진</td>
+						<td id="addPic" colspan="4"><input type="file" id="pic0" name="pic0"></td>
+						<td align="center">
+							<button type="button" id="addBtn" class="btn btn-success">추가</button>
+							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
+						</td>
+					</tr>
+					<tr>
+						<td>Meeting Point</td>
+						<td colspan="5">
+													<div id="container" class="row">
+							<div class="row" id="gmap_canvas" style="height: 400px;"></div>
+							<div class="actions form-group row">
+								<div class="button">
+									<label for="gmap_where">Where:</label> <input id="gmap_where"
+										class="form-control" type="text" name="gmap_where">
+								</div>
+								<div id="button2" class="btn btn-success"
+									onclick="findAddress(); return false;">Search for address</div>
+								<div class="button">
+									<label for="gmap_type">Type:</label> <select id="gmap_type">
+										<option value="art_gallery">art_gallery</option>
+										<option value="atm">atm</option>
+										<option value="bank">bank</option>
+										<option value="bar">bar</option>
+										<option value="cafe">cafe</option>
+										<option value="food">food</option>
+										<option value="store">store</option>
+										<option value="subway_station">subway_station</option>
+									</select>
+								</div>
+								<div class="button">
+									<label for="gmap_radius">Radius:</label> <select
+										id="gmap_radius">
+										<option value="500">500</option>
+										<option value="1000">1000</option>
+										<option value="1500">1500</option>
+										<option value="5000">5000</option>
+									</select>
+								</div>
+								<input type="hidden" id="lat" name="board_Latitude"/>
+								<input type="hidden" id="lng" name="board_Longitude"/>
+								<input type="hidden" id="meeting_place" name="meeting_Place"/>
+								<input type="hidden" id="meeting_address" name="meeting_Address"/>
+								<div id="button1" class="btn btn-success"
+									onclick="findPlaces(); return false;">Search for objects</div>
+							</div>
+						</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" align="center">
+							<input type="submit" class="btn btn-success" value="등록">
+							<input type="reset" class="btn btn-danger" value="취소">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</article><!-- .content -->
+</section><!-- #main -->
 
-
-
-            <tr>
-               <td>Meeting Point</td>
-               <td colspan="5">
-                  <div id="container" class="row">
-                     <div id="gmap_canvas" style="height: 500px"></div>
-                     <div class="actions">
-                        <div class="button">
-                           <label for="gmap_where">Where:</label> <input id="gmap_where"
-                              class="form-control" type="text" name="gmap_where">
-                        </div>
-                        <div id="button2" class="btn btn-success"
-                           onclick="findAddress(); return false;">Search for address</div>
-                        <div class="button">
-                           <label for="gmap_type">Type:</label> <select id="gmap_type">
-                              <option value="art_gallery">art_gallery</option>
-                              <option value="atm">atm</option>
-                              <option value="bank">bank</option>
-                              <option value="bar">bar</option>
-                              <option value="cafe">cafe</option>
-                              <option value="food">food</option>
-                              <option value="store">store</option>
-                              <option value="subway_station">subway_station</option>
-                           </select>
-                        </div>
-                        <div class="button">
-                           <label for="gmap_radius">Radius:</label> <select
-                              id="gmap_radius">
-                              <option value="500">500</option>
-                              <option value="1000">1000</option>
-                              <option value="1500">1500</option>
-                              <option value="5000">5000</option>
-                           </select>
-                        </div>
-                        <input type="hidden" id="lat" name="board_Latitude"/>
-                        <input type="hidden" id="lng" name="board_Longitude"/>
-                        <input type="hidden" id="meeting_place" name="meeting_Place"/>
-                        <input type="hidden" id="meeting_address" name="meeting_Address"/>
-                        <div id="button1" class="btn btn-success"
-                           onclick="findPlaces(); return false;">Search for objects</div>
-                     </div>
-                  </div>
-               </td>
-            </tr>
-            <tr>
-               <td>사진</td>
-               <td id="addPic" colspan="4"><input type="file" id="pic0"
-                  name="pic0"></td>
-               <td align="center">
-                  <button type="button" id="addBtn" class="btn btn-success">추가</button>
-                  <button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
-               </td>
-            </tr>
-            <tr>
-               <td colspan="6" align="center"><input type="submit"
-                  id="success" class="btn btn-success" value="등록"> <input
-                  type="reset" class="btn btn-danger" value="취소"></td>
-            </tr>
-         </table>
-      </form>
-   </div>
-</article>
-<!-- .content -->
-</section>
-<!-- #main -->

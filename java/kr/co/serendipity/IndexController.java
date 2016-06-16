@@ -7,6 +7,7 @@
 
 package kr.co.serendipity;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,22 +29,25 @@ public class IndexController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping("index.htm")
-	public ModelAndView index(HttpSession session) {
+	public ModelAndView index(HttpSession session) throws ClassNotFoundException, SQLException {
 		
 		System.out.println("index entrance");
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		ModelAndView mav = new ModelAndView("index");
 		
-		List travelerList = dao.getIndexTravelerRecent();
-		List guideList = dao.getIndexGuideRecent();
+		List<BoardDTO> travelerList = dao.getIndexTravelerRecent();
+		List<BoardDTO> guideList = dao.getIndexGuideRecent();
+		
+		int listCount = dao.getListCount();
+		int GlistCount = dao.getGListCount();
 		
 		System.out.println("travelerList size : " + travelerList.size());
-		BoardDTO dto = (BoardDTO)travelerList.get(1);
-		System.out.println(dto.getBoard_Content());
 		
 		mav.addObject("index", "index");
 		mav.addObject("travelerList", travelerList);
 		mav.addObject("guideList", guideList);
+		mav.addObject("listCount", listCount);
+		mav.addObject("GlistCount", GlistCount);
 
 
 		return mav;

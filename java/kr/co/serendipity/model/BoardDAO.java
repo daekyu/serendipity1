@@ -50,9 +50,9 @@ public interface BoardDAO {
 	// -------------------------index 페이지 여행자 구함, 가이드 구함 게시판 최신글 4개만 보기
 	
 	//가이드 구함 최신글 4개만 보기
-	public List getIndexTravelerRecent();
+	public List<BoardDTO> getIndexTravelerRecent();
 	
 	//여행자 구함 최신글 4개만 보기
-	public List getIndexGuideRecent();
+	public List<BoardDTO> getIndexGuideRecent();
 
 }

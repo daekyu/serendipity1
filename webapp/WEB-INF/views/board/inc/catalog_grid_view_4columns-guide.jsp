@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%--
 @Project : 1조프로젝트
 @File name : catalog_grid_view_4columns-guide.jsp
@@ -13,7 +14,7 @@
 <section id="main">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">여행자 구합니다. (가이드가 글 올리는 곳)</h1>
+			<h1 class="title"><spring:message code="board.traveler"/></h1>
 		</div>
 	</header>
 
@@ -185,7 +186,7 @@
 						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
 						endpage: ${endpage}<br> listCount: ${listCount}<br> <a
 							href="${pageContext.request.contextPath}/board/guide_writeform.htm"
-							class="btn btn-default">글작성<span
+							class="btn btn-default"><spring:message code="board.traveler1"/><span
 							class="glyphicon glyphicon-arrow-right"></span></a>
 
 				</div>

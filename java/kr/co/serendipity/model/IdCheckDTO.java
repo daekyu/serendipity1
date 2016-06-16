@@ -86,4 +86,6 @@ public class IdCheckDTO {
 	public void setProfile_description(String profile_description) {
 		this.profile_description = profile_description;
 	}
+	
+	
 }

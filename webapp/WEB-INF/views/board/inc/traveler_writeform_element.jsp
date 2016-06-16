@@ -42,6 +42,15 @@
 				alert('더 이상 삭제할 수 없습니다.');
 			}
 		});
+		
+		$('#gmap_where').keydown(function (e) {
+		    if(e.keyCode == 13)
+		    {
+		        $('#button2').trigger('click');
+
+		        return false;
+		    }
+		});
 	});
 
 	$('#ckeditor').keyup(function() {
@@ -59,6 +68,19 @@
 		$('#bofom').submit();
 	});
 	
+<<<<<<< HEAD
+<<<<<<< HEAD
+	$(function() {
+	       $("#datepicker").datepicker();
+	    
+	    });
+	
+	
+
+	var geocoder;
+=======
+=======
+>>>>>>> ce66d83c2bb721142cab9751adfd567dbde5e2d5
 	
 		 $(function() {
  		$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());
@@ -67,6 +89,10 @@
  
  
  var geocoder;
+<<<<<<< HEAD
+>>>>>>> 1eb6fd2d7b277c1445e806bcdb52ad39a08726d7
+=======
+>>>>>>> ce66d83c2bb721142cab9751adfd567dbde5e2d5
 	var map;
 	var markers = Array();
 	var infos = Array();
@@ -239,6 +265,7 @@
 			document.getElementById('lng').value = obj.geometry.location.lng();
 			document.getElementById('meeting_place').value = obj.name;
 			document.getElementById('meeting_address').value = obj.vicinity;
+			
 
 		});
 		infos.push(infowindow);
@@ -315,10 +342,11 @@
 						<td>Meeting Point</td>
 						<td colspan="5">
 							<div id="container" class="row">
-								<div id="gmap_canvas" style="height: 500px"></div>
+								<div id="gmap_canvas" style="height: 400px;width:auto"></div>
 								<div class="actions">
 									<div class="button">
-										<label for="gmap_where">Where:</label> <input id="gmap_where"
+										<label for="gmap_where">Where:</label> 
+										<input id="gmap_where"
 											class="form-control" type="text" name="gmap_where">
 									</div>
 									<div id="button2" class="btn btn-success"

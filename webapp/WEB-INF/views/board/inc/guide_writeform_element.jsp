@@ -35,6 +35,14 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
             alert('더 이상 삭제할 수 없습니다.');
          }
       });
+      $('#gmap_where').keydown(function (e) {
+		    if(e.keyCode == 13)
+		    {
+		        $('#button2').trigger('click');
+
+		        return false;
+		    }
+		});
    });
    
    $('#ckeditor').keyup(function() {

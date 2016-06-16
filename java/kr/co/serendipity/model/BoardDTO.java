@@ -7,7 +7,6 @@ package kr.co.serendipity.model;
  * @Desc : 여행자가 가이드 구하는 게시판 글 DTO
  */
 
-import java.sql.Date;
 
 public class BoardDTO {
 	private int board_Num;

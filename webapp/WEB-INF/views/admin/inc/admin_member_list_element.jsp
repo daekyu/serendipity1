@@ -31,6 +31,7 @@
 			  		<th>나이</th>
 			  		<th>국적</th>
 			  		<th>이메일</th>
+			  		<th>신고횟수</th>
 			  		<th>탈퇴</th>
 			  	</tr>
 			  </thead>
@@ -43,6 +44,7 @@
 			  		<td>${i.age}</td>
 			  		<td>${i.country_code}</td>
 			  		<td>${i.email}</td>
+			  		<td>${i.report_count}</td>
 			  		<td><a class="btn btn-danger" href="">탈퇴</a>
 			  	</tr>
 			  </c:forEach>

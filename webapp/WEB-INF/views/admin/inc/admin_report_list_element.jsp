@@ -28,21 +28,16 @@
 			  	<tr>
 			  		<th>신고한 사람</th>
 			  		<th>신고받은 사람</th>
-			  		<th>신고받은 횟수</th>
 			  		<th>제목</th>
-			  		<th>내용</th>
-
 			  	</tr>
 			  </thead>
 			  
 			  <tbody>
 			  <c:forEach var="i" items="${report_list}">
 			  	<tr>
-			  		<td>${i.reporter}</td>
-			  		<td>${i.villain}</td>
-			  		<td>신고받은 횟수는 나중에 추가</td>
-			  		<td>${i.report_title}</td>
-			  		<td>${i.report_content}</td>
+			  		<td>${i.REPORTER}</td>
+			  		<td>${i.VILLAIN}</td>
+			  		<td><a href="report_detail.htm?report_num=${i.REPORT_NUM}">${i.REPORT_TITLE}</a></td>
 			  	</tr>
 			  </c:forEach>
 			  </tbody>

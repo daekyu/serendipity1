@@ -10,15 +10,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="ReportDetail" resultType="hashmap">
-		select report_num, reporter, villain, report_title, report_content from report r,member m where r.reporter=m.user_num and r.villain=m.user_num and report_num=#{report_num}
+		select r.report_num,m1.id as reporter, m2.id as villain, r.report_title, r.report_content from report r,member m1, member m2 where r.reporter=m1.user_num and r.villain=m2.user_num and report_num=#{report_num}
 	</select>
 	
 	<select id="ReportList" resultType="hashmap">
-		select report_num, reporter, villain, report_title from report order by report_num desc
+		select r.report_num,m1.id as reporter, m2.id as villain, r.report_title from report r,member m1, member m2 where r.reporter=m1.user_num and r.villain=m2.user_num order by report_num desc
 	</select>
 	
 	<select id="getReportListCount" resultType="Integer">
 		select count(*) from report
 	</select>
+	
+	<update id="updateReportCount">
+		update member set report_count = report_count+1 where user_num=#{villain}
+	</update>
 
 </mapper>

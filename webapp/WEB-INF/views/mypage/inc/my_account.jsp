@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 <section id="main" class="page ">
   <header class="page-header">
     <div class="container">
-      <h1 class="title">마이페이지</h1>
+      <h1 class="title"><spring:message code="board.mypage"/></h1>
     </div>	
   </header>
   <div class="container">
@@ -60,17 +62,17 @@
 					<th class="danger" colspan="2">Information</th>
 				</tr>
 				<tr>
-					<th class="danger">이름</th>
+					<th class="danger"><spring:message code="board.mypage_in1"/></th>
 					<td>${dto.name}</td>
 				</tr>
 				
 				<tr>
-					<th class="danger">지역</th>
+					<th class="danger"><spring:message code="board.mypage_in2"/></th>
 					<td>${Slocal}</td>
 				</tr>
 				
 				<tr>
-					<th class="danger">언어</th>
+					<th class="danger"><spring:message code="board.mypage_in3"/></th>
 					<td>
 						<c:forEach var="i" items="${Slang}">
 							${i},  
@@ -79,7 +81,7 @@
 				</tr>
 				
 				<tr>
-					<th class="danger">취미</th>
+					<th class="danger"><spring:message code="board.mypage_in4"/></th>
 					<td>
 						<c:forEach var="i" items="${Shobby}">
 							${i},  

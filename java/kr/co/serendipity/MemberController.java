@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import kr.co.serendipity.model.IdCheckDAO;
-import kr.co.serendipity.model.IdCheckDTO;
 import kr.co.serendipity.model.MemberDAO;
 import kr.co.serendipity.model.MemberDTO;
 
@@ -74,9 +71,9 @@ public class MemberController {
 	
 	@RequestMapping("IdCheck.htm")
 	
-	public @ResponseBody int IdCheck(IdCheckDTO idcheckdto) {
-		IdCheckDAO dao = sqlsession.getMapper(IdCheckDAO.class);
-		return dao.IdCheck(idcheckdto);
+	public @ResponseBody int IdCheck(MemberDTO memberdto) {
+		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
+		return dao.IdCheck(memberdto);
 	}
 
 

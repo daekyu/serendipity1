@@ -423,4 +423,28 @@ public class TravelReviewController {
 		System.out.println("여기는 타는거니?");
 		return dao.changeReplyNotificationState(replydto);
 	}
+	
+	//여행후기 게시판 지역별로 필터링
+	@RequestMapping("filteringReviewList.htm")
+	public String filteringReviewList(String local_code ,Model model) throws ClassNotFoundException, SQLException{
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		
+		List<HashMap<String,Object>> review_list = dao.filteringReviewList(local_code);
+		model.addAttribute("reviewList", review_list);
+		model.addAttribute("local_list", dao.localList());
+		//model.addAttribute("local_code", local_code);
+		return "redirect:/travel_review/review_list.htm";
+	}
+	
+	//여행후기 게시판 리스트 정렬
+	@RequestMapping("orderReviewList.htm")
+	public String orderReviewList(String order, Model model) throws ClassNotFoundException, SQLException{
+
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+
+		List<HashMap<String,Object>> review_list = dao.orderReviewList(order);
+		model.addAttribute("reviewList", review_list);
+		model.addAttribute("local_list", dao.localList());
+		return "redirect:/travel_review/review_list.htm";
+	}
 }

@@ -1,4 +1,4 @@
-package kr.co.serendipity;
+/*package kr.co.serendipity;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -17,12 +17,12 @@ import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.ReportDAO;
 import kr.co.serendipity.model.ReportDTO;
 
-/*
+
  * @Class : ReportController
  * @Date : 16.06.15
  * @Author : 이소라
  * @Desc : 신고기능 컨트롤러
- */
+ 
 
 @Controller
 @RequestMapping("/report/")
@@ -30,23 +30,7 @@ public class ReportController {
 	@Autowired
 	SqlSession sqlsession;
 		
-	//관리자 페이지에서 신고하는 글 상세보기
-	@RequestMapping("report_detail.htm")
-	public ModelAndView ReportDetail(int report_num) throws ClassNotFoundException, SQLException{
-		ModelAndView mav = new ModelAndView("/report/report_detail");
-		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
-		HashMap<String, Object> report = dao.ReportDetail(report_num);
-		mav.addObject("report",report);
-		return mav;
-	}
+	//신고하면 신고당한사람 신고횟수 증가
 	
-	//관리자 페이지에서 신고하는 글 리스트보기
-	public ModelAndView ReportList() throws ClassNotFoundException, SQLException{
-		ModelAndView mav = new ModelAndView("/admin/admin_report_list");
-		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
-		List<HashMap<String, Object>> list = dao.ReportList();
-		mav.addObject("list", list);
-		return mav;
-	}
 	
-}
+}*/

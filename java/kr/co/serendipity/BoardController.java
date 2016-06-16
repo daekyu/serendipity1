@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
+import kr.co.serendipity.model.MemberDAO;
 import kr.co.serendipity.model.ReportDAO;
 import kr.co.serendipity.model.ReportDTO;
 
@@ -233,6 +234,7 @@ public class BoardController {
 	public String ReportWriteGuide(ReportDTO dto, int board_num) throws ClassNotFoundException, SQLException {
 		ReportDAO dao = sqlSession.getMapper(ReportDAO.class);
 		dao.ReportWrite(dto);
+		dao.updateReportCount(dto.getVillain());
 		return "redirect:/board/guide_detail.htm?board_num=" + board_num + "&user_num=" + dto.getVillain();
 	}
 
@@ -241,7 +243,7 @@ public class BoardController {
 	public String ReportWriteTravler(ReportDTO dto, int board_num) throws ClassNotFoundException, SQLException {
 		ReportDAO dao = sqlSession.getMapper(ReportDAO.class);
 		dao.ReportWrite(dto);
+		dao.updateReportCount(dto.getVillain());
 		return "redirect:/board/travel_detail.htm?board_num=" + board_num + "&user_num=" + dto.getVillain();
-
 	}
 }

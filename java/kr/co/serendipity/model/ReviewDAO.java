@@ -38,6 +38,8 @@ public interface ReviewDAO {
 	public ReviewDTO selectPicture(int review_num) throws ClassNotFoundException, SQLException;
 	
 	//여행후기 게시판 지역별로 필터링
+	public List<HashMap<String, Object>> filteringReviewList(String local_code) throws ClassNotFoundException, SQLException;
 	
-	//여행후기 게시판
+	//여행후기 게시판 리스트 정렬
+	public List<HashMap<String, Object>> orderReviewList(String order) throws ClassNotFoundException, SQLException;
 }

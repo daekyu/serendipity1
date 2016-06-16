@@ -1,11 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript"> 
+	$(function(){
+		$.ajax({
+			type : "post",
+			url : "review_list.htm",
+			data : {
+				"sort" : <%= request.getParameter("sort")%>
+				"local_code" : <%= request.getParameter("local_code")%>
+			},
+			success : function(data){
+				console.log("성공");
+			}
+		});
+	});
+</script>
 <section id="main">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">여행기를 올립시당~~~</h1>
+			<h1 class="title"><spring:message code="board.review"/></h1>
 		</div>
 	</header>
 
@@ -27,6 +43,22 @@
 							class="glyphicon glyphicon-th-list"></span>
 						</span>
 					</div>
+					
+					<div class="sort-catalog">
+						<div class="btn-group show-by btn-select">
+							<a class="btn dropdown-toggle btn-default" role="button"
+								data-toggle="dropdown" href="#">지역: <span>12</span> <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+							<li><a href="">전체</a></li>
+							<c:forEach var="i" items="${local_list}">
+								<li><a href="review_list.htm?sort=${sort}&local_code=${i.local_code}">${i.local_name}</a></li>
+							</c:forEach>
+							</ul>
+						</div>
+						<!-- .show -->
+					</div>
+					<!-- .sort-catalog -->
 
 					<!-- 정렬기준을 바꾸는곳. 정해지면 바꾸자. -->
 					<div class="sort-catalog">
@@ -35,50 +67,28 @@
 								data-toggle="dropdown" href="#">Sort by: <span>Rating</span>
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Price</a></li>
-								<li><a href="#">Rating</a></li>
-								<li><a href="#">Name</a></li>
+								<li><a href="review_list.htm?sort=review_num&local_code=${local_code}">최신순</a></li>
+								<li><a href="review_list.htm?sort=like_count&local_code=${local_code}">좋아요순</a></li>
+								<li><a href="review_list.htm?sort=reply_count&local_code=${local_code}">댓글순</a></li>
 							</ul>
 						</div>
 						<!-- .sort-by -->
-						<button type="button" class="btn up-down btn-default"
-							data-toggle="button">
-							<span></span>
-						</button>
 					</div>
 					<!-- .sort-catalog -->
 
-					<div class="sort-catalog">
+					
+
+					<!-- <div class="sort-catalog">
 						<div class="btn-group show-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Show: <span>12</span> <span
+								data-toggle="dropdown" href="#">정렬: <span>12</span> <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">6</a></li>
-								<li><a href="#">7</a></li>
-								<li><a href="#">8</a></li>
-								<li><a href="#">9</a></li>
-								<li><a href="#">10</a></li>
-								<li><a href="#">11</a></li>
-								<li><a href="#">12</a></li>
+								<li><a href="#">최신순</a></li>
+								<li><a href="#">좋아요순</a></li>
+								<li><a href="#">댓글순</a></li>
 							</ul>
-						</div>
-						<!-- .show -->
-						<span class="per-page">per page</span>
-					</div>
-					<!-- .sort-catalog -->
-
-					<div class="price-regulator pull-right">
-						<b>Price:</b>
-						<div class="layout-slider">
-							<input id="Slider2" type="slider" name="price"
-								value="20000;120000" class="form-control">
-						</div>
+						</div> -->
 					</div>
 					<!-- .price-regulator -->
 				</div>
@@ -256,10 +266,6 @@
 								</c:otherwise>
 							</c:choose>
 						</ul>
-						<br>임시 출력창 <br>page: ${page}<br> nowpage:
-						${nowpage}<br> maxpage: ${maxpage}<br> startpage:
-						${startpage}<br> endpage: ${endpage}<br> listCount:
-						${listCount}<br>
 						</div>
 					</div>
 					<!-- .pagination-box -->

@@ -212,20 +212,21 @@
 		<div class="clearfix"></div>
 		  
 		<div class="product-tab">
-		  <!-- <form class="comments-form" action="reply_delete.htm?" method="post"> -->
 		  <ul class="nav nav-tabs">
 			<li><a href="#reviews">댓글</a></li>
 		  </ul><!-- .nav-tabs -->	
 		  <div class="tab-content">
 			<div class="tab-pane active" id="reviews">
-			  <h3 class="title slim">Comments</h3>
-		<ul class="commentlist">
-		<c:forEach var="i" items="${replylist}">
-		  <li>
-			<img class="replace-2x avatar" width="84" height="84" src="content/img/avatar-1.jpg" alt="">
+		<ul class="commentlist bottom-padding">
+		<li></li>
+		  <c:forEach var="i" items="${replylist}">
+		  <li class="">
+		  	<div class="row">
+				<img class="image avatar img-circle replace-2x animated rotateIn" width="84" height="84" src=".././resources/img/1212.JPG" alt="">
+			
 			<div class="meta">
-			  <span>${i.ID}</span>, 
-			  <span class="time">${i.REPLY_DATE}&nbsp;&nbsp;&nbsp;
+			  <span><b>${i.ID}</b></span>, 
+			  <span class="time"><b>${i.REPLY_DATE}</b><!-- &nbsp;&nbsp;&nbsp; -->
 			  	<c:choose>
 				<c:when test="${sessionScope.user_num == i.USER_NUM}">
 			  		<a href="reply_delete.htm?reply_num=${i.REPLY_NUM}&review_num=${reviewdetail.REVIEW_NUM}">삭제</a>
@@ -233,23 +234,28 @@
 			  </c:choose>
 			  </span>
 			</div>
-			<p class="description">
+			
+			
 			  ${i.REPLY_CONTENT}
-			  
-			</p>
+			
+			
+			<div class="meta">&nbsp;&nbsp;&nbsp;</div>
+			<div class="meta">&nbsp;&nbsp;&nbsp;</div>
+			</div>
+			
 		  </li>
 		  </c:forEach>
 		</ul>
-		<!-- </form> -->
+			  
 			  <form class="comments-form" action="review_detail.htm?user_num=${sessionScope.user_num}&review_num=${reviewdetail.REVIEW_NUM}" method="post">
 				<div class="row">
-				  <div class="col-sm-7 col-md-7">
+				  <div class="row">
 					<label>댓글: <span class="required">*</span></label>
-					<input type="text" class="form-control" name="reply_content"></input>
+					<input type="text" class="form-control" name="reply_content" style="width:85%">  <input type="submit" class="btn btn-default" value="submit">
 					<i>Note: HTML is not translated!</i>
 				  </div>
 				  <div class="col-sm-12 col-md-12">
-				  	<input type="submit" class="btn btn-default" value="submit">
+				  	
 				  </div>
 				</div>
 			  </form><!-- .comments-form -->

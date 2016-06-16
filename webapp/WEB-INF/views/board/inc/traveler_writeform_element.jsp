@@ -3,11 +3,10 @@
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
+   src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 <script type="text/javascript">
 	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
@@ -59,6 +58,11 @@
 		// 강제 서브밋
 		$('#bofom').submit();
 	});
+	
+	$(function() {
+	       $("#datepicker").datepicker();
+	    
+	    });
 
 	var geocoder;
 	var map;
@@ -261,7 +265,7 @@
 					</tr>
 					<tr>
 						<td>날짜</td>
-						<td><input class="form-control" type="text"></td>
+						<td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
 						<td>지불할 가격</td>
 						<td><input class="form-control" type="text" name="price"></td>
 					</tr>
@@ -362,4 +366,3 @@
 	<!-- .content -->
 </section>
 <!-- #main -->
-

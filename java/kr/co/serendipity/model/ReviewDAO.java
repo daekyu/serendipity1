@@ -36,4 +36,8 @@ public interface ReviewDAO {
 
 	//여행후기 게시판 사진 검색
 	public ReviewDTO selectPicture(int review_num) throws ClassNotFoundException, SQLException;
+	
+	//여행후기 게시판 지역별로 필터링
+	
+	//여행후기 게시판
 }

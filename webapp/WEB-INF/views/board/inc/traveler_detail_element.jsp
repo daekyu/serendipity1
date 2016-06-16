@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?language=jp"></script>
 <script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en"></script>
+	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=jp"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 		<input type="hidden" id="lat" value="${dto.board_Latitude}"/>

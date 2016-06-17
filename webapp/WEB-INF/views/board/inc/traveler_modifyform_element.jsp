@@ -6,6 +6,8 @@
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script src="../js/jquery-2.1.3.min.js"></script>
+<input type="hidden" id="lat" value="${dto.board_Latitude}"/>
+<input type="hidden" id="lng" value="${dto.board_Longitude}"/>
 <script type="text/javascript">
 $(function() {
 	var index=1;
@@ -39,13 +41,15 @@ var geocoder;
 var map;
 var markers = Array();
 var infos = Array();
+var latitude = document.getElementById('lat').value;
+var longitude = document.getElementById('lng').value;
 
 function initialize() {
     // prepare Geocoder
     geocoder = new google.maps.Geocoder();
 
-    // set initial position (삼성역)
-    var myLatlng = new google.maps.LatLng(37.5088652,127.0609603);
+    // set initial position (예전에 지정된 위치)
+    var myLatlng = new google.maps.LatLng(latitude, longitude);
 
     var myOptions = { // default map options
         zoom: 18,

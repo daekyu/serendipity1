@@ -247,12 +247,14 @@
 			document.getElementById('meeting_address').value = obj.vicinity;
 
 		});
+
 		infos.push(infowindow);
 
 	}
 
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
 <section id="main">
 	<header class="page-header">

@@ -53,7 +53,6 @@
 			    service.search(request, createMarker);
 		}
 		    	    
-		    	    
 		  function createMarker(){
 		    	    marker = new google.maps.Marker({
 		                position: myLatlng,
@@ -64,10 +63,8 @@
 		    	        '<br />주소: ' + meeting_address+'</font>'
 		    	    });
 
-		    	    // add event handler to current marker
-		    	    google.maps.event.addListener(marker, 'click', function(){
 		    	        infowindow.open(map,marker);
-		    	    });
+	
 		}
 
 		// initialization

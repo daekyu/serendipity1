@@ -32,9 +32,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <insert id="Gwrite">
 	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
+<<<<<<< HEAD
 	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, 
 	 meeting_Place,meeting_Address)
 	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', #{board_Capacity}, #{board_Date} , #{board_Latitude}, #{board_Longitude}, '02', 2, #{price}, 
+=======
+	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price,
+	 meeting_Place,meeting_Address)
+	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', #{board_Capacity}, #{board_Date} , #{board_Latitude}, #{board_Longitude}, '02', 2, #{price},
+>>>>>>> 730185d2e7300b60db10a5201a7ed1f624da5453
 	 #{meeting_Place}, #{meeting_Address})
 	</insert>
 	

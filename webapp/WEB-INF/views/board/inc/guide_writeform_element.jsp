@@ -75,7 +75,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
        // prepare Geocoder
        geocoder = new google.maps.Geocoder();
 
-       // set initial position (삼성역)
+       // set initial position (기본으로 삼성역)
        var myLatlng = new google.maps.LatLng(37.5088652,127.0609603);
 
        var myOptions = { // default map options

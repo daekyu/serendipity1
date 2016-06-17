@@ -68,31 +68,12 @@
 		$('#bofom').submit();
 	});
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	$(function() {
-	       $("#datepicker").datepicker();
-	    
-	    });
-	
-	
-
-	var geocoder;
-=======
-=======
->>>>>>> ce66d83c2bb721142cab9751adfd567dbde5e2d5
-	
-		 $(function() {
- 		$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());
+		$(function(){
+ 		$("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());
  			});
 	
  
- 
- var geocoder;
-<<<<<<< HEAD
->>>>>>> 1eb6fd2d7b277c1445e806bcdb52ad39a08726d7
-=======
->>>>>>> ce66d83c2bb721142cab9751adfd567dbde5e2d5
+ 	var geocoder;
 	var map;
 	var markers = Array();
 	var infos = Array();
@@ -101,7 +82,7 @@
 		// prepare Geocoder
 		geocoder = new google.maps.Geocoder();
 
-		// set initial position (삼성역)
+		// set initial position (기본으로 삼성역)
 		var myLatlng = new google.maps.LatLng(37.5088652, 127.0609603);
 
 		var myOptions = { // default map options

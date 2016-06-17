@@ -10,9 +10,9 @@
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
 
+
 <input type="hidden" id="latitude" value="${dto.board_Latitude}" />
 <input type="hidden" id="longitude" value="${dto.board_Longitude}"/>
-
 
 <script type="text/javascript">
 window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';

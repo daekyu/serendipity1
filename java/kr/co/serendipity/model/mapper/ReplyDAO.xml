@@ -25,4 +25,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="changeReplyNotificationState">
 		update reply set reply_alarm=1 where reply_num=#{reply_num}
 	</update>
+	
+	<select id="replyCount" resultType="Integer">
+		select count(user_num) from reply where review_num=#{review_num}
+	</select>
+	
+	<update id="replyPlus">
+		update review set reply_count = reply_count+1 where review_num=#{review_num}
+	</update>
+	
+	<update id="replyMinus">
+		update review set reply_count = reply_count-1 where review_num=#{review_num}
+	</update>
 </mapper>

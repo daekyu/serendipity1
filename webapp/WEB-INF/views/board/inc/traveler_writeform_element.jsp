@@ -67,26 +67,19 @@
 		// 강제 서브밋
 		$('#bofom').submit();
 	});
-	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	$(function() {
-	       $("#datepicker").datepicker();
-	    
-	    });
-	
-	
+
 
 	var geocoder;
 
+
 	
-		 $(function() {
- 		$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());
+		$(function(){
+ 		$("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());
  			});
 	
  
- 
- var geocoder;
+
+
 
 	var map;
 	var markers = Array();
@@ -96,7 +89,7 @@
 		// prepare Geocoder
 		geocoder = new google.maps.Geocoder();
 
-		// set initial position (삼성역)
+		// set initial position (기본으로 삼성역)
 		var myLatlng = new google.maps.LatLng(37.5088652, 127.0609603);
 
 		var myOptions = { // default map options

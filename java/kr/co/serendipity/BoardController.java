@@ -54,7 +54,7 @@ public class BoardController {
 		System.out.println("page = " + page);
 
 		List boardList = dao.getBoardList(page);
-		
+
 		int listCount = dao.getListCount();
 		System.out.println("boardList : " + boardList.size());
 		System.out.println("listCount : " + listCount);
@@ -136,8 +136,55 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "guide_writeform.htm", method = RequestMethod.POST)
-	public String guideWriteform(BoardDTO dto) throws ClassNotFoundException, SQLException {
+	public String guideWriteform(BoardDTO dto, MultipartHttpServletRequest request)
+			throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("guide_writeform POST entrance");
+
+		List<MultipartFile> flist = request.getFiles("pic");
+		List<String> filenames = new ArrayList<String>();
+
+		System.out.println("0번 파일 : " + flist.get(0).getOriginalFilename());
+		System.out.println("1번 파일 : " + flist.get(1).getOriginalFilename());
+		System.out.println("2번 파일 : " + flist.get(2).getOriginalFilename());
+		System.out.println("3번 파일 : " + flist.get(3).getOriginalFilename());
+		System.out.println("4번 파일 : " + flist.get(4).getOriginalFilename());
+
+		System.out.println("flist.size() : " + flist.size());
+
+		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
+		System.out.println("실제 파일 업로드 경로 : " + realFolder);
+		if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
+
+		} else {
+			for (int i = 0; i < 5; i++) {
+
+				String saveFileName = null;
+				if (flist.get(i).getOriginalFilename().equals("")) {
+					filenames.add("no_picture");
+				} else {
+					String genId = UUID.randomUUID().toString();
+					String originalfileName = flist.get(i).getOriginalFilename();
+
+					System.out.println("filename : " + originalfileName);
+
+					saveFileName = genId + "_" + originalfileName;
+
+					String savePath = realFolder + "\\" + saveFileName;
+
+					flist.get(i).transferTo(new File(savePath));
+					filenames.add(saveFileName);
+				}
+			}
+		}
+		System.out.println("filenames.get(0) : " + filenames.get(0));
+		System.out.println("filenames.get(1) : " + filenames.get(1));
+		dto.setBoard_Picture1(filenames.get(0));
+		System.out.println("dto.getBoard_Picture1() : " + dto.getBoard_Picture1());
+		dto.setBoard_Picture2(filenames.get(1));
+		dto.setBoard_Picture3(filenames.get(2));
+		dto.setBoard_Picture4(filenames.get(3));
+		dto.setBoard_Picture5(filenames.get(4));
+
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.Gwrite(dto);
 
@@ -196,12 +243,12 @@ public class BoardController {
 		}
 		System.out.println("filenames.get(0) : " + filenames.get(0));
 		System.out.println("filenames.get(1) : " + filenames.get(1));
-		 dto.setBoard_Picture1(filenames.get(0));
-		 System.out.println("dto.getBoard_Picture1() : " + dto.getBoard_Picture1());
-	     dto.setBoard_Picture2(filenames.get(1));
-	     dto.setBoard_Picture3(filenames.get(2));
-	     dto.setBoard_Picture4(filenames.get(3)); 
-	     dto.setBoard_Picture5(filenames.get(4));
+		dto.setBoard_Picture1(filenames.get(0));
+		System.out.println("dto.getBoard_Picture1() : " + dto.getBoard_Picture1());
+		dto.setBoard_Picture2(filenames.get(1));
+		dto.setBoard_Picture3(filenames.get(2));
+		dto.setBoard_Picture4(filenames.get(3));
+		dto.setBoard_Picture5(filenames.get(4));
 
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.write(dto);

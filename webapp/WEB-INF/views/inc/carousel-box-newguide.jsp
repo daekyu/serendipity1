@@ -26,7 +26,7 @@
 						<div class="col-sm-3 col-md-3 rotation employee">
 							<div class="default">
 								<div class="image">
-									<img class="replace-2x" src="content/img/team-1.jpg" alt=""
+									<img class="replace-2x" src="${pageContext.request.contextPath}/resources/img/board_picture/${i.board_Picture1}" alt=""
 										title="" width="270" height="270">
 								</div>
 								<div class="description">
@@ -57,6 +57,11 @@
 										<div class="contact">
 											<b>가격: </b>$10 / a hour
 										</div>
+										
+										<div class="contact" align="center">
+											<a class="btn btn-warning btn-lg btn-block">상세보기</a>
+										</div>
+										
 									</div>
 								</div> <!-- .employee-hover -->
 							</a>

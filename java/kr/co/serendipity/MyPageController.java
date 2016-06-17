@@ -42,7 +42,7 @@ public class MyPageController {
 		MemberDTO dto = dao.myPageGetMemberInfo(user_num);
 		String pic = dto.getProfile_picture();
 		System.out.println("원본 사진명 : " + pic);
-		int local = dto.getLocal_code();
+		String local = dto.getLocal_code();
 		String Slocal = dao.parseLocal(local);
 		List Slang = dao.parseLang(user_num);
 		List Shobby = dao.parseHobby(user_num);

@@ -7,11 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="write">
 	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, board_Picture2, 
 	 board_Picture3, board_Picture4, board_Picture5,
-	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng,
+	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, 
 	 meeting_Place, meeting_Address) 
 	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, #{board_Picture1},
 	 #{board_Picture2}, #{board_Picture3}, #{board_Picture4}, #{board_Picture5},
-	 1, #{board_Date}, #{board_Latitude}, #{board_Longitude}, '02', 1, #{price}, '위도경도',
+	 1, #{board_Date}, #{board_Latitude}, #{board_Longitude}, '02', 1, #{price}, 
 	 #{meeting_Place}, #{meeting_Address})
 	</insert>
 	
@@ -31,13 +31,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <insert id="Gwrite">
-	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
-	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, board_Latlng,
+	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, board_Picture2, 
+	 board_Picture3, board_Picture4, board_Picture5,
+	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, 
 	 meeting_Place,meeting_Address)
-	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', #{board_Capacity}, #{board_Date} , #{board_Latitude}, #{board_Longitude}, '02', 2, #{price}, '위도경도',
+	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content},  #{board_Picture1},
+	 #{board_Picture2}, #{board_Picture3}, #{board_Picture4}, #{board_Picture5}, 
+	 #{board_Capacity}, #{board_Date} , #{board_Latitude}, #{board_Longitude}, '02', 2, #{price}, 
 	 #{meeting_Place}, #{meeting_Address})
 	</insert>
-	
+
 	<select id="getGBoardList" resultType="kr.co.serendipity.model.BoardDTO">
      SELECT * FROM
                ( SELECT ROWNUM NUM, N.* FROM 

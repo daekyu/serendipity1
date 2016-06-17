@@ -53,7 +53,6 @@
 			    service.search(request, createMarker);
 		}
 		    	    
-		    	    
 		  function createMarker(){
 		    	    marker = new google.maps.Marker({
 		                position: myLatlng,
@@ -64,10 +63,8 @@
 		    	        '<br />주소: ' + meeting_address+'</font>'
 		    	    });
 
-		    	    // add event handler to current marker
-		    	    google.maps.event.addListener(marker, 'click', function(){
 		    	        infowindow.open(map,marker);
-		    	    });
+	
 		}
 
 		// initialization
@@ -92,8 +89,8 @@
 			<div class="image-box">
 			  <span class="sale top"></span>
 			  <div class="general-img">
-				<img class="replace-2x" alt="" src="../content/1212.JPG" 
-				data-zoom-image="../content/1212.JPG" width="500" height="500">
+				<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" 
+				data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" width="500" height="500">
 			  </div><!-- .general-img -->
 			  
 			  
@@ -110,23 +107,23 @@
 				</a>
 				
 				<div id="thumblist" class="thumblist">
-				  <a href="#" data-image="content/img/single-1.jpg" data-zoom-image="content/img/single-1.jpg">
-					<img class="replace-2x" alt="" src="content/img/single-1.jpg" width="700" height="700">
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" width="500" height="500">
 				  </a>
-				  <a class="active" href="#" data-image="content/img/single-2.jpg" data-zoom-image="content/img/single-2.jpg">
-					<img class="replace-2x" alt="" src="content/img/single-2.jpg">
+				  <a class="active" href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture2}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture2}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture2}" width="500" height="500">
+				  </a>
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture3}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture3}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture3}" width="500" height="500">
+				  </a>
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture4}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture4}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture4}" width="500" height="500">
+				  </a>
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture5}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture5}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture5}" width="500" height="500">
 				  </a>
 				  <a href="#" data-image="content/img/single-3.jpg" data-zoom-image="content/img/single-3.jpg">
-					<img class="replace-2x" alt="" src="content/img/single-3.jpg" width="700" height="700">
-				  </a>
-				  <a href="#" data-image="content/img/single-1.jpg" data-zoom-image="content/img/single-1.jpg">
-					<img class="replace-2x" alt="" src="content/img/single-1.jpg" width="700" height="700">
-				  </a>
-				  <a href="#" data-image="content/img/single-2.jpg" data-zoom-image="content/img/single-2.jpg">
-					<img class="replace-2x" alt="" src="content/img/single-2.jpg" width="700" height="700">
-				  </a>
-				  <a href="#" data-image="content/img/single-3.jpg" data-zoom-image="content/img/single-3.jpg">
-					<img class="replace-2x" alt="" src="content/img/single-3.jpg" width="700" height="700">
+					<img class="replace-2x" alt="" src="content/img/single-3.jpg" width="500" height="500">
 				  </a>
 				</div><!-- #thumblist -->
 			  </div><!-- .thumblist -->

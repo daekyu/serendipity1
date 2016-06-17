@@ -96,7 +96,7 @@
 		var myOptions = { // default map options
 			zoom : 17,
 			center : myLatlng,
-			mapTypeId : google.maps.MapTypeId.HYBRID
+			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
 		map = new google.maps.Map(document.getElementById('gmap_canvas'),
 				myOptions);

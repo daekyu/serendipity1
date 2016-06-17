@@ -30,7 +30,7 @@
 					       <img class="replace-2x" src="${i}" alt="" title="" width="768" height="768">
 					    </c:otherwise>
 					</c:choose> --%>
-					  <img class="replace-2x" src="${pageContext.request.contextPath}/resources/img/profile_picture/${dto.profile_picture}" alt="프로필사진" title="프로필사진" width="768" height="768">
+					  <img class="replace-2x img-profile" src="${pageContext.request.contextPath}/resources/img/profile_picture/${dto.profile_picture}" alt="프로필사진" title="프로필사진" width="768" height="768">
 					  
 					</div>
 				  </div>

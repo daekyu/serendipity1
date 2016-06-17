@@ -115,7 +115,10 @@ textarea {
 /* line 67, ../sass/_typography.scss */
 img {
   max-width: 100%;
-  /* height: auto; */
+}
+
+.img-profile {
+	height: auto;
 }
 
 .img-list {

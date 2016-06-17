@@ -3,7 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
+window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 $(function() {
 	$('#table_pic1').hide();
 	$('#table_pic2').hide();
@@ -36,6 +39,26 @@ $(function() {
 	});
 	
 	//SUBMIT했을 때 사진의 확장자를 찾아서 이미지파일이 아니면 전송하지 못하게 하자. 이건 좀 나중에 ㅎㅎㅎ
+	
+	$('#ckeditor').keyup(function() {
+		console.log($('#ckeditor').val());
+	});
+
+	$('#submit3').click(function() {
+		// ckeditor 내용 추출
+		var sendNoteData = CKEDITOR.instances.ckeditor.getData();
+		console.log(CKEDITOR.instances.ckeditor.getData());
+		// 히든 인풋에 추출한 내용 삽입.
+		$('#board_Content').val(sendNoteData);
+
+		// 강제 서브밋
+		$('#bofom').submit();
+	});
+	
+	
+	
+	
+	
 });
 </script>
 <section id="main">
@@ -47,7 +70,7 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form action="" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
+			<form action="" id="bofom" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>
@@ -81,7 +104,16 @@ $(function() {
 							<div class="tab-content">
 							
 								<div class="tab-pane active" id="description">
-									<textarea class="form-control" style="resize:none; height:200px;" wrap="soft" name="review_content"></textarea>
+									<textarea class="form-control" style="resize:none; height:200px;" wrap="soft" name="review_content" id="ckeditor"></textarea>
+									<script type="text/javascript">
+							
+
+									CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
+										width : '100%',
+										height : '400px',
+										//filebrowserImageUploadUrl : '' //여기 경로로 파일을 전달하여 업로드 시킨다.
+									});
+									</script>
 								</div>
 
 								<div class="tab-pane" id="tab_pic">

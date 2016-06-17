@@ -7,9 +7,13 @@
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script src="../js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript"
+	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
+
 <input type="hidden" id="lat" value="${dto.board_Latitude}" />
 <input type="hidden" id="lng" value="${dto.board_Longitude}" />
 <script type="text/javascript">
+window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	$(function() {
 		$('#pic2').hide();
 		$('#pic3').hide();
@@ -52,7 +56,7 @@
 			startDate : new Date()
 		}).datetimepicker('update', new Date());
 	});
-
+	
 	var geocoder;
 	var map;
 	var markers = Array();
@@ -99,7 +103,7 @@
 	}
 
 	// find address function
-	function findAddress() {
+	function findAddress(){
 		clearOverlays();
 		var address = document.getElementById("gmap_where").value;
 
@@ -237,6 +241,7 @@
 
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
 <section id="main">
 	<header class="page-header">
@@ -258,17 +263,24 @@
 					</tr>
 					<tr>
 						<td>날짜</td>
-						<td><input class="form-control" type="text" id="datepicker"
-							name="board_Date"></td>
+						<td><input class="form-control" type="text" name="board_Date"  id="datepicker"  value="${dto.board_Date}"></td>
 						<td>지불할 가격</td>
 						<td><input class="form-control" type="text" name="price"
 							value="${dto.price}"></td>
 					</tr>
 					<tr>
 						<td>설명</td>
-						<td colspan="5"><textarea class="form-control"
-								style="resize: none; height: 400px;" wrap="soft"
-								name="board_Content">${dto.board_Content}</textarea></td>
+						<td colspan="5">
+						<%-- ${dto.board_Content} --%>
+							<textarea name="board_Content" id="ckeditor">${dto.board_Content}</textarea> <script
+								type="text/javascript">
+								CKEDITOR.replace('ckeditor', {
+									width : '90%',
+									height : '400px'
+
+								});
+							</script>
+						</td>
 					</tr>
 					<tr>
 						<td>사진</td>

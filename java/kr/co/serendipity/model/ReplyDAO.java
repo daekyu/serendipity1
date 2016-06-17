@@ -25,4 +25,13 @@ public interface ReplyDAO {
 	public List<HashMap<String, Object>> replyNotificationCheck(int user_num) throws ClassNotFoundException, SQLException;
 	
 	public int changeReplyNotificationState(ReplyDTO replydto) throws ClassNotFoundException, SQLException;
+	
+	//댓글 갯수 출력
+	public int replyCount(int review_num) throws ClassNotFoundException, SQLException;
+	
+	//댓글 쓰면 댓글 갯수 1증가
+	public void replyPlus(int review_num) throws ClassNotFoundException, SQLException;
+	
+	//댓글 삭제하면 댓글 갯수 1감소
+	public void replyMinus(int review_num) throws ClassNotFoundException, SQLException;
 }

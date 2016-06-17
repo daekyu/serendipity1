@@ -25,7 +25,7 @@
 						<div class="col-sm-3 col-md-3 rotation employee">
 							<div class="default">
 								<div class="image">
-									<img class="replace-2x" src="${pageContext.request.contextPath}/resources/img/board_picture/${i.board_Picture1}" alt=""
+									<img class="replace-2x img-list" src="${pageContext.request.contextPath}/resources/img/board_picture/${i.board_Picture1}" alt=""
 										title="" width="270" height="270">
 								</div>
 								<div class="description">

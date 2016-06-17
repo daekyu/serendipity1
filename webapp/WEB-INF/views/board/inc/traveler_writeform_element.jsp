@@ -67,6 +67,7 @@
 		// 강제 서브밋
 		$('#bofom').submit();
 	});
+
 	
 		$(function(){
  		$("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());

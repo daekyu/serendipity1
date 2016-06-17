@@ -69,9 +69,17 @@
 		    	        infowindow.open(map,marker);
 		    	    });
 		}
-
+		  
 		// initialization
 		google.maps.event.addDomListener(window, 'load', initialize);
+		
+
+		 $(function() {
+		$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());
+			});
+		
+		
+		
 	</script>
 
 <div class="breadcrumb-box breadcrumb-none"></div>

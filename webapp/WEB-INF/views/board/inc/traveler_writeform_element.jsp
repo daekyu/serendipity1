@@ -78,9 +78,7 @@
 	
 
 	var geocoder;
-=======
-=======
->>>>>>> ce66d83c2bb721142cab9751adfd567dbde5e2d5
+
 	
 		 $(function() {
  		$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());
@@ -89,10 +87,7 @@
  
  
  var geocoder;
-<<<<<<< HEAD
->>>>>>> 1eb6fd2d7b277c1445e806bcdb52ad39a08726d7
-=======
->>>>>>> ce66d83c2bb721142cab9751adfd567dbde5e2d5
+
 	var map;
 	var markers = Array();
 	var infos = Array();

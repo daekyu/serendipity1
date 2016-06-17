@@ -287,7 +287,49 @@ public class BoardController {
 		System.out.println("board_num : " + board_num);
 		System.out.println("check : " + check);
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-
+		BoardDTO dto = dao.getBoardDetail(board_num);
+		String realFolder = "C:\\Kosta_112th\\Project_3rd\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Serendipity\\resources\\img\\board_picture";
+		if(dto.getBoard_Picture1().equals("") ){
+			
+		}else{
+			File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
+		    if(file.exists()){
+		    	file.delete();
+		    }
+		}
+		if(dto.getBoard_Picture2().equals("") ){
+					
+				}else{
+					File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
+				    if(file.exists()){
+				    	file.delete();
+				    }
+				}
+		if(dto.getBoard_Picture3().equals("") ){
+			
+		}else{
+			File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
+		    if(file.exists()){
+		    	file.delete();
+		    }
+		}
+		if(dto.getBoard_Picture4().equals("") ){
+			
+		}else{
+			File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
+		    if(file.exists()){
+		    	file.delete();
+		    }
+		}
+		if(dto.getBoard_Picture5().equals("") ){
+			
+		}else{
+			File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
+		    if(file.exists()){
+		    	file.delete();
+		    }
+		}
+		
 		dao.deleteBoard(board_num);
 
 		if (check == 1) {
@@ -413,16 +455,56 @@ public class BoardController {
 					String savePath = realFolder + "\\" + saveFileName;
 
 					flist.get(i).transferTo(new File(savePath));
-					
+					BoardDTO searchDto = dao.picSearch(dto.getBoard_Num());
 					if(i == 0){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getBoard_Picture1();
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
 						dao.picUpdate1(saveFileName, dto.getBoard_Num());
 					}else if(i == 1){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getBoard_Picture2();
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
 						dao.picUpdate2(saveFileName, dto.getBoard_Num());
 					}else if(i == 2){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getBoard_Picture3();
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
 						dao.picUpdate3(saveFileName, dto.getBoard_Num());
 					}else if(i == 3){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getBoard_Picture4();
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
 						dao.picUpdate4(saveFileName, dto.getBoard_Num());
 					}else if(i == 4){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getBoard_Picture5();
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
 						dao.picUpdate5(saveFileName, dto.getBoard_Num());
 					}
 				}

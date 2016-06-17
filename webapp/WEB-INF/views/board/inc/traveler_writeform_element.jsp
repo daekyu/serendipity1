@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-	
-=======
-
->>>>>>> 347c737e6803cb75a91f4313e600a8bc6c2d6ec5
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"

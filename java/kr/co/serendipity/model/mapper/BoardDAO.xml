@@ -111,4 +111,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=2, price=#{price} 
 	 where board_Num=#{board_Num}
 	</update>
+	
+	 <insert id="travelerParty">
+	 INSERT INTO PARTICIPANT(parti_Num, board_Num, user_Num, STATE)
+	 VALUES(parti_seq.NEXTVAL, #{param1}, #{param2}, 'wait')
+	</insert>
+	
 </mapper>

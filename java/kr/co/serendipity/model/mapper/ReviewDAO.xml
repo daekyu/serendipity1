@@ -43,16 +43,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="orderReviewList" resultType="hashmap">
 		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code
-		<if test="#{order} == 'review_num'">
+		<if test="order.equalsIgnoreCase('review_num')">
 			order by r.review_num desc
 		</if>
 		
-		<if test="#{order} == 'like_count'">
+		<if test="order.equalsIgnoreCase('like_count')">
 		 	order by r.like_count desc
 		</if>
 		
-		<if test="#{order} == 'reply_count'">
-			order by r.reply_count desc
+		<if test="order.equalsIgnoreCase('reply_count')">
+			order by reply_count desc
 		</if>
 	</select>
 	

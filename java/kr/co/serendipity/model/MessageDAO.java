@@ -6,6 +6,7 @@
  */
 
 package kr.co.serendipity.model;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,6 @@ public interface MessageDAO {
 	public void sendMessage_2(MessageDTO messagedto); // 쪽지보내기 메소드(보낸 쪽지함에 넣기)
 	public void deleteSendMessage(MessageDTO messagedto); // 보낸쪽지함에서 삭제하기
 	public void deleteReceiverMessage(MessageDTO messagedto); // 받은쪽지함에서 삭제하기
-	public List<RCV_MessageDTO> msgNotificationCheck(RCV_MessageDTO rcv_messagedto); // 알림 체크하기
+	public List<HashMap<String, Object>> msgNotificationCheck(RCV_MessageDTO rcv_messagedto); // 알림체크하기
 	public void changeNotificationState(RCV_MessageDTO rcv_messagedto);
 }

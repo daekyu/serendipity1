@@ -57,6 +57,11 @@
 										<div class="contact">
 											<b>가격: </b>$10 / a hour
 										</div>
+										
+										<div class="contact" align="center">
+											<a class="btn btn-warning btn-lg btn-block">상세보기</a>
+										</div>
+										
 									</div>
 								</div> <!-- .employee-hover -->
 							</a>

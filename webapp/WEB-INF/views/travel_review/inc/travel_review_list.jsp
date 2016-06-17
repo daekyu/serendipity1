@@ -76,6 +76,7 @@ function filteringReviewList(param1) {
 
 
 function orderReviewList(param2) {
+	//console.log(param2);
 	$.ajax({
 		type : "post",
 		url : "orderReviewList.htm",
@@ -83,8 +84,10 @@ function orderReviewList(param2) {
 			"order" : param2
 		},
 		success : function(data) {
-			console.log("성공");
+			console.log("개성공");
+			console.log(data);
 			$.each(data, function(index, item) {
+				console.log(item.REVIEW_DATE);
 				$('#reviewListPicture' + index).attr('href', "review_detail.htm?review_num=" + item.REVIEW_NUM);
 				$('#reviewListImg' + index).attr('src', "${pageContext.request.contextPath}/resources/img/review_upload/"+item.REVIEW_PICTURE1);
 				$('#reviewListTitle' + index).attr('href', "review_detail.htm?review_num=" + item.REVIEW_NUM);

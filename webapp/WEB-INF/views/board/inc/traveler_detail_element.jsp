@@ -187,7 +187,7 @@
 						
 					</select>
 					
-					<a class="btn add-cart btn-default btn-lg" href="">신청하기</a>
+					<a class="btn add-cart btn-default btn-lg" href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${dto.board_Num}&user_num=${sessionScope.user_num}">신청하기</a>
 				</c:otherwise>
 			</c:choose>
 		  </div>

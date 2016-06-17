@@ -1,8 +1,8 @@
 /*
  * @Class : TravelReviewController
  * @Date : 16.06.09
- * @Author : �씠�냼�씪
- * @Desc : �뿬�뻾�썑湲� 寃뚯떆�뙋 而⑦듃濡ㅻ윭
+ * @Author : 이소라
+ * @Desc : 여행후기 게시판 컨트롤러
  */
 
 package kr.co.serendipity;
@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.serendipity.model.LocalDTO;
 import kr.co.serendipity.model.ReplyDAO;
 import kr.co.serendipity.model.ReplyDTO;
 import kr.co.serendipity.model.ReviewDAO;
@@ -42,7 +43,7 @@ public class TravelReviewController {
 	@Autowired
 	SqlSession sqlsession;
 	
-	//寃뚯떆�뙋 紐⑸줉
+	//여행후기 게시판 리스트
 	@RequestMapping("review_list.htm")
 	public ModelAndView reviewList(String pg, HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		System.out.println("reviewList entrance");
@@ -89,7 +90,7 @@ public class TravelReviewController {
 		return mav;
 	}
 	
-	//寃뚯떆湲� �긽�꽭蹂닿린
+	//여행후기 게시판 상세보기 
 	@RequestMapping(value="review_detail.htm", method=RequestMethod.GET)
 	public ModelAndView reviewDetail(ReviewDTO dto, HttpSession session) throws ClassNotFoundException, SQLException{
 		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
@@ -111,13 +112,14 @@ public class TravelReviewController {
 		return mav;
 	}
 	
+	// 해당 사용자가 해당 게시글에 좋아요를 눌렀는가
 	@RequestMapping(value="is_like.htm", method=RequestMethod.POST)
 	public @ResponseBody int isLike(ReviewLikeDTO likedto) {
 		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
 		return likedao.isLike(likedto);
 	}
 
-	// �썑湲� 湲��벐湲� �럹�씠吏��뤌
+	// 여행후기 글쓰기 폼
 	@RequestMapping("review_writeform.htm")
 	public ModelAndView reviewWriteForm() {
 		ModelAndView mav = new ModelAndView("/travel_review/review_writeform");
@@ -148,10 +150,10 @@ public class TravelReviewController {
 		return mav;
 	}*/
 	
-	//醫뗭븘�슂 �늻瑜닿린
+	//좋아요 누르기
 	@RequestMapping(value="review_like.htm", method=RequestMethod.POST)
 	public @ResponseBody int reviewLike(ReviewLikeDTO dto) throws ClassNotFoundException, SQLException{
-		System.out.println("�뱾�뼱�솕�땲?");
+		System.out.println("들어옴??");
 		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
 		likedao.likeInsertPlus(dto.getReview_num());
 		likedao.likeInsert(dto);
@@ -184,7 +186,7 @@ public class TravelReviewController {
 		return mav;
 	}*/
 	
-	//醫뗭븘�슂 痍⑥냼
+	//좋아요 취소
 	@RequestMapping(value="delete_review_like.htm", method=RequestMethod.POST)
 	public @ResponseBody int likeDelete(ReviewLikeDTO dto) throws ClassNotFoundException, SQLException{
 		System.out.println("�뱾�뼱�솕�땲?");
@@ -207,7 +209,7 @@ public class TravelReviewController {
 		reviewdto.setUser_num(dto.getUser_num());
 		HashMap<String, Object> reviewdetail = reviewdao.reviewDetail(reviewdto);
 		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
-		replydao.replyPlus(dto.getReply_num());
+		replydao.replyPlus(dto.getReview_num());
 		replydao.replyWrite(dto);
 		List<HashMap<String, Object>> replylist = replydao.replyList(dto.getReview_num());
 		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
@@ -237,7 +239,7 @@ public class TravelReviewController {
 		return "redirect:/travel_review/review_detail.htm?review_num="+dto.getReview_num()+"&user_num="+dto.getUser_num();
 	}
 	
-	//�뿬�뻾�썑湲� 寃뚯떆湲� �궘�젣
+	//여행후기 글삭제
 	@RequestMapping("review_delete.htm")
 	public String reviewDelete(int review_num, HttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException{
 		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
@@ -261,7 +263,7 @@ public class TravelReviewController {
 		return "redirect:/travel_review/review_list.htm";
 	}
 
-	// 湲��벐湲� 泥섎━ �럹�씠吏�
+	//여행후기 게시판 글쓰기
 	@RequestMapping(value = "review_writeform.htm", method = RequestMethod.POST)
 	public String reviewWrite(ReviewDTO dto, MultipartHttpServletRequest mrequest, HttpServletRequest request)
 			throws IOException, ClassNotFoundException, SQLException {
@@ -308,11 +310,11 @@ public class TravelReviewController {
         for(int i=0; i<filenames.size(); i++){
         	System.out.println("filename : "+filenames.get(i));
         }
-        dto.setReview_picture1(filenames.get(0)); // �뙆�씪紐�1
-        dto.setReview_picture2(filenames.get(1)); // �뙆�씪紐�2
-        dto.setReview_picture3(filenames.get(2)); // �뙆�씪紐�3
-        dto.setReview_picture4(filenames.get(3)); // �뙆�씪紐�4
-        dto.setReview_picture5(filenames.get(4)); // �뙆�씪紐�5
+        dto.setReview_picture1(filenames.get(0)); // 파일명1
+        dto.setReview_picture2(filenames.get(1)); // 파일명2
+        dto.setReview_picture3(filenames.get(2)); // 파일명3
+        dto.setReview_picture4(filenames.get(3)); // 파일명4
+        dto.setReview_picture5(filenames.get(4)); // 파일명5
         
 		System.out.println("title : " + dto.getReview_title());
 		System.out.println("content : " + dto.getReview_content());
@@ -430,23 +432,47 @@ public class TravelReviewController {
 	@RequestMapping("filteringReviewList.htm")
 	public String filteringReviewList(String local_code ,Model model) throws ClassNotFoundException, SQLException{
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-		
-		List<HashMap<String,Object>> review_list = dao.filteringReviewList(local_code);
-		model.addAttribute("reviewList", review_list);
-		model.addAttribute("local_list", dao.localList());
-		//model.addAttribute("local_code", local_code);
-		return "redirect:/travel_review/review_list.htm";
+		List<LocalDTO> local_list = dao.localList();
+		List<HashMap<String,Object>> reviewList = dao.filteringReviewList(local_code);
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("local_list", local_list);
+		model.addAttribute("local_code", local_code);
+		return "/travel_review/review_list";
 	}
 	
-	//여행후기 게시판 리스트 정렬
-	@RequestMapping("orderReviewList.htm")
-	public String orderReviewList(String order, Model model) throws ClassNotFoundException, SQLException{
-
+	//여행후기 게시판 리스트 정렬(최신순)
+	@RequestMapping("orderReviewList1.htm")
+	public String orderReviewList1(Model model) throws ClassNotFoundException, SQLException{
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-
-		List<HashMap<String,Object>> review_list = dao.orderReviewList(order);
-		model.addAttribute("reviewList", review_list);
-		model.addAttribute("local_list", dao.localList());
-		return "redirect:/travel_review/review_list.htm";
+		List<HashMap<String,Object>> reviewList = dao.orderReviewList1();
+		List<LocalDTO> local_list = dao.localList();
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("local_list", local_list);
+		model.addAttribute("order", "최신순");
+		return "/travel_review/review_list";
+	}
+	
+	// 여행후기 게시판 리스트 정렬(최신순)
+	@RequestMapping("orderReviewList2.htm")
+	public String orderReviewList2(Model model) throws ClassNotFoundException, SQLException {
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		List<HashMap<String, Object>> reviewList = dao.orderReviewList2();
+		List<LocalDTO> local_list = dao.localList();
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("local_list", local_list);
+		model.addAttribute("order", "좋아요순");
+		return "/travel_review/review_list";
+	}
+	
+	// 여행후기 게시판 리스트 정렬(최신순)
+	@RequestMapping("orderReviewList3.htm")
+	public String orderReviewList3(Model model) throws ClassNotFoundException, SQLException {
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		List<HashMap<String, Object>> reviewList = dao.orderReviewList3();
+		List<LocalDTO> local_list = dao.localList();
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("local_list", local_list);
+		model.addAttribute("order", "댓글순");
+		return "/travel_review/review_list";
 	}
 }

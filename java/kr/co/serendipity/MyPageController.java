@@ -24,8 +24,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.MyPageDAO;
+import kr.co.serendipity.model.ParticipantDTO;
 
 @Controller
 @RequestMapping("/mypage/")
@@ -73,7 +75,12 @@ public class MyPageController {
 	}
 
 	@RequestMapping("my_page_send_history.htm")
-	public String sendHistory() {
+	public String sendHistory(int user_num, Model model) {
+		System.out.println("sendHistory entrance");
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		ParticipantDTO dto = dao.sendHistory(user_num);
+		
+		model.addAttribute("dto", dto);
 		return "/mypage/my_page_send_history";
 	}
 

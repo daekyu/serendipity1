@@ -290,7 +290,8 @@
 						<td colspan="5">
 							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
 
-							<textarea name="board_Content" id="ckeditor"></textarea> <script type="text/javascript">
+							<textarea name="board_Content" id="ckeditor"></textarea> 
+							<script type="text/javascript">
 							
 
 									CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
@@ -298,9 +299,9 @@
 										height : '400px',
 										//filebrowserImageUploadUrl : '' //여기 경로로 파일을 전달하여 업로드 시킨다.
 									});
-
+									</script>
 								
-							</script>
+							
 
 						</td>
 					</tr>

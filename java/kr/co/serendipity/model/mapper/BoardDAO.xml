@@ -102,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="Gupdate">
 	 update board set user_Num=#{user_Num}, 
 	 board_Title=#{board_Title}, board_Content=#{board_Content}, 
-	 board_Capacity=#{board_Capacity}, board_Date='날짜', board_Latitude=#{board_Latitude}, 
+	 board_Capacity=#{board_Capacity}, board_Date='#{board_Date}', board_Latitude=#{board_Latitude}, 
 	 meeting_Place=#{meeting_Place}, meeting_Address=#{meeting_Address},
 	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=2, price=#{price} 
 	 where board_Num=#{board_Num}

@@ -25,6 +25,7 @@ $(function() {
 		        success : function(data) {
 		        	if(data != ''){
 		        		for(var i=0; i<data.length; i++){
+		        			console.log("aaaaaaaaaaaaaaaaaaaaa");
 		        			console.log(data[i].ID + "/" + data[i].PROFILE_PICTURE);
 		        			var options = {
 		        					body : data[i].ID + "님이 쪽지를 보냈습니다.",

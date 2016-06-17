@@ -5,8 +5,10 @@
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
-<input type="hidden" id="lat" value="${dto.board_Latitude}"/>
-<input type="hidden" id="lng" value="${dto.board_Longitude}"/>
+<script type="text/javascript"
+	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
+<input type="hidden" id="latitude" value="${dto.board_Latitude}"/>
+<input type="hidden" id="longitude" value="${dto.board_Longitude}"/>
 <script type="text/javascript">
 $(function() {
 	var index=1;
@@ -35,12 +37,18 @@ $(function() {
 	    }
 	});
 });
+
+$(function(){
+	$("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());
+		});
+
+
 var geocoder;
 var map;
 var markers = Array();
 var infos = Array();
-var latitude = document.getElementById('lat').value;
-var longitude = document.getElementById('lng').value;
+var latitude = document.getElementById('latitude').value;
+var longitude = document.getElementById('longitude').value;
 
 function initialize() {
     // prepare Geocoder
@@ -217,7 +225,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 	<article class="content">
 		<div class="container">
-			<form action="" method="post">
+			<form action="" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="user_Num" value="${user_num}">
 			<input type="hidden" name="board_Num" value="${dto.board_Num}">
 				<table class="table center">
@@ -229,13 +237,27 @@ google.maps.event.addDomListener(window, 'load', initialize);
 						<td>인원수</td>
 						<td><input class="form-control" type="text" name="board_Capacity" value="${dto.board_Capacity}"></td>
 						<td>날짜</td>
-						<td><input class="form-control" type="text"></td>
+						<td><input class="form-control" type="text" name="board_Date"  id="datepicker"  value="${dto.board_Date}"></td>
 						<td>가격</td>
 						<td><input class="form-control" type="text" name="price" value="${dto.price}"></td>
 					</tr>
 					<tr>
-						<td>설명</td>
-						<td colspan="5"><textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content">${dto.board_Content}</textarea></td>
+								<td>설명</td>
+						<td colspan="5">
+							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
+							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
+
+
+							<textarea name="board_Content" id="ckeditor" >${dto.board_Content}</textarea> 
+							<script	type="text/javascript">
+								CKEDITOR.replace('ckeditor', {
+									width : '90%',
+									height : '400px'
+
+								});
+							</script>
+						
+						</td>
 					</tr>
 					<tr>
 						<td>Meeting Point</td>

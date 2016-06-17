@@ -73,11 +73,13 @@ public class BoardController {
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("listCount", listCount);
-
+		
+		BoardDTO dto = (BoardDTO)boardList.get(0);
 		System.out.println("page= " + page);
 		System.out.println("maxpage= " + maxpage);
 		System.out.println("startpage= " + startpage);
 		System.out.println("endpage= " + endpage);
+		System.out.println("img1 : " +dto.getBoard_Picture1() );
 
 		return "/board/traveler_list";
 	}
@@ -306,11 +308,57 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "guide_modify.htm", method = RequestMethod.POST)
-	public String modifyGuideForm(BoardDTO dto) throws ClassNotFoundException, SQLException {
+	public String modifyGuideForm(BoardDTO dto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		System.out.println("guide_modify.htm post");
 		System.out.println("board_Num : " + dto.getBoard_Num());
 		System.out.println("board_Content : " + dto.getBoard_Content());
+		
+		List<MultipartFile> flist = request.getFiles("pic");
+		List<String> filenames = new ArrayList<String>();
+
+		System.out.println("0번 파일 : " + flist.get(0).getOriginalFilename());
+		System.out.println("1번 파일 : " + flist.get(1).getOriginalFilename());
+		System.out.println("2번 파일 : " + flist.get(2).getOriginalFilename());
+		System.out.println("3번 파일 : " + flist.get(3).getOriginalFilename());
+		System.out.println("4번 파일 : " + flist.get(4).getOriginalFilename());
+
+		System.out.println("flist.size() : " + flist.size());
+
+		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
+		System.out.println("실제 파일 업로드 경로 : " + realFolder);
+		if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
+
+		} else {
+			for (int i = 0; i < 5; i++) {
+
+				String saveFileName = null;
+				if (flist.get(i).getOriginalFilename().equals("")) {
+					//filenames.add("no_picture");
+				} else {
+					String genId = UUID.randomUUID().toString();
+					String originalfileName = flist.get(i).getOriginalFilename();
+
+					System.out.println("filename : " + originalfileName);
+
+					saveFileName = genId + "_" + originalfileName;
+
+					String savePath = realFolder + "\\" + saveFileName;
+
+					flist.get(i).transferTo(new File(savePath));
+					filenames.add(saveFileName);
+				}
+			}
+		}
+		System.out.println("filenames.get(0) : " + filenames.get(0));
+		System.out.println("filenames.get(1) : " + filenames.get(1));
+		dto.setBoard_Picture1(filenames.get(0));
+		System.out.println("dto.getBoard_Picture1() : " + dto.getBoard_Picture1());
+		dto.setBoard_Picture2(filenames.get(1));
+		dto.setBoard_Picture3(filenames.get(2));
+		dto.setBoard_Picture4(filenames.get(3));
+		dto.setBoard_Picture5(filenames.get(4));
+		
 		dao.Gupdate(dto);
 		return "redirect:/board/guide_list.htm";
 	}
@@ -326,11 +374,61 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "traveler_modify.htm", method = RequestMethod.POST)
-	public String modifyTravelerForm(BoardDTO dto) throws ClassNotFoundException, SQLException {
+	public String modifyTravelerForm(BoardDTO dto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		System.out.println("traveler_modify.htm post");
 		System.out.println("board_Num : " + dto.getBoard_Num());
 		System.out.println("board_Content : " + dto.getBoard_Content());
+		System.out.println("board_latitude : " + dto.getBoard_Latitude());
+		System.out.println("board_longitude : " + dto.getBoard_Longitude());
+		
+		List<MultipartFile> flist = request.getFiles("pic");
+
+		System.out.println("0번 파일 : " + flist.get(0).getOriginalFilename());
+		System.out.println("1번 파일 : " + flist.get(1).getOriginalFilename());
+		System.out.println("2번 파일 : " + flist.get(2).getOriginalFilename());
+		System.out.println("3번 파일 : " + flist.get(3).getOriginalFilename());
+		System.out.println("4번 파일 : " + flist.get(4).getOriginalFilename());
+
+		System.out.println("flist.size() : " + flist.size());
+
+		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
+		System.out.println("실제 파일 업로드 경로 : " + realFolder);
+		if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
+
+		} else {
+			for (int i = 0; i < 5; i++) {
+
+				String saveFileName = null;
+				if (flist.get(i).getOriginalFilename().equals("")) {
+					//filenames.add("no_picture");
+				} else { // 이미지가 있으면
+					String genId = UUID.randomUUID().toString();
+					String originalfileName = flist.get(i).getOriginalFilename();
+
+					System.out.println("filename : " + originalfileName);
+
+					saveFileName = genId + "_" + originalfileName;
+
+					String savePath = realFolder + "\\" + saveFileName;
+
+					flist.get(i).transferTo(new File(savePath));
+					
+					if(i == 0){
+						dao.picUpdate1(saveFileName, dto.getBoard_Num());
+					}else if(i == 1){
+						dao.picUpdate2(saveFileName, dto.getBoard_Num());
+					}else if(i == 2){
+						dao.picUpdate3(saveFileName, dto.getBoard_Num());
+					}else if(i == 3){
+						dao.picUpdate4(saveFileName, dto.getBoard_Num());
+					}else if(i == 4){
+						dao.picUpdate5(saveFileName, dto.getBoard_Num());
+					}
+				}
+			}
+		}
+		
 		dao.update(dto);
 		return "redirect:/board/traveler_list.htm";
 	}

@@ -171,10 +171,10 @@ function orderReviewList(param2) {
 								<a <%-- id="reviewList${j.index}" --%> href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image"> <!-- <span class="sale"></span> -->
 									<c:choose>
 										<c:when test="${i.REVIEW_PICTURE1 eq '사진없음'}">
-											<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
+											<img class="replace-2x review-list" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
 										</c:when>
 										<c:otherwise>
-											<img id="reviewList${j.index}" class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${i.REVIEW_PICTURE1}" width="620" height="550" alt="">
+											<img id="reviewList${j.index}" class="replace-2x slid-img img-list" src="${pageContext.request.contextPath}/resources/img/review_upload/${i.REVIEW_PICTURE1}" width="550" height="550" alt="">
 										</c:otherwise>
 									</c:choose>
 								</a>
@@ -185,7 +185,8 @@ function orderReviewList(param2) {
 								</h3>
 								<div class="excerpt">
 									<span>ID : ${i.ID}</span><br> <span>지역:
-										${i.LOCAL_NAME}</span><br> <span>작성일 : ${i.REVIEW_DATE}</span>
+										${i.LOCAL_NAME}</span><br> <span>작성일 : ${i.REVIEW_DATE}</span><br>
+										<span>댓글 수 : ${i.REPLY_COUNT}</span>
 								</div>
 								<div class="excerpt">
 									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_CONTENT}</a>

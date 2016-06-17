@@ -576,4 +576,19 @@ public class BoardController {
 		dao.updateReportCount(dto.getVillain());
 		return "redirect:/board/travel_detail.htm?board_num=" + board_num + "&user_num=" + dto.getVillain();
 	}
+	
+	@RequestMapping(value = "travelerParty.htm")
+	public ModelAndView travelerParty(int board_num, int user_num) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		System.out.println("travelerParty entrance");
+		System.out.println("board_num : " + board_num);
+		System.out.println("user_num : " + user_num);
+		
+		dao.travelerParty(board_num, user_num);
+		ModelAndView mav = new ModelAndView("redirect:/board/traveler_detail.htm?board_num=" + board_num);
+		
+		mav.addObject("dto", dao.getBoardDetail(board_num));
+
+		return mav;
+	}
 }

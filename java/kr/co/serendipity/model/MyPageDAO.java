@@ -64,4 +64,7 @@ public interface MyPageDAO {
 	//취미 코드를 받아 취미명 반환
 	public List parseHobby(int user_num);
 	
+	//보낸 요청 리스트
+	public ParticipantDTO sendHistory(int user_num);
+	
 }

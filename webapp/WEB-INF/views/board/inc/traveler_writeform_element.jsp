@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<<<<<<< HEAD
 	
 
+=======
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+>>>>>>> locale
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
@@ -286,7 +290,11 @@
 					</tr>
 					<tr>
 						<td><spring:message code="board.traveler_writeform3"/></td>
+<<<<<<< HEAD
 						<td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
+=======
+						<td><input class="form-control" type="text"></td>
+>>>>>>> locale
 						<td><spring:message code="board.traveler_writeform4"/></td>
 						<td><input class="form-control" type="text" name="price"></td>
 					</tr>
@@ -368,6 +376,7 @@
 										onclick="findPlaces(); return false;">Search for objects</div>
 								</div>
 							</div>
+<<<<<<< HEAD
 						</td>
 					</tr>
 
@@ -381,5 +390,29 @@
 		</div>
 	</article>
 	<!-- .content -->
+=======
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><spring:message code="board.traveler_writeform6"/></td>
+					<td id="addPic" colspan="4"><input type="file" id="pic0"
+						name="pic0"></td>
+					<td align="center">
+						<button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>
+						<button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="board.traveler_writeform10"/></button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" align="center"><input type="submit"
+						id="success" class="btn btn-success" value="<spring:message code="board.traveler_writeform11"/>"><input
+						type="reset" class="btn btn-danger" value="<spring:message code="board.traveler_writeform12"/>"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</article>
+<!-- .content -->
+>>>>>>> locale
 </section>
 <!-- #main -->

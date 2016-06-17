@@ -63,11 +63,9 @@
 		    	        content: '<font style="color:#000;">' + meeting_place + 
 		    	        '<br />주소: ' + meeting_address+'</font>'
 		    	    });
+		    	    
+		    	    infowindow.open(map,marker);
 
-		    	    // add event handler to current marker
-		    	    google.maps.event.addListener(marker, 'click', function(){
-		    	        infowindow.open(map,marker);
-		    	    });
 		}
 
 		// initialization

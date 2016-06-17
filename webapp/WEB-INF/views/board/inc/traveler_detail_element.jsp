@@ -158,7 +158,7 @@
 			</div>
 			
 			<div class="price-box">
-			  <span class="price">${dto.price} / a day</span>
+			  <span class="price">${dto.price} / a day / ${dto.board_Date}</span>
 			</div>
 			
 			<c:choose>
@@ -168,9 +168,15 @@
 				</c:when>
 				
 				<c:otherwise>
+				
+					<td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
+				
+					
 					<select>
-						<option>16.06.02 - 2명남음</option>
+						<option></option>
+						
 					</select>
+					
 					<a class="btn add-cart btn-default btn-lg" href="">신청하기</a>
 				</c:otherwise>
 			</c:choose>

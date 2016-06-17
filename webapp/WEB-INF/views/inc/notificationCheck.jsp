@@ -25,11 +25,16 @@ $(function() {
 		        success : function(data) {
 		        	if(data != ''){
 		        		for(var i=0; i<data.length; i++){
-						    var notification = new Notification(data[i].sender + "님이 쪽지보냄");
+		        			console.log(data[i].ID + "/" + data[i].PROFILE_PICTURE);
+		        			var options = {
+		        					body : data[i].ID + "님이 쪽지를 보냈습니다.",
+		        					icon : getContextPath() + "/resources/img/profile_picture/" + data[i].PROFILE_PICTURE
+		        			}
+						    var notification = new Notification("Serendipity", options);
 						    $.ajax({
 		        				type : "post",
 		        				url : getContextPath() + "/message/changeMsgNotificationState.htm",
-		        				data : {"receiver" : "${sessionScope.user_num}", "message_num" : data[i].message_num},
+		        				data : {"receiver" : "${sessionScope.user_num}", "message_num" : data[i].MESSAGE_NUM},
 		        				success : function() {
 		        					
 		        				}
@@ -48,7 +53,11 @@ $(function() {
 				success : function(data) {
 					if(data != ''){
 						for(var i=0; i<data.length; i++){
-							var notification = new Notification(data[i].USER_NUM + "님이 댓글달았음");
+							var options = {
+		        					body : data[i].ID + "님이 댓글을 달았습니다.",
+		        					icon : getContextPath() + "/resources/img/profile_picture/" + data[i].PROFILE_PICTURE
+		        			}
+						    var notification = new Notification("Serendipity", options);
 							$.ajax({
 								type : "post",
 								url : getContextPath() + "/travel_review/changeReplyState.htm",

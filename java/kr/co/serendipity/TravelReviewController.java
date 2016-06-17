@@ -207,6 +207,7 @@ public class TravelReviewController {
 		reviewdto.setUser_num(dto.getUser_num());
 		HashMap<String, Object> reviewdetail = reviewdao.reviewDetail(reviewdto);
 		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
+		replydao.replyPlus(dto.getReply_num());
 		replydao.replyWrite(dto);
 		List<HashMap<String, Object>> replylist = replydao.replyList(dto.getReview_num());
 		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
@@ -227,10 +228,11 @@ public class TravelReviewController {
 		return "redirect:/travel_review/review_detail.htm?review_num="+dto.getReview_num()+"&user_num="+dto.getUser_num();
 	}
 	
-	//�뙎湲��궘�젣
+	//댓글 삭제
 	@RequestMapping("reply_delete.htm")
 	public String replyDelete(ReplyDTO dto) throws ClassNotFoundException, SQLException{
 		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
+		replydao.replyMinus(dto.getReview_num());
 		replydao.replyDelete(dto);
 		return "redirect:/travel_review/review_detail.htm?review_num="+dto.getReview_num()+"&user_num="+dto.getUser_num();
 	}

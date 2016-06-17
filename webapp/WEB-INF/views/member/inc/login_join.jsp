@@ -33,6 +33,7 @@
 			}
 		});
 		
+		//로그인 유효성 검증 
 		$('#btn_login_form').click(function() {
 			if($('#id_login').val() == '') {
 				alert('아이디를 입력해주세요');
@@ -46,7 +47,7 @@
 				
 				
 				
-				// 아이디, 비밀번호 비교하는거 비동기로 검사하기
+				// 로그인 아이디, 비밀번호 비교하는거 비동기로 검사하기
 				$.ajax({
 		        	  type : "post",
 		        	  url : "loginCheck.htm",
@@ -64,108 +65,75 @@
 		          });
 			}
 		});
-	});
-	
-
-
-
-$(document).ready(function(){
-	
-	
-	$("#loginbutton").click(function(){
 		
-						var reg_name = /^[a-zA-Z가-힣]/g; //한글10자, 영문20자, 한글,영문,숫자 사용가능
-						var reg_id = /^[a-z0-9_-]{4,12}$/;
-						var reg_email = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
-						var reg_pw = /^[a-z0-9_-]{4,12}$/; // 비밀번호 검사식
-						var reg_hp = /^[a-z0-9_-]{10,20}$/;
-						var reg_age = /^[0-9]{1,4}$/;
-						var name= $('#name'), id = $('#id_1'), pw_1 = $('#pw_1'), confirm_pw = $('confirm_pw'), hp = $('#hp'), email = $('#email'), gender = $('#gender'), age=$('#age'), country_code=$('#country_code'), local_code=$('#local_code');
-
-						if (!reg_name.test(name.val()) == true) {
-							alert("이름을 입력해주세요");
-							name.focus();
-							return false;
-							
-						} else if (!reg_id.test(id.val()) == true) {
-							alert("아이디는 4-12자 이여야 하며 \n"
-									+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.");
-							id.focus();
-							return false;
-							
-							
-				
-						/* else if ($('#id_1').val() != ''){
-							
-							$.ajax({
-					        	  type : "post",
-					        	  url : "IdCheck.htm",
-					        	  data : {"id" : $('#id_1').val()},
-					        	  success : function(data) {
-					        		  console.log(data);
-					        		  if(data == 0) {
-					        			  alert("사용가능한 아이디입니다.");
-					        			  $('#id_1').focus();
-					        			  return false;
-					        		  } else {
-					        			  $('#joinMember').submit();
-					        		  }
-					        	  }
-					          });
-						
+		$("#loginbutton").click(function(){
 			
-					
-					} */ }else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
-							alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)');
-							pw_1.focus();
-							return false;
-						} else if ($('#pw_1').val()!=$('#confirm_pw').val()){ // 비밀번호 확인 검사
-							alert('비밀번호가 일치하지 않습니다');
-							confirm_pw.focus();
-							return false;
-						} else if (gender.val() == "") { // 이름 검사
-							alert('성별 선택해 주세요.');
-							gender.focus();
-							return false;
-						} else if (!reg_age.test(age.val()) == true) {
-							alert("나이를 숫자로 입력해주세요");
-							age.focus();
-							return false;
-						}else if (country_code.val() == "") { // 이름 검사
-							alert('국적을 선택해 주세요.');
-							country_code.focus();
-							return false;
+			var reg_name = /^[a-zA-Z가-힣]/g; //한글10자, 영문20자, 한글,영문,숫자 사용가능
+			var reg_id = /^[a-z0-9_-]{4,12}$/;
+			var reg_email = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
+			var reg_pw = /^[a-z0-9_-]{4,12}$/; // 비밀번호 검사식
+			var reg_hp = /^[a-z0-9_-]{10,20}$/;
+			var reg_age = /^[0-9]{1,4}$/;
+			var name= $('#name'), id = $('#id_1'), pw_1 = $('#pw_1'), confirm_pw = $('confirm_pw'), hp = $('#hp'), email = $('#email'), gender = $('#gender'), age=$('#age'), country_code=$('#country_code'), local_code=$('#local_code');
 
-						} else if (!reg_hp.test(hp.val()) == true) { //휴대폰 유효성
-							alert('휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)');
-							hp.focus();
-							return false;
-						} else if (!reg_email.test(email.val()) == true) {
-							alert('이메일 주소는 @와.를 입력해야합니다.');
-							email.focus();
-							return false;
-						}else{
-							alert("회원가입 성공");
-						} 
-						
-						
-			});
-    }); // 유효성체크
-    
-    
-    
-    //비동기 아이디 중복 체크
-  $(document).ready(function(){
-    	
-    	
-    	$("#id_button").click(function(){
-    
-    		if ($('#id_1').val() == ''){
-    			alert("ID를 입력해주세요");
-    			$("#id_1").focus();
-    			return false;
-    			
-    		}else{
+			if (!reg_name.test(name.val()) == true) {
+				alert("이름을 입력해주세요");
+				name.focus();
+				return false;
+				
+			} else if (!reg_id.test(id.val()) == true) {
+				alert("아이디는 4-12자 이여야 하며 \n"
+						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.");
+				id.focus();
+				return false;
+			 }else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
+				alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)');
+				pw_1.focus();
+				return false;
+			} else if ($('#pw_1').val()!=$('#confirm_pw').val()){ // 비밀번호 확인 검사
+				alert('비밀번호가 일치하지 않습니다');
+				confirm_pw.focus();
+				return false;
+			} else if (gender.val() == "") { // 이름 검사
+				alert('성별 선택해 주세요.');
+				gender.focus();
+				return false;
+			} else if (!reg_age.test(age.val()) == true) {
+				alert("나이를 숫자로 입력해주세요");
+				age.focus();
+				return false;
+			}else if (country_code.val() == "") { // 이름 검사
+				alert('국적을 선택해 주세요.');
+				country_code.focus();
+				return false;
+
+			} else if (!reg_hp.test(hp.val()) == true) { //휴대폰 유효성
+				alert('휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)');
+				hp.focus();
+				return false;
+			} else if (!reg_email.test(email.val()) == true) {
+				alert('이메일 주소는 @와.를 입력해야합니다.');
+				email.focus();
+				return false;
+			}else if($('#id_check_val').val() == '0') {
+				alert('사용할수 없는 아이디입니다.');
+				return false;
+			} else{
+				alert("회원가입 성공");
+			} 
+
+			
+			
+		});
+		
+		$("#id_button").click(function(){
+		    
+			if ($('#id_1').val() == ''){
+				alert("ID를 입력해주세요");
+				$("#id_1").focus();
+				return false;
+				
+			}else{
 				$.ajax({
 		        	  type : "post",
 		        	  url : "IdCheck.htm",
@@ -174,26 +142,18 @@ $(document).ready(function(){
 		        		  console.log(data);
 		        		  if(data == 0) {
 		        			  alert("사용가능한 아이디입니다.");
-		        			  $('#id_1').focus();
-		        			  return false;
+		        			  $('#id_check_val').val('1');
 		        		  } else {
-		        			  alert("사용불가능한 아이디입니다.");
+		        			  alert("id가 이미 있습니다");
 		        			  $('#id_1').focus();
-		        			  return false;
 		        		  }
 		        	  }
 		          });
-    			
-    		}
-    	});
-    }); 
-    
-   
-
-    $(document).ready(function(){
-    	
-    	
-    	$("#login").click(function(){
+				
+			}
+		});
+		
+		$("#login").click(function(){
 
     		var id_login=('#id') , password=('#pw');
 			var reg_id = /^[a-z0-9_-]{4,12}$/;
@@ -212,11 +172,11 @@ $(document).ready(function(){
 			}
 
 		});
-    }); // 유효성체크
-    
-
-
-
+		
+		
+		
+	});
+	
 </script>
 
 <!-- 로그인/회원가입부분 -->
@@ -284,6 +244,7 @@ $(document).ready(function(){
 				<label>아이디: <span class="required" id="id_text"></span></label>
 				<input type="text" class="form-control" name="id" id="id_1">
 				<input type="button" class="btn btn-default" id="id_button" value="아이디확인"/>
+				<input type="hidden" id="id_check_val" value="0">
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
 				  data-bv-message="The username is not valid"
@@ -351,7 +312,7 @@ $(document).ready(function(){
 
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Create my account</button> -->
-				<input type="button" class="btn btn-default" id="loginbutton" value="Create my account">
+				<input type="submit" class="btn btn-default" id="loginbutton" value="Create my account">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>
 			</form><!-- .form-box -->

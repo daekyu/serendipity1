@@ -103,7 +103,7 @@
 							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 						</c:when>
 						<c:otherwise>
-							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REIVEW_PICTURE2}" width="620" height="550" alt="">
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REVIEW_PICTURE2}" width="620" height="550" alt="">
 						</c:otherwise>
 					</c:choose>
 					</div>
@@ -222,8 +222,15 @@
 		  <c:forEach var="i" items="${replylist}">
 		  <li class="">
 		  	<div class="row">
-				<img class="image avatar img-circle replace-2x animated rotateIn" width="84" height="84" src=".././resources/img/1212.JPG" alt="">
-			
+				 <c:choose>
+					<c:when test="${i.PROFILE_PICTURE == null}">
+						<img class="image avatar img-circle replace-2x animated rotateIn" width="84" height="84" src=".././resources/img/avatar.PNG" alt="">
+					</c:when>
+					<c:otherwise>
+						<img class="image avatar img-circle replace-2x animated rotateIn" width="84" height="84" src="${pageContext.request.contextPath}/resources/img/profile_picture/${i.PROFILE_PICTURE}" alt="">
+						<%-- <img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REVIEW_PICTURE5}" width="620" height="550" alt=""> --%>
+					</c:otherwise>
+				 </c:choose>
 			<div class="meta">
 			  <span><b>${i.ID}</b></span>, 
 			  <span class="time"><b>${i.REPLY_DATE}</b><!-- &nbsp;&nbsp;&nbsp; -->

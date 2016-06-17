@@ -263,16 +263,16 @@ public class TravelReviewController {
 	@RequestMapping(value = "review_writeform.htm", method = RequestMethod.POST)
 	public String reviewWrite(ReviewDTO dto, MultipartHttpServletRequest mrequest, HttpServletRequest request)
 			throws IOException, ClassNotFoundException, SQLException {
-		System.out.println("�뱾�뼱�삤�땲");
+		System.out.println("들어오니");
 		
 		List<MultipartFile> mflist = mrequest.getFiles("review_picture");
 		List<String> filenames = new ArrayList<String>();
 		
-		System.out.println("0踰덉㎏ : "+mflist.get(0).getOriginalFilename());
-		System.out.println("1踰덉㎏ : "+mflist.get(1).getOriginalFilename());
-		System.out.println("2踰덉㎏ : "+mflist.get(2).getOriginalFilename());
-		System.out.println("3踰덉㎏ : "+mflist.get(3).getOriginalFilename());
-		System.out.println("4踰덉㎏ : "+mflist.get(4).getOriginalFilename());
+		System.out.println("0번째 : "+mflist.get(0).getOriginalFilename());
+		System.out.println("1번째 : "+mflist.get(1).getOriginalFilename());
+		System.out.println("2번째 : "+mflist.get(2).getOriginalFilename());
+		System.out.println("3번째 : "+mflist.get(3).getOriginalFilename());
+		System.out.println("4번째 : "+mflist.get(4).getOriginalFilename());
 		
 		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
         if (mflist.size()==1 && mflist.get(0).getOriginalFilename().equals("")) {
@@ -282,7 +282,7 @@ public class TravelReviewController {
             	
             		String saveFileName = null;
             		if(mflist.get(i).getOriginalFilename().equals("")){
-            			filenames.add("�궗吏꾩뾾�쓬");
+            			filenames.add("사진없음");
             		}
             		else{
             		// �뙆�씪 以묐났紐� 泥섎━
@@ -371,7 +371,7 @@ public class TravelReviewController {
             	
             		String saveFileName = null;
             		if(mflist.get(i).getOriginalFilename().equals("")){
-            			filenames.add("�궗吏꾩뾾�쓬");
+            			filenames.add("사진없음");
             		}
             		else{
             		// �뙆�씪 以묐났紐� 泥섎━

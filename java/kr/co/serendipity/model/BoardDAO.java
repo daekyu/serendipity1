@@ -48,6 +48,9 @@ public interface BoardDAO {
 	//글 수정 개별 이미지 5 수정
 	public void picUpdate5(String pic, int board_num) throws ClassNotFoundException, SQLException;
 	
+	//이미지 삭제를 위한 이미지 명 검색
+	public BoardDTO picSearch(int board_num);
+	
 	//    -----------------여행자 구함 게시판 
 	//여행자 구함 글쓰기
 	public void Gwrite(BoardDTO dto) throws ClassNotFoundException, SQLException;

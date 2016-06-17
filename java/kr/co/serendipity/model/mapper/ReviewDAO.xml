@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.serendipity.model.ReviewDAO">
 	<insert id="reviewWrite">
-		insert into review(review_num, user_num, review_title, review_content, review_content1, review_content2, review_content3, review_content4, review_content5, review_picture1, review_picture2, review_picture3, review_picture4, review_picture5, like_count, review_date, local_code)
-		values(review_seq.nextval, #{user_num}, #{review_title}, #{review_content}, #{review_content1}, #{review_content2}, #{review_content3}, #{review_content4}, #{review_content5}, #{review_picture1}, #{review_picture2}, #{review_picture3}, #{review_picture4}, #{review_picture5}, 0, SYSDATE,#{local_code})
+		insert into review(review_num, user_num, review_title, review_content, review_content1, review_content2, review_content3, review_content4, review_content5, review_picture1, review_picture2, review_picture3, review_picture4, review_picture5, like_count, review_date, local_code, reply_count)
+		values(review_seq.nextval, #{user_num}, #{review_title}, #{review_content}, #{review_content1}, #{review_content2}, #{review_content3}, #{review_content4}, #{review_content5}, #{review_picture1}, #{review_picture2}, #{review_picture3}, #{review_picture4}, #{review_picture5}, 0, SYSDATE,#{local_code},0)
 	</insert>
 	
 	<select id="localList" resultType="kr.co.serendipity.model.LocalDTO">

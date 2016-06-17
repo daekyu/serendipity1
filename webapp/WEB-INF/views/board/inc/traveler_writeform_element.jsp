@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
@@ -95,7 +96,7 @@
 		var myOptions = { // default map options
 			zoom : 17,
 			center : myLatlng,
-			mapTypeId : google.maps.MapTypeId.ROADMAP
+			mapTypeId : google.maps.MapTypeId.HYBRID
 		};
 		map = new google.maps.Map(document.getElementById('gmap_canvas'),
 				myOptions);

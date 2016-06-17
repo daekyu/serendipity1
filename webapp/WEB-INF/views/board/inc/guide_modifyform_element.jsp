@@ -7,8 +7,8 @@
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-<input type="hidden" id="lat" value="${dto.board_Latitude}"/>
-<input type="hidden" id="lng" value="${dto.board_Longitude}"/>
+<input type="hidden" id="latitude" value="${dto.board_Latitude}"/>
+<input type="hidden" id="longitude" value="${dto.board_Longitude}"/>
 <script type="text/javascript">
 $(function() {
 	var index=1;
@@ -47,8 +47,8 @@ var geocoder;
 var map;
 var markers = Array();
 var infos = Array();
-var latitude = document.getElementById('lat').value;
-var longitude = document.getElementById('lng').value;
+var latitude = document.getElementById('latitude').value;
+var longitude = document.getElementById('longitude').value;
 
 function initialize() {
     // prepare Geocoder

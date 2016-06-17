@@ -33,6 +33,21 @@ public interface BoardDAO {
 	//글 수정
 	public void update(BoardDTO dto) throws ClassNotFoundException, SQLException;
 	
+	//글 수정 개별 이미지 1 수정
+	public void picUpdate1(String pic, int board_num) throws ClassNotFoundException, SQLException;
+	
+	//글 수정 개별 이미지 2 수정
+	public void picUpdate2(String pic, int board_num) throws ClassNotFoundException, SQLException;
+		
+	//글 수정 개별 이미지 3 수정
+	public void picUpdate3(String pic, int board_num) throws ClassNotFoundException, SQLException;
+		
+	//글 수정 개별 이미지 4 수정
+	public void picUpdate4(String pic, int board_num) throws ClassNotFoundException, SQLException;
+		
+	//글 수정 개별 이미지 5 수정
+	public void picUpdate5(String pic, int board_num) throws ClassNotFoundException, SQLException;
+	
 	//    -----------------여행자 구함 게시판 
 	//여행자 구함 글쓰기
 	public void Gwrite(BoardDTO dto) throws ClassNotFoundException, SQLException;

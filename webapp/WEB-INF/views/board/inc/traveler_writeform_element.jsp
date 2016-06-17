@@ -69,13 +69,19 @@
 		$('#bofom').submit();
 	});
 
+
+	var geocoder;
+
+
 	
 		$(function(){
  		$("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());
  			});
 	
  
- 	var geocoder;
+
+
+
 	var map;
 	var markers = Array();
 	var infos = Array();
@@ -286,8 +292,6 @@
 						<td colspan="5">
 							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
-
-
 							<textarea name="board_Content" id="ckeditor"></textarea> <script
 								type="text/javascript">
 								CKEDITOR.replace('ckeditor', {
@@ -296,9 +300,6 @@
 
 								});
 							</script>
-
-
-
 						</td>
 					</tr>
 

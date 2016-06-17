@@ -3,7 +3,7 @@ package kr.co.serendipity.model;
 public class MemberDTO {
 	private int user_num;
 	private int country_code;
-	private int local_code;
+	private String local_code;
 	private String name;
 	private String id;
 	private String pw;
@@ -27,10 +27,10 @@ public class MemberDTO {
 	public void setCountry_code(int country_code) {
 		this.country_code = country_code;
 	}
-	public int getLocal_code() {
+	public String getLocal_code() {
 		return local_code;
 	}
-	public void setLocal_code(int local_code) {
+	public void setLocal_code(String local_code) {
 		this.local_code = local_code;
 	}
 	public String getName() {

@@ -56,7 +56,7 @@ public interface MyPageDAO {
 	public String selectPic(int user_num);
 	
 	//지역 코드를 받아 지역명 반환(지역)
-	public String parseLocal(int local);
+	public String parseLocal(String local);
 	
 	//언어 코드를 받아 언어명 반환(언어)
 	public List parseLang(int user_num);

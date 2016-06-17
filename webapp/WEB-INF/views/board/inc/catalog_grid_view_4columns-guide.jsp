@@ -103,7 +103,7 @@
 							<div class="default">
 								<span class="sale top"></span> <a href="guide_detail.htm?board_num=${i.board_Num}"
 									class="product-image"> <img class="replace-2x"
-									src="content/img/product-1.jpg" alt="" title="" width="270"
+									src="${pageContext.request.contextPath}/resources/img/board_picture/${i.board_Picture1}" alt="" title="" width="270"
 									height="270">
 								</a>
 								<div class="product-description">

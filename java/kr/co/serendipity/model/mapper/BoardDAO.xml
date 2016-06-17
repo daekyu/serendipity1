@@ -31,10 +31,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <insert id="Gwrite">
-	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, 
+	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, board_Picture2, 
+	 board_Picture3, board_Picture4, board_Picture5,
 	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, 
 	 meeting_Place,meeting_Address)
-	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, '사진', #{board_Capacity}, #{board_Date} , #{board_Latitude}, #{board_Longitude}, '02', 2, #{price}, 
+	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content},  #{board_Picture1},
+	 #{board_Picture2}, #{board_Picture3}, #{board_Picture4}, #{board_Picture5}, 
+	 #{board_Capacity}, #{board_Date} , #{board_Latitude}, #{board_Longitude}, '02', 2, #{price}, 
 	 #{meeting_Place}, #{meeting_Address})
 	</insert>
 

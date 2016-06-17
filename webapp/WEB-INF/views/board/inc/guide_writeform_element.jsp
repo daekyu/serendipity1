@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+	
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
@@ -259,7 +261,7 @@
 <section id="main">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">가이드가 여행자를 구하기 위해 글을 올리는 곳</h1>
+			<h1 class="title"><spring:message code="board.guide_writeform1"/></h1>
 		</div>
 	</header>
 
@@ -271,22 +273,22 @@
 				<input type="hidden" name="user_Num" value="${user_num}">
 				<table class="table table-responsive center">
 					<tr>
-						<td><h5>글 제목</h5></td>
+						<td><h5><spring:message code="board.guide_writeform2"/></h5></td>
 						<td colspan="5"><input class="form-control" type="text"
 							name="board_Title"></td>
 					</tr>
 					<tr>
-						<td>인원수</td>
+						<td><spring:message code="board.guide_writeform3"/></td>
 						<td><input class="form-control" type="text"
 							name="board_Capacity"></td>
-						<td>날짜</td>
+						<td><spring:message code="board.guide_writeform4"/></td>
 						<td><input class="form-control" type="text" id="datepicker"
 							name="board_Date"></td>
-						<td>가격</td>
+						<td><spring:message code="board.guide_writeform5"/></td>
 						<td><input class="form-control" type="text" name="price"></td>
 					</tr>
 					<tr>
-						<td>설명</td>
+						<td><spring:message code="board.guide_writeform6"/></td>
 						<td colspan="5">
 							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
 
@@ -306,7 +308,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>사진</td>
+						<td><spring:message code="board.guide_writeform9"/></td>
 						<!-- <td id="addPic" colspan="4"> -->
 						<td>
 							<input type="file" id="pic1" name="pic">
@@ -316,8 +318,8 @@
 							<input type="file" id="pic5" name="pic">
 						</td>
 						<td align="center">
-							<button type="button" id="addBtn" class="btn btn-success">추가</button>
-							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
+							<button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.guide_writeform10"/></button>
+							<button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="board.guide_writeform11"/></button>
 						</td>
 					</tr>
 					<tr>
@@ -366,8 +368,8 @@
 					</tr>
 					<tr>
 						<td colspan="6" align="center"><input type="submit"
-							class="btn btn-success" value="등록"> <input type="reset"
-							class="btn btn-danger" value="취소"></td>
+							class="btn btn-success" value="<spring:message code="board.guide_writeform12"/>"> <input type="reset"
+							class="btn btn-danger" value="<spring:message code="board.guide_writeform13"/>"></td>
 					</tr>
 				</table>
 			</form>

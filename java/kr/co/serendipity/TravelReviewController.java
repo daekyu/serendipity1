@@ -435,7 +435,8 @@ public class TravelReviewController {
 	
 	//여행후기 게시판 리스트 정렬
 	@RequestMapping("orderReviewList.htm")
-	public @ResponseBody List<HashMap<String,Object>> orderReviewList(String order, Model model) throws ClassNotFoundException, SQLException{
+	public @ResponseBody List<HashMap<String,Object>> orderReviewList(String order) throws ClassNotFoundException, SQLException{
+		System.out.println("소라소라소라소라 : " + order);
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
 		return dao.orderReviewList(order);
 	}

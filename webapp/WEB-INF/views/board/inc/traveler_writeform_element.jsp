@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
@@ -199,7 +200,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 <section id="main">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">여행자가 가이드를 구하기 위해 글 작성하는 곳</h1>
+			<h1 class="title"><spring:message code="board.traveler_writeform1"/></h1>
 		</div>
 	</header>
 
@@ -208,18 +209,18 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 			<form action="" id="bofom" method="post">
 				<table class="table center">
 					<tr>
-						<td><h6>글 제목</h6></td>
+						<td><h6><spring:message code="board.traveler_writeform2"/></h6></td>
 						<td colspan="5"><input class="form-control" type="text"
 							name="board_Title"></td>
 					</tr>
 					<tr>
-						<td>날짜</td>
+						<td><spring:message code="board.traveler_writeform3"/></td>
 						<td><input class="form-control" type="text"></td>
-						<td>지불할 가격</td>
+						<td><spring:message code="board.traveler_writeform4"/></td>
 						<td><input class="form-control" type="text" name="price"></td>
 					</tr>
 					<tr>
-						<td>설명</td>
+						<td><spring:message code="board.traveler_writeform5"/></td>
 						<td colspan="5">
 							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
@@ -287,18 +288,18 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 					</td>
 				</tr>
 				<tr>
-					<td>사진</td>
+					<td><spring:message code="board.traveler_writeform6"/></td>
 					<td id="addPic" colspan="4"><input type="file" id="pic0"
 						name="pic0"></td>
 					<td align="center">
-						<button type="button" id="addBtn" class="btn btn-success">추가</button>
-						<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
+						<button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>
+						<button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="board.traveler_writeform10"/></button>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="6" align="center"><input type="submit"
-						id="success" class="btn btn-success" value="등록"> <input
-						type="reset" class="btn btn-danger" value="취소"></td>
+						id="success" class="btn btn-success" value="<spring:message code="board.traveler_writeform11"/>"><input
+						type="reset" class="btn btn-danger" value="<spring:message code="board.traveler_writeform12"/>"></td>
 				</tr>
 			</table>
 		</form>

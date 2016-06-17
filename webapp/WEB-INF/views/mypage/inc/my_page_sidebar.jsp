@@ -25,7 +25,7 @@
 				<a href="${pageContext.request.contextPath}/mypage/my_page_notification.htm"><i class="fa fa-bell-o item-icon"></i><spring:message code="board.mypage_ac5"/></a>
 			  </li>
 			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_withdraw.htm"><i class="fa fa-times item-icon"></i>Withdraw from Serendipity</a>
+				<a href="${pageContext.request.contextPath}/mypage/my_page_withdraw.htm"><i class="fa fa-times item-icon"></i><spring:message code="board.mypage_ac6"/></a>
 			  </li>
 			</ul>
 		  </nav>

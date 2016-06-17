@@ -185,7 +185,8 @@ function orderReviewList(param2) {
 								</h3>
 								<div class="excerpt">
 									<span>ID : ${i.ID}</span><br> <span>지역:
-										${i.LOCAL_NAME}</span><br> <span>작성일 : ${i.REVIEW_DATE}</span>
+										${i.LOCAL_NAME}</span><br> <span>작성일 : ${i.REVIEW_DATE}</span><br>
+										<span>댓글 수 : ${i.REPLY_COUNT}</span>
 								</div>
 								<div class="excerpt">
 									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_CONTENT}</a>

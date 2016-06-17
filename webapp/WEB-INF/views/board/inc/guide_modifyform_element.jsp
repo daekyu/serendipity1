@@ -217,7 +217,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 	<article class="content">
 		<div class="container">
-			<form action="" method="post">
+			<form action="" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="user_Num" value="${user_num}">
 			<input type="hidden" name="board_Num" value="${dto.board_Num}">
 				<table class="table center">

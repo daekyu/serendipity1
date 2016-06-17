@@ -7,7 +7,6 @@ package kr.co.serendipity.model;
  * @Desc : 여행자가 가이드 구하는 게시판 글 DTO
  */
 
-import java.sql.Date;
 
 public class BoardDTO {
 	private int board_Num;
@@ -26,7 +25,6 @@ public class BoardDTO {
 	private String local_Code;
 	private int category_Num;
 	private int price;
-	private String board_Latlng;
 	private String meeting_Place;
 	private String meeting_Address;
 	
@@ -125,12 +123,6 @@ public class BoardDTO {
 	}
 	public void setCategory_Num(int category_Num) {
 		this.category_Num = category_Num;
-	}
-	public String getBoard_Latlng() {
-		return board_Latlng;
-	}
-	public void setBoard_Latlng(String board_Latlng) {
-		this.board_Latlng = board_Latlng;
 	}
 	public String getMeeting_Place() {
 		return meeting_Place;

@@ -17,20 +17,22 @@ function filteringReviewList(param1) {
 	});
 }
 
-function orderReviewList(param2){
+
+function orderReviewList(param2) {
 	$.ajax({
 		type : "post",
 		url : "orderReviewList.htm",
 		data : {
 			"order" : param2
 		},
-		success : function(data){
+		success : function(data) {
 			console.log("성공");
+			$.each(data, function(index, item) {
+				$('#a' + index).attr('href', "review_detail.htm?review_num=" + item.review_num);
+			});
 		}
 	});
 }
-
-	
 </script>
 <section id="main">
 	<header class="page-header">
@@ -119,10 +121,10 @@ function orderReviewList(param2){
 						<p>로그인 후 사용하세요</p>
 					</c:when>
 					<c:otherwise>
-					<c:forEach var="i" items="${reviewList}">
+					<c:forEach var="i" items="${reviewList}" varStatus="j">
 						<div class="product">
 							<div class="col-sm-4 col-md-4">
-								<a href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image"> <!-- <span class="sale"></span> -->
+								<a id="aa${j.index}" href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image"> <!-- <span class="sale"></span> -->
 									<c:choose>
 										<c:when test="${i.REVIEW_PICTURE1 eq '사진없음'}">
 											<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">

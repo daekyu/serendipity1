@@ -84,27 +84,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="picUpdate2">
-		update board set board_Picture1=#{param1} where board_Num=#{param2}
+		update board set board_Picture2=#{param1} where board_Num=#{param2}
 	</update>
 	
 	<update id="picUpdate3">
-		update board set board_Picture1=#{param1} where board_Num=#{param2}
+		update board set board_Picture3=#{param1} where board_Num=#{param2}
 	</update>
 	
 	<update id="picUpdate4">
-		update board set board_Picture1=#{param1} where board_Num=#{param2}
+		update board set board_Picture4=#{param1} where board_Num=#{param2}
 	</update>
 	
 	<update id="picUpdate5">
-		update board set board_Picture1=#{param1} where board_Num=#{param2}
+		update board set board_Picture5=#{param1} where board_Num=#{param2}
 	</update>
+	
+	<select id="picSearch" resultType="kr.co.serendipity.model.BoardDTO">
+       SELECT * FROM board where board_num=#{board_num}
+    </select>
 	
 	<update id="Gupdate">
 	 update board set user_Num=#{user_Num}, 
 	 board_Title=#{board_Title}, board_Content=#{board_Content}, 
-	 board_Capacity=#{board_Capacity}, board_Date='#{board_Date}', board_Latitude=#{board_Latitude}, 
+	 board_Capacity=#{board_Capacity}, board_Date=#{board_Date}, board_Latitude=#{board_Latitude}, 
 	 meeting_Place=#{meeting_Place}, meeting_Address=#{meeting_Address},
 	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=2, price=#{price} 
 	 where board_Num=#{board_Num}
 	</update>
+	
+	 <insert id="travelerParty">
+	 INSERT INTO PARTICIPANT(parti_Num, board_Num, user_Num, STATE)
+	 VALUES(parti_seq.NEXTVAL, #{param1}, #{param2}, 'wait')
+	</insert>
+	
 </mapper>

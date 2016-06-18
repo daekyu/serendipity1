@@ -19,7 +19,7 @@
 				<a href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm"><i class="fa fa-mail-reply item-icon"></i><spring:message code="board.mypage_ac3"/></a>
 			  </li>
 			  <li>
-				<a href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm"><i class="fa fa-mail-forward item-icon"></i><spring:message code="board.mypage_ac4"/></a>
+				<a href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?user_num=${sessionScope.user_num}"><i class="fa fa-mail-forward item-icon"></i><spring:message code="board.mypage_ac4"/></a>
 			  </li>
 			  <li>
 				<a href="${pageContext.request.contextPath}/mypage/my_page_notification.htm"><i class="fa fa-bell-o item-icon"></i><spring:message code="board.mypage_ac5"/></a>

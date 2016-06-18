@@ -7,23 +7,34 @@
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-<input type="hidden" id="latitude" value="${dto.board_Latitude}"/>
+<input type="hidden" id="latitude" value="${dto.board_Latitude}" />
 <input type="hidden" id="longitude" value="${dto.board_Longitude}"/>
 <script type="text/javascript">
+window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 $(function() {
-	var index=1;
+	$('#pic2').hide();
+	$('#pic3').hide();
+	$('#pic4').hide();
+	$('#pic5').hide();
+
+	var index = 2;
 	$('#addBtn').click(function() {
-		if(index<=4) {
-			$('#addPic').append('<input type="file" id="pic' + index + '" name="pic' + index + '">');
+		if (index <= 5) {
+			/* $('#addPic')
+					.append(
+							'<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
+			$('#pic' + index).show();
 			index++;
 		} else {
 			alert('더 이상 추가할 수 없습니다');
 		}
 	});
 	$('#minusBtn').click(function() {
-		if(index>1) {
+		if (index > 2) {
 			index--;
-			$('#pic' + index).remove();
+			$('#pic' + index).val("");
+			$('#pic' + index).hide();
+			/* $('#pic' + index).remove(); */
 		} else {
 			alert('더 이상 삭제할 수 없습니다.');
 		}
@@ -260,6 +271,21 @@ google.maps.event.addDomListener(window, 'load', initialize);
 						</td>
 					</tr>
 					<tr>
+						<td>사진</td>
+						<!-- <td id="addPic" colspan="4"> -->
+						<td>
+							<input type="file" id="pic1" name="pic"> 수정전 파일 : <input type="text" readonly="readonly" value="${dto.board_Picture1}">
+							<input type="file" id="pic2" name="pic">
+							<input type="file" id="pic3" name="pic">
+							<input type="file" id="pic4" name="pic">
+							<input type="file" id="pic5" name="pic">
+						</td>
+						<td align="center">
+							<button type="button" id="addBtn" class="btn btn-success">추가</button>
+							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
+						</td>
+					</tr>
+					<tr>
 						<td>Meeting Point</td>
 					<td colspan="5">
 						<div id="container" class="row">
@@ -300,14 +326,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
 									onclick="findPlaces(); return false;">Search for objects</div>
 							</div>
 						</div>
-						</td>
-					</tr>
-					<tr>
-						<td>사진</td>
-						<td id="addPic" colspan="4"><input type="file" id="pic0" name="pic0"></td>
-						<td align="center">
-							<button type="button" id="addBtn" class="btn btn-success">추가</button>
-							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
 						</td>
 					</tr>
 					<tr>

@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%-- <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
+<%-- $(function(){
 	$('#like1').hide();
 	$('#like2').hide();
 	function isLike() {
@@ -59,7 +59,7 @@ $(function(){
 			}
 		});
 	});
-});
+}); --%>
 
 /* function filteringReviewList(param1) {
 	$.ajax({
@@ -76,6 +76,7 @@ $(function(){
 
 
 function orderReviewList(param2) {
+	//console.log(param2);
 	$.ajax({
 		type : "post",
 		url : "orderReviewList.htm",
@@ -83,15 +84,26 @@ function orderReviewList(param2) {
 			"order" : param2
 		},
 		success : function(data) {
-			console.log("성공");
+			console.log("개성공");
+			console.log(data);
 			$.each(data, function(index, item) {
-				$('#reviewList' + index).attr('href', "review_detail.htm?review_num=" + item.review_num);
-				
+				console.log(item.REVIEW_DATE);
+				$('#reviewListPicture' + index).attr('href', "review_detail.htm?review_num=" + item.REVIEW_NUM);
+				$('#reviewListImg' + index).attr('src', "${pageContext.request.contextPath}/resources/img/review_upload/"+item.REVIEW_PICTURE1);
+				$('#reviewListTitle' + index).attr('href', "review_detail.htm?review_num=" + item.REVIEW_NUM);
+				$('#reviewListTitle'+index).text(item.REVIEW_TITLE);
+				$('#reviewListID'+index).text(item.ID);
+				$('#reviewListLocal'+index).text(item.LOCAL_NAME);
+				$('#reviewListDate'+index).text(item.REVIEW_DATE);
+				$('#reviewListReply'+index).text(item.REPLY_COUNT);
+				$('#reviewListContent'+index).text(item.REVIEW_CONTENT);
+				$('#reviewListContent' + index).attr('href', "review_detail.htm?review_num=" + item.REVIEW_NUM);
+				$('#likeCount').text(item.LIKE_COUNT);
 			});
 		}
 	});
 } */
-</script> --%>
+</script>
 <section id="main">
 	<header class="page-header">
 		<div class="container">
@@ -119,13 +131,20 @@ function orderReviewList(param2) {
 					</div>
 					
 					<div class="sort-catalog">
-						<div class="btn-group show-by btn-select">
+						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">지역: <span>전체</span> <span
-								class="caret"></span></a>
+								data-toggle="dropdown" href="#">지역: <span>${i.local_name}</span></a>
 							<ul class="dropdown-menu">
-							<c:forEach var="i" items="${local_list}" varStatus="j">
-								<li><a href="javascript:filteringReviewList(${i.local_code});">${i.local_name}</a></li>
+							<li><a href="review_list.htm">전체</a></li>
+							<c:forEach var="i" items="${local_list}">
+								<%-- <li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li> --%>
+								<c:choose>
+									<c:when test="${i.local_code == '-' }"></c:when>
+									
+									<c:otherwise>
+										<li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
 							</ul>
 						</div>
@@ -140,12 +159,12 @@ function orderReviewList(param2) {
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Sort by: <span>최신순</span>
+								data-toggle="dropdown" href="#">Sort by: <span>${order}</span>
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="javascript:orderReviewList('review_num');">최신순</a></li>
-								<li><a href="javascript:orderReviewList('like_count');">좋아요순</a></li>
-								<li><a href="javascript:orderReviewList('reply_count');">댓글순</a></li>
+								<li><a href="orderReviewList1.htm">최신순</a></li>
+								<li><a href="orderReviewList2.htm">좋아요순</a></li>
+								<li><a href="orderReviewList3.htm">댓글순</a></li>
 							</ul>
 						</div>
 						<!-- .sort-by -->
@@ -165,16 +184,16 @@ function orderReviewList(param2) {
 						<p>로그인 후 사용하세요</p>
 					</c:when>
 					<c:otherwise>
-					<c:forEach var="i" items="${reviewList}" varStatus="j">
+					<c:forEach var="i" items="${reviewList}">
 						<div class="product">
 							<div class="col-sm-4 col-md-4">
-								<a <%-- id="reviewList${j.index}" --%> href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image"> <!-- <span class="sale"></span> -->
+								<a href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image"> <!-- <span class="sale"></span> -->
 									<c:choose>
 										<c:when test="${i.REVIEW_PICTURE1 eq '사진없음'}">
 											<img class="replace-2x review-list" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
 										</c:when>
 										<c:otherwise>
-											<img id="reviewList${j.index}" class="replace-2x slid-img img-list" src="${pageContext.request.contextPath}/resources/img/review_upload/${i.REVIEW_PICTURE1}" width="550" height="550" alt="">
+											<img class="replace-2x slid-img img-list" src="${pageContext.request.contextPath}/resources/img/review_upload/${i.REVIEW_PICTURE1}" width="550" height="550" alt="">
 										</c:otherwise>
 									</c:choose>
 								</a>
@@ -184,15 +203,16 @@ function orderReviewList(param2) {
 									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_TITLE}</a>
 								</h3>
 								<div class="excerpt">
-									<span>ID : ${i.ID}</span><br> <span>지역:
-										${i.LOCAL_NAME}</span><br> <span>작성일 : ${i.REVIEW_DATE}</span><br>
-										<span>댓글 수 : ${i.REPLY_COUNT}</span>
+									<span>ID : ${i.ID}</span><br> 
+									<span>지역:${i.LOCAL_NAME}</span><br> 
+									<span>작성일 : ${i.REVIEW_DATE}</span><br>
+									<span>댓글 수 : ${i.REPLY_COUNT}</span>
 								</div>
 								<div class="excerpt">
 									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_CONTENT}</a>
 								</div>
 								<div class="price-box">
-									<span class="excerpt" id="likeCount">${i.LIKE_COUNT}</span> Like(s)
+									<span class="excerpt">${i.LIKE_COUNT}</span> Like(s)
 								</div>
 								<div class="actions">
 									<!-- 좋아요버튼 -->

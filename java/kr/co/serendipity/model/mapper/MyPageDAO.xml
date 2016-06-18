@@ -94,4 +94,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where user_num=#{user_num}
 	</select>
 	
+	<select id="sendHistory" resultType="kr.co.serendipity.model.ParticipantDTO">
+		select * from participant where user_num=#{user_num}
+	</select>
+	
+	
+	
 </mapper>

@@ -35,8 +35,8 @@ public class MessageController {
 	public ModelAndView message(MemberDTO memberdto) {
 		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
 		ModelAndView mav = new ModelAndView("/message/message");
-		mav.addObject("messagelist", dao.getSendMsgList(memberdto));
-		mav.addObject("rcv_messagelist", dao.getReceiveMsgList(memberdto));
+		mav.addObject("message_list", dao.getSendMsgList(memberdto));
+		mav.addObject("rcv_message_list", dao.getReceiveMsgList(memberdto));
 
 		return mav;
 	}

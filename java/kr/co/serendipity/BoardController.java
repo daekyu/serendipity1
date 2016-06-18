@@ -259,35 +259,35 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "traveler_detail.htm")
-	public String travelerDetail(int board_num, Model model) throws ClassNotFoundException, SQLException {
+	public String travelerDetail(BoardDTO boarddto, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("travelerDetail entrance");
-		System.out.println("board_num : " + board_num);
+		System.out.println("board_num : " + boarddto.getBoard_Num());
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 
-		BoardDTO dto = dao.getBoardDetail(board_num);
-		model.addAttribute("dto", dto);
+		BoardDTO dto = dao.getBoardDetail(boarddto);
+		model.addAttribute("boarddto", dto);
 
 		return "/board/travel_detail";
 	}
 
 	@RequestMapping(value = "guide_detail.htm")
-	public String guideDetail(int board_num, int user_num, Model model) throws ClassNotFoundException, SQLException {
+	public String guideDetail(BoardDTO boarddto, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("guideDetail entrance");
-		System.out.println("board_num : " + board_num);
+		System.out.println("board_num : " + boarddto.getBoard_Num());
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 
-		model.addAttribute("dto", dao.getBoardDetail(board_num));
-		model.addAttribute("memberdto", dao.getWriterDetail(user_num));
+		model.addAttribute("boarddto", dao.getBoardDetail(boarddto));
+		model.addAttribute("memberdto", dao.getWriterDetail(boarddto));
 		return "/board/guide_detail";
 	}
 
 	@RequestMapping(value = "board_delete.htm")
-	public String boardDelete(int board_num, int check) throws ClassNotFoundException, SQLException {
+	public String boardDelete(BoardDTO boarddto, int check) throws ClassNotFoundException, SQLException {
 		System.out.println("boardDelete entrance");
-		System.out.println("board_num : " + board_num);
+		System.out.println("board_num : " + boarddto.getBoard_Num());
 		System.out.println("check : " + check);
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		BoardDTO dto = dao.getBoardDetail(board_num);
+		BoardDTO dto = dao.getBoardDetail(boarddto);
 		String realFolder = "C:\\Kosta_112th\\Project_3rd\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Serendipity\\resources\\img\\board_picture";
 		if(dto.getBoard_Picture1().equals("") ){
 			
@@ -330,7 +330,7 @@ public class BoardController {
 		    }
 		}
 		
-		dao.deleteBoard(board_num);
+		dao.deleteBoard(boarddto);
 
 		if (check == 1) {
 			return "redirect:/board/traveler_list.htm";
@@ -340,23 +340,23 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "guide_modify.htm", method = RequestMethod.GET)
-	public ModelAndView modifyGuideForm(int board_num) throws ClassNotFoundException, SQLException {
+	public ModelAndView modifyGuideForm(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 
 		ModelAndView mav = new ModelAndView("/board/guide_modifyform");
-		mav.addObject("dto", dao.getBoardDetail(board_num));
+		mav.addObject("boarddto", dao.getBoardDetail(boarddto));
 
 		return mav;
 	}
 
 	@RequestMapping(value = "guide_modify.htm", method = RequestMethod.POST)
-	public String modifyGuideForm(BoardDTO dto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
+	public String modifyGuideForm(BoardDTO boarddto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		System.out.println("guide_modify.htm post");
-		System.out.println("board_Num : " + dto.getBoard_Num());
-		System.out.println("board_Content : " + dto.getBoard_Content());
-		System.out.println("board_latitude : " + dto.getBoard_Latitude());
-		System.out.println("board_longitude : " + dto.getBoard_Longitude());
+		System.out.println("board_Num : " + boarddto.getBoard_Num());
+		System.out.println("board_Content : " + boarddto.getBoard_Content());
+		System.out.println("board_latitude : " + boarddto.getBoard_Latitude());
+		System.out.println("board_longitude : " + boarddto.getBoard_Longitude());
 		
 		List<MultipartFile> flist = request.getFiles("pic");
 
@@ -389,7 +389,7 @@ public class BoardController {
 					String savePath = realFolder + "\\" + saveFileName;
 
 					flist.get(i).transferTo(new File(savePath));
-					BoardDTO searchDto = dao.picSearch(dto.getBoard_Num());
+					BoardDTO searchDto = dao.picSearch(boarddto);
 					if(i == 0){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture1();
@@ -399,7 +399,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate1(saveFileName, dto.getBoard_Num());
+						dao.picUpdate1(saveFileName, boarddto);
 					}else if(i == 1){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture2();
@@ -409,7 +409,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate2(saveFileName, dto.getBoard_Num());
+						dao.picUpdate2(saveFileName, boarddto);
 					}else if(i == 2){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture3();
@@ -419,7 +419,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate3(saveFileName, dto.getBoard_Num());
+						dao.picUpdate3(saveFileName, boarddto);
 					}else if(i == 3){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture4();
@@ -429,7 +429,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate4(saveFileName, dto.getBoard_Num());
+						dao.picUpdate4(saveFileName, boarddto);
 					}else if(i == 4){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture5();
@@ -439,34 +439,34 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate5(saveFileName, dto.getBoard_Num());
+						dao.picUpdate5(saveFileName, boarddto);
 					}
 				}
 			}
 		}
 		
-		dao.Gupdate(dto);
+		dao.Gupdate(boarddto);
 		return "redirect:/board/guide_list.htm";
 	}
 
 	@RequestMapping(value = "traveler_modify.htm", method = RequestMethod.GET)
-	public ModelAndView modifyTravelerForm(int board_num) throws ClassNotFoundException, SQLException {
+	public ModelAndView modifyTravelerForm(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 
 		ModelAndView mav = new ModelAndView("/board/traveler_modifyform");
-		mav.addObject("dto", dao.getBoardDetail(board_num));
+		mav.addObject("boarddto", dao.getBoardDetail(boarddto));
 
 		return mav;
 	}
 
 	@RequestMapping(value = "traveler_modify.htm", method = RequestMethod.POST)
-	public String modifyTravelerForm(BoardDTO dto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
+	public String modifyTravelerForm(BoardDTO boarddto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		System.out.println("traveler_modify.htm post");
-		System.out.println("board_Num : " + dto.getBoard_Num());
-		System.out.println("board_Content : " + dto.getBoard_Content());
-		System.out.println("board_latitude : " + dto.getBoard_Latitude());
-		System.out.println("board_longitude : " + dto.getBoard_Longitude());
+		System.out.println("board_Num : " + boarddto.getBoard_Num());
+		System.out.println("board_Content : " + boarddto.getBoard_Content());
+		System.out.println("board_latitude : " + boarddto.getBoard_Latitude());
+		System.out.println("board_longitude : " + boarddto.getBoard_Longitude());
 		
 		List<MultipartFile> flist = request.getFiles("pic");
 
@@ -499,7 +499,7 @@ public class BoardController {
 					String savePath = realFolder + "\\" + saveFileName;
 
 					flist.get(i).transferTo(new File(savePath));
-					BoardDTO searchDto = dao.picSearch(dto.getBoard_Num());
+					BoardDTO searchDto = dao.picSearch(boarddto);
 					if(i == 0){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture1();
@@ -509,7 +509,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate1(saveFileName, dto.getBoard_Num());
+						dao.picUpdate1(saveFileName, boarddto);
 					}else if(i == 1){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture2();
@@ -519,7 +519,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate2(saveFileName, dto.getBoard_Num());
+						dao.picUpdate2(saveFileName, boarddto);
 					}else if(i == 2){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture3();
@@ -529,7 +529,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate3(saveFileName, dto.getBoard_Num());
+						dao.picUpdate3(saveFileName, boarddto);
 					}else if(i == 3){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture4();
@@ -539,7 +539,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate4(saveFileName, dto.getBoard_Num());
+						dao.picUpdate4(saveFileName, boarddto);
 					}else if(i == 4){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_Picture5();
@@ -549,45 +549,45 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						dao.picUpdate5(saveFileName, dto.getBoard_Num());
+						dao.picUpdate5(saveFileName, boarddto);
 					}
 				}
 			}
 		}
 		
-		dao.update(dto);
+		dao.update(boarddto);
 		return "redirect:/board/traveler_list.htm";
 	}
 
 	// 신고하는 글쓰기(가이드가 신고)
 	@RequestMapping(value = "report_write1.htm", method = RequestMethod.POST)
-	public String ReportWriteGuide(ReportDTO dto, int board_num) throws ClassNotFoundException, SQLException {
+	public String ReportWriteGuide(ReportDTO reportdto, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		ReportDAO dao = sqlSession.getMapper(ReportDAO.class);
-		dao.ReportWrite(dto);
-		dao.updateReportCount(dto.getVillain());
-		return "redirect:/board/guide_detail.htm?board_num=" + board_num + "&user_num=" + dto.getVillain();
+		dao.ReportWrite(reportdto);
+		dao.updateReportCount(reportdto);
+		return "redirect:/board/guide_detail.htm?board_num=" + boarddto.getBoard_Num() + "&user_num=" + reportdto.getVillain();
 	}
 
 	// 신고하는 글쓰기(여행자가 신고)
 	@RequestMapping(value = "report_write2.htm", method = RequestMethod.POST)
-	public String ReportWriteTravler(ReportDTO dto, int board_num) throws ClassNotFoundException, SQLException {
+	public String ReportWriteTravler(ReportDTO reportdto, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		ReportDAO dao = sqlSession.getMapper(ReportDAO.class);
-		dao.ReportWrite(dto);
-		dao.updateReportCount(dto.getVillain());
-		return "redirect:/board/travel_detail.htm?board_num=" + board_num + "&user_num=" + dto.getVillain();
+		dao.ReportWrite(reportdto);
+		dao.updateReportCount(reportdto);
+		return "redirect:/board/travel_detail.htm?board_num=" + boarddto.getBoard_Num() + "&user_num=" + reportdto.getVillain();
 	}
 	
 	@RequestMapping(value = "travelerParty.htm")
-	public ModelAndView travelerParty(int board_num, int user_num) throws ClassNotFoundException, SQLException {
+	public ModelAndView travelerParty(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		System.out.println("travelerParty entrance");
-		System.out.println("board_num : " + board_num);
-		System.out.println("user_num : " + user_num);
+		System.out.println("board_num : " + boarddto.getBoard_Num());
+		System.out.println("user_num : " + boarddto.getUser_Num());
 		
-		dao.travelerParty(board_num, user_num);
-		ModelAndView mav = new ModelAndView("redirect:/board/traveler_detail.htm?board_num=" + board_num);
+		dao.travelerParty(boarddto);
+		ModelAndView mav = new ModelAndView("redirect:/board/traveler_detail.htm?board_num=" + boarddto.getBoard_Num());
 		
-		mav.addObject("dto", dao.getBoardDetail(board_num));
+		mav.addObject("boarddto", dao.getBoardDetail(boarddto));
 
 		return mav;
 	}

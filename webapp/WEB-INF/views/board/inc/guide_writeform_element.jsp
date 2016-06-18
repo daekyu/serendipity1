@@ -123,14 +123,14 @@
 						        	 $('#after').val($('#before').val());
 				        		  }else if($('#selectoption').val()=='JPY'){
 				        		
-				        			  swal({   title: "실시간 환율 정보",   text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   imageUrl: ".././resources/img/yen.png" });
+				        			  swal({   title: "실시간 환율 정보",   text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   imageUrl: ".././resources/img/yen.png",confirmButtonColor: "#DD6B55" });
 				        			  
 				        			  
 									/*  alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
 									 $('#after').val(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY));
 								
 				        		  }else if($('#selectoption').val()=='USD'){
-				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png" });
+				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png" ,confirmButtonColor: "#DD6B55" });
 				        			  
 				        			  $('#after').val(Math.floor($('#before').val() * json.quotes.USDKRW));
 				        		  }

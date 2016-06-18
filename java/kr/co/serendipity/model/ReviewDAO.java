@@ -32,10 +32,10 @@ public interface ReviewDAO {
 	public void reviewUpdate(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 	
 	//여행후기 삭제
-	public void reviewDelete(int review_num) throws ClassNotFoundException, SQLException;
+	public void reviewDelete(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 
 	//여행후기 게시판 사진 검색
-	public ReviewDTO selectPicture(int review_num) throws ClassNotFoundException, SQLException;
+	public ReviewDTO selectPicture(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 	
 	//여행후기 게시판 지역별로 필터링
 	public List<HashMap<String, Object>> filteringReviewList(String local_code) throws ClassNotFoundException, SQLException;

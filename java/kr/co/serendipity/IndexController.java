@@ -8,18 +8,14 @@
 package kr.co.serendipity;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.BoardDAO;
-import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.service.IndexService;
 
 

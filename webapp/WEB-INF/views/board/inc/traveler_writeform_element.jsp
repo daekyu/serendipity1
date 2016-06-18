@@ -3,6 +3,7 @@
 
 <script src="resources/js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="resources/js/sweetalert.css">	
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css">		
 
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
@@ -126,12 +127,12 @@
 						        if($('#selectoption').val()=='KRW'){
 						        	 $('#after').val($('#before').val());
 				        		  }else if($('#selectoption').val()=='JPY'){
-				        			
-									 alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY);
+				        			  swal({   title: "실시간 환율 정보",   text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   imageUrl: ".././resources/img/yen.png" });
+									 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
 									 $('#after').val(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY));
 								
 				        		  }else if($('#selectoption').val()=='USD'){
-				        			  alert('실시간 환율 USD->KRW:'+json.quotes.USDKRW);
+				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png" });
 				        			  $('#after').val(Math.floor($('#before').val() * json.quotes.USDKRW));
 				        		  }
 						    }

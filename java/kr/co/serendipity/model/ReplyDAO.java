@@ -14,7 +14,7 @@ import java.util.List;
 public interface ReplyDAO {
 	
 	// 해당게시글의 댓글 보기
-	public List<HashMap<String, Object>> replyList(ReviewDTO replydto) throws ClassNotFoundException, SQLException;
+	public List<HashMap<String, Object>> replyList(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException;
 
 	// 댓글쓰기
 	public void replyWrite(ReplyDTO replydto) throws ClassNotFoundException, SQLException;

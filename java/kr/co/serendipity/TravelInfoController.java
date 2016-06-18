@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.serendipity.model.LocalDTO;
 import kr.co.serendipity.model.TravelInfoDAO;
 import kr.co.serendipity.model.TravelInfoDTO;
+import kr.co.serendipity.service.TravelInfoService;
 
 
 @Controller
@@ -25,7 +26,7 @@ import kr.co.serendipity.model.TravelInfoDTO;
 public class TravelInfoController {
 	
 	@Autowired
-	private SqlSession sqlsession;
+	private TravelInfoService travelinfoservice;
 	
 	@RequestMapping("travel_info.htm")
 	public String travel_info() {
@@ -34,13 +35,11 @@ public class TravelInfoController {
 	
 	@RequestMapping("getLocalList.htm")
 	public @ResponseBody List<LocalDTO> getLocalList() {
-		TravelInfoDAO dao = sqlsession.getMapper(TravelInfoDAO.class);
-		return dao.getLocalList();
+		return travelinfoservice.getLocalList();
 	}
 	
 	@RequestMapping("getLocalInfo.htm")
 	public @ResponseBody TravelInfoDTO getLocalInfo(LocalDTO localdto) {
-		TravelInfoDAO dao = sqlsession.getMapper(TravelInfoDAO.class);
-		return dao.getLocalInfo(localdto);
+		return travelinfoservice.getLocalInfo(localdto);
 	}
 }

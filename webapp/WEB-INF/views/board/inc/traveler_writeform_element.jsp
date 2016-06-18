@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	
+<script src="resources/js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="resources/js/sweetalert.css">	
 
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
@@ -70,18 +73,96 @@
 	});
 
 
-	var geocoder;
+	$(function(){	
+		$("#convert").click(function(){
+			    
+				if ($('#before').val() == ''){
+					alert("값을 입력해주세요");
+					$("#before").focus();
+					return false;
+				}else{
+					/* $.ajax({
+			        	  type : "post",
+			        	  url : "traveler_writeform.htm",
+			        	  data : {"before" : $('#before').val()},
+			        	  success : function(data) {
+			        		  if($('#selecoption').val()=='KRW'){
+			        			  
+			        		  }else if($('#selecoption').val()=='JPY'){
+			        			  
+			        		  }else($('#selecoption').val()=='USD'){
+			        			  
+			        		  }
+			        		  
+			        		  }
+			        	  
+				
+			          }); */
+			          
+						var endpoint = 'live'
+						var access_key = '56370edf846ec46335b07809733c304e';
 
+						// get the most recent exchange rates via the "live" endpoint:
+						$.ajax({
+						    url: 'http://apilayer.net/api/' + endpoint + '?access_key=' + access_key,   
+						    dataType: 'jsonp',
+						    success: function(json) {
+								console.log(json);
+								
+						        // exchange rata data is stored in json.quotes
+						       /*  alert('한화 달러');
+						        alert(json.quotes.JPYUSD);
+						        alert(json.quotes.USDGBP);
+						        alert(json.quotes.USDJPY);
+						        alert(json.quotes.USDKRW);
+						        // source currency is stored in json.source
+						        alert(json.source);
+						        
+						        // timestamp can be accessed in json.timestamp
+						        alert(json.timestamp); */
+						        
+						        //$('#after').val($('#before').val() * )
+						        if($('#selectoption').val()=='KRW'){
+						        	
+				        		  }else if($('#selectoption').val()=='JPY'){
+				        			
+									alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY);
+									var AA=$('#before').val() * json.quotes.USDKRW/json.quotes.USDJPY;
+									var strArray=[($('#before').val() * json.quotes.USDKRW/json.quotes.USDJPY).split('.')];
+				        			  $('#after').val(strArray[0]);
+				        		  }else if($('#selectoption').val()=='USD'){
+				        			  alert('실시간 환율 USD->KRW:'+json.quotes.USDKRW);
+				        			  $('#after').val($('#before').val() * json.quotes.USDKRW);
+				        		  }
+						    }
+						});
+					
+					
+					
+				
+			          
+				}
+			});
+			
+			});
+			
 
 	
 		$(function(){
  		$("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());
  			});
 	
+		
+		// set endpoint and your access key
+		
+	
+		
+	
  
 
 
-
+		
+	var geocoder;
 	var map;
 	var markers = Array();
 	var infos = Array();
@@ -263,6 +344,12 @@
 
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
+	
+	
+
+	
+	
+	
 </script>
 <section id="main">
 	<header class="page-header">
@@ -285,7 +372,16 @@
 						<td>날짜</td>
 						<td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
 						<td>지불할 가격</td>
-						<td><input class="form-control" type="text" name="price"></td>
+						<td><select id="selectoption">
+  							<option value="KRW">KRW</option>
+  							<option value="JPY">JPY</option>
+  							<option value="USD">USD</option>
+  						
+						</select></td>
+						<td><input class="form-control" id="before" type="text" name="#"></td>
+						<td><button type="button" id="convert" class="btn btn-success">변환</button></td>
+						<td><input class="form-control" id="after" type="text" name="price"></td>
+						
 					</tr>
 					<tr>
 						<td>설명</td>

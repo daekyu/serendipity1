@@ -37,6 +37,7 @@ import kr.co.serendipity.model.ReviewDAO;
 import kr.co.serendipity.model.ReviewDTO;
 import kr.co.serendipity.model.ReviewLikeDAO;
 import kr.co.serendipity.model.ReviewLikeDTO;
+import kr.co.serendipity.service.TravelReviewService;
 
 @Controller
 @RequestMapping("/travel_review/")
@@ -44,12 +45,17 @@ public class TravelReviewController {
 	@Autowired
 	SqlSession sqlsession;
 	
+	@Autowired
+	private TravelReviewService travelreviewservice;
+	
 	//여행후기 게시판 리스트
 	@RequestMapping("review_list.htm")
 	public ModelAndView reviewList(String pg, HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		System.out.println("reviewList entrance");
 		ModelAndView mav = new ModelAndView("/travel_review/review_list");
-		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+
+		List<HashMap<String,Object>> reviewList = travelreviewservice.reviewList();
+		int listCount = travelreviewservice.getReviewListCount();
 		
 		int page = 1;
 		int startpage = 0;
@@ -59,15 +65,7 @@ public class TravelReviewController {
 		if(pg != null){
 			page = Integer.parseInt(pg);
 		}
-		System.out.println("pg = " + pg);
-		System.out.println("page = " + page);
-		
-		List<HashMap<String,Object>> reviewList = dao.reviewList();
-		int listCount = dao.getReviewListCount();
-		
-		System.out.println("reviewList size : " + reviewList.size());
-		System.out.println("listCount : " + listCount);
-		
+
 		maxpage = (int) ((double) listCount / 6 + 0.95);
 		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 		endpage = startpage + 10 - 1;
@@ -82,12 +80,8 @@ public class TravelReviewController {
 		mav.addObject("startpage", startpage);
 		mav.addObject("endpage", endpage);
 		mav.addObject("listCount", listCount);
-		mav.addObject("local_list", dao.localList());
-		
-		System.out.println("page= " + page);
-		System.out.println("maxpage= " + maxpage);
-		System.out.println("startpage= " + startpage);
-		System.out.println("endpage= " + endpage);
+		mav.addObject("local_list", travelreviewservice.localList());
+
 		return mav;
 	}
 	
@@ -95,37 +89,29 @@ public class TravelReviewController {
 	@RequestMapping(value="review_detail.htm", method=RequestMethod.GET)
 	public ModelAndView reviewDetail(ReviewDTO reviewdto, HttpSession session) throws ClassNotFoundException, SQLException{
 		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
-		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
-		HashMap<String, Object> reviewdetail = reviewdao.reviewDetail(reviewdto);
-		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
-		List<HashMap<String, Object>> replylist = replydao.replyList(reviewdto);
-		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
+		
 		ReviewLikeDTO reviewlikedto = new ReviewLikeDTO();
-		int user_num = (Integer)session.getAttribute("user_num");
 		reviewlikedto.setReview_num(reviewdto.getReview_num());
-		reviewlikedto.setUser_num(user_num);
-		int result = likedao.isLike(reviewlikedto);
-		int count = likedao.reviewLikeCount(reviewdto);
-		mav.addObject("review_detail",reviewdetail);
-		mav.addObject("reply_list",replylist);
-		mav.addObject("result",result);
-		mav.addObject("count",count);
+		reviewlikedto.setUser_num((Integer)session.getAttribute("user_num"));
+		
+		mav.addObject("review_detail",travelreviewservice.reviewDetail(reviewdto));
+		mav.addObject("reply_list",travelreviewservice.replyList(reviewdto));
+		mav.addObject("result",travelreviewservice.isLike(reviewlikedto));
+		mav.addObject("count",travelreviewservice.reviewLikeCount(reviewdto));
 		return mav;
-	}
+	}//
 	
 	// 해당 사용자가 해당 게시글에 좋아요를 눌렀는가
 	@RequestMapping(value="is_like.htm", method=RequestMethod.POST)
 	public @ResponseBody int isLike(ReviewLikeDTO reviewlikedto) {
-		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
-		return likedao.isLike(reviewlikedto);
+		return travelreviewservice.isLike(reviewlikedto);
 	}
 
 	// 여행후기 글쓰기 폼
 	@RequestMapping("review_writeform.htm")
 	public ModelAndView reviewWriteForm() {
 		ModelAndView mav = new ModelAndView("/travel_review/review_writeform");
-		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-		mav.addObject("local_list", dao.localList());
+		mav.addObject("local_list", travelreviewservice.localList());
 		return mav;
 	}
 	
@@ -153,18 +139,12 @@ public class TravelReviewController {
 	
 	//좋아요 누르기
 	@RequestMapping(value="review_like.htm", method=RequestMethod.POST)
-	public @ResponseBody int reviewLike(ReviewLikeDTO dto) throws ClassNotFoundException, SQLException{
-		System.out.println("들어옴??");
-		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
+	public @ResponseBody int reviewLike(ReviewLikeDTO reviewlikedto) throws ClassNotFoundException, SQLException{
 		ReviewDTO reviewdto = new ReviewDTO();
-		reviewdto.setReview_num(dto.getReview_num());
-		likedao.likeInsertPlus(reviewdto);
-		likedao.likeInsert(dto);
-		System.out.println("review_num : "+dto.getReview_num());
-		System.out.println("user_num : "+dto.getUser_num());
-		//int result = likedao.isLike(dto);
-		int count = likedao.reviewLikeCount(reviewdto);
-		return count;
+		reviewdto.setReview_num(reviewlikedto.getReview_num());
+		travelreviewservice.likeInsertPlus(reviewdto);
+		travelreviewservice.likeInsert(reviewlikedto);
+		return travelreviewservice.reviewLikeCount(reviewdto);
 	}
 	
 	/*@RequestMapping(value="delete_review_like.htm", method=RequestMethod.POST)
@@ -188,7 +168,7 @@ public class TravelReviewController {
 		mav.addObject("count",count);
 		return mav;
 	}*/
-	
+	/////////////////////여기까지함//////////////////////
 	//좋아요 취소
 	@RequestMapping(value="delete_review_like.htm", method=RequestMethod.POST)
 	public @ResponseBody int likeDelete(ReviewLikeDTO dto) throws ClassNotFoundException, SQLException{

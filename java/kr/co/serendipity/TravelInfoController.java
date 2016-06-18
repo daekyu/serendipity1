@@ -29,7 +29,6 @@ public class TravelInfoController {
 	
 	@RequestMapping("travel_info.htm")
 	public String travel_info() {
-		
 		return "/travel_info/travel_info";
 	}
 	

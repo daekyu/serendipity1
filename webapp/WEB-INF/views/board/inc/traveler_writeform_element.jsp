@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-=======
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<<<<<<< HEAD
-	
 
-=======
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
->>>>>>> locale
->>>>>>> b9bc7d8abdbb444a3f80caad2eaf7a25d1d1d61d
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"

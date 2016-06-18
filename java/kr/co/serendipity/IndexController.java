@@ -20,35 +20,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
+import kr.co.serendipity.service.IndexService;
 
 
 @Controller
 public class IndexController {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private IndexService indexservice;
 	
 	@RequestMapping("index.htm")
 	public ModelAndView index(HttpSession session) throws ClassNotFoundException, SQLException {
 		
 		System.out.println("index entrance");
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		ModelAndView mav = new ModelAndView("index");
-		
-		List<BoardDTO> travelerList = dao.getIndexTravelerRecent();
-		List<BoardDTO> guideList = dao.getIndexGuideRecent();
-		
-		int listCount = dao.getListCount();
-		int GlistCount = dao.getGListCount();
-		
-		System.out.println("travelerList size : " + travelerList.size());
-		
 		mav.addObject("index", "index");
-		mav.addObject("travelerList", travelerList);
-		mav.addObject("guideList", guideList);
-		mav.addObject("listCount", listCount);
-		mav.addObject("GlistCount", GlistCount);
-
+		mav.addObject("traveler_list", indexservice.getIndexTravelerRecent());
+		mav.addObject("guide_list", indexservice.getIndexGuideRecent());
+		mav.addObject("list_count", indexservice.getListCount());
+		mav.addObject("Glist_count", indexservice.getGListCount());
 
 		return mav;
 	}

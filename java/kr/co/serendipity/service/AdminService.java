@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.co.serendipity.model.AdminDAO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.ReportDAO;
+import kr.co.serendipity.model.ReportDTO;
 
 @Service
 public class AdminService {
@@ -23,9 +24,9 @@ public class AdminService {
 	}
 	
 	// 관리자 페이지에서 신고하는 글 상세보기
-	public HashMap<String, Object> ReportDetail(int report_num) throws ClassNotFoundException, SQLException{
+	public HashMap<String, Object> ReportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException{
 		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
-		return dao.ReportDetail(report_num);
+		return dao.ReportDetail(reportdto);
 	}
 	
 	//관리자 페이지에서 신고하는 글 목록보기

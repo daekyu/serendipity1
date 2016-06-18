@@ -14,57 +14,57 @@ import javax.servlet.http.HttpServletRequest;
 public interface MyPageDAO {
 	List<HobbyDTO> getHobbyList();
 	List<LanguageDTO> getLanguageList();
-	MemberDTO getMemberInfo(MemberDTO dto);
+	MemberDTO getMemberInfo(MemberDTO memberdto);
 	
 	// mypage 를 위한 사용자 정보
-	public MemberDTO myPageGetMemberInfo(int user_num);
+	public MemberDTO myPageGetMemberInfo(MemberDTO memberdto);
 	
 	//추가 정보 수정 (DB에 저장된 취미가 있는지 체크)
-	public int countHobby(int user_num);
+	public int countHobby(MemberDTO memberdto);
 	
 	//추가 정보 수정 (DB에 저장된 취미가 없을 때) - 취미, 관심사
-	public void insertHobby(int user_num, String hobby);
+	public void insertHobby(MemberDTO memberdto, HobbyDTO hobbydto);
 	
 	//추가 정보 수정 (DB에 이미 저장된 취미가 있을 때 우선 삭제)
-	public void deleteHobby(int user_num);
+	public void deleteHobby(MemberDTO memberdto);
 	
 	//추가 정보 수정 (DB에 저장된 언어가 있는지 체크)
-	public int countLanguage(int user_num);
+	public int countLanguage(MemberDTO memberdto);
 	
 	//추가 정보 수정 (DB에 이미 저장된 언어가 있을 때 우선 삭제)
-	public void deleteLanguage(int user_num);
+	public void deleteLanguage(MemberDTO memberdto);
 	
 	//추가 정보 수정 (DB에 저장된 언어가 없을 때)
-	public void insertLanguage(int user_num, String language);
+	public void insertLanguage(MemberDTO memberdto, LanguageDTO languagedto);
 	
 	//추가 정보 수정 (DB에 저장된 자기소개가 있는지 체크)
-	public void updateContent(int user_num, String profile);
+	public void updateContent(MemberDTO memberdto);
 	
 	//기본 정보 수정 (비밀번호 수정)
-	public void updatePw(int user_num, String pw);
+	public void updatePw(MemberDTO memberdto);
 	
 	//기본 정보 수정 (전화번호 수정)
-	public void updateHp(int user_num, String hp);
+	public void updateHp(MemberDTO memberdto);
 	
 	//기본 정보 수정 (이메일 수정)
-	public void updateEmail(int user_num, String Email);
+	public void updateEmail(MemberDTO memberdto);
 	
 	//추가 정보 수정 (프로필 사진 경로 저장)
-	public void updatePic(int user_num, String uploadPath);
+	public void updatePic(MemberDTO memberdto);
 	
 	//추가 정보 수정 (전 프로필 사진 경로 불러오기 - 파일 삭제를 위해)
-	public String selectPic(int user_num);
+	public String selectPic(MemberDTO memberdto);
 	
 	//지역 코드를 받아 지역명 반환(지역)
-	public String parseLocal(String local);
+	public String parseLocal(MemberDTO memberdto);
 	
 	//언어 코드를 받아 언어명 반환(언어)
-	public List parseLang(int user_num);
+	public List parseLang(MemberDTO memberdto);
 	
 	//취미 코드를 받아 취미명 반환
-	public List parseHobby(int user_num);
+	public List parseHobby(MemberDTO memberdto);
 	
 	//보낸 요청 리스트
-	public ParticipantDTO sendHistory(int user_num);
+	public ParticipantDTO sendHistory(MemberDTO memberdto);
 	
 }

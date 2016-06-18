@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.serendipity.model.ReportDTO;
 import kr.co.serendipity.service.AdminService;
 
 @Controller
@@ -40,9 +41,9 @@ public class AdminController {
 	
 	// 관리자 페이지에서 신고하는 글 상세보기
 	@RequestMapping("report_detail.htm")
-	public ModelAndView ReportDetail(int report_num) throws ClassNotFoundException, SQLException {
+	public ModelAndView ReportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
 		ModelAndView mav = new ModelAndView("/report/report_detail");
-		mav.addObject("report_detail", adminservice.ReportDetail(report_num));
+		mav.addObject("report_detail", adminservice.ReportDetail(reportdto));
 		return mav;
 	}
 }

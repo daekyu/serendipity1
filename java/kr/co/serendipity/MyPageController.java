@@ -30,26 +30,26 @@ import kr.co.serendipity.model.LanguageDTO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.MyPageDAO;
 import kr.co.serendipity.model.ParticipantDTO;
+import kr.co.serendipity.service.MyPageService;
 
 @Controller
 @RequestMapping("/mypage/")
 public class MyPageController {
 
 	@Autowired
-	private SqlSession sqlsession;
+	private MyPageService mypageservice;
 
 	@RequestMapping("my_page.htm")
 	public String myPage(MemberDTO memberdto, Model model) throws IOException {
 		System.out.println("myPage entrance");
 		
-		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		MemberDTO dto = dao.myPageGetMemberInfo(memberdto);
+		MemberDTO dto = mypageservice.myPageGetMemberInfo(memberdto);
 		String pic = dto.getProfile_picture();
 		System.out.println("원본 사진명 : " + pic);
 		String local = dto.getLocal_code();
-		String Slocal = dao.parseLocal(memberdto);
-		List Slang = dao.parseLang(memberdto);
-		List Shobby = dao.parseHobby(memberdto);
+		String Slocal = mypageservice.parseLocal(memberdto);
+		List Slang = mypageservice.parseLang(memberdto);
+		List Shobby = mypageservice.parseHobby(memberdto);
 		
 		model.addAttribute("memberdto", dto);
 		model.addAttribute("Slocal", Slocal);
@@ -63,11 +63,10 @@ public class MyPageController {
 	public ModelAndView modifyAccount(MemberDTO memberdto) {
 		System.out.println("myPage_modifyform entrance");
 
-		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		ModelAndView mav = new ModelAndView("/mypage/my_page_modifyform");
-		mav.addObject("hobby_list", dao.getHobbyList());
-		mav.addObject("language_list", dao.getLanguageList());
-		mav.addObject("member_info", dao.getMemberInfo(memberdto));
+		mav.addObject("hobby_list", mypageservice.getHobbyList());
+		mav.addObject("language_list", mypageservice.getLanguageList());
+		mav.addObject("member_info", mypageservice.getMemberInfo(memberdto));
 		return mav;
 	}
 
@@ -79,8 +78,7 @@ public class MyPageController {
 	@RequestMapping("my_page_send_history.htm")
 	public String sendHistory(MemberDTO memberdto, Model model) {
 		System.out.println("sendHistory entrance");
-		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		ParticipantDTO dto = dao.sendHistory(memberdto);
+		ParticipantDTO dto = mypageservice.sendHistory(memberdto);
 		
 		model.addAttribute("participantdto", dto);
 		return "/mypage/my_page_send_history";
@@ -100,37 +98,36 @@ public class MyPageController {
 	public String infoModify(HobbyDTO[] hobbydto, LanguageDTO[] languagedto, String profile, MemberDTO memberdto,
 			MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("InfoModify.htm POST entrance");
-		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 
 		if (hobbydto == null) {
 
 		} else {
-			int cnt = dao.countHobby(memberdto);
+			int cnt = mypageservice.countHobby(memberdto);
 
 			if (cnt != 0) {
-				dao.deleteHobby(memberdto);
+				mypageservice.deleteHobby(memberdto);
 			}
 			for (int i = 0; i < hobbydto.length; i++) {
-				dao.insertHobby(memberdto, hobbydto[i]);
+				mypageservice.insertHobby(memberdto, hobbydto[i]);
 			}
 		}
 
 		if (languagedto == null) {
 
 		} else {
-			int cnt = dao.countLanguage(memberdto);
+			int cnt = mypageservice.countLanguage(memberdto);
 			if (cnt != 0) {
-				dao.deleteLanguage(memberdto);
+				mypageservice.deleteLanguage(memberdto);
 			}
 			for (int i = 0; i < languagedto.length; i++) {
-				dao.insertLanguage(memberdto, languagedto[i]);
+				mypageservice.insertLanguage(memberdto, languagedto[i]);
 			}
 		}
 
 		if (profile.equals("")) {
 
 		} else {
-			dao.updateContent(memberdto);
+			mypageservice.updateContent(memberdto);
 		}
 
 		MultipartFile mf = request.getFile("file");
@@ -142,7 +139,7 @@ public class MyPageController {
 		    System.out.println("실제 파일 업로드 경로 : " + uploadPath);
 			
 			//업데이트 전 프로필 사진 삭제
-			String beforeFile = dao.selectPic(memberdto);
+			String beforeFile = mypageservice.selectPic(memberdto);
 			System.out.println("beforeFile : " + beforeFile);
 			if(beforeFile != null){
 				File file = new File(uploadPath+"\\"+beforeFile);
@@ -165,7 +162,7 @@ public class MyPageController {
 			//fileName.substring(fileName.lastIndexOf("."))
 		    memberdto.setProfile_picture(uploadedFileName);
 		    /*dao.updatePic(user_num, uploadPath+"\\"+uploadedFileName);*/
-		    dao.updatePic(memberdto);
+		    mypageservice.updatePic(memberdto);
 		    
 		    //지정한주소에 파일 저장	    
 		    if(mf.getSize() != 0) {	    	
@@ -181,24 +178,23 @@ public class MyPageController {
 	public String infoModify2(MemberDTO memberdto)
 			throws ClassNotFoundException, SQLException {
 		System.out.println("InfoModify2.htm POST entrance");
-		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 
 		if (memberdto.getPw().equals("")) {
 
 		} else {
-			dao.updatePw(memberdto);
+			mypageservice.updatePw(memberdto);
 		}
 
 		if (memberdto.getHp().equals("")) {
 
 		} else {
-			dao.updateHp(memberdto);
+			mypageservice.updateHp(memberdto);
 		}
 
 		if (memberdto.getEmail().equals("")) {
 
 		} else {
-			dao.updateEmail(memberdto);
+			mypageservice.updateEmail(memberdto);
 		}
 
 		return "redirect:/mypage/my_page.htm?user_num=" + memberdto.getUser_num();

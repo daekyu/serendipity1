@@ -7,7 +7,7 @@
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
@@ -183,7 +183,8 @@
 <section id="main" class="login-register">
   <header class="page-header">
     <div class="container">
-      <h1 class="title">Login or Create an Account</h1>
+      <h1 class="title"><spring:message code="member.join_login"/>
+</h1>
     </div>	
   </header>
   <div class="container">
@@ -192,9 +193,9 @@
 		<div class="row filter-elements hidden">
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
 			<div class="info-box">
-			  <h3 class="title">New costumers</h3>
-			  <p class="descriptions">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register">Create an Account</button>
+			  <h3 class="title"><spring:message code="member.join_login1"/></h3>
+			  <p class="descriptions"><spring:message code="member.join_login2"/></p>
+			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register"><spring:message code="member.join_login3"/></button>
 			</div>
 		  </div>
 		  
@@ -202,11 +203,11 @@
 		  <!-- 로그인하는 Form태그가 있는 부분 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
 			<form class="form-box login-form form-validator" id="login_form" action="${pageContext.request.contextPath}/member/login.htm" method="post">
-			  <h3 class="title">Login customers</h3>
-			  <p>If you have an account with us, please log in.</p>
+			  <h3 class="title"><spring:message code="member.join_login4"/></h3>
+			  <p><spring:message code="member.join_login5"/></p>
 			  
 			  <div class="form-group">
-				<label>아이디: <span class="required">*</span></label>
+				<label>ID: <span class="required">*</span></label>
 				<input class="form-control" name="id" id="id_login" type="text"> <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
               </div>
 			  

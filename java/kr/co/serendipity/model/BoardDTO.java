@@ -9,24 +9,24 @@ package kr.co.serendipity.model;
 
 
 public class BoardDTO {
-	private int board_Num;
-	private int user_Num;
-	private String board_Title;
-	private String board_Content;
-	private String board_Picture1;
-	private String board_Picture2;
-	private String board_Picture3;
-	private String board_Picture4;
-	private String board_Picture5;
-	private int board_Capacity;
-	private String board_Date;
-	private String board_Latitude;
-	private String board_Longitude;
-	private String local_Code;
-	private int category_Num;
+	private int board_num;
+	private int user_num;
+	private String board_title;
+	private String board_content;
+	private String board_picture1;
+	private String board_picture2;
+	private String board_picture3;
+	private String board_picture4;
+	private String board_picture5;
+	private int board_capacity;
+	private String board_date;
+	private String board_latitude;
+	private String board_longitude;
+	private String local_code;
+	private int category_num;
 	private int price;
-	private String meeting_Place;
-	private String meeting_Address;
+	private String meeting_place;
+	private String meeting_address;
 	
 	public int getPrice() {
 		return price;
@@ -35,110 +35,105 @@ public class BoardDTO {
 		this.price = price;
 	}
 	public int getBoard_Num() {
-		return board_Num;
+		return board_num;
 	}
-	public void setBoard_Num(int board_Num) {
-		this.board_Num = board_Num;
+	public void setBoard_Num(int board_num) {
+		this.board_num = board_num;
 	}
 	public int getUser_Num() {
-		return user_Num;
+		return user_num;
 	}
-	public void setUser_Num(int user_Num) {
-		this.user_Num = user_Num;
+	public void setUser_Num(int user_num) {
+		this.user_num = user_num;
 	}
 	public String getBoard_Title() {
-		return board_Title;
+		return board_title;
 	}
-	public void setBoard_Title(String board_Title) {
-		this.board_Title = board_Title;
+	public void setBoard_Title(String board_title) {
+		this.board_title = board_title;
 	}
 	public String getBoard_Content() {
-		return board_Content;
+		return board_content;
 	}
-	public void setBoard_Content(String board_Content) {
-		this.board_Content = board_Content;
+	public void setBoard_Content(String board_content) {
+		this.board_content = board_content;
 	}
 	public String getBoard_Picture1() {
-		return board_Picture1;
+		return board_picture1;
 	}
-	public void setBoard_Picture1(String board_Picture1) {
-		this.board_Picture1 = board_Picture1;
+	public void setBoard_Picture1(String board_picture1) {
+		this.board_picture1 = board_picture1;
 	}
 	public String getBoard_Picture2() {
-		return board_Picture2;
+		return board_picture2;
 	}
-	public void setBoard_Picture2(String board_Picture2) {
-		this.board_Picture2 = board_Picture2;
+	public void setBoard_Picture2(String board_picture2) {
+		this.board_picture2 = board_picture2;
 	}
 	public String getBoard_Picture3() {
-		return board_Picture3;
+		return board_picture3;
 	}
-	public void setBoard_Picture3(String board_Picture3) {
-		this.board_Picture3 = board_Picture3;
+	public void setBoard_Picture3(String board_picture3) {
+		this.board_picture3 = board_picture3;
 	}
 	public String getBoard_Picture4() {
-		return board_Picture4;
+		return board_picture4;
 	}
-	public void setBoard_Picture4(String board_Picture4) {
-		this.board_Picture4 = board_Picture4;
+	public void setBoard_Picture4(String board_picture4) {
+		this.board_picture4 = board_picture4;
 	}
 	public String getBoard_Picture5() {
-		return board_Picture5;
+		return board_picture5;
 	}
-	public void setBoard_Picture5(String board_Picture5) {
-		this.board_Picture5 = board_Picture5;
+	public void setBoard_Picture5(String board_picture5) {
+		this.board_picture5 = board_picture5;
 	}
 	public int getBoard_Capacity() {
-		return board_Capacity;
+		return board_capacity;
 	}
-	public void setBoard_Capacity(int board_Capacity) {
-		this.board_Capacity = board_Capacity;
+	public void setBoard_Capacity(int board_capacity) {
+		this.board_capacity = board_capacity;
 	}
 	public String getBoard_Date() {
-		return board_Date;
+		return board_date;
 	}
-	public void setBoard_Date(String board_Date) {
-		this.board_Date = board_Date;
+	public void setBoard_Date(String board_date) {
+		this.board_date = board_date;
 	}
 	public String getBoard_Latitude() {
-		return board_Latitude;
+		return board_latitude;
 	}
-	public void setBoard_Latitude(String board_Latitude) {
-		this.board_Latitude = board_Latitude;
+	public void setBoard_Latitude(String board_latitude) {
+		this.board_latitude = board_latitude;
 	}
 	public String getBoard_Longitude() {
-		return board_Longitude;
+		return board_longitude;
 	}
-	public void setBoard_Longitude(String board_Longitude) {
-		this.board_Longitude = board_Longitude;
+	public void setBoard_Longitude(String board_longitude) {
+		this.board_longitude = board_longitude;
 	}
 	public String getLocal_Code() {
-		return local_Code;
+		return local_code;
 	}
-	public void setLocal_Code(String local_Code) {
-		this.local_Code = local_Code;
+	public void setLocal_Code(String local_code) {
+		this.local_code = local_code;
 	}
 	public int getCategory_Num() {
-		return category_Num;
+		return category_num;
 	}
-	public void setCategory_Num(int category_Num) {
-		this.category_Num = category_Num;
+	public void setCategory_Num(int category_num) {
+		this.category_num = category_num;
 	}
 	public String getMeeting_Place() {
-		return meeting_Place;
+		return meeting_place;
 	}
-	public void setMeeting_Place(String meeting_Place) {
-		this.meeting_Place = meeting_Place;
+	public void setMeeting_Place(String meeting_place) {
+		this.meeting_place = meeting_place;
 	}
 	public String getMeeting_Address() {
-		return meeting_Address;
+		return meeting_address;
 	}
-	public void setMeeting_Address(String meeting_Address) {
-		this.meeting_Address = meeting_Address;
+	public void setMeeting_Address(String meeting_address) {
+		this.meeting_address = meeting_address;
 	}
-	
-	
-	
-	
-	
 }

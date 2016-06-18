@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,9 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.MemberDAO;
 import kr.co.serendipity.model.ReportDAO;
 import kr.co.serendipity.model.ReportDTO;
+import kr.co.serendipity.service.BoardService;
 
 @Controller
 @RequestMapping("/board/")
@@ -36,6 +35,9 @@ public class BoardController {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
+	private BoardService boardservice;
 
 	@RequestMapping("traveler_list.htm")
 	public String travelerList(String pg, Model model) throws ClassNotFoundException, SQLException {
@@ -132,8 +134,6 @@ public class BoardController {
 	@RequestMapping(value = "guide_writeform.htm", method = RequestMethod.GET)
 	public String guideWriteform(String user_num, Model model) {
 		System.out.println("guide_writeform GET entrance");
-		System.out.println("user_num : " + user_num);
-		model.addAttribute("user_num", user_num);
 		return "/board/guide_writeform";
 	}
 
@@ -141,55 +141,7 @@ public class BoardController {
 	public String guideWriteform(BoardDTO dto, MultipartHttpServletRequest request)
 			throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("guide_writeform POST entrance");
-
-		List<MultipartFile> flist = request.getFiles("pic");
-		List<String> filenames = new ArrayList<String>();
-
-		System.out.println("0번 파일 : " + flist.get(0).getOriginalFilename());
-		System.out.println("1번 파일 : " + flist.get(1).getOriginalFilename());
-		System.out.println("2번 파일 : " + flist.get(2).getOriginalFilename());
-		System.out.println("3번 파일 : " + flist.get(3).getOriginalFilename());
-		System.out.println("4번 파일 : " + flist.get(4).getOriginalFilename());
-
-		System.out.println("flist.size() : " + flist.size());
-
-		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
-		System.out.println("실제 파일 업로드 경로 : " + realFolder);
-		if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
-
-		} else {
-			for (int i = 0; i < 5; i++) {
-
-				String saveFileName = null;
-				if (flist.get(i).getOriginalFilename().equals("")) {
-					filenames.add("no_picture");
-				} else {
-					String genId = UUID.randomUUID().toString();
-					String originalfileName = flist.get(i).getOriginalFilename();
-
-					System.out.println("filename : " + originalfileName);
-
-					saveFileName = genId + "_" + originalfileName;
-
-					String savePath = realFolder + "\\" + saveFileName;
-
-					flist.get(i).transferTo(new File(savePath));
-					filenames.add(saveFileName);
-				}
-			}
-		}
-		System.out.println("filenames.get(0) : " + filenames.get(0));
-		System.out.println("filenames.get(1) : " + filenames.get(1));
-		dto.setBoard_Picture1(filenames.get(0));
-		System.out.println("dto.getBoard_Picture1() : " + dto.getBoard_Picture1());
-		dto.setBoard_Picture2(filenames.get(1));
-		dto.setBoard_Picture3(filenames.get(2));
-		dto.setBoard_Picture4(filenames.get(3));
-		dto.setBoard_Picture5(filenames.get(4));
-
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		dao.Gwrite(dto);
-
+		boardservice.guideWriteFormPost(dto, request);
 		return "redirect:/board/guide_list.htm";
 	}
 

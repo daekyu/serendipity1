@@ -8,31 +8,26 @@
 package kr.co.serendipity;
 
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.AdminDAO;
-import kr.co.serendipity.model.ReportDAO;
+import kr.co.serendipity.model.ReportDTO;
+import kr.co.serendipity.service.AdminService;
 
 @Controller
 @RequestMapping("/admin/")
 public class AdminController {
 	
 	@Autowired
-	private SqlSession sqlsession;
+	private AdminService adminservice;
 	
 	@RequestMapping("member_list.htm")
 	public ModelAndView memberList() {
 		ModelAndView mav = new ModelAndView("/admin/admin_member_list_page");
-
-		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
-		mav.addObject("member_list", dao.getMemberList());
+		mav.addObject("member_list", adminservice.memberList());
 		return mav;
 	}
 	
@@ -40,19 +35,15 @@ public class AdminController {
 	@RequestMapping("report_list.htm")
 	public ModelAndView reportList() throws ClassNotFoundException, SQLException {
 		ModelAndView mav = new ModelAndView("/admin/admin_report_list");
-		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
-		List<HashMap<String, Object>> list = dao.ReportList();
-		mav.addObject("report_list", list);
+		mav.addObject("report_list", adminservice.reportList());
 		return mav;
 	}
 	
 	// 관리자 페이지에서 신고하는 글 상세보기
 	@RequestMapping("report_detail.htm")
-	public ModelAndView ReportDetail(int report_num) throws ClassNotFoundException, SQLException {
+	public ModelAndView ReportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
 		ModelAndView mav = new ModelAndView("/report/report_detail");
-		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
-		HashMap<String, Object> report = dao.ReportDetail(report_num);
-		mav.addObject("report_detail", report);
+		mav.addObject("report_detail", adminservice.ReportDetail(reportdto));
 		return mav;
 	}
 }

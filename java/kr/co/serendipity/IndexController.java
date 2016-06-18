@@ -29,19 +29,16 @@ public class IndexController {
 	@Autowired
 	private IndexService indexservice;
 	
-	@Autowired
-	private SqlSession sqlSession;
-	
 	@RequestMapping("index.htm")
 	public ModelAndView index(HttpSession session) throws ClassNotFoundException, SQLException {
 		
 		System.out.println("index entrance");
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("index", "index");
-		mav.addObject("travelerList", indexservice.getIndexTravelerRecent());
-		mav.addObject("guideList", indexservice.getIndexGuideRecent());
-		mav.addObject("listCount", indexservice.getListCount());
-		mav.addObject("GlistCount", indexservice.getGListCount());
+		mav.addObject("traveler_list", indexservice.getIndexTravelerRecent());
+		mav.addObject("guide_list", indexservice.getIndexGuideRecent());
+		mav.addObject("list_count", indexservice.getListCount());
+		mav.addObject("Glist_count", indexservice.getGListCount());
 
 		return mav;
 	}

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import kr.co.serendipity.model.MemberDAO;
 import kr.co.serendipity.model.MemberDTO;
+import kr.co.serendipity.service.MemberService;
 
 @Controller
 @RequestMapping("/member/")
@@ -26,34 +27,30 @@ public class MemberController {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	@Autowired
+	private MemberService memberservice;
+	
 	@RequestMapping("join_login.htm")
 	public ModelAndView joinLogin() {
 		ModelAndView mav = new ModelAndView("/member/join_login");
-		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
-		mav.addObject("local_list", dao.localList());
-		mav.addObject("country_list", dao.countryList());
+		mav.addObject("local_list", memberservice.localList());
+		mav.addObject("country_list", memberservice.countryList());
 		return mav;
 	}
 	
 	@RequestMapping(value="joinMember.htm", method=RequestMethod.POST)
-	public String joinMember(MemberDTO dto) {
-		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
-		dao.joinMember(dto);
-		
+	public String joinMember(MemberDTO memberdto) {
+		memberservice.joinMember(memberdto);
 		return "/member/join_login";
 	}
 	
 	@RequestMapping(value="login.htm", method=RequestMethod.POST)
-	public String login(MemberDTO dto, HttpSession session) {
-		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
-		MemberDTO member = dao.login(dto);
-
-		if(member == null) {
+	public String login(MemberDTO memberdto, HttpSession session) {
+		if(memberservice.login(memberdto) == null) {
 			
 		} else {
-			session.setAttribute("id", member.getId());
-			session.setAttribute("user_num", member.getUser_num());
-			System.out.println("user_num : " + member.getUser_num() + "/" + member.getId() + "/" + member.getPw());
+			session.setAttribute("id", memberservice.login(memberdto).getId());
+			session.setAttribute("user_num", memberservice.login(memberdto).getUser_num());
 		}
 		return "redirect:/index.htm";
 	}
@@ -65,15 +62,12 @@ public class MemberController {
 	
 	@RequestMapping("loginCheck.htm")
 	public @ResponseBody int loginCheck(MemberDTO memberdto) {
-		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
-		return dao.loginCheck(memberdto);
+		return memberservice.loginCheck(memberdto);
 	}
 	
 	@RequestMapping("IdCheck.htm")
-	
 	public @ResponseBody int IdCheck(MemberDTO memberdto) {
-		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
-		return dao.IdCheck(memberdto);
+		return memberservice.IdCheck(memberdto);
 	}
 
 

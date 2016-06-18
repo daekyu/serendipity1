@@ -138,10 +138,10 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "guide_writeform.htm", method = RequestMethod.POST)
-	public String guideWriteform(BoardDTO dto, MultipartHttpServletRequest request)
+	public String guideWriteform(BoardDTO boarddto, MultipartHttpServletRequest request)
 			throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("guide_writeform POST entrance");
-		boardservice.guideWriteFormPost(dto, request);
+		boardservice.guideWriteFormPost(boarddto, request);
 		return "redirect:/board/guide_list.htm";
 	}
 
@@ -155,58 +155,10 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "traveler_writeform.htm", method = RequestMethod.POST)
-	public String travelerWriteform(BoardDTO dto, MultipartHttpServletRequest request)
+	public String travelerWriteform(BoardDTO boarddto, MultipartHttpServletRequest request)
 			throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("traveler_writeform POST entrance");
-
-		List<MultipartFile> flist = request.getFiles("pic");
-		List<String> filenames = new ArrayList<String>();
-
-		System.out.println("0번 파일 : " + flist.get(0).getOriginalFilename());
-		System.out.println("1번 파일 : " + flist.get(1).getOriginalFilename());
-		System.out.println("2번 파일 : " + flist.get(2).getOriginalFilename());
-		System.out.println("3번 파일 : " + flist.get(3).getOriginalFilename());
-		System.out.println("4번 파일 : " + flist.get(4).getOriginalFilename());
-
-		System.out.println("flist.size() : " + flist.size());
-
-		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
-		System.out.println("실제 파일 업로드 경로 : " + realFolder);
-		if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
-
-		} else {
-			for (int i = 0; i < 5; i++) {
-
-				String saveFileName = null;
-				if (flist.get(i).getOriginalFilename().equals("")) {
-					filenames.add("no_picture");
-				} else {
-					String genId = UUID.randomUUID().toString();
-					String originalfileName = flist.get(i).getOriginalFilename();
-
-					System.out.println("filename : " + originalfileName);
-
-					saveFileName = genId + "_" + originalfileName;
-
-					String savePath = realFolder + "\\" + saveFileName;
-
-					flist.get(i).transferTo(new File(savePath));
-					filenames.add(saveFileName);
-				}
-			}
-		}
-		System.out.println("filenames.get(0) : " + filenames.get(0));
-		System.out.println("filenames.get(1) : " + filenames.get(1));
-		dto.setBoard_Picture1(filenames.get(0));
-		System.out.println("dto.getBoard_Picture1() : " + dto.getBoard_Picture1());
-		dto.setBoard_Picture2(filenames.get(1));
-		dto.setBoard_Picture3(filenames.get(2));
-		dto.setBoard_Picture4(filenames.get(3));
-		dto.setBoard_Picture5(filenames.get(4));
-
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		dao.write(dto);
-
+		boardservice.travelerWriteFormPost(boarddto, request);
 		return "redirect:/board/traveler_list.htm";
 	}
 
@@ -214,10 +166,8 @@ public class BoardController {
 	public String travelerDetail(BoardDTO boarddto, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("travelerDetail entrance");
 		System.out.println("board_num : " + boarddto.getBoard_Num());
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-
-		BoardDTO dto = dao.getBoardDetail(boarddto);
-		model.addAttribute("boarddto", dto);
+		
+		model.addAttribute("boarddto", boardservice.travelerDetail(boarddto));
 
 		return "/board/travel_detail";
 	}
@@ -226,10 +176,9 @@ public class BoardController {
 	public String guideDetail(BoardDTO boarddto, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("guideDetail entrance");
 		System.out.println("board_num : " + boarddto.getBoard_Num());
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-
-		model.addAttribute("boarddto", dao.getBoardDetail(boarddto));
-		model.addAttribute("memberdto", dao.getWriterDetail(boarddto));
+		
+		model.addAttribute("boarddto", boardservice.guideDetail(boarddto));
+		model.addAttribute("memberdto", boardservice.writerDetail(boarddto));
 		return "/board/guide_detail";
 	}
 
@@ -238,51 +187,8 @@ public class BoardController {
 		System.out.println("boardDelete entrance");
 		System.out.println("board_num : " + boarddto.getBoard_Num());
 		System.out.println("check : " + check);
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		BoardDTO dto = dao.getBoardDetail(boarddto);
-		String realFolder = "C:\\Kosta_112th\\Project_3rd\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Serendipity\\resources\\img\\board_picture";
-		if(dto.getBoard_Picture1().equals("") ){
-			
-		}else{
-			File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
-		    if(file.exists()){
-		    	file.delete();
-		    }
-		}
-		if(dto.getBoard_Picture2().equals("") ){
-					
-				}else{
-					File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
-				    if(file.exists()){
-				    	file.delete();
-				    }
-				}
-		if(dto.getBoard_Picture3().equals("") ){
-			
-		}else{
-			File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
-		    if(file.exists()){
-		    	file.delete();
-		    }
-		}
-		if(dto.getBoard_Picture4().equals("") ){
-			
-		}else{
-			File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
-		    if(file.exists()){
-		    	file.delete();
-		    }
-		}
-		if(dto.getBoard_Picture5().equals("") ){
-			
-		}else{
-			File file = new File(realFolder+"\\"+dto.getBoard_Picture1());
-		    if(file.exists()){
-		    	file.delete();
-		    }
-		}
 		
-		dao.deleteBoard(boarddto);
+		boardservice.boardDelete(boarddto);
 
 		if (check == 1) {
 			return "redirect:/board/traveler_list.htm";
@@ -293,16 +199,17 @@ public class BoardController {
 
 	@RequestMapping(value = "guide_modify.htm", method = RequestMethod.GET)
 	public ModelAndView modifyGuideForm(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 
 		ModelAndView mav = new ModelAndView("/board/guide_modifyform");
-		mav.addObject("boarddto", dao.getBoardDetail(boarddto));
+		mav.addObject("boarddto", boardservice.guideDetail(boarddto));
 
 		return mav;
 	}
 
 	@RequestMapping(value = "guide_modify.htm", method = RequestMethod.POST)
 	public String modifyGuideForm(BoardDTO boarddto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
+		//이거 변경 해야함
+		
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		System.out.println("guide_modify.htm post");
 		System.out.println("board_Num : " + boarddto.getBoard_Num());

@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDAO;
+import kr.co.serendipity.model.HobbyDTO;
+import kr.co.serendipity.model.LanguageDTO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.MyPageDAO;
 import kr.co.serendipity.model.ParticipantDTO;
@@ -37,19 +39,19 @@ public class MyPageController {
 	private SqlSession sqlsession;
 
 	@RequestMapping("my_page.htm")
-	public String myPage(int user_num, Model model) throws IOException {
+	public String myPage(MemberDTO memberdto, Model model) throws IOException {
 		System.out.println("myPage entrance");
-
+		
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		MemberDTO dto = dao.myPageGetMemberInfo(user_num);
+		MemberDTO dto = dao.myPageGetMemberInfo(memberdto);
 		String pic = dto.getProfile_picture();
 		System.out.println("원본 사진명 : " + pic);
 		String local = dto.getLocal_code();
-		String Slocal = dao.parseLocal(local);
-		List Slang = dao.parseLang(user_num);
-		List Shobby = dao.parseHobby(user_num);
+		String Slocal = dao.parseLocal(memberdto);
+		List Slang = dao.parseLang(memberdto);
+		List Shobby = dao.parseHobby(memberdto);
 		
-		model.addAttribute("dto", dto);
+		model.addAttribute("memberdto", dto);
 		model.addAttribute("Slocal", Slocal);
 		model.addAttribute("Slang", Slang);
 		model.addAttribute("Shobby", Shobby);
@@ -58,14 +60,14 @@ public class MyPageController {
 	}
 
 	@RequestMapping("my_page_modifyform.htm")
-	public ModelAndView modifyAccount(MemberDTO dto) {
+	public ModelAndView modifyAccount(MemberDTO memberdto) {
 		System.out.println("myPage_modifyform entrance");
 
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		ModelAndView mav = new ModelAndView("/mypage/my_page_modifyform");
 		mav.addObject("hobby_list", dao.getHobbyList());
 		mav.addObject("language_list", dao.getLanguageList());
-		mav.addObject("member_info", dao.getMemberInfo(dto));
+		mav.addObject("member_info", dao.getMemberInfo(memberdto));
 		return mav;
 	}
 
@@ -75,12 +77,12 @@ public class MyPageController {
 	}
 
 	@RequestMapping("my_page_send_history.htm")
-	public String sendHistory(int user_num, Model model) {
+	public String sendHistory(MemberDTO memberdto, Model model) {
 		System.out.println("sendHistory entrance");
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		ParticipantDTO dto = dao.sendHistory(user_num);
+		ParticipantDTO dto = dao.sendHistory(memberdto);
 		
-		model.addAttribute("dto", dto);
+		model.addAttribute("participantdto", dto);
 		return "/mypage/my_page_send_history";
 	}
 
@@ -95,40 +97,40 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "InfoModify.htm", method = RequestMethod.POST)
-	public String infoModify(String[] hobby, String[] language, String profile, int user_num,
+	public String infoModify(HobbyDTO[] hobbydto, LanguageDTO[] languagedto, String profile, MemberDTO memberdto,
 			MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("InfoModify.htm POST entrance");
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 
-		if (hobby == null) {
+		if (hobbydto == null) {
 
 		} else {
-			int cnt = dao.countHobby(user_num);
+			int cnt = dao.countHobby(memberdto);
 
 			if (cnt != 0) {
-				dao.deleteHobby(user_num);
+				dao.deleteHobby(memberdto);
 			}
-			for (int i = 0; i < hobby.length; i++) {
-				dao.insertHobby(user_num, hobby[i]);
+			for (int i = 0; i < hobbydto.length; i++) {
+				dao.insertHobby(memberdto, hobbydto[i]);
 			}
 		}
 
-		if (language == null) {
+		if (languagedto == null) {
 
 		} else {
-			int cnt = dao.countLanguage(user_num);
+			int cnt = dao.countLanguage(memberdto);
 			if (cnt != 0) {
-				dao.deleteLanguage(user_num);
+				dao.deleteLanguage(memberdto);
 			}
-			for (int i = 0; i < language.length; i++) {
-				dao.insertLanguage(user_num, language[i]);
+			for (int i = 0; i < languagedto.length; i++) {
+				dao.insertLanguage(memberdto, languagedto[i]);
 			}
 		}
 
 		if (profile.equals("")) {
 
 		} else {
-			dao.updateContent(user_num, profile);
+			dao.updateContent(memberdto);
 		}
 
 		MultipartFile mf = request.getFile("file");
@@ -140,7 +142,7 @@ public class MyPageController {
 		    System.out.println("실제 파일 업로드 경로 : " + uploadPath);
 			
 			//업데이트 전 프로필 사진 삭제
-			String beforeFile = dao.selectPic(user_num);
+			String beforeFile = dao.selectPic(memberdto);
 			System.out.println("beforeFile : " + beforeFile);
 			if(beforeFile != null){
 				File file = new File(uploadPath+"\\"+beforeFile);
@@ -161,9 +163,9 @@ public class MyPageController {
 			String uploadedFileName =System.currentTimeMillis() 
 					+ UUID.randomUUID().toString()+fileName;
 			//fileName.substring(fileName.lastIndexOf("."))
-		    
+		    memberdto.setProfile_picture(uploadedFileName);
 		    /*dao.updatePic(user_num, uploadPath+"\\"+uploadedFileName);*/
-		    dao.updatePic(user_num, uploadedFileName);
+		    dao.updatePic(memberdto);
 		    
 		    //지정한주소에 파일 저장	    
 		    if(mf.getSize() != 0) {	    	
@@ -172,34 +174,34 @@ public class MyPageController {
 		}
 		System.out.println();
 		System.out.println();
-		return "redirect:/mypage/my_page.htm?user_num=" + user_num;
+		return "redirect:/mypage/my_page.htm?user_num=" + memberdto.getUser_num();
 	}
 
 	@RequestMapping(value = "InfoModify2.htm", method = RequestMethod.POST)
-	public String infoModify2(String pw, String hp, String email, int user_num)
+	public String infoModify2(MemberDTO memberdto)
 			throws ClassNotFoundException, SQLException {
 		System.out.println("InfoModify2.htm POST entrance");
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 
-		if (pw.equals("")) {
+		if (memberdto.getPw().equals("")) {
 
 		} else {
-			dao.updatePw(user_num, pw);
+			dao.updatePw(memberdto);
 		}
 
-		if (hp.equals("")) {
+		if (memberdto.getHp().equals("")) {
 
 		} else {
-			dao.updateHp(user_num, hp);
+			dao.updateHp(memberdto);
 		}
 
-		if (email.equals("")) {
+		if (memberdto.getEmail().equals("")) {
 
 		} else {
-			dao.updateEmail(user_num, email);
+			dao.updateEmail(memberdto);
 		}
 
-		return "redirect:/mypage/my_page.htm?user_num=" + user_num;
+		return "redirect:/mypage/my_page.htm?user_num=" + memberdto.getUser_num();
 	}
 
 }

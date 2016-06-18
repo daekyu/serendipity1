@@ -39,8 +39,8 @@ public class TravelInfoController {
 	}
 	
 	@RequestMapping("getLocalInfo.htm")
-	public @ResponseBody TravelInfoDTO getLocalInfo(String local_code) {
+	public @ResponseBody TravelInfoDTO getLocalInfo(LocalDTO localdto) {
 		TravelInfoDAO dao = sqlsession.getMapper(TravelInfoDAO.class);
-		return dao.getLocalInfo(local_code);
+		return dao.getLocalInfo(localdto);
 	}
 }

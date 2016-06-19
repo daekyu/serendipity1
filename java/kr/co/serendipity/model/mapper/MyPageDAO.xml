@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertHobby">
 	 	INSERT INTO hobby_select(user_num, hobby_code) 
-	 	VALUES(#{user_num}, #{hobbies})
+	 	VALUES(#{param1}, #{param2})
 	</insert>
 	
 	<delete id="deleteHobby">
@@ -51,11 +51,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertLanguage">
 	 	INSERT INTO lang_select(user_num, language_code) 
-	 	VALUES(#{user_num}, #{languages})
+	 	VALUES(#{param1}, #{param2})
 	</insert>
 	
 	<update id="updateContent">
-		update member set profile_description=#{profile_description} where user_num=#{user_num}
+		update member set profile_description=#{param2} where user_num=#{param1}
 	</update>
 	
 	<update id="updatePw">

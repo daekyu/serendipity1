@@ -20,25 +20,25 @@ public interface MyPageDAO {
 	public MemberDTO myPageGetMemberInfo(MemberDTO memberdto);
 	
 	//추가 정보 수정 (DB에 저장된 취미가 있는지 체크)
-	public int countHobby(MemberDTO memberdto);
+	public int countHobby(int user_num);
 	
 	//추가 정보 수정 (DB에 저장된 취미가 없을 때) - 취미, 관심사
-	public void insertHobby(MemberDTO memberdto, String hobbies);
+	public void insertHobby(int user_num, String hobbies);
 	
 	//추가 정보 수정 (DB에 이미 저장된 취미가 있을 때 우선 삭제)
-	public void deleteHobby(MemberDTO memberdto);
+	public void deleteHobby(int user_num);
 	
 	//추가 정보 수정 (DB에 저장된 언어가 있는지 체크)
-	public int countLanguage(MemberDTO memberdto);
+	public int countLanguage(int user_num);
 	
 	//추가 정보 수정 (DB에 이미 저장된 언어가 있을 때 우선 삭제)
-	public void deleteLanguage(MemberDTO memberdto);
+	public void deleteLanguage(int user_num);
 	
 	//추가 정보 수정 (DB에 저장된 언어가 없을 때)
-	public void insertLanguage(MemberDTO memberdto, String languages);
+	public void insertLanguage(int user_num, String languages);
 	
 	//추가 정보 수정 (DB에 저장된 자기소개가 있는지 체크)
-	public void updateContent(MemberDTO memberdto);
+	public void updateContent(int user_num, String profile_description);
 	
 	//기본 정보 수정 (비밀번호 수정)
 	public void updatePw(MemberDTO memberdto);
@@ -53,7 +53,7 @@ public interface MyPageDAO {
 	public void updatePic(MemberDTO memberdto);
 	
 	//추가 정보 수정 (전 프로필 사진 경로 불러오기 - 파일 삭제를 위해)
-	public String selectPic(MemberDTO memberdto);
+	public String selectPic(int user_num);
 	
 	//지역 코드를 받아 지역명 반환(지역)
 	public String parseLocal(MemberDTO memberdto);

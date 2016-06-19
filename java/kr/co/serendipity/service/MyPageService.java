@@ -58,44 +58,47 @@ public class MyPageService {
 		return dao.sendHistory(memberdto);
 	}
 	
-	public int countHobby(MemberDTO memberdto){
+	public int countHobby(int user_num){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		return dao.countHobby(memberdto);
+		return dao.countHobby(user_num);
 	}
 	
-	public void deleteHobby(MemberDTO memberdto){
+	public void deleteHobby(int user_num){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		dao.deleteHobby(memberdto);
+		dao.deleteHobby(user_num);
 	}
 	
-	public void insertHobby(MemberDTO memberdto, String hobbies){
+	public void insertHobby(int user_num, String hobbies){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		dao.insertHobby(memberdto, hobbies);
+		System.out.println("wkwkwkwkwkwkw : " + user_num);
+		System.out.println("asdasdasdads" + hobbies);
+		dao.insertHobby(user_num, hobbies);
+		System.out.println("aaaaaaasswwwwwwwwwwwwwwwwwww");
 	}
 	
-	public int countLanguage(MemberDTO memberdto){
+	public int countLanguage(int user_num){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		return dao.countLanguage(memberdto);
+		return dao.countLanguage(user_num);
 	}
 	
-	public void deleteLanguage(MemberDTO memberdto){
+	public void deleteLanguage(int user_num){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		dao.deleteLanguage(memberdto);
+		dao.deleteLanguage(user_num);
 	}
 	
-	public void insertLanguage(MemberDTO memberdto, String languages){
+	public void insertLanguage(int user_num, String languages){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		dao.insertLanguage(memberdto, languages);
+		dao.insertLanguage(user_num, languages);
 	}
 	
-	public void updateContent(MemberDTO memberdto){
+	public void updateContent(int user_num, String profile_description){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		dao.updateContent(memberdto);
+		dao.updateContent(user_num, profile_description);
 	}
 	
-	public String selectPic(MemberDTO memberdto){
+	public String selectPic(int user_num){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		return dao.selectPic(memberdto);
+		return dao.selectPic(user_num);
 	}
 	
 	public void updatePic(MemberDTO memberdto){

@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
+import kr.co.serendipity.model.ReportDAO;
+import kr.co.serendipity.model.ReportDTO;
 
 @Service
 public class BoardService {
@@ -22,22 +24,34 @@ public class BoardService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	public List<BoardDTO> getBoardList(int page) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.getBoardList(page);
+	}
+	
+	public int getListCount() throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.getListCount();
+	}
+	
+	public List<BoardDTO> getGBoardList(int page) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.getGBoardList(page);
+	}
+	
+	public int getGListCount() throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.getGListCount();
+	}
+	
 	public void guideWriteFormPost(BoardDTO boarddto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException{
-		
 		List<MultipartFile> flist = request.getFiles("pic");
 		List<String> filenames = new ArrayList<String>();
 
-		System.out.println("0번 파일 : " + flist.get(0).getOriginalFilename());
-		System.out.println("1번 파일 : " + flist.get(1).getOriginalFilename());
-		System.out.println("2번 파일 : " + flist.get(2).getOriginalFilename());
-		System.out.println("3번 파일 : " + flist.get(3).getOriginalFilename());
-		System.out.println("4번 파일 : " + flist.get(4).getOriginalFilename());
-		System.out.println("flist.size() : " + flist.size());
-
 		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
-		System.out.println("실제 파일 업로드 경로 : " + realFolder);
-		if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
 
+		if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
+			
 		} else {
 			for (int i = 0; i < 5; i++) {
 
@@ -48,8 +62,6 @@ public class BoardService {
 					String genId = UUID.randomUUID().toString();
 					String originalfileName = flist.get(i).getOriginalFilename();
 
-					System.out.println("filename : " + originalfileName);
-
 					saveFileName = genId + "_" + originalfileName;
 
 					String savePath = realFolder + "\\" + saveFileName;
@@ -59,10 +71,8 @@ public class BoardService {
 				}
 			}
 		}
-		System.out.println("filenames.get(0) : " + filenames.get(0));
-		System.out.println("filenames.get(1) : " + filenames.get(1));
+
 		boarddto.setBoard_Picture1(filenames.get(0));
-		System.out.println("dto.getBoard_Picture1() : " + boarddto.getBoard_Picture1());
 		boarddto.setBoard_Picture2(filenames.get(1));
 		boarddto.setBoard_Picture3(filenames.get(2));
 		boarddto.setBoard_Picture4(filenames.get(3));
@@ -70,24 +80,13 @@ public class BoardService {
 
 		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
 		boarddao.Gwrite(boarddto);
-		
 	}
 	
-	public void travelerWriteFormPost(BoardDTO boarddto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException{
-		
+	public void travelerWriteFormPost(BoardDTO boarddto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException{	
 		List<MultipartFile> flist = request.getFiles("pic");
 		List<String> filenames = new ArrayList<String>();
 
-		System.out.println("0번 파일 : " + flist.get(0).getOriginalFilename());
-		System.out.println("1번 파일 : " + flist.get(1).getOriginalFilename());
-		System.out.println("2번 파일 : " + flist.get(2).getOriginalFilename());
-		System.out.println("3번 파일 : " + flist.get(3).getOriginalFilename());
-		System.out.println("4번 파일 : " + flist.get(4).getOriginalFilename());
-
-		System.out.println("flist.size() : " + flist.size());
-
 		String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
-		System.out.println("실제 파일 업로드 경로 : " + realFolder);
 		if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
 
 		} else {
@@ -100,8 +99,6 @@ public class BoardService {
 					String genId = UUID.randomUUID().toString();
 					String originalfileName = flist.get(i).getOriginalFilename();
 
-					System.out.println("filename : " + originalfileName);
-
 					saveFileName = genId + "_" + originalfileName;
 
 					String savePath = realFolder + "\\" + saveFileName;
@@ -111,10 +108,7 @@ public class BoardService {
 				}
 			}
 		}
-		System.out.println("filenames.get(0) : " + filenames.get(0));
-		System.out.println("filenames.get(1) : " + filenames.get(1));
 		boarddto.setBoard_Picture1(filenames.get(0));
-		System.out.println("dto.getBoard_Picture1() : " + boarddto.getBoard_Picture1());
 		boarddto.setBoard_Picture2(filenames.get(1));
 		boarddto.setBoard_Picture3(filenames.get(2));
 		boarddto.setBoard_Picture4(filenames.get(3));
@@ -122,20 +116,11 @@ public class BoardService {
 
 		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
 		boarddao.write(boarddto);
-		
 	}
 	
-	public BoardDTO travelerDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
+	public BoardDTO getBoardDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
 		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
 		BoardDTO boarddto1 = boarddao.getBoardDetail(boarddto);
-		
-		return boarddto1;
-	}
-	
-	public BoardDTO guideDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
-		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
-		BoardDTO boarddto1 = boarddao.getBoardDetail(boarddto);
-		
 		return boarddto1;
 	}
 	
@@ -196,8 +181,58 @@ public class BoardService {
 		boarddao.deleteBoard(boarddto);
 	}
 	
-	public void modifyGuideFormPost(BoardDTO boarddto, MultipartHttpServletRequest request){
-		
+	public BoardDTO picSearch(BoardDTO boarddto) {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.picSearch(boarddto);
 	}
 	
+	public void picUpdate1(String saveFileName, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.picUpdate1(saveFileName, boarddto);
+	}
+	
+	public void picUpdate2(String saveFileName, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.picUpdate1(saveFileName, boarddto);
+	}
+	
+	public void picUpdate3(String saveFileName, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.picUpdate3(saveFileName, boarddto);
+	}
+	
+	public void picUpdate4(String saveFileName, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.picUpdate4(saveFileName, boarddto);
+	}
+	
+	public void picUpdate5(String saveFileName, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.picUpdate5(saveFileName, boarddto);
+	}
+	
+	public void Gupdate(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.Gupdate(boarddto);
+	}
+	
+	public void update(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.update(boarddto);
+	}
+	
+	public void reportWrite(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
+		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
+		dao.reportWrite(reportdto);
+	}
+	
+	public void updateReportCount(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
+		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
+		dao.updateReportCount(reportdto);
+	}
+	
+	public void travelerParty(BoardDTO boarddto) {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.travelerParty(boarddto);
+	}
 }

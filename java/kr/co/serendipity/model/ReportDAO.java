@@ -14,13 +14,13 @@ import java.util.List;
 public interface ReportDAO {
 	
 	//신고하는 글쓰기
-	public void ReportWrite(ReportDTO reportdto) throws ClassNotFoundException, SQLException;
+	public void reportWrite(ReportDTO reportdto) throws ClassNotFoundException, SQLException;
 	
 	//관리자 페이지에서 신고하는 글 상세보기
-	public HashMap<String, Object> ReportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException;
+	public HashMap<String, Object> reportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException;
 	
 	//관리자 페이지에서 신고하는 글 리스트보기
-	public List<HashMap<String, Object>> ReportList() throws ClassNotFoundException, SQLException;
+	public List<HashMap<String, Object>> reportList() throws ClassNotFoundException, SQLException;
 	
 	//신고글 갯수(페이징 할때)
 	public int getReportListCount() throws ClassNotFoundException, SQLException;

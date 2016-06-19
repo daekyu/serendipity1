@@ -19,7 +19,7 @@ public interface BoardDAO {
 	public int getListCount() throws ClassNotFoundException, SQLException;
 	
 	//글 목록
-	public List getBoardList(int page) throws ClassNotFoundException, SQLException;
+	public List<BoardDTO> getBoardList(int page) throws ClassNotFoundException, SQLException;
 	
 	//글 상세 -- 가이드 구함, 여행자 구함 게시판 공통
 	public BoardDTO getBoardDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
@@ -59,7 +59,7 @@ public interface BoardDAO {
 	public int getGListCount() throws ClassNotFoundException, SQLException;
 		
 	//여행자 구함 글 목록
-	public List getGBoardList(int page) throws ClassNotFoundException, SQLException;
+	public List<BoardDTO> getGBoardList(int page) throws ClassNotFoundException, SQLException;
 	
 	//여행자 글 수정
 	public void Gupdate(BoardDTO boarddto) throws ClassNotFoundException, SQLException;

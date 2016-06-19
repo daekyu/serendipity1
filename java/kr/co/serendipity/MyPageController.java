@@ -46,10 +46,9 @@ public class MyPageController {
 		MemberDTO dto = mypageservice.myPageGetMemberInfo(memberdto);
 		String pic = dto.getProfile_picture();
 		System.out.println("원본 사진명 : " + pic);
-		String local = dto.getLocal_code();
-		String Slocal = mypageservice.parseLocal(memberdto);
-		List Slang = mypageservice.parseLang(memberdto);
-		List Shobby = mypageservice.parseHobby(memberdto);
+		String Slocal = mypageservice.parseLocal(dto);
+		List Slang = mypageservice.parseLang(dto);
+		List Shobby = mypageservice.parseHobby(dto);
 		
 		model.addAttribute("memberdto", dto);
 		model.addAttribute("Slocal", Slocal);

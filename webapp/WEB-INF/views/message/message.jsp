@@ -138,7 +138,7 @@
 					</thead>
 					
 					<tbody>
-						<c:forEach var="i" items="${rcv_messagelist}">
+						<c:forEach var="i" items="${rcv_message_list}">
 
 							<tr>
 								<td>
@@ -229,7 +229,7 @@
 			  	</thead>
 			  	
 			  	<tbody>
-						<c:forEach var="i" items="${messagelist}">
+						<c:forEach var="i" items="${message_list}">
 
 							<tr>
 								<td>

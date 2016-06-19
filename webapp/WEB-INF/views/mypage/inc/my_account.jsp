@@ -30,7 +30,7 @@
 					       <img class="replace-2x" src="${i}" alt="" title="" width="768" height="768">
 					    </c:otherwise>
 					</c:choose> --%>
-					  <img class="replace-2x img-profile" src="${pageContext.request.contextPath}/resources/img/profile_picture/${dto.profile_picture}" alt="프로필사진" title="프로필사진" width="768" height="768">
+					  <img class="replace-2x img-profile" src="${pageContext.request.contextPath}/resources/img/profile_picture/${memberdto.profile_picture}" alt="프로필사진" title="프로필사진" width="768" height="768">
 					  
 					</div>
 				  </div>
@@ -40,10 +40,10 @@
 			</div>
 		  
 			<div class="employee-description col-sm-8 col-md-8">
-			  <h3 class="name">${dto.name}</h3>
+			  <h3 class="name">${memberdto.name}</h3>
 			  <div class="role"></div>
 			  <div>
-				<p>${dto.profile_description}</p>
+				<p>${memberdto.profile_description}</p>
 			  </div>
 			  <div class="social">
 <!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>
@@ -63,7 +63,7 @@
 				</tr>
 				<tr>
 					<th class="danger"><spring:message code="board.mypage_in1"/></th>
-					<td>${dto.name}</td>
+					<td>${memberdto.name}</td>
 				</tr>
 				
 				<tr>

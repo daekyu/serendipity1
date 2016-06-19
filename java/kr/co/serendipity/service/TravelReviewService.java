@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.serendipity.model.LocalDTO;
@@ -19,6 +20,7 @@ import kr.co.serendipity.model.ReviewLikeDTO;
 @Service
 public class TravelReviewService {
 	
+	@Autowired
 	private SqlSession sqlsession;
 	
 	public List<HashMap<String,Object>> reviewList() throws ClassNotFoundException, SQLException {

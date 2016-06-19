@@ -22,24 +22,24 @@
 				 	글이 존재하지 않습니다.
 				 </c:when>
 				<c:otherwise>
-					<c:forEach var="i" items="${guideList}">
+					<c:forEach var="i" items="${guide_list}">
 						<div class="col-sm-3 col-md-3 rotation employee">
 							<div class="default">
 								<div class="image">
-									<img class="replace-2x img-list" src="${pageContext.request.contextPath}/resources/img/board_picture/${i.board_Picture1}" alt=""
+									<img class="replace-2x img-list" src="${pageContext.request.contextPath}/resources/img/board_picture/${i.board_picture1}" alt=""
 										title="" width="270" height="270">
 								</div>
 								<div class="description">
 									<div class="vertical">
-										<h3 class="name">${i.board_Title}</h3>
-										<div class="role">여행자 번호 : ${i.user_Num}</div>
+										<h3 class="name">${i.board_title}</h3>
+										<div class="role">여행자 번호 : ${i.user_num}</div>
 									</div>
 								</div>
 							</div>
-							<a href="board/traveler_detail.htm?board_num=${i.board_Num}">
+							<a href="board/traveler_detail.htm?board_num=${i.board_num}">
 								<div class="employee-hover">
-									<h3 class="name">${i.board_Title}</h3>
-									<h3 class="name">여행자 번호 : ${i.user_Num}</h3>
+									<h3 class="name">${i.board_title}</h3>
+									<h3 class="name">여행자 번호 : ${i.user_num}</h3>
 									<div class="role">지역</div>
 									<div class="image">
 										<!-- 가이드 프로필 사진을 넣어주자 -->

@@ -236,15 +236,15 @@
 			  <p>If you have an account with us, please log in.</p>
 			  
 			  <div class="form-group">
-				<label>이름: <span class="required" >*</span></label>
+				<label><spring:message code="member.join_login_re"/><span class="required" >*</span></label>
 				<input type="text" class="form-control" name="name" id="name">
                 <!-- <input type="text" class="form-control" name="name" data-bv-trigger="keyup" required data-bv-notempty-message="The name is required and cannot be empty"> -->
               </div>
 
 			  <div class="form-group">
-				<label>아이디: <span class="required" id="id_text"></span></label>
+				<label><spring:message code="member.join_login_re1"/><span class="required" id="id_text"></span></label>
 				<input type="text" class="form-control" name="id" id="id_1">
-				<input type="button" class="btn btn-default" id="id_button" value="아이디확인"/>
+				<input type="button" class="btn btn-default" id="id_button" value="<spring:message code="member.join_login_re2"/>"/>
 				<input type="hidden" id="id_check_val" value="0">
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
@@ -254,17 +254,17 @@
 			  </div>
 				
 			  <div class="form-group">
-				<label>비밀번호: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re3"/><span class="required">*</span></label>
                 <input class="form-control" name="pw" id="pw_1" type="password"><!-- 속성에 required를 이용해보자 -->
               </div>
 			  
 			  <div class="form-group">
-				<label>비밀번호 확인: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re4"/><span class="required">*</span></label>
                 <input class="form-control" id="confirm_pw" type="password">
               </div>
 			  
 			  <div class="form-group">
-				<label>성별: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re5"/><span class="required">*</span></label>
                 <select class="form-group" name="gender" id="gender">
                 	<option value="">--</option>
                 	<option value="M">남자</option>
@@ -273,12 +273,12 @@
               </div>
               
               <div class="form-group">
-				<label>나이: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re6"/><span class="required">*</span></label>
                 <input class="form-control" id="age" type="text">
               </div>
               
               <div class="form-group">
-				<label>국적: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re7"/><span class="required">*</span></label>
 
                 <select class="form-group" name="country_code" id="country_code">
                 	<option value="">--</option>
@@ -291,7 +291,7 @@
               
               <!-- 한국 어느지역 사람인지 나타내주는 코드. 외국인일경우 숨기고, 한국인이면 보여주게하자. 그리고 한국인이 입력안하면 넘어가지 못하게 하자 -->
               <div class="form-group" id="local">
-				<label>거주지역: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re8"/><span class="required">*</span></label>
 
                 <select class="form-group" name="local_code" id="local_code">
                 	<option value="-">--</option>
@@ -302,18 +302,18 @@
               </div>
               
               <div class="form-group">
-				<label>휴대전화: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re9"/><span class="required">*</span></label>
                 <input class="form-control" id="hp" name="hp" type="text" placeholder="01012345678과 같이 '-'를 뺀 형식으로 입력하세요.">
               </div>
 			  
 			  <div class="form-group">
-				<label>Email: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re10"/><span class="required">*</span></label>
 				<input class="form-control" type="text" name="email" id="email" >
               </div>
 
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Create my account</button> -->
-				<input type="submit" class="btn btn-default" id="loginbutton" value="Create my account">
+				<input type="submit" class="btn btn-default" id="loginbutton" value="<spring:message code="member.join_login_re11"/>">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>
 			</form><!-- .form-box -->

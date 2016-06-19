@@ -97,7 +97,7 @@
 
 
 				<div class="products grid row">
-					<c:forEach var="i" items="${list}">
+					<c:forEach var="i" items="${board_list}">
 
 						<div class="col-sm-3 col-md-3 product rotation">
 							<div class="default">

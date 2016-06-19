@@ -352,7 +352,7 @@
 	<article class="content">
 		<div class="container form-group">
 			<form action="" id="bofom" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="user_Num" value="${user_num}">
+				<input type="hidden" name="user_num" value="${sessionScope.user_num}">
 				<table class="table table-responsive center">
 					<tr>
 						<td><h5><spring:message code="board.guide_writeform2"/></h5></td>
@@ -459,10 +459,10 @@
 											<option value="5000">5000</option>
 										</select>
 									</div>
-									<input type="hidden" id="lat" name="board_Latitude" /> <input
-										type="hidden" id="lng" name="board_Longitude" /> <input
-										type="hidden" id="meeting_place" name="meeting_Place" /> <input
-										type="hidden" id="meeting_address" name="meeting_Address" />
+									<input type="hidden" id="lat" name="board_latitude" /> <input
+										type="hidden" id="lng" name="board_longitude" /> <input
+										type="hidden" id="meeting_place" name="meeting_place" /> <input
+										type="hidden" id="meeting_address" name="meeting_address" />
 									<div id="button1" class="btn btn-success"
 										onclick="findPlaces(); return false;">Search for objects</div>
 								</div>

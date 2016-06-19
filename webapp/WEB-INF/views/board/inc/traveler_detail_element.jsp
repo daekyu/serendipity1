@@ -6,10 +6,10 @@
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
-		<input type="hidden" id="lat" value="${dto.board_Latitude}"/>
-		<input type="hidden" id="lng" value="${dto.board_Longitude}"/>
-		<input type="hidden" id="meeting_place" value="${dto.meeting_Place}"/>
-		<input type="hidden" id="meeting_address" value="${dto.meeting_Address}"/>
+		<input type="hidden" id="lat" value="${boarddto.board_latitude}"/>
+		<input type="hidden" id="lng" value="${boarddto.board_longitude}"/>
+		<input type="hidden" id="meeting_place" value="${boarddto.meeting_place}"/>
+		<input type="hidden" id="meeting_address" value="${boarddto.meeting_address}"/>
 	<script type="text/javascript">
 		$(function(){
 			$('#delete').click(function(){
@@ -101,8 +101,8 @@
 			<div class="image-box">
 			  <span class="sale top"></span>
 			  <div class="general-img">
-				<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" 
-				data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" width="500" height="500">
+				<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture1}" 
+				data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture1}" width="500" height="500">
 			  </div><!-- .general-img -->
 			  
 			  
@@ -119,20 +119,20 @@
 				</a>
 				
 				<div id="thumblist" class="thumblist">
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" width="500" height="500">
+				  <a class="active" href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture1}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture1}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture1}" width="500" height="500">
 				  </a>
-				  <a class="active" href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture2}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture2}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture2}" width="500" height="500">
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture2}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture2}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture2}" width="500" height="500">
 				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture3}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture3}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture3}" width="500" height="500">
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture3}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture3}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture3}" width="500" height="500">
 				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture4}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture4}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture4}" width="500" height="500">
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture4}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture4}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture4}" width="500" height="500">
 				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture5}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture5}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture5}" width="500" height="500">
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture5}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture5}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture5}" width="500" height="500">
 				  </a>
 				  <a href="#" data-image="content/img/single-3.jpg" data-zoom-image="content/img/single-3.jpg">
 					<img class="replace-2x" alt="" src="content/img/single-3.jpg" width="500" height="500">
@@ -144,7 +144,7 @@
 		  
 		  <div class="col-sm-7 col-md-7">
 			<div class="reviews-box table-responsive">
-			  <a href="#reviews" class="add-review">${dto.board_Title}</a>
+			  <a href="#reviews" class="add-review">${boarddto.board_title}</a>
 			</div>
 			<table class="table table-striped table-bordered text-center my-orders-table">
 				<thead>
@@ -168,18 +168,18 @@
 			</div>
 			
 			<div class="price-box">
-			  <span class="price">${dto.price} / a day / ${dto.board_Date}</span>
+			  <span class="price">${boarddto.price} / a day / ${boarddto.board_date}</span>
 			</div>
 			
 			<c:choose>
-				<c:when test="${sessionScope.user_num == dto.user_Num}">
-					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${dto.board_Num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
-					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=1"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+				<c:when test="${sessionScope.user_num == boarddto.user_num}">
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${boarddto.board_num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
+					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.board_num}&check=1"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
 				</c:when>
 				
 				<c:otherwise>
 				
-					<td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
+					<td><input class="form-control" type="text" id="datepicker" name="board_date"></td>
 				
 					
 					<select>
@@ -187,7 +187,7 @@
 						
 					</select>
 					
-					<a class="btn add-cart btn-default btn-lg" href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${dto.board_Num}&user_num=${sessionScope.user_num}">신청하기</a>
+					<a class="btn add-cart btn-default btn-lg" href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.board_num}&user_num=${sessionScope.user_num}">신청하기</a>
 				</c:otherwise>
 			</c:choose>
 		  </div>
@@ -213,7 +213,7 @@
 		  <!-- 지도 끝 -->
 		  
 			<div class="tab-pane" id="description">
-				${dto.board_Content}<br><br><br><br>
+				${boarddto.board_content}<br><br><br><br>
 				
 				추가사항
 				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 

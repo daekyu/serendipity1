@@ -366,17 +366,17 @@
 	<article class="content">
 		<div class="container">
 			<form action="" id="bofom" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="user_Num" value="${user_num}">
+				<input type="hidden" name="user_num" value="${sessionScope.user_num}">
 				<table class="table center">
 					<tr>
 						<td><h6><spring:message code="board.traveler_writeform2"/></h6></td>
 						<td colspan="5"><input class="form-control" type="text"
-							name="board_Title"></td>
+							name="board_title"></td>
 					</tr>
 					<tr>
 						<td><spring:message code="board.traveler_writeform3"/></td>
 
-						<td><input class="form-control" type="text" id="datepicker" name="board_Date"></td>
+						<td><input class="form-control" type="text" id="datepicker" name="board_date"></td>
 
 						<td>지불할 가격</td>
 						<td><select id="selectoption">
@@ -401,7 +401,7 @@
 						<td colspan="5">
 							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
-							<textarea name="board_Content" id="ckeditor"></textarea> <script
+							<textarea name="board_content" id="ckeditor"></textarea> <script
 								type="text/javascript">
 								CKEDITOR.replace('ckeditor', {
 									width : '90%',
@@ -466,10 +466,10 @@
 											<option value="5000">5000</option>
 										</select>
 									</div>
-									<input type="hidden" id="lat" name="board_Latitude" /> <input
-										type="hidden" id="lng" name="board_Longitude" /> <input
-										type="hidden" id="meeting_place" name="meeting_Place" /> <input
-										type="hidden" id="meeting_address" name="meeting_Address" />
+									<input type="hidden" id="lat" name="board_latitude" /> <input
+										type="hidden" id="lng" name="board_longitude" /> <input
+										type="hidden" id="meeting_place" name="meeting_place" /> <input
+										type="hidden" id="meeting_address" name="meeting_address" />
 									<div id="button1" class="btn btn-success"
 										onclick="findPlaces(); return false;">Search for objects</div>
 								</div>

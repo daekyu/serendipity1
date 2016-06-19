@@ -7,8 +7,8 @@
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-<input type="hidden" id="latitude" value="${dto.board_Latitude}" />
-<input type="hidden" id="longitude" value="${dto.board_Longitude}"/>
+<input type="hidden" id="latitude" value="${boarddto.board_latitude}" />
+<input type="hidden" id="longitude" value="${boarddto.board_longitude}"/>
 <script type="text/javascript">
 window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 $(function() {
@@ -237,20 +237,20 @@ google.maps.event.addDomListener(window, 'load', initialize);
 	<article class="content">
 		<div class="container">
 			<form action="" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="user_Num" value="${user_num}">
-			<input type="hidden" name="board_Num" value="${dto.board_Num}">
+			<input type="hidden" name="user_num" value="${sessionScope.user_num}">
+			<input type="hidden" name="board_num" value="${boarddto.board_num}">
 				<table class="table center">
 					<tr>
 						<td><h6>제목: </h6></td>
-						<td colspan="5"><input class="form-control" type="text" name="board_Title" value="${dto.board_Title}"></td>
+						<td colspan="5"><input class="form-control" type="text" name="board_title" value="${boarddto.board_title}"></td>
 					</tr>
 					<tr>
 						<td>인원수</td>
-						<td><input class="form-control" type="text" name="board_Capacity" value="${dto.board_Capacity}"></td>
+						<td><input class="form-control" type="text" name="board_Capacity" value="${boarddto.board_capacity}"></td>
 						<td>날짜</td>
-						<td><input class="form-control" type="text" name="board_Date"  id="datepicker"  value="${dto.board_Date}"></td>
+						<td><input class="form-control" type="text" name="board_Date"  id="datepicker"  value="${boarddto.board_date}"></td>
 						<td>가격</td>
-						<td><input class="form-control" type="text" name="price" value="${dto.price}"></td>
+						<td><input class="form-control" type="text" name="price" value="${boarddto.price}"></td>
 					</tr>
 					<tr>
 								<td>설명</td>
@@ -259,7 +259,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
 
 
-							<textarea name="board_Content" id="ckeditor" >${dto.board_Content}</textarea> 
+							<textarea name="board_Content" id="ckeditor" >${boarddto.board_content}</textarea> 
 							<script	type="text/javascript">
 								CKEDITOR.replace('ckeditor', {
 									width : '90%',
@@ -274,7 +274,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 						<td>사진</td>
 						<!-- <td id="addPic" colspan="4"> -->
 						<td>
-							<input type="file" id="pic1" name="pic"> 수정전 파일 : <input type="text" readonly="readonly" value="${dto.board_Picture1}">
+							<input type="file" id="pic1" name="pic"> 수정전 파일 : <input type="text" readonly="readonly" value="${boarddto.board_picture1}">
 							<input type="file" id="pic2" name="pic">
 							<input type="file" id="pic3" name="pic">
 							<input type="file" id="pic4" name="pic">
@@ -318,10 +318,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 										<option value="5000">5000</option>
 									</select>
 								</div>
-								<input type="hidden" id="lat" name="board_Latitude"/>
-								<input type="hidden" id="lng" name="board_Longitude"/>
-								<input type="hidden" id="meeting_place" name="meeting_Place"/>
-								<input type="hidden" id="meeting_address" name="meeting_Address"/>
+								<input type="hidden" id="lat" name="board_latitude"/>
+								<input type="hidden" id="lng" name="board_longitude"/>
+								<input type="hidden" id="meeting_place" name="meeting_place"/>
+								<input type="hidden" id="meeting_address" name="meeting_address"/>
 								<div id="button1" class="btn btn-success"
 									onclick="findPlaces(); return false;">Search for objects</div>
 							</div>

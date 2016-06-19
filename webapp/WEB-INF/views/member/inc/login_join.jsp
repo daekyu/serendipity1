@@ -242,7 +242,7 @@
               </div>
 
 			  <div class="form-group">
-				<label><spring:message code="member.join_login_re1"/><span class="required" id="id_text"></span></label>
+				<label><spring:message code="member.join_login_re1"/><span class="required" id="id_text">*</span></label>
 				<input type="text" class="form-control" name="id" id="id_1">
 				<input type="button" class="btn btn-default" id="id_button" value="<spring:message code="member.join_login_re2"/>"/>
 				<input type="hidden" id="id_check_val" value="0">

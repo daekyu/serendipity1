@@ -198,7 +198,7 @@
 			
 			<c:choose>
 				<c:when test="${sessionScope.user_num == review_detail.USER_NUM}">
-					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/travel_review/review_updateform.htm?review_num=${review_detail.REIVEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/travel_review/review_updateform.htm?review_num=${review_detail.REVIEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
 					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/travel_review/review_delete.htm?review_num=${review_detail.REVIEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
 				</c:when>
 			</c:choose>
@@ -254,7 +254,7 @@
 		  </c:forEach>
 		</ul>
 			  
-			  <form class="comments-form" action="review_detail.htm?user_num=${sessionScope.user_num}&review_num=${reviewdetail.REVIEW_NUM}" method="post">
+			  <form class="comments-form" action="review_detail.htm?user_num=${sessionScope.user_num}&review_num=${review_detail.REVIEW_NUM}" method="post">
 				<div class="row">
 				  <div class="row">
 					<label>댓글: <span class="required">*</span></label>

@@ -47,11 +47,11 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form action="review_update.htm?review_num=${reviewdto.review_num}" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
+			<form action="review_update.htm?review_num=${reviewdto.REVIEW_NUM}" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
 				<table class="table center">
 					<tr>
 						<td><h6>글 제목</h6></td>
-						<td colspan="4"><input class="form-control" type="text" name="review_title" value="${reviewdto.review_title}"></td>
+						<td colspan="4"><input class="form-control" type="text" name="review_title" value="${reviewdto.REVIEW_TITLE}"></td>
 						<td>
 							<button type="button" id="addBtn" class="btn btn-success">사진추가</button>
 							<button type="button" id="minusBtn" class="btn btn-danger">사진빼기</button>
@@ -63,7 +63,7 @@ $(function() {
 							<select class="form-group" name="local_code">
                 				<option value="-">--</option>
                 				<c:forEach var="i" items="${local_list}">
-                					<option value="${i.local_code}" <c:if test="${i.local_code == reviewdto.local_code}">selected="selected"</c:if>>${i.local_name} / ${i.local_code}</option>
+                					<option value="${i.local_code}" <c:if test="${i.local_code == reviewdto.LOCAL_CODE}">selected="selected"</c:if>>${i.local_name} / ${i.local_code}</option>
                 				</c:forEach>
                 			</select>
 						</td>
@@ -81,7 +81,7 @@ $(function() {
 							<div class="tab-content">
 							
 								<div class="tab-pane active" id="description">
-									<textarea class="form-control" style="resize:none; height:200px;" wrap="soft" name="review_content">${review_dto.review_content}</textarea>
+									<textarea class="form-control" style="resize:none; height:200px;" wrap="soft" name="review_content">${reviewdto.REVIEW_CONTENT}</textarea>
 								</div>
 
 								<div class="tab-pane" id="tab_pic">
@@ -98,7 +98,7 @@ $(function() {
 										
 										<tr>
 											<td>설명 : </td>
-											<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="review_content1">${reviewdto.review_content1}</textarea></td>
+											<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="review_content1">${reviewdto.REVIEW_CONTENT1}</textarea></td>
 										</tr>
 									</table>
 									
@@ -115,7 +115,7 @@ $(function() {
 										
 										<tr>
 											<td>설명 : </td>
-											<td><textarea name="review_content2" id="desc_pic2" class="form-control" style="resize:none; height:100px;" wrap="soft">${reviewdto.review_content2}</textarea></td>
+											<td><textarea name="review_content2" id="desc_pic2" class="form-control" style="resize:none; height:100px;" wrap="soft">${reviewdto.REVIEW_CONTENT2}</textarea></td>
 										</tr>
 									</table>
 									
@@ -132,7 +132,7 @@ $(function() {
 										
 										<tr>
 											<td>설명 : </td>
-											<td><textarea name="review_content3" id="desc_pic3" class="form-control" style="resize:none; height:100px;" wrap="soft">${reviewdto.review_content3}</textarea></td>
+											<td><textarea name="review_content3" id="desc_pic3" class="form-control" style="resize:none; height:100px;" wrap="soft">${reviewdto.REVIEW_CONTENT3}</textarea></td>
 										</tr>
 									</table>
 									
@@ -149,7 +149,7 @@ $(function() {
 										
 										<tr>
 											<td>설명 : </td>
-											<td><textarea name="review_content4" id="desc_pic4" class="form-control" style="resize:none; height:100px;" wrap="soft">${reviewdto.review_content4}</textarea></td>
+											<td><textarea name="review_content4" id="desc_pic4" class="form-control" style="resize:none; height:100px;" wrap="soft">${reviewdto.REVIEW_CONTENT4}</textarea></td>
 										</tr>
 									</table>
 									
@@ -166,7 +166,7 @@ $(function() {
 
 										<tr>
 											<td>설명 : </td>
-											<td><textarea name="review_content5" id="desc_pic5" class="form-control" style="resize:none; height:100px;" wrap="soft">${reviewdto.review_content5}</textarea></td>
+											<td><textarea name="review_content5" id="desc_pic5" class="form-control" style="resize:none; height:100px;" wrap="soft">${reviewdto.REVIEW_CONTENT5}</textarea></td>
 										</tr>
 									</table>
 								</div> 

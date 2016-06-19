@@ -18,7 +18,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,21 +28,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.LocalDTO;
 import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.ReplyDAO;
 import kr.co.serendipity.model.ReplyDTO;
-import kr.co.serendipity.model.ReviewDAO;
 import kr.co.serendipity.model.ReviewDTO;
-import kr.co.serendipity.model.ReviewLikeDAO;
 import kr.co.serendipity.model.ReviewLikeDTO;
 import kr.co.serendipity.service.TravelReviewService;
 
 @Controller
 @RequestMapping("/travel_review/")
 public class TravelReviewController {
-	@Autowired
-	SqlSession sqlsession;
 	
 	@Autowired
 	private TravelReviewService travelreviewservice;
@@ -172,13 +165,10 @@ public class TravelReviewController {
 	//좋아요 취소
 	@RequestMapping(value="delete_review_like.htm", method=RequestMethod.POST)
 	public @ResponseBody int likeDelete(ReviewLikeDTO dto) throws ClassNotFoundException, SQLException{
-		System.out.println("�뱾�뼱�솕�땲?");
 		ReviewDTO reviewdto = new ReviewDTO();
 		reviewdto.setReview_num(dto.getReview_num());
 		travelreviewservice.likeDeleteMinus(reviewdto);
 		travelreviewservice.likeDelete(dto);
-		System.out.println("review_num : "+dto.getReview_num());
-		System.out.println("user_num : "+dto.getUser_num());
 		int count = travelreviewservice.reviewLikeCount(reviewdto);
 		return count;
 	}
@@ -288,8 +278,6 @@ public class TravelReviewController {
         dto.setReview_picture4(filenames.get(3)); // 파일명4
         dto.setReview_picture5(filenames.get(4)); // 파일명5
         
-		System.out.println("title : " + dto.getReview_title());
-		System.out.println("content : " + dto.getReview_content());
 		travelreviewservice.reviewWrite(dto);
 		return "redirect:/travel_review/review_list.htm";
 	}
@@ -325,11 +313,11 @@ public class TravelReviewController {
 		List<MultipartFile> mflist = mrequest.getFiles("review_picture");
 		List<String> filenames = new ArrayList<String>();
 		
-		System.out.println("0踰덉㎏ : "+mflist.get(0).getOriginalFilename());
-		System.out.println("1踰덉㎏ : "+mflist.get(1).getOriginalFilename());
-		System.out.println("2踰덉㎏ : "+mflist.get(2).getOriginalFilename());
-		System.out.println("3踰덉㎏ : "+mflist.get(3).getOriginalFilename());
-		System.out.println("4踰덉㎏ : "+mflist.get(4).getOriginalFilename());
+		System.out.println("0번째: "+mflist.get(0).getOriginalFilename());
+		System.out.println("1번째: "+mflist.get(1).getOriginalFilename());
+		System.out.println("2번째: "+mflist.get(2).getOriginalFilename());
+		System.out.println("3번째: "+mflist.get(3).getOriginalFilename());
+		System.out.println("4번째: "+mflist.get(4).getOriginalFilename());
 		
 		
         if (mflist.size()==1 && mflist.get(0).getOriginalFilename().equals("")) {
@@ -367,10 +355,6 @@ public class TravelReviewController {
         dto.setReview_picture3(filenames.get(2)); 
         dto.setReview_picture4(filenames.get(3)); 
         dto.setReview_picture5(filenames.get(4)); 
-        
-		System.out.println("title : " + dto.getReview_title());
-		System.out.println("content : " + dto.getReview_content());
-		
 		
 		travelreviewservice.reviewUpdate(dto);
 		return "redirect:/travel_review/review_list.htm";
@@ -388,37 +372,41 @@ public class TravelReviewController {
 	
 	//여행후기 게시판 지역별로 필터링
 	@RequestMapping("filteringReviewList.htm")
-	public String filteringReviewList(String local_code ,Model model) throws ClassNotFoundException, SQLException{
-		model.addAttribute("review_list", travelreviewservice.filteringReviewList(local_code));
-		model.addAttribute("local_list", travelreviewservice.localList());
-		model.addAttribute("local_code", local_code);
-		return "/travel_review/review_list";
+	public ModelAndView filteringReviewList(String local_code) throws ClassNotFoundException, SQLException{
+		ModelAndView mav = new ModelAndView("/travel_review/review_list");
+		mav.addObject("review_list", travelreviewservice.filteringReviewList(local_code));
+		mav.addObject("local_list", travelreviewservice.localList());
+		mav.addObject("local_code", local_code);
+		return mav;
 	}
 	
 	//여행후기 게시판 리스트 정렬(최신순)
 	@RequestMapping("orderReviewList1.htm")
-	public String orderReviewList1(Model model) throws ClassNotFoundException, SQLException{
-		model.addAttribute("review_list", travelreviewservice.orderReviewList1());
-		model.addAttribute("local_list", travelreviewservice.localList());
-		model.addAttribute("order", "최신순");
-		return "/travel_review/review_list";
+	public ModelAndView orderReviewList1() throws ClassNotFoundException, SQLException{
+		ModelAndView mav = new ModelAndView("/travel_review/review_list");
+		mav.addObject("review_list", travelreviewservice.orderReviewList1());
+		mav.addObject("local_list", travelreviewservice.localList());
+		mav.addObject("order", "최신순");
+		return mav;
 	}
 	
 	// 여행후기 게시판 리스트 정렬(최신순)
 	@RequestMapping("orderReviewList2.htm")
-	public String orderReviewList2(Model model) throws ClassNotFoundException, SQLException {
-		model.addAttribute("review_list", travelreviewservice.orderReviewList2());
-		model.addAttribute("local_list", travelreviewservice.localList());
-		model.addAttribute("order", "좋아요순");
-		return "/travel_review/review_list";
+	public ModelAndView orderReviewList2() throws ClassNotFoundException, SQLException {
+		ModelAndView mav = new ModelAndView("/travel_review/review_list");
+		mav.addObject("review_list", travelreviewservice.orderReviewList2());
+		mav.addObject("local_list", travelreviewservice.localList());
+		mav.addObject("order", "좋아요순");
+		return mav;
 	}
 	
 	// 여행후기 게시판 리스트 정렬(최신순)
 	@RequestMapping("orderReviewList3.htm")
-	public String orderReviewList3(Model model) throws ClassNotFoundException, SQLException {
-		model.addAttribute("review_list", travelreviewservice.orderReviewList3());
-		model.addAttribute("local_list", travelreviewservice.localList());
-		model.addAttribute("order", "댓글순");
-		return "/travel_review/review_list";
+	public ModelAndView orderReviewList3(Model model) throws ClassNotFoundException, SQLException {
+		ModelAndView mav = new ModelAndView("/travel_review/review_list");
+		mav.addObject("review_list", travelreviewservice.orderReviewList3());
+		mav.addObject("local_list", travelreviewservice.localList());
+		mav.addObject("order", "댓글순");
+		return mav;
 	}
 }

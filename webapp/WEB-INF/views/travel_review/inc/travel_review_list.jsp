@@ -133,7 +133,7 @@ function orderReviewList(param2) {
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">지역: <span>${i.local_name}</span></a>
+								data-toggle="dropdown" href="#">지역:전체 <span></span></a>
 							<ul class="dropdown-menu">
 							<li><a href="review_list.htm">전체</a></li>
 							<c:forEach var="i" items="${local_list}">
@@ -184,7 +184,7 @@ function orderReviewList(param2) {
 						<p>로그인 후 사용하세요</p>
 					</c:when>
 					<c:otherwise>
-					<c:forEach var="i" items="${reviewList}">
+					<c:forEach var="i" items="${review_list}">
 						<div class="product">
 							<div class="col-sm-4 col-md-4">
 								<a href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image"> <!-- <span class="sale"></span> -->

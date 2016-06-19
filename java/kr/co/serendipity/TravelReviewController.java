@@ -67,12 +67,12 @@ public class TravelReviewController {
 			endpage = maxpage;
 		}
 		
-		mav.addObject("reviewList",reviewList);
+		mav.addObject("review_list",reviewList);
 		mav.addObject("page", page);
 		mav.addObject("maxpage", maxpage);
 		mav.addObject("startpage", startpage);
 		mav.addObject("endpage", endpage);
-		mav.addObject("listCount", listCount);
+		mav.addObject("list_count", listCount);
 		mav.addObject("local_list", travelreviewservice.localList());
 
 		return mav;

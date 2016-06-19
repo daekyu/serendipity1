@@ -34,7 +34,7 @@
 					<td>내가 누구에게 신청했는지 - 조인</td>
 					<td>
 						<c:choose>
-							<c:when test="${dto.state eq 'wait'}">
+							<c:when test="${participantdto.state eq 'wait'}">
 								승낙 대기중
 							</c:when>
 							<c:otherwise>

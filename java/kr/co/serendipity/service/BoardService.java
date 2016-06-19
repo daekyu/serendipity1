@@ -221,16 +221,6 @@ public class BoardService {
 		dao.update(boarddto);
 	}
 	
-	public void reportWrite(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
-		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
-		dao.reportWrite(reportdto);
-	}
-	
-	public void updateReportCount(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
-		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
-		dao.updateReportCount(reportdto);
-	}
-	
 	public void travelerParty(BoardDTO boarddto) {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		dao.travelerParty(boarddto);

@@ -31,19 +31,4 @@ public class AdminController {
 		return mav;
 	}
 	
-	//관리자 페이지에서 신고하는 글 목록보기
-	@RequestMapping("report_list.htm")
-	public ModelAndView reportList() throws ClassNotFoundException, SQLException {
-		ModelAndView mav = new ModelAndView("/admin/admin_report_list");
-		mav.addObject("report_list", adminservice.reportList());
-		return mav;
-	}
-	
-	// 관리자 페이지에서 신고하는 글 상세보기
-	@RequestMapping("report_detail.htm")
-	public ModelAndView ReportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
-		ModelAndView mav = new ModelAndView("/report/report_detail");
-		mav.addObject("report_detail", adminservice.ReportDetail(reportdto));
-		return mav;
-	}
 }

@@ -323,22 +323,6 @@ public class BoardController {
 		boardservice.update(boarddto);
 		return "redirect:/board/traveler_list.htm";
 	}
-
-	// 신고하는 글쓰기(가이드가 신고)
-	@RequestMapping(value = "report_write1.htm", method = RequestMethod.POST)
-	public String ReportWriteGuide(ReportDTO reportdto, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
-		boardservice.reportWrite(reportdto);
-		boardservice.updateReportCount(reportdto);
-		return "redirect:/board/guide_detail.htm?board_num=" + boarddto.getBoard_Num() + "&user_num=" + reportdto.getVillain();
-	}
-
-	// 신고하는 글쓰기(여행자가 신고)
-	@RequestMapping(value = "report_write2.htm", method = RequestMethod.POST)
-	public String ReportWriteTravler(ReportDTO reportdto, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
-		boardservice.reportWrite(reportdto);
-		boardservice.updateReportCount(reportdto);
-		return "redirect:/board/travel_detail.htm?board_num=" + boarddto.getBoard_Num() + "&user_num=" + reportdto.getVillain();
-	}
 	
 	@RequestMapping(value = "travelerParty.htm")
 	public ModelAndView travelerParty(BoardDTO boarddto) throws ClassNotFoundException, SQLException {

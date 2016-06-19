@@ -15,7 +15,7 @@
 				<a href="${pageContext.request.contextPath}/admin/member_list.htm"><i class="fa fa-users item-icon"></i>회원 목록</a>
 			  </li>
 			  <li>
-				<a href="${pageContext.request.contextPath}/admin/report_list.htm"><i class="fa fa-warning item-icon"></i>신고 내역</a>
+				<a href="${pageContext.request.contextPath}/report/report_list.htm"><i class="fa fa-warning item-icon"></i>신고 내역</a>
 			  </li>
 			</ul>
 		  </nav>

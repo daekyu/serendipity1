@@ -23,15 +23,4 @@ public class AdminService {
 		return dao.getMemberList();
 	}
 	
-	// 관리자 페이지에서 신고하는 글 상세보기
-	public HashMap<String, Object> ReportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException{
-		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
-		return dao.ReportDetail(reportdto);
-	}
-	
-	//관리자 페이지에서 신고하는 글 목록보기
-	public List<HashMap<String, Object>> reportList() throws ClassNotFoundException, SQLException{
-		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
-		return dao.ReportList();
-	}
 }

@@ -41,8 +41,17 @@ public class ReportController {
 		return mav;
 	}
 	
-	// 신고하는 글쓰기
-	@RequestMapping(value = "report_write.htm", method = RequestMethod.POST)
+	// 신고하는 글쓰기(여행자가 신고)
+	@RequestMapping(value = "report_write1.htm", method = RequestMethod.POST)
+	public String ReportWriteTravler(ReportDTO reportdto, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		reportservice.reportWrite(reportdto);
+		reportservice.updateReportCount(reportdto);
+		return "redirect:/board/travler_detail.htm?board_num=" + boarddto.getBoard_num() + "&user_num="
+				+ reportdto.getVillain();
+	}
+	
+	// 신고하는 글쓰기(가이드가 신고)
+	@RequestMapping(value = "report_write2.htm", method = RequestMethod.POST)
 	public String ReportWriteGuide(ReportDTO reportdto, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		reportservice.reportWrite(reportdto);
 		reportservice.updateReportCount(reportdto);

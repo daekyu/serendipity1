@@ -326,7 +326,7 @@
 			</div><!-- #reviews -->
 			
 			<div class="tab-pane" id="reporting">
-			<form action="report_write.htm?reporter=${sessionScope.user_num}&villain=${memberdto.user_num}&board_num=${boarddto.board_num}" method="post">
+			<form action="${pageContext.request.contextPath}/report/report_write2.htm?reporter=${sessionScope.user_num}&villain=${memberdto.user_num}&board_num=${boarddto.board_num}" method="post">
 				<table class="table center">
 					<tr>
 						<td>

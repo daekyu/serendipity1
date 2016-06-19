@@ -5,14 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.serendipity.model.BoardDAO">
 	<insert id="write">
-	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, board_Picture2, 
-	 board_Picture3, board_Picture4, board_Picture5,
-	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, 
+	 INSERT INTO board(board_num, user_num, board_title, board_content, board_picture1, board_picture2, 
+	 board_picture3, board_picture4, board_picture5,
+	 board_capacity, board_date, board_latitude, board_longitude, local_code, category_num, price, 
 	 meeting_Place, meeting_Address) 
-	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content}, #{board_Picture1},
-	 #{board_Picture2}, #{board_Picture3}, #{board_Picture4}, #{board_Picture5},
-	 1, #{board_Date}, #{board_Latitude}, #{board_Longitude}, '02', 1, #{price}, 
-	 #{meeting_Place}, #{meeting_Address})
+	 VALUES( board_seq.NEXTVAL, #{user_num}, #{board_title}, #{board_content}, #{board_picture1},
+	 #{board_picture2}, #{board_picture3}, #{board_picture4}, #{board_picture5},
+	 1, #{board_date}, #{board_latitude}, #{board_longitude}, '02', 1, #{price}, 
+	 #{meeting_place}, #{meeting_address})
 	</insert>
 	
 	<select id="getBoardList" resultType="kr.co.serendipity.model.BoardDTO">
@@ -31,14 +31,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <insert id="Gwrite">
-	 INSERT INTO board(board_Num, user_Num, board_Title, board_Content, board_Picture1, board_Picture2, 
-	 board_Picture3, board_Picture4, board_Picture5,
-	 board_Capacity, board_Date, board_Latitude, board_Longitude, local_Code, category_Num, price, 
-	 meeting_Place,meeting_Address)
-	 VALUES( board_seq.NEXTVAL, #{user_Num}, #{board_Title}, #{board_Content},  #{board_Picture1},
-	 #{board_Picture2}, #{board_Picture3}, #{board_Picture4}, #{board_Picture5}, 
-	 #{board_Capacity}, #{board_Date} , #{board_Latitude}, #{board_Longitude}, '02', 2, #{price}, 
-	 #{meeting_Place}, #{meeting_Address})
+	 INSERT INTO board(board_num, user_num, board_title, board_content, board_picture1, board_picture2, 
+	 board_picture3, board_picture4, board_picture5,
+	 board_capacity, board_date, board_latitude, board_longitude, local_code, category_num, price, 
+	 meeting_place,meeting_address)
+	 VALUES( board_seq.NEXTVAL, #{user_num}, #{board_title}, #{board_content},  #{board_picture1},
+	 #{board_picture2}, #{board_picture3}, #{board_picture4}, #{board_picture5}, 
+	 #{board_capacity}, #{board_date} , #{board_latitude}, #{board_longitude}, '02', 2, #{price}, 
+	 #{meeting_place}, #{meeting_address})
 	</insert>
 
 	<select id="getGBoardList" resultType="kr.co.serendipity.model.BoardDTO">
@@ -71,32 +71,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	</select>
  	
  	<update id="update">
-	 update board set user_Num=#{user_Num}, 
-	 board_Title=#{board_Title}, board_Content=#{board_Content}, 
-	 board_Capacity=1, board_Date=#{board_Date}, board_Latitude=#{board_Latitude},
-	 meeting_Place=#{meeting_Place}, meeting_Address=#{meeting_Address}, 
-	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=1, price=#{price} 
-	 where board_Num=#{board_Num}
+	 update board set user_num=#{user_num}, 
+	 board_title=#{board_title}, board_content=#{board_content}, 
+	 board_capacity=1, board_date=#{board_date}, board_latitude=#{board_latitude},
+	 meeting_place=#{meeting_place}, meeting_address=#{meeting_address}, 
+	 board_longitude=#{board_longitude}, local_code='02', category_num=1, price=#{price} 
+	 where board_num=#{board_num}
 	</update>
 	
 	<update id="picUpdate1">
-		update board set board_Picture1=#{param1} where board_Num=#{param2}
+		update board set board_picture1=#{board_picture1} where board_num=#{board_num}
 	</update>
 	
 	<update id="picUpdate2">
-		update board set board_Picture2=#{param1} where board_Num=#{param2}
+		update board set board_picture2=#{board_picture2} where board_num=#{board_num}
 	</update>
 	
 	<update id="picUpdate3">
-		update board set board_Picture3=#{param1} where board_Num=#{param2}
+		update board set board_picture3=#{board_picture3} where board_num=#{board_num}
 	</update>
 	
 	<update id="picUpdate4">
-		update board set board_Picture4=#{param1} where board_Num=#{param2}
+		update board set board_picture4=#{board_picture4} where board_num=#{board_num}
 	</update>
 	
 	<update id="picUpdate5">
-		update board set board_Picture5=#{param1} where board_Num=#{param2}
+		update board set board_picture5=#{board_picture5} where board_num=#{board_num}
 	</update>
 	
 	<select id="picSearch" resultType="kr.co.serendipity.model.BoardDTO">
@@ -104,17 +104,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 	
 	<update id="Gupdate">
-	 update board set user_Num=#{user_Num}, 
-	 board_Title=#{board_Title}, board_Content=#{board_Content}, 
-	 board_Capacity=#{board_Capacity}, board_Date=#{board_Date}, board_Latitude=#{board_Latitude}, 
-	 meeting_Place=#{meeting_Place}, meeting_Address=#{meeting_Address},
-	 board_Longitude=#{board_Longitude}, local_Code='02', category_Num=2, price=#{price} 
-	 where board_Num=#{board_Num}
+	 update board set user_num=#{user_num}, 
+	 board_title=#{board_title}, board_content=#{board_content}, 
+	 board_capacity=#{board_capacity}, board_date=#{board_date}, board_latitude=#{board_latitude}, 
+	 meeting_place=#{meeting_place}, meeting_address=#{meeting_address},
+	 board_longitude=#{board_longitude}, local_code='02', category_num=2, price=#{price} 
+	 where board_num=#{board_num}
 	</update>
 	
 	 <insert id="travelerParty">
-	 INSERT INTO PARTICIPANT(parti_Num, board_Num, user_Num, STATE)
-	 VALUES(parti_seq.NEXTVAL, #{param1}, #{param2}, 'wait')
+	 INSERT INTO PARTICIPANT(parti_num, board_num, user_num, STATE)
+	 VALUES(parti_seq.NEXTVAL, #{board_num}, #{user_num}, 'wait')
 	</insert>
 	
 </mapper>

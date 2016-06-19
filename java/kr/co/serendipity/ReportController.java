@@ -46,7 +46,7 @@ public class ReportController {
 	public String ReportWriteGuide(ReportDTO reportdto, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		reportservice.reportWrite(reportdto);
 		reportservice.updateReportCount(reportdto);
-		return "redirect:/board/guide_detail.htm?board_num=" + boarddto.getBoard_Num() + "&user_num="
+		return "redirect:/board/guide_detail.htm?board_num=" + boarddto.getBoard_num() + "&user_num="
 				+ reportdto.getVillain();
 	}
 	

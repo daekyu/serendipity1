@@ -132,7 +132,7 @@
 		  
 		  <div class="col-sm-7 col-md-7">
 			<div class="reviews-box table-responsive">
-			  <a href="#reviews" class="add-review">${boarddto.board_Title}</a>
+			  <a href="#reviews" class="add-review">${boarddto.board_title}</a>
 			</div>
 			<table class="table table-striped table-bordered text-center my-orders-table">
 				<thead>

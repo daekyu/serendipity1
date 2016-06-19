@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.ReportDTO;
 import kr.co.serendipity.service.BoardService;
 
 @Controller
@@ -111,7 +108,7 @@ public class BoardController {
 	@RequestMapping(value = "traveler_writeform.htm", method = RequestMethod.GET)
 	public ModelAndView travelerWriteform(BoardDTO boarddto) {
 		ModelAndView mav = new ModelAndView("/board/traveler_writeform");
-		mav.addObject("user_num", boarddto.getUser_Num());
+		mav.addObject("user_num", boarddto.getUser_num());
 		return mav;
 	} // 여행자글쓰기, 가이드글쓰기 왜 서로 다른지...?
 
@@ -179,7 +176,7 @@ public class BoardController {
 					BoardDTO searchDto = boardservice.picSearch(boarddto);
 					if(i == 0){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture1();
+						String beforeFile = searchDto.getBoard_picture1();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -189,7 +186,7 @@ public class BoardController {
 						boardservice.picUpdate1(saveFileName, boarddto);
 					}else if(i == 1){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture2();
+						String beforeFile = searchDto.getBoard_picture2();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -199,7 +196,7 @@ public class BoardController {
 						boardservice.picUpdate2(saveFileName, boarddto);
 					}else if(i == 2){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture3();
+						String beforeFile = searchDto.getBoard_picture3();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -209,7 +206,7 @@ public class BoardController {
 						boardservice.picUpdate3(saveFileName, boarddto);
 					}else if(i == 3){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture4();
+						String beforeFile = searchDto.getBoard_picture4();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -219,7 +216,7 @@ public class BoardController {
 						boardservice.picUpdate4(saveFileName, boarddto);
 					}else if(i == 4){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture5();
+						String beforeFile = searchDto.getBoard_picture5();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -268,7 +265,7 @@ public class BoardController {
 					BoardDTO searchDto = boardservice.picSearch(boarddto);
 					if(i == 0){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture1();
+						String beforeFile = searchDto.getBoard_picture1();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -278,7 +275,7 @@ public class BoardController {
 						boardservice.picUpdate1(saveFileName, boarddto);
 					}else if(i == 1){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture2();
+						String beforeFile = searchDto.getBoard_picture2();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -288,7 +285,7 @@ public class BoardController {
 						boardservice.picUpdate2(saveFileName, boarddto);
 					}else if(i == 2){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture3();
+						String beforeFile = searchDto.getBoard_picture3();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -298,7 +295,7 @@ public class BoardController {
 						boardservice.picUpdate3(saveFileName, boarddto);
 					}else if(i == 3){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture4();
+						String beforeFile = searchDto.getBoard_picture4();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -308,7 +305,7 @@ public class BoardController {
 						boardservice.picUpdate4(saveFileName, boarddto);
 					}else if(i == 4){
 						//업데이트 전 프로필 사진 삭제
-						String beforeFile = searchDto.getBoard_Picture5();
+						String beforeFile = searchDto.getBoard_picture5();
 						if(beforeFile != null){
 							File file = new File(realFolder+"\\"+beforeFile);
 						    if(file.exists()){
@@ -327,7 +324,7 @@ public class BoardController {
 	@RequestMapping(value = "travelerParty.htm")
 	public ModelAndView travelerParty(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		boardservice.travelerParty(boarddto);
-		ModelAndView mav = new ModelAndView("redirect:/board/traveler_detail.htm?board_num=" + boarddto.getBoard_Num());
+		ModelAndView mav = new ModelAndView("redirect:/board/traveler_detail.htm?board_num=" + boarddto.getBoard_num());
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
 		return mav;
 	}

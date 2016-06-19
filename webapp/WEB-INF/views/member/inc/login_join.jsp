@@ -7,7 +7,7 @@
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
@@ -33,6 +33,7 @@
 			}
 		});
 		
+		//로그인 유효성 검증 
 		$('#btn_login_form').click(function() {
 			if($('#id_login').val() == '') {
 				alert('아이디를 입력해주세요');
@@ -46,7 +47,7 @@
 				
 				
 				
-				// 아이디, 비밀번호 비교하는거 비동기로 검사하기
+				// 로그인 아이디, 비밀번호 비교하는거 비동기로 검사하기
 				$.ajax({
 		        	  type : "post",
 		        	  url : "loginCheck.htm",
@@ -64,108 +65,75 @@
 		          });
 			}
 		});
-	});
-	
-
-
-
-$(document).ready(function(){
-	
-	
-	$("#loginbutton").click(function(){
 		
-						var reg_name = /^[a-zA-Z가-힣]/g; //한글10자, 영문20자, 한글,영문,숫자 사용가능
-						var reg_id = /^[a-z0-9_-]{4,12}$/;
-						var reg_email = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
-						var reg_pw = /^[a-z0-9_-]{4,12}$/; // 비밀번호 검사식
-						var reg_hp = /^[a-z0-9_-]{10,20}$/;
-						var reg_age = /^[0-9]{1,4}$/;
-						var name= $('#name'), id = $('#id_1'), pw_1 = $('#pw_1'), confirm_pw = $('confirm_pw'), hp = $('#hp'), email = $('#email'), gender = $('#gender'), age=$('#age'), country_code=$('#country_code'), local_code=$('#local_code');
-
-						if (!reg_name.test(name.val()) == true) {
-							alert("이름을 입력해주세요");
-							name.focus();
-							return false;
-							
-						} else if (!reg_id.test(id.val()) == true) {
-							alert("아이디는 4-12자 이여야 하며 \n"
-									+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.");
-							id.focus();
-							return false;
-							
-							
-				
-						/* else if ($('#id_1').val() != ''){
-							
-							$.ajax({
-					        	  type : "post",
-					        	  url : "IdCheck.htm",
-					        	  data : {"id" : $('#id_1').val()},
-					        	  success : function(data) {
-					        		  console.log(data);
-					        		  if(data == 0) {
-					        			  alert("사용가능한 아이디입니다.");
-					        			  $('#id_1').focus();
-					        			  return false;
-					        		  } else {
-					        			  $('#joinMember').submit();
-					        		  }
-					        	  }
-					          });
-						
+		$("#loginbutton").click(function(){
 			
-					
-					} */ }else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
-							alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)');
-							pw_1.focus();
-							return false;
-						} else if ($('#pw_1').val()!=$('#confirm_pw').val()){ // 비밀번호 확인 검사
-							alert('비밀번호가 일치하지 않습니다');
-							confirm_pw.focus();
-							return false;
-						} else if (gender.val() == "") { // 이름 검사
-							alert('성별 선택해 주세요.');
-							gender.focus();
-							return false;
-						} else if (!reg_age.test(age.val()) == true) {
-							alert("나이를 숫자로 입력해주세요");
-							age.focus();
-							return false;
-						}else if (country_code.val() == "") { // 이름 검사
-							alert('국적을 선택해 주세요.');
-							country_code.focus();
-							return false;
+			var reg_name = /^[a-zA-Z가-힣]/g; //한글10자, 영문20자, 한글,영문,숫자 사용가능
+			var reg_id = /^[a-z0-9_-]{4,12}$/;
+			var reg_email = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
+			var reg_pw = /^[a-z0-9_-]{4,12}$/; // 비밀번호 검사식
+			var reg_hp = /^[a-z0-9_-]{10,20}$/;
+			var reg_age = /^[0-9]{1,4}$/;
+			var name= $('#name'), id = $('#id_1'), pw_1 = $('#pw_1'), confirm_pw = $('confirm_pw'), hp = $('#hp'), email = $('#email'), gender = $('#gender'), age=$('#age'), country_code=$('#country_code'), local_code=$('#local_code');
 
-						} else if (!reg_hp.test(hp.val()) == true) { //휴대폰 유효성
-							alert('휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)');
-							hp.focus();
-							return false;
-						} else if (!reg_email.test(email.val()) == true) {
-							alert('이메일 주소는 @와.를 입력해야합니다.');
-							email.focus();
-							return false;
-						}else{
-							alert("회원가입 성공");
-						} 
-						
-						
-			});
-    }); // 유효성체크
-    
-    
-    
-    //비동기 아이디 중복 체크
-  $(document).ready(function(){
-    	
-    	
-    	$("#id_button").click(function(){
-    
-    		if ($('#id_1').val() == ''){
-    			alert("ID를 입력해주세요");
-    			$("#id_1").focus();
-    			return false;
-    			
-    		}else{
+			if (!reg_name.test(name.val()) == true) {
+				alert("이름을 입력해주세요");
+				name.focus();
+				return false;
+				
+			} else if (!reg_id.test(id.val()) == true) {
+				alert("아이디는 4-12자 이여야 하며 \n"
+						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.");
+				id.focus();
+				return false;
+			 }else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
+				alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)');
+				pw_1.focus();
+				return false;
+			} else if ($('#pw_1').val()!=$('#confirm_pw').val()){ // 비밀번호 확인 검사
+				alert('비밀번호가 일치하지 않습니다');
+				confirm_pw.focus();
+				return false;
+			} else if (gender.val() == "") { // 이름 검사
+				alert('성별 선택해 주세요.');
+				gender.focus();
+				return false;
+			} else if (!reg_age.test(age.val()) == true) {
+				alert("나이를 숫자로 입력해주세요");
+				age.focus();
+				return false;
+			}else if (country_code.val() == "") { // 이름 검사
+				alert('국적을 선택해 주세요.');
+				country_code.focus();
+				return false;
+
+			} else if (!reg_hp.test(hp.val()) == true) { //휴대폰 유효성
+				alert('휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)');
+				hp.focus();
+				return false;
+			} else if (!reg_email.test(email.val()) == true) {
+				alert('이메일 주소는 @와.를 입력해야합니다.');
+				email.focus();
+				return false;
+			}else if($('#id_check_val').val() == '0') {
+				alert('사용할수 없는 아이디입니다.');
+				return false;
+			} else{
+				alert("회원가입 성공");
+			} 
+
+			
+			
+		});
+		
+		$("#id_button").click(function(){
+		    
+			if ($('#id_1').val() == ''){
+				alert("ID를 입력해주세요");
+				$("#id_1").focus();
+				return false;
+				
+			}else{
 				$.ajax({
 		        	  type : "post",
 		        	  url : "IdCheck.htm",
@@ -174,26 +142,18 @@ $(document).ready(function(){
 		        		  console.log(data);
 		        		  if(data == 0) {
 		        			  alert("사용가능한 아이디입니다.");
-		        			  $('#id_1').focus();
-		        			  return false;
+		        			  $('#id_check_val').val('1');
 		        		  } else {
-		        			  alert("사용불가능한 아이디입니다.");
+		        			  alert("id가 이미 있습니다");
 		        			  $('#id_1').focus();
-		        			  return false;
 		        		  }
 		        	  }
 		          });
-    			
-    		}
-    	});
-    }); 
-    
-   
-
-    $(document).ready(function(){
-    	
-    	
-    	$("#login").click(function(){
+				
+			}
+		});
+		
+		$("#login").click(function(){
 
     		var id_login=('#id') , password=('#pw');
 			var reg_id = /^[a-z0-9_-]{4,12}$/;
@@ -212,18 +172,19 @@ $(document).ready(function(){
 			}
 
 		});
-    }); // 유효성체크
-    
-
-
-
+		
+		
+		
+	});
+	
 </script>
 
 <!-- 로그인/회원가입부분 -->
 <section id="main" class="login-register">
   <header class="page-header">
     <div class="container">
-      <h1 class="title">Login or Create an Account</h1>
+      <h1 class="title"><spring:message code="member.join_login"/>
+</h1>
     </div>	
   </header>
   <div class="container">
@@ -232,9 +193,9 @@ $(document).ready(function(){
 		<div class="row filter-elements hidden">
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
 			<div class="info-box">
-			  <h3 class="title">New costumers</h3>
-			  <p class="descriptions">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register">Create an Account</button>
+			  <h3 class="title"><spring:message code="member.join_login1"/></h3>
+			  <p class="descriptions"><spring:message code="member.join_login2"/></p>
+			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register"><spring:message code="member.join_login3"/></button>
 			</div>
 		  </div>
 		  
@@ -242,11 +203,11 @@ $(document).ready(function(){
 		  <!-- 로그인하는 Form태그가 있는 부분 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
 			<form class="form-box login-form form-validator" id="login_form" action="${pageContext.request.contextPath}/member/login.htm" method="post">
-			  <h3 class="title">Login customers</h3>
-			  <p>If you have an account with us, please log in.</p>
+			  <h3 class="title"><spring:message code="member.join_login4"/></h3>
+			  <p><spring:message code="member.join_login5"/></p>
 			  
 			  <div class="form-group">
-				<label>아이디: <span class="required">*</span></label>
+				<label>ID: <span class="required">*</span></label>
 				<input class="form-control" name="id" id="id_login" type="text"> <!--  required data-bv-emailaddress-message="The input is not a valid email address">-->
               </div>
 			  
@@ -275,15 +236,16 @@ $(document).ready(function(){
 			  <p>If you have an account with us, please log in.</p>
 			  
 			  <div class="form-group">
-				<label>이름: <span class="required" >*</span></label>
+				<label><spring:message code="member.join_login_re"/><span class="required" >*</span></label>
 				<input type="text" class="form-control" name="name" id="name">
                 <!-- <input type="text" class="form-control" name="name" data-bv-trigger="keyup" required data-bv-notempty-message="The name is required and cannot be empty"> -->
               </div>
 
 			  <div class="form-group">
-				<label>아이디: <span class="required" id="id_text"></span></label>
+				<label><spring:message code="member.join_login_re1"/><span class="required" id="id_text">*</span></label>
 				<input type="text" class="form-control" name="id" id="id_1">
-				<input type="button" class="btn btn-default" id="id_button" value="아이디확인"/>
+				<input type="button" class="btn btn-default" id="id_button" value="<spring:message code="member.join_login_re2"/>"/>
+				<input type="hidden" id="id_check_val" value="0">
 				<!-- <input type="text" class="form-control" name="id"
 				  data-bv-trigger="blur"
 				  data-bv-message="The username is not valid"
@@ -292,17 +254,17 @@ $(document).ready(function(){
 			  </div>
 				
 			  <div class="form-group">
-				<label>비밀번호: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re3"/><span class="required">*</span></label>
                 <input class="form-control" name="pw" id="pw_1" type="password"><!-- 속성에 required를 이용해보자 -->
               </div>
 			  
 			  <div class="form-group">
-				<label>비밀번호 확인: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re4"/><span class="required">*</span></label>
                 <input class="form-control" id="confirm_pw" type="password">
               </div>
 			  
 			  <div class="form-group">
-				<label>성별: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re5"/><span class="required">*</span></label>
                 <select class="form-group" name="gender" id="gender">
                 	<option value="">--</option>
                 	<option value="M">남자</option>
@@ -311,12 +273,12 @@ $(document).ready(function(){
               </div>
               
               <div class="form-group">
-				<label>나이: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re6"/><span class="required">*</span></label>
                 <input class="form-control" id="age" type="text">
               </div>
               
               <div class="form-group">
-				<label>국적: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re7"/><span class="required">*</span></label>
 
                 <select class="form-group" name="country_code" id="country_code">
                 	<option value="">--</option>
@@ -329,7 +291,7 @@ $(document).ready(function(){
               
               <!-- 한국 어느지역 사람인지 나타내주는 코드. 외국인일경우 숨기고, 한국인이면 보여주게하자. 그리고 한국인이 입력안하면 넘어가지 못하게 하자 -->
               <div class="form-group" id="local">
-				<label>거주지역: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re8"/><span class="required">*</span></label>
 
                 <select class="form-group" name="local_code" id="local_code">
                 	<option value="-">--</option>
@@ -340,18 +302,18 @@ $(document).ready(function(){
               </div>
               
               <div class="form-group">
-				<label>휴대전화: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re9"/><span class="required">*</span></label>
                 <input class="form-control" id="hp" name="hp" type="text" placeholder="01012345678과 같이 '-'를 뺀 형식으로 입력하세요.">
               </div>
 			  
 			  <div class="form-group">
-				<label>Email: <span class="required">*</span></label>
+				<label><spring:message code="member.join_login_re10"/><span class="required">*</span></label>
 				<input class="form-control" type="text" name="email" id="email" >
               </div>
 
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Create my account</button> -->
-				<input type="button" class="btn btn-default" id="loginbutton" value="Create my account">
+				<input type="submit" class="btn btn-default" id="loginbutton" value="<spring:message code="member.join_login_re11"/>">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>
 			</form><!-- .form-box -->

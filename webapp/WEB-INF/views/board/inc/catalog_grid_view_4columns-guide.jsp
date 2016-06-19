@@ -10,7 +10,7 @@
 @Desc : 가이드가 올린 글 목록을 보여주는 페이지
 --%>
 
-<!-- 가이드 목록을 보여주는 페이지-->
+<!-- 가이드 목록선을 보여주는 페이지-->
 <section id="main">
 	<header class="page-header">
 		<div class="container">

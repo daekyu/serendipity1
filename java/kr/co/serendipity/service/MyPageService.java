@@ -68,9 +68,9 @@ public class MyPageService {
 		dao.deleteHobby(memberdto);
 	}
 	
-	public void insertHobby(MemberDTO memberdto, HobbyDTO hobbydto){
+	public void insertHobby(MemberDTO memberdto, String hobbies){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		dao.insertHobby(memberdto, hobbydto);
+		dao.insertHobby(memberdto, hobbies);
 	}
 	
 	public int countLanguage(MemberDTO memberdto){
@@ -83,9 +83,9 @@ public class MyPageService {
 		dao.deleteLanguage(memberdto);
 	}
 	
-	public void insertLanguage(MemberDTO memberdto, LanguageDTO languagedto){
+	public void insertLanguage(MemberDTO memberdto, String languages){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		dao.insertLanguage(memberdto, languagedto);
+		dao.insertLanguage(memberdto, languages);
 	}
 	
 	public void updateContent(MemberDTO memberdto){

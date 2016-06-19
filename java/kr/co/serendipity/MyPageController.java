@@ -10,11 +10,9 @@ package kr.co.serendipity;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.HobbyDTO;
 import kr.co.serendipity.model.LanguageDTO;
 import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.MyPageDAO;
 import kr.co.serendipity.model.ParticipantDTO;
 import kr.co.serendipity.service.MyPageService;
 
@@ -94,20 +90,25 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "InfoModify.htm", method = RequestMethod.POST)
-	public String infoModify(HobbyDTO[] hobbydto, LanguageDTO[] languagedto, String profile, MemberDTO memberdto,
+	public String infoModify(HobbyDTO hobbydto, LanguageDTO languagedto, MemberDTO memberdto,
 			MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("InfoModify.htm POST entrance");
-
+		System.out.println();
+		
+		String[] hobbies = request.getParameterValues("hobby_code");
+		String[] languages = request.getParameterValues("language_code");
 		if (hobbydto == null) {
-
+			
 		} else {
+			
 			int cnt = mypageservice.countHobby(memberdto);
-
+			System.out.println("bbbbbbbbb : " + cnt);
 			if (cnt != 0) {
 				mypageservice.deleteHobby(memberdto);
 			}
-			for (int i = 0; i < hobbydto.length; i++) {
-				mypageservice.insertHobby(memberdto, hobbydto[i]);
+			for (int i = 0; i < hobbies.length; i++) {
+				System.out.println("aaaaaaaaa : " + hobbies[i]);
+				mypageservice.insertHobby(memberdto, hobbies[i]);
 			}
 		}
 
@@ -118,18 +119,18 @@ public class MyPageController {
 			if (cnt != 0) {
 				mypageservice.deleteLanguage(memberdto);
 			}
-			for (int i = 0; i < languagedto.length; i++) {
-				mypageservice.insertLanguage(memberdto, languagedto[i]);
+			for (int i = 0; i < languages.length; i++) {
+				mypageservice.insertLanguage(memberdto, languages[i]);
 			}
 		}
 
-		if (profile.equals("")) {
+		if (memberdto.getProfile_description().equals("")) {
 
 		} else {
 			mypageservice.updateContent(memberdto);
 		}
 
-		MultipartFile mf = request.getFile("file");
+		MultipartFile mf = request.getFile("profile_picture");
 		System.out.println("mf.getSize() : " + mf.getSize());
 		if(mf.getSize()!=0) {
 			
@@ -174,12 +175,11 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "InfoModify2.htm", method = RequestMethod.POST)
-	public String infoModify2(MemberDTO memberdto)
-			throws ClassNotFoundException, SQLException {
+	public String infoModify2(MemberDTO memberdto) throws ClassNotFoundException, SQLException {
 		System.out.println("InfoModify2.htm POST entrance");
 
 		if (memberdto.getPw().equals("")) {
-
+			
 		} else {
 			mypageservice.updatePw(memberdto);
 		}

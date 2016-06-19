@@ -69,26 +69,26 @@
               		
               		<td>
               			<c:forEach var="i" items="${hobby_list}" varStatus="j">
-						  	<input type="checkbox" name="hobby" value="${i.hobby_code}">${i.hobby_name}<br>
+						  	<input type="checkbox" name="hobby_code" value="${i.hobby_code}">${i.hobby_name}<br>
 						</c:forEach>
               		</td>
               		
               		
               		<td>
               			<c:forEach var="i" items="${language_list}" varStatus="j">
-						  	<input type="checkbox" name="language" value="${i.language_code}">${i.language_name}<br>
+						  	<input type="checkbox" name="language_code" value="${i.language_code}">${i.language_name}<br>
 						</c:forEach>
               		</td>
               	</tr>
               	
               	<tr>
               		<th>사진: </th>
-              		<td><input type="file" name="file"></td>
+              		<td><input type="file" name="profile_picture"></td>
               	</tr>
               	
               	<tr>
               		<th>자기소개: </th>
-              		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="profile">${member_info.profile_description}</textarea></td>
+              		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="profile_description">${member_info.profile_description}</textarea></td>
               	</tr>
               </table>
 			  

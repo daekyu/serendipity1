@@ -23,7 +23,7 @@ public interface MyPageDAO {
 	public int countHobby(MemberDTO memberdto);
 	
 	//추가 정보 수정 (DB에 저장된 취미가 없을 때) - 취미, 관심사
-	public void insertHobby(MemberDTO memberdto, HobbyDTO hobbydto);
+	public void insertHobby(MemberDTO memberdto, String hobbies);
 	
 	//추가 정보 수정 (DB에 이미 저장된 취미가 있을 때 우선 삭제)
 	public void deleteHobby(MemberDTO memberdto);
@@ -35,7 +35,7 @@ public interface MyPageDAO {
 	public void deleteLanguage(MemberDTO memberdto);
 	
 	//추가 정보 수정 (DB에 저장된 언어가 없을 때)
-	public void insertLanguage(MemberDTO memberdto, LanguageDTO languagedto);
+	public void insertLanguage(MemberDTO memberdto, String languages);
 	
 	//추가 정보 수정 (DB에 저장된 자기소개가 있는지 체크)
 	public void updateContent(MemberDTO memberdto);

@@ -52,6 +52,4 @@ public interface ReviewDAO {
 	//index 페이지 인기여행기 상위 3개 보여주기
 	public List<ReviewDTO> getIndexReview() throws ClassNotFoundException, SQLException;
 	
-	//index 페이지 인기여행기 상위 3개 갯수
-	public int countIndexReview() throws ClassNotFoundException, SQLException;
 }

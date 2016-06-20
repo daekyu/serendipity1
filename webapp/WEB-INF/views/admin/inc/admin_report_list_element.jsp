@@ -37,7 +37,7 @@
 			  	<tr>
 			  		<td>${i.REPORTER}</td>
 			  		<td>${i.VILLAIN}</td>
-			  		<td><a href="report_detail.htm?report_num=${i.REPORT_NUM}">${i.REPORT_TITLE}</a></td>
+			  		<td><a data-toggle="modal" data-target="#reportModal">${i.REPORT_TITLE}</a></td>
 			  	</tr>
 			  </c:forEach>
 			  </tbody>
@@ -50,3 +50,54 @@
     </div>
   </div>
 </section><!-- #main -->
+
+<!-- 신고내역 상세보기 -->
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">${memberdto.id}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="product-tab">
+		  <ul class="nav nav-tabs">
+		  	<li class="active"><a href="#report_detail">신고</a></li>
+		  </ul><!-- .nav-tabs -->	
+		  <div class="tab-content">
+		  	<div class="tab-pane active" id="report_detail">
+		  		<div class="bottom-padding">
+			<br><br>
+			<div class="table-responsive">
+			<table class="table table-bordered">
+				<tr>
+					<th class="danger">신고한 사용자</th>
+					<td>여기는 신고한 사용자 아이디</td>
+				</tr>
+				<tr>
+					<th class="danger">신고당한 사용자</th>
+					<td>여기는 신고당한 사용자 아이디</td>
+				</tr>
+				<tr>
+					<th class="danger">제목</th>
+					<td>여기가 제목 들어갈자리</td>
+				</tr>
+				
+				<tr>
+					<th class="danger">내용</th>
+					<td>여기는 내용 들어갈자리</td>
+				</tr>
+			</table>
+			</div>
+		  </div>
+		  	</div>
+
+		  </div><!-- .tab-content -->
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+  </div>

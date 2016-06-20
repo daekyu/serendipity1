@@ -4,105 +4,77 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
-<%-- $(function(){
-	$('#like1').hide();
-	$('#like2').hide();
-	function isLike() {
+	function getContextPath() {
+	   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	};
+	
+	function isLike(index) {
 		$.ajax({
 			type : "post",
 			url : "is_like.htm",
 			data : {
-				"user_num" : <%=session.getAttribute("user_num")%>,
-				"review_num" : <%= request.getParameter("review_num")%>
+				"user_num" : '${sessionScope.user_num}',
+				"review_num" : $('#review_num_'+index).val()
 			},
 			success : function(data) {
 				if(data>0) {
-					$('#like1').hide();
-					$('#like2').show();
+					$('#btn_like_'+index).hide();
+					$('#btn_like2_'+index).show();
 				} else {
-					$('#like2').hide();
-					$('#like1').show();
+					$('#btn_like2_'+index).hide();
+					$('#btn_like_'+index).show();
 				}
 			}
 		});
 	}
-	isLike();
-	$('#like1').click(function() {
+	
+	function like(index) {
 		$.ajax({
 			type : "post",
 			url : "review_like.htm",
-			data : {"user_num" : <%=session.getAttribute("user_num")%>,
-					"review_num" : <%= request.getParameter("review_num")%>		
+			data : {"user_num" : '${sessionScope.user_num}',
+					"review_num" : $('#review_num_'+index).val()		
 			},
 			success : function(data) {
-				
 				console.log("user_num1 : "+data);
-				$('#likeCount').text(data);
+				$('#likeCount_'+index).text(data);
+				$('#btn_like_'+index).hide();
+				$('#btn_like2_'+index).show();
 				
 				isLike();
 			}
 		});
-	});
+	}
 	
-	$('#like2').click(function() {
+	function unlike(index) {
 		$.ajax({
 			type : "post",
 			url : "delete_review_like.htm",
-			data : {"user_num" : <%=session.getAttribute("user_num")%>,
-					"review_num" : <%= request.getParameter("review_num")%>		
+			data : {"user_num" : '${sessionScope.user_num}',
+					"review_num" : $('#review_num_'+index).val()		
 			},
 			success : function(data) {
 				
 				console.log("user_num2 : "+data);
-				$('#likeCount').text(data);
+				$('#likeCount_'+index).text(data);
+				$('#btn_like2_'+index).hide();
+				$('#btn_like_'+index).show();
 				isLike();
 			}
 		});
-	});
-}); --%>
-
-/* function filteringReviewList(param1) {
-	$.ajax({
-		type : "post",
-		url : "filteringReviewList.htm",
-		data : {
-			"local_code" : param1
-		},
-		success : function(data){
-			console.log("성공");
+	}
+	
+	$(function() {
+		for(var i=0; i<'${review_list.size()}'; i++) {
+			$('#btn_like_' + i).hide();
+			$('#btn_like2_' + i).hide();
+			isLike(i);
 		}
+		
+		
+		
 	});
-}
-
-
-function orderReviewList(param2) {
-	//console.log(param2);
-	$.ajax({
-		type : "post",
-		url : "orderReviewList.htm",
-		data : {
-			"order" : param2
-		},
-		success : function(data) {
-			console.log("개성공");
-			console.log(data);
-			$.each(data, function(index, item) {
-				console.log(item.REVIEW_DATE);
-				$('#reviewListPicture' + index).attr('href', "review_detail.htm?review_num=" + item.REVIEW_NUM);
-				$('#reviewListImg' + index).attr('src', "${pageContext.request.contextPath}/resources/img/review_upload/"+item.REVIEW_PICTURE1);
-				$('#reviewListTitle' + index).attr('href', "review_detail.htm?review_num=" + item.REVIEW_NUM);
-				$('#reviewListTitle'+index).text(item.REVIEW_TITLE);
-				$('#reviewListID'+index).text(item.ID);
-				$('#reviewListLocal'+index).text(item.LOCAL_NAME);
-				$('#reviewListDate'+index).text(item.REVIEW_DATE);
-				$('#reviewListReply'+index).text(item.REPLY_COUNT);
-				$('#reviewListContent'+index).text(item.REVIEW_CONTENT);
-				$('#reviewListContent' + index).attr('href', "review_detail.htm?review_num=" + item.REVIEW_NUM);
-				$('#likeCount').text(item.LIKE_COUNT);
-			});
-		}
-	});
-} */
 </script>
 <section id="main">
 	<header class="page-header">
@@ -184,7 +156,7 @@ function orderReviewList(param2) {
 						<p>로그인 후 사용하세요</p>
 					</c:when>
 					<c:otherwise>
-					<c:forEach var="i" items="${review_list}">
+					<c:forEach var="i" items="${review_list}" varStatus="j">
 						<div class="product">
 							<div class="col-sm-4 col-md-4">
 								<a href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image"> <!-- <span class="sale"></span> -->
@@ -212,21 +184,15 @@ function orderReviewList(param2) {
 									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_CONTENT}</a>
 								</div>
 								<div class="price-box">
-									<span class="excerpt">${i.LIKE_COUNT}</span> Like(s)
+									<span class="excerpt" id="likeCount_${j.index}">${i.LIKE_COUNT}</span> Like(s)
 								</div>
 								<div class="actions">
+								
 									<!-- 좋아요버튼 -->
-									<a href="#" class="add-wishlist" id="like1"> <svg x="0" y="0"
-											width="16px" height="16px" viewBox="0 0 16 16"
-											enable-background="new 0 0 16 16" xml:space="preserve">
-				  <path fill="#1e1e1e"
-												d="M11.335,0C10.026,0,8.848,0.541,8,1.407C7.153,0.541,5.975,0,4.667,0C2.088,0,0,2.09,0,4.667C0,12,8,16,8,16
-					s8-4,8-11.333C16.001,2.09,13.913,0,11.335,0z M8,13.684C6.134,12.49,2,9.321,2,4.667C2,3.196,3.197,2,4.667,2C6,2,8,4,8,4
-					s2-2,3.334-2c1.47,0,2.666,1.196,2.666,2.667C14.001,9.321,9.867,12.49,8,13.684z"></path>
-				  </svg>
-									</a>
-									</a>
+									<input type="hidden" id="review_num_${j.index}" value="${i.REVIEW_NUM}">
+									<div class="icon circle bg icon-40" onclick="like(${j.index})" data-s="48" data-op="0" data-c="#c10841" data-hc="0" id="btn_like_${j.index}"><i class="fa fa-heart-o"></i></div><div class="icon circle bg icon-40" onclick="unlike(${j.index})" data-s="48" data-op="0" data-c="#c10841" data-hc="0" id="btn_like2_${j.index}"><i class="fa fa-heart"></i></div>
 									<!-- 좋아요버튼 끝 -->
+									
 								</div>
 								<!-- .actions -->
 							</div>

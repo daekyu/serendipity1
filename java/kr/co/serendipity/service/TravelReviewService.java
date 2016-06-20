@@ -148,5 +148,14 @@ public class TravelReviewService {
 		return dao.orderReviewList3();
 	}
 	
+	public List<HashMap<String,Object>> likeNotificationCheck(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException {
+		ReviewLikeDAO dao = sqlsession.getMapper(ReviewLikeDAO.class);
+		return dao.likeNotificationCheck(reviewdto);
+	}
+	
+	public void changeLikeState(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException {
+		ReviewLikeDAO dao = sqlsession.getMapper(ReviewLikeDAO.class);
+		dao.changeLikeState(reviewdto);
+	}
 	
 }

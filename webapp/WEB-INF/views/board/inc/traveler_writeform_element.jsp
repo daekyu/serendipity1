@@ -17,7 +17,67 @@
 <script type="text/javascript">
 	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 
+
 	$(function() {
+
+	
+	function formatNumber (num) {
+	    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+	}
+	
+	
+
+	
+	
+	$(function(){
+		
+		
+		    var reg_number = /^[0-9]+$/;
+		      
+		      
+		      
+		      //게시판 유효성 검증 
+		      
+		      /* $('#success').click(function() {
+		    	  
+		    	  
+		            if($('#title_text').val() == '') {
+		               alert('글제목을 입력해주세요');
+		               $('#title_text').focus();
+		               return false;
+		            } else if($('#datepicker').val() == '') {
+		               alert('날짜를 입력해주세요');
+		               $('#datepicker').focus();
+		               return false;
+		            }  else if(reg_number.test($('#before').val()) != true){
+		              alert('지불할 가격을 숫자로 입력해 주세요');
+		              $('#before').focus();
+		               return false;
+		           } else if($('#after').val() == ''){
+		                 alert('변환 버튼을 눌러 주세요');
+		                 $('#before').focus();
+		              return false;
+		              
+		            } else if($('#pic1').val()==''){
+		            	alert("사진을 1개 이상 등록해 주세요");
+		            	$('#pic1').focus();
+		            	return false;
+		            } else if($('#meeting_place').val() == '') {
+		                  alert('meeting point를 지도에서 선택해주세요');
+		                  $('#gmap_where').focus();
+		                  return false;
+		               }else{
+		               alert('글작성 완료');
+		            }
+		            
+		                     
+		            
+		         }); 
+		       */
+		
+		
+				
+
 		
 		$('#pic2').hide();
 		$('#pic3').hide();
@@ -125,7 +185,11 @@
 						        
 						        //$('#after').val($('#before').val() * )
 						        if($('#selectoption').val()=='KRW'){
-						        	 $('#after').val($('#before').val());
+
+						        	
+						        	 $('#after').val(formatNumber($('#before').val())+'원');
+						        	 $('#before').val(formatNumber($('#before').val()) + '원');
+
 				        		  }else if($('#selectoption').val()=='JPY'){
 				        			  swal({   title: "실시간 환율 정보",   
 				        				  text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
@@ -387,7 +451,11 @@
 						</select></td>
 						<td><input class="form-control" id="before" type="text" name="#"></td>
 						<td><button type="button" id="convert" class="btn btn-success">변환</button></td>
+<<<<<<< HEAD
 						<td><input class="form-control" id="after" type="text" name="price"></td>
+=======
+						<td><input class="form-control" id="after" type="text" name="price" readonly></td>
+>>>>>>> 92e8a114a005e8dadf83515786e782a62d0cfc54
 						
 
 						<%-- <td><input class="form-control" type="text"></td>

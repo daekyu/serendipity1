@@ -115,6 +115,7 @@ public class BoardController {
 
 	@RequestMapping(value = "traveler_writeform.htm", method = RequestMethod.POST)
 	public String travelerWriteform(BoardDTO boarddto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
+		System.out.println("bbb : " + boarddto.getPrice());
 		boardservice.travelerWriteFormPost(boarddto, request);
 		return "redirect:/board/traveler_list.htm";
 	}

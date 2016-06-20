@@ -353,6 +353,8 @@
 	
 
 	
+
+	
 	
 	
 </script>
@@ -370,15 +372,15 @@
 				<table class="table center">
 					<tr>
 						<td><h6><spring:message code="board.traveler_writeform2"/></h6></td>
-						<td colspan="5"><input class="form-control" type="text"
+						<td colspan="5"><input class="form-control" type="text" id="title_text"
 							name="board_title"></td>
 					</tr>
 					<tr>
-						<td><spring:message code="board.traveler_writeform3"/></td>
+						<td><h6><spring:message code="board.traveler_writeform3"/></h6></td>
 
 						<td><input class="form-control" type="text" id="datepicker" name="board_date"></td>
 
-						<td>지불할 가격</td>
+						<td><h6><spring:message code="board.traveler_writeform4"/></h6></td>
 						<td><select id="selectoption">
   							<option value="KRW">KRW</option>
   							<option value="JPY">JPY</option>
@@ -397,7 +399,7 @@
 
 					</tr>
 					<tr>
-						<td><spring:message code="board.traveler_writeform5"/></td>
+						<td><h6><spring:message code="board.traveler_writeform5"/></h6></td>
 						<td colspan="5">
 							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
@@ -413,7 +415,7 @@
 					</tr>
 
 					<tr>
-						<td><spring:message code="board.traveler_writeform6"/></td>
+						<td><h6><spring:message code="board.traveler_writeform6"/></h6></td>
 						<!-- <td id="addPic" colspan="4"> -->
 						<td>
 							<input type="file" id="pic1" name="pic">
@@ -432,7 +434,7 @@
 
 
 					<tr>
-						<td>Meeting Point</td>
+						<td><h6>Meeting Point</h6></td>
 						<td colspan="5">
 							<div id="container" class="row">
 								<div id="gmap_canvas" style="height: 400px;width:auto"></div>

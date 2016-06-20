@@ -217,8 +217,7 @@
 <section id="main" class="login-register">
   <header class="page-header">
     <div class="container">
-      <h1 class="title"><spring:message code="member.join_login"/>
-</h1>
+      <h1 class="title"><spring:message code="member.join_login"/></h1>
     </div>	
   </header>
   <div class="container">

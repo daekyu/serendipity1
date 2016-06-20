@@ -66,10 +66,10 @@ public interface BoardDAO {
 	// -------------------------index 페이지 여행자 구함, 가이드 구함 게시판 최신글 4개만 보기
 	
 	//가이드 구함 최신글 4개만 보기
-	public List<BoardDTO> getIndexTravelerRecent();
+	public List<HashMap<String, Object>> getIndexTravelerRecent();
 	
 	//여행자 구함 최신글 4개만 보기
-	public List<BoardDTO> getIndexGuideRecent();
+	public List<HashMap<String, Object>> getIndexGuideRecent();
 	
 	//-----------------------------가이드 구함, 여행자 구함 신청
 	

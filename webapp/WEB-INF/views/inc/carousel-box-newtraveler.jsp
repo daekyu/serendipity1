@@ -25,28 +25,28 @@
 						<div class="col-sm-3 col-md-3 rotation employee">
 							<div class="default">
 								<div class="image">
-									<img class="replace-2x img-list" src="${pageContext.request.contextPath}/resources/img/board_picture/${i.board_picture1}" alt=""
+									<img class="replace-2x img-list" src="${pageContext.request.contextPath}/resources/img/board_picture/${i.BOARD_PICTURE1}" alt=""
 										title="" width="270" height="270">
 								</div>
 								<div class="description">
 									<div class="vertical">
-										<h3 class="name">${i.board_title}</h3>
-										<div class="role">여행자 번호 : ${i.user_num}</div>
+										<h3 class="name">${i.BOARD_TITLE}</h3>
+										<div class="role">여행자 아이디 : ${i.ID}</div>
 									</div>
 								</div>
 							</div>
-							<a href="board/traveler_detail.htm?board_num=${i.board_num}">
+							<a href="board/traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">
 								<div class="employee-hover">
-									<h3 class="name">${i.board_title}</h3>
-									<h3 class="name">여행자 번호 : ${i.user_num}</h3>
-									<div class="role">지역</div>
+									<h3 class="name">${i.BOARD_TITLE}</h3>
+									<h3 class="name">여행자 아이디 : ${i.ID}</h3>
+									<h3 class="name">지역 : ${i.LOCAL_NAME}</h3>
 									<div class="image">
 										<!-- 여행자 프로필 사진을 넣어주자 -->
-										<img class="replace-2x" src="content/img/team-1.jpg" alt=""
+										<img class="replace-2x" src="${pageContext.request.contextPath}/resources/img/profile_picture/${i.PROFILE_PICTURE}" alt=""
 											title="" width="270" height="270">
 									</div>
 									<div>
-										<p>하고싶은 여행에 대한 간단한 설명</p>
+										<p>${i.BOARD_CONTENT}</p>
 										<div class="contact">
 											<b>사용언어: </b>한국어, 영어
 										</div>

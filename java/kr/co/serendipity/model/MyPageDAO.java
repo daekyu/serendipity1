@@ -65,6 +65,6 @@ public interface MyPageDAO {
 	public List parseHobby(MemberDTO memberdto);
 	
 	//보낸 요청 리스트
-	public ParticipantDTO sendHistory(MemberDTO memberdto);
+	public List<ParticipantDTO> sendHistory(MemberDTO memberdto);
 	
 }

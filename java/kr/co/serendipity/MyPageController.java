@@ -73,9 +73,10 @@ public class MyPageController {
 	@RequestMapping("my_page_send_history.htm")
 	public String sendHistory(MemberDTO memberdto, Model model) {
 		System.out.println("sendHistory entrance");
-		ParticipantDTO dto = mypageservice.sendHistory(memberdto);
+		System.out.println("user_num : " + memberdto.getUser_num());
+		List<ParticipantDTO> participantdto = mypageservice.sendHistory(memberdto);
 		
-		model.addAttribute("participantdto", dto);
+		model.addAttribute("participantdto", participantdto);
 		return "/mypage/my_page_send_history";
 	}
 

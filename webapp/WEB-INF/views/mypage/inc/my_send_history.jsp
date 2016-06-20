@@ -27,14 +27,15 @@
 				</tr>
 			  </thead>
 			  <tbody>
+			  <c:forEach var="i" items="${participantdto}">
 				<tr>
 					<td>1</td>
 					<td>신청한 날짜 - 테이블에 없는 컬럼 - 컬럼추가하셈</td>
-					<td>${dto.board_num} - 글 제목 - 조인</td>
+					<td>${i.board_num} - 글 제목 - 조인</td>
 					<td>내가 누구에게 신청했는지 - 조인</td>
 					<td>
 						<c:choose>
-							<c:when test="${participantdto.state eq 'wait'}">
+							<c:when test="${i.state eq 'wait'}">
 								승낙 대기중
 							</c:when>
 							<c:otherwise>
@@ -44,6 +45,7 @@
 					</td>
 					<td><a href="" class="btn btn-danger">취소</button></td>
 				</tr>
+				</c:forEach>
 			  </tbody>
 			</table>
 		  </div>

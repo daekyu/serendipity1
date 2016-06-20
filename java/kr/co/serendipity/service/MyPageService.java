@@ -53,7 +53,7 @@ public class MyPageService {
 		return dao.getMemberInfo(memberdto);
 	}
 	
-	public ParticipantDTO sendHistory(MemberDTO memberdto){
+	public List<ParticipantDTO> sendHistory(MemberDTO memberdto){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		return dao.sendHistory(memberdto);
 	}

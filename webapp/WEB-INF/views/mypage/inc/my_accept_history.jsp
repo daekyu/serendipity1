@@ -27,6 +27,13 @@
 				</tr>
 			  </thead>
 			  <tbody>
+			  <c:choose>
+			  <c:when test="${empty participantdto}">
+			  		<tr>
+			  		<td colspan="6">받은 요청이 없습니다.</td>
+			  		</tr>
+			  </c:when>
+			  <c:otherwise>
 			  <c:forEach var="i" items="${participantdto}">
 				<tr>
 					<td>1</td>
@@ -49,6 +56,8 @@
 					</td>
 				</tr>
 				</c:forEach>
+				</c:otherwise>
+				</c:choose>
 			  </tbody>
 			</table>
 		  </div>

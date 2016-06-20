@@ -25,7 +25,9 @@
 	
 	
 	
-	$(function() {
+	$(function(){
+		
+	
 		
 		$('#pic2').hide();
 		$('#pic3').hide();
@@ -360,9 +362,7 @@
 	
 	
 
-	
-
-	
+	      
 	
 	
 </script>
@@ -477,8 +477,8 @@
 										</select>
 									</div>
 									<input type="hidden" id="lat" name="board_latitude" /> <input
-										type="hidden" id="lng" name="board_longitude" /> <input
-										type="hidden" id="meeting_place" name="meeting_place" /> <input
+										 type="hidden" id="lng" name="board_longitude" /> <input
+										 type="hidden" id="meeting_place" name="meeting_place" /> <input
 										type="hidden" id="meeting_address" name="meeting_address" />
 									<div id="button1" class="btn btn-success"
 										onclick="findPlaces(); return false;">Search for objects</div>
@@ -499,27 +499,7 @@
 	</article>
 	<!-- .content -->
 
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td><spring:message code="board.traveler_writeform6"/></td>
-					<td id="addPic" colspan="4"><input type="file" id="pic0"
-						name="pic0"></td>
-					<td align="center">
-						<button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>
-						<button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="board.traveler_writeform10"/></button>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="6" align="center"><input type="submit"
-						id="success" class="btn btn-success" value="<spring:message code="board.traveler_writeform11"/>"><input
-						type="reset" class="btn btn-danger" value="<spring:message code="board.traveler_writeform12"/>"></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-</article>
+					
 <!-- .content -->
 
 </section>

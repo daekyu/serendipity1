@@ -10,8 +10,8 @@
 				type : "post",
 				url : "is_like.htm",
 				data : {
-					"user_num" : <%=session.getAttribute("user_num")%>,
-					"review_num" : <%= request.getParameter("review_num")%>
+					"user_num" : '${sessionScope.user_num}',
+					"review_num" : '${param.review_num}'
 				},
 				success : function(data) {
 					if(data>0) {
@@ -38,7 +38,8 @@
 					
 					console.log("user_num1 : "+data);
 					$('#likeCount').text(data);
-					$('#btn_like2').text(data+" Likeㅎㅎ");
+					$('#btn_like').hide();
+					$('#btn_like2').show();
 					
 					isLike();
 				}
@@ -56,7 +57,8 @@
 					
 					console.log("user_num2 : "+data);
 					$('#likeCount').text(data);
-					$('#btn_like').text(data+" Like");
+					$('#btn_like2').hide();
+					$('#btn_like').show();
 					isLike();
 				}
 			});
@@ -194,8 +196,7 @@
 			<p><b>Date: </b><span>${revie_wdetail.REVIEW_DATE}</span></p><br>
 			<h4><span id="likeCount">${count}</span> Like(s)</h4>
 			
-			<button type="button" class="btn btn-danger" id="btn_like2"><i class="fa fa-heart"></i> ${count} Like</button><button type="button" class="btn btn-primary" id="btn_like"><i class="fa fa-heart"></i> ${count} Like</button><br><br>
-			
+			<div class="icon circle bg icon-40"data-s="48" data-op="0" data-c="#c10841" data-hc="0" id="btn_like"><i class="fa fa-heart-o"></i></div><div class="icon circle bg icon-40"data-s="48" data-op="0" data-c="#c10841" data-hc="0" id="btn_like2"><i class="fa fa-heart"></i></div><br><br>
 			<c:choose>
 				<c:when test="${sessionScope.user_num == review_detail.USER_NUM}">
 					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/travel_review/review_updateform.htm?review_num=${review_detail.REVIEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>

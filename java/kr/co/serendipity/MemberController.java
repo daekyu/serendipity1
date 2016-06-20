@@ -7,6 +7,7 @@
 
 package kr.co.serendipity;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.service.MemberService;
+import kr.co.serendipity.util.EmailSender;
 
 @Controller
 @RequestMapping("/member/")
@@ -25,6 +27,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberservice;
+	
+	@Autowired
+	private EmailSender emailsender;
 	
 	@RequestMapping("join_login.htm")
 	public ModelAndView joinLogin() {
@@ -64,6 +69,39 @@ public class MemberController {
 	@RequestMapping("IdCheck.htm")
 	public @ResponseBody int IdCheck(MemberDTO memberdto) {
 		return memberservice.IdCheck(memberdto);
+	}
+	
+	@RequestMapping("recover_id_pw.htm")
+	public String recoverAccount() {
+		return "/member/recover_id_pw";
+	}
+	
+	@RequestMapping("sendFindIdEmail.htm")
+	public @ResponseBody MemberDTO sendFindIdEmail(MemberDTO memberdto) throws MessagingException {
+		
+		if(memberservice.checkFindIdEmailInfo(memberdto) == null) {
+			return null;
+		} else {
+			MemberDTO member = new MemberDTO();
+			member.setEmail(memberservice.checkFindIdEmailInfo(memberdto).getEmail());
+			member.setId(memberservice.checkFindIdEmailInfo(memberdto).getId());
+			emailsender.sendFindIDEmail(member);
+			return memberservice.checkFindIdEmailInfo(memberdto);
+		}
+	}
+	
+	@RequestMapping("sendFindPwEmail.htm")
+	public @ResponseBody MemberDTO sendFindPwEmail(MemberDTO memberdto) throws MessagingException {
+		if(memberservice.checkFindPwEmailInfo(memberdto) == null) {
+			return null;
+		} else {
+			MemberDTO member = new MemberDTO();
+			member.setEmail(memberservice.checkFindPwEmailInfo(memberdto).getEmail());
+			member.setId(memberservice.checkFindPwEmailInfo(memberdto).getId());
+			member.setPw(emailsender.sendFindPWEmail(member));
+			memberservice.changeToTempPw(member);
+			return memberservice.checkFindPwEmailInfo(memberdto);
+		}
 	}
 
 

@@ -18,10 +18,40 @@
 	@Date : 16.06.08
 	@Desc : 외국인일 경우 지역을 입력하는 칸을 보이지 않게 하고, 한국인일 경우에만 보이게 하는 JQuery 메소드
 	*/
+	
+	function getContextPath() {
+		   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+		   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	};
+		
+		
 	$(function() {
 		var check;
 		
-		//$('#joinMember').hide();
+		$('#req_confirm_num').click(function() {
+			if($('#email').val() == '') {
+				alert('E-mail주소를 입력해주세요');
+			} else {
+				alert('입력하신 E-mail주소로 인증번호가 발송됩니다.');
+				$.ajax({
+		        	  type : "post",
+		        	  url : getContextPath() + "/email/confirm_email.htm",
+		        	  data : {"receiver" : $('#email').val()},
+		        	  success : function(data) {
+		        		  alert('인증번호를 발송했습니다.');
+		        		  $('#confirm').click(function() {
+		        			  console.log(data);
+		        			  if($('#confirm_number').val() != data) {
+		        				  alert('인증번호가 정확하지 않습니다');
+		        			  } else {
+		        				  alert('인증번호가 확인되었습니다.');
+		        				  $('#confirm_val').val('1');
+		        			  }
+		        		  })
+		        	  }
+		          });
+			}
+		});
 		
 		$('#local').hide();
 		
@@ -108,7 +138,6 @@
 				alert('국적을 선택해 주세요.');
 				country_code.focus();
 				return false;
-
 			} else if (!reg_hp.test(hp.val()) == true) { //휴대폰 유효성
 				alert('휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)');
 				hp.focus();
@@ -117,8 +146,11 @@
 				alert('이메일 주소는 @와.를 입력해야합니다.');
 				email.focus();
 				return false;
-			}else if($('#id_check_val').val() == '0') {
-				alert('사용할수 없는 아이디입니다.');
+			} else if($('#confirm_val').val() == '0') {
+				alert('E-mail 인증이 완료되지 않았습니다.');
+				return false;
+			} else if($('#id_check_val').val() == '0') {
+				alert('아이디 중복검사를 먼저 해주시기 바랍니다.');
 				return false;
 			} else{
 				alert("회원가입 성공");
@@ -146,7 +178,7 @@
 		        			  alert("사용가능한 아이디입니다.");
 		        			  $('#id_check_val').val('1');
 		        		  } else {
-		        			  alert("id가 이미 있습니다");
+		        			  alert("이미 존재하는 아이디입니다.");
 		        			  $('#id_1').focus();
 		        		  }
 		        	  }
@@ -223,7 +255,7 @@
 				
 				<!-- 각종 SNS로 로그인하는 버튼 만드는 부분 -->
 				<button class="btn btn-info"><i class="fa fa-twitter"></i> Login with Twitter</button>
-				<a href="shop-forgot.html" class="forgot">Forgot Your Password?</a>
+				<a href="${pageContext.request.contextPath}/member/recover_id_pw.htm" class="forgot">아이디/비밀번호를 잊으셨나요?</a>
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>
 			</form><!-- .form-box -->
@@ -232,21 +264,22 @@
 		  
 		  
 		  <!-- 회원가입 Form태그 -->
-		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
+		  <div id="joinDiv" class="col-xs-12 col-sm-6 col-md-6 box register">
 			
 			  <h3 class="title">Registered customers</h3>
 			  <p>If you have an account with us, please log in.</p>
+			  
+			<form class="form-box register-form form-validator" action="joinMember.htm" method="post" id="joinMember">
 			  <div class="form-group">
-			  	이메일: 
-			    <input type="email" class="form-control" id="confirm_email">
-			    			  
+			  	<label><spring:message code="member.join_login_re10"/><span class="required">*</span></label>
+			    <input type="text" name="email" class="form-control" id="email">		  
 			  </div>  
 			  <div class="form-group">
 			  	인증번호: 
 			    <input type="text" class="form-control" id="confirm_number">
-			    	<a href="#" class="btn btn-danger">인증번호 요청</a> <a href="#" class="btn btn-danger">인증번호 확인</a>		  
+			    <input type="hidden" id="confirm_val" value="0">
+			    	<a id="req_confirm_num" class="btn btn-danger">인증번호 요청</a> <a id="confirm" class="btn btn-danger">인증번호 확인</a>		  
 			  </div> 
-			<form class="form-box register-form form-validator" action="joinMember.htm" method="post" id="joinMember">
 			  
 			  <div class="form-group">
 				<label><spring:message code="member.join_login_re"/><span class="required" >*</span></label>
@@ -317,11 +350,6 @@
               <div class="form-group">
 				<label><spring:message code="member.join_login_re9"/><span class="required">*</span></label>
                 <input class="form-control" id="hp" name="hp" type="text" placeholder="01012345678과 같이 '-'를 뺀 형식으로 입력하세요.">
-              </div>
-			  
-			  <div class="form-group">
-				<label><spring:message code="member.join_login_re10"/><span class="required">*</span></label>
-				<input class="form-control" type="text" name="email" id="email" >
               </div>
 
 			  <div class="buttons-box clearfix">

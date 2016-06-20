@@ -10,11 +10,11 @@
 				<a href="${pageContext.request.contextPath}/index.htm">
 					<c:choose>
 						<c:when test="${index == 'index'}">
-							<img src="./resources/img/logo.svg" class="logo-img" alt="">
+							<img src="./resources/img/main_logo.png" class="logo-img" alt="">
 						</c:when>
 						
 						<c:otherwise>
-							<img src=".././resources/img/logo.svg" class="logo-img" alt="">
+							<img src=".././resources/img/main_logo.png" class="logo-img" alt="">
 						</c:otherwise>
 					</c:choose>
 					

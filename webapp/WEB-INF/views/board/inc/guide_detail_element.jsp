@@ -181,7 +181,7 @@
 							<option>16.06.02 - 2명남음</option>
 						</select>
 						
-					  <button class="btn add-cart btn-default btn-lg">신청하기</button>
+					  <a href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}" class="btn add-cart btn-default btn-lg">신청하기</a>
 					  <div class="number">
 					  	
 						<label>인원수:</label>

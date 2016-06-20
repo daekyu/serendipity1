@@ -52,7 +52,11 @@ href=".././resources/js/sweetalert.css">
                      $('#datepicker').focus();
                      return false;
                   }  else if($('#before').val() == ''){
+<<<<<<< HEAD
                     alert('지불할 가격을 입력해 주세요');
+=======
+                    alert('지불할 가격을 숫자로 입력해 주세요');
+>>>>>>> locale
                     $('#before').focus();
                      return false;
                  } else if($('#after').val() == ''){
@@ -75,7 +79,11 @@ href=".././resources/js/sweetalert.css">
                            
                   
                }); 
+<<<<<<< HEAD
        
+=======
+             
+>>>>>>> locale
       
       
             

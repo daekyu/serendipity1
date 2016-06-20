@@ -34,8 +34,8 @@
 		
 		<div class="col-sm-12 col-md-6">
 		  <div class="title-box">
-			<a href="#" class="btn">More <span class="glyphicon glyphicon-arrow-right"></span></a>
-			<h2 class="title">Latest Posts</h2>
+			<a href="${pageContext.request.contextPath}/travel_review/review_list.htm" class="btn">More <span class="glyphicon glyphicon-arrow-right"></span></a>
+			<h2 class="title">인기 여행후기</h2>
 		  </div>
 		  <ul class="latest-posts">
 			<li>

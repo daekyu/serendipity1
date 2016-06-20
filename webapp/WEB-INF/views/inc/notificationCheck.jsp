@@ -25,8 +25,6 @@ $(function() {
 		        success : function(data) {
 		        	if(data != ''){
 		        		for(var i=0; i<data.length; i++){
-		        			console.log("aaaaaaaaaaaaaaaaaaaaa");
-		        			console.log(data[i].ID + "/" + data[i].PROFILE_PICTURE);
 		        			var options = {
 		        					body : data[i].ID + "님이 쪽지를 보냈습니다.",
 		        					icon : getContextPath() + "/resources/img/profile_picture/" + data[i].PROFILE_PICTURE
@@ -70,6 +68,36 @@ $(function() {
 					}
 				}
 		     });
+			
+			//좋아요 알림
+			$.ajax({
+				type : "post",
+				url : getContextPath() + "/travel_review/likeNotificationCheck.htm",
+				data: {"user_num" : "${sessionScope.user_num}"},
+				success : function(data) {
+					if(data != ''){
+						for(var i=0; i<data.length; i++){
+							var options = {
+		        					body : data[i].ID + "님이 회원님의 " + data[i].REVIEW_NUM + "번 게시물을 좋아합니다.",
+		        					icon : getContextPath() + "/resources/img/profile_picture/" + data[i].PROFILE_PICTURE
+		        			}
+						    var notification = new Notification("Serendipity", options);
+							$.ajax({
+								type : "post",
+								url : getContextPath() + "/travel_review/changeLikeState.htm",
+								data : {
+									"review_num" : data[i].REVIEW_NUM,
+									"user_num" : data[i].USER_NUM	
+								},
+								success : function() {
+									console.log("좋아요 상태바꾸기 성공");
+								}
+							});
+						}
+					}
+				}
+		     });
+			
 		     
 		     // 가이드-여행자 요청 알림
 	//		$.ajax({

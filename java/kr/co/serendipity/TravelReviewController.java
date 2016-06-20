@@ -409,4 +409,14 @@ public class TravelReviewController {
 		mav.addObject("order", "댓글순");
 		return mav;
 	}
+	
+	@RequestMapping("likeNotificationCheck.htm")
+	public @ResponseBody List<HashMap<String, Object>> likeNotificationCheck(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException {
+		return travelreviewservice.likeNotificationCheck(reviewdto);
+	}
+	
+	@RequestMapping("changeLikeState.htm")
+	public void changeLikeState(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException {
+		travelreviewservice.changeLikeState(reviewdto);
+	}
 }

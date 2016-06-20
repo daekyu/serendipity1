@@ -48,4 +48,8 @@ public interface ReviewDAO {
 		
 	//여행후기 게시판 리스트 정렬(댓글순)
 	public List<HashMap<String, Object>> orderReviewList3() throws ClassNotFoundException, SQLException;
+	
+	//index 페이지 인기여행기 상위 3개 보여주기
+	public List<ReviewDTO> getIndexReview() throws ClassNotFoundException, SQLException;
+	
 }

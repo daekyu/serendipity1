@@ -80,4 +80,5 @@ public interface BoardDAO {
 	
 	//글 쓴 사람의 취미 선택한거
 	public List<HashMap<String, Object>> getHobbies(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
+	
 }

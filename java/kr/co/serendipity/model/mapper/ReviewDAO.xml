@@ -53,4 +53,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name, r.reply_count from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code order by reply_count desc
 	</select>
 	
+	<select id="getIndexReview" resultType="kr.co.serendipity.model.ReviewDTO">
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
+		( SELECT * FROM REVIEW ORDER BY LIKE_COUNT DESC) N) 
+		WHERE NUM <![CDATA[ <= ]]>3
+ 	</select>
+	
 </mapper>

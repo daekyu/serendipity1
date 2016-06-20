@@ -1,5 +1,9 @@
 package kr.co.serendipity.model;
 
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+
 /*
  * @Class : ReviewLikeDAO
  * @Date : 16.06.09
@@ -26,4 +30,9 @@ public interface ReviewLikeDAO {
 
 	// 해당게시글을 해당 사람이 좋아요를 눌렀었나?
 	public int isLike(ReviewLikeDTO dto);
+	
+	// 좋아요를 새로 눌렀을때 알림이 가도록
+	public List<HashMap<String, Object>> likeNotificationCheck(ReviewDTO reviewdto);
+	
+	public void changeLikeState(ReviewDTO reviewdto);
 }

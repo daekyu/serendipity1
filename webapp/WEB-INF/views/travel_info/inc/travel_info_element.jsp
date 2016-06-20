@@ -7,7 +7,7 @@
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 
@@ -83,6 +83,7 @@
                         });
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                           return function() {
+                        	  
                             infowindow.setContent(locations[i][0]);
                             infowindow.open(map, marker);
                             console.log(locations[i][3]);
@@ -104,6 +105,26 @@
                                 }
                             });
                             
+                            $.ajax({
+                                type : "post",
+                                url : "getLocalReviewList.htm",
+                                data : {"local_code" : locations[i][3]},
+                                success : function(data) {
+                                	console.log("asdasdasdas : " + data);
+                                	console.log("aaaaaaaaaaa : " + data.length);
+                                	
+                                    $.each(data, function(index, item) {
+                                    	 $('#review_title'+index).text(item.review_title);
+                                         $('#review_content'+index).text(item.review_content);
+                                         $('#review_content'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
+                                         $('#review_imglink'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
+                                         $('#review_titlelink'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
+                                         $('#review_img'+index).attr('src','${pageContext.request.contextPath}/resources/img/review_upload/'+item.review_picture1);
+                                    });
+                                    
+                                }
+                            });
+                            
                           }
                         })(marker, i));
                       }
@@ -112,6 +133,8 @@
       
   
     });
+    
+    
     </script> 
 
   
@@ -207,51 +230,32 @@
 			<div class="tab-pane" id="reviews">
 			  
 		  <div class="title-box">
-			<a href="#" class="btn">More <span class="glyphicon glyphicon-arrow-right"></span></a>
+			<a href="${pageContext.request.contextPath}/travel_review/review_list.htm" class="btn">More <span class="glyphicon glyphicon-arrow-right"></span></a>
 		  </div>
-		  <ul class="latest-posts">
-			<li>
-			  <a href="#"><img class="image img-circle replace-2x" src="content/img/product-1-84.jpg" alt="" title="" width="84" height="84" data-appear-animation="rotateIn"></a>
-			  <div class="meta">
-				<a href="#"><span class="daekyu">인기 여행기 글 제목 abcdefg...1</span></a>
-			  </div>
-			  <div class="description">
-				<a href="#">
-				  인기 여행기 글 내용 일부......1
-				</a>
-			  </div>
-			</li>
-			
-			<li>
-			  <a href="#"><img class="image img-circle replace-2x" src="content/img/product-1-84.jpg" alt="" title="" width="84" height="84" data-appear-animation="rotateIn"></a>
-			  <div class="meta">
-				<a href="#"><span class="daekyu">인기 여행기 글 제목 abcdefg...2</span></a>
-			  </div>
-			  <div class="description">
-				<a href="#">
-				  인기 여행기 글 내용 일부......2
-				</a>
-			  </div>
-			</li>
-			
-			<li>
-			  <a href="#"><img class="image img-circle replace-2x" src="content/img/product-1-84.jpg" alt="" title="" width="84" height="84" data-appear-animation="rotateIn"></a>
-			  <div class="meta">
-				<a href="#"><span class="daekyu">인기 여행기 글 제목 abcdefg...3</span></a>
-			  </div>
-			  <div class="description">
-				<a href="#">
-				  인기 여행기 글 내용 일부......3
-				</a>
-			  </div>
-			</li>
+		  <ul class="latest-posts" id="review_list">
+		  <c:choose>
+		  	<c:when test="${Rlist_count eq 0}">
+				 	글이 존재하지 않습니다.
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="i" begin="0" end="" step="1">
+				<li>
+			  		<a href="#" id="review_imglink${i}"><img class="image img-circle replace-2x" id="review_img${i}" src="content/img/product-1-84.jpg" alt="" title="" width="84" height="84" data-appear-animation="rotateIn"></a>
+			  		<div class="meta">
+						<a href="#" id="review_titlelink${i}"><span class="daekyu" id="review_title${i}"></span></a>
+			  		</div>
+			  		<div class="description">
+						<a href="#" id="review_content${i}">
+						</a>
+			  		</div>
+				</li>
+				</c:forEach>
+			</c:otherwise>
+		  </c:choose>
 		  </ul>
-		
 		  </div><!-- .tab-content -->
 		</div>
-	  
-	  
-	  
+
 	  </div>
 	  </div>
 	</article><!-- .content -->

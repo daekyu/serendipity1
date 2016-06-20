@@ -24,7 +24,7 @@ swal({   title: "정말로 탈퇴하시겠습니까?",
             
          
          swal("탈퇴되었습니다.", "관련된 모든 정보가 삭제되었습니다.", "success");   
-       location.href="${pageContext.request.contextPath}/mypage/my_page_withdraw.htm?user_num=${dto.user_num}";  
+       location.href="${pageContext.request.contextPath}/index.htm?user_num=${dto.user_num}";  
       
       
       }else{     swal("취소되었습니다.", "감사합니다. :)", "error");   } });

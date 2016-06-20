@@ -36,7 +36,7 @@ public class ReportController {
 	// 관리자 페이지에서 신고하는 글 상세보기
 	@RequestMapping("report_detail.htm")
 	public ModelAndView ReportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
-		ModelAndView mav = new ModelAndView("/report/report_detail");
+		ModelAndView mav = new ModelAndView("/admin/admin_report_list");
 		mav.addObject("report_detail", reportservice.ReportDetail(reportdto));
 		return mav;
 	}

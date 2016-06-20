@@ -101,7 +101,7 @@
 
 						<div class="col-sm-3 col-md-3 product rotation">
 							<div class="default">
-								<span class="sale top"></span> <a href="guide_detail.htm?board_num=${i.BOARD_NUM}"
+								<span class="sale top"></span> <a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}"
 									class="product-image"> <img class="replace-2x"
 									src="${pageContext.request.contextPath}/resources/img/board_picture/${i.BOARD_PICTURE1}" alt="" title="" width="270"
 									height="270">
@@ -121,7 +121,7 @@
 									<a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">${i.BOARD_TITLE}</a>
 								</h3>
 								<div class="price">가이드 아이디 : ${i.ID}</div>
-								<a href="guide_detail.htm?board_num=${i.BOARD_NUM}" class="product-image"> <img
+								<a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}" class="product-image"> <img
 									class="replace-2x" src="${pageContext.request.contextPath}/resources/img/profile_picture/${i.PROFILE_PICTURE}" alt=""
 									title="" width="70" height="70">
 								</a>

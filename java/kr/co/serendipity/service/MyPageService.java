@@ -1,6 +1,7 @@
 package kr.co.serendipity.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -59,7 +60,7 @@ public class MyPageService {
 		return dao.sendHistory(memberdto);
 	}
 	
-	public List<ParticipantDTO> acceptHistory(MemberDTO memberdto){
+	public List<HashMap<String, Object>> acceptHistory(MemberDTO memberdto){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		return dao.acceptHistory(memberdto);
 	}
@@ -140,5 +141,10 @@ public class MyPageService {
 	public void deleteSendHistory(ParticipantDTO participantdto){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		dao.deleteSendHistory(participantdto);
+	}
+	
+	public void acceptRequest(ParticipantDTO participantdto){
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		dao.acceptRequest(participantdto);
 	}
 }

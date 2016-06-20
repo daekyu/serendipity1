@@ -5,7 +5,14 @@ public class ParticipantDTO {
 	int board_num;
 	int user_num;
 	String state;
+	String parti_date;
 	
+	public String getParti_date() {
+		return parti_date;
+	}
+	public void setParti_date(String parti_date) {
+		this.parti_date = parti_date;
+	}
 	public int getParti_num() {
 		return parti_num;
 	}

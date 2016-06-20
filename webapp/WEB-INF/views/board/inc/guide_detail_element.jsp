@@ -2,13 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script type="text/javascript"
-	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
+<script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css"> 
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
+</script> 
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css">  
+<script type="text/javascript" src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
+<<<<<<< HEAD
 <input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}" />
 <input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}" />
 <input type="hidden" id="meeting_place"
@@ -77,6 +82,99 @@
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+=======
+		<input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}"/>
+		<input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}"/>
+		<input type="hidden" id="meeting_place" value="${boarddto.MEETING_PLACE}"/>
+		<input type="hidden" id="meeting_address" value="${boarddto.MEETING_ADDRESS}"/>
+	<script type="text/javascript">
+		/* $(function(){
+			$('#delete').click(function(){
+				if(confirm("글을 삭제 하시겠습니까?") == true){
+				location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=2";
+				}else{
+				    return false;
+				}
+			});
+		}); */
+		
+		$(function() {
+			   $('#delete').click(function() {
+
+			swal({   title: "정말로 삭제하시겠습니까?",   
+			      
+			      type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   
+			      confirmButtonText: "삭제",   cancelButtonText: "취소",   
+			      closeOnConfirm: false,   closeOnCancel: false }, 
+			      function(isConfirm){     
+			         if(isConfirm==true){
+			   
+			               
+			            
+			         
+			         swal("삭제되었습니다.");  
+			        location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=2"; 
+			         location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=2" 
+			      
+			      }else{     
+			    	 
+			    	  swal("취소되었습니다 :)");   } });
+
+			   });
+			});
+		
+		
+		
+		var map;
+		var marker;
+		var myLatlng;
+		var lat = document.getElementById('lat').value;
+		var lng = document.getElementById('lng').value;
+		var meeting_place = document.getElementById('meeting_place').value;
+		var meeting_address = document.getElementById('meeting_address').value;
+
+		
+		function initialize() {
+
+		    // set initial position
+		    myLatlng = new google.maps.LatLng(lat, lng);
+		   
+		    var myOptions = { // default map options
+		        zoom: 18,
+		        center: myLatlng,
+		        icon: marker
+		    };
+		    
+		    map = new google.maps.Map(document.getElementById('gmap_detail'), myOptions);
+
+		    var request = {
+		    		radius: 50,
+			        location: myLatlng
+			    };
+			   
+			    // send request
+			    service = new google.maps.places.PlacesService(map);
+			    service.search(request, createMarker);
+		}
+		    	    
+		  function createMarker(){
+		    	    marker = new google.maps.Marker({
+		                position: myLatlng,
+		                map: map
+		            });
+		    	    var infowindow = new google.maps.InfoWindow({
+		    	        content: '<font style="color:#000;">' + meeting_place + 
+		    	        '<br />주소: ' + meeting_address+'</font>'
+		    	    });
+
+		    	        infowindow.open(map,marker);
+	
+		}
+
+		// initialization
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+>>>>>>> 73e29a7f85c0aa3f7de06feae9ec2ec4b6737e57
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 
@@ -194,8 +292,6 @@
 						<div class="price-box">
 							<span class="price">${boarddto.PRICE} / a day</span>
 						</div>
-
-
 						<c:choose>
 							<c:when test="${sessionScope.user_num == boarddto.USER_NUM}">
 								<a class="btn btn-default btn-sm"

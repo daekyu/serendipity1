@@ -39,7 +39,7 @@ href=".././resources/js/sweetalert.css">
             
             //게시판 유효성 검증 
             
-            /* $('#success').click(function() {
+             $('#success').click(function() {
                
                
                   if($('#title_text').val() == '') {
@@ -50,7 +50,7 @@ href=".././resources/js/sweetalert.css">
                      alert('날짜를 입력해주세요');
                      $('#datepicker').focus();
                      return false;
-                  }  else if(reg_number.test($('#before').val()) != true){
+                  }  else if($('#before').val() == ''){
                     alert('지불할 가격을 숫자로 입력해 주세요');
                     $('#before').focus();
                      return false;
@@ -73,7 +73,7 @@ href=".././resources/js/sweetalert.css">
                            
                   
                }); 
-             */
+             
       
       
             
@@ -456,7 +456,7 @@ href=".././resources/js/sweetalert.css">
                   </select></td>
                   <td><input class="form-control" id="before" type="text" name="#"></td>
                   <td><button type="button" id="convert" class="btn btn-success">변환</button></td>
-                  <td><input class="form-control" id="after" type="text" name="price" readonly></td>
+                  <td><input class="form-control" id="after" type="text" name="price"></td>
                   
 
                   <%-- <td><input class="form-control" type="text"></td>

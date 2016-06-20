@@ -35,6 +35,7 @@ public class IndexController {
 		mav.addObject("guide_list", indexservice.getIndexGuideRecent());
 		mav.addObject("list_count", indexservice.getListCount());
 		mav.addObject("Glist_count", indexservice.getGListCount());
+		mav.addObject("review_list", indexservice.getIndexReview());
 
 		return mav;
 	}

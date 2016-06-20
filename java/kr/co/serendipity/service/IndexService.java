@@ -42,4 +42,9 @@ public class IndexService {
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
 		return dao.getIndexReview();
 	}
+	
+	public int getReviewListCount() throws ClassNotFoundException, SQLException{
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		return dao.getReviewListCount();
+	}
 }

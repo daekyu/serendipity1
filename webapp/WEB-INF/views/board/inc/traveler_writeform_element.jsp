@@ -3,11 +3,8 @@
 
 <script src="resources/js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="resources/js/sweetalert.css">	
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css">		
 
-<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
-</script> 
-<link rel="stylesheet" type="text/css" 
-href=".././resources/js/sweetalert.css">       
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
@@ -15,69 +12,12 @@ href=".././resources/js/sweetalert.css">
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="jquery.numberformatter.js"></script>
 	
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 <script type="text/javascript">
 	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 
-	
-	function formatNumber (num) {
-	    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
-	}
-	
-	
-
-	
-	
-	$(function(){
-		
-		
-		    var reg_number = /^[0-9]+$/;
-		      
-		      
-		      
-		      //게시판 유효성 검증 
-		      
-		      $('#success').click(function() {
-		    	  
-		    	  
-		            if($('#title_text').val() == '') {
-		               alert('글제목을 입력해주세요');
-		               $('#title_text').focus();
-		               return false;
-		            } else if($('#datepicker').val() == '') {
-		               alert('날짜를 입력해주세요');
-		               $('#datepicker').focus();
-		               return false;
-		            }  else if(!reg_number.test($('#before').val()) == true){
-		              alert('지불할 가격을 숫자로 입력해 주세요');
-		              $('#before').focus();
-		               return false;
-		           } else if($('#after').val() == ''){
-		                 alert('변환 버튼을 눌러 주세요');
-		                 $('#before').focus();
-		              return false;
-		              
-		            } else if($('#pic1').val()==''){
-		            	alert("사진을 1개 이상 등록해 주세요");
-		            	$('#pic1').focus();
-		            	return false;
-		            } else if($('#meeting_place').val() == '') {
-		                  alert('meeting point를 지도에서 선택해주세요');
-		                  $('#gmap_where').focus();
-		                  return false;
-		               }else{
-		               alert('글작성 완료')
-		            }
-		            
-		                     
-		            
-		         }); 
-		      
-		
-		
-				
+	$(function() {
 		
 		$('#pic2').hide();
 		$('#pic3').hide();
@@ -117,10 +57,6 @@ href=".././resources/js/sweetalert.css">
 		        return false;
 		    }
 		});
-		
-		
-		
-		
 	});
 
 	$('#ckeditor').keyup(function() {
@@ -189,9 +125,7 @@ href=".././resources/js/sweetalert.css">
 						        
 						        //$('#after').val($('#before').val() * )
 						        if($('#selectoption').val()=='KRW'){
-						        	
-						        	 $('#after').val(formatNumber($('#before').val())+'원');
-						        	 $('#before').val(formatNumber($('#before').val()));
+						        	 $('#after').val($('#before').val());
 				        		  }else if($('#selectoption').val()=='JPY'){
 				        			  swal({   title: "실시간 환율 정보",   
 				        				  text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
@@ -199,13 +133,11 @@ href=".././resources/js/sweetalert.css">
 				        					 
 				        			  });
 									 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
-									 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
-									 $('#before').val(formatNumber($('#before').val()));
+									 $('#after').val(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY));
 								
 				        		  }else if($('#selectoption').val()=='USD'){
 				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
-				        			  $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
-				        			  $('#before').val(formatNumber($('#before').val()));
+				        			  $('#after').val(Math.floor($('#before').val() * json.quotes.USDKRW));
 				        		  }
 						    }
 						});
@@ -422,8 +354,6 @@ href=".././resources/js/sweetalert.css">
 
 	
 	
-	      
-	
 	
 </script>
 <section id="main">
@@ -440,15 +370,15 @@ href=".././resources/js/sweetalert.css">
 				<table class="table center">
 					<tr>
 						<td><h6><spring:message code="board.traveler_writeform2"/></h6></td>
-						<td colspan="5"><input class="form-control" type="text" id="title_text"
+						<td colspan="5"><input class="form-control" type="text"
 							name="board_title"></td>
 					</tr>
 					<tr>
-						<td><h6><spring:message code="board.traveler_writeform3"/></h6></td>
+						<td><spring:message code="board.traveler_writeform3"/></td>
 
 						<td><input class="form-control" type="text" id="datepicker" name="board_date"></td>
 
-						<td><h6><spring:message code="board.traveler_writeform4"/></h6></td>
+						<td>지불할 가격</td>
 						<td><select id="selectoption">
   							<option value="KRW">KRW</option>
   							<option value="JPY">JPY</option>
@@ -457,7 +387,7 @@ href=".././resources/js/sweetalert.css">
 						</select></td>
 						<td><input class="form-control" id="before" type="text" name="#"></td>
 						<td><button type="button" id="convert" class="btn btn-success">변환</button></td>
-						<td><input class="form-control" id="after" type="text" name="price" disabled="disabled"></td>
+						<td><input class="form-control" id="after" type="text" name="price"></td>
 						
 
 						<%-- <td><input class="form-control" type="text"></td>
@@ -467,7 +397,7 @@ href=".././resources/js/sweetalert.css">
 
 					</tr>
 					<tr>
-						<td><h6><spring:message code="board.traveler_writeform5"/></h6></td>
+						<td><spring:message code="board.traveler_writeform5"/></td>
 						<td colspan="5">
 							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
@@ -483,7 +413,7 @@ href=".././resources/js/sweetalert.css">
 					</tr>
 
 					<tr>
-						<td><h6><spring:message code="board.traveler_writeform6"/></h6></td>
+						<td><spring:message code="board.traveler_writeform6"/></td>
 						<!-- <td id="addPic" colspan="4"> -->
 						<td>
 							<input type="file" id="pic1" name="pic">
@@ -502,7 +432,7 @@ href=".././resources/js/sweetalert.css">
 
 
 					<tr>
-						<td><h6>Meeting Point</h6></td>
+						<td>Meeting Point</td>
 						<td colspan="5">
 							<div id="container" class="row">
 								<div id="gmap_canvas" style="height: 400px;width:auto"></div>
@@ -537,8 +467,8 @@ href=".././resources/js/sweetalert.css">
 										</select>
 									</div>
 									<input type="hidden" id="lat" name="board_latitude" /> <input
-										 type="hidden" id="lng" name="board_longitude" /> <input
-										 type="hidden" id="meeting_place" name="meeting_place" /> <input
+										type="hidden" id="lng" name="board_longitude" /> <input
+										type="hidden" id="meeting_place" name="meeting_place" /> <input
 										type="hidden" id="meeting_address" name="meeting_address" />
 									<div id="button1" class="btn btn-success"
 										onclick="findPlaces(); return false;">Search for objects</div>
@@ -559,7 +489,28 @@ href=".././resources/js/sweetalert.css">
 	</article>
 	<!-- .content -->
 
-
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><spring:message code="board.traveler_writeform6"/></td>
+					<td id="addPic" colspan="4"><input type="file" id="pic0"
+						name="pic0"></td>
+					<td align="center">
+						<button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>
+						<button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="board.traveler_writeform10"/></button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6" align="center"><input type="submit"
+						id="success" class="btn btn-success" value="<spring:message code="board.traveler_writeform11"/>"><input
+						type="reset" class="btn btn-danger" value="<spring:message code="board.traveler_writeform12"/>"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</article>
+<!-- .content -->
 
 </section>
 <!-- #main -->

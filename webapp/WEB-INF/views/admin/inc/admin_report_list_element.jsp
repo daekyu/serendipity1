@@ -14,43 +14,24 @@ function getContextPath() {
 	   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
 	   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 	};
-
-function report_detail(param1){
+function report_detail(index){
+	console.log(index);
 	$.ajax({
 		type : "post",
 		url : getContextPath() + "/report/report_detail.htm",
 		data : {
-			"report_num" : param1
+			"report_num" : $('#report_num'+index).val()
 		},
 		success : function(data){
 			console.log("성공");
 			console.log(data);
-			$('#reporter').text(data.reporter);
-			$('#villain').text(data.villain);
-			$('#report_title').text(data.report_title);
-			$('#report_content').text(data.report_content);
+			$('#reporter').text(data.REPORTER);
+			$('#villain').text(data.VILLAIN);
+			$('#report_title').text(data.REPORT_TITLE);
+			$('#report_content').text(data.REPORT_CONTENT);
 		}
 	});
-} 
-/* $(function(){
-	$('#report_detail').click(function(param1){
-		$.ajax({
-			type : "post",
-			url : "/report/report_detail.htm",
-			data : {
-				"report_num" : param1
-			},
-			success : function(data){
-				console.log("성공");
-				console.log(data);
-				$('#reporter').text(data.reporter);
-				$('#villain').text(data.villain);
-				$('#report_title').text(data.report_title);
-				$('#report_content').text(data.report_content);
-			}
-		});
-	});
-}); */
+}
 </script>
 <div class="breadcrumb-box breadcrumb-none"></div>
 
@@ -75,13 +56,13 @@ function report_detail(param1){
 			  </thead>
 			  
 			  <tbody>
-			  <c:forEach var="i" items="${report_list}">
+			  <c:forEach var="i" items="${report_list}" varStatus="j">
 			  	<tr>
-			  		<td>${i.REPORTER}</td>
-			  		<td>${i.VILLAIN}</td>
+			  		<td>${i.REPORTER} / ${j.index}</td>
+			  		<td>${i.VILLAIN} / ${i.REPORT_NUM}</td>
 			  		<td>
-			  			<a href="javascript:report_detail(${i.REPORT_NUM});" data-toggle="modal" data-target="#reportModal">${i.REPORT_TITLE}</a>
-			  			
+			  			<a onclick="report_detail(${j.index})" data-toggle="modal" data-target="#reportModal">${i.REPORT_TITLE}</a>
+			  			<input type="hidden" id="report_num${j.index}" value="${i.REPORT_NUM}">
 			  		</td>
 			  	</tr>
 			  </c:forEach>

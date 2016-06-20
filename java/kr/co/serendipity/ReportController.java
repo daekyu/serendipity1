@@ -1,11 +1,13 @@
 package kr.co.serendipity;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDTO;
@@ -32,13 +34,12 @@ public class ReportController {
 		mav.addObject("report_list", reportservice.reportList());
 		return mav;
 	}
-
+	
 	// 관리자 페이지에서 신고하는 글 상세보기
 	@RequestMapping("report_detail.htm")
-	public ModelAndView ReportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
-		ModelAndView mav = new ModelAndView("/admin/admin_report_list");
-		mav.addObject("report_detail", reportservice.ReportDetail(reportdto));
-		return mav;
+	public @ResponseBody HashMap<String, Object> reportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
+		System.out.println("REPORT_NUM : " + reportdto.getReport_num());
+		return reportservice.reportDetail(reportdto);
 	}
 	
 	// 신고하는 글쓰기(여행자가 신고)

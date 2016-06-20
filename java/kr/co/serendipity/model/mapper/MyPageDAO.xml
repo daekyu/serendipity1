@@ -98,6 +98,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from participant where user_num=#{user_num}
 	</select>
 	
+	<!-- <select id="writerName" resultType="String">
+		select name from board b and member m join on b.user_num = m.user_num 
+		where board_num=#{param1}
+	</select> -->
 	
+	<delete id="deleteSendHistory" >
+		delete from participant where parti_num=#{parti_num}
+	</delete>
+	
+	<select id="acceptHistory" resultType="kr.co.serendipity.model.ParticipantDTO">
+		select * from participant where user_num=#{user_num}
+	</select>
 	
 </mapper>

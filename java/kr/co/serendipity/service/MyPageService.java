@@ -1,5 +1,6 @@
 package kr.co.serendipity.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -56,6 +57,11 @@ public class MyPageService {
 	public List<ParticipantDTO> sendHistory(MemberDTO memberdto){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		return dao.sendHistory(memberdto);
+	}
+	
+	public List<ParticipantDTO> acceptHistory(MemberDTO memberdto){
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		return dao.acceptHistory(memberdto);
 	}
 	
 	public int countHobby(int user_num){
@@ -119,5 +125,20 @@ public class MyPageService {
 	public void updateEmail(MemberDTO memberdto){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		dao.updateEmail(memberdto);
+	}
+	
+	public List<String> writerName(List<ParticipantDTO> participantdto){
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		List<String> wn = new ArrayList<String>();
+		for(int i=0; i < participantdto.size(); i++){
+			String writerName = dao.writerName(participantdto.get(i).getBoard_num());
+			wn.add(writerName);
+		}
+		return wn;
+	}
+	
+	public void deleteSendHistory(ParticipantDTO participantdto){
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		dao.deleteSendHistory(participantdto);
 	}
 }

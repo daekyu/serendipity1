@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.serendipity.model.LocalDTO;
+import kr.co.serendipity.model.ReviewDTO;
 import kr.co.serendipity.model.TravelInfoDAO;
 import kr.co.serendipity.model.TravelInfoDTO;
 import kr.co.serendipity.service.TravelInfoService;
@@ -41,5 +42,10 @@ public class TravelInfoController {
 	@RequestMapping("getLocalInfo.htm")
 	public @ResponseBody TravelInfoDTO getLocalInfo(LocalDTO localdto) {
 		return travelinfoservice.getLocalInfo(localdto);
+	}
+	
+	@RequestMapping("getLocalReviewList.htm")
+	public @ResponseBody List<ReviewDTO> getLocalReviewList(LocalDTO localdto){
+		return travelinfoservice.getLocalReviewList(localdto);
 	}
 }

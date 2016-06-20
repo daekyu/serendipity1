@@ -21,4 +21,6 @@ public interface MessageDAO {
 	public void deleteReceiverMessage(MessageDTO messagedto); // 받은쪽지함에서 삭제하기
 	public List<HashMap<String, Object>> msgNotificationCheck(RCV_MessageDTO rcv_messagedto); // 알림체크하기
 	public void changeNotificationState(RCV_MessageDTO rcv_messagedto);
+	public RCV_MessageDTO getRcvMessageDetail(RCV_MessageDTO rcv_messagedto);
+	public MessageDTO getSendMessageDetail(MessageDTO messagedto);
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.serendipity.model.LocalDTO;
+import kr.co.serendipity.model.ReviewDTO;
 import kr.co.serendipity.model.TravelInfoDAO;
 import kr.co.serendipity.model.TravelInfoDTO;
 
@@ -23,5 +24,15 @@ public class TravelInfoService {
 	public TravelInfoDTO getLocalInfo(LocalDTO localdto){
 		TravelInfoDAO dao = sqlsession.getMapper(TravelInfoDAO.class);
 		return dao.getLocalInfo(localdto);
+	}
+	
+	public List<ReviewDTO> getLocalReviewList(LocalDTO localdto){
+		TravelInfoDAO dao = sqlsession.getMapper(TravelInfoDAO.class);
+		return dao.getLocalReviewList(localdto);
+	}
+	
+	public int getCountLocalReviewList(LocalDTO localdto){
+		TravelInfoDAO dao = sqlsession.getMapper(TravelInfoDAO.class);
+		return dao.getCountLocalReviewList(localdto);
 	}
 }

@@ -38,10 +38,13 @@
 				</tr>
 			  </thead>
 			  <tbody>
-			  <c:choose var="i">
+			  <c:choose>
 			  <c:when test="${empty participantdto}">
-			  
+			  		<tr>
+			  		<td colspan="6">보낸 요청이 없습니다.</td>
+			  		</tr>
 			  </c:when>
+			  <c:otherwise>
 			  <c:forEach var="i" items="${participantdto}">
 				<tr>
 					<td>${i.parti_num}</td>
@@ -61,6 +64,7 @@
 					<td><a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.parti_num}" class="btn btn-danger" id="delete">취소</a></td>
 				</tr>
 				</c:forEach>
+				</c:otherwise>
 				
 				</c:choose>
 			  </tbody>

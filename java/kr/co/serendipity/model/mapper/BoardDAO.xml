@@ -56,14 +56,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        DELETE board WHERE board_num=#{board_num}
     </delete>
 
- 	<select id="getIndexTravelerRecent" resultType="kr.co.serendipity.model.BoardDTO">
- 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM (SELECT * FROM BOARD where category_num=1 ORDER BY BOARD_NUM DESC) N) WHERE NUM <![CDATA[ <= ]]>4
+ 	<select id="getIndexTravelerRecent" resultType="hashmap">
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM (select b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name  FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=1 ORDER BY BOARD_NUM DESC) N) WHERE NUM <![CDATA[ <= ]]>4
  	</select>
  	
- 	<select id="getIndexGuideRecent" resultType="kr.co.serendipity.model.BoardDTO">
- 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
-		( SELECT * FROM BOARD where category_num=2 ORDER BY BOARD_NUM DESC) N) 
-		WHERE NUM <![CDATA[ <= ]]>4
+ 	<select id="getIndexGuideRecent" resultType="hashmap">
+ 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM (select b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name  FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=2 ORDER BY BOARD_NUM DESC) N) WHERE NUM <![CDATA[ <= ]]>4
  	</select>
  	
  	<update id="update">

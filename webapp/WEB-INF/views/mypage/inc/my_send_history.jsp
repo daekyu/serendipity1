@@ -38,6 +38,10 @@
 				</tr>
 			  </thead>
 			  <tbody>
+			  <c:choose var="i">
+			  
+			  </c:choose>
+			  
 			  <c:forEach var="i" items="${participantdto}">
 				<tr>
 					<td>${i.parti_num}</td>

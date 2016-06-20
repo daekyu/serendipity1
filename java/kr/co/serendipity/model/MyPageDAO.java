@@ -67,4 +67,13 @@ public interface MyPageDAO {
 	//보낸 요청 리스트
 	public List<ParticipantDTO> sendHistory(MemberDTO memberdto);
 	
+	//마이페이지 보낸 요청 글쓴이 이름 조인
+	public String writerName(int board_num);
+	
+	//보낸 요청 삭제
+	public void deleteSendHistory(ParticipantDTO participantdto);
+	
+	//받은 요청 리스트
+	public List<ParticipantDTO> acceptHistory(MemberDTO memberdto);
+	
 }

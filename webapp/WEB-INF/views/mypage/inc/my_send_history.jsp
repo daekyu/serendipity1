@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- my account - 내가 신청한 내역 -->
+<script type="text/javascript">
+		$(function(){
+			$('#delete').click(function(){
+				if(confirm("해당 요청을 취소 하시겠습니까?") == true){
+				location.href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&board_num=${i.board_num}";
+				}else{
+				    return false;
+				}
+			});
+		});
+</script>
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 
@@ -29,7 +40,7 @@
 			  <tbody>
 			  <c:forEach var="i" items="${participantdto}">
 				<tr>
-					<td>1</td>
+					<td>${i.parti_num}</td>
 					<td>신청한 날짜 - 테이블에 없는 컬럼 - 컬럼추가하셈</td>
 					<td>${i.board_num} - 글 제목 - 조인</td>
 					<td>내가 누구에게 신청했는지 - 조인</td>
@@ -43,7 +54,7 @@
 							</c:otherwise>
 						</c:choose>
 					</td>
-					<td><a href="" class="btn btn-danger">취소</button></td>
+					<td><a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.parti_num}" class="btn btn-danger" id="delete">취소</a></td>
 				</tr>
 				</c:forEach>
 			  </tbody>

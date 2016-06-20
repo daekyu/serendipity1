@@ -97,40 +97,39 @@
 					<c:forEach var="i" items="${board_list}">
 						<div class="col-sm-3 col-md-3 product rotation">
 							<div class="default">
-								<span class="sale top"></span> <a href="traveler_detail.htm?board_num=${i.board_num}"
+								<span class="sale top"></span> <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}"
 									class="product-image"> <img class="replace-2x"
-									src="${pageContext.request.contextPath}/resources/img/board_picture/${i.board_picture1}" alt="" title="" width="270"
+									src="${pageContext.request.contextPath}/resources/img/board_picture/${i.BOARD_PICTURE1}" alt="" title="" width="270"
 									height="270">
 								</a>
 								<div class="product-description">
 									<div class="vertical">
 										<h3 class="product-name">
-											<a href="traveler_detail.htm?board_num=${i.board_num}">${i.board_title}</a>
+											<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}">${i.BOARD_TITLE}</a>
 										</h3>
-										<div class="price">여행자 번호 : ${i.user_num}</div>
+										<div class="price">여행자 아이디 : ${i.ID}</div>
 									</div>
 								</div>
 							</div>
 
 							<div class="product-hover">
 								<h3 class="product-name">
-									<a href="traveler_detail.htm?board_num=${i.board_num}">${i.board_title}</a>
+									<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}">${i.BOARD_TITLE}</a>
 								</h3>
-								<div class="price">여행자 번호 : ${i.user_num}</div>
+								<div class="price">여행자 아이디 : ${i.ID}</div>
 								<a href="traveler_detail.htm?board_num=${i.board_num}" class="product-image"> <img
-									class="replace-2x" src="content/img/product-1.jpg" alt=""
+									class="replace-2x" src="${pageContext.request.contextPath}/resources/img/profile_picture/${i.PROFILE_PICTURE}" alt=""
 									title="" width="70" height="70">
 								</a>
 								<ul>
-									<li>지역: 붓싼</li>
-									<li>가격상한: ${i.price}</li>
+									<li>지역: ${i.LOCAL_NAME}</li>
+									<li>가격상한: ${i.PRICE}</li>
 									<li>
 										언어: 
 									</li>
 									<li>관심사: 맛집, 술, 술</li>
 								</ul>
-								<br> <span class="">하고싶은 여행: <a href="traveler_detail.htm?board_num=${i.board_num}">이소라는
-										예쁘다. 조인성은 인성이 좋다. 김하남은 이미 집에갔다.</a></span>
+								<br> <span class="">하고싶은 여행: <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}">${i.BOARD_CONTENT}</a></span>
 							</div>
 							<!-- .product-hover -->
 						</div>

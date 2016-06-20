@@ -66,7 +66,11 @@ public class MyPageController {
 	}
 
 	@RequestMapping("my_page_accept_history.htm")
-	public String acceptHistory() {
+	public String acceptHistory(MemberDTO memberdto, Model model) {
+		System.out.println("sendHistory entrance");
+		System.out.println("user_num : " + memberdto.getUser_num());
+		List<ParticipantDTO> participantdto = mypageservice.acceptHistory(memberdto);
+		
 		return "/mypage/my_page_accept_history";
 	}
 
@@ -75,8 +79,10 @@ public class MyPageController {
 		System.out.println("sendHistory entrance");
 		System.out.println("user_num : " + memberdto.getUser_num());
 		List<ParticipantDTO> participantdto = mypageservice.sendHistory(memberdto);
+		/*List<String> writername = mypageservice.writerName(participantdto);*/
 		
 		model.addAttribute("participantdto", participantdto);
+		/*model.addAttribute("writername", writername);*/
 		return "/mypage/my_page_send_history";
 	}
 
@@ -192,6 +198,15 @@ public class MyPageController {
 		}
 
 		return "redirect:/mypage/my_page.htm?user_num=" + memberdto.getUser_num();
+	}
+	
+	@RequestMapping("delete_send_history.htm")
+	public String deleteSendHistory(ParticipantDTO participantdto) {
+		System.out.println("deleteSendHistory entrance");
+		System.out.println("user_num : " + participantdto.getUser_num());
+		System.out.println("board_num : " + participantdto.getBoard_num());
+		mypageservice.deleteSendHistory(participantdto);
+		return "redirect:/mypage/my_page_send_history.htm?user_num=" + participantdto.getUser_num();
 	}
 
 }

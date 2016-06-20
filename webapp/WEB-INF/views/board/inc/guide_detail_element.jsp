@@ -132,7 +132,7 @@
 		  
 		  <div class="col-sm-7 col-md-7">
 			<div class="reviews-box table-responsive">
-			  <a href="#reviews" class="add-review">${boarddto.board_Title}</a>
+			  <a href="#reviews" class="add-review">${boarddto.board_title}</a>
 			</div>
 			<table class="table table-striped table-bordered text-center my-orders-table">
 				<thead>
@@ -326,7 +326,7 @@
 			</div><!-- #reviews -->
 			
 			<div class="tab-pane" id="reporting">
-			<form action="report_write.htm?reporter=${sessionScope.user_num}&villain=${memberdto.user_num}&board_num=${boarddto.board_num}" method="post">
+			<form action="${pageContext.request.contextPath}/report/report_write2.htm?reporter=${sessionScope.user_num}&villain=${memberdto.user_num}&board_num=${boarddto.board_num}" method="post">
 				<table class="table center">
 					<tr>
 						<td>

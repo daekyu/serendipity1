@@ -59,19 +59,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="updatePw">
-		update member set pw=#{param2} where user_num=#{param1}
+		update member set pw=#{pw} where user_num=#{user_num}
 	</update>
 	
 	<update id="updateHp">
-		update member set hp=#{param2} where user_num=#{param1}
+		update member set hp=#{hp} where user_num=#{user_num}
 	</update>
 	
 	<update id="updateEmail">
-		update member set email=#{param2} where user_num=#{param1}
+		update member set email=#{email} where user_num=#{user_num}
 	</update>
 	
 	<update id="updatePic">
-		update member set PROFILE_PICTURE=#{param2} where user_num=#{param1}
+		update member set PROFILE_PICTURE=#{profile_picture} where user_num=#{user_num}
 	</update>
 	
 	<select id="selectPic" resultType="String">
@@ -79,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="parseLocal" resultType="String">
-		select local_name from local where local_code=#{local}
+		select local_name from local where local_code=#{local_code}
 	</select>
 	
 	<select id="parseLang" resultType="String">

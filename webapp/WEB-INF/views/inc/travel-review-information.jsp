@@ -9,20 +9,20 @@
 		  </div>
 		  <div class="row manufactures manufactures-list">
 			
-			<!-- 여행정보 대표로 3개만 나오게 하는부분. 서울 경기 부산 정도만 넣으면 어떨지? -->
+			여행정보 대표로 3개만 나오게 하는부분. 서울 경기 부산 정도만 넣으면 어떨지?
 			<div class="make-wrapper">
 			  <a href="#" class="make">
 				<img class="replace-2x" src="content/img/make-2.png" width="128" height="128" alt="">
 			  </a>
-			</div><!--
+			</div>
 				
-			--><div class="make-wrapper">
+			<div class="make-wrapper">
 			  <a href="#" class="make">
 				<img class="replace-2x" src="content/img/make-3.png" width="128" height="128" alt="">
 			  </a>
-			</div><!--
+			</div>
 				
-			--><div class="make-wrapper">
+			<div class="make-wrapper">
 			  <a href="#" class="make">
 				<img class="replace-2x" src="content/img/make-4.png" width="128" height="128" alt="">
 			  </a>

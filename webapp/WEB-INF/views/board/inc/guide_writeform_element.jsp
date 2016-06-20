@@ -357,15 +357,15 @@
 					<tr>
 						<td><h5><spring:message code="board.guide_writeform2"/></h5></td>
 						<td colspan="5"><input class="form-control" type="text"
-							name="board_Title"></td>
+							name="board_title"></td>
 					</tr>
 					<tr>
 						<td><spring:message code="board.guide_writeform3"/></td>
 						<td><input class="form-control" type="text"
-							name="board_Capacity"></td>
+							name="board_capacity"></td>
 						<td><spring:message code="board.guide_writeform4"/></td>
 						<td><input class="form-control" type="text" id="datepicker"
-							name="board_Date"></td>
+							name="board_date"></td>
 					<%-- 	<td><spring:message code="board.guide_writeform5"/></td>
 						<td><input class="form-control" type="text" name="price"></td> --%>
 						
@@ -395,7 +395,7 @@
 						<td colspan="5">
 							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
 
-							<textarea name="board_Content" id="ckeditor"></textarea> 
+							<textarea name="board_content" id="ckeditor"></textarea> 
 							<script type="text/javascript">
 							
 

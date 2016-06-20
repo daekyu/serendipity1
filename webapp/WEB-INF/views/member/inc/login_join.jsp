@@ -21,6 +21,8 @@
 	$(function() {
 		var check;
 		
+		//$('#joinMember').hide();
+		
 		$('#local').hide();
 		
 		$('#country_code').change(function() {
@@ -231,9 +233,20 @@
 		  
 		  <!-- 회원가입 Form태그 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
-			<form class="form-box register-form form-validator" action="joinMember.htm" method="post" id="joinMember">
+			
 			  <h3 class="title">Registered customers</h3>
 			  <p>If you have an account with us, please log in.</p>
+			  <div class="form-group">
+			  	이메일: 
+			    <input type="email" class="form-control" id="confirm_email">
+			    			  
+			  </div>  
+			  <div class="form-group">
+			  	인증번호: 
+			    <input type="text" class="form-control" id="confirm_number">
+			    	<a href="#" class="btn btn-danger">인증번호 요청</a> <a href="#" class="btn btn-danger">인증번호 확인</a>		  
+			  </div> 
+			<form class="form-box register-form form-validator" action="joinMember.htm" method="post" id="joinMember">
 			  
 			  <div class="form-group">
 				<label><spring:message code="member.join_login_re"/><span class="required" >*</span></label>

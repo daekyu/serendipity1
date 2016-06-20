@@ -10,6 +10,9 @@ package kr.co.serendipity.model;
 public class HobbyDTO {
 	private String hobby_code;
 	private String hobby_name;
+	
+	private HobbyDTO() {} // Default constructor
+	
 	public String getHobby_code() {
 		return hobby_code;
 	}

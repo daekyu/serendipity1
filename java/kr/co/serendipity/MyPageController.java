@@ -10,11 +10,9 @@ package kr.co.serendipity;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.HobbyDTO;
 import kr.co.serendipity.model.LanguageDTO;
 import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.MyPageDAO;
 import kr.co.serendipity.model.ParticipantDTO;
 import kr.co.serendipity.service.MyPageService;
 
@@ -46,10 +42,9 @@ public class MyPageController {
 		MemberDTO dto = mypageservice.myPageGetMemberInfo(memberdto);
 		String pic = dto.getProfile_picture();
 		System.out.println("원본 사진명 : " + pic);
-		String local = dto.getLocal_code();
-		String Slocal = mypageservice.parseLocal(memberdto);
-		List Slang = mypageservice.parseLang(memberdto);
-		List Shobby = mypageservice.parseHobby(memberdto);
+		String Slocal = mypageservice.parseLocal(dto);
+		List Slang = mypageservice.parseLang(dto);
+		List Shobby = mypageservice.parseHobby(dto);
 		
 		model.addAttribute("memberdto", dto);
 		model.addAttribute("Slocal", Slocal);
@@ -95,92 +90,90 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "InfoModify.htm", method = RequestMethod.POST)
-	public String infoModify(HobbyDTO[] hobbydto, LanguageDTO[] languagedto, String profile, MemberDTO memberdto,
-			MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
+	public String infoModify(MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		System.out.println("InfoModify.htm POST entrance");
+		int user_num = Integer.parseInt(request.getParameter("user_num"));
+		String[] hobbies = request.getParameterValues("hobby_code");
+		String[] languages = request.getParameterValues("language_code");
 
-		if (hobbydto == null) {
-
+		if (hobbies == null) {
+			
 		} else {
-			int cnt = mypageservice.countHobby(memberdto);
+			
+			int cnt = mypageservice.countHobby(user_num);
 
 			if (cnt != 0) {
-				mypageservice.deleteHobby(memberdto);
+				mypageservice.deleteHobby(user_num);
 			}
-			for (int i = 0; i < hobbydto.length; i++) {
-				mypageservice.insertHobby(memberdto, hobbydto[i]);
+			for (int i = 0; i < hobbies.length; i++) {
+				mypageservice.insertHobby(user_num, hobbies[i]);
 			}
 		}
 
-		if (languagedto == null) {
+		if (languages == null) {
 
 		} else {
-			int cnt = mypageservice.countLanguage(memberdto);
+			int cnt = mypageservice.countLanguage(user_num);
 			if (cnt != 0) {
-				mypageservice.deleteLanguage(memberdto);
+				mypageservice.deleteLanguage(user_num);
 			}
-			for (int i = 0; i < languagedto.length; i++) {
-				mypageservice.insertLanguage(memberdto, languagedto[i]);
+			for (int i = 0; i < languages.length; i++) {
+				mypageservice.insertLanguage(user_num, languages[i]);
 			}
 		}
-
-		if (profile.equals("")) {
+		
+		String profile_description = request.getParameter("profile_description");
+		if (profile_description.equals("")) {
 
 		} else {
-			mypageservice.updateContent(memberdto);
+			mypageservice.updateContent(user_num, profile_description);
 		}
+		
+		if(!request.getFile("profile_picture").isEmpty()){
+			MultipartFile mf = request.getFile("profile_picture");
+			System.out.println("mf.getSize() : " + mf.getSize());
+			if(mf.getSize()!=0) {
+				
+				String uploadPath = request.getSession().getServletContext().getRealPath("resources/img/profile_picture");
 
-		MultipartFile mf = request.getFile("file");
-		System.out.println("mf.getSize() : " + mf.getSize());
-		if(mf.getSize()!=0) {
-			
-			String uploadPath = request.getSession().getServletContext().getRealPath("resources/img/profile_picture");
-		    //logger.info("실제 파일 업로드 경로 : "+uploadPath);
-		    System.out.println("실제 파일 업로드 경로 : " + uploadPath);
-			
-			//업데이트 전 프로필 사진 삭제
-			String beforeFile = mypageservice.selectPic(memberdto);
-			System.out.println("beforeFile : " + beforeFile);
-			if(beforeFile != null){
-				File file = new File(uploadPath+"\\"+beforeFile);
-			    if(file.exists()){
-			    	file.delete();
+				//업데이트 전 프로필 사진 삭제
+				String beforeFile = mypageservice.selectPic(user_num);
+
+				if(beforeFile != null){
+					File file = new File(uploadPath+"\\"+beforeFile);
+				    if(file.exists()){
+				    	file.delete();
+				    }
+				}
+				
+				// 파일 업로드
+
+				String fileName = mf.getOriginalFilename(); //파일명 얻기
+
+				//업로드 파일명을 변경후 저장			
+				String uploadedFileName =System.currentTimeMillis() + UUID.randomUUID().toString()+fileName;
+
+				MemberDTO memberdto = new MemberDTO();
+				memberdto.setUser_num(user_num);
+			    memberdto.setProfile_picture(uploadedFileName);
+
+			    mypageservice.updatePic(memberdto);
+			    
+			    //지정한주소에 파일 저장	    
+			    if(mf.getSize() != 0) {	    	
+			    	mf.transferTo(new File(uploadPath+"\\"+uploadedFileName));	    	
 			    }
 			}
-			
-			// 파일 업로드
-			System.out.println("파라미터이름 : " + mf.getName());
-			System.out.println("파일명 : " + mf.getOriginalFilename());
-		    System.out.println("파일사이즈 : " + mf.getSize());
-		    
-		    String name = mf.getName(); //필드 이름 얻기
-			String fileName = mf.getOriginalFilename(); //파일명 얻기
-			String contentType = mf.getContentType(); //컨텐츠 타입 얻기
-			//업로드 파일명을 변경후 저장			
-			String uploadedFileName =System.currentTimeMillis() 
-					+ UUID.randomUUID().toString()+fileName;
-			//fileName.substring(fileName.lastIndexOf("."))
-		    memberdto.setProfile_picture(uploadedFileName);
-		    /*dao.updatePic(user_num, uploadPath+"\\"+uploadedFileName);*/
-		    mypageservice.updatePic(memberdto);
-		    
-		    //지정한주소에 파일 저장	    
-		    if(mf.getSize() != 0) {	    	
-		    	mf.transferTo(new File(uploadPath+"\\"+uploadedFileName));	    	
-		    }
 		}
-		System.out.println();
-		System.out.println();
-		return "redirect:/mypage/my_page.htm?user_num=" + memberdto.getUser_num();
+		return "redirect:/mypage/my_page.htm?user_num=" + user_num;
 	}
 
 	@RequestMapping(value = "InfoModify2.htm", method = RequestMethod.POST)
-	public String infoModify2(MemberDTO memberdto)
-			throws ClassNotFoundException, SQLException {
+	public String infoModify2(MemberDTO memberdto) throws ClassNotFoundException, SQLException {
 		System.out.println("InfoModify2.htm POST entrance");
 
 		if (memberdto.getPw().equals("")) {
-
+			
 		} else {
 			mypageservice.updatePw(memberdto);
 		}

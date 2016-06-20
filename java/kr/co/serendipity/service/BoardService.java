@@ -15,8 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.ReportDAO;
-import kr.co.serendipity.model.ReportDTO;
+import kr.co.serendipity.model.MemberDTO;
 
 @Service
 public class BoardService {
@@ -72,11 +71,11 @@ public class BoardService {
 			}
 		}
 
-		boarddto.setBoard_Picture1(filenames.get(0));
-		boarddto.setBoard_Picture2(filenames.get(1));
-		boarddto.setBoard_Picture3(filenames.get(2));
-		boarddto.setBoard_Picture4(filenames.get(3));
-		boarddto.setBoard_Picture5(filenames.get(4));
+		boarddto.setBoard_picture1(filenames.get(0));
+		boarddto.setBoard_picture2(filenames.get(1));
+		boarddto.setBoard_picture3(filenames.get(2));
+		boarddto.setBoard_picture4(filenames.get(3));
+		boarddto.setBoard_picture5(filenames.get(4));
 
 		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
 		boarddao.Gwrite(boarddto);
@@ -108,11 +107,11 @@ public class BoardService {
 				}
 			}
 		}
-		boarddto.setBoard_Picture1(filenames.get(0));
-		boarddto.setBoard_Picture2(filenames.get(1));
-		boarddto.setBoard_Picture3(filenames.get(2));
-		boarddto.setBoard_Picture4(filenames.get(3));
-		boarddto.setBoard_Picture5(filenames.get(4));
+		boarddto.setBoard_picture1(filenames.get(0));
+		boarddto.setBoard_picture2(filenames.get(1));
+		boarddto.setBoard_picture3(filenames.get(2));
+		boarddto.setBoard_picture4(filenames.get(3));
+		boarddto.setBoard_picture5(filenames.get(4));
 
 		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
 		boarddao.write(boarddto);
@@ -124,11 +123,11 @@ public class BoardService {
 		return boarddto1;
 	}
 	
-	public BoardDTO writerDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
+	public MemberDTO writerDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
 		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
-		BoardDTO boarddto1 = boarddao.getBoardDetail(boarddto);
+		MemberDTO memberdto = boarddao.getWriterDetail(boarddto);
 		
-		return boarddto1;
+		return memberdto;
 	}
 	
 	public void boardDelete(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
@@ -137,42 +136,42 @@ public class BoardService {
 		BoardDTO boarddto1 = boarddao.getBoardDetail(boarddto);
 		String realFolder = "C:\\Kosta_112th\\Project_3rd\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Serendipity\\resources\\img\\board_picture";
 		//String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
-		if(boarddto1.getBoard_Picture1().equals("") ){
+		if(boarddto1.getBoard_picture1().equals("") ){
 			
 		}else{
-			File file = new File(realFolder+"\\"+boarddto1.getBoard_Picture1());
+			File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
 		    if(file.exists()){
 		    	file.delete();
 		    }
 		}
-		if(boarddto1.getBoard_Picture2().equals("") ){
+		if(boarddto1.getBoard_picture2().equals("") ){
 					
 				}else{
-					File file = new File(realFolder+"\\"+boarddto1.getBoard_Picture1());
+					File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
 				    if(file.exists()){
 				    	file.delete();
 				    }
 				}
-		if(boarddto1.getBoard_Picture3().equals("") ){
+		if(boarddto1.getBoard_picture3().equals("") ){
 			
 		}else{
-			File file = new File(realFolder+"\\"+boarddto1.getBoard_Picture1());
+			File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
 		    if(file.exists()){
 		    	file.delete();
 		    }
 		}
-		if(boarddto1.getBoard_Picture4().equals("") ){
+		if(boarddto1.getBoard_picture4().equals("") ){
 			
 		}else{
-			File file = new File(realFolder+"\\"+boarddto1.getBoard_Picture1());
+			File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
 		    if(file.exists()){
 		    	file.delete();
 		    }
 		}
-		if(boarddto1.getBoard_Picture5().equals("") ){
+		if(boarddto1.getBoard_picture5().equals("") ){
 			
 		}else{
-			File file = new File(realFolder+"\\"+boarddto1.getBoard_Picture1());
+			File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
 		    if(file.exists()){
 		    	file.delete();
 		    }

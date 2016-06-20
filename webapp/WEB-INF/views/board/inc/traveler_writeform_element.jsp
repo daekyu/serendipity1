@@ -24,10 +24,57 @@
 	}
 	
 	
+
+	
 	
 	$(function(){
 		
-	
+		
+		    var reg_number = /^[0-9]+$/;
+		      
+		      
+		      
+		      //게시판 유효성 검증 
+		      
+		      $('#success').click(function() {
+		    	  
+		    	  
+		            if($('#title_text').val() == '') {
+		               alert('글제목을 입력해주세요');
+		               $('#title_text').focus();
+		               return false;
+		            } else if($('#datepicker').val() == '') {
+		               alert('날짜를 입력해주세요');
+		               $('#datepicker').focus();
+		               return false;
+		            }  else if(!reg_number.test($('#before').val()) == true){
+		              alert('지불할 가격을 숫자로 입력해 주세요');
+		              $('#before').focus();
+		               return false;
+		           } else if($('#after').val() == ''){
+		                 alert('변환 버튼을 눌러 주세요');
+		                 $('#before').focus();
+		              return false;
+		              
+		            } else if($('#pic1').val()==''){
+		            	alert("사진을 1개 이상 등록해 주세요");
+		            	$('#pic1').focus();
+		            	return false;
+		            } else if($('#meeting_place').val() == '') {
+		                  alert('meeting point를 지도에서 선택해주세요');
+		                  $('#gmap_where').focus();
+		                  return false;
+		               }else{
+		               alert('글작성 완료')
+		            }
+		            
+		                     
+		            
+		         }); 
+		      
+		
+		
+				
 		
 		$('#pic2').hide();
 		$('#pic3').hide();
@@ -67,6 +114,10 @@
 		        return false;
 		    }
 		});
+		
+		
+		
+		
 	});
 
 	$('#ckeditor').keyup(function() {
@@ -137,7 +188,7 @@
 						        if($('#selectoption').val()=='KRW'){
 						        	
 						        	 $('#after').val(formatNumber($('#before').val())+'원');
-						        	 $('#before').val(formatNumber($('#before').val())+'원');
+						        	 $('#before').val(formatNumber($('#before').val()));
 				        		  }else if($('#selectoption').val()=='JPY'){
 				        			  swal({   title: "실시간 환율 정보",   
 				        				  text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
@@ -146,12 +197,12 @@
 				        			  });
 									 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
 									 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
-									 $('#before').val(formatNumber($('#before').val())+'엔');
+									 $('#before').val(formatNumber($('#before').val()));
 								
 				        		  }else if($('#selectoption').val()=='USD'){
 				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
 				        			  $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
-				        			  $('#before').val(formatNumber($('#before').val())+'달러');
+				        			  $('#before').val(formatNumber($('#before').val()));
 				        		  }
 						    }
 						});
@@ -366,6 +417,8 @@
 	
 	
 
+	
+	
 	      
 	
 	
@@ -401,7 +454,7 @@
 						</select></td>
 						<td><input class="form-control" id="before" type="text" name="#"></td>
 						<td><button type="button" id="convert" class="btn btn-success">변환</button></td>
-						<td><input class="form-control" id="after" type="text" name="price"></td>
+						<td><input class="form-control" id="after" type="text" name="price" disabled="disabled"></td>
 						
 
 						<%-- <td><input class="form-control" type="text"></td>
@@ -503,8 +556,7 @@
 	</article>
 	<!-- .content -->
 
-					
-<!-- .content -->
+
 
 </section>
 <!-- #main -->

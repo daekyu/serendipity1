@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css">		
+
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-	
+
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
+</script> 
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css">       	
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
-<script src=".././resources/js/jquery-2.1.3.min.js"></script>
+
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
 

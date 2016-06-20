@@ -15,6 +15,13 @@
 
 <script type="text/javascript">
 	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
+	
+	
+	
+	function formatNumber (num) {
+	    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+	}
+	
 
 	$(function() {
 		$('#pic2').hide();
@@ -120,19 +127,19 @@
 						        
 						        //$('#after').val($('#before').val() * )
 						        if($('#selectoption').val()=='KRW'){
-						        	 $('#after').val($('#before').val());
+						        	 $('#after').val(formatNumber($('#before').val()));
 				        		  }else if($('#selectoption').val()=='JPY'){
 				        		
 				        			  swal({   title: "실시간 환율 정보",   text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   imageUrl: ".././resources/img/yen.png",confirmButtonColor: "#DD6B55" });
 				        			  
 				        			  
 									/*  alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
-									 $('#after').val(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY));
+									 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY)));
 								
 				        		  }else if($('#selectoption').val()=='USD'){
 				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png" ,confirmButtonColor: "#DD6B55" });
 				        			  
-				        			  $('#after').val(Math.floor($('#before').val() * json.quotes.USDKRW));
+				        			  $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW)));
 				        		  }
 						    }
 						});

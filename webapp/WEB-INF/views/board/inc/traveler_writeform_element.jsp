@@ -33,8 +33,7 @@ href=".././resources/js/sweetalert.css">
 	$(function(){
 		
 		
-		    var reg_number = /^[0-9]+$/;
-		      
+		    var reg_number =/^[0-9]+$/;
 		      
 		      
 		      //게시판 유효성 검증 
@@ -50,7 +49,7 @@ href=".././resources/js/sweetalert.css">
 		               alert('날짜를 입력해주세요');
 		               $('#datepicker').focus();
 		               return false;
-		            }  else if(!reg_number.test($('#before').val()) == true){
+		            }  else if(reg_number.test(('#before').val()) != true){
 		              alert('지불할 가격을 숫자로 입력해 주세요');
 		              $('#before').focus();
 		               return false;
@@ -59,11 +58,7 @@ href=".././resources/js/sweetalert.css">
 		                 $('#before').focus();
 		              return false;
 		              
-		            } else if($('#pic1').val()==''){
-		            	alert("사진을 1개 이상 등록해 주세요");
-		            	$('#pic1').focus();
-		            	return false;
-		            } else if($('#meeting_place').val() == '') {
+		            }  else if($('#meeting_place').val() == '') {
 		                  alert('meeting point를 지도에서 선택해주세요');
 		                  $('#gmap_where').focus();
 		                  return false;
@@ -73,7 +68,7 @@ href=".././resources/js/sweetalert.css">
 		            
 		                     
 		            
-		         }); 
+		         });  
 		      
 		
 		
@@ -191,7 +186,7 @@ href=".././resources/js/sweetalert.css">
 						        if($('#selectoption').val()=='KRW'){
 						        	
 						        	 $('#after').val(formatNumber($('#before').val())+'원');
-						        	 $('#before').val(formatNumber($('#before').val()));
+						        	 $('#before').val(formatNumber($('#before').val())+'원');
 				        		  }else if($('#selectoption').val()=='JPY'){
 				        			  swal({   title: "실시간 환율 정보",   
 				        				  text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
@@ -200,12 +195,12 @@ href=".././resources/js/sweetalert.css">
 				        			  });
 									 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
 									 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
-									 $('#before').val(formatNumber($('#before').val()));
+									 $('#before').val(formatNumber($('#before').val())+'원');
 								
 				        		  }else if($('#selectoption').val()=='USD'){
 				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
 				        			  $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
-				        			  $('#before').val(formatNumber($('#before').val()));
+				        			  $('#before').val(formatNumber($('#before').val())+'원');
 				        		  }
 						    }
 						});

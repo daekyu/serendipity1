@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        SELECT count(*) FROM board where category_num=1
     </select>
     
-    <select id="getBoardDetail" resultType="kr.co.serendipity.model.BoardDTO">
-       SELECT * FROM board where board_num=#{board_num}
+    <select id="getBoardDetail" resultType="hashmap">
+       SELECT b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code, b.price, b.meeting_place, b.meeting_address,m.id,m.name,m.profile_description,l.local_name FROM board b, member m, local l where b.user_num=m.user_num and b.local_code=l.local_code and board_num=#{board_num}
     </select>
     
     <insert id="Gwrite">
@@ -64,10 +64,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
 		( SELECT * FROM BOARD where category_num=2 ORDER BY BOARD_NUM DESC) N) 
 		WHERE NUM <![CDATA[ <= ]]>4
- 	</select>
- 	
- 	<select id="getWriterDetail" resultType="kr.co.serendipity.model.MemberDTO">
- 		select * from member where user_num=#{user_num}
  	</select>
  	
  	<update id="update">
@@ -116,5 +112,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 INSERT INTO PARTICIPANT(parti_num, board_num, user_num, STATE, parti_date)
 	 VALUES(parti_seq.NEXTVAL, #{board_num}, #{user_num}, 'wait', SYSDATE)
 	</insert>
+	
+	<select id="getLanguages" resultType="hashmap">
+		select language_name, id from LANG_SELECT ls, LANGUAGE lang, member m where ls.LANGUAGE_CODE = lang.LANGUAGE_CODE and ls.USER_NUM=m.user_num and ls.user_num=#{user_num}
+	</select>
+	
+	<select id="getHobbies" resultType="hashmap">
+		select hobby_name, id from hobby_select hs, hobby h, member m where hs.HOBBY_CODE = h.HOBBY_CODE and hs.USER_NUM=m.user_num and hs.user_num=#{user_num}
+	</select>
 	
 </mapper>

@@ -123,6 +123,8 @@ public class BoardController {
 	public ModelAndView travelerDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		ModelAndView mav = new ModelAndView("/board/travel_detail");
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
+		mav.addObject("language",boardservice.getLanguages(boarddto));
+		mav.addObject("hobby", boardservice.getHobbies(boarddto));
 		return mav;
 	}
 
@@ -130,9 +132,10 @@ public class BoardController {
 	public ModelAndView guideDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		ModelAndView mav = new ModelAndView("/board/guide_detail");
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
-		mav.addObject("memberdto", boardservice.writerDetail(boarddto));
+		mav.addObject("language",boardservice.getLanguages(boarddto));
+		mav.addObject("hobby", boardservice.getHobbies(boarddto));
 		return mav;
-	} // 여기는 왜 MemberDTO도 들어가는지...?
+	}
 
 	@RequestMapping(value = "board_delete.htm")
 	public String boardDelete(BoardDTO boarddto, int check) throws ClassNotFoundException, SQLException {

@@ -6,10 +6,10 @@
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
-		<input type="hidden" id="lat" value="${boarddto.board_latitude}"/>
-		<input type="hidden" id="lng" value="${boarddto.board_longitude}"/>
-		<input type="hidden" id="meeting_place" value="${boarddto.meeting_place}"/>
-		<input type="hidden" id="meeting_address" value="${boarddto.meeting_address}"/>
+		<input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}"/>
+		<input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}"/>
+		<input type="hidden" id="meeting_place" value="${boarddto.MEETING_PLACE}"/>
+		<input type="hidden" id="meeting_address" value="${boarddto.MEETING_ADDRESS}"/>
 	<script type="text/javascript">
 		$(function(){
 			$('#delete').click(function(){
@@ -89,8 +89,8 @@
 			<div class="image-box">
 			  <span class="sale top"></span>
 			  <div class="general-img">
-				<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" 
-				data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${dto.board_Picture1}" width="500" height="500">
+				<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}" 
+				data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}" width="500" height="500">
 			  </div><!-- .general-img -->
 			  
 			  
@@ -107,20 +107,20 @@
 				</a>
 				
 				<div id="thumblist" class="thumblist">
-				  <a href="#" class="active"  data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture1}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture1}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture1}" width="500" height="500">
+				  <a href="#" class="active"  data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}" width="500" height="500">
 				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture2}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture2}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture2}" width="500" height="500">
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE2}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE2}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE2}" width="500" height="500">
 				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture3}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture3}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture3}" width="500" height="500">
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE3}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE3}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE3}" width="500" height="500">
 				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture4}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture4}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture4}" width="500" height="500">
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE4}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE4}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE4}" width="500" height="500">
 				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boraddto.board_picture5}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture5}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.board_picture5}" width="500" height="500">
+				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boraddto.BOARD_PICTURE5}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}">
+					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}" width="500" height="500">
 				  </a>
 				  <a href="#" data-image="content/img/single-3.jpg" data-zoom-image="content/img/single-3.jpg">
 					<img class="replace-2x" alt="" src="content/img/single-3.jpg" width="500" height="500">
@@ -132,7 +132,7 @@
 		  
 		  <div class="col-sm-7 col-md-7">
 			<div class="reviews-box table-responsive">
-			  <a href="#reviews" class="add-review">${boarddto.board_title}</a>
+			  <a href="#reviews" class="add-review">${boarddto.BOARD_TITLE}</a>
 			</div>
 			<table class="table table-striped table-bordered text-center my-orders-table">
 				<thead>
@@ -145,10 +145,18 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><a data-toggle="modal" data-target="#myModal">${memberdto.id}</a></td>
-						<td>한국어, 충남어</td>
-						<td>먹을거</td>
-						<td>충남</td>
+						<td><a data-toggle="modal" data-target="#myModal">${boarddto.ID}</a></td>
+						<td>
+							<c:forEach var="i" items="${language}">
+								${i.LANGUAGE_NAME} 
+							</c:forEach>
+						</td>
+						<td>
+							<c:forEach var="j" items="${hobby}">
+								${j.HOBBY_NAME} 
+							</c:forEach>
+						</td>
+						<td>${boarddto.LOCAL_NAME}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -157,14 +165,14 @@
 			</div>
 			
 			<div class="price-box">
-			  <span class="price">${boarddto.price} / a day</span>
+			  <span class="price">${boarddto.PRICE} / a day</span>
 			</div>
 			
 
 			<c:choose>
-				<c:when test="${sessionScope.user_num == boarddto.user_num}">
-					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${boarddto.board_num}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
-					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.board_num}&check=2"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+				<c:when test="${sessionScope.user_num == boarddto.USER_NUM}">
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${boarddto.BOARD_NUM}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
+					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=2"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
 				</c:when>
 				
 				<c:otherwise>
@@ -211,7 +219,7 @@
 			</div><!-- #reviews -->
 		  <!-- 지도 끝 -->
 			<div class="tab-pane" id="description">
-				${boarddto.board_content}<br><br><br><br>
+				${boarddto.BOARD_CONTENT}<br><br><br><br>
 				
 				추가사항
 				강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~ 
@@ -230,7 +238,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">${memberdto.id}</h4>
+        <h4 class="modal-title" id="myModalLabel">${boarddto.ID}</h4>
       </div>
       <div class="modal-body">
         <div class="product-tab">
@@ -257,10 +265,10 @@
 			</div>
 		  
 			<div class="employee-description col-sm-8 col-md-8">
-			  <h3 class="name">${memberdto.name}</h3>
+			  <h3 class="name">${boarddto.NAME}</h3>
 			  <div class="role"></div>
 			  <div>
-				<p>${memberdto.profile_description}</p>
+				<p>${boarddto.PROFILE_DESCRIPTION}</p>
 			  </div>
 			  <div class="social">
 <!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>
@@ -281,23 +289,27 @@
 				
 				<tr>
 					<th class="danger">지역</th>
-					<td>ㅁㄴㅇ ----join 으로 지역명 변환</td>
+					<td>${boarddto.LOCAL_NAME}</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">언어</th>
-					<td>한국어, 영어, 일본어 ------- join 필요</td>
+					<td>
+						<c:forEach var="i" items="${language}">
+							${i.LANGUAGE_NAME} 
+						</c:forEach>
+					</td>
 				</tr>
 				
 				<tr>
 					<th class="danger">취미</th>
-					<td>롤, 리그오브레전드, 엘오엘 ------ join 필요</td>
+					<td>
+						<c:forEach var="j" items="${hobby}">
+							${j.HOBBY_NAME} 
+						</c:forEach>
+					</td>
 				</tr>
 				
-				<tr>
-					<th class="danger">관심사</th>
-					<td>술, 음식 join ------ join 필요</td>
-				</tr>
 			</table>
 			</div>
 		  </div>
@@ -326,7 +338,7 @@
 			</div><!-- #reviews -->
 			
 			<div class="tab-pane" id="reporting">
-			<form action="${pageContext.request.contextPath}/report/report_write2.htm?reporter=${sessionScope.user_num}&villain=${memberdto.user_num}&board_num=${boarddto.board_num}" method="post">
+			<form action="${pageContext.request.contextPath}/report/report_write2.htm?reporter=${sessionScope.user_num}&villain=${boarddto.user_num}&board_num=${boarddto.board_num}" method="post">
 				<table class="table center">
 					<tr>
 						<td>

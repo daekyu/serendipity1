@@ -41,5 +41,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from member where id=#{id}
 	</select>
 	
+	<select id="checkFindIdEmailInfo" resultType="kr.co.serendipity.model.MemberDTO">
+		select * from member where name=#{name} and email=#{email}
+	</select>
 
+	<select id="checkFindPwEmailInfo" resultType="kr.co.serendipity.model.MemberDTO">
+		select * from member where name=#{name} and id=#{id} and email=#{email}
+	</select>
+	
+	<update id="changeToTempPw">
+		update member set pw=#{pw} where id=#{id}
+	</update>
 </mapper>

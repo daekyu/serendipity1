@@ -10,10 +10,15 @@ package kr.co.serendipity;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,7 +74,9 @@ public class MyPageController {
 	public String acceptHistory(MemberDTO memberdto, Model model) {
 		System.out.println("sendHistory entrance");
 		System.out.println("user_num : " + memberdto.getUser_num());
-		List<ParticipantDTO> participantdto = mypageservice.acceptHistory(memberdto);
+		List<HashMap<String, Object>> participantdto = mypageservice.acceptHistory(memberdto);
+		
+		model.addAttribute("participantdto", participantdto);
 		
 		return "/mypage/my_page_accept_history";
 	}
@@ -204,9 +211,17 @@ public class MyPageController {
 	public String deleteSendHistory(ParticipantDTO participantdto) {
 		System.out.println("deleteSendHistory entrance");
 		System.out.println("user_num : " + participantdto.getUser_num());
-		System.out.println("board_num : " + participantdto.getBoard_num());
+		System.out.println("parti_num : " + participantdto.getParti_num());
 		mypageservice.deleteSendHistory(participantdto);
 		return "redirect:/mypage/my_page_send_history.htm?user_num=" + participantdto.getUser_num();
+	}
+	
+	@RequestMapping("acceptRequest.htm")
+	public String acceptRequest(ParticipantDTO participantdto, HttpSession session) {
+		System.out.println("acceptRequest entrance");
+		System.out.println("parti_num : " + participantdto.getParti_num());
+		mypageservice.acceptRequest(participantdto);
+		return "redirect:/mypage/my_page_accept_history.htm?user_num=" + session.getAttribute("user_num");
 	}
 
 }

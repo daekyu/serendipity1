@@ -7,6 +7,7 @@
 
 package kr.co.serendipity.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -74,6 +75,8 @@ public interface MyPageDAO {
 	public void deleteSendHistory(ParticipantDTO participantdto);
 	
 	//받은 요청 리스트
-	public List<ParticipantDTO> acceptHistory(MemberDTO memberdto);
+	public List<HashMap<String, Object>> acceptHistory(MemberDTO memberdto);
 	
+	//받은 요청 수락
+	public void acceptRequest(ParticipantDTO participantdto);
 }

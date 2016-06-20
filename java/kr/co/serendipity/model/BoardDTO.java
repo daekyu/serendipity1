@@ -24,7 +24,7 @@ public class BoardDTO {
 	private String board_longitude;
 	private String local_code;
 	private int category_num;
-	private int price;
+	private String price;
 	private String meeting_place;
 	private String meeting_address;
 	public int getBoard_num() {
@@ -117,10 +117,10 @@ public class BoardDTO {
 	public void setCategory_num(int category_num) {
 		this.category_num = category_num;
 	}
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	public String getMeeting_place() {

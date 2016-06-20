@@ -18,7 +18,7 @@ public class ReportService {
 	SqlSession sqlsession;
 	
 	// 관리자 페이지에서 신고하는 글 상세보기
-	public HashMap<String, Object> ReportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
+	public HashMap<String, Object> reportDetail(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
 		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
 		return dao.reportDetail(reportdto);
 	}

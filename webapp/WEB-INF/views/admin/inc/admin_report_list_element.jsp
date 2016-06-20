@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <!-- 
 
 	@Author : 강대규
@@ -9,7 +5,34 @@
 	@Date : 16.06.10
 	@Desc : 관리자가 신고목록을 볼 수 있는 부분
  -->
-
+ 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+function getContextPath() {
+	   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	};
+function report_detail(index){
+	console.log(index);
+	$.ajax({
+		type : "post",
+		url : getContextPath() + "/report/report_detail.htm",
+		data : {
+			"report_num" : $('#report_num'+index).val()
+		},
+		success : function(data){
+			console.log("성공");
+			console.log(data);
+			$('#reporter').text(data.REPORTER);
+			$('#villain').text(data.VILLAIN);
+			$('#report_title').text(data.REPORT_TITLE);
+			$('#report_content').text(data.REPORT_CONTENT);
+		}
+	});
+}
+</script>
 <div class="breadcrumb-box breadcrumb-none"></div>
 
 <section id="main" class="page">
@@ -33,11 +56,14 @@
 			  </thead>
 			  
 			  <tbody>
-			  <c:forEach var="i" items="${report_list}">
+			  <c:forEach var="i" items="${report_list}" varStatus="j">
 			  	<tr>
-			  		<td>${i.REPORTER}</td>
-			  		<td>${i.VILLAIN}</td>
-			  		<td><a data-toggle="modal" data-target="#reportModal">${i.REPORT_TITLE}</a></td>
+			  		<td>${i.REPORTER} / ${j.index}</td>
+			  		<td>${i.VILLAIN} / ${i.REPORT_NUM}</td>
+			  		<td>
+			  			<a onclick="report_detail(${j.index})" data-toggle="modal" data-target="#reportModal">${i.REPORT_TITLE}</a>
+			  			<input type="hidden" id="report_num${j.index}" value="${i.REPORT_NUM}">
+			  		</td>
 			  	</tr>
 			  </c:forEach>
 			  </tbody>
@@ -72,20 +98,20 @@
 			<table class="table table-bordered">
 				<tr>
 					<th class="danger">신고한 사용자</th>
-					<td>여기는 신고한 사용자 아이디</td>
+					<td><span id="reporter"></span></td>
 				</tr>
 				<tr>
 					<th class="danger">신고당한 사용자</th>
-					<td>여기는 신고당한 사용자 아이디</td>
+					<td><span id="villain"></span></td>
 				</tr>
 				<tr>
 					<th class="danger">제목</th>
-					<td>여기가 제목 들어갈자리</td>
+					<td><span id="report_title"></span></td>
 				</tr>
 				
 				<tr>
 					<th class="danger">내용</th>
-					<td>여기는 내용 들어갈자리</td>
+					<td><span id="report_content"></span></td>
 				</tr>
 			</table>
 			</div>

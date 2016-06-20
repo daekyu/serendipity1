@@ -208,12 +208,18 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("delete_send_history.htm")
-	public String deleteSendHistory(ParticipantDTO participantdto) {
+	public String deleteSendHistory(ParticipantDTO participantdto, String check) {
 		System.out.println("deleteSendHistory entrance");
 		System.out.println("user_num : " + participantdto.getUser_num());
 		System.out.println("parti_num : " + participantdto.getParti_num());
+		System.out.println("check : " + check);
+		int check2 = Integer.parseInt(check);
 		mypageservice.deleteSendHistory(participantdto);
-		return "redirect:/mypage/my_page_send_history.htm?user_num=" + participantdto.getUser_num();
+		if(check2 == 2){
+			return "redirect:/mypage/my_page_accept_history.htm?user_num=" + participantdto.getUser_num();
+		}else{
+			return "redirect:/mypage/my_page_send_history.htm?user_num=" + participantdto.getUser_num();
+		}
 	}
 	
 	@RequestMapping("acceptRequest.htm")

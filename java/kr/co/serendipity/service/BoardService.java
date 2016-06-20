@@ -219,6 +219,11 @@ public class BoardService {
 		dao.travelerParty(boarddto);
 	}
 	
+	public void guideParty(int board_num, int user_num, int many) {
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.guideParty(board_num, user_num, many);
+	}
+	
 	public List<HashMap<String, Object>> getLanguages(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		return dao.getLanguages(boarddto);

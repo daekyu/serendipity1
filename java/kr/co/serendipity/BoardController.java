@@ -9,6 +9,7 @@ package kr.co.serendipity;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,7 +41,7 @@ public class BoardController {
 			page = Integer.parseInt(pg);
 		}
 		
-		List<BoardDTO> board_list = boardservice.getBoardList(page);
+		List<HashMap<String, Object>> board_list = boardservice.getBoardList(page);
 
 		int listCount = boardservice.getListCount();
 
@@ -73,7 +74,7 @@ public class BoardController {
 			page = Integer.parseInt(pg);
 		}
 
-		List<BoardDTO> board_list = boardservice.getGBoardList(page);
+		List<HashMap<String, Object>> board_list = boardservice.getGBoardList(page);
 		int listCount = boardservice.getGListCount();
 
 		maxpage = (int) ((double) listCount / 6 + 0.95);

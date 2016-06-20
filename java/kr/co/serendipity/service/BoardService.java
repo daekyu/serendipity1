@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,7 @@ public class BoardService {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	public List<BoardDTO> getBoardList(int page) throws ClassNotFoundException, SQLException {
+	public List<HashMap<String, Object>> getBoardList(int page) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		return dao.getBoardList(page);
 	}
@@ -33,7 +34,7 @@ public class BoardService {
 		return dao.getListCount();
 	}
 	
-	public List<BoardDTO> getGBoardList(int page) throws ClassNotFoundException, SQLException {
+	public List<HashMap<String, Object>> getGBoardList(int page) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		return dao.getGBoardList(page);
 	}

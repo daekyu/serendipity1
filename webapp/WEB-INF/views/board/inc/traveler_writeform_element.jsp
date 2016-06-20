@@ -25,7 +25,9 @@
 	
 	
 	
-	$(function() {
+	$(function(){
+		
+	
 		
 		$('#pic2').hide();
 		$('#pic3').hide();
@@ -133,7 +135,9 @@
 						        
 						        //$('#after').val($('#before').val() * )
 						        if($('#selectoption').val()=='KRW'){
+						        	
 						        	 $('#after').val(formatNumber($('#before').val())+'원');
+						        	 $('#before').val(formatNumber($('#before').val())+'원');
 				        		  }else if($('#selectoption').val()=='JPY'){
 				        			  swal({   title: "실시간 환율 정보",   
 				        				  text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
@@ -142,10 +146,12 @@
 				        			  });
 									 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
 									 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
+									 $('#before').val(formatNumber($('#before').val())+'엔');
 								
 				        		  }else if($('#selectoption').val()=='USD'){
 				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
 				        			  $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
+				        			  $('#before').val(formatNumber($('#before').val())+'달러');
 				        		  }
 						    }
 						});
@@ -360,7 +366,7 @@
 	
 	
 
-	
+	      
 	
 	
 </script>
@@ -378,15 +384,15 @@
 				<table class="table center">
 					<tr>
 						<td><h6><spring:message code="board.traveler_writeform2"/></h6></td>
-						<td colspan="5"><input class="form-control" type="text"
+						<td colspan="5"><input class="form-control" type="text" id="title_text"
 							name="board_title"></td>
 					</tr>
 					<tr>
-						<td><spring:message code="board.traveler_writeform3"/></td>
+						<td><h6><spring:message code="board.traveler_writeform3"/></h6></td>
 
 						<td><input class="form-control" type="text" id="datepicker" name="board_date"></td>
 
-						<td>지불할 가격</td>
+						<td><h6><spring:message code="board.traveler_writeform4"/></h6></td>
 						<td><select id="selectoption">
   							<option value="KRW">KRW</option>
   							<option value="JPY">JPY</option>
@@ -405,7 +411,7 @@
 
 					</tr>
 					<tr>
-						<td><spring:message code="board.traveler_writeform5"/></td>
+						<td><h6><spring:message code="board.traveler_writeform5"/></h6></td>
 						<td colspan="5">
 							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
@@ -421,7 +427,7 @@
 					</tr>
 
 					<tr>
-						<td><spring:message code="board.traveler_writeform6"/></td>
+						<td><h6><spring:message code="board.traveler_writeform6"/></h6></td>
 						<!-- <td id="addPic" colspan="4"> -->
 						<td>
 							<input type="file" id="pic1" name="pic">
@@ -440,7 +446,7 @@
 
 
 					<tr>
-						<td>Meeting Point</td>
+						<td><h6>Meeting Point</h6></td>
 						<td colspan="5">
 							<div id="container" class="row">
 								<div id="gmap_canvas" style="height: 400px;width:auto"></div>
@@ -475,8 +481,8 @@
 										</select>
 									</div>
 									<input type="hidden" id="lat" name="board_latitude" /> <input
-										type="hidden" id="lng" name="board_longitude" /> <input
-										type="hidden" id="meeting_place" name="meeting_place" /> <input
+										 type="hidden" id="lng" name="board_longitude" /> <input
+										 type="hidden" id="meeting_place" name="meeting_place" /> <input
 										type="hidden" id="meeting_address" name="meeting_address" />
 									<div id="button1" class="btn btn-success"
 										onclick="findPlaces(); return false;">Search for objects</div>
@@ -497,27 +503,7 @@
 	</article>
 	<!-- .content -->
 
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td><spring:message code="board.traveler_writeform6"/></td>
-					<td id="addPic" colspan="4"><input type="file" id="pic0"
-						name="pic0"></td>
-					<td align="center">
-						<button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>
-						<button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="board.traveler_writeform10"/></button>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="6" align="center"><input type="submit"
-						id="success" class="btn btn-success" value="<spring:message code="board.traveler_writeform11"/>"><input
-						type="reset" class="btn btn-danger" value="<spring:message code="board.traveler_writeform12"/>"></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-</article>
+					
 <!-- .content -->
 
 </section>

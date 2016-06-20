@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- my account - 내가 신청한 내역 -->
 
 <div class="breadcrumb-box breadcrumb-none"></div>
@@ -27,14 +27,28 @@
 				</tr>
 			  </thead>
 			  <tbody>
+			  <c:forEach var="i" items="${participantdto}">
 				<tr>
 					<td>1</td>
-					<td>2016.06.01</td>
-					<td>어디어디갈거임</td>
-					<td>leesr1203</td>
-					<td>요청 대기중</td>
-					<td><button type="button" class="btn btn-success">수락</button> <button type="button" class="btn btn-danger">거절</button></td>
+					<td>${i.PARTI_DATE}</td>
+					<td>${i.BOARD_TITLE}</td>
+					<td>${i.ID}</td>
+					<td>
+						<c:choose>
+							<c:when test="${i.STATE eq 'wait'}">
+								승낙 대기중
+							</c:when>
+							<c:otherwise>
+								승낙!
+							</c:otherwise>
+						</c:choose>
+					</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}" class="btn btn-success">수락</a>
+						<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}" class="btn btn-danger">거절</a>
+					</td>
 				</tr>
+				</c:forEach>
 			  </tbody>
 			</table>
 		  </div>

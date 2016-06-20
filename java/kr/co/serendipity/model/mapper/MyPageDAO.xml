@@ -107,8 +107,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from participant where parti_num=#{parti_num}
 	</delete>
 	
-	<select id="acceptHistory" resultType="kr.co.serendipity.model.ParticipantDTO">
-		select * from participant where user_num=#{user_num}
+	<select id="acceptHistory" resultType="hashmap">
+		select * from participant p join board b on p.board_num = b.board_num join member m on p.USER_NUM = m.USER_NUM where b.user_num=#{user_num}
 	</select>
+	
+	<update id="acceptRequest">
+		update participant set state='accept' where parti_num=#{parti_num}
+	</update>
 	
 </mapper>

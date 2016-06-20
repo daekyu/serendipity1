@@ -3,8 +3,11 @@
 
 <script src="resources/js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="resources/js/sweetalert.css">	
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css">		
 
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
+</script> 
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css">       
 <script type="text/javascript"
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"

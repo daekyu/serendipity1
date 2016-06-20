@@ -30,7 +30,7 @@
 			  <thead>
 				<tr class="first last">
 				  <th>#</th>
-				  <th>Date(신청한 날짜)-없는 컬럼인데? - 컬럼추가하셈</th>
+				  <th>신청한 날짜</th>
 				  <th><span class="nobr">글 제목</span></th>
 				  <th>신청받은 사람 아이디</th>
 				  <th>상태</th>
@@ -38,10 +38,14 @@
 				</tr>
 			  </thead>
 			  <tbody>
+			  <c:choose var="i">
+			  
+			  </c:choose>
+			  
 			  <c:forEach var="i" items="${participantdto}">
 				<tr>
 					<td>${i.parti_num}</td>
-					<td>신청한 날짜 - 테이블에 없는 컬럼 - 컬럼추가하셈</td>
+					<td>${i.parti_date}</td>
 					<td>${i.board_num} - 글 제목 - 조인</td>
 					<td>내가 누구에게 신청했는지 - 조인</td>
 					<td>

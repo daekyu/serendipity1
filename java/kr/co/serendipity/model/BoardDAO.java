@@ -23,13 +23,10 @@ public interface BoardDAO {
 	public List<HashMap<String, Object>> getBoardList(int page) throws ClassNotFoundException, SQLException;
 	
 	//글 상세 -- 가이드 구함, 여행자 구함 게시판 공통
-	public BoardDTO getBoardDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
+	public HashMap<String, Object> getBoardDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
 	
 	//글 삭제 -- 가이드 구함, 여행자 구함 게시판 공통
 	public void deleteBoard(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
-	
-	//글 작성자 정보 가져오기
-	public MemberDTO getWriterDetail(BoardDTO boardDTO) throws ClassNotFoundException, SQLException;
 	
 	//글 수정
 	public void update(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
@@ -77,5 +74,10 @@ public interface BoardDAO {
 	//-----------------------------가이드 구함, 여행자 구함 신청
 	
 	public void travelerParty(BoardDTO boarddto);
-
+	
+	//글 쓴 사람의 언어 선택한거
+	public List<HashMap<String, Object>> getLanguages(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
+	
+	//글 쓴 사람의 취미 선택한거
+	public List<HashMap<String, Object>> getHobbies(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
 }

@@ -4,8 +4,14 @@ public class EmailDTO {
 	private String subject;
 	private String content;
 	private String regdate;
-	private String reciever;
+	private String receiver;
 	
+	public String getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
 	public String getSubject() {
 		return subject;
 	}
@@ -24,12 +30,7 @@ public class EmailDTO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public String getReciever() {
-		return reciever;
-	}
-	public void setReciever(String reciever) {
-		this.reciever = reciever;
-	}
+	
 	
 	
 }

@@ -118,61 +118,54 @@ public class BoardService {
 		boarddao.write(boarddto);
 	}
 	
-	public BoardDTO getBoardDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
+	public HashMap<String, Object> getBoardDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
 		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
-		BoardDTO boarddto1 = boarddao.getBoardDetail(boarddto);
+		HashMap<String, Object> boarddto1 = boarddao.getBoardDetail(boarddto);
 		return boarddto1;
-	}
-	
-	public MemberDTO writerDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
-		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
-		MemberDTO memberdto = boarddao.getWriterDetail(boarddto);
-		
-		return memberdto;
 	}
 	
 	public void boardDelete(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
 		
 		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
-		BoardDTO boarddto1 = boarddao.getBoardDetail(boarddto);
+		HashMap<String, Object> boarddto1 = boarddao.getBoardDetail(boarddto);
 		String realFolder = "C:\\Kosta_112th\\Project_3rd\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Serendipity\\resources\\img\\board_picture";
 		//String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
-		if(boarddto1.getBoard_picture1().equals("") ){
+		if(boarddto1.get("BOARD_PICTURE1").equals("") ){
 			
 		}else{
-			File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
+			File file = new File(realFolder+"\\"+boarddto1.get("BOARD_PICTURE1"));
 		    if(file.exists()){
 		    	file.delete();
 		    }
 		}
-		if(boarddto1.getBoard_picture2().equals("") ){
+		if(boarddto1.get("BOARD_PICTURE2").equals("") ){
 					
 				}else{
-					File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
+					File file = new File(realFolder+"\\"+boarddto1.get("BOARD_PICTURE2"));
 				    if(file.exists()){
 				    	file.delete();
 				    }
 				}
-		if(boarddto1.getBoard_picture3().equals("") ){
+		if(boarddto1.get("BOARD_PICTURE3").equals("") ){
 			
 		}else{
-			File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
+			File file = new File(realFolder+"\\"+boarddto1.get("BOARD_PICTURE3"));
 		    if(file.exists()){
 		    	file.delete();
 		    }
 		}
-		if(boarddto1.getBoard_picture4().equals("") ){
+		if(boarddto1.get("BOARD_PICTURE4").equals("") ){
 			
 		}else{
-			File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
+			File file = new File(realFolder+"\\"+boarddto1.get("BOARD_PICTURE4"));
 		    if(file.exists()){
 		    	file.delete();
 		    }
 		}
-		if(boarddto1.getBoard_picture5().equals("") ){
+		if(boarddto1.get("BOARD_PICTURE5").equals("") ){
 			
 		}else{
-			File file = new File(realFolder+"\\"+boarddto1.getBoard_picture1());
+			File file = new File(realFolder+"\\"+boarddto1.get("BOARD_PICTURE5"));
 		    if(file.exists()){
 		    	file.delete();
 		    }
@@ -224,5 +217,15 @@ public class BoardService {
 	public void travelerParty(BoardDTO boarddto) {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		dao.travelerParty(boarddto);
+	}
+	
+	public List<HashMap<String, Object>> getLanguages(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.getLanguages(boarddto);
+	}
+	
+	public List<HashMap<String, Object>> getHobbies(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.getHobbies(boarddto);
 	}
 }

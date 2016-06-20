@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:property="http://www.springframework.org/schema/p"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:context="http://www.springframework.org/schema/context"
+      xmlns:property="http://www.springframework.org/schema/p"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
                   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                   http://www.springframework.org/schema/context
                   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-	 
-	<bean id="driverManagerDataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@192.168.0.129:1521:XE"></property>
-		<property name="username" value="serendipity"></property>
-		<property name="password" value="1004"></property>
-	</bean>
-	
-	 <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
-	 	<property name="dataSource" ref="driverManagerDataSource"/>
-	 	<property name="mapperLocations" value="classpath*:kr/co/serendipity/model/mapper/*xml"/>
-	 </bean>
-	 
-	 <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-	 	<constructor-arg index="0" ref="sqlSessionFactoryBean"></constructor-arg>
-	 </bean>
-	 
-	 
-	 <!-- 공통빈 -->
-	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="100000000" />
+    
+   <bean id="driverManagerDataSource"
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+      <property name="url" value="jdbc:oracle:thin:@192.168.0.129:1521:XE"></property>
+      <property name="username" value="serendipity"></property>
+      <property name="password" value="1004"></property>
+   </bean>
+   
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+       <property name="dataSource" ref="driverManagerDataSource"/>
+       <property name="mapperLocations" value="classpath*:kr/co/serendipity/model/mapper/*xml"/>
+    </bean>
+    
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+       <constructor-arg index="0" ref="sqlSessionFactoryBean"></constructor-arg>
+    </bean>
+    
+    
+    <!-- 공통빈 -->
+   <!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="maxUploadSize" value="100000000" />
         <property name="maxInMemorySize" value="100000000" />
-	</bean> -->
-	
-	
-	<!-- 추가(트랜잭션) : Spring이 제공하는 것 사용 -->
-	
-	
-	
-	<!-- File Upload Resolver -->
-	<!-- <bean id="multipartResolver" 
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		maximum file size in bytes 50MB
-		<property name="maxUploadSize" value="52428800" />
-	</bean> -->
+   </bean> -->
+   
+   
+   <!-- 추가(트랜잭션) : Spring이 제공하는 것 사용 -->
+   
+   
+   
+   <!-- File Upload Resolver -->
+   <!-- <bean id="multipartResolver" 
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      maximum file size in bytes 50MB
+      <property name="maxUploadSize" value="52428800" />
+   </bean> -->
 </beans>

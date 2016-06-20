@@ -39,7 +39,7 @@ href=".././resources/js/sweetalert.css">
 		      
 		      //게시판 유효성 검증 
 		      
-		      $('#success').click(function() {
+		      /* $('#success').click(function() {
 		    	  
 		    	  
 		            if($('#title_text').val() == '') {
@@ -50,7 +50,7 @@ href=".././resources/js/sweetalert.css">
 		               alert('날짜를 입력해주세요');
 		               $('#datepicker').focus();
 		               return false;
-		            }  else if(!reg_number.test($('#before').val()) == true){
+		            }  else if(reg_number.test($('#before').val()) != true){
 		              alert('지불할 가격을 숫자로 입력해 주세요');
 		              $('#before').focus();
 		               return false;
@@ -68,13 +68,13 @@ href=".././resources/js/sweetalert.css">
 		                  $('#gmap_where').focus();
 		                  return false;
 		               }else{
-		               alert('글작성 완료')
+		               alert('글작성 완료');
 		            }
 		            
 		                     
 		            
 		         }); 
-		      
+		       */
 		
 		
 				
@@ -191,7 +191,7 @@ href=".././resources/js/sweetalert.css">
 						        if($('#selectoption').val()=='KRW'){
 						        	
 						        	 $('#after').val(formatNumber($('#before').val())+'원');
-						        	 $('#before').val(formatNumber($('#before').val()));
+						        	 $('#before').val(formatNumber($('#before').val()) + '원');
 				        		  }else if($('#selectoption').val()=='JPY'){
 				        			  swal({   title: "실시간 환율 정보",   
 				        				  text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
@@ -457,7 +457,7 @@ href=".././resources/js/sweetalert.css">
 						</select></td>
 						<td><input class="form-control" id="before" type="text" name="#"></td>
 						<td><button type="button" id="convert" class="btn btn-success">변환</button></td>
-						<td><input class="form-control" id="after" type="text" name="price" disabled="disabled"></td>
+						<td><input class="form-control" id="after" type="text" name="price" readonly></td>
 						
 
 						<%-- <td><input class="form-control" type="text"></td>

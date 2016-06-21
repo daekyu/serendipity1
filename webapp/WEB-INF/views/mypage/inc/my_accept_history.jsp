@@ -1,6 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- my account - 내가 신청한 내역 -->
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+		$(function(){
+			$('#delete').click(function(){
+				if(confirm("해당 요청을 취소 하시겠습니까?") == true){
+				location.href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1";
+				}else{
+				    return false;
+				}
+			});
+			
+			$('#accept').click(function(){
+				if(confirm("수락 하시겠습니까?") == true){
+				location.href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}";
+				}else{
+				    return false;
+				}
+			});
+		});
+</script>
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 
@@ -51,8 +71,8 @@
 						</c:choose>
 					</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}" class="btn btn-success">수락</a>
-						<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger">거절</a>
+						<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}" class="btn btn-success" id="accept">수락</a>
+						<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger" id="delete">거절</a>
 					</td>
 				</tr>
 				</c:forEach>

@@ -19,7 +19,6 @@ href=".././resources/js/sweetalert.css">
    
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 <script type="text/javascript">
-<<<<<<< HEAD
    window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 
    
@@ -34,7 +33,7 @@ href=".././resources/js/sweetalert.css">
    $(function(){
       
       
-          var reg_number = /^[0-9]+$/;
+          var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
             
             
             
@@ -51,19 +50,14 @@ href=".././resources/js/sweetalert.css">
                      alert('날짜를 입력해주세요');
                      $('#datepicker').focus();
                      return false;
-                  }  else if($('#before').val() == ''){
-<<<<<<< HEAD
-                    alert('지불할 가격을 입력해 주세요');
-=======
+                  }  else if(!reg_number.test($('#before').val()) == true){
                     alert('지불할 가격을 숫자로 입력해 주세요');
->>>>>>> locale
                     $('#before').focus();
                      return false;
                  } else if($('#after').val() == ''){
                        alert('변환 버튼을 눌러 주세요');
                        $('#before').focus();
-                    return false;
-                    
+                    return false; 
                   } else if($('#pic1').val()==''){
                      alert("사진을 1개 이상 등록해 주세요");
                      $('#pic1').focus();
@@ -79,11 +73,7 @@ href=".././resources/js/sweetalert.css">
                            
                   
                }); 
-<<<<<<< HEAD
-       
-=======
              
->>>>>>> locale
       
       
             
@@ -201,7 +191,7 @@ href=".././resources/js/sweetalert.css">
                              
                               $('#after').val(formatNumber($('#before').val())+'원');
                               $('#before').val(formatNumber($('#before').val()) + '원');
-          	               }else if($('#selectoption').val()=='JPY'){
+                            }else if($('#selectoption').val()=='JPY'){
                                swal({   title: "실시간 환율 정보",   
                                   text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
                                   imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
@@ -209,12 +199,12 @@ href=".././resources/js/sweetalert.css">
                                });
                             /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
                             $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
-                            $('#before').val(formatNumber($('#before').val()));
+                            $('#before').val(formatNumber($('#before').val())+ '엔');
                         
                             }else if($('#selectoption').val()=='USD'){
                                swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
                                $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
-                               $('#before').val(formatNumber($('#before').val()));
+                               $('#before').val(formatNumber($('#before').val())+ '달러');
                             }
                       }
                   });
@@ -243,211 +233,6 @@ href=".././resources/js/sweetalert.css">
  
 
 
-=======
-	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
-
-	
-	function formatNumber (num) {
-	    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
-	}
-	
-	
-
-	
-	
-	$(function(){
-		
-		
-		    var reg_number =/^[0-9]+$/;
-		      
-		      
-		      //게시판 유효성 검증 
-		      
-		      $('#success').click(function() {
-		    	  
-		    	  
-		            if($('#title_text').val() == '') {
-		               alert('글제목을 입력해주세요');
-		               $('#title_text').focus();
-		               return false;
-		            } else if($('#datepicker').val() == '') {
-		               alert('날짜를 입력해주세요');
-		               $('#datepicker').focus();
-		               return false;
-		            }  else if(reg_number.test(('#before').val()) != true){
-		              alert('지불할 가격을 숫자로 입력해 주세요');
-		              $('#before').focus();
-		               return false;
-		           } else if($('#after').val() == ''){
-		                 alert('변환 버튼을 눌러 주세요');
-		                 $('#before').focus();
-		              return false;
-		              
-		            }  else if($('#meeting_place').val() == '') {
-		                  alert('meeting point를 지도에서 선택해주세요');
-		                  $('#gmap_where').focus();
-		                  return false;
-		               }else{
-		               alert('글작성 완료')
-		            }
-		            
-		                     
-		            
-		         });  
-		      
-		
-		
-				
-		
-		$('#pic2').hide();
-		$('#pic3').hide();
-		$('#pic4').hide();
-		$('#pic5').hide(); 
-		
-		var index = 2;
-		$('#addBtn')
-				.click(
-						function() {
-							if (index <= 5) {
-								/* $('#addPic')
-										.append(
-												'<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
-								$('#pic'+index).show();
-								index++;
-							} else {
-								alert('더 이상 추가할 수 없습니다');
-							}
-						});
-		$('#minusBtn').click(function() {
-			if (index > 2) {
-				index--;
-				$('#pic'+index).val("");
-				$('#pic'+index).hide();
-				/* $('#pic' + index).remove(); */
-			} else {
-				alert('더 이상 삭제할 수 없습니다.');
-			}
-		});
-		
-		$('#gmap_where').keydown(function (e) {
-		    if(e.keyCode == 13)
-		    {
-		        $('#button2').trigger('click');
-
-		        return false;
-		    }
-		});
-		
-		
-		
-		
-	});
-
-	$('#ckeditor').keyup(function() {
-		console.log($('#ckeditor').val());
-	});
-
-	$('#submit3').click(function() {
-		// ckeditor 내용 추출
-		var sendNoteData = CKEDITOR.instances.ckeditor.getData();
-		console.log(CKEDITOR.instances.ckeditor.getData());
-		// 히든 인풋에 추출한 내용 삽입.
-		$('#board_Content').val(sendNoteData);
-
-		// 강제 서브밋
-		$('#bofom').submit();
-	});
-
-
-	$(function(){	
-		$("#convert").click(function(){
-			    
-				if ($('#before').val() == ''){
-					alert("값을 입력해주세요");
-					$("#before").focus();
-					return false;
-				}else{
-					/* $.ajax({
-			        	  type : "post",
-			        	  url : "traveler_writeform.htm",
-			        	  data : {"before" : $('#before').val()},
-			        	  success : function(data) {
-			        		  if($('#selecoption').val()=='KRW'){
-			        			  
-			        		  }else if($('#selecoption').val()=='JPY'){
-			        			  
-			        		  }else($('#selecoption').val()=='USD'){
-			        			  
-			        		  }
-			        		  
-			        		  }
-			        	  
-				
-			          }); */
-			          
-						var endpoint = 'live'
-						var access_key = '56370edf846ec46335b07809733c304e';
-
-						// get the most recent exchange rates via the "live" endpoint:
-						$.ajax({
-						    url: 'http://apilayer.net/api/' + endpoint + '?access_key=' + access_key,   
-						    dataType: 'jsonp',
-						    success: function(json) {
-								console.log(json);
-								
-						        // exchange rata data is stored in json.quotes
-						       /*  alert('한화 달러');
-						        alert(json.quotes.JPYUSD);
-						        alert(json.quotes.USDGBP);
-						        alert(json.quotes.USDJPY);
-						        alert(json.quotes.USDKRW);
-						        // source currency is stored in json.source
-						        alert(json.source);
-						        
-						        // timestamp can be accessed in json.timestamp
-						        alert(json.timestamp); */
-						        
-						        //$('#after').val($('#before').val() * )
-						        if($('#selectoption').val()=='KRW'){
-						        	
-						        	 $('#after').val(formatNumber($('#before').val())+'원');
-						        	 $('#before').val(formatNumber($('#before').val())+'원');
-				        		  }else if($('#selectoption').val()=='JPY'){
-				        			  swal({   title: "실시간 환율 정보",   
-				        				  text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
-				        				  imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
-				        					 
-				        			  });
-									 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
-									 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
-									 $('#before').val(formatNumber($('#before').val())+'원');
-								
-				        		  }else if($('#selectoption').val()=='USD'){
-				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
-				        			  $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
-				        			  $('#before').val(formatNumber($('#before').val())+'원');
-				        		  }
-						    }
-						});
-					
-					
-					
-				
-			          
-				}
-			});
-			
-			});
-			
-
-	
-		$(function(){
- 		$("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());
- 			});
-	
-		
-		// set endpoint and your access key
->>>>>>> 99d4bad889961f62ecafb0666fdcbcfad9d40d47
       
    var geocoder;
    var map;
@@ -670,7 +455,7 @@ href=".././resources/js/sweetalert.css">
                     
                   </select></td>
                   <td><input class="form-control" id="before" type="text" name="#"></td>
-                  <td><button type="button" id="convert" class="btn btn-success">변환</button></td>
+                  <td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.traveler_writeform13"/></button></td>
                   <td><input class="form-control" id="after" type="text" name="price"></td>
                   
 
@@ -700,11 +485,11 @@ href=".././resources/js/sweetalert.css">
                   <td><h6><spring:message code="board.traveler_writeform6"/></h6></td>
                   <!-- <td id="addPic" colspan="4"> -->
                   <td>
-                     <input type="file" id="pic1" name="pic">
-                     <input type="file" id="pic2" name="pic">
-                     <input type="file" id="pic3" name="pic">
-                     <input type="file" id="pic4" name="pic">
-                     <input type="file" id="pic5" name="pic">
+                     <input type="file" id="pic1" name="pic" >
+                     <input type="file" id="pic2" name="pic" >
+                     <input type="file" id="pic3" name="pic" >
+                     <input type="file" id="pic4" name="pic" >
+                     <input type="file" id="pic5" name="pic" >
                   </td>
                   <td align="center">
                      <button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>

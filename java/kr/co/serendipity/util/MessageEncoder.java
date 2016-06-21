@@ -35,6 +35,7 @@ import kr.co.serendipity.model.Message;
 import kr.co.serendipity.model.UsersMessageDTO;
 
 
+
 /**
 * @Class Name : MessageEncoder.java
 * @Description : 서버에서 클라이언트로 전달되는 메시지를 encoding하는 클래스

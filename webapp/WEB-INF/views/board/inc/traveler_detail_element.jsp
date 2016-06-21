@@ -235,8 +235,9 @@ href=".././resources/js/sweetalert.css">
 						<option></option>
 						
 					</select>
-					
-					<a class="btn add-cart btn-default btn-lg" href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}">신청하기</a>
+					<c:if test="${!empty sessionScope.user_num}">
+						<a class="btn add-cart btn-default btn-lg" href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}">신청하기</a>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 		  </div>

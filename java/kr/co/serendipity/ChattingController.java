@@ -13,6 +13,7 @@ import kr.co.serendipity.util.IncludedInfo;
 @RequestMapping("/chatting/")
 public class ChattingController {
 	
+	
 	/**
 	 * 웹소켓 메신저 접속화면으로 이동한다.
 	 * @param session 사용자세션

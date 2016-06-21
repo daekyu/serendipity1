@@ -30,6 +30,7 @@ import kr.co.serendipity.model.ChatMessageDTO;
 import kr.co.serendipity.model.Message;
 
 
+
 /**
 * @Class Name : MessageDecoder.java
 * @Description : 클라이언트에서 서버로 전달되는 메시지를 decoding하는 클래스

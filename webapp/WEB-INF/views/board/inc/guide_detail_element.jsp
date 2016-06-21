@@ -314,6 +314,7 @@ href=".././resources/js/sweetalert.css">
 										<option>16.06.02 - 2명남음</option>
 									</select>
 									<%-- ${pageContext.request.contextPath} --%>
+									<c:if test="${!empty sessionScope.user_num}">
 									<input type="hidden" name="board_num"
 										value="${boarddto.BOARD_NUM}"> <input type="hidden"
 										name="user_num" value="${sessionScope.user_num}"> 
@@ -329,6 +330,7 @@ href=".././resources/js/sweetalert.css">
 												class="fa fa-angle-down"></i></a>
 										</div>
 									</div>
+									</c:if>
 								</form>
 							</c:otherwise>
 						</c:choose>

@@ -58,21 +58,21 @@
 					<div class="sort-catalog">
 						<div class="btn-group show-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Show: <span>12</span> <span
+								data-toggle="dropdown" href="#">Show: <span>${basicshow}</span> <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">6</a></li>
-								<li><a href="#">7</a></li>
-								<li><a href="#">8</a></li>
-								<li><a href="#">9</a></li>
-								<li><a href="#">10</a></li>
-								<li><a href="#">11</a></li>
-								<li><a href="#">12</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=1">1</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=2">2</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=3">3</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=4">4</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=5">5</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=6">6</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=7">7</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=8">8</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=9">9</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=10">10</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=11">11</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=12">12</a></li>
 							</ul>
 						</div>
 						<!-- .show -->
@@ -268,7 +268,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page-1}">
+										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page-1}&show=${basicshow}">
 											<i class="fa fa-angle-left"></i>
 									</a></li>
 								</c:otherwise>
@@ -281,7 +281,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${a}">
+											href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${a}&show=${basicshow}">
 												${a}</a></li>
 									</c:otherwise>
 								</c:choose>
@@ -293,7 +293,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page+1}">
+										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page+1}&show=${basicshow}">
 											<i class="fa fa-angle-right"></i>
 									</a></li>
 								</c:otherwise>
@@ -317,5 +317,6 @@
 			</div>
 		</div>
 		<!-- .container -->
+		</div>
 </section>
 <!-- #main -->

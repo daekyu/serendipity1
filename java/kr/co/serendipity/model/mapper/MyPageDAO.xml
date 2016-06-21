@@ -108,8 +108,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="acceptHistory" resultType="hashmap">
-		select * from participant p join board b on p.board_num = b.board_num join member m on p.USER_NUM = m.USER_NUM where b.user_num=#{user_num}
+	SELECT * FROM
+		( SELECT ROWNUM NUM, N.* FROM 
+			(select * from participant p join board b on p.board_num = b.board_num join member m on p.USER_NUM = m.USER_NUM where b.user_num=#{0.user_num}) n
+		) WHERE NUM BETWEEN 1 + (#{1}-1)*10 AND 10 + (#{1}-1)*10
 	</select>
+	
+	 <select id="getAcceptListCount" resultType="Integer">
+       select count(*) from participant p join board b on p.board_num = b.board_num where b.user_num=#{user_num}
+    </select>
 	
 	<update id="acceptRequest">
 		update participant set state='accept' where parti_num=#{parti_num}

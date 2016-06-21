@@ -1,5 +1,6 @@
 package kr.co.serendipity.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.HobbyDTO;
 import kr.co.serendipity.model.LanguageDTO;
 import kr.co.serendipity.model.MemberDTO;
@@ -60,9 +62,14 @@ public class MyPageService {
 		return dao.sendHistory(memberdto);
 	}
 	
-	public List<HashMap<String, Object>> acceptHistory(MemberDTO memberdto){
+	public List<HashMap<String, Object>> acceptHistory(MemberDTO memberdto, int page){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		return dao.acceptHistory(memberdto);
+		return dao.acceptHistory(memberdto, page);
+	}
+	
+	public int getAcceptListCount(MemberDTO memberdto) throws ClassNotFoundException, SQLException {
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		return dao.getAcceptListCount(memberdto);
 	}
 	
 	public int countHobby(int user_num){

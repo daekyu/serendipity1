@@ -110,6 +110,7 @@ public class BoardController {
 
 	@RequestMapping(value = "traveler_writeform.htm", method = RequestMethod.GET)
 	public ModelAndView travelerWriteform(BoardDTO boarddto) {
+		System.out.println("traveler_writeform entrance");
 		ModelAndView mav = new ModelAndView("/board/traveler_writeform");
 		mav.addObject("user_num", boarddto.getUser_num());
 		return mav;

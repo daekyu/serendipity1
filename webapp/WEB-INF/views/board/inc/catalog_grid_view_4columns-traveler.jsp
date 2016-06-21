@@ -317,5 +317,6 @@
 			</div>
 		</div>
 		<!-- .container -->
+		</div>
 </section>
 <!-- #main -->

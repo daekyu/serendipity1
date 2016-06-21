@@ -68,7 +68,7 @@ href=".././resources/js/sweetalert.css">
                         $('#gmap_where').focus();
                         return false;
                      }else{
-                     alert('글작성 완료');
+                    	 swal("글 작성 완료!", "success")
                   }
                }); 
             

@@ -25,7 +25,6 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#chart1">Chart 1</a></li>
 						<li><a href="#chart2">Chart 2</a></li>
-
 					</ul>
 					<!-- .nav-tabs -->
 					<div class="tab-content">

@@ -75,4 +75,14 @@ public class MessageController {
 	public void changeNotificationStates(RCV_MessageDTO rcv_messagedto) {
 		messageservice.changeNotificationState(rcv_messagedto);
 	}
+	
+	@RequestMapping("getRcvMessageDetail.htm")
+	public @ResponseBody RCV_MessageDTO getRcvMessageDetail(RCV_MessageDTO rcv_messagedto) {
+		return messageservice.getRcvMessageDetail(rcv_messagedto);
+	}
+	
+	@RequestMapping("getSendMessageDetail.htm")
+	public @ResponseBody MessageDTO getSendMessageDetail(MessageDTO messagedto) {
+		return messageservice.getSendMessageDetail(messagedto);
+	}
 }

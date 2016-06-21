@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -328,7 +330,21 @@ public class BoardController {
 	
 	@RequestMapping(value = "travelerParty.htm")
 	public ModelAndView travelerParty(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		System.out.println("travelerParty entrance");
 		boardservice.travelerParty(boarddto);
+		ModelAndView mav = new ModelAndView("redirect:/board/traveler_detail.htm?board_num=" + boarddto.getBoard_num());
+		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
+		return mav;
+	}
+	
+	@RequestMapping(value = "guideParty.htm")
+	public ModelAndView guideParty(HttpServletRequest request, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+		System.out.println("guideParty entrance");
+		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		int user_num = Integer.parseInt(request.getParameter("user_num"));
+		int many = Integer.parseInt(request.getParameter("many"));
+		boarddto.setBoard_num(board_num);
+		boardservice.guideParty(board_num, user_num, many);
 		ModelAndView mav = new ModelAndView("redirect:/board/traveler_detail.htm?board_num=" + boarddto.getBoard_num());
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
 		return mav;

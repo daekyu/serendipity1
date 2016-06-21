@@ -46,72 +46,95 @@
       
       <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
       <script type="text/javascript">
+      function getContextPath() {
+    	   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+    	   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+      };
       
-         $(function() {
+      $(function() {
+    	 $('#receiver').keyup(function() {
+    		 $.ajax({
+    			 type : "post",
+                 url : getContextPath() + "/message/getMemberList.htm",
+                 data : {"id": $('#receiver').val()},
+                 success : function(data) {
+                	 var printdata = "";
 
-            $('#receiver').keyup(function() {
-               $.ajax({
-                      type : "post",
-                      url : "getMemberList.htm",
-                      data : {"id": $('#receiver').val()},
-                      success : function(data) {
-
-                        var printdata = "";
-
-                        $('#div_view').empty();
-                        
-                        
-                        $.each(data, function(index, item) {
-                           printdata += "<li id='list" + index + "'>" + item.id + "</li>";
-                         });
-                        
-                        if($('#receiver').val() ==""){
-                           $('#div_view').empty();
-                        }
-                        else{
-                           $('#div_view').append("<ul>" + printdata + "</ul>");
-                        }
-                            
-                        
-                        $.each(data, function(index, item) {
-                           $('#list' + index).click(function() {
-                              $('#receiver').val($('#list' + index).text());
-                              $('#div_view').empty();
-                              
-                              $.ajax({
-                                      type : "post",
-                                      url : "getReceiverNum.htm",
-                                      data : {"id" : $('#receiver').val()},
-                                      success : function(data) {
-                                         console.log(data.user_num);
-                                         $('#receiver_num').val(data.user_num);
-                                      }
-                                   });
-                           });
-                           
-                           $('#receiver').focusout(function() {
-                              $('#div_view').empty();
-                              $.ajax({
-                                      type : "post",
-                                      url : "getReceiverNum.htm",
-                                      data : {"id" : $('#receiver').val()},
-                                      success : function(data) {
-                                         if(data == ""){
-                                            // 뭔가 추가하자...
-                                         } else {
-                                            $('#receiver_num').val(data.user_num);
-                                            
-                                         }
-                                      }
-                                   });
-                              
-                           });
-                        });
-                      }
-                   });
-               
-            });
-         });
+                     $('#div_view').empty();
+                     
+                     $.each(data, function(index, item) {
+                         printdata += "<li><span id='list" + index + "' onclick='inputReceiver(" + index + ")'>" + item.id + "</span></li>";
+                     });
+                     
+                     if($('#receiver').val() ==""){
+                         $('#div_view').empty();
+                     } else {
+                    	 $('#div_view').append("<ul>" + printdata + "</ul>");
+                     }
+                     
+                     $('#receiver').focusout(function() {
+                         //$('#div_view').empty();
+                         $.ajax({
+                                 type : "post",
+                                 url : getContextPath() + "/message/getReceiverNum.htm",
+                                 data : {"id" : $('#receiver').val()},
+                                 success : function(data) {
+                                    if(data == ""){
+                                       // 뭔가 추가하자...
+                                    } else {
+                                       $('#receiver_num').val(data.user_num);
+                                    }
+                                 }
+                              });
+                         
+                      });
+                 }
+    		 });
+    	 });
+      });
+      
+      function inputReceiver(index) {
+    	  $('#receiver').val($('#list' + index).text());
+          $('#div_view').empty();
+          console.log("111111111 : " + $('#receiver').val());
+          $.ajax({
+                  type : "post",
+                  url : getContextPath() + "/message/getReceiverNum.htm",
+                  data : {"id" : $('#receiver').val()},
+                  success : function(data) {
+                     console.log(data.user_num);
+                     $('#receiver_num').val(data.user_num);
+                  }
+          });
+      }
+      
+      function getRcvMessageDetail(message_num) {
+    	  $.ajax({
+    		 type : "post",
+    		 url : getContextPath() + "/message/getRcvMessageDetail.htm",
+    		 data : {
+    			 "message_num" : message_num
+    		 },
+    		 success : function(data) {
+    			 $('#myModalLabel').text(data.message_title);
+    			 $('#myModalBody').text(data.message_content);
+    		 }
+    	  });
+      }
+      
+      function getSendMessageDetail(message_num) {
+    	  $.ajax({
+    		 type : "post",
+    		 url : getContextPath() + "/message/getSendMessageDetail.htm",
+    		 data : {
+    			 "message_num" : message_num
+    		 },
+    		 success : function(data) {
+    			 $('#myModalLabel').text(data.message_title);
+    			 $('#myModalBody').text(data.message_content);
+    		 }
+    	  });
+      }
       </script>
    </head>
    
@@ -147,24 +170,8 @@
                         
                         <td>
                            
-                           <a data-toggle="modal" data-target="#msg_content">${i.MESSAGE_TITLE}</a>      
-                           <!-- Modal -->
-                           <div class="modal fade" id="msg_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                             <div class="modal-dialog" role="document">
-                               <div class="modal-content">
-                                 <div class="modal-header">
-                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                   <p class="modal-title" id="myModalLabel">${i.MESSAGE_TITLE}</p>
-                                 </div>
-                                 <div class="modal-body">
-                                      ${i.MESSAGE_CONTENT}
-                                 </div>
-                                 <div class="modal-footer">
-                                   <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
+                           <a onclick="getRcvMessageDetail(${i.MESSAGE_NUM})" data-toggle="modal" data-target="#msg_content">${i.MESSAGE_TITLE}</a>      
+                           
                         </td>
                         
                         <td>${i.MESSAGE_DATE}</td>
@@ -238,24 +245,7 @@
                         
                         <td>
                            
-                           <a data-toggle="modal" data-target="#msg_content">${i.MESSAGE_TITLE}</a>      
-                           <!-- Modal -->
-                           <div class="modal fade" id="msg_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                             <div class="modal-dialog" role="document">
-                               <div class="modal-content">
-                                 <div class="modal-header">
-                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                   <p class="modal-title" id="myModalLabel">${i.MESSAGE_TITLE}</p>
-                                 </div>
-                                 <div class="modal-body">
-                                      ${i.MESSAGE_CONTENT}
-                                 </div>
-                                 <div class="modal-footer">
-                                   <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                                 </div>
-                               </div>
-                             </div>
-                           </div>
+                           <a onclick="getSendMessageDetail(${i.MESSAGE_NUM})" data-toggle="modal" data-target="#msg_content">${i.MESSAGE_TITLE}</a>
                         </td>
                         
                         <td>${i.MESSAGE_DATE}</td>
@@ -270,6 +260,24 @@
          </div><!-- 보낸 쪽지함 -->
          
         </div><!-- .tab-content -->
+      </div>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="msg_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <p class="modal-title" id="myModalLabel"></p>
+            </div>
+            <div class="modal-body" id="myModalBody">
+                 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+            </div>
+          </div>
+        </div>
       </div>
       
 

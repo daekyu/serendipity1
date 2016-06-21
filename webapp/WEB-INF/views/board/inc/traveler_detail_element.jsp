@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+
+
+<script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css"> 
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
+</script> 
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css">  
 <script type="text/javascript" src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
@@ -11,7 +19,7 @@
 		<input type="hidden" id="meeting_place" value="${boarddto.MEETING_PLACE}"/>
 		<input type="hidden" id="meeting_address" value="${boarddto.MEETING_ADDRESS}"/>
 	<script type="text/javascript">
-		$(function(){
+	/* 	$(function(){
 			$('#delete').click(function(){
 				if(confirm("글을 삭제 하시겠습니까?") == true){
 				location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=1";
@@ -19,7 +27,38 @@
 				    return false;
 				}
 			});
-		});
+		}); */
+		
+		
+		
+		$(function() {
+			   $('#delete').click(function() {
+
+			swal({   title: "정말로 삭제하시겠습니까?",   
+			      
+			      type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   
+			      confirmButtonText: "삭제",   cancelButtonText: "취소",   
+			      closeOnConfirm: false,   closeOnCancel: false }, 
+			      function(isConfirm){     
+			         if(isConfirm==true){
+			   
+			               
+			            
+			         
+			         swal("삭제되었습니다.");  
+			        location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=1"; 
+			         location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=1" 
+			      
+			      }else{     
+			    	 
+			    	  swal("취소되었습니다 :)");   } });
+
+			   });
+			});
+		
+		
+		
+		
 		
 		var map;
 		var marker;
@@ -38,7 +77,8 @@
 		    var myOptions = { // default map options
 		        zoom: 18,
 		        center: myLatlng,
-		        icon: marker
+		        icon: marker,
+		        scrollwheel: false
 		    };
 		    
 		    map = new google.maps.Map(document.getElementById('gmap_detail'), myOptions);
@@ -74,7 +114,7 @@
 		  
 		// initialization
 		google.maps.event.addDomListener(window, 'load', initialize);
-		
+	/* 	google.maps.disableScrollWheelZoom();  */
 
 		 $(function() {
 		$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());
@@ -183,9 +223,9 @@
 			<c:choose>
 				<c:when test="${sessionScope.user_num == boarddto.USER_NUM}">
 					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${boarddto.BOARD_NUM}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
-					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=1"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+					<a class="btn btn-danger btn-sm" id="delete" ><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
 				</c:when>
-				
+				<%-- href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=1" --%>
 				<c:otherwise>
 				
 					<td><input class="form-control" type="text" id="datepicker" name="board_date"></td>

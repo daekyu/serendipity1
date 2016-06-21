@@ -50,7 +50,9 @@ href=".././resources/js/sweetalert.css">
                      alert('날짜를 입력해주세요');
                      $('#datepicker').focus();
                      return false;
-                  }  else if(!reg_number.test($('#before').val()) == true){
+
+                  }  else if($('#before').val() == ''){
+
                     alert('지불할 가격을 숫자로 입력해 주세요');
                     $('#before').focus();
                      return false;
@@ -67,17 +69,10 @@ href=".././resources/js/sweetalert.css">
                         $('#gmap_where').focus();
                         return false;
                      }else{
-                     alert('글작성 완료');
+                    	 swal("글 작성 완료!", "success")
                   }
-                  
-                           
-                  
                }); 
-             
-      
-      
-            
-      
+
       $('#pic2').hide();
       $('#pic3').hide();
       $('#pic4').hide();
@@ -227,13 +222,11 @@ href=".././resources/js/sweetalert.css">
       
       // set endpoint and your access key
       
-   
-      
+
    
  
 
 
-      
    var geocoder;
    var map;
    var markers = Array();

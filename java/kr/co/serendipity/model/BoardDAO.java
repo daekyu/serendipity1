@@ -75,6 +75,8 @@ public interface BoardDAO {
 	
 	public void travelerParty(BoardDTO boarddto);
 	
+	public void guideParty(int board_num, int user_num, int many);
+	
 	//글 쓴 사람의 언어 선택한거
 	public List<HashMap<String, Object>> getLanguages(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
 	

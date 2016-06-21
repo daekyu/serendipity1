@@ -68,7 +68,17 @@ $(function() {
 		        					body : data[i].ID + "님이 댓글을 달았습니다.",
 		        					icon : getContextPath() + "/resources/img/profile_picture/" + data[i].PROFILE_PICTURE
 		        			}
-						    var notification = new Notification("Serendipity", options);
+							Notification.requestPermission(function (permission) {
+								// Whatever the user answers, we make sure Chrome store the information
+								if(!('permission' in Notification)) {
+									Notification.permission = permission;
+								}
+								
+								// If the user is okay, let's create a notification
+								if (permission === "granted") {
+									var notification = new Notification("Serendipity", options);
+								}
+	        			    });
 							$.ajax({
 								type : "post",
 								url : getContextPath() + "/travel_review/changeReplyState.htm",
@@ -93,7 +103,17 @@ $(function() {
 		        					body : data[i].ID + "님이 회원님의 " + data[i].REVIEW_NUM + "번 게시물을 좋아합니다.",
 		        					icon : getContextPath() + "/resources/img/profile_picture/" + data[i].PROFILE_PICTURE
 		        			}
-						    var notification = new Notification("Serendipity", options);
+							Notification.requestPermission(function (permission) {
+								// Whatever the user answers, we make sure Chrome store the information
+								if(!('permission' in Notification)) {
+									Notification.permission = permission;
+								}
+								
+								// If the user is okay, let's create a notification
+								if (permission === "granted") {
+									var notification = new Notification("Serendipity", options);
+								}
+	        			    });
 							$.ajax({
 								type : "post",
 								url : getContextPath() + "/travel_review/changeLikeState.htm",

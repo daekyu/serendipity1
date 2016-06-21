@@ -9,7 +9,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
+</script> 
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css">    
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 
@@ -30,21 +33,24 @@
 		
 		$('#req_confirm_num').click(function() {
 			if($('#email').val() == '') {
-				alert('E-mail주소를 입력해주세요');
+			/* 	alert('E-mail주소를 입력해주세요'); */
+				swal("E-mail 주소를 입력해주세요")
 			} else {
-				alert('입력하신 E-mail주소로 인증번호가 발송됩니다.');
+				/* alert('입력하신 E-mail주소로 인증번호가 발송됩니다.'); */
+				swal("입력하신 E-mail 주소로 인증번호가 발송됩니다.")
 				$.ajax({
 		        	  type : "post",
 		        	  url : getContextPath() + "/email/confirm_email.htm",
 		        	  data : {"receiver" : $('#email').val()},
 		        	  success : function(data) {
-		        		  alert('인증번호를 발송했습니다.');
+		        		  swal("인증번호를 발송했습니다!", "메일을 확인해주세요!")
 		        		  $('#confirm').click(function() {
 		        			  console.log(data);
 		        			  if($('#confirm_number').val() != data) {
-		        				  alert('인증번호가 정확하지 않습니다');
+		        				  swal("인증정보가 정확하지 않습니다!")
+		        				 
 		        			  } else {
-		        				  alert('인증번호가 확인되었습니다.');
+		        				  swal("인증정보가 확인되었습니다!")
 		        				  $('#confirm_val').val('1');
 		        			  }
 		        		  })
@@ -68,11 +74,13 @@
 		//로그인 유효성 검증 
 		$('#btn_login_form').click(function() {
 			if($('#id_login').val() == '') {
-				alert('아이디를 입력해주세요');
+				swal("아이디를 입력해주세요!")
+				/* alert('아이디를 입력해주세요'); */
 				$('#id_login').focus();
 				return false;
 			} else if($('#pw_login').val() == '') {
-				alert('비밀번호를 입력해주세요');
+				
+				swal("비밀번호를 입력해주세요!")
 				$('#pw_login').focus();
 				return false;
 			} else if ($('#id_login').val() != '' && $('#pw_login').val() != ''){
@@ -87,7 +95,8 @@
 		        	  success : function(data) {
 		        		  console.log(data);
 		        		  if(data == 0) {
-		        			  alert("비밀번호가 틀렸거나 존재하지 않는 아이디입니다.");
+		        			  swal("비밀번호가 틀렸거나 존재하지 않는 아이디입니다.")
+		        			 /*  alert("비밀번호가 틀렸거나 존재하지 않는 아이디입니다."); */
 		        			  $('#id_login').focus();
 		        			  return false;
 		        		  } else {
@@ -109,51 +118,64 @@
 			var name= $('#name'), id = $('#id_1'), pw_1 = $('#pw_1'), confirm_pw = $('confirm_pw'), hp = $('#hp'), email = $('#email'), gender = $('#gender'), age=$('#age'), country_code=$('#country_code'), local_code=$('#local_code');
 
 			if (!reg_name.test(name.val()) == true) {
-				alert("이름을 입력해주세요");
+				swal("이름을 입력해주세요")
+				/* alert("이름을 입력해주세요"); */
 				name.focus();
 				return false;
 				
 			} else if (!reg_id.test(id.val()) == true) {
-				alert("아이디는 4-12자 이여야 하며 \n"
-						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.");
+				swal("아이디는 4-12자 이여야 하며 \n"
+						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.")
+				/* alert("아이디는 4-12자 이여야 하며 \n"
+						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다."); */
 				id.focus();
 				return false;
 			 }else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
-				alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)');
+					swal("비밀번호를 다시 입력해주세요.(최소 4자리 이상)")
+				 /* alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)'); */
 				pw_1.focus();
 				return false;
 			} else if ($('#pw_1').val()!=$('#confirm_pw').val()){ // 비밀번호 확인 검사
-				alert('비밀번호가 일치하지 않습니다');
+				/* alert('비밀번호가 일치하지 않습니다'); */
+				swal("비밀번호가 일치하지 않습니다")
 				confirm_pw.focus();
 				return false;
 			} else if (gender.val() == "") { // 이름 검사
-				alert('성별 선택해 주세요.');
+				/* alert('성별 선택해 주세요.'); */
+				swal("성별 선택해 주세요.")
 				gender.focus();
 				return false;
 			} else if (!reg_age.test(age.val()) == true) {
-				alert("나이를 숫자로 입력해주세요");
+				/* alert("나이를 숫자로 입력해주세요"); */
+				swal("나이를 숫자로 입력해주세요")
 				age.focus();
 				return false;
 			}else if (country_code.val() == "") { // 이름 검사
-				alert('국적을 선택해 주세요.');
+				/* alert('국적을 선택해 주세요.'); */
+				swal("국적을 선택해 주세요.")
 				country_code.focus();
 				return false;
 			} else if (!reg_hp.test(hp.val()) == true) { //휴대폰 유효성
-				alert('휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)');
+				/* alert('휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)'); */
+				swal("휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)")
 				hp.focus();
 				return false;
 			} else if (!reg_email.test(email.val()) == true) {
-				alert('이메일 주소는 @와.를 입력해야합니다.');
+				/* alert('이메일 주소는 @와.를 입력해야합니다.'); */
+				swal("이메일 주소는 @와.를 입력해야합니다.")
 				email.focus();
 				return false;
 			} else if($('#confirm_val').val() == '0') {
-				alert('E-mail 인증이 완료되지 않았습니다.');
+				/* alert('E-mail 인증이 완료되지 않았습니다.'); */
+				swal("E-mail 인증이 완료되지 않았습니다.")
 				return false;
 			} else if($('#id_check_val').val() == '0') {
-				alert('아이디 중복검사를 먼저 해주시기 바랍니다.');
+				/* alert('아이디 중복검사를 먼저 해주시기 바랍니다.'); */
+				swal("아이디 중복검사를 먼저 해주시기 바랍니다.")
 				return false;
 			} else{
-				alert("회원가입 성공");
+				/* alert("회원가입 성공"); */
+				swal("회원가입이 되었습니다!","성공","success")
 			} 
 
 			
@@ -163,7 +185,8 @@
 		$("#id_button").click(function(){
 		    
 			if ($('#id_1').val() == ''){
-				alert("ID를 입력해주세요");
+			/* 	alert("ID를 입력해주세요"); */
+				swal("ID를 입력해주세요.")
 				$("#id_1").focus();
 				return false;
 				
@@ -175,10 +198,12 @@
 		        	  success : function(data) {
 		        		  console.log(data);
 		        		  if(data == 0) {
-		        			  alert("사용가능한 아이디입니다.");
+		        			 /*  alert("사용가능한 아이디입니다."); */
+		        			  swal("사용가능한 아이디입니다.")
 		        			  $('#id_check_val').val('1');
 		        		  } else {
-		        			  alert("이미 존재하는 아이디입니다.");
+		        			 /*  alert("이미 존재하는 아이디입니다."); */
+		        			  swal("이미 존재하는 아이디입니다.")
 		        			  $('#id_1').focus();
 		        		  }
 		        	  }
@@ -195,12 +220,15 @@
 			
 			
     		if (!reg_id.test(id_login.val()) == true) {
-				alert("아이디는 4-12자 이여야 하며 \n"
-						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.");
+				/* alert("아이디는 4-12자 이여야 하며 \n"
+						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다."); */
+				swal("아이디는 4-12자 이여야 하며 \n"
+						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.")
 				id_login.focus();
 				return false;
 			}else if (!reg_pw.test(password.val()) == true) { //비밀번호 검사
-				alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)');
+			/* 	alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)'); */
+				swal("비밀번호를 다시 입력해주세요.(최소 4자리 이상)")
 				password.focus();
 				return false;
 			}

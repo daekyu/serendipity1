@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css"> 
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
@@ -13,7 +14,7 @@ href=".././resources/js/sweetalert.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
-<<<<<<< HEAD
+
 <input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}" />
 <input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}" />
 <input type="hidden" id="meeting_place"
@@ -175,7 +176,6 @@ href=".././resources/js/sweetalert.css">
 		// initialization
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
->>>>>>> 73e29a7f85c0aa3f7de06feae9ec2ec4b6737e57
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 
@@ -183,7 +183,7 @@ href=".././resources/js/sweetalert.css">
 <div id="main" class="page">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">여행자구함</h1>
+			<h1 class="title"><spring:message code="board.traveler_detail"/></h1>
 		</div>
 	</header>
 
@@ -269,7 +269,7 @@ href=".././resources/js/sweetalert.css">
 							class="table table-striped table-bordered text-center my-orders-table">
 							<thead>
 								<tr class="first last">
-									<th>작성자</th>
+									<th><spring:message code="board.traveler_detail1"/></th>
 									<th>언어</th>
 									<th>관심사</th>
 									<th>지역</th>

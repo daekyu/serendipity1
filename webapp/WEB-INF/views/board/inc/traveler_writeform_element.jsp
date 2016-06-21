@@ -43,29 +43,29 @@ href=".././resources/js/sweetalert.css">
                
                
                   if($('#title_text').val() == '') {
-                     alert('글제목을 입력해주세요');
+                     alert('<spring:message code="board.traveler_writeform_ef"/>');
                      $('#title_text').focus();
                      return false;
                   } else if($('#datepicker').val() == '') {
-                     alert('날짜를 입력해주세요');
+                     alert('<spring:message code="board.traveler_writeform_ef1"/>');
                      $('#datepicker').focus();
                      return false;
-
+                     
                   }  else if($('#before').val() == ''){
 
-                    alert('지불할 가격을 숫자로 입력해 주세요');
+                    alert('<spring:message code="board.traveler_writeform_ef2"/>');
                     $('#before').focus();
                      return false;
                  } else if($('#after').val() == ''){
-                       alert('변환 버튼을 눌러 주세요');
+                       alert('<spring:message code="board.traveler_writeform_ef3"/>');
                        $('#before').focus();
                     return false; 
                   } else if($('#pic1').val()==''){
-                     alert("사진을 1개 이상 등록해 주세요");
+                     alert("<spring:message code="board.traveler_writeform_ef4"/>");
                      $('#pic1').focus();
                      return false;
                   } else if($('#meeting_place').val() == '') {
-                        alert('meeting point를 지도에서 선택해주세요');
+                        alert('<spring:message code="board.traveler_writeform_ef5"/>');
                         $('#gmap_where').focus();
                         return false;
                      }else{
@@ -500,7 +500,7 @@ href=".././resources/js/sweetalert.css">
                         <div id="gmap_canvas" style="height: 400px;width:auto"></div>
                         <div class="actions">
                            <div class="button">
-                              <label for="gmap_where">Where:</label> 
+                              <label for="gmap_where"><spring:message code="board.traveler_writeform10.1"/></label> 
                               <input id="gmap_where"
                                  class="form-control" type="text" name="gmap_where">
                            </div>
@@ -508,19 +508,19 @@ href=".././resources/js/sweetalert.css">
                               onclick="findAddress(); return false;">Search for
                               address</div>
                            <div class="button">
-                              <label for="gmap_type">Type:</label> <select id="gmap_type">
-                                 <option value="art_gallery">art_gallery</option>
-                                 <option value="atm">atm</option>
-                                 <option value="bank">bank</option>
-                                 <option value="bar">bar</option>
-                                 <option value="cafe">cafe</option>
-                                 <option value="food">food</option>
-                                 <option value="store">store</option>
-                                 <option value="subway_station">subway_station</option>
+                              <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> <select id="gmap_type">
+                                 <option value="art_gallery"><spring:message code="board.traveler_writeform10.4"/></option>
+                                 <option value="atm"><spring:message code="board.traveler_writeform10.5"/></option>
+                                 <option value="bank"><spring:message code="board.traveler_writeform10.6"/></option>
+                                 <option value="bar"><spring:message code="board.traveler_writeform10.7"/></option>
+                                 <option value="cafe"><spring:message code="board.traveler_writeform10.8"/></option>
+                                 <option value="food"><spring:message code="board.traveler_writeform10.9"/></option>
+                                 <option value="store"><spring:message code="board.traveler_writeform10.10"/></option>
+                                 <option value="subway_station"><spring:message code="board.traveler_writeform10.11"/></option>
                               </select>
                            </div>
                            <div class="button">
-                              <label for="gmap_radius">Radius:</label> <select
+                              <label for="gmap_radius"><spring:message code="board.traveler_writeform10.3"/></label> <select
                                  id="gmap_radius">
                                  <option value="500">500</option>
                                  <option value="1000">1000</option>

@@ -49,7 +49,8 @@ href=".././resources/js/sweetalert.css">
 		var myOptions = { // default map options
 			zoom : 18,
 			center : myLatlng,
-			icon : marker
+			icon : marker,
+			scrollwheel: false
 		};
 
 		map = new google.maps.Map(document.getElementById('gmap_detail'),

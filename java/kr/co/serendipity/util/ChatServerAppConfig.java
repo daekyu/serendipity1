@@ -56,6 +56,7 @@ public class ChatServerAppConfig extends Configurator{
 		 return (T)endpoint;
      }
 
+	
 	@Override
 	public void modifyHandshake(ServerEndpointConfig sec,
 			HandshakeRequest request, HandshakeResponse response) {

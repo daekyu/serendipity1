@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *    2014. 11. 27.    이영지
  *
  */
+
 @Controller
 public class EgovWebSocketMessengerController {
 

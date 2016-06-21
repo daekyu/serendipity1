@@ -64,4 +64,14 @@ public class MessageService {
 		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
 		dao.changeNotificationState(rcv_messagedto);
 	}
+	
+	public RCV_MessageDTO getRcvMessageDetail(RCV_MessageDTO rcv_messagedto) {
+		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
+		return dao.getRcvMessageDetail(rcv_messagedto);
+	}
+	
+	public MessageDTO getSendMessageDetail(MessageDTO messagedto) {
+		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
+		return dao.getSendMessageDetail(messagedto);
+	}
 }

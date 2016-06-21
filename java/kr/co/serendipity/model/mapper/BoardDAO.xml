@@ -111,6 +111,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 VALUES(parti_seq.NEXTVAL, #{board_num}, #{user_num}, 'wait', SYSDATE)
 	</insert>
 	
+	 <insert id="guideParty">
+	 INSERT INTO PARTICIPANT(parti_num, board_num, user_num, STATE, parti_date, parti_capacity)
+	 VALUES(parti_seq.NEXTVAL, #{param1}, #{param2}, 'wait', SYSDATE, #{param3})
+	</insert>
+	
 	<select id="getLanguages" resultType="hashmap">
 		select language_name, id from LANG_SELECT ls, LANGUAGE lang, member m where ls.LANGUAGE_CODE = lang.LANGUAGE_CODE and ls.USER_NUM=m.user_num and ls.user_num=#{user_num}
 	</select>

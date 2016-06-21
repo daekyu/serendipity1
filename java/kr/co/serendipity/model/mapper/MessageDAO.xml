@@ -57,4 +57,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="changeNotificationState">
 		update rcv_message set msg_alarm=1 where message_num=#{message_num} and receiver=#{receiver}
 	</update>
+	
+	<select id="getRcvMessageDetail" resultType="kr.co.serendipity.model.RCV_MessageDTO">
+		select * from rcv_message where message_num=#{message_num}
+	</select>
+	
+	<select id="getSendMessageDetail" resultType="kr.co.serendipity.model.MessageDTO">
+		select * from message where message_num=#{message_num}
+	</select>
 </mapper>

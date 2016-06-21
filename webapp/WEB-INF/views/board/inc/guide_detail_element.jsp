@@ -13,7 +13,7 @@ href=".././resources/js/sweetalert.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
-<<<<<<< HEAD
+
 <input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}" />
 <input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}" />
 <input type="hidden" id="meeting_place"
@@ -49,7 +49,8 @@ href=".././resources/js/sweetalert.css">
 		var myOptions = { // default map options
 			zoom : 18,
 			center : myLatlng,
-			icon : marker
+			icon : marker,
+			scrollwheel: false
 		};
 
 		map = new google.maps.Map(document.getElementById('gmap_detail'),
@@ -174,7 +175,7 @@ href=".././resources/js/sweetalert.css">
 		// initialization
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
->>>>>>> 73e29a7f85c0aa3f7de06feae9ec2ec4b6737e57
+
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 

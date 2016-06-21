@@ -60,7 +60,6 @@ href=".././resources/js/sweetalert.css">
 		
 		
 		
-		
 		var map;
 		var marker;
 		var myLatlng;
@@ -78,7 +77,8 @@ href=".././resources/js/sweetalert.css">
 		    var myOptions = { // default map options
 		        zoom: 18,
 		        center: myLatlng,
-		        icon: marker
+		        icon: marker,
+		        scrollwheel: false
 		    };
 		    
 		    map = new google.maps.Map(document.getElementById('gmap_detail'), myOptions);
@@ -114,7 +114,7 @@ href=".././resources/js/sweetalert.css">
 		  
 		// initialization
 		google.maps.event.addDomListener(window, 'load', initialize);
-		
+	/* 	google.maps.disableScrollWheelZoom();  */
 
 		 $(function() {
 		$( "#datepicker" ).datepicker({startDate:new Date()}).datetimepicker('update', new Date());

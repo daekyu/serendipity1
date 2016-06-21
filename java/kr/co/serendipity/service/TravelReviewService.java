@@ -23,9 +23,9 @@ public class TravelReviewService {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	public List<HashMap<String,Object>> reviewList() throws ClassNotFoundException, SQLException {
+	public List<HashMap<String,Object>> reviewList(int page) throws ClassNotFoundException, SQLException {
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-		return dao.reviewList();
+		return dao.reviewList(page);
 	}
 	
 	public int getReviewListCount() throws ClassNotFoundException, SQLException {

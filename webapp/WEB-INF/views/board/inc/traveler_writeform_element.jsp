@@ -43,33 +43,33 @@ href=".././resources/js/sweetalert.css">
                
                
                   if($('#title_text').val() == '') {
-                     alert('글제목을 입력해주세요');
+                     swal('글제목을 입력해주세요');
                      $('#title_text').focus();
                      return false;
                   } else if($('#datepicker').val() == '') {
-                     alert('날짜를 입력해주세요');
+                     swal('날짜를 입력해주세요');
                      $('#datepicker').focus();
                      return false;
 
                   }  else if($('#before').val() == ''){
 
-                    alert('지불할 가격을 숫자로 입력해 주세요');
+                    swal('지불할 가격을 숫자로 입력해 주세요');
                     $('#before').focus();
                      return false;
                  } else if($('#after').val() == ''){
-                       alert('변환 버튼을 눌러 주세요');
+                       swal('변환 버튼을 눌러 주세요');
                        $('#before').focus();
                     return false; 
                   } else if($('#pic1').val()==''){
-                     alert("사진을 1개 이상 등록해 주세요");
+                     swal("사진을 1개 이상 등록해 주세요");
                      $('#pic1').focus();
                      return false;
                   } else if($('#meeting_place').val() == '') {
-                        alert('meeting point를 지도에서 선택해주세요');
+                        swal('meeting point를 지도에서 선택해주세요');
                         $('#gmap_where').focus();
                         return false;
                      }else{
-                    	 swal("글 작성 완료!", "success")
+                    	 swal("글 작성 완료!","" ,"success")
                   }
                }); 
 
@@ -89,7 +89,7 @@ href=".././resources/js/sweetalert.css">
                         $('#pic'+index).show();
                         index++;
                      } else {
-                        alert('더 이상 추가할 수 없습니다');
+                        swal('더 이상 추가할 수 없습니다');
                      }
                   });
       $('#minusBtn').click(function() {
@@ -99,7 +99,7 @@ href=".././resources/js/sweetalert.css">
             $('#pic'+index).hide();
             /* $('#pic' + index).remove(); */
          } else {
-            alert('더 이상 삭제할 수 없습니다.');
+            swal('더 이상 삭제할 수 없습니다.');
          }
       });
       
@@ -137,7 +137,7 @@ href=".././resources/js/sweetalert.css">
       $("#convert").click(function(){
              
             if ($('#before').val() == ''){
-               alert("값을 입력해주세요");
+               swal("값을 입력해주세요");
                $("#before").focus();
                return false;
             }else{

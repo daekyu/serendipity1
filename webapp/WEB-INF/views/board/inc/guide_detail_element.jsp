@@ -175,7 +175,7 @@ href=".././resources/js/sweetalert.css">
 		// initialization
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
->>>>>>> 73e29a7f85c0aa3f7de06feae9ec2ec4b6737e57
+
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 

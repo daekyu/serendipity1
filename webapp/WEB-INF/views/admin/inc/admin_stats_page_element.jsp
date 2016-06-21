@@ -15,40 +15,32 @@
 <section id="main" class="page">
   <header class="page-header">
     <div class="container">
-      <h1 class="title">신고목록</h1>
+      <h1 class="title">사이트 통계</h1>
     </div>	
   </header>
   <div class="container">
     <div class="row">
       <article class="col-sm-9 col-md-9 content">
-		<div class="my-account">
-		  <div class="table-responsive">
-			<table class="table table-striped table-bordered text-center my-orders-table">
-			  <thead>
-			  	<tr>
-			  		<th>신고한 사람</th>
-			  		<th>신고받은 사람</th>
-			  		<th>제목</th>
-			  		<th>내용</th>
+		<div class="product-tab">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#chart1">Chart 1</a></li>
+						<li><a href="#chart2">Chart 2</a></li>
+					</ul>
+					<!-- .nav-tabs -->
+					<div class="tab-content">
 
-			  	</tr>
-			  </thead>
-			  
-			  <tbody>
-			  <c:forEach var="i" items="${member_list}">
-			  	<tr>
-			  		<td>${i.id}</td>
-			  		<td>${i.name}</td>
-			  		<td>${i.age}</td>
-			  		<td>${i.country_code}</td>
-			  		<td>${i.email}</td>
-			  		<td><a class="btn btn-danger" href="">탈퇴</a>
-			  	</tr>
-			  </c:forEach>
-			  </tbody>
-			</table>
-		  </div>
-		</div>
+						<!-- 지도 들어가는 부분 시작 -->
+						<div class="tab-pane active" id="chart1">
+
+						</div>
+
+						<div class="tab-pane" id="chart2">
+
+						</div>
+
+					</div>
+					<!-- .tab-content -->
+				</div>
       </article><!-- .content -->
 	  
 	  <jsp:include page="admin_page_sidebar.jsp"></jsp:include>

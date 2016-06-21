@@ -20,7 +20,7 @@ public interface ReviewDAO {
 	List<LocalDTO> localList();
 	
 	//여행후기 목록
-	public List<HashMap<String, Object>> reviewList() throws ClassNotFoundException, SQLException;
+	public List<HashMap<String, Object>> reviewList(int page) throws ClassNotFoundException, SQLException;
 	
 	//여행후기 상세보기
 	public HashMap<String, Object> reviewDetail(ReviewDTO dto) throws ClassNotFoundException, SQLException;

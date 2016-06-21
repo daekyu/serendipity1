@@ -59,7 +59,7 @@ public class TravelReviewController {
 		List<HashMap<String,Object>> reviewList = travelreviewservice.reviewList(page);
 		int listCount = travelreviewservice.getReviewListCount();
 
-		maxpage = (int) ((double) listCount / 6 + 0.95);
+		maxpage = (int) ((double) listCount / 5 + 0.95);
 		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 		endpage = startpage + 10 - 1;
 		

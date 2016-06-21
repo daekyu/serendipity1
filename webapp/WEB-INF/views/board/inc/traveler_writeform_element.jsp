@@ -40,36 +40,33 @@ href=".././resources/js/sweetalert.css">
             //게시판 유효성 검증 
             
              $('#success').click(function() {
-               
-               
+                       
                   if($('#title_text').val() == '') {
-                     alert('<spring:message code="board.traveler_writeform_ef"/>');
+                	  swal('<spring:message code="board.traveler_writeform_ef"/>');
                      $('#title_text').focus();
                      return false;
                   } else if($('#datepicker').val() == '') {
-                     alert('<spring:message code="board.traveler_writeform_ef1"/>');
+                     swal('<spring:message code="board.traveler_writeform_ef1"/>');
                      $('#datepicker').focus();
                      return false;
-                     
-                  }  else if($('#before').val() == ''){
-
-                    alert('<spring:message code="board.traveler_writeform_ef2"/>');
+                  }  else if(!reg_number.test($('#before').val()) == true){
+                    swal('<spring:message code="board.traveler_writeform_ef2"/>');
                     $('#before').focus();
                      return false;
-                 } else if($('#after').val() == ''){
-                       alert('<spring:message code="board.traveler_writeform_ef3"/>');
+                 } else if(!reg_number.test($('#after').val()) == true){
+                       swal('<spring:message code="board.traveler_writeform_ef3"/>');
                        $('#before').focus();
                     return false; 
                   } else if($('#pic1').val()==''){
-                     alert("<spring:message code="board.traveler_writeform_ef4"/>");
+                     swal("<spring:message code="board.traveler_writeform_ef4"/>");
                      $('#pic1').focus();
                      return false;
                   } else if($('#meeting_place').val() == '') {
-                        alert('<spring:message code="board.traveler_writeform_ef5"/>');
+                        swal('<spring:message code="board.traveler_writeform_ef5"/>');
                         $('#gmap_where').focus();
                         return false;
                      }else{
-                    	 swal("글 작성 완료!", "success")
+                    	 swal("<spring:message code="board.traveler_writeform_ef6"/>")
                   }
                }); 
 
@@ -89,7 +86,7 @@ href=".././resources/js/sweetalert.css">
                         $('#pic'+index).show();
                         index++;
                      } else {
-                        alert('더 이상 추가할 수 없습니다');
+                        swal('더 이상 추가할 수 없습니다');
                      }
                   });
       $('#minusBtn').click(function() {
@@ -99,7 +96,7 @@ href=".././resources/js/sweetalert.css">
             $('#pic'+index).hide();
             /* $('#pic' + index).remove(); */
          } else {
-            alert('더 이상 삭제할 수 없습니다.');
+            swal('더 이상 삭제할 수 없습니다.');
          }
       });
       
@@ -137,7 +134,7 @@ href=".././resources/js/sweetalert.css">
       $("#convert").click(function(){
              
             if ($('#before').val() == ''){
-               alert("값을 입력해주세요");
+               swal("값을 입력해주세요");
                $("#before").focus();
                return false;
             }else{
@@ -505,8 +502,7 @@ href=".././resources/js/sweetalert.css">
                                  class="form-control" type="text" name="gmap_where">
                            </div>
                            <div id="button2" class="btn btn-success"
-                              onclick="findAddress(); return false;">Search for
-                              address</div>
+                              onclick="findAddress(); return false;"><spring:message code="board.traveler_writeform10.12"/></div>
                            <div class="button">
                               <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> <select id="gmap_type">
                                  <option value="art_gallery"><spring:message code="board.traveler_writeform10.4"/></option>
@@ -533,7 +529,7 @@ href=".././resources/js/sweetalert.css">
                                type="hidden" id="meeting_place" name="meeting_place" /> <input
                               type="hidden" id="meeting_address" name="meeting_address" />
                            <div id="button1" class="btn btn-success"
-                              onclick="findPlaces(); return false;">Search for objects</div>
+                              onclick="findPlaces(); return false;"><spring:message code="board.traveler_writeform10.13"/></div>
                         </div>
                      </div>
 

@@ -177,6 +177,7 @@ href=".././resources/js/sweetalert.css">
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 
+
 <div class="breadcrumb-box breadcrumb-none"></div>
 
 
@@ -270,9 +271,9 @@ href=".././resources/js/sweetalert.css">
 							<thead>
 								<tr class="first last">
 									<th><spring:message code="board.traveler_detail1"/></th>
-									<th>언어</th>
-									<th>관심사</th>
-									<th>지역</th>
+									<th><spring:message code="board.traveler_detail2"/></th>
+									<th><spring:message code="board.traveler_detail3"/></th>
+									<th><spring:message code="board.traveler_detail4"/></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -298,12 +299,12 @@ href=".././resources/js/sweetalert.css">
 								<a class="btn btn-default btn-sm"
 									href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
 									class="livicon shadowed" data-s="24" data-n="pen"
-									data-c="white" data-hc="0"></i> Modify</a>
+									data-c="white" data-hc="0"></i> <spring:message code="board.traveler_detail5"/></a>
 								<a class="btn btn-danger btn-sm" id="delete"><i
 									
 				<%-- 					href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=2" --%>
 									class="livicon shadowed" data-s="24" data-n="trash"
-									data-c="white" data-hc="0"></i> Delete</a>
+									data-c="white" data-hc="0"></i> <spring:message code="board.traveler_detail6"/></a>
 							</c:when>
 
 							<c:otherwise>
@@ -338,8 +339,8 @@ href=".././resources/js/sweetalert.css">
 
 				<div class="product-tab">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#reviews">Meeting Point</a></li>
-						<li><a href="#description">Description</a></li>
+						<li class="active"><a href="#reviews"><spring:message code="board.traveler_detail7"/></a></li>
+						<li><a href="#description"><spring:message code="board.traveler_detail8"/></a></li>
 
 					</ul>
 					<!-- .nav-tabs -->

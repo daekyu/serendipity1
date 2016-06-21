@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
  
 <footer id="footer">
@@ -8,9 +9,9 @@
       <div class="row sidebar">
 		<aside class="col-xs-12 col-sm-6 col-md-3 widget social">
 		  <div class="title-block">
-			<h3 class="title">Follow Us</h3>
+			<h3 class="title"><spring:message code="index.footer1"/></h3>
 		  </div>
-		  <p>Follow us in social media</p>
+		  <p><spring:message code="index.footer2"/></p>
 		  <div class="social-list">
 			<a class="icon rounded icon-facebook" href="https://www.facebook.com/serendipity112th"><i class="fa fa-facebook"></i></a>
 			<a class="icon rounded icon-instagram" href="https://www.instagram.com/daekyu_kang"><i class="fa fa-instagram"></i></a>
@@ -22,10 +23,10 @@
 
 		<aside class="col-xs-12 col-sm-6 col-md-3 widget newsletter">
 		  <div class="title-block">
-			<h3 class="title">Newsletter Signup</h3>
+			<h3 class="title"><spring:message code="index.footer3"/></h3>
 		  </div>
 		  <div>
-			<p>Sign up for newsletter</p>
+			<p><spring:message code="index.footer4"/></p>
 			<div class="clearfix"></div>
 			<form class="subscribe-form" method="post" action="php/subscribe.php">
 			  <input class="form-control email" type="email" name="subscribe">
@@ -39,28 +40,28 @@
 		
 		<aside class="col-xs-12 col-sm-6 col-md-3 widget links">
 		  <div class="title-block">
-			<h3 class="title">Information</h3>
+			<h3 class="title"><spring:message code="index.footer5"/></h3>
 		  </div>
 		  <nav>
 			<ul>
-			  <li><a href="#">About us</a></li>
-			  <li><a href="#">Privacy Policy</a></li>
-			  <li><a href="#">Terms &amp; Condotions</a></li>
-			  <li><a href="#">Secure payment</a></li>
+			  <li><a href="#"><spring:message code="index.footer6"/></a></li>
+			  <li><a href="#"><spring:message code="index.footer7"/></a></li>
+			  <li><a href="#"><spring:message code="index.footer8"/></a></li>
+			  <li><a href="#"><spring:message code="index.footer9"/></a></li>
 			</ul>
 		  </nav>
         </aside>
 		
 		<aside class="col-xs-12 col-sm-6 col-md-3 widget links">
 		  <div class="title-block">
-			<h3 class="title">My account</h3>
+			<h3 class="title"><spring:message code="index.footer10"/></h3>
 		  </div>
 		  <nav>
 			<ul>
-			  <li><a href="#">My account</a></li>
-			  <li><a href="#">Order History</a></li>
-			  <li><a href="#">Wish List</a></li>
-			  <li><a href="#">Newsletter</a></li>
+			  <li><a href="#"><spring:message code="index.footer11"/></a></li>
+			  <li><a href="#"><spring:message code="index.footer12"/></a></li>
+			  <li><a href="#"><spring:message code="index.footer13"/></a></li>
+			  <li><a href="#"><spring:message code="index.footer14"/></a></li>
 			</ul>
 		  </nav>
 		</aside>
@@ -72,7 +73,7 @@
     <div class="container">
       <div class="row">
         <div class="copyright col-xs-12 col-sm-3 col-md-3">
-		  Copyright © ItemBridge Inc., 2013
+		 <spring:message code="index.footer15"/>
 		</div>
 		
         <div class="phone col-xs-6 col-sm-3 col-md-3">
@@ -83,7 +84,7 @@
 			  M11.001,12H5V2h6V12z"></path>
 			</svg>
 		  </div>
-          <strong class="title">Call Us:</strong> +1 (877) 123-45-67 <br>
+          <strong class="title">Call Us:</strong> +1 (082) 123-45-67 <br>
           <strong>or</strong> +1 (777) 123-45-67
         </div>
 		
@@ -102,7 +103,8 @@
 			  </g>
 			</svg>
 		  </div>
-          49 Archdale, 2B Charleston 5655, Excel Tower<br> OPG Rpad, 4538FH
+          <spring:message code="index.footer16"/>&nbsp;<spring:message code="index.footer17"/>
+          
         </div>
 		
         <div class="col-xs-12 col-sm-3 col-md-3">

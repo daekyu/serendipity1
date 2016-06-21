@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.serendipity.model.MemberDAO">
 	<insert id="joinMember" parameterType="kr.co.serendipity.model.MemberDTO">
-		insert into member(user_num,country_code,local_code,name,id,pw,gender,age,hp,email,report_count)
-		values(member_seq.nextval,#{country_code},#{local_code},#{name},#{id},#{pw},#{gender},#{age},#{hp},#{email},0)
+		insert into member(user_num,country_code,local_code,name,id,pw,gender,age,hp,email)
+		values(member_seq.nextval,#{country_code},#{local_code},#{name},#{id},#{pw},#{gender},#{age},#{hp},#{email})
 	</insert>
 	
 	<select id="localList" resultType="kr.co.serendipity.model.LocalDTO">
@@ -41,15 +41,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from member where id=#{id}
 	</select>
 	
-	<select id="checkFindIdEmailInfo" resultType="kr.co.serendipity.model.MemberDTO">
-		select * from member where name=#{name} and email=#{email}
-	</select>
 
-	<select id="checkFindPwEmailInfo" resultType="kr.co.serendipity.model.MemberDTO">
-		select * from member where name=#{name} and id=#{id} and email=#{email}
-	</select>
-	
-	<update id="changeToTempPw">
-		update member set pw=#{pw} where id=#{id}
-	</update>
 </mapper>

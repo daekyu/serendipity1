@@ -33,7 +33,7 @@ href=".././resources/js/sweetalert.css">
    $(function(){
       
       
-          var reg_number = /^[0-9]+$/;
+          var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
             
             
             
@@ -50,15 +50,16 @@ href=".././resources/js/sweetalert.css">
                      alert('날짜를 입력해주세요');
                      $('#datepicker').focus();
                      return false;
+
                   }  else if($('#before').val() == ''){
+
                     alert('지불할 가격을 숫자로 입력해 주세요');
                     $('#before').focus();
                      return false;
                  } else if($('#after').val() == ''){
                        alert('변환 버튼을 눌러 주세요');
                        $('#before').focus();
-                    return false;
-                    
+                    return false; 
                   } else if($('#pic1').val()==''){
                      alert("사진을 1개 이상 등록해 주세요");
                      $('#pic1').focus();
@@ -71,7 +72,7 @@ href=".././resources/js/sweetalert.css">
                     	 swal("글 작성 완료!", "success")
                   }
                }); 
-            
+
       $('#pic2').hide();
       $('#pic3').hide();
       $('#pic4').hide();
@@ -185,7 +186,7 @@ href=".././resources/js/sweetalert.css">
                              
                               $('#after').val(formatNumber($('#before').val())+'원');
                               $('#before').val(formatNumber($('#before').val()) + '원');
-          	               }else if($('#selectoption').val()=='JPY'){
+                            }else if($('#selectoption').val()=='JPY'){
                                swal({   title: "실시간 환율 정보",   
                                   text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
                                   imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
@@ -193,12 +194,12 @@ href=".././resources/js/sweetalert.css">
                                });
                             /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
                             $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
-                            $('#before').val(formatNumber($('#before').val()));
+                            $('#before').val(formatNumber($('#before').val())+ '엔');
                         
                             }else if($('#selectoption').val()=='USD'){
                                swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
                                $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
-                               $('#before').val(formatNumber($('#before').val()));
+                               $('#before').val(formatNumber($('#before').val())+ '달러');
                             }
                       }
                   });
@@ -221,6 +222,11 @@ href=".././resources/js/sweetalert.css">
       
       // set endpoint and your access key
       
+
+   
+ 
+
+
    var geocoder;
    var map;
    var markers = Array();
@@ -442,7 +448,7 @@ href=".././resources/js/sweetalert.css">
                     
                   </select></td>
                   <td><input class="form-control" id="before" type="text" name="#"></td>
-                  <td><button type="button" id="convert" class="btn btn-success">변환</button></td>
+                  <td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.traveler_writeform13"/></button></td>
                   <td><input class="form-control" id="after" type="text" name="price"></td>
                   
 
@@ -472,11 +478,11 @@ href=".././resources/js/sweetalert.css">
                   <td><h6><spring:message code="board.traveler_writeform6"/></h6></td>
                   <!-- <td id="addPic" colspan="4"> -->
                   <td>
-                     <input type="file" id="pic1" name="pic">
-                     <input type="file" id="pic2" name="pic">
-                     <input type="file" id="pic3" name="pic">
-                     <input type="file" id="pic4" name="pic">
-                     <input type="file" id="pic5" name="pic">
+                     <input type="file" id="pic1" name="pic" >
+                     <input type="file" id="pic2" name="pic" >
+                     <input type="file" id="pic3" name="pic" >
+                     <input type="file" id="pic4" name="pic" >
+                     <input type="file" id="pic5" name="pic" >
                   </td>
                   <td align="center">
                      <button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>

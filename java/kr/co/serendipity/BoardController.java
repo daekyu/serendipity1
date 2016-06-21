@@ -33,8 +33,9 @@ public class BoardController {
 	private BoardService boardservice;
 
 	@RequestMapping("traveler_list.htm")
-	public ModelAndView travelerList(String pg) throws ClassNotFoundException, SQLException {
+	public ModelAndView travelerList(String pg, String show) throws ClassNotFoundException, SQLException {
 		int page = 1;
+		int basicshow = 6;
 		int startpage = 0;
 		int endpage = 0;
 		int maxpage = 0;
@@ -43,11 +44,16 @@ public class BoardController {
 			page = Integer.parseInt(pg);
 		}
 		
-		List<HashMap<String, Object>> board_list = boardservice.getBoardList(page);
+		if (show != null) {
+			basicshow = Integer.parseInt(show);
+		}
+		System.out.println("show : " + show);
+		System.out.println("basicshow : " + basicshow);
+		List<HashMap<String, Object>> board_list = boardservice.getBoardList(page, basicshow);
 
 		int listCount = boardservice.getListCount();
 
-		maxpage = (int) ((double) listCount / 6 + 0.95);
+		maxpage = (int) ((double) listCount / basicshow + 0.95);
 		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 		endpage = startpage + 10 - 1;
 
@@ -61,13 +67,15 @@ public class BoardController {
 		mav.addObject("startpage", startpage);
 		mav.addObject("endpage", endpage);
 		mav.addObject("listCount", listCount);
+		mav.addObject("basicshow", basicshow);
 
 		return mav;
 	}
 
 	@RequestMapping("guide_list.htm")
-	public ModelAndView guideList(String pg) throws ClassNotFoundException, SQLException {
+	public ModelAndView guideList(String pg, String show) throws ClassNotFoundException, SQLException {
 		int page = 1;
+		int basicshow = 6;
 		int startpage = 0;
 		int endpage = 0;
 		int maxpage = 0;
@@ -75,11 +83,15 @@ public class BoardController {
 		if (pg != null) {
 			page = Integer.parseInt(pg);
 		}
+		
+		if (show != null) {
+			basicshow = Integer.parseInt(show);
+		}
 
-		List<HashMap<String, Object>> board_list = boardservice.getGBoardList(page);
+		List<HashMap<String, Object>> board_list = boardservice.getGBoardList(page,basicshow);
 		int listCount = boardservice.getGListCount();
 
-		maxpage = (int) ((double) listCount / 6 + 0.95);
+		maxpage = (int) ((double) listCount / basicshow + 0.95);
 		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 		endpage = startpage + 10 - 1;
 
@@ -93,6 +105,7 @@ public class BoardController {
 		mav.addObject("startpage", startpage);
 		mav.addObject("endpage", endpage);
 		mav.addObject("listCount", listCount);
+		mav.addObject("basicshow", basicshow);
 
 		return mav;
 	}

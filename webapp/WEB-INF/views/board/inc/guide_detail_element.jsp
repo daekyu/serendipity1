@@ -13,7 +13,7 @@ href=".././resources/js/sweetalert.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
-<<<<<<< HEAD
+
 <input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}" />
 <input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}" />
 <input type="hidden" id="meeting_place"

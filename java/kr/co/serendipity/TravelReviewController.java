@@ -47,9 +47,6 @@ public class TravelReviewController {
 		System.out.println("reviewList entrance");
 		ModelAndView mav = new ModelAndView("/travel_review/review_list");
 
-		List<HashMap<String,Object>> reviewList = travelreviewservice.reviewList();
-		int listCount = travelreviewservice.getReviewListCount();
-		
 		int page = 1;
 		int startpage = 0;
 		int endpage = 0;
@@ -58,8 +55,11 @@ public class TravelReviewController {
 		if(pg != null){
 			page = Integer.parseInt(pg);
 		}
+		
+		List<HashMap<String,Object>> reviewList = travelreviewservice.reviewList(page);
+		int listCount = travelreviewservice.getReviewListCount();
 
-		maxpage = (int) ((double) listCount / 6 + 0.95);
+		maxpage = (int) ((double) listCount / 5 + 0.95);
 		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 		endpage = startpage + 10 - 1;
 		

@@ -33,45 +33,43 @@ href=".././resources/js/sweetalert.css">
    $(function(){
       
       
-          var reg_number = /^[0-9]+$/;
+          var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
             
             
             
             //게시판 유효성 검증 
             
              $('#success').click(function() {
-               
-               
+                       
                   if($('#title_text').val() == '') {
-                     alert('글제목을 입력해주세요');
+                	  swal('<spring:message code="board.traveler_writeform_ef"/>');
                      $('#title_text').focus();
                      return false;
                   } else if($('#datepicker').val() == '') {
-                     alert('날짜를 입력해주세요');
+                     swal('<spring:message code="board.traveler_writeform_ef1"/>');
                      $('#datepicker').focus();
                      return false;
-                  }  else if($('#before').val() == ''){
-                    alert('지불할 가격을 숫자로 입력해 주세요');
+                  }  else if(!reg_number.test($('#before').val()) == true){
+                    swal('<spring:message code="board.traveler_writeform_ef2"/>');
                     $('#before').focus();
                      return false;
-                 } else if($('#after').val() == ''){
-                       alert('변환 버튼을 눌러 주세요');
+                 } else if(!reg_number.test($('#after').val()) == true){
+                       swal('<spring:message code="board.traveler_writeform_ef3"/>');
                        $('#before').focus();
-                    return false;
-                    
+                    return false; 
                   } else if($('#pic1').val()==''){
-                     alert("사진을 1개 이상 등록해 주세요");
+                     swal("<spring:message code="board.traveler_writeform_ef4"/>");
                      $('#pic1').focus();
                      return false;
                   } else if($('#meeting_place').val() == '') {
-                        alert('meeting point를 지도에서 선택해주세요');
+                        swal('<spring:message code="board.traveler_writeform_ef5"/>');
                         $('#gmap_where').focus();
                         return false;
                      }else{
-                    	 swal("글 작성 완료!", "success")
+                    	 swal("<spring:message code="board.traveler_writeform_ef6"/>")
                   }
                }); 
-            
+
       $('#pic2').hide();
       $('#pic3').hide();
       $('#pic4').hide();
@@ -88,7 +86,7 @@ href=".././resources/js/sweetalert.css">
                         $('#pic'+index).show();
                         index++;
                      } else {
-                        alert('더 이상 추가할 수 없습니다');
+                        swal('더 이상 추가할 수 없습니다');
                      }
                   });
       $('#minusBtn').click(function() {
@@ -98,7 +96,7 @@ href=".././resources/js/sweetalert.css">
             $('#pic'+index).hide();
             /* $('#pic' + index).remove(); */
          } else {
-            alert('더 이상 삭제할 수 없습니다.');
+            swal('더 이상 삭제할 수 없습니다.');
          }
       });
       
@@ -136,7 +134,7 @@ href=".././resources/js/sweetalert.css">
       $("#convert").click(function(){
              
             if ($('#before').val() == ''){
-               alert("값을 입력해주세요");
+               swal("값을 입력해주세요");
                $("#before").focus();
                return false;
             }else{
@@ -185,7 +183,7 @@ href=".././resources/js/sweetalert.css">
                              
                               $('#after').val(formatNumber($('#before').val())+'원');
                               $('#before').val(formatNumber($('#before').val()) + '원');
-          	               }else if($('#selectoption').val()=='JPY'){
+                            }else if($('#selectoption').val()=='JPY'){
                                swal({   title: "실시간 환율 정보",   
                                   text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
                                   imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
@@ -193,12 +191,12 @@ href=".././resources/js/sweetalert.css">
                                });
                             /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
                             $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
-                            $('#before').val(formatNumber($('#before').val()));
+                            $('#before').val(formatNumber($('#before').val())+ '엔');
                         
                             }else if($('#selectoption').val()=='USD'){
                                swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
                                $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
-                               $('#before').val(formatNumber($('#before').val()));
+                               $('#before').val(formatNumber($('#before').val())+ '달러');
                             }
                       }
                   });
@@ -221,6 +219,11 @@ href=".././resources/js/sweetalert.css">
       
       // set endpoint and your access key
       
+
+   
+ 
+
+
    var geocoder;
    var map;
    var markers = Array();
@@ -442,7 +445,7 @@ href=".././resources/js/sweetalert.css">
                     
                   </select></td>
                   <td><input class="form-control" id="before" type="text" name="#"></td>
-                  <td><button type="button" id="convert" class="btn btn-success">변환</button></td>
+                  <td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.traveler_writeform13"/></button></td>
                   <td><input class="form-control" id="after" type="text" name="price"></td>
                   
 
@@ -472,11 +475,11 @@ href=".././resources/js/sweetalert.css">
                   <td><h6><spring:message code="board.traveler_writeform6"/></h6></td>
                   <!-- <td id="addPic" colspan="4"> -->
                   <td>
-                     <input type="file" id="pic1" name="pic">
-                     <input type="file" id="pic2" name="pic">
-                     <input type="file" id="pic3" name="pic">
-                     <input type="file" id="pic4" name="pic">
-                     <input type="file" id="pic5" name="pic">
+                     <input type="file" id="pic1" name="pic" >
+                     <input type="file" id="pic2" name="pic" >
+                     <input type="file" id="pic3" name="pic" >
+                     <input type="file" id="pic4" name="pic" >
+                     <input type="file" id="pic5" name="pic" >
                   </td>
                   <td align="center">
                      <button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>
@@ -494,27 +497,26 @@ href=".././resources/js/sweetalert.css">
                         <div id="gmap_canvas" style="height: 400px;width:auto"></div>
                         <div class="actions">
                            <div class="button">
-                              <label for="gmap_where">Where:</label> 
+                              <label for="gmap_where"><spring:message code="board.traveler_writeform10.1"/></label> 
                               <input id="gmap_where"
                                  class="form-control" type="text" name="gmap_where">
                            </div>
                            <div id="button2" class="btn btn-success"
-                              onclick="findAddress(); return false;">Search for
-                              address</div>
+                              onclick="findAddress(); return false;"><spring:message code="board.traveler_writeform10.12"/></div>
                            <div class="button">
-                              <label for="gmap_type">Type:</label> <select id="gmap_type">
-                                 <option value="art_gallery">art_gallery</option>
-                                 <option value="atm">atm</option>
-                                 <option value="bank">bank</option>
-                                 <option value="bar">bar</option>
-                                 <option value="cafe">cafe</option>
-                                 <option value="food">food</option>
-                                 <option value="store">store</option>
-                                 <option value="subway_station">subway_station</option>
+                              <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> <select id="gmap_type">
+                                 <option value="art_gallery"><spring:message code="board.traveler_writeform10.4"/></option>
+                                 <option value="atm"><spring:message code="board.traveler_writeform10.5"/></option>
+                                 <option value="bank"><spring:message code="board.traveler_writeform10.6"/></option>
+                                 <option value="bar"><spring:message code="board.traveler_writeform10.7"/></option>
+                                 <option value="cafe"><spring:message code="board.traveler_writeform10.8"/></option>
+                                 <option value="food"><spring:message code="board.traveler_writeform10.9"/></option>
+                                 <option value="store"><spring:message code="board.traveler_writeform10.10"/></option>
+                                 <option value="subway_station"><spring:message code="board.traveler_writeform10.11"/></option>
                               </select>
                            </div>
                            <div class="button">
-                              <label for="gmap_radius">Radius:</label> <select
+                              <label for="gmap_radius"><spring:message code="board.traveler_writeform10.3"/></label> <select
                                  id="gmap_radius">
                                  <option value="500">500</option>
                                  <option value="1000">1000</option>
@@ -527,7 +529,7 @@ href=".././resources/js/sweetalert.css">
                                type="hidden" id="meeting_place" name="meeting_place" /> <input
                               type="hidden" id="meeting_address" name="meeting_address" />
                            <div id="button1" class="btn btn-success"
-                              onclick="findPlaces(); return false;">Search for objects</div>
+                              onclick="findPlaces(); return false;"><spring:message code="board.traveler_writeform10.13"/></div>
                         </div>
                      </div>
 

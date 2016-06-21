@@ -7,6 +7,7 @@
 
 package kr.co.serendipity.model;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public interface MyPageDAO {
 	public List parseHobby(MemberDTO memberdto);
 	
 	//보낸 요청 리스트
-	public List<ParticipantDTO> sendHistory(MemberDTO memberdto);
+	public List<HashMap<String, Object>> sendHistory(MemberDTO memberdto, int page);
 	
 	//마이페이지 보낸 요청 글쓴이 이름 조인
 	public String writerName(int board_num);
@@ -75,8 +76,14 @@ public interface MyPageDAO {
 	public void deleteSendHistory(ParticipantDTO participantdto);
 	
 	//받은 요청 리스트
-	public List<HashMap<String, Object>> acceptHistory(MemberDTO memberdto);
+	public List<HashMap<String, Object>> acceptHistory(MemberDTO memberdto, int page);
 	
 	//받은 요청 수락
 	public void acceptRequest(ParticipantDTO participantdto);
+	
+	//받은 요청 페이징 총 받은 요청 수 accept
+	public int getAcceptListCount(MemberDTO memberdto) throws ClassNotFoundException, SQLException;
+	
+	//받은 요청 페이징 총 받은 요청 수 send
+	public int getSendListCount(MemberDTO memberdto) throws ClassNotFoundException, SQLException;
 }

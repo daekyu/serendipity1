@@ -41,7 +41,7 @@
 				  <ul class="nav navbar-nav navbar-center">
 				  
 					<li class="item-danger item-bg text-danger">
-					  <a href="${pageContext.request.contextPath}/index.htm">Home<span class="item-new">New</span></a>
+					  <a href="${pageContext.request.contextPath}/index.htm"><spring:message code="index.header0.5"/><span class="item-new">New</span></a>
 					</li>
 					
 					<li class="item-danger item-bg text-danger">

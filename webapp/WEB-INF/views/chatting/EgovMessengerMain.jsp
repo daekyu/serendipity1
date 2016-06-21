@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
@@ -70,7 +71,7 @@
 	}
 	
 	function openPopup(roomId) {
-		var popOptions = "width= 500, height= 700, resizable=yes, status= no, scrollbar= yes"; 
+		var popOptions = "width= 400, height= 550, resizable=yes, status= no, scrollbar= yes"; 
 		var targetTitle = random(roomId); //두명의 사용자가 다른 팝업으로 뜨기 위해서 targetTitle을 랜덤으로 만들어준다.
 		popupPost("<c:url value='/chatting/chattingPopup.htm'/>", targetTitle, popOptions);
 	}

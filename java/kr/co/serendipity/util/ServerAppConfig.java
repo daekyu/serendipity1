@@ -25,6 +25,7 @@ import javax.websocket.server.ServerEndpointConfig.Configurator;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
+
 /**
 * @Class Name : ServerAppConfig.java
 * @Description : EndPoint를 bean으로 담기 위해 설정하는 Configurator(다른 Bean과 연동 시 EndPoint에 설정해주어야 함)

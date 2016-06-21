@@ -56,7 +56,7 @@
 				<jsp:include page="../inc/header.jsp"></jsp:include>
 				<div class="clearfix"></div>
 				
-				<jsp:include page="inc/admin_member_list_element.jsp"></jsp:include>
+				<jsp:include page="inc/admin_stats_page_element.jsp"></jsp:include>
 			</div><!-- .page-box-content -->
 		</div><!-- .page-box -->
 		

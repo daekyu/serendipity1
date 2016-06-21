@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css"> 
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
@@ -13,7 +14,7 @@ href=".././resources/js/sweetalert.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
-<<<<<<< HEAD
+
 <input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}" />
 <input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}" />
 <input type="hidden" id="meeting_place"
@@ -49,7 +50,8 @@ href=".././resources/js/sweetalert.css">
 		var myOptions = { // default map options
 			zoom : 18,
 			center : myLatlng,
-			icon : marker
+			icon : marker,
+			scrollwheel: false
 		};
 
 		map = new google.maps.Map(document.getElementById('gmap_detail'),
@@ -174,7 +176,7 @@ href=".././resources/js/sweetalert.css">
 		// initialization
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
->>>>>>> 73e29a7f85c0aa3f7de06feae9ec2ec4b6737e57
+
 
 <div class="breadcrumb-box breadcrumb-none"></div>
 
@@ -182,7 +184,7 @@ href=".././resources/js/sweetalert.css">
 <div id="main" class="page">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">여행자구함</h1>
+			<h1 class="title"><spring:message code="board.traveler_detail"/></h1>
 		</div>
 	</header>
 
@@ -268,10 +270,10 @@ href=".././resources/js/sweetalert.css">
 							class="table table-striped table-bordered text-center my-orders-table">
 							<thead>
 								<tr class="first last">
-									<th>작성자</th>
-									<th>언어</th>
-									<th>관심사</th>
-									<th>지역</th>
+									<th><spring:message code="board.traveler_detail1"/></th>
+									<th><spring:message code="board.traveler_detail2"/></th>
+									<th><spring:message code="board.traveler_detail3"/></th>
+									<th><spring:message code="board.traveler_detail4"/></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -297,12 +299,12 @@ href=".././resources/js/sweetalert.css">
 								<a class="btn btn-default btn-sm"
 									href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
 									class="livicon shadowed" data-s="24" data-n="pen"
-									data-c="white" data-hc="0"></i> Modify</a>
+									data-c="white" data-hc="0"></i> <spring:message code="board.traveler_detail5"/></a>
 								<a class="btn btn-danger btn-sm" id="delete"><i
 									
 				<%-- 					href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=2" --%>
 									class="livicon shadowed" data-s="24" data-n="trash"
-									data-c="white" data-hc="0"></i> Delete</a>
+									data-c="white" data-hc="0"></i> <spring:message code="board.traveler_detail6"/></a>
 							</c:when>
 
 							<c:otherwise>
@@ -312,6 +314,7 @@ href=".././resources/js/sweetalert.css">
 										<option>16.06.02 - 2명남음</option>
 									</select>
 									<%-- ${pageContext.request.contextPath} --%>
+									<c:if test="${!empty sessionScope.user_num}">
 									<input type="hidden" name="board_num"
 										value="${boarddto.BOARD_NUM}"> <input type="hidden"
 										name="user_num" value="${sessionScope.user_num}"> 
@@ -327,6 +330,7 @@ href=".././resources/js/sweetalert.css">
 												class="fa fa-angle-down"></i></a>
 										</div>
 									</div>
+									</c:if>
 								</form>
 							</c:otherwise>
 						</c:choose>
@@ -337,8 +341,8 @@ href=".././resources/js/sweetalert.css">
 
 				<div class="product-tab">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#reviews">Meeting Point</a></li>
-						<li><a href="#description">Description</a></li>
+						<li class="active"><a href="#reviews"><spring:message code="board.traveler_detail7"/></a></li>
+						<li><a href="#description"><spring:message code="board.traveler_detail8"/></a></li>
 
 					</ul>
 					<!-- .nav-tabs -->

@@ -17,6 +17,10 @@ href=".././resources/js/sweetalert.css">
 
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 
+
+
+
+
 <script type="text/javascript">
 	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	
@@ -28,6 +32,64 @@ href=".././resources/js/sweetalert.css">
 	
 
 	$(function() {
+		
+		
+		
+		
+		
+		 var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
+         
+         
+         
+         //게시판 유효성 검증 
+         
+          $('#success').click(function() {
+            
+            
+               if($('#title_text').val() == '') {
+                  swal('글제목을 입력해주세요')
+                  $('#title_text').focus();
+                  return false;
+               } else if($('#datepicker').val() == '') {
+                  swal('날짜를 입력해주세요');
+                  $('#datepicker').focus();
+                  return false;
+               }  else if(!reg_number.test($('#before').val()) == true){
+                 swal('지불할 가격을 숫자로 입력해 주세요');
+                 $('#before').focus();
+                  return false;
+              } else if($('#after').val() == ''){
+                    swal('변환 버튼을 눌러 주세요');
+                    $('#before').focus();
+                 return false; 
+               } else if($('#pic1').val()==''){
+                  swal("사진을 1개 이상 등록해 주세요");
+                  $('#pic1').focus();
+                  return false;
+               } else if($('#meeting_place').val() == '') {
+                     alert('meeting point를 지도에서 선택해주세요');
+                     $('#gmap_where').focus();
+                     return false;
+                  }else{
+                  swal('글작성 완료','','success');
+               }
+               
+                        
+               
+            }); 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		$('#pic2').hide();
 		$('#pic3').hide();
 		$('#pic4').hide();
@@ -42,7 +104,7 @@ href=".././resources/js/sweetalert.css">
 				$('#pic' + index).show();
 				index++;
 			} else {
-				alert('더 이상 추가할 수 없습니다');
+				swal('더 이상 추가할 수 없습니다!');
 			}
 		});
 		$('#minusBtn').click(function() {
@@ -52,7 +114,7 @@ href=".././resources/js/sweetalert.css">
 				$('#pic' + index).hide();
 				/* $('#pic' + index).remove(); */
 			} else {
-				alert('더 이상 삭제할 수 없습니다.');
+				swal('더 이상 삭제할 수 없습니다!')
 			}
 		});
 		$('#gmap_where').keydown(function(e) {
@@ -85,7 +147,7 @@ href=".././resources/js/sweetalert.css">
 		$("#convert").click(function(){
 			    
 				if ($('#before').val() == ''){
-					alert("값을 입력해주세요");
+					swal("값을 입력해주세요!");
 					$("#before").focus();
 					return false;
 				}else{
@@ -429,11 +491,13 @@ href=".././resources/js/sweetalert.css">
 						<td><spring:message code="board.guide_writeform9"/></td>
 						<!-- <td id="addPic" colspan="4"> -->
 						<td>
+						
 							<input type="file" id="pic1" name="pic">
 							<input type="file" id="pic2" name="pic">
 							<input type="file" id="pic3" name="pic">
 							<input type="file" id="pic4" name="pic">
 							<input type="file" id="pic5" name="pic">
+							
 						</td>
 						<td align="center">
 							<button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.guide_writeform10"/></button>
@@ -486,7 +550,7 @@ href=".././resources/js/sweetalert.css">
 					</tr>
 					<tr>
 						<td colspan="6" align="center"><input type="submit"
-							class="btn btn-success" value="<spring:message code="board.guide_writeform12"/>"> <input type="reset"
+							id="success" class="btn btn-success" value="<spring:message code="board.guide_writeform12"/>"> <input type="reset"
 							class="btn btn-danger" value="<spring:message code="board.guide_writeform13"/>"></td>
 					</tr>
 				</table>

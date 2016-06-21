@@ -21,7 +21,7 @@ href=".././resources/js/sweetalert.css">
 <input type="hidden" id="meeting_address"
 	value="${boarddto.MEETING_ADDRESS}" />
 <script type="text/javascript">
-	$(function() {
+	/* $(function() {
 		$('#delete')
 				.click(
 						function() {
@@ -31,7 +31,7 @@ href=".././resources/js/sweetalert.css">
 								return false;
 							}
 						});
-	});
+	}); */
 
 	var map;
 	var marker;
@@ -82,7 +82,7 @@ href=".././resources/js/sweetalert.css">
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-=======
+
 		<input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}"/>
 		<input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}"/>
 		<input type="hidden" id="meeting_place" value="${boarddto.MEETING_PLACE}"/>
@@ -298,8 +298,9 @@ href=".././resources/js/sweetalert.css">
 									href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
 									class="livicon shadowed" data-s="24" data-n="pen"
 									data-c="white" data-hc="0"></i> Modify</a>
-								<a class="btn btn-danger btn-sm" id="delete"
-									href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=2"><i
+								<a class="btn btn-danger btn-sm" id="delete"><i
+									
+				<%-- 					href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=2" --%>
 									class="livicon shadowed" data-s="24" data-n="trash"
 									data-c="white" data-hc="0"></i> Delete</a>
 							</c:when>

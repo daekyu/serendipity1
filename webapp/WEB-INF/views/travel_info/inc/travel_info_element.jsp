@@ -322,6 +322,7 @@
 		  	</thead>
 		  	
 		  	<tbody>
+		  		<!--1번 -->
 		  		<tr>
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInLeft">
@@ -339,6 +340,20 @@
 			  		</div>
 			  		</td>
 		  			<td><spring:message code="travel.inca4"/></td>
+		  		
+		  		</tr>
+		  		<tr>
+		  		     <td><span id="local_code"></span></td>
+		  			 <td><span id="bus_fee"></span></td>
+		  		</tr>
+		  		
+		  		
+		  		
+		  		
+		  		
+		  		<!--2번 -->
+		  		<tr>
+		  		
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInRight">
 		  				<div class="icon">
@@ -346,24 +361,39 @@
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td><spring:message code="travel.inca5"/></td>
-		  		</tr>
-		  		<tr>
-		  			<td><span id="local_code"></span></td>
-		  			<td><span id="bus_fee"></span></td>
-		  			<td><span id="taxi_fee"></span></td>
-		  		</tr>
-		  		<tr>
-		  			<td rowspan="2">
-		  			<div data-appear-animation="bounceInLeft">
+		  			<td><spring:message code="travel.inca5"/></td> 
+		  		
+		  		
+		  		<td rowspan="2">
+		  			<div data-appear-animation="bounceInRight">
 		  				<div class="icon">
 							<div class="livicon" data-n="pacman" data-s="42" data-c="000" data-hc="0"></div>
 			  			</div>
 			  		</div>
 			  		</td>
-		  			<td><spring:message code="travel.inca6"/></td>
+		  			<td><spring:message code="travel.inca6"/></td> 
+		  		</tr>
+		  		
+		  		
+		  		
+		  		
+		  		
+		  		
+		  		
+		  		
+		  		<tr>
+		  			<td><span id="taxi_fee"></span></td>
+		  			<td><span id="famous_food"></span></td>
+		  			
+		  		</tr>
+		  		
+		  		
+		  		
+		  		
+		  		<!--3번 -->
+		  		<tr>
 		  			<td rowspan="2">
-		  			<div data-appear-animation="bounceInDown">
+		  			<div data-appear-animation="bounceInLeft">
 		  				<div class="icon">
 							<div class="livicon" data-n="home" data-s="42" data-c="000" data-hc="0"></div>
 			  			</div>
@@ -371,18 +401,19 @@
 			  		</td>
 		  			<td><spring:message code="travel.inca7"/></td>
 		  			<td rowspan="2">
-		  			<div data-appear-animation="bounceInRight">
+		  			<div data-appear-animation="bounceInDown">
 		  				<div class="icon">
 							<div class="livicon" data-n="plane-up" data-s="42" data-c="000" data-hc="0"></div>
 			  			</div>
 			  		</div>
 			  		</td>
 		  			<td><spring:message code="travel.inca8"/></td>
+		  			
 		  		</tr>
 		  		<tr>
-		  			<td><span id="famous_food"></span></td>
 		  			<td><span id="attraction"></span></td>
 		  			<td><span id="airport"></span></td>
+		  			
 		  		</tr>
 		  	</tbody>
 		  </table>

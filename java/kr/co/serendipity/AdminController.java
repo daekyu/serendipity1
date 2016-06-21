@@ -31,4 +31,9 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping("stats_list.htm")
+	public String statsList() {
+		return "/admin/admin_stats_page";
+	}
+	
 }

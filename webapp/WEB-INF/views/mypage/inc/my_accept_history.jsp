@@ -109,10 +109,9 @@
 							</c:choose>
 						</ul>
 						<br>임시 출력창
-						<br>page: ${page}<br> nowpage: ${nowpage}<br>
+						<br>page: ${page}<br> 
 						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
 						endpage: ${endpage}<br> listCount: ${listCount}<br>
-			  
 			</ul>
 			<i class="pagination-text">Displaying 1 to 10 (of 100 posts)</i>
 		  </div>

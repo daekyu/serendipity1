@@ -109,14 +109,40 @@ public class MyPageController {
 	}
 
 	@RequestMapping("my_page_send_history.htm")
-	public String sendHistory(MemberDTO memberdto, Model model) {
+	public String sendHistory(MemberDTO memberdto, Model model, String pg) throws ClassNotFoundException, SQLException {
 		System.out.println("sendHistory entrance");
 		System.out.println("user_num : " + memberdto.getUser_num());
-		List<ParticipantDTO> participantdto = mypageservice.sendHistory(memberdto);
-		/*List<String> writername = mypageservice.writerName(participantdto);*/
+		
+		int page = 1;
+		int startpage = 0;
+		int endpage = 0;
+		int maxpage = 0;
+		
+		if (pg != null) {
+			page = Integer.parseInt(pg);
+		}
+		
+		List<HashMap<String, Object>> participantdto = mypageservice.sendHistory(memberdto, page);
+		System.out.println("participantdto 완");
+		int listCount = mypageservice.getSendListCount(memberdto);
+		System.out.println("listCount : " + listCount);
+		maxpage = (int) ((double) listCount / 10 + 0.95);
+		startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
+		endpage = startpage + 10 - 1;
+
+		if (endpage > maxpage) {
+			endpage = maxpage;
+		}
 		
 		model.addAttribute("participantdto", participantdto);
-		/*model.addAttribute("writername", writername);*/
+		
+		// 위가 하는 첨가 model.addAttribute("board_list", board_list);
+		model.addAttribute("page", page);
+		model.addAttribute("maxpage", maxpage);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("listCount", listCount);
+		
 		return "/mypage/my_page_send_history";
 	}
 

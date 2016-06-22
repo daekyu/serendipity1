@@ -299,6 +299,7 @@ href=".././resources/js/sweetalert.css">
 										.lat();
 								document.getElementById('lng').value = results[0].geometry.location
 										.lng();
+								/* var image = '${pageContext.request.contextPath}/resources/img/candy_marker.png';
 								var lat = document.getElementById('lat').value;
 								var lng = document.getElementById('lng').value;
 								var latlng = lat + ', ' + lng;
@@ -307,9 +308,10 @@ href=".././resources/js/sweetalert.css">
 								var addrMarker = new google.maps.Marker({
 									position : addrLocation,
 									map : map,
-									title : results[0].formatted_address
+									title : results[0].formatted_address,
+									icon: image
 								});
-								markers.push(addrMarker);
+								markers.push(addrMarker); */
 
 								findPlace();
 
@@ -375,28 +377,51 @@ href=".././resources/js/sweetalert.css">
 
 	// creare single marker function
 	function createMarker(obj) {
+	   var image;
+	   var type = document.getElementById('gmap_type').value;
+	   if(type == 'art_gallery'){
+		   image = '${pageContext.request.contextPath}/resources/img/art_gallery_marker.png';
+	   }else if(type == 'atm'){
+		   image = '${pageContext.request.contextPath}/resources/img/atm_marker.png';
+	   }else if(type == 'bank'){
+		   image = '${pageContext.request.contextPath}/resources/img/bank_marker.png';
+	   }else if(type == 'bar'){
+		   image = '${pageContext.request.contextPath}/resources/img/bar_marker.png';
+	   }else if(type == 'cafe'){
+		   image = '${pageContext.request.contextPath}/resources/img/cafe_marker.png';
+	   }else if(type == 'food'){
+		   image = '${pageContext.request.contextPath}/resources/img/food_marker.png';
+	   }else if(type == 'store'){
+		   image = '${pageContext.request.contextPath}/resources/img/store_marker.png';
+	   }else if(type == 'subway_station'){
+		   image = '${pageContext.request.contextPath}/resources/img/subway_station_marker.png';
+	   }else{
+		   image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
+	   }
+      // prepare new Marker object
+      
+      
+      var mark = new google.maps.Marker({
+         position : obj.geometry.location,
+         map : map,
+         title : obj.name,
+         icon: image
+      });
+      markers.push(mark);
 
-		// prepare new Marker object
-		var mark = new google.maps.Marker({
-			position : obj.geometry.location,
-			map : map,
-			title : obj.name
-		});
-		markers.push(mark);
-
-		// prepare info window
-		var infowindow = new google.maps.InfoWindow(
-				{
-					content : '<img src="' + obj.icon + '" /><font style="color:#000;">'
-							+ obj.name
-							+ '<br />Rating: '
-							+ obj.rating
-							+ '<br />Vicinity: '
-							+ obj.vicinity
-							+ '<br />latlng: '
-							+ obj.geometry.location.lat()
-							+ ', ' + obj.geometry.location.lng() + '</font>'
-				});
+      // prepare info window
+      var infowindow = new google.maps.InfoWindow(
+            {
+               content : '<img src="' + obj.icon + '" /><font style="color:#000;">'
+                     + obj.name
+                     + '<br />Rating: '
+                     + obj.rating
+                     + '<br />Vicinity: '
+                     + obj.vicinity
+                     + '<br />latlng: '
+                     + obj.geometry.location.lat()
+                     + ', ' + obj.geometry.location.lng() + '</font>'
+            });
 
 		// add event handler to current marker
 		google.maps.event.addListener(mark, 'click', function() {
@@ -519,6 +544,7 @@ href=".././resources/js/sweetalert.css">
 										address</div>
 									<div class="button">
 										<label for="gmap_type">Type:</label> <select id="gmap_type">
+											<option value="--">--</option> 
 											<option value="art_gallery">art_gallery</option>
 											<option value="atm">atm</option>
 											<option value="bank">bank</option>

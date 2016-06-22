@@ -155,7 +155,10 @@
 </head>
 <body>
 	<div class="container">
-	<div class="chat" id="chat">
+	<div align="center">
+	<img src=".././resources/img/main_logo.png">
+	</div>
+	<div class="chat form-group" id="chat">
 	    <p>
 	       <div id="ids"></div>
 	    </p>
@@ -189,11 +192,9 @@
 			<input class="form-control" id="textMessage" type="text" style="width: 300px" />
 			</div>
 		</td>
-		<td>
-			<div class="livicon block" data-n="rocket" data-s="48" data-op="0" data-c="#738d00" data-hc="0"></div>
-		</td>
-		<td>
-			<div class="livicon block" data-n="rocket" data-s="48" data-op="0" data-c="#738d00" data-hc="0"></div>
+		<td style="padding-bottom: 20px">
+		<!-- 	&nbsp;&nbsp;<div class="livicon block" id="sendBtn" data-n="message-out" data-s="32" data-op="0" data-c="#738d00" data-hc="0"></div> -->
+			&nbsp;<button class="btn btn-danger" id="sendBtn">Send</button>
 		</td>
 	</tr>
 	</table>
@@ -201,65 +202,65 @@
 	<!-- 각종 Javascript -->
 		
 		<!--[if (!IE)|(gt IE 8)]><!-->
-		<script src="./resources/js/jquery-2.1.3.min.js"></script>
+		<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 		<!--<![endif]-->
 		
 		<!--[if lte IE 8]>
 		<script src="js/jquery-1.9.1.min.js"></script>
 		<![endif]-->
-		<script src="./resources/js/bootstrap.min.js"></script>
-		<script src="./resources/js/price-regulator/jshashtable-2.1_src.js"></script>
-		<script src="./resources/js/price-regulator/jquery.numberformatter-1.2.3.js"></script>
-		<script src="./resources/js/price-regulator/tmpl.js"></script>
-		<script src="./resources/js/price-regulator/jquery.dependClass-0.1.js"></script>
-		<script src="./resources/js/price-regulator/draggable-0.1.js"></script>
-		<script src="./resources/js/price-regulator/jquery.slider.js"></script>
-		<script src="./resources/js/jquery.carouFredSel-6.2.1-packed.js"></script>
-		<script src="./resources/js/jquery.touchwipe.min.js"></script>
-		<script src="./resources/js/jquery.elevateZoom-3.0.8.min.js"></script>
-		<script src="./resources/js/jquery.imagesloaded.min.js"></script>
-		<script src="./resources/js/jquery.appear.js"></script>
-		<script src="./resources/js/jquery.sparkline.min.js"></script>
-		<script src="./resources/js/jquery.easypiechart.min.js"></script>
-		<script src="./resources/js/jquery.easing.1.3.js"></script>
-		<script src="./resources/js/jquery.fancybox.pack.js"></script>
-		<script src="./resources/js/isotope.pkgd.min.js"></script>
-		<script src="./resources/js/jquery.knob.js"></script>
-		<script src="./resources/js/jquery.selectBox.min.js"></script>
-		<script src="./resources/js/jquery.royalslider.min.js"></script>
-		<script src="./resources/js/jquery.tubular.1.0.js"></script>
-		<script src="./resources/js/SmoothScroll.js"></script>
-		<script src="./resources/js/country.js"></script>
-		<script src="./resources/js/spin.min.js"></script>
-		<script src="./resources/js/ladda.min.js"></script>
-		<script src="./resources/js/masonry.pkgd.min.js"></script>
-		<script src="./resources/js/morris.min.js"></script>
-		<script src="./resources/js/raphael.min.js"></script>
-		<script src="./resources/js/video.js"></script>
-		<script src="./resources/js/pixastic.custom.js"></script>
-		<script src="./resources/js/livicons-1.4.min.js"></script>
-		<script src="./resources/js/layerslider/greensock.js"></script>
-		<script src="./resources/js/layerslider/layerslider.transitions.js"></script>
-		<script src="./resources/js/layerslider/layerslider.kreaturamedia.jquery.js"></script>
-		<script src="./resources/js/revolution/jquery.themepunch.tools.min.js"></script>
-		<script src="./resources/js/revolution/jquery.themepunch.revolution.min.js"></script>
+		<script src=".././resources/js/bootstrap.min.js"></script>
+		<script src=".././resources/js/price-regulator/jshashtable-2.1_src.js"></script>
+		<script src=".././resources/js/price-regulator/jquery.numberformatter-1.2.3.js"></script>
+		<script src=".././resources/js/price-regulator/tmpl.js"></script>
+		<script src=".././resources/js/price-regulator/jquery.dependClass-0.1.js"></script>
+		<script src=".././resources/js/price-regulator/draggable-0.1.js"></script>
+		<script src=".././resources/js/price-regulator/jquery.slider.js"></script>
+		<script src=".././resources/js/jquery.carouFredSel-6.2.1-packed.js"></script>
+		<script src=".././resources/js/jquery.touchwipe.min.js"></script>
+		<script src=".././resources/js/jquery.elevateZoom-3.0.8.min.js"></script>
+		<script src=".././resources/js/jquery.imagesloaded.min.js"></script>
+		<script src=".././resources/js/jquery.appear.js"></script>
+		<script src=".././resources/js/jquery.sparkline.min.js"></script>
+		<script src=".././resources/js/jquery.easypiechart.min.js"></script>
+		<script src=".././resources/js/jquery.easing.1.3.js"></script>
+		<script src=".././resources/js/jquery.fancybox.pack.js"></script>
+		<script src=".././resources/js/isotope.pkgd.min.js"></script>
+		<script src=".././resources/js/jquery.knob.js"></script>
+		<script src=".././resources/js/jquery.selectBox.min.js"></script>
+		<script src=".././resources/js/jquery.royalslider.min.js"></script>
+		<script src=".././resources/js/jquery.tubular.1.0.js"></script>
+		<script src=".././resources/js/SmoothScroll.js"></script>
+		<script src=".././resources/js/country.js"></script>
+		<script src=".././resources/js/spin.min.js"></script>
+		<script src=".././resources/js/ladda.min.js"></script>
+		<script src=".././resources/js/masonry.pkgd.min.js"></script>
+		<script src=".././resources/js/morris.min.js"></script>
+		<script src=".././resources/js/raphael.min.js"></script>
+		<script src=".././resources/js/video.js"></script>
+		<script src=".././resources/js/pixastic.custom.js"></script>
+		<script src=".././resources/js/livicons-1.4.min.js"></script>
+		<script src=".././resources/js/layerslider/greensock.js"></script>
+		<script src=".././resources/js/layerslider/layerslider.transitions.js"></script>
+		<script src=".././resources/js/layerslider/layerslider.kreaturamedia.jquery.js"></script>
+		<script src=".././resources/js/revolution/jquery.themepunch.tools.min.js"></script>
+		<script src=".././resources/js/revolution/jquery.themepunch.revolution.min.js"></script>
 		<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
 		(Load Extensions only on Local File Systems !
 		The following part can be removed on Server for On Demand Loading) -->	
-		<script src="./resources/js/revolution/extensions/revolution.extension.actions.min.js"></script>
-		<script src="./resources/js/revolution/extensions/revolution.extension.carousel.min.js"></script>
-		<script src="./resources/js/revolution/extensions/revolution.extension.kenburn.min.js"></script>
-		<script src="./resources/js/revolution/extensions/revolution.extension.layeranimation.min.js"></script>
-		<script src="./resources/js/revolution/extensions/revolution.extension.migration.min.js"></script>
-		<script src="./resources/js/revolution/extensions/revolution.extension.navigation.min.js"></script>
-		<script src="./resources/js/revolution/extensions/revolution.extension.parallax.min.js"></script>
-		<script src="./resources/js/revolution/extensions/revolution.extension.slideanims.min.js"></script>
-		<script src="./resources/js/revolution/extensions/revolution.extension.video.min.js"></script>
-		<script src="./resources/js/bootstrapValidator.min.js"></script>
-		<script src="./resources/js/bootstrap-datepicker.js"></script>
-		<script src="./resources/js/jplayer/jquery.jplayer.min.js"></script>
-		<script src="./resources/js/jplayer/jplayer.playlist.min.js"></script>
-		<script src="./resources/js/jquery.scrollbar.min.js"></script>
-		<script src="./resources/js/main.js"></script>
+		<script src=".././resources/js/revolution/extensions/revolution.extension.actions.min.js"></script>
+		<script src=".././resources/js/revolution/extensions/revolution.extension.carousel.min.js"></script>
+		<script src=".././resources/js/revolution/extensions/revolution.extension.kenburn.min.js"></script>
+		<script src=".././resources/js/revolution/extensions/revolution.extension.layeranimation.min.js"></script>
+		<script src=".././resources/js/revolution/extensions/revolution.extension.migration.min.js"></script>
+		<script src=".././resources/js/revolution/extensions/revolution.extension.navigation.min.js"></script>
+		<script src=".././resources/js/revolution/extensions/revolution.extension.parallax.min.js"></script>
+		<script src=".././resources/js/revolution/extensions/revolution.extension.slideanims.min.js"></script>
+		<script src=".././resources/js/revolution/extensions/revolution.extension.video.min.js"></script>
+		<script src=".././resources/js/bootstrapValidator.min.js"></script>
+		<script src=".././resources/js/bootstrap-datepicker.js"></script>
+		<script src=".././resources/js/jplayer/jquery.jplayer.min.js"></script>
+		<script src=".././resources/js/jplayer/jplayer.playlist.min.js"></script>
+		<script src=".././resources/js/jquery.scrollbar.min.js"></script>
+		<script src=".././resources/js/main.js"></script>
 </body>
 </html>

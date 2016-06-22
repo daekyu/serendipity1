@@ -49,6 +49,9 @@ public interface BoardDAO {
 	//이미지 삭제를 위한 이미지 명 검색
 	public BoardDTO picSearch(BoardDTO boarddto);
 	
+	//가이드 구함 게시판 - 가이드 명 구하기
+	public String getGuide(BoardDTO boarddto);
+	
 	//    -----------------여행자 구함 게시판 
 	//여행자 구함 글쓰기
 	public void Gwrite(BoardDTO boarddto) throws ClassNotFoundException, SQLException;

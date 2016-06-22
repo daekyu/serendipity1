@@ -127,6 +127,7 @@
 										언어: 
 									</li>
 									<li>관심사: 맛집, 술, 술</li>
+									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>
 								<br> <span class="">하고싶은 여행: <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">${i.BOARD_CONTENT}</a></span>
 							</div>

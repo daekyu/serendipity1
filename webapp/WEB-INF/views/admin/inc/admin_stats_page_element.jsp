@@ -13,7 +13,7 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script type="text/javascript">
-$(function(){
+/* $(function(){
     var SUB_STA_NM=[];
     var RIDE_PASGR_NUM=[];
     var ALIGHT_PASGR_NUM=[];
@@ -74,6 +74,69 @@ $(function(){
          }]
      });
   });
+}); */
+$(function () {
+	$.ajax({
+		type:'post',
+		url:'member_gender_rate.htm',
+		dataType:'JSON',
+		success:function(data){
+			console.log("data : "+data);
+			$('#chart2').highcharts({
+		        chart: {
+		            plotBackgroundColor: null,
+		            plotBorderWidth: null,
+		            plotShadow: false,
+		            type: 'pie'
+		        },
+		        title: {
+		            text: 'Serendipity 남여 비율 통계'
+		        },
+		        tooltip: {
+		            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		        },
+		        plotOptions: {
+		            pie: {
+		                allowPointSelect: true,
+		                cursor: 'pointer',
+		                dataLabels: {
+		                    enabled: true,
+		                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+		                    style: {
+		                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+		                    }
+		                }
+		            }
+		        },
+		        series: [{
+		            name: 'Rate',
+		            colorByPoint: true,
+		            data: [{
+		                name: 'Male',
+		                y: data.male
+		            }, {
+		                name: 'Female',
+		                y: data.female 
+		            }/* , {
+		                name: 'Firefox',
+		                y: 10.38,
+		                sliced: true,
+		                selected: true
+		            }, {
+		                name: 'Safari',
+		                y: 4.77
+		            }, {
+		                name: 'Opera',
+		                y: 0.91
+		            }, {
+		                name: 'Proprietary or Undetectable',
+		                y: 0.2
+		            } */]
+		        }]
+
+			});
+		}
+	});	
 });
 </script>
 <div class="breadcrumb-box breadcrumb-none"></div>
@@ -90,7 +153,7 @@ $(function(){
 		<div class="product-tab">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#chart1">게시글 통계</a></li>
-						<li><a href="#chart2">남녀비율 통계</a></li>
+						<li><a href="#chart2">남여비율 통계</a></li>
 						<li><a href="#chart3">가입자수 통계</a></li>
 						<li><a href="#chart4">신고건수 통계</a></li>
 						<li><a href="#chart5">방문자수 통계</a></li>

@@ -7,15 +7,17 @@
 
 package kr.co.serendipity;
 
-import java.sql.SQLException;
+
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.ReportDTO;
 import kr.co.serendipity.service.AdminService;
+import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/admin/")
@@ -36,4 +38,13 @@ public class AdminController {
 		return "/admin/admin_stats_page";
 	}
 	
+	@RequestMapping("member_gender_rate.htm")
+	public @ResponseBody JSONObject memberGenderRate(){
+		JSONObject rate = new JSONObject();
+		ArrayList<Integer> genderRate = new ArrayList<Integer>();
+		genderRate.add(adminservice.getMemberCountMale());
+		genderRate.add(adminservice.getMemberCountFemale());
+		rate.put("data", genderRate);
+		return rate;
+	}
 }

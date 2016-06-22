@@ -107,14 +107,14 @@
 							<a class="btn dropdown-toggle btn-default" role="button"
 								data-toggle="dropdown" href="#">지역:전체 <span></span></a>
 							<ul class="dropdown-menu">
-							<li><a href="review_list.htm">전체</a></li>
+							<li><a href="review_list.htm?order=review_num">전체</a></li>
 							<c:forEach var="i" items="${local_list}">
 								<%-- <li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li> --%>
 								<c:choose>
 									<c:when test="${i.local_code == '-' }"></c:when>
 									
 									<c:otherwise>
-										<li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li>
+										<li><a href="review_list.htm?order=review_num">${i.local_name}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>

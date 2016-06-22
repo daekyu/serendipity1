@@ -8,6 +8,7 @@
 package kr.co.serendipity;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,44 @@ public class AdminController {
 		genderRate.add(adminservice.getMemberCountFemale());
 		rate.put("data", genderRate);
 		return rate;
+	}
+	
+	@RequestMapping("report_month_count.htm")
+	public @ResponseBody JSONObject monthReportCount() throws ClassNotFoundException, SQLException{
+		JSONObject monthCount = new JSONObject();
+		ArrayList<Integer> count = new ArrayList<Integer>();
+		for(int i=1; i<11; i++){
+			count.add(adminservice.monthReportCount(i));
+		}
+		monthCount.put("data", count);
+		return monthCount;
+	}
+	
+	@RequestMapping("join_month_count.htm")
+	public @ResponseBody JSONObject monthJoinCount() throws ClassNotFoundException, SQLException{
+		JSONObject joinCount = new JSONObject();
+		ArrayList<Integer> count = new ArrayList<Integer>();
+		for(int i=1; i<11; i++){
+			count.add(adminservice.monthJoinCount(i));
+		}
+		joinCount.put("data", count);
+		return joinCount;
+	}
+	
+	@RequestMapping("board_month_count.htm")
+	public @ResponseBody JSONObject monthBoardCount() throws ClassNotFoundException, SQLException{
+		JSONObject boardCount = new JSONObject();
+		ArrayList<Integer> guideCount = new ArrayList<Integer>();
+		ArrayList<Integer> travelerCount = new ArrayList<Integer>();
+		ArrayList<Integer> reviewCount = new ArrayList<Integer>();
+		for(int i=1; i<11; i++){
+			guideCount.add(adminservice.monthGuideCount(i));
+			travelerCount.add(adminservice.monthTravelerCount(i));
+			reviewCount.add(adminservice.monthReviewCount(i));
+		}
+		boardCount.put("guide", guideCount);
+		boardCount.put("traveler", travelerCount);
+		boardCount.put("review", reviewCount);
+		return boardCount;
 	}
 }

@@ -425,7 +425,7 @@
 
 						<div class="tab-pane" id="reporting">
 							<form
-								action="${pageContext.request.contextPath}/report/report_write2.htm?reporter=${sessionScope.user_num}&villain=${boarddto.user_num}&board_num=${boarddto.board_num}"
+								action="${pageContext.request.contextPath}/report/report_write2.htm?reporter=${sessionScope.user_num}&villain=${boarddto.USER_NUM}&board_num=${boarddto.BOARD_NUM}"
 								method="post">
 								<table class="table center">
 									<tr>

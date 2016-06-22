@@ -23,4 +23,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMemberCountFemale" resultType="Integer">
 		select count(*) from member where gender='F'
 	</select>
+	
+	<select id="monthReportCount" resultType="Integer">
+		select count(*) from report where substr(report_date,5,1) = #{param1}
+	</select>
+	
+	<select id="monthJoinCount" resultType="Integer">
+		select count(*) from member where substr(join_date,5,1) = #{param1}
+	</select>
+	
+	<select id="monthGuideCount" resultType="Integer">
+		select count(*) from board where substr(board_date,2,1) = #{param1} and category_num = 2
+	</select>
+	
+	<select id="monthTravelerCount" resultType="Integer">
+		select count(*) from board where substr(board_date,2,1) = #{param1} and category_num = 1
+	</select>
+	
+	<select id="monthReviewCount" resultType="Integer">
+		select count(*) from review where substr(review_date,5,1) = #{param1}
+	</select>
 </mapper>

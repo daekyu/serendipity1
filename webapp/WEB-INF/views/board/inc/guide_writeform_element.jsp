@@ -1,94 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<script src=".././resources/js/jquery-2.1.3.min.js"></script>
+<script src="resources/js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="resources/js/sweetalert.css">   
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
 </script> 
 <link rel="stylesheet" type="text/css" 
-href=".././resources/js/sweetalert.css">       	
+href=".././resources/js/sweetalert.css">       
 <script type="text/javascript"
-	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
+   src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
-
+   src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
+<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
-	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-
+   src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="jquery.numberformatter.js"></script>
+   
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
-
-
-
-
-
 <script type="text/javascript">
-	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
+   window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
+
 	
 	
 	
 	function formatNumber (num) {
 	    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 	}
+		
 	
-
-	$(function() {
-		
-		
-		
-		
-		
-		 var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
-         
-         
-         
-         //게시판 유효성 검증 
-         
-          $('#success').click(function() {
-            
-            
-               if($('#title_text').val() == '') {
-                  swal('글제목을 입력해주세요')
-                  $('#title_text').focus();
-                  return false;
-               } else if($('#datepicker').val() == '') {
-                  swal('날짜를 입력해주세요');
-                  $('#datepicker').focus();
-                  return false;
-               }  else if(!reg_number.test($('#before').val()) == true){
-                 swal('지불할 가격을 숫자로 입력해 주세요');
-                 $('#before').focus();
-                  return false;
-              } else if($('#after').val() == ''){
-                    swal('변환 버튼을 눌러 주세요');
-                    $('#before').focus();
-                 return false; 
-               } else if($('#pic1').val()==''){
-                  swal("사진을 1개 이상 등록해 주세요");
-                  $('#pic1').focus();
-                  return false;
-               } else if($('#meeting_place').val() == '') {
-                     alert('meeting point를 지도에서 선택해주세요');
-                     $('#gmap_where').focus();
-                     return false;
-                  }else{
-                  swal('글작성 완료','','success');
-               }
-               
-                        
-               
-            }); 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 		$('#pic2').hide();
 		$('#pic3').hide();
@@ -124,7 +65,7 @@ href=".././resources/js/sweetalert.css">
 				return false;
 			}
 		});
-	});
+	
 
 	$('#ckeditor').keyup(function() {
 		console.log($('#ckeditor').val());
@@ -140,6 +81,58 @@ href=".././resources/js/sweetalert.css">
 		// 강제 서브밋
 		$('#bofom').submit();
 	});
+	
+	
+	
+	
+	
+	
+	 /* 
+	   $(function(){
+	      
+	      
+	          var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
+	            
+	            
+	            
+	            //게시판 유효성 검증 
+	            
+	             $('#success').click(function() {
+	                       
+	                  if($('#title_text').val() == '') {
+	                	  swal('<spring:message code="board.guide_writeform_ef"/>');
+	                     $('#title_text').focus();
+	                     return false;
+	                  } else if($('#board_capacity').val() == '') {
+	                     swal('<spring:message code="board.guide_writeform_ef0.5"/>');
+	                     $('#board_capacity').focus();
+	                     return false;
+	                  }  else if($('#datepicker').val() == '') {
+		                     swal('<spring:message code="board.guide_writeform_ef1"/>');
+		                     $('#datepicker').focus();
+		                     return false;
+		                  }
+	                    else if(!reg_number.test($('#before').val()) == true){
+	                    swal('<spring:message code="board.guide_writeform_ef2"/>');
+	                    $('#before').focus();
+	                     return false;
+	                 } else if(!reg_number.test($('#after').val()) == true){
+	                       swal('<spring:message code="board.guide_writeform_ef3"/>');
+	                       $('#before').focus();
+	                    return false; 
+	                  } else if($('#pic1').val()==''){
+	                     swal("<spring:message code="board.guide_writeform_ef4"/>");
+	                     $('#pic1').focus();
+	                     return false;
+	                  } else if($('#meeting_place').val() == '') {
+	                        swal('<spring:message code="board.guide_writeform_ef5"/>');
+	                        $('#gmap_where').focus();
+	                        return false;
+	                     }else{
+	                    	 swal("<spring:message code="board.guide_writeform_ef6"/>")
+	                  }
+	               });  */
+	
 
 	
 	
@@ -457,13 +450,13 @@ href=".././resources/js/sweetalert.css">
 				<input type="hidden" name="user_num" value="${sessionScope.user_num}">
 				<table class="table table-responsive center">
 					<tr>
-						<td><h5><spring:message code="board.guide_writeform2"/></h5></td>
-						<td colspan="5"><input class="form-control" type="text"
+						<td><h6><spring:message code="board.guide_writeform2"/></h6></td>
+						<td colspan="5"><input class="form-control" type="text" id="board_title"
 							name="board_title"></td>
 					</tr>
 					<tr>
 						<td><spring:message code="board.guide_writeform3"/></td>
-						<td><input class="form-control" type="text"
+						<td><input class="form-control" type="text" id="board_capacity"
 							name="board_capacity"></td>
 						<td><spring:message code="board.guide_writeform4"/></td>
 						<td><input class="form-control" type="text" id="datepicker"

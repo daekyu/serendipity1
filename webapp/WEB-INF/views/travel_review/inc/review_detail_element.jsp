@@ -105,7 +105,7 @@
 							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 						</c:when>
 						<c:otherwise>
-							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${review_detail.REVIEW_PICTURE2}" width="620" height="550" alt="">
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REVIEW_PICTURE2}" width="620" height="550" alt="">
 						</c:otherwise>
 					</c:choose>
 					</div>

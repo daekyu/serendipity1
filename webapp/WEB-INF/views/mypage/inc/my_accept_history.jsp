@@ -71,7 +71,7 @@
 						</c:choose>
 					</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}" class="btn btn-success" id="accept">수락</a>
+						<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&bn=${i.BOARD_NUM}" class="btn btn-success" id="accept">수락</a>
 						<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger" id="delete">거절</a>
 					</td>
 				</tr>

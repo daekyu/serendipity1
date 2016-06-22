@@ -162,6 +162,7 @@ public class BoardController {
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
 		mav.addObject("language",boardservice.getLanguages(boarddto));
 		mav.addObject("hobby", boardservice.getHobbies(boarddto));
+		mav.addObject("guide", boardservice.getGuide(boarddto));
 		return mav;
 	}
 

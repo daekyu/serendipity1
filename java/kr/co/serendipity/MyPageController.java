@@ -276,10 +276,18 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("acceptRequest.htm")
-	public String acceptRequest(ParticipantDTO participantdto, HttpSession session) {
+	public String acceptRequest(ParticipantDTO participantdto, HttpSession session, String bn) {
 		System.out.println("acceptRequest entrance");
 		System.out.println("parti_num : " + participantdto.getParti_num());
+		System.out.println("bn : " + bn);
+		int bn1=0;
+		
+		if(bn != null){
+			bn1 = Integer.parseInt(bn);
+		}
+		
 		mypageservice.acceptRequest(participantdto);
+		mypageservice.upCapacity(bn1);
 		return "redirect:/mypage/my_page_accept_history.htm?user_num=" + session.getAttribute("user_num");
 	}
 

@@ -71,7 +71,6 @@
                   
                   var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 7,
-                        scrollwheel: false,
                         center: new google.maps.LatLng(36, 127.1),
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                       });
@@ -113,16 +112,25 @@
                                 success : function(data) {
                                 	console.log("asdasdasdas : " + data);
                                 	console.log("aaaaaaaaaaa : " + data.length);
-                                	
+                                	var list = "";
                                     $.each(data, function(index, item) {
-                                    	 $('#review_title'+index).text(item.review_title);
+                                    	 /* $('#review_title'+index).text(item.review_title);
                                          $('#review_content'+index).text(item.review_content);
                                          $('#review_content'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
                                          $('#review_imglink'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
                                          $('#review_titlelink'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
-                                         $('#review_img'+index).attr('src','${pageContext.request.contextPath}/resources/img/review_upload/'+item.review_picture1);
+                                         $('#review_img'+index).attr('src','${pageContext.request.contextPath}/resources/img/review_upload/'+item.review_picture1); */
+                                         list += "<li>";
+                                         list += "<a href='${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=item.review_num'><img class='image img-circle replace-2x' src='content/img/product-1-84.jpg' alt='' title='' width='84' height='84' data-appear-animation='rotateIn'></a>";
+                                         list += "<div class='meta'>";
+                                         list += "<a href='${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=item.review_num'><span class='daekyu'>item.review_title</span></a>";
+                                         list += "</div>";
+                                         list += "<div class='description'>";
+                                         list += "<a href='${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=item.review_num'>item.review_content</a>";
+                                         list += "</div>";
+                                         list += "</li>";
                                     });
-                                    
+                                    $('#review_list').append(list);
                                 }
                             });
                             

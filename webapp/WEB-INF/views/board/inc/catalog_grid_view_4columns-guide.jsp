@@ -41,11 +41,19 @@
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Sort by: <span>Rating</span>
+								data-toggle="dropdown" href="#">Sort by: <span>
+								<c:choose>
+								<c:when test="${basicsort eq 'board_num'}">
+									Date
+								</c:when>
+								<c:otherwise>
+									other
+								</c:otherwise>
+								</c:choose></span>
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Price</a></li>
-								<li><a href="#">Date</a></li>
+								<!-- <li><a href="#">Price</a></li> -->
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?sort=board_num&show=${basicshow}&sort=board_num">Date</a></li>
 							</ul>
 						</div>
 						<!-- .sort-by -->
@@ -62,9 +70,9 @@
 								data-toggle="dropdown" href="#">Show: <span>${basicshow}</span> <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=3">3</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=6">6</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=9">9</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=3&sort=${basicsort}">3</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=6&sort=${basicsort}">6</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=9&sort=${basicsort}">9</a></li>
 							</ul>
 						</div>
 						<!-- .show -->
@@ -140,7 +148,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page-1}&show=${basicshow}">
+										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page-1}&show=${basicshow}&sort=${basicsort}">
 											<i class="fa fa-angle-left"></i>
 									</a></li>
 								</c:otherwise>
@@ -153,7 +161,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${a}&show=${basicshow}">
+											href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${a}&show=${basicshow}&sort=${basicsort}">
 												${a}</a></li>
 									</c:otherwise>
 								</c:choose>
@@ -165,7 +173,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page+1}&show=${basicshow}">
+										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page+1}&show=${basicshow}&sort=${basicsort}">
 											<i class="fa fa-angle-right"></i>
 									</a></li>
 								</c:otherwise>

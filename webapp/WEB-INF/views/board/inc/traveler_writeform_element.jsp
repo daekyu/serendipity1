@@ -469,9 +469,9 @@ href=".././resources/js/sweetalert.css">
                        <option value="USD">USD</option>
                     
                   </select></td>
-                  <td><input class="form-control" id="before" type="text" name="#"></td>
+                  <td><input class="form-control" id="before" type="text" name="#" placeholder="작성후 수정 불가"></td>
                   <td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.traveler_writeform13"/></button></td>
-                  <td><input class="form-control" id="after" type="text" name="price"></td>
+                  <td><input class="form-control" id="after" type="text" name="price" placeholder="작성후 수정 불가"></td>
                   
 
                   <%-- <td><input class="form-control" type="text"></td>

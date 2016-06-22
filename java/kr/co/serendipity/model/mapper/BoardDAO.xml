@@ -125,4 +125,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select hobby_name, id from hobby_select hs, hobby h, member m where hs.HOBBY_CODE = h.HOBBY_CODE and hs.USER_NUM=m.user_num and hs.user_num=#{user_num}
 	</select>
 	
+	<select id="getGuide" resultType="String">
+		select m.id from participant p join board b on p.board_num=b.board_num join member m on p.user_num=m.user_num where b.board_num=#{board_num} and p.state='accept'
+	</select>
+	
 </mapper>

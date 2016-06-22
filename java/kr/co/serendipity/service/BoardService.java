@@ -233,4 +233,9 @@ public class BoardService {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		return dao.getHobbies(boarddto);
 	}
+	
+	public String getGuide(BoardDTO boarddto){
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.getGuide(boarddto);
+	}
 }

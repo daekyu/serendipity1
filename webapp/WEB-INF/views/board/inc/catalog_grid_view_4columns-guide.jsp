@@ -129,6 +129,7 @@
 									<li>가격상한: ${i.PRICE}</li>
 									<li>언어: 영어, 한국어</li>
 									<li>관심사: 맛집, 술, 술</li>
+									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>
 								<br> <span class="">여행 계획: <a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">${i.BOARD_CONTENT}</a></span>
 							</div>

@@ -31,4 +31,6 @@ public interface AdminDAO {
 	//월별 여행후기 게시판 게시글 수
 	public int monthReviewCount(int month) throws ClassNotFoundException, SQLException;
 	
+	//일별 방문자수
+	public int dayVisitCount(int day) throws ClassNotFoundException, SQLException;
 }

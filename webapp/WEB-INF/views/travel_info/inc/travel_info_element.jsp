@@ -450,28 +450,28 @@
         <!-- 여행정도 사진1 -->
         <div class="images-box col-sm-3 col-md-3">
          <a class="gallery-images" rel="fancybox" id="local_img1">
-           <img class="replace-2x img-list2, local_img1" alt=".././resources/img/main_logo.png" width="120" height="100">
+           <img class="replace-2x img-list2 local_img1" alt="" width="120" height="100">
            <span class="bg-images"><i class="fa fa-search"></i></span>
          </a>
         </div><!-- .images-box -->
         <!-- 여행정도 사진2 -->
         <div class="images-box col-sm-3 col-md-3">
          <a class="gallery-images" rel="fancybox" id="local_img2">
-           <img class="replace-2x img-list2, local_img2" alt=""width="120" height="100">
+           <img class="replace-2x img-list2 local_img2" alt="" width="120" height="100">
            <span class="bg-images"><i class="fa fa-search"></i></span>
          </a>
         </div>
         <!-- 여행정도 사진3 -->
         <div class="images-box col-sm-3 col-md-3">
          <a class="gallery-images" rel="fancybox" id="local_img3">
-           <img class="replace-2x img-list2, local_img3" alt="" width="120" height="100">
+           <img class="replace-2x img-list2 local_img3" alt="" width="120" height="100">
            <span class="bg-images"><i class="fa fa-search"></i></span>
          </a>
         </div>
         <!-- 여행정도 사진4 -->
         <div class="images-box col-sm-3 col-md-3">
          <a class="gallery-images" rel="fancybox" id="local_img4">
-           <img class="replace-2x img-list2, local_img4" alt=""width="120" height="100">
+           <img class="replace-2x img-list2 local_img4" alt=""width="120" height="100">
            <span class="bg-images"><i class="fa fa-search"></i></span>
          </a>
         </div>

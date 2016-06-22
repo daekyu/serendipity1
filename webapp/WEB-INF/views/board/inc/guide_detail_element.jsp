@@ -177,35 +177,35 @@
 										data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}">
 										<img class="replace-2x" alt=""
 										src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}"
-										width="500" height="500">
+										width="100" height="100">
 									</a> <a href="#"
 										data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE2}"
 										data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE2}">
 										<img class="replace-2x" alt=""
 										src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE2}"
-										width="500" height="500">
+										width="100" height="100">
 									</a> <a href="#"
 										data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE3}"
 										data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE3}">
 										<img class="replace-2x" alt=""
 										src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE3}"
-										width="500" height="500">
+										width="100" height="100">
 									</a> <a href="#"
 										data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE4}"
 										data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE4}">
 										<img class="replace-2x" alt=""
 										src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE4}"
-										width="500" height="500">
+										width="100" height="100">
 									</a> <a href="#"
 										data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boraddto.BOARD_PICTURE5}"
 										data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}">
 										<img class="replace-2x" alt=""
 										src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}"
-										width="500" height="500">
-									</a> <a href="#" data-image="content/img/single-3.jpg"
+										width="100" height="100">
+									<!-- </a> <a href="#" data-image="content/img/single-3.jpg"
 										data-zoom-image="content/img/single-3.jpg"> <img
 										class="replace-2x" alt="" src="content/img/single-3.jpg"
-										width="500" height="500">
+										width="100" height="100"> -->
 									</a>
 								</div>
 								<!-- #thumblist -->

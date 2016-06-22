@@ -14,8 +14,8 @@ href=".././resources/js/sweetalert.css">
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
 
 
-<input type="hidden" id="latitude" value="${dto.BOARD_LATITUDE}" />
-<input type="hidden" id="longitude" value="${dto.BOARD_LONGITUDE}"/>
+<input type="hidden" id="latitude" value="${boarddto.BOARD_LATITUDE}" />
+<input type="hidden" id="longitude" value="${boarddto.BOARD_LONGITUDE}"/>
 
 <script type="text/javascript">
 window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';

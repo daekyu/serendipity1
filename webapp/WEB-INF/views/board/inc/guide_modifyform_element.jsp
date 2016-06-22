@@ -395,10 +395,13 @@ google.maps.event.addDomListener(window, 'load', initialize);
 							<input type="file" id="pic4" name="pic">
 							<input type="file" id="pic5" name="pic">
 						</td>
-						<td align="center">
+						<td >
 							<button type="button" id="addBtn" class="btn btn-success">추가</button>
+							</td>
+							<td >
 							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
 						</td>
+						
 					</tr>
 					<tr>
 						<td>Meeting Point</td>

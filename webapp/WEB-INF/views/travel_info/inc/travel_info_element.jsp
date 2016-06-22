@@ -134,13 +134,13 @@
                                 	console.log("aaaaaaaaaaa : " + data.length);
                                 	var list = "";
                                     $.each(data, function(index, item) {
-                                    	 /* $('#review_title'+index).text(item.review_title);
+                                    	 $('#review_title'+index).text(item.review_title);
                                          $('#review_content'+index).text(item.review_content);
                                          $('#review_content'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
                                          $('#review_imglink'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
                                          $('#review_titlelink'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
-                                         $('#review_img'+index).attr('src','${pageContext.request.contextPath}/resources/img/review_upload/'+item.review_picture1); */
-                                         list += "<li>";
+                                         $('#review_img'+index).attr('src','${pageContext.request.contextPath}/resources/img/review_upload/'+item.review_picture1);
+                                         /* list += "<li>";
                                          list += "<a href='${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=item.review_num'><img class='image img-circle replace-2x' src='content/img/product-1-84.jpg' alt='' title='' width='84' height='84' data-appear-animation='rotateIn'></a>";
                                          list += "<div class='meta'>";
                                          list += "<a href='${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=item.review_num'><span class='daekyu'>item.review_title</span></a>";
@@ -148,9 +148,9 @@
                                          list += "<div class='description'>";
                                          list += "<a href='${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=item.review_num'>item.review_content</a>";
                                          list += "</div>";
-                                         list += "</li>";
+                                         list += "</li>"; */
                                     });
-                                    $('#review_list').append(list);
+                                   //$('#review_list').append(list);
                                 }
                             });
                             
@@ -438,12 +438,7 @@
 			<a href="${pageContext.request.contextPath}/travel_review/review_list.htm" class="btn">More <span class="glyphicon glyphicon-arrow-right"></span></a>
 		  </div>
 		  <ul class="latest-posts" id="review_list">
-		  <c:choose>
-		  	<c:when test="${Rlist_count eq 0}">
-				 	글이 존재하지 않습니다.
-			</c:when>
-			<c:otherwise>
-				<c:forEach var="i" begin="0" end="" step="1">
+				<c:forEach var="i" begin="0" end="2" step="1">
 				<li>
 			  		<a href="#" id="review_imglink${i}"><img class="image img-circle replace-2x" id="review_img${i}" src="content/img/product-1-84.jpg" alt="" title="" width="84" height="84" data-appear-animation="rotateIn"></a>
 			  		<div class="meta">
@@ -455,8 +450,6 @@
 			  		</div>
 				</li>
 				</c:forEach>
-			</c:otherwise>
-		  </c:choose>
 		  </ul>
 						</div>
 						<!-- #reviews -->

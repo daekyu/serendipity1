@@ -2,13 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
+</script> 
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css"> 
+
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-<input type="hidden" id="latitude" value="${boarddto.board_latitude}" />
-<input type="hidden" id="longitude" value="${boarddto.board_longitude}"/>
+<input type="hidden" id="latitude" value="${boarddto.BOARD_LATITUDE}" />
+<input type="hidden" id="longitude" value="${boarddto.BOARD_LONGITUDE}"/>
 <script type="text/javascript">
 window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 $(function() {
@@ -49,6 +54,86 @@ $(function() {
 	});
 });
 
+
+
+$(function(){	
+	$("#convert").click(function(){
+		    
+			if ($('#before').val() == ''){
+				swal("값을 입력해주세요!");
+				$("#before").focus();
+				return false;
+			}else{
+				/* $.ajax({
+		        	  type : "post",
+		        	  url : "traveler_writeform.htm",
+		        	  data : {"before" : $('#before').val()},
+		        	  success : function(data) {
+		        		  if($('#selecoption').val()=='KRW'){
+		        			  
+		        		  }else if($('#selecoption').val()=='JPY'){
+		        			  
+		        		  }else($('#selecoption').val()=='USD'){
+		        			  
+		        		  }
+		        		  
+		        		  }
+		        	  
+			
+		          }); */
+		          
+					var endpoint = 'live'
+					var access_key = '56370edf846ec46335b07809733c304e';
+
+					// get the most recent exchange rates via the "live" endpoint:
+					$.ajax({
+					    url: 'http://apilayer.net/api/' + endpoint + '?access_key=' + access_key,   
+					    dataType: 'jsonp',
+					    success: function(json) {
+							console.log(json);
+							
+					        // exchange rata data is stored in json.quotes
+					       /*  alert('한화 달러');
+					        alert(json.quotes.JPYUSD);
+					        alert(json.quotes.USDGBP);
+					        alert(json.quotes.USDJPY);
+					        alert(json.quotes.USDKRW);
+					        // source currency is stored in json.source
+					        alert(json.source);
+					        
+					        // timestamp can be accessed in json.timestamp
+					        alert(json.timestamp); */
+					        
+					        //$('#after').val($('#before').val() * )
+							 if($('#selectoption').val()=='KRW'){
+						        	
+					        	 $('#after').val(formatNumber($('#before').val())+'원');
+					        	 $('#before').val(formatNumber($('#before').val())+'원');
+			        		  }else if($('#selectoption').val()=='JPY'){
+			        			  swal({   title: "실시간 환율 정보",   
+			        				  text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
+			        				  imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
+			        					 
+			        			  });
+								 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
+								 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
+								 $('#before').val(formatNumber($('#before').val())+'원');
+							
+			        		  }else if($('#selectoption').val()=='USD'){
+			        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
+			        			  $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
+			        			  $('#before').val(formatNumber($('#before').val())+'원');
+			        		  }
+					    }
+					});
+				
+				
+				
+			
+		          
+			}
+		});
+});
 $(function(){
 	$("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());
 		});
@@ -115,17 +200,19 @@ function findAddress() {
             // store current coordinates into hidden variables
             document.getElementById('lat').value = results[0].geometry.location.lat();
             document.getElementById('lng').value = results[0].geometry.location.lng();
-            var lat = document.getElementById('lat').value;
+            /* var lat = document.getElementById('lat').value;
             var lng = document.getElementById('lng').value;
             var latlng = lat+', '+lng;
+            var image = '${pageContext.request.contextPath}/resources/img/candy_marker.png';
 
             // and then - add new custom marker
             var addrMarker = new google.maps.Marker({
                 position: addrLocation,
                 map: map,
-                title: results[0].formatted_address
+                title: results[0].formatted_address,
+                icon: image
             });
-            markers.push(addrMarker);
+            markers.push(addrMarker); */
             
             findPlace();
            
@@ -190,36 +277,54 @@ function createMarkers(results, status) {
     }
 }
 
-// creare single marker function
+//creare single marker function
 function createMarker(obj) {
+	   var image;
+	   var type = document.getElementById('gmap_type').value;
+	   if(type == 'art_gallery'){
+		   image = '${pageContext.request.contextPath}/resources/img/art_gallery_marker.png';
+	   }else if(type == 'atm'){
+		   image = '${pageContext.request.contextPath}/resources/img/atm_marker.png';
+	   }else if(type == 'bank'){
+		   image = '${pageContext.request.contextPath}/resources/img/bank_marker.png';
+	   }else if(type == 'bar'){
+		   image = '${pageContext.request.contextPath}/resources/img/bar_marker.png';
+	   }else if(type == 'cafe'){
+		   image = '${pageContext.request.contextPath}/resources/img/cafe_marker.png';
+	   }else if(type == 'food'){
+		   image = '${pageContext.request.contextPath}/resources/img/food_marker.png';
+	   }else if(type == 'store'){
+		   image = '${pageContext.request.contextPath}/resources/img/store_marker.png';
+	   }else if(type == 'subway_station'){
+		   image = '${pageContext.request.contextPath}/resources/img/subway_station_marker.png';
+	   }else{
+		   image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
+	   }
+   // prepare new Marker object
+   
+   
+   var mark = new google.maps.Marker({
+      position : obj.geometry.location,
+      map : map,
+      title : obj.name,
+      icon: image
+   });
+   markers.push(mark);
 
-    // prepare new Marker object
-    var mark = new google.maps.Marker({
-        position: obj.geometry.location,
-        map: map,
-        title: obj.name
-    });
-    markers.push(mark);
-    
+   // prepare info window
+   var infowindow = new google.maps.InfoWindow(
+         {
+            content : '<img src="' + obj.icon + '" /><font style="color:#000;">'
+                  + obj.name
+                  + '<br />Rating: '
+                  + obj.rating
+                  + '<br />Vicinity: '
+                  + obj.vicinity
+                  + '<br />latlng: '
+                  + obj.geometry.location.lat()
+                  + ', ' + obj.geometry.location.lng() + '</font>'
+         });
 
-
-    // prepare info window
-    var infowindow = new google.maps.InfoWindow({
-        content: '<img src="' + obj.icon + '" /><font style="color:#000;">' + obj.name + 
-        '<br />Rating: ' + obj.rating + '<br />Vicinity: ' + obj.vicinity+
-        '<br />latlng: ' + obj.geometry.location.lat()+', '+obj.geometry.location.lng()+'</font>'
-    });
-
-    // add event handler to current marker
-    google.maps.event.addListener(mark, 'click', function(){
-        clearInfos();
-        infowindow.open(map,mark);
-        document.getElementById('lat').value = obj.geometry.location.lat();
-        document.getElementById('lng').value = obj.geometry.location.lng();
-        document.getElementById('meeting_place').value = obj.name;
-        document.getElementById('meeting_address').value = obj.vicinity;
-        
-    });
     infos.push(infowindow);
     
 }
@@ -238,19 +343,29 @@ google.maps.event.addDomListener(window, 'load', initialize);
 		<div class="container">
 			<form action="" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="user_num" value="${sessionScope.user_num}">
-			<input type="hidden" name="board_num" value="${boarddto.board_num}">
+			<input type="hidden" name="board_num" value="${boarddto.BOARD_NUM}">
 				<table class="table center">
 					<tr>
 						<td><h6>제목: </h6></td>
-						<td colspan="5"><input class="form-control" type="text" name="board_title" value="${boarddto.board_title}"></td>
+						<td colspan="5"><input class="form-control" type="text" name="board_title" value="${boarddto.BOARD_TITLE}"></td>
 					</tr>
 					<tr>
 						<td>인원수</td>
-						<td><input class="form-control" type="text" name="board_Capacity" value="${boarddto.board_capacity}"></td>
+						<td><input class="form-control" type="text" name="board_Capacity" value="${boarddto.BOARD_CAPACITY}"></td>
 						<td>날짜</td>
-						<td><input class="form-control" type="text" name="board_Date"  id="datepicker"  value="${boarddto.board_date}"></td>
-						<td>가격</td>
-						<td><input class="form-control" type="text" name="price" value="${boarddto.price}"></td>
+						<td><input class="form-control" type="text" name="board_Date"  id="datepicker"  value="${boarddto.BOARD_DATE}"></td>
+						<td>지불할 가격</td>
+						  
+                     <td><select id="selectoption">
+                       <option value="KRW">KRW</option>
+                       <option value="JPY">JPY</option>
+                       <option value="USD">USD</option>
+                    
+                  </select></td>
+                  <td><input class="form-control" id="before" type="text" name="#" value="${boarddto.PRICE }" readonly></td>
+                  <td><button type="button" id="convert" class="btn btn-success">변환</button></td>
+                  <td><input class="form-control" id="after" type="text" name="price" value="${boarddto.PRICE }" readonly></td>
+                  
 					</tr>
 					<tr>
 								<td>설명</td>
@@ -259,7 +374,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
 
 
-							<textarea name="board_Content" id="ckeditor" >${boarddto.board_content}</textarea> 
+							<textarea name="board_Content" id="ckeditor" >${boarddto.BOARD_CONTENT}</textarea> 
 							<script	type="text/javascript">
 								CKEDITOR.replace('ckeditor', {
 									width : '90%',
@@ -274,16 +389,19 @@ google.maps.event.addDomListener(window, 'load', initialize);
 						<td>사진</td>
 						<!-- <td id="addPic" colspan="4"> -->
 						<td>
-							<input type="file" id="pic1" name="pic"> 수정전 파일 : <input type="text" readonly="readonly" value="${boarddto.board_picture1}">
+							<input type="file" id="pic1" name="pic"> 수정전 파일 : <input type="text" readonly="readonly" value="${boarddto.BOARD_PICTURE1}">
 							<input type="file" id="pic2" name="pic">
 							<input type="file" id="pic3" name="pic">
 							<input type="file" id="pic4" name="pic">
 							<input type="file" id="pic5" name="pic">
 						</td>
-						<td align="center">
+						<td align="right">
 							<button type="button" id="addBtn" class="btn btn-success">추가</button>
+							</td>
+							<td>
 							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
 						</td>
+						
 					</tr>
 					<tr>
 						<td>Meeting Point</td>
@@ -299,13 +417,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
 									onclick="findAddress(); return false;">Search for address</div>
 								<div class="button">
 									<label for="gmap_type">Type:</label> <select id="gmap_type">
+										<option value="--">--</option>
 										<option value="art_gallery">art_gallery</option>
 										<option value="atm">atm</option>
 										<option value="bank">bank</option>
-										<option value="bar">bar</option>
-										<option value="cafe">cafe</option>
-										<option value="food">food</option>
-										<option value="store">store</option>
+										<option value="bar">bar</options>
+										<option value="cafe">cafe</options>
+										<option value="food">food</options>
+										<option value="store">store</options>
 										<option value="subway_station">subway_station</option>
 									</select>
 								</div>

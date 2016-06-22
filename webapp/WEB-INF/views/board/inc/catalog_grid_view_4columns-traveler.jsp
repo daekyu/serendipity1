@@ -40,11 +40,19 @@
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Sort by: <span>Rating</span>
+								data-toggle="dropdown" href="#">Sort by: <span>
+								<c:choose>
+								<c:when test="${basicsort eq 'board_num'}">
+									Date
+								</c:when>
+								<c:otherwise>
+									other
+								</c:otherwise>
+								</c:choose></span>
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Price</a></li>
-								<li><a href="#">Date</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?sort=board_num&show=${basicshow}">Date</a></li>
+								<!-- <li><a href="#">Price</a></li> -->
 							</ul>
 						</div>
 						<!-- .sort-by -->
@@ -61,18 +69,9 @@
 								data-toggle="dropdown" href="#">Show: <span>${basicshow}</span> <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=1">1</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=2">2</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=3">3</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=4">4</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=5">5</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=6">6</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=7">7</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=8">8</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=9">9</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=10">10</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=11">11</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=12">12</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=3&sort=${basicsort}">3</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=6&sort=${basicsort}">6</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=9&sort=${basicsort}">9</a></li>
 							</ul>
 						</div>
 						<!-- .show -->
@@ -128,6 +127,7 @@
 										언어: 
 									</li>
 									<li>관심사: 맛집, 술, 술</li>
+									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>
 								<br> <span class="">하고싶은 여행: <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">${i.BOARD_CONTENT}</a></span>
 							</div>
@@ -268,7 +268,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page-1}&show=${basicshow}">
+										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page-1}&show=${basicshow}&sort=${basicsort}">
 											<i class="fa fa-angle-left"></i>
 									</a></li>
 								</c:otherwise>
@@ -281,7 +281,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${a}&show=${basicshow}">
+											href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${a}&show=${basicshow}&sort=${basicsort}">
 												${a}</a></li>
 									</c:otherwise>
 								</c:choose>
@@ -293,7 +293,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page+1}&show=${basicshow}">
+										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page+1}&show=${basicshow}&sort=${basicsort}">
 											<i class="fa fa-angle-right"></i>
 									</a></li>
 								</c:otherwise>

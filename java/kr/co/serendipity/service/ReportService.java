@@ -38,5 +38,5 @@ public class ReportService {
 		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
 		dao.updateReportCount(reportdto);
 	}
-
+	
 }

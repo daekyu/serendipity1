@@ -43,12 +43,13 @@ public class TravelReviewController {
 	
 	//여행후기 게시판 리스트
 	@RequestMapping("review_list.htm")
-	public ModelAndView reviewList(String pg, HttpServletRequest request) throws ClassNotFoundException, SQLException {
+	public ModelAndView reviewList(String pg, HttpServletRequest request, String order) throws ClassNotFoundException, SQLException {
 		System.out.println("reviewList entrance");
 		ModelAndView mav = new ModelAndView("/travel_review/review_list");
 
 		int page = 1;
 		int startpage = 0;
+		String basicorder = "review_num";
 		int endpage = 0;
 		int maxpage = 0;
 		
@@ -56,7 +57,11 @@ public class TravelReviewController {
 			page = Integer.parseInt(pg);
 		}
 		
-		List<HashMap<String,Object>> reviewList = travelreviewservice.reviewList(page);
+		if(order != null){
+			basicorder = order;
+		}
+		
+		List<HashMap<String,Object>> reviewList = travelreviewservice.reviewList(page, basicorder);
 		int listCount = travelreviewservice.getReviewListCount();
 
 		maxpage = (int) ((double) listCount / 5 + 0.95);
@@ -66,6 +71,16 @@ public class TravelReviewController {
 		if (endpage > maxpage) {
 			endpage = maxpage;
 		}
+		String orderName = "";
+		if(basicorder.equals("review_num")){
+			orderName = "최신순";
+		}
+		if(basicorder.equals("like_count")){
+			orderName = "좋아요순";
+		}
+		if(basicorder.equals("reply_count")){
+			orderName = "댓글순";
+		}
 		
 		mav.addObject("review_list",reviewList);
 		mav.addObject("page", page);
@@ -74,7 +89,8 @@ public class TravelReviewController {
 		mav.addObject("endpage", endpage);
 		mav.addObject("list_count", listCount);
 		mav.addObject("local_list", travelreviewservice.localList());
-
+		mav.addObject("basicorder", basicorder);
+		mav.addObject("orderName", orderName);
 		return mav;
 	}
 	
@@ -377,36 +393,6 @@ public class TravelReviewController {
 		mav.addObject("review_list", travelreviewservice.filteringReviewList(local_code));
 		mav.addObject("local_list", travelreviewservice.localList());
 		mav.addObject("local_code", local_code);
-		return mav;
-	}
-	
-	//여행후기 게시판 리스트 정렬(최신순)
-	@RequestMapping("orderReviewList1.htm")
-	public ModelAndView orderReviewList1() throws ClassNotFoundException, SQLException{
-		ModelAndView mav = new ModelAndView("/travel_review/review_list");
-		mav.addObject("review_list", travelreviewservice.orderReviewList1());
-		mav.addObject("local_list", travelreviewservice.localList());
-		mav.addObject("order", "최신순");
-		return mav;
-	}
-	
-	// 여행후기 게시판 리스트 정렬(최신순)
-	@RequestMapping("orderReviewList2.htm")
-	public ModelAndView orderReviewList2() throws ClassNotFoundException, SQLException {
-		ModelAndView mav = new ModelAndView("/travel_review/review_list");
-		mav.addObject("review_list", travelreviewservice.orderReviewList2());
-		mav.addObject("local_list", travelreviewservice.localList());
-		mav.addObject("order", "좋아요순");
-		return mav;
-	}
-	
-	// 여행후기 게시판 리스트 정렬(최신순)
-	@RequestMapping("orderReviewList3.htm")
-	public ModelAndView orderReviewList3(Model model) throws ClassNotFoundException, SQLException {
-		ModelAndView mav = new ModelAndView("/travel_review/review_list");
-		mav.addObject("review_list", travelreviewservice.orderReviewList3());
-		mav.addObject("local_list", travelreviewservice.localList());
-		mav.addObject("order", "댓글순");
 		return mav;
 	}
 	

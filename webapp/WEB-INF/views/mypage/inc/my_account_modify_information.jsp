@@ -58,14 +58,21 @@
 			<form class="form-box" action="InfoModify.htm?user_num=${sessionScope.user_num}" method="post" enctype="multipart/form-data">
 			<%-- <input type="hidden" name="user_name" value="${sessionScope.user_num}"> --%>
 			  <h3 class="title">추가정보 수정</h3>
-			  <p>요 밑에 테이블 이상하게 보이는건 나중에 수정해보자...</p>
+		<!-- 	  <p>요 밑에 테이블 이상하게 보이는건 나중에 수정해보자...</p> -->
 			  
-              <table class="table">
-              	<tr>
+             <%--  <table class="table">
+              	<tr >
+              		<td width="150" >언어       / </td>
               		<td width="150">취미/관심사</td>
-              		<td width="150">언어 </td>
+              		
               	</tr>
               	<tr>
+              		
+              		<td >
+              			<c:forEach var="i" items="${language_list}" varStatus="j">
+						  	<input type="checkbox" name="language_code" value="${i.language_code}">${i.language_name}<br>
+						</c:forEach>
+              		</td> 
               		
               		<td>
               			<c:forEach var="i" items="${hobby_list}" varStatus="j">
@@ -74,11 +81,7 @@
               		</td>
               		
               		
-              		<td>
-              			<c:forEach var="i" items="${language_list}" varStatus="j">
-						  	<input type="checkbox" name="language_code" value="${i.language_code}">${i.language_name}<br>
-						</c:forEach>
-              		</td>
+              		
               	</tr>
               	
               	<tr>
@@ -90,7 +93,56 @@
               		<th>자기소개: </th>
               		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="profile_description">${member_info.profile_description}</textarea></td>
               	</tr>
-              </table>
+              </table> --%>
+              <table class="table">
+              	<tr >
+              		<th>언어: </th>
+              		<!-- <td width="300" >언어</td> -->
+              		<!-- <td width="150">취미/관심사</td> -->
+              		<td >
+              			<c:forEach var="i" items="${language_list}" varStatus="j"> 
+						  	<input type="checkbox" name="language_code" value="${i.language_code}">${i.language_name}<br>
+						</c:forEach>
+              		</td> 
+              		
+              	</tr>
+              	
+              	
+              	<tr>
+              		<th>취미:</th>
+              		<td >
+              			<c:forEach var="i" items="${hobby_list}" varStatus="j">
+						  	<input type="checkbox" name="hobby_code" value="${i.hobby_code}">${i.hobby_name}<br>
+						</c:forEach>
+              		</td> 
+              	</tr>
+              	
+              	
+              	<%-- 
+              		<tr>
+              		<td width="300">취미/관심사</td>
+              		</tr>
+              		<tr>
+              		<td>
+              			<c:forEach var="i" items="${hobby_list}" varStatus="j">
+						  	<input type="checkbox" name="hobby_code" value="${i.hobby_code}">${i.hobby_name}<br>
+						</c:forEach>
+              		</td>
+              		</tr>
+              		
+              		
+              	</tr>
+              	 --%>
+              	<tr>
+              		<th>사진: </th>
+              		<td><input type="file" name="profile_picture"></td>
+              	</tr>
+              	
+              	<tr>
+              		<th>소개: </th>
+              		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="profile_description">${member_info.profile_description}</textarea></td>
+              	</tr>
+              </table> 
 			  
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Login</button> -->

@@ -159,4 +159,9 @@ public class MyPageService {
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		dao.acceptRequest(participantdto);
 	}
+	
+	public void upCapacity(int bn1){
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		dao.upCapacity(bn1);
+	}
 }

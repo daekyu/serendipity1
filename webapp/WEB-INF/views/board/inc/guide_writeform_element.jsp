@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
 </script> 
 <link rel="stylesheet" type="text/css" 
@@ -204,12 +204,12 @@ href=".././resources/js/sweetalert.css">
 				        			  });
 									 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
 									 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
-									 $('#before').val(formatNumber($('#before').val())+'엔');
+									 $('#before').val(formatNumber($('#before').val())+'원');
 								
 				        		  }else if($('#selectoption').val()=='USD'){
 				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
 				        			  $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
-				        			  $('#before').val(formatNumber($('#before').val())+'달러');
+				        			  $('#before').val(formatNumber($('#before').val())+'원');
 				        		  }
 						    }
 						});
@@ -299,6 +299,7 @@ href=".././resources/js/sweetalert.css">
 										.lat();
 								document.getElementById('lng').value = results[0].geometry.location
 										.lng();
+								/* var image = '${pageContext.request.contextPath}/resources/img/candy_marker.png';
 								var lat = document.getElementById('lat').value;
 								var lng = document.getElementById('lng').value;
 								var latlng = lat + ', ' + lng;
@@ -307,9 +308,10 @@ href=".././resources/js/sweetalert.css">
 								var addrMarker = new google.maps.Marker({
 									position : addrLocation,
 									map : map,
-									title : results[0].formatted_address
+									title : results[0].formatted_address,
+									icon: image
 								});
-								markers.push(addrMarker);
+								markers.push(addrMarker); */
 
 								findPlace();
 
@@ -375,28 +377,51 @@ href=".././resources/js/sweetalert.css">
 
 	// creare single marker function
 	function createMarker(obj) {
+	   var image;
+	   var type = document.getElementById('gmap_type').value;
+	   if(type == 'art_gallery'){
+		   image = '${pageContext.request.contextPath}/resources/img/art_gallery_marker.png';
+	   }else if(type == 'atm'){
+		   image = '${pageContext.request.contextPath}/resources/img/atm_marker.png';
+	   }else if(type == 'bank'){
+		   image = '${pageContext.request.contextPath}/resources/img/bank_marker.png';
+	   }else if(type == 'bar'){
+		   image = '${pageContext.request.contextPath}/resources/img/bar_marker.png';
+	   }else if(type == 'cafe'){
+		   image = '${pageContext.request.contextPath}/resources/img/cafe_marker.png';
+	   }else if(type == 'food'){
+		   image = '${pageContext.request.contextPath}/resources/img/food_marker.png';
+	   }else if(type == 'store'){
+		   image = '${pageContext.request.contextPath}/resources/img/store_marker.png';
+	   }else if(type == 'subway_station'){
+		   image = '${pageContext.request.contextPath}/resources/img/subway_station_marker.png';
+	   }else{
+		   image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
+	   }
+      // prepare new Marker object
+      
+      
+      var mark = new google.maps.Marker({
+         position : obj.geometry.location,
+         map : map,
+         title : obj.name,
+         icon: image
+      });
+      markers.push(mark);
 
-		// prepare new Marker object
-		var mark = new google.maps.Marker({
-			position : obj.geometry.location,
-			map : map,
-			title : obj.name
-		});
-		markers.push(mark);
-
-		// prepare info window
-		var infowindow = new google.maps.InfoWindow(
-				{
-					content : '<img src="' + obj.icon + '" /><font style="color:#000;">'
-							+ obj.name
-							+ '<br />Rating: '
-							+ obj.rating
-							+ '<br />Vicinity: '
-							+ obj.vicinity
-							+ '<br />latlng: '
-							+ obj.geometry.location.lat()
-							+ ', ' + obj.geometry.location.lng() + '</font>'
-				});
+      // prepare info window
+      var infowindow = new google.maps.InfoWindow(
+            {
+               content : '<img src="' + obj.icon + '" /><font style="color:#000;">'
+                     + obj.name
+                     + '<br />Rating: '
+                     + obj.rating
+                     + '<br />Vicinity: '
+                     + obj.vicinity
+                     + '<br />latlng: '
+                     + obj.geometry.location.lat()
+                     + ', ' + obj.geometry.location.lng() + '</font>'
+            });
 
 		// add event handler to current marker
 		google.maps.event.addListener(mark, 'click', function() {
@@ -453,7 +478,7 @@ href=".././resources/js/sweetalert.css">
   							<option value="USD">USD</option>
   						
 						</select></td>
-						<td><input class="form-control" id="before" type="text" name="#"></td>
+						<td><input class="form-control" id="before" type="text" name="#" placeholder="작성 후 수정 불가"></td>
 						<td><button type="button" id="convert" class="btn btn-success">변환</button></td>
 						
 				
@@ -461,7 +486,7 @@ href=".././resources/js/sweetalert.css">
 						
 						<td>
 						
-						<input class="form-control" id="after" type="text" name="price" >
+						<input class="form-control" id="after" type="text" name="price" placeholder="작성 후 수정 불가">
 						
 						</td>
 						
@@ -519,6 +544,7 @@ href=".././resources/js/sweetalert.css">
 										address</div>
 									<div class="button">
 										<label for="gmap_type">Type:</label> <select id="gmap_type">
+											<option value="--">--</option> 
 											<option value="art_gallery">art_gallery</option>
 											<option value="atm">atm</option>
 											<option value="bank">bank</option>

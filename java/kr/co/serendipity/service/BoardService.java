@@ -24,9 +24,9 @@ public class BoardService {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	public List<HashMap<String, Object>> getBoardList(int page, int basicshow) throws ClassNotFoundException, SQLException {
+	public List<HashMap<String, Object>> getBoardList(int page, int basicshow, String basicsort) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
-		return dao.getBoardList(page, basicshow);
+		return dao.getBoardList(page, basicshow, basicsort);
 	}
 	
 	public int getListCount() throws ClassNotFoundException, SQLException {
@@ -34,9 +34,9 @@ public class BoardService {
 		return dao.getListCount();
 	}
 	
-	public List<HashMap<String, Object>> getGBoardList(int page, int basicshow) throws ClassNotFoundException, SQLException {
+	public List<HashMap<String, Object>> getGBoardList(int page, int basicshow, String basicsort) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
-		return dao.getGBoardList(page, basicshow);
+		return dao.getGBoardList(page, basicshow, basicsort);
 	}
 	
 	public int getGListCount() throws ClassNotFoundException, SQLException {
@@ -232,5 +232,10 @@ public class BoardService {
 	public List<HashMap<String, Object>> getHobbies(BoardDTO boarddto) throws ClassNotFoundException, SQLException{
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		return dao.getHobbies(boarddto);
+	}
+	
+	public String getGuide(BoardDTO boarddto){
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.getGuide(boarddto);
 	}
 }

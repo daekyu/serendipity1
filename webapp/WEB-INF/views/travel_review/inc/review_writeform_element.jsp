@@ -125,7 +125,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" name="review_picture"></td>
+											<td><input type="file" id=pic1 name="review_picture"></td>
 										</tr>
 										
 										<tr>

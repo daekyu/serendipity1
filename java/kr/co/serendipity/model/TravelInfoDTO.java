@@ -8,6 +8,8 @@ public class TravelInfoDTO {
 	private String famous_food;
 	private String attraction;
 	private String airport;
+	private String img;
+	
 	public int getInfo_num() {
 		return info_num;
 	}
@@ -50,5 +52,12 @@ public class TravelInfoDTO {
 	public void setAirport(String airport) {
 		this.airport = airport;
 	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
 	
 }

@@ -1,6 +1,7 @@
 package kr.co.serendipity;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.ReportDTO;
 import kr.co.serendipity.service.ReportService;
+import net.sf.json.JSONObject;
 
 /*
  * @Class : ReportController

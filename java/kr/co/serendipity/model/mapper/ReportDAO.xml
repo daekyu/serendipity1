@@ -5,16 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.serendipity.model.ReportDAO">
 	<insert id="reportWrite">
-		insert into report(report_num, reporter, villain, report_title, report_content)
-		values(report_seq.nextval, #{reporter}, #{villain}, #{report_title}, #{report_content})
+		insert into report(report_num, reporter, villain, report_title, report_content, report_date)
+		values(report_seq.nextval, #{reporter}, #{villain}, #{report_title}, #{report_content}, sysdate)
 	</insert>
 	
 	<select id="reportDetail" resultType="hashmap">
-		select r.report_num,m1.id as reporter, m2.id as villain, r.report_title, r.report_content from report r,member m1, member m2 where r.reporter=m1.user_num and r.villain=m2.user_num and report_num=#{report_num}
+		select r.report_num,m1.id as reporter, m2.id as villain, r.report_title, r.report_content, r.report_date from report r,member m1, member m2 where r.reporter=m1.user_num and r.villain=m2.user_num and report_num=#{report_num}
 	</select>
 	
 	<select id="reportList" resultType="hashmap">
-		select r.report_num,m1.id as reporter, m2.id as villain, r.report_title from report r,member m1, member m2 where r.reporter=m1.user_num and r.villain=m2.user_num order by report_num desc
+		select r.report_num,m1.id as reporter, m2.id as villain, r.report_title, r.report_date from report r,member m1, member m2 where r.reporter=m1.user_num and r.villain=m2.user_num order by report_num desc
 	</select>
 	
 	<select id="getReportListCount" resultType="Integer">

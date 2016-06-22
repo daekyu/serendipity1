@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="reviewList" resultType="hashmap">
 	 SELECT * FROM
 		(SELECT ROWNUM NUM, n.* FROM 
-			(select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name, r.reply_count from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code order by review_num desc) n
-		) WHERE NUM BETWEEN 1 + (#{page}-1)*5 AND 5 + (#{page}-1)*5
+			(select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name, r.reply_count from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code order by ${param2} desc) n
+		) WHERE NUM BETWEEN 1 + (#{param1}-1)*5 AND 5 + (#{param1}-1)*5
 	</select>
 	
 	<select id="reviewDetail" resultType="hashmap">
@@ -42,18 +42,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="filteringReviewList" resultType="hashmap">
 		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name,r.reply_count from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code and r.local_code=#{local_code} order by review_num
-	</select>
-	
-	<select id="orderReviewList1" resultType="hashmap">
-		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name, r.reply_count from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code order by review_num desc
-	</select>
-	
-	<select id="orderReviewList2" resultType="hashmap">
-		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name, r.reply_count from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code order by like_count desc
-	</select>
-	
-	<select id="orderReviewList3" resultType="hashmap">
-		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name, r.reply_count from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code order by reply_count desc
 	</select>
 	
 	<select id="getIndexReview" resultType="kr.co.serendipity.model.ReviewDTO">

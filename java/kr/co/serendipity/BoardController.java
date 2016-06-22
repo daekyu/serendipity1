@@ -33,9 +33,10 @@ public class BoardController {
 	private BoardService boardservice;
 
 	@RequestMapping("traveler_list.htm")
-	public ModelAndView travelerList(String pg, String show) throws ClassNotFoundException, SQLException {
+	public ModelAndView travelerList(String pg, String show, String sort) throws ClassNotFoundException, SQLException {
 		int page = 1;
 		int basicshow = 6;
+		String basicsort= "board_num"; 
 		int startpage = 0;
 		int endpage = 0;
 		int maxpage = 0;
@@ -47,9 +48,20 @@ public class BoardController {
 		if (show != null) {
 			basicshow = Integer.parseInt(show);
 		}
+		if (sort != null) {
+			basicsort = sort;
+		}
+		
 		System.out.println("show : " + show);
 		System.out.println("basicshow : " + basicshow);
-		List<HashMap<String, Object>> board_list = boardservice.getBoardList(page, basicshow);
+		System.out.println("sort : " + basicsort);
+		List<HashMap<String, Object>> board_list = boardservice.getBoardList(page, basicshow, basicsort);
+		
+		/*if(basicsort.equals("price")){
+			for(int i=0; i<board_list.size(); i++){
+				HashMap<String, Object> bl = board_list.get(i);
+			}
+		}*/
 
 		int listCount = boardservice.getListCount();
 
@@ -68,14 +80,16 @@ public class BoardController {
 		mav.addObject("endpage", endpage);
 		mav.addObject("listCount", listCount);
 		mav.addObject("basicshow", basicshow);
+		mav.addObject("basicsort", basicsort);
 
 		return mav;
 	}
 
 	@RequestMapping("guide_list.htm")
-	public ModelAndView guideList(String pg, String show) throws ClassNotFoundException, SQLException {
+	public ModelAndView guideList(String pg, String show, String sort) throws ClassNotFoundException, SQLException {
 		int page = 1;
 		int basicshow = 6;
+		String basicsort = "board_num";
 		int startpage = 0;
 		int endpage = 0;
 		int maxpage = 0;
@@ -87,8 +101,13 @@ public class BoardController {
 		if (show != null) {
 			basicshow = Integer.parseInt(show);
 		}
+		
+		if (sort != null) {
+			basicsort = sort;
+		}
+		System.out.println("basicsort : " + basicsort);
 
-		List<HashMap<String, Object>> board_list = boardservice.getGBoardList(page,basicshow);
+		List<HashMap<String, Object>> board_list = boardservice.getGBoardList(page,basicshow, basicsort);
 		int listCount = boardservice.getGListCount();
 
 		maxpage = (int) ((double) listCount / basicshow + 0.95);
@@ -106,6 +125,7 @@ public class BoardController {
 		mav.addObject("endpage", endpage);
 		mav.addObject("listCount", listCount);
 		mav.addObject("basicshow", basicshow);
+		mav.addObject("basicsort", basicsort);
 
 		return mav;
 	}
@@ -142,6 +162,7 @@ public class BoardController {
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
 		mav.addObject("language",boardservice.getLanguages(boarddto));
 		mav.addObject("hobby", boardservice.getHobbies(boarddto));
+		mav.addObject("guide", boardservice.getGuide(boarddto));
 		return mav;
 	}
 

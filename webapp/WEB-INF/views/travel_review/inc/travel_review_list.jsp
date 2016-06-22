@@ -87,10 +87,11 @@
 		<div class="row">
 			<div id="catalog" class="content col-sm-12 col-md-12">
 				<div class="category-img">
-					<img class="replace-2x" src="content/img/category-img.jpg"
+					<img class="replace-2x" src=".././resources/img/1.jpg"
 						width="870" height="370" alt="">
-					<div class="description">Automation &amp; Integration
-						technology to fit any lifestyle</div>
+					<div class="description">Automation &amp; 
+					Go
+					</div>
 				</div>
 
 				<div class="toolbar clearfix">
@@ -107,14 +108,14 @@
 							<a class="btn dropdown-toggle btn-default" role="button"
 								data-toggle="dropdown" href="#">지역:전체 <span></span></a>
 							<ul class="dropdown-menu">
-							<li><a href="review_list.htm">전체</a></li>
+							<li><a href="review_list.htm?order=review_num">전체</a></li>
 							<c:forEach var="i" items="${local_list}">
 								<%-- <li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li> --%>
 								<c:choose>
 									<c:when test="${i.local_code == '-' }"></c:when>
 									
 									<c:otherwise>
-										<li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li>
+										<li><a href="review_list.htm?order=review_num">${i.local_name}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -131,12 +132,12 @@
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Sort by: <span>${order}</span>
+								data-toggle="dropdown" href="#">Sort by: <span>${orderName}</span>
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="orderReviewList1.htm">최신순</a></li>
-								<li><a href="orderReviewList2.htm">좋아요순</a></li>
-								<li><a href="orderReviewList3.htm">댓글순</a></li>
+								<li><a href="review_list.htm?order=review_num">최신순</a></li>
+								<li><a href="review_list.htm?order=like_count">좋아요순</a></li>
+								<li><a href="review_list.htm?order=reply_count">댓글순</a></li>
 							</ul>
 						</div>
 						<!-- .sort-by -->
@@ -285,7 +286,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${page-1}">
+										href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${page-1}&order=${basicorder}">
 											<i class="fa fa-angle-left"></i>
 									</a></li>
 								</c:otherwise>
@@ -298,7 +299,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${a}">
+											href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${a}&order=${basicorder}">
 												${a}</a></li>
 									</c:otherwise>
 								</c:choose>
@@ -311,7 +312,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${page+1}">
+										href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${page+1}&order=${basicorder}">
 											<i class="fa fa-angle-right"></i>
 									</a></li>
 								</c:otherwise>

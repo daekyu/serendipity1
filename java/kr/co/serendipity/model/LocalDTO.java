@@ -12,6 +12,7 @@ public class LocalDTO {
 	private String local_name;
 	private String local_latitude;
 	private String local_longitude;
+	private String local_img;
 	
 	public String getLocal_latitude() {
 		return local_latitude;
@@ -37,6 +38,13 @@ public class LocalDTO {
 	public void setLocal_name(String local_name) {
 		this.local_name = local_name;
 	}
+	public String getLocal_img() {
+		return local_img;
+	}
+	public void setLocal_img(String local_img) {
+		this.local_img = local_img;
+	}
+	
 	
 	
 }

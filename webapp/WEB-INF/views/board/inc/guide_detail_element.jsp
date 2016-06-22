@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css"> 
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
@@ -183,7 +184,7 @@ href=".././resources/js/sweetalert.css">
 <div id="main" class="page">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">여행자구함</h1>
+			<h1 class="title"><spring:message code="board.traveler_detail"/></h1>
 		</div>
 	</header>
 
@@ -269,10 +270,10 @@ href=".././resources/js/sweetalert.css">
 							class="table table-striped table-bordered text-center my-orders-table">
 							<thead>
 								<tr class="first last">
-									<th>작성자</th>
-									<th>언어</th>
-									<th>관심사</th>
-									<th>지역</th>
+									<th><spring:message code="board.traveler_detail1"/></th>
+									<th><spring:message code="board.traveler_detail2"/></th>
+									<th><spring:message code="board.traveler_detail3"/></th>
+									<th><spring:message code="board.traveler_detail4"/></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -298,12 +299,12 @@ href=".././resources/js/sweetalert.css">
 								<a class="btn btn-default btn-sm"
 									href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
 									class="livicon shadowed" data-s="24" data-n="pen"
-									data-c="white" data-hc="0"></i> Modify</a>
+									data-c="white" data-hc="0"></i> <spring:message code="board.traveler_detail5"/></a>
 								<a class="btn btn-danger btn-sm" id="delete"><i
 									
 				<%-- 					href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=2" --%>
 									class="livicon shadowed" data-s="24" data-n="trash"
-									data-c="white" data-hc="0"></i> Delete</a>
+									data-c="white" data-hc="0"></i> <spring:message code="board.traveler_detail6"/></a>
 							</c:when>
 
 							<c:otherwise>
@@ -340,8 +341,8 @@ href=".././resources/js/sweetalert.css">
 
 				<div class="product-tab">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#reviews">Meeting Point</a></li>
-						<li><a href="#description">Description</a></li>
+						<li class="active"><a href="#reviews"><spring:message code="board.traveler_detail7"/></a></li>
+						<li><a href="#description"><spring:message code="board.traveler_detail8"/></a></li>
 
 					</ul>
 					<!-- .nav-tabs -->

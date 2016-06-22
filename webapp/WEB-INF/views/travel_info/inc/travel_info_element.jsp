@@ -343,7 +343,7 @@
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInUp">
 		  				<div class="icon">
-							<div class="livicon" data-n="money" data-s="42" data-c="000" data-hc="0"></div>
+							<div class="livicon" data-n="truck" data-s="42" data-c="000" data-hc="0"></div>
 			  			</div>
 			  		</div>
 			  		</td>
@@ -403,7 +403,7 @@
 		  			<td rowspan="2">
 		  			<div data-appear-animation="bounceInLeft">
 		  				<div class="icon">
-							<div class="livicon" data-n="home" data-s="42" data-c="000" data-hc="0"></div>
+							<div class="livicon" data-n="camera" data-s="42" data-c="000" data-hc="0"></div>
 			  			</div>
 			  		</div>
 			  		</td>

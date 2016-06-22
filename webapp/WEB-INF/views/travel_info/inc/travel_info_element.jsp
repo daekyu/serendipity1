@@ -53,7 +53,7 @@
         ['삼익사이버 아파트', 37.0211403, 127.0971617],
         ['국립축산과학원 축산자원개발부', 36.93309333, 127.10487485]
       ]; */
-      
+     
       
       
       $.ajax({
@@ -81,16 +81,19 @@
                   var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 7,
                         scrollwheel : false,
-
                         center: new google.maps.LatLng(36, 127.1),
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                       });
+              
                       var infowindow = new google.maps.InfoWindow({
                          content: document.getElementById('myModal')
+                         
                          //maxWidth: 2000
                       });
                       var marker, i;
                       var image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
+                      
+                      
                       for (i = 0; i < locations.length; i++) { 
                          var markerLetter = String.fromCharCode(locations[i][0]);
                           /* var markerIcon = MARKER_PATH + markerLetter + '.png'; */
@@ -99,14 +102,18 @@
                           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                           map: map,
                           label: "",
+                          animation: google.maps.Animation.DROP,
                           title: locations[i][0],
                           icon: image
                         });
+                         
+                      
                           
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                           return function() {
                              $('.gmnoprint').attr("data-toggle","modal");
                               $('.gmnoprint').attr("data-target","#myModal");
+                              
                             
                             //infowindow.open(map, marker);
                             console.log(locations[i][4]);
@@ -450,28 +457,28 @@
         <!-- 여행정도 사진1 -->
         <div class="images-box col-sm-3 col-md-3">
          <a class="gallery-images" rel="fancybox" id="local_img1">
-           <img class="replace-2x img-list2, local_img1" alt=".././resources/img/main_logo.png" width="120" height="100">
+           <img class="replace-2x img-list2 local_img1" alt="" width="120" height="100">
            <span class="bg-images"><i class="fa fa-search"></i></span>
          </a>
         </div><!-- .images-box -->
         <!-- 여행정도 사진2 -->
         <div class="images-box col-sm-3 col-md-3">
          <a class="gallery-images" rel="fancybox" id="local_img2">
-           <img class="replace-2x img-list2, local_img2" alt=""width="120" height="100">
+           <img class="replace-2x img-list2 local_img2" alt="" width="120" height="100">
            <span class="bg-images"><i class="fa fa-search"></i></span>
          </a>
         </div>
         <!-- 여행정도 사진3 -->
         <div class="images-box col-sm-3 col-md-3">
          <a class="gallery-images" rel="fancybox" id="local_img3">
-           <img class="replace-2x img-list2, local_img3" alt="" width="120" height="100">
+           <img class="replace-2x img-list2 local_img3" alt="" width="120" height="100">
            <span class="bg-images"><i class="fa fa-search"></i></span>
          </a>
         </div>
         <!-- 여행정도 사진4 -->
         <div class="images-box col-sm-3 col-md-3">
          <a class="gallery-images" rel="fancybox" id="local_img4">
-           <img class="replace-2x img-list2, local_img4" alt=""width="120" height="100">
+           <img class="replace-2x img-list2 local_img4" alt=""width="120" height="100">
            <span class="bg-images"><i class="fa fa-search"></i></span>
          </a>
         </div>

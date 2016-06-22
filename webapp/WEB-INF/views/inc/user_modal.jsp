@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script type="text/javascript">
-function doPop2(){
-	 window.open('${pageContext.request.contextPath}/chatting/chatting.htm', '', 'width=500, height=400, top=100, left=450, resizable=no, location=no, menubar=no, scrollbars=yes, status=no, directories=no');
-}
-</script>
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -43,10 +39,6 @@ function doPop2(){
 				<p>프로필 소개 인사말 ㅎㅇㅎㅇㅎㅇ ㅂㄱㅂㄱ ㅂㅇㅂㅇ</p>
 			  </div>
 			  <div class="social">
-<!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>
-				<a class="icon rounded icon-twitter" href="#"><i class="fa fa-twitter"></i></a>
-				<a class="icon rounded icon-google" href="#"><i class="fa fa-google"></i></a>
-				<a class="icon rounded icon-linkedin" href="#"><i class="fa fa-linkedin"></i></a> -->
 			  </div>
 			</div>
 			<div class="clearfix"></div>

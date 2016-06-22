@@ -62,18 +62,9 @@
 								data-toggle="dropdown" href="#">Show: <span>${basicshow}</span> <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=1">1</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=2">2</a></li>
 								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=3">3</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=4">4</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=5">5</a></li>
 								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=6">6</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=7">7</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=8">8</a></li>
 								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=9">9</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=10">10</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=11">11</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=12">12</a></li>
 							</ul>
 						</div>
 						<!-- .show -->

@@ -131,12 +131,12 @@
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Sort by: <span>${order}</span>
+								data-toggle="dropdown" href="#">Sort by: <span>${orderName}</span>
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="orderReviewList1.htm">최신순</a></li>
-								<li><a href="orderReviewList2.htm">좋아요순</a></li>
-								<li><a href="orderReviewList3.htm">댓글순</a></li>
+								<li><a href="review_list.htm?order=review_num">최신순</a></li>
+								<li><a href="review_list.htm?order=like_count">좋아요순</a></li>
+								<li><a href="review_list.htm?order=reply_count">댓글순</a></li>
 							</ul>
 						</div>
 						<!-- .sort-by -->
@@ -285,7 +285,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${page-1}">
+										href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${page-1}&order=${basicorder}">
 											<i class="fa fa-angle-left"></i>
 									</a></li>
 								</c:otherwise>
@@ -298,7 +298,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${a}">
+											href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${a}&order=${basicorder}">
 												${a}</a></li>
 									</c:otherwise>
 								</c:choose>
@@ -311,7 +311,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${page+1}">
+										href="${pageContext.request.contextPath}/travel_review/review_list.htm?pg=${page+1}&order=${basicorder}">
 											<i class="fa fa-angle-right"></i>
 									</a></li>
 								</c:otherwise>

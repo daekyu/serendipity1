@@ -15,4 +15,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMemberList" resultType="kr.co.serendipity.model.MemberDTO">
 		select * from member
 	</select>
+	
+	<select id="getMemberCountMale" resultType="Integer">
+		select count(*) from member where gender='M'
+	</select>
+	
+	<select id="getMemberCountFemale" resultType="Integer">
+		select count(*) from member where gender='F'
+	</select>
 </mapper>

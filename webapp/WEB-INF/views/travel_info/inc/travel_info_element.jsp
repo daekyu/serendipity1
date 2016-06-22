@@ -67,7 +67,11 @@
                       loc.push(item.local_latitude); 
                       loc.push(item.local_longitude);
                       loc.push(item.local_code);
-                      loc.push(item.local_img);
+                      loc.push(item.local_img1);
+                      loc.push(item.local_img2);
+                      loc.push(item.local_img3);
+                      loc.push(item.local_img4);
+                      
                       
                       //console.log(loc + "/" + index);
                       
@@ -124,7 +128,14 @@
                                     $('#famous_food').text(data.famous_food);
                                     $('#attraction').text(data.attraction);
                                     $('#airport').text(data.airport);
-                                    $('#local_img').attr("src", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][4]);
+                                    $('#local_img1').attr("href", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][4]);
+                                    $('.local_img1').attr("src", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][4]);
+                                    $('#local_img2').attr("href", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][5]);
+                                    $('.local_img2').attr("src", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][5]);
+                                    $('#local_img3').attr("href", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][6]);
+                                    $('.local_img3').attr("src", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][6]);
+                                    $('#local_img4').attr("href", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][7]);
+                                    $('.local_img4').attr("src", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][7]);
                                                                
                                 }
                             });
@@ -433,45 +444,43 @@
 
               <div class="tab-pane" align="center" id="localImg">
               	<div data-appear-animation="bounceInUp">
-               	<div class="image-box">
-			  <span class="sale top"></span>
-			  <div class="general-img">
-				<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/background_img/경남진주수목원.PNG" 
-				data-zoom-image="${pageContext.request.contextPath}/resources/img/background_img/경남진주수목원.PNG" width="270" height="270">
-			  </div><!-- .general-img -->
-			  
-			  
-			  <div class="thumblist-box load">
-				<a href="#" class="prev">
-				  <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
-					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
-				  </svg>
-				</a>
-				<a href="#" class="next">
-				  <svg x="0" y="0" width="9px" height="16px" viewBox="0 0 9 16" enable-background="new 0 0 9 16" xml:space="preserve">
-					<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#fcfcfc" points="1,0.001 0,1.001 7,8 0,14.999 1,15.999 9,8 "></polygon>
-				  </svg>
-				</a>
-				
-				<div id="thumblist" class="thumblist">
-				  <a class="active" href="#" data-image="${pageContext.request.contextPath}/resources/img/background_img/경남진주수목원.PNG" data-zoom-image="${pageContext.request.contextPath}/resources/img/background_img/${boarddto.BOARD_PICTURE1}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/background_img/경남진주수목원.PNG" width="270" height="270">
-				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/background_img/경주 대릉원.jpg" data-zoom-image="${pageContext.request.contextPath}/resources/img/background_img/경주 대릉원.jpg">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/background_img/경주 대릉원.jpg" width="500" height="500">
-				  </a>
-				  <<%-- a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE3}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE3}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE3}" width="500" height="500">
-				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE4}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE4}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE4}" width="500" height="500">
-				  </a>
-				  <a href="#" data-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}" data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}">
-					<img class="replace-2x" alt="" src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}" width="500" height="500">
-				  </a> --%>
-				</div><!-- #thumblist -->
-			  </div><!-- .thumblist -->
-			</div>
+               	<div class="row">
+      <div class="content gallery col-sm-12 col-md-12">
+      <div class="row">
+        <!-- 여행정도 사진1 -->
+        <div class="images-box col-sm-3 col-md-3">
+         <a class="gallery-images" rel="fancybox" id="local_img1">
+           <img class="replace-2x img-list2, local_img1" alt=".././resources/img/main_logo.png" width="120" height="100">
+           <span class="bg-images"><i class="fa fa-search"></i></span>
+         </a>
+        </div><!-- .images-box -->
+        <!-- 여행정도 사진2 -->
+        <div class="images-box col-sm-3 col-md-3">
+         <a class="gallery-images" rel="fancybox" id="local_img2">
+           <img class="replace-2x img-list2, local_img2" alt=""width="120" height="100">
+           <span class="bg-images"><i class="fa fa-search"></i></span>
+         </a>
+        </div>
+        <!-- 여행정도 사진3 -->
+        <div class="images-box col-sm-3 col-md-3">
+         <a class="gallery-images" rel="fancybox" id="local_img3">
+           <img class="replace-2x img-list2, local_img3" alt="" width="120" height="100">
+           <span class="bg-images"><i class="fa fa-search"></i></span>
+         </a>
+        </div>
+        <!-- 여행정도 사진4 -->
+        <div class="images-box col-sm-3 col-md-3">
+         <a class="gallery-images" rel="fancybox" id="local_img4">
+           <img class="replace-2x img-list2, local_img4" alt=""width="120" height="100">
+           <span class="bg-images"><i class="fa fa-search"></i></span>
+         </a>
+        </div>
+        
+        
+        
+      </div>
+      </div><!-- .content -->
+    </div>
            </div>
           </div>
 

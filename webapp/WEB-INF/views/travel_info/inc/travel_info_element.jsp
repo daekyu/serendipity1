@@ -84,6 +84,7 @@
                     	  //maxWidth: 2000
                       });
                       var marker, i;
+                      var image = '${pageContext.request.contextPath}/resources/img/candy_marker.png';
                       for (i = 0; i < locations.length; i++) { 
                     	  var markerLetter = String.fromCharCode(locations[i][0]);
                           /* var markerIcon = MARKER_PATH + markerLetter + '.png'; */
@@ -91,8 +92,8 @@
                           marker = new google.maps.Marker({
                           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                           map: map,
-                          label: locations[i][0],
-                          title: locations[i][0]
+                          title: locations[i][0],
+                          icon: image
                         });
                           
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -102,8 +103,6 @@
                             
                             //infowindow.open(map, marker);
                             console.log(locations[i][4]);
-                            
-                            
                             
                             $.ajax({
                                 type : "post",
@@ -312,6 +311,7 @@
 				</button>
 				<h4 class="modal-title" id="myModalLabel">${boarddto.ID}</h4>
 			</div>
+			
 			<div class="modal-body">
 				<div class="product-tab">
 					<ul class="nav nav-tabs">

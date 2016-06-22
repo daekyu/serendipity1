@@ -7,8 +7,7 @@
 <script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css"> 
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
 </script> 
-<link rel="stylesheet" type="text/css" 
-href=".././resources/js/sweetalert.css">  
+<link rel="stylesheet" type="text/css" href=".././resources/js/sweetalert.css">  
 <script type="text/javascript" src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
@@ -95,9 +94,11 @@ href=".././resources/js/sweetalert.css">
 		    	    
 		    	    
 		  function createMarker(){
+			 		var image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
 		    	    marker = new google.maps.Marker({
 		                position: myLatlng,
-		                map: map
+		                map: map,
+		                icon: image
 		            });
 		    	    var infowindow = new google.maps.InfoWindow({
 		    	        content: '<font style="color:#000;">' + meeting_place + 

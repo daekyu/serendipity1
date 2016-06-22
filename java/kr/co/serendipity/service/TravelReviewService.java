@@ -23,9 +23,9 @@ public class TravelReviewService {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	public List<HashMap<String,Object>> reviewList(int page) throws ClassNotFoundException, SQLException {
+	public List<HashMap<String,Object>> reviewList(int page, String basicorder) throws ClassNotFoundException, SQLException {
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-		return dao.reviewList(page);
+		return dao.reviewList(page, basicorder);
 	}
 	
 	public int getReviewListCount() throws ClassNotFoundException, SQLException {
@@ -131,21 +131,6 @@ public class TravelReviewService {
 	public List<HashMap<String,Object>> filteringReviewList(String local_code) throws ClassNotFoundException, SQLException{
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
 		return dao.filteringReviewList(local_code);
-	}
-	
-	public List<HashMap<String,Object>> orderReviewList1() throws ClassNotFoundException, SQLException{
-		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-		return dao.orderReviewList1();
-	}
-	
-	public List<HashMap<String,Object>> orderReviewList2() throws ClassNotFoundException, SQLException{
-		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-		return dao.orderReviewList2();
-	}
-	
-	public List<HashMap<String,Object>> orderReviewList3() throws ClassNotFoundException, SQLException{
-		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
-		return dao.orderReviewList3();
 	}
 	
 	public List<HashMap<String,Object>> likeNotificationCheck(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException {

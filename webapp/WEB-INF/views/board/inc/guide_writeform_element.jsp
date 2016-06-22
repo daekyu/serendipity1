@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
 </script> 
 <link rel="stylesheet" type="text/css" 

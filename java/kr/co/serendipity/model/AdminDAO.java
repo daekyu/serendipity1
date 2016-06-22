@@ -11,4 +11,7 @@ import java.util.List;
 
 public interface AdminDAO {
 	List<MemberDTO> getMemberList(); // 회원 목록을 가져오는 메소드
+	
+	int getMemberCountMale(); //남자 회원수
+	int getMemberCountFemale(); //여자 회원수
 }

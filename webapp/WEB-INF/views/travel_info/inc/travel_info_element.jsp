@@ -53,7 +53,7 @@
         ['삼익사이버 아파트', 37.0211403, 127.0971617],
         ['국립축산과학원 축산자원개발부', 36.93309333, 127.10487485]
       ]; */
-      
+     
       
       
       $.ajax({
@@ -81,16 +81,19 @@
                   var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 7,
                         scrollwheel : false,
-
                         center: new google.maps.LatLng(36, 127.1),
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                       });
+              
                       var infowindow = new google.maps.InfoWindow({
                          content: document.getElementById('myModal')
+                         
                          //maxWidth: 2000
                       });
                       var marker, i;
                       var image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
+                      
+                      
                       for (i = 0; i < locations.length; i++) { 
                          var markerLetter = String.fromCharCode(locations[i][0]);
                           /* var markerIcon = MARKER_PATH + markerLetter + '.png'; */
@@ -99,14 +102,18 @@
                           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                           map: map,
                           label: "",
+                          animation: google.maps.Animation.DROP,
                           title: locations[i][0],
                           icon: image
                         });
+                         
+                      
                           
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                           return function() {
                              $('.gmnoprint').attr("data-toggle","modal");
                               $('.gmnoprint').attr("data-target","#myModal");
+                              
                             
                             //infowindow.open(map, marker);
                             console.log(locations[i][4]);

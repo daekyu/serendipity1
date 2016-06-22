@@ -38,7 +38,7 @@
 			<table class="table table-striped table-bordered text-center my-orders-table">
 			  <thead>
 				<tr class="first last">
-				  <th>#</th>
+				  <th>분류</th>
 				  <th>Date(요청받은 날짜)</th>
 				  <th><span class="nobr">글 제목</span></th>
 				  <th>신청한 사람 아이디</th>
@@ -56,24 +56,38 @@
 			  <c:otherwise>
 			  <c:forEach var="i" items="${participantdto}">
 				<tr>
-					<td>1</td>
+					<td>
+						<c:choose>
+						<c:when test="${i.CATEGORY_NUM eq 1}">
+							가이드 구함
+						</c:when>
+						<c:otherwise>
+							여행자 구함
+						</c:otherwise>
+					</c:choose>
+					</td>
 					<td>${i.PARTI_DATE}</td>
 					<td>${i.BOARD_TITLE}</td>
 					<td>${i.ID}</td>
-					<td>
 						<c:choose>
 							<c:when test="${i.STATE eq 'wait'}">
-								승낙 대기중
+								<td>
+									승낙 대기중
+								</td>
+								<td>
+									<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&bn=${i.BOARD_NUM}" class="btn btn-success" id="accept">수락</a>
+									<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger" id="delete">거절</a>
+								</td>
 							</c:when>
 							<c:otherwise>
-								승낙!
+								<td>
+									승낙!
+								</td>
+								<td>
+								처리완료
+								</td>
 							</c:otherwise>
 						</c:choose>
-					</td>
-					<td>
-						<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&bn=${i.BOARD_NUM}" class="btn btn-success" id="accept">수락</a>
-						<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger" id="delete">거절</a>
-					</td>
 				</tr>
 				</c:forEach>
 				</c:otherwise>

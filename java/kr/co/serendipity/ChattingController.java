@@ -23,7 +23,7 @@ public class ChattingController {
 	@IncludedInfo(name="웹소켓 메신저", order = 3200, gid = 100)
 	@RequestMapping(value="chatting.htm")
 	public String websocketMessengerView(HttpSession session, ModelMap model) {
-		model.addAttribute("user_num", session.getAttribute("user_num"));
+		model.addAttribute("id", session.getAttribute("id"));
 		return "chatting/EgovMessenger";
 	}
 

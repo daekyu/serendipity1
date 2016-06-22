@@ -268,13 +268,20 @@
 
 						<c:choose>
 							<c:when test="${sessionScope.user_num == boarddto.USER_NUM}">
-								<a class="btn btn-default btn-sm"
-									href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
-									class="livicon shadowed" data-s="24" data-n="pen"
-									data-c="white" data-hc="0"></i> Modify</a>
-								<a class="btn btn-danger btn-sm" id="delete"><i
-									class="livicon shadowed" data-s="24" data-n="trash"
-									data-c="white" data-hc="0"></i> Delete</a>
+								<c:choose>
+									<c:when test="${boarddto.BOARD_CAPACITY eq 1}">
+										<a class="btn btn-default btn-sm"
+											href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
+											class="livicon shadowed" data-s="24" data-n="pen"
+											data-c="white" data-hc="0"></i> Modify</a>
+										<a class="btn btn-danger btn-sm" id="delete"><i
+											class="livicon shadowed" data-s="24" data-n="trash"
+											data-c="white" data-hc="0"></i> Delete</a>
+									</c:when>
+									<c:otherwise>
+										신청 수락을 했기 때문에 글 삭제 및 수정이 불가 합니다.
+									</c:otherwise>
+								</c:choose>
 							</c:when>
 							<%-- href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=1" --%>
 							<c:otherwise>

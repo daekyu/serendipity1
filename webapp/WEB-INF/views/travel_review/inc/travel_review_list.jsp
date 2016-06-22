@@ -87,10 +87,11 @@
 		<div class="row">
 			<div id="catalog" class="content col-sm-12 col-md-12">
 				<div class="category-img">
-					<img class="replace-2x" src="content/img/category-img.jpg"
+					<img class="replace-2x" src=".././resources/img/1.jpg"
 						width="870" height="370" alt="">
-					<div class="description">Automation &amp; Integration
-						technology to fit any lifestyle</div>
+					<div class="description">Automation &amp; 
+					Go
+					</div>
 				</div>
 
 				<div class="toolbar clearfix">

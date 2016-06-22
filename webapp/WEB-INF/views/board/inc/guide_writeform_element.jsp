@@ -478,7 +478,7 @@ href=".././resources/js/sweetalert.css">
   							<option value="USD">USD</option>
   						
 						</select></td>
-						<td><input class="form-control" id="before" type="text" name="#"></td>
+						<td><input class="form-control" id="before" type="text" name="#" placeholder="작성 후 수정 불가"></td>
 						<td><button type="button" id="convert" class="btn btn-success">변환</button></td>
 						
 				
@@ -486,7 +486,7 @@ href=".././resources/js/sweetalert.css">
 						
 						<td>
 						
-						<input class="form-control" id="after" type="text" name="price" >
+						<input class="form-control" id="after" type="text" name="price" placeholder="작성 후 수정 불가">
 						
 						</td>
 						

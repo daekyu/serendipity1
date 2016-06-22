@@ -362,9 +362,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
                        <option value="USD">USD</option>
                     
                   </select></td>
-                  <td><input class="form-control" id="before" type="text" name="#" value="${boarddto.PRICE }"></td>
+                  <td><input class="form-control" id="before" type="text" name="#" value="${boarddto.PRICE }" readonly></td>
                   <td><button type="button" id="convert" class="btn btn-success">변환</button></td>
-                  <td><input class="form-control" id="after" type="text" name="price" value="${boarddto.PRICE }"></td>
+                  <td><input class="form-control" id="after" type="text" name="price" value="${boarddto.PRICE }" readonly></td>
                   
 					</tr>
 					<tr>
@@ -395,10 +395,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 							<input type="file" id="pic4" name="pic">
 							<input type="file" id="pic5" name="pic">
 						</td>
-						<td >
+						<td align="right">
 							<button type="button" id="addBtn" class="btn btn-success">추가</button>
 							</td>
-							<td >
+							<td>
 							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
 						</td>
 						
@@ -421,10 +421,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 										<option value="art_gallery">art_gallery</option>
 										<option value="atm">atm</option>
 										<option value="bank">bank</option>
-										<option value="bar">bar</option>
-										<option value="cafe">cafe</option>
-										<option value="food">food</option>
-										<option value="store">store</option>
+										<option value="bar">bar</options>
+										<option value="cafe">cafe</options>
+										<option value="food">food</options>
+										<option value="store">store</options>
 										<option value="subway_station">subway_station</option>
 									</select>
 								</div>

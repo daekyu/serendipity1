@@ -21,6 +21,9 @@ $(function () {
 		            type: 'column',
 		            renderTo : 'chart1'
 		        },
+		        credits:{
+		        	enabled : false
+		        },
 		        title: {
 		            text: '월별 게시판 게시글수'
 		        },
@@ -90,6 +93,9 @@ $(function () {
 		            type: 'pie',
 		            renderTo : 'chart2'
 		        },
+		        credits:{
+		        	enabled : false
+		        },
 		        title: {
 		            text: 'Serendipity 남여 비율'
 		        },
@@ -132,6 +138,9 @@ $(function () {
 				chart: {
 		            type: 'line',
 		            renderTo : 'chart4'
+		        },
+		        credits:{
+		        	enabled : false
 		        },
 				title: {
 		            text: '월별 신고 횟수',
@@ -176,6 +185,9 @@ $(function () {
 				chart: {
 		            type: 'line',
 		            renderTo : 'chart3'
+		        },
+		        credits:{
+		        	enabled : false
 		        },
 				title: {
 		            text: '월별 가입자수',

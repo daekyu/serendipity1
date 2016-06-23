@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript"> 
 	$(function() {
@@ -71,7 +72,7 @@
 <section id="main">
   <header class="page-header">
     <div class="container">
-      <h1 class="title">여행기 상세보기</h1>
+      <h1 class="title"><spring:message code="board.review_detail"/></h1>
     </div>
   </header>
   <div class="container">
@@ -193,16 +194,16 @@
 		  
 		<div class="row">
 		  <div class="portfolio-tags bottom-padding col-sm-4 col-md-4">
-			<p><b>여행테마: </b><span>자연경관, 야경, 맛집....</span></p>
-			<p><b>지역: </b><span>${review_detail.LOCAL_NAME}</span></p>
-			<p><b>Date: </b><span>${revie_wdetail.REVIEW_DATE}</span></p><br>
+			<p><b><spring:message code="board.review_detail1"/></b><span>자연경관, 야경, 맛집....</span></p>
+			<p><b><spring:message code="board.review_detail2"/></b><span>${review_detail.LOCAL_NAME}</span></p>
+			<p><b><spring:message code="board.review_detail3"/></b><span>${revie_wdetail.REVIEW_DATE}</span></p><br>
 			<h4><span id="likeCount">${count}</span> Like(s)</h4>
 			
 			<div class="icon circle bg icon-40"data-s="48" data-op="0" data-c="#c10841" data-hc="0" id="btn_like"><i class="fa fa-heart-o"></i></div><div class="icon circle bg icon-40"data-s="48" data-op="0" data-c="#c10841" data-hc="0" id="btn_like2"><i class="fa fa-heart"></i></div><br><br>
 			<c:choose>
 				<c:when test="${sessionScope.user_num == review_detail.USER_NUM}">
-					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/travel_review/review_updateform.htm?review_num=${review_detail.REVIEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> Modify</a>
-					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/travel_review/review_delete.htm?review_num=${review_detail.REVIEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+					<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/travel_review/review_updateform.htm?review_num=${review_detail.REVIEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="pen" data-c="white" data-hc="0"></i> <spring:message code="board.review_detail4"/></a>
+					<a class="btn btn-danger btn-sm" id="delete" href="${pageContext.request.contextPath}/travel_review/review_delete.htm?review_num=${review_detail.REVIEW_NUM}"><i class="livicon shadowed" data-s="24" data-n="trash" data-c="white" data-hc="0"></i> <spring:message code="board.review_detail5"/></a>
 				</c:when>
 			</c:choose>
 		  </div>
@@ -216,7 +217,7 @@
 		  
 		<div class="product-tab">
 		  <ul class="nav nav-tabs">
-			<li><a href="#reviews">댓글</a></li>
+			<li><a href="#reviews"><spring:message code="board.review_detail6"/></a></li>
 		  </ul><!-- .nav-tabs -->	
 		  <div class="tab-content">
 			<div class="tab-pane active" id="reviews">
@@ -239,7 +240,7 @@
 			  <span class="time"><b>${i.REPLY_DATE}</b><!-- &nbsp;&nbsp;&nbsp; -->
 			  	<c:choose>
 				<c:when test="${sessionScope.user_num == i.USER_NUM}">
-			  		<a href="reply_delete.htm?reply_num=${i.REPLY_NUM}&review_num=${review_detail.REVIEW_NUM}">삭제</a>
+			  		<a href="reply_delete.htm?reply_num=${i.REPLY_NUM}&review_num=${review_detail.REVIEW_NUM}"><spring:message code="board.review_detail7"/></a>
 			  	</c:when>
 			  </c:choose>
 			  </span>
@@ -260,8 +261,8 @@
 			  <form class="comments-form" action="review_detail.htm?user_num=${sessionScope.user_num}&review_num=${review_detail.REVIEW_NUM}" method="post">
 				<div class="row">
 				  <div class="row">
-					<label>댓글: <span class="required">*</span></label>
-					<input type="text" class="form-control" name="reply_content" style="width:85%">  <input type="submit" class="btn btn-default" value="submit">
+					<label><spring:message code="board.review_detail8"/> <span class="required">*</span></label>
+					<input type="text" class="form-control" name="reply_content" style="width:85%">  <input type="submit" class="btn btn-default" value="<spring:message code="board.review_detail9"/>">
 					<i>Note: HTML is not translated!</i>
 				  </div>
 				  <div class="col-sm-12 col-md-12">

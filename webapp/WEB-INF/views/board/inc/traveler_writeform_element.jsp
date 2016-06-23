@@ -396,6 +396,7 @@ href=".././resources/js/sweetalert.css">
          position : obj.geometry.location,
          map : map,
          title : obj.name,
+         animation: google.maps.Animation.DROP,
          icon: image
       });
       markers.push(mark);

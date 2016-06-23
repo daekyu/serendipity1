@@ -27,41 +27,6 @@ href=".././resources/js/sweetalert.css">
    }
 
 
-      $('#pic2').hide();
-      $('#pic3').hide();
-      $('#pic4').hide();
-      $('#pic5').hide(); 
-      
-      var index = 2;
-      $('#addBtn')
-            .click(
-                  function() {
-                     if (index <= 5) {
-                        /* $('#addPic')
-                              .append(
-                                    '<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
-                        $('#pic'+index).show();
-                        index++;
-                     } else {
-                        swal('더 이상 추가할 수 없습니다');
-                     }
-                  });
-      $('#minusBtn').click(function() {
-         if (index > 2) {
-            index--;
-            $('#pic'+index).val("");
-            $('#pic'+index).hide();
-            /* $('#pic' + index).remove(); */
-         } else {
-            swal('더 이상 삭제할 수 없습니다.');
-         }
-      });
-      
-      $('#gmap_where').keydown(function (e) {
-          if(e.keyCode == 13)
-          {
-              $('#button2').trigger('click');
-
    
   
    $(function(){

@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.MemberDTO;
+import kr.co.serendipity.model.MyPageDAO;
+import kr.co.serendipity.model.ParticipantDTO;
 
 @Service
 public class BoardService {
@@ -238,4 +240,15 @@ public class BoardService {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		return dao.getGuide(boarddto);
 	}
+	
+	public Integer acceptCount(BoardDTO boarddto){
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.acceptCount(boarddto);
+	}
+	
+	public int getBoardCapacity(BoardDTO boarddto){
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.getBoardCapacity(boarddto);
+	}
+	
 }

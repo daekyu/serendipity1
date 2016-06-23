@@ -100,36 +100,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="picSearch" resultType="kr.co.serendipity.model.BoardDTO">
        SELECT * FROM board where board_num=#{board_num}
     </select>
-   
-   <update id="Gupdate">
-    update board set user_num=#{user_num}, 
-    board_title=#{board_title}, board_content=#{board_content}, 
-    board_capacity=#{board_capacity}, board_date=#{board_date}, board_latitude=#{board_latitude}, 
-    meeting_place=#{meeting_place}, meeting_address=#{meeting_address},
-    board_longitude=#{board_longitude}, local_code='02', category_num=2, price=#{price} 
-    where board_num=#{board_num}
-   </update>
-   
-    <insert id="travelerParty">
-    INSERT INTO PARTICIPANT(parti_num, board_num, user_num, STATE, parti_date)
-    VALUES(parti_seq.NEXTVAL, #{board_num}, #{user_num}, 'wait', SYSDATE)
-   </insert>
-   
-    <insert id="guideParty">
-    INSERT INTO PARTICIPANT(parti_num, board_num, user_num, STATE, parti_date, parti_capacity)
-    VALUES(parti_seq.NEXTVAL, #{param1}, #{param2}, 'wait', SYSDATE, #{param3})
-   </insert>
-   
-   <select id="getLanguages" resultType="hashmap">
-      select language_name, id from LANG_SELECT ls, LANGUAGE lang, member m where ls.LANGUAGE_CODE = lang.LANGUAGE_CODE and ls.USER_NUM=m.user_num and ls.user_num=#{user_num}
-   </select>
-   
-   <select id="getHobbies" resultType="hashmap">
-      select hobby_name, id from hobby_select hs, hobby h, member m where hs.HOBBY_CODE = h.HOBBY_CODE and hs.USER_NUM=m.user_num and hs.user_num=#{user_num}
-   </select>
-   
-   <select id="getGuide" resultType="String">
-      select m.id from participant p join board b on p.board_num=b.board_num join member m on p.user_num=m.user_num where b.board_num=#{board_num} and p.state='accept'
-   </select>
-   
+	
+	<update id="Gupdate">
+	 update board set user_num=#{user_num}, 
+	 board_title=#{board_title}, board_content=#{board_content}, 
+	 board_capacity=#{board_capacity}, board_date=#{board_date}, board_latitude=#{board_latitude}, 
+	 meeting_place=#{meeting_place}, meeting_address=#{meeting_address},
+	 board_longitude=#{board_longitude}, local_code='02', category_num=2, price=#{price} 
+	 where board_num=#{board_num}
+	</update>
+	
+	 <insert id="travelerParty">
+	 INSERT INTO PARTICIPANT(parti_num, board_num, user_num, STATE, parti_date)
+	 VALUES(parti_seq.NEXTVAL, #{board_num}, #{user_num}, 'wait', SYSDATE)
+	</insert>
+	
+	 <insert id="guideParty">
+	 INSERT INTO PARTICIPANT(parti_num, board_num, user_num, STATE, parti_date, parti_capacity)
+	 VALUES(parti_seq.NEXTVAL, #{param1}, #{param2}, 'wait', SYSDATE, #{param3})
+	</insert>
+	
+	<select id="getLanguages" resultType="hashmap">
+		select language_name, id from LANG_SELECT ls, LANGUAGE lang, member m where ls.LANGUAGE_CODE = lang.LANGUAGE_CODE and ls.USER_NUM=m.user_num and ls.user_num=#{user_num}
+	</select>
+	
+	<select id="getHobbies" resultType="hashmap">
+		select hobby_name, id from hobby_select hs, hobby h, member m where hs.HOBBY_CODE = h.HOBBY_CODE and hs.USER_NUM=m.user_num and hs.user_num=#{user_num}
+	</select>
+	
+	<select id="getGuide" resultType="String">
+		select m.id from participant p join board b on p.board_num=b.board_num join member m on p.user_num=m.user_num where b.board_num=#{board_num} and p.state='accept'
+	</select>
+	
+	<select id="acceptCount" resultType="Integer">
+       select sum(parti_capacity) from participant where board_num = #{board_num} and state='accept'
+    </select>
+    
+    <select id="getBoardCapacity" resultType="Integer">
+       select board_capacity from board where board_num = #{board_num}
+    </select>
 </mapper>

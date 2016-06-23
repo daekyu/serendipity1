@@ -1,525 +1,579 @@
-<%-- 
-   @Project : Serendipity
-   @File name : travel_info_element.jsp
-   @Author : 강대규
-   @Date : 16.06.08
-   @Desc : 구글맵에 좌표 불러오기
---%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<script src="resources/js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="resources/js/sweetalert.css">   
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
 </script> 
-<link rel="stylesheet" type="text/css" href=".././resources/js/sweetalert.css">  
-
-
-<script src="http://maps.google.com/maps/api/js?sensor=false&language=${sessionScope.locale}" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css">       
+<script type="text/javascript"
+   src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
+<script type="text/javascript"
+   src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript"
+   src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="jquery.numberformatter.js"></script>
+   
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
+<script type="text/javascript">
+   window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 
+   
+   function formatNumber (num) {
+       return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+   }
+   
+   
 
-<div class="breadcrumb-box">
-</div>
-
-<div class="clearfix"></div>
-
-
-<section id="main">
-  <header class="page-header">
-    <div class="container">
-      <h1 class="title"><spring:message code="travel.info"/></h1>
-    </div>   
-  </header>
-  
-  <div class="container">
-    <article class="content">
-     <div class="content portfolio portfolio4 col-sm-12 col-md-12">
-     <div class="map-box bottom-padding">
-      <!-- <div
-        class="map-canvas"
-        data-zoom="7"
-        data-lat="35.748441"
-        data-lng="127.985664"
-        data-title="Bryant Park"
-        data-content="New York, NY"
-         style="height:700px;"></div> -->
-         <div id="map" style="height: 700px;"></div>
-    <script type="text/javascript">
-    
-    var locations = [];
-    
-    $(function() {
-      /* var locations = [
+   
+   
+   $(function(){
+      
+      
+          var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
+            
+            
+            
+            //게시판 유효성 검증 
+            
+             $('#success').click(function() {
                        
-        ['삼익사이버 아파트', 37.0211403, 127.0971617],
-        ['국립축산과학원 축산자원개발부', 36.93309333, 127.10487485]
-      ]; */
-     
+                  if($('#title_text').val() == '') {
+                	  swal('<spring:message code="board.traveler_writeform_ef"/>');
+                     $('#title_text').focus();
+                     return false;
+                  } else if($('#datepicker').val() == '') {
+                     swal('<spring:message code="board.traveler_writeform_ef1"/>');
+                     $('#datepicker').focus();
+                     return false;
+                  }  else if(!reg_number.test($('#before').val()) == true){
+                    swal('<spring:message code="board.traveler_writeform_ef2"/>');
+                    $('#before').focus();
+                     return false;
+                 } else if(!reg_number.test($('#after').val()) == true){
+                       swal('<spring:message code="board.traveler_writeform_ef3"/>');
+                       $('#before').focus();
+                    return false; 
+                  } else if($('#pic1').val()==''){
+                     swal("<spring:message code="board.traveler_writeform_ef4"/>");
+                     $('#pic1').focus();
+                     return false;
+                  } else if($('#meeting_place').val() == '') {
+                        swal('<spring:message code="board.traveler_writeform_ef5"/>');
+                        $('#gmap_where').focus();
+                        return false;
+                     }else{
+                    	 swal("<spring:message code="board.traveler_writeform_ef6"/>")
+                  }
+               }); 
+
+      $('#pic2').hide();
+      $('#pic3').hide();
+      $('#pic4').hide();
+      $('#pic5').hide(); 
       
-      
-      $.ajax({
-          type : "post", 
-          url : "getLocalList.htm",
-          success : function(data) {
-                  
-                  $.each(data, function(index, item) {
-                      var loc = [];
-                      loc.push(item.local_name);
-                      loc.push(item.local_latitude); 
-                      loc.push(item.local_longitude);
-                      loc.push(item.local_code);
-                      loc.push(item.local_img1);
-                      loc.push(item.local_img2);
-                      loc.push(item.local_img3);
-                      loc.push(item.local_img4);
-                      
-                      
-                      //console.log(loc + "/" + index);
-                      
-                      locations[index] = loc;
+      var index = 2;
+      $('#addBtn')
+            .click(
+                  function() {
+                     if (index <= 5) {
+                        /* $('#addPic')
+                              .append(
+                                    '<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
+                        $('#pic'+index).show();
+                        index++;
+                     } else {
+                        swal('더 이상 추가할 수 없습니다');
+                     }
                   });
-                  
-                  var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 7,
-                        scrollwheel : false,
-                        center: new google.maps.LatLng(36, 127.1),
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                      });
-              
-                      var infowindow = new google.maps.InfoWindow({
-                         content: document.getElementById('myModal')
-                         
-                         //maxWidth: 2000
-                      });
-                      var marker, i;
-                      var image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
-                      
-                      
-                      for (i = 0; i < locations.length; i++) { 
-                         var markerLetter = String.fromCharCode(locations[i][0]);
-                          /* var markerIcon = MARKER_PATH + markerLetter + '.png'; */
-                          
-                          marker = new google.maps.Marker({
-                          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                          map: map,
-                          label: "",
-                          animation: google.maps.Animation.DROP,
-                          title: locations[i][0],
-                          icon: image
-                        });
-                         
-                      
-                          
-                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                          return function() {
-                             $('.gmnoprint').attr("data-toggle","modal");
-                              $('.gmnoprint').attr("data-target","#myModal");
-                              
-                            
-                            //infowindow.open(map, marker);
-                            console.log(locations[i][5]);
-                            
-                            
-                            
-                            $.ajax({
-                                type : "post",
-                                url : "getLocalInfo.htm",
-                                data : {"local_code" : locations[i][3]},
-                                success : function(data) {
-                                    console.log("aaaaaaaaaa" + data);
-                                    console.log(data);
-                                    console.log("sssss : " + locations[i][4]);
-                                    $('#local_name').text(locations[i][0]);
-                                    $('#local_code').text(data.local_code);
-                                    $('#bus_fee').text(data.bus_fee);
-                                    $('#taxi_fee').text(data.taxi_fee);
-                                    $('#famous_food').text(data.famous_food);
-                                    $('#attraction').text(data.attraction);
-                                    $('#airport').text(data.airport);
-                                    $('#local_img1').attr("href", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][4]);
-                                    $('.local_img1').attr("src", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][4]);
-                                    $('#local_img2').attr("href", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][5]);
-                                    $('.local_img2').attr("src", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][5]);
-                                    $('#local_img3').attr("href", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][6]);
-                                    $('.local_img3').attr("src", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][6]);
-                                    $('#local_img4').attr("href", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][7]);
-                                    $('.local_img4').attr("src", "${pageContext.request.contextPath}/resources/img/background_img/" + locations[i][7]);
-                                                               
-                                }
-                            });
-                            
-                            $.ajax({
-                                type : "post",
-                                url : "getLocalReviewList.htm",
-                                data : {"local_code" : locations[i][3]},
-                                success : function(data) {
-                                   console.log("asdasdasdas : " + data);
-                                   console.log("aaaaaaaaaaa : " + data.length);
-                                   var list = "";
-                                    $.each(data, function(index, item) {
-                                        $('#review_title'+index).text(item.review_title);
-                                         $('#review_content'+index).text(item.review_content);
-                                         $('#review_content'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
-                                         $('#review_imglink'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
-                                         $('#review_titlelink'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);
-                                         $('#review_img'+index).attr('src','${pageContext.request.contextPath}/resources/img/review_upload/'+item.review_picture1);
-                                         /* list += "<li>";
-                                         list += "<a href='${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=item.review_num'><img class='image img-circle replace-2x' src='content/img/product-1-84.jpg' alt='' title='' width='84' height='84' data-appear-animation='rotateIn'></a>";
-                                         list += "<div class='meta'>";
-                                         list += "<a href='${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=item.review_num'><span class='daekyu'>item.review_title</span></a>";
-                                         list += "</div>";
-                                         list += "<div class='description'>";
-                                         list += "<a href='${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=item.review_num'>item.review_content</a>";
-                                         list += "</div>";
-                                         list += "</li>"; */
-                                    });
-                                   //$('#review_list').append(list);
-                                }
-                            });
-                            
-                          }
-                        })(marker, i));
-                      }
+      $('#minusBtn').click(function() {
+         if (index > 2) {
+            index--;
+            $('#pic'+index).val("");
+            $('#pic'+index).hide();
+            /* $('#pic' + index).remove(); */
+         } else {
+            swal('더 이상 삭제할 수 없습니다.');
+         }
+      });
+      
+      $('#gmap_where').keydown(function (e) {
+          if(e.keyCode == 13)
+          {
+              $('#button2').trigger('click');
+
+              return false;
           }
       });
       
-  
-    });
-    
-    
-    </script> 
-
-  
-         
-     </div>
-    <%--  <div class="title-box"><h3 class="title slim"><spring:message code="travel.inca"/></h3></div>
-     <div class="product-tab">
-        <ul class="nav nav-tabs">
-         <li class="active"><a href="#description"><spring:message code="travel.inca1"/></a></li>
-         <li><a href="#reviews"><spring:message code="travel.inca2"/></a></li>
-        </ul><!-- .nav-tabs -->   
-        <div class="tab-content">
-        
-        
-        
-         <div class="tab-pane active" id="description">
       
-        <div id="local_info" style="none">
-       <table class="table table-bordered">
-           <thead>
-              <tr>
-                 <th colspan="8" class=""><span id="local_name"></span><spring:message code="travel.inca2.5"/></th>
-              </tr>
-           </thead>
-           
-           <tbody>
-              <tr>
-                 <td rowspan="6">
-                 <div data-appear-animation="bounceInUp">
-                    <img class="replace-2x" id="local_img" alt="" title="" width="270" height="270">
-                 </div>
-                 </td>
-              </tr>
-              <tr>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInLeft">
-                    <div class="icon">
-                     <div class="livicon" data-n="phone" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca3"/></td>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInUp">
-                    <div class="icon">
-                     <div class="livicon" data-n="money" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca4"/></td>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInRight">
-                    <div class="icon">
-                     <div class="livicon" data-n="car" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca5"/></td>
-              </tr>
-              <tr>
-                 <td><span id="local_code"></span></td>
-                 <td><span id="bus_fee"></span></td>
-                 <td><span id="taxi_fee"></span></td>
-              </tr>
-              <tr>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInLeft">
-                    <div class="icon">
-                     <div class="livicon" data-n="pacman" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca6"/></td>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInDown">
-                    <div class="icon">
-                     <div class="livicon" data-n="home" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca7"/></td>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInRight">
-                    <div class="icon">
-                     <div class="livicon" data-n="plane-up" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca8"/></td>
-              </tr>
-              <tr>
-                 <td><span id="famous_food"></span></td>
-                 <td><span id="attraction"></span></td>
-                 <td><span id="airport"></span></td>
-              </tr>
-           </tbody>
-        </table>
-      <div class="clearfix"></div>
-      </div>
-      </div>
+      
+      
+   });
+
+   $('#ckeditor').keyup(function() {
+      console.log($('#ckeditor').val());
+   });
+
+   $('#submit3').click(function() {
+      // ckeditor 내용 추출
+      var sendNoteData = CKEDITOR.instances.ckeditor.getData();
+      console.log(CKEDITOR.instances.ckeditor.getData());
+      // 히든 인풋에 추출한 내용 삽입.
+      $('#board_Content').val(sendNoteData);
+
+      // 강제 서브밋
+      $('#bofom').submit();
+   });
+
+
+   $(function(){   
+      $("#convert").click(function(){
+             
+            if ($('#before').val() == ''){
+               swal("값을 입력해주세요");
+               $("#before").focus();
+               return false;
+            }else{
+               /* $.ajax({
+                      type : "post",
+                      url : "traveler_writeform.htm",
+                      data : {"before" : $('#before').val()},
+                      success : function(data) {
+                         if($('#selecoption').val()=='KRW'){
+                            
+                         }else if($('#selecoption').val()=='JPY'){
+                            
+                         }else($('#selecoption').val()=='USD'){
+                            
+                         }
+                         
+                         }
+                      
+            
+                   }); */
+                   
+                  var endpoint = 'live'
+                  var access_key = '56370edf846ec46335b07809733c304e';
+
+                  // get the most recent exchange rates via the "live" endpoint:
+                  $.ajax({
+                      url: 'http://apilayer.net/api/' + endpoint + '?access_key=' + access_key,   
+                      dataType: 'jsonp',
+                      success: function(json) {
+                        console.log(json);
+                        
+                          // exchange rata data is stored in json.quotes
+                         /*  alert('한화 달러');
+                          alert(json.quotes.JPYUSD);
+                          alert(json.quotes.USDGBP);
+                          alert(json.quotes.USDJPY);
+                          alert(json.quotes.USDKRW);
+                          // source currency is stored in json.source
+                          alert(json.source);
+                          
+                          // timestamp can be accessed in json.timestamp
+                          alert(json.timestamp); */
+                          
+                          //$('#after').val($('#before').val() * )
+                          if($('#selectoption').val()=='KRW'){
+                             
+                              $('#after').val(formatNumber($('#before').val())+'원');
+                              $('#before').val(formatNumber($('#before').val())+'원' );
+                            }else if($('#selectoption').val()=='JPY'){
+                               swal({   title: "실시간 환율 정보",   
+                                  text:'  ¥1= ￦' +json.quotes.USDKRW/json.quotes.USDJPY,   
+                                  imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
+                                    
+                               });
+                            /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
+                            $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
+                            $('#before').val(formatNumber($('#before').val())+'원');
+                        
+                            }else if($('#selectoption').val()=='USD'){
+                               swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
+                               $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
+                               $('#before').val(formatNumber($('#before').val())+'원');
+                            }
+                      }
+                  });
+               
+               
+               
+            
+                   
+            }
+         });
          
-         <!-- <div class="tab-pane" id="reviews"> -->
-           
-        <div class="title-box">
-         <a href="${pageContext.request.contextPath}/travel_review/review_list.htm" class="btn">More <span class="glyphicon glyphicon-arrow-right"></span></a>
-        </div>
-        <ul class="latest-posts" id="review_list">
-        <c:choose>
-           <c:when test="${Rlist_count eq 0}">
-                글이 존재하지 않습니다.
-         </c:when>
-         <c:otherwise>
-            <c:forEach var="i" begin="0" end="" step="1">
-            <li>
-                 <a href="#" id="review_imglink${i}"><img class="image img-circle replace-2x" id="review_img${i}" src="content/img/product-1-84.jpg" alt="" title="" width="84" height="84" data-appear-animation="rotateIn"></a>
-                 <div class="meta">
-                  <a href="#" id="review_titlelink${i}"><span class="daekyu" id="review_title${i}"></span></a>
-                 </div>
-                 <div class="description">
-                  <a href="#" id="review_content${i}">
-                  </a>
-                 </div>
-            </li>
-            </c:forEach>
-         </c:otherwise>
-        </c:choose>
-        </ul>
-        </div><!-- .tab-content -->
-      </div> --%>
+         });
+         
 
-     </div>
-     </div>
-   </article><!-- .content -->
-  </div>
-</section><!-- #main -->
+   
+      $(function(){
+       $("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());
+          });
+   
+      
+      // set endpoint and your access key
+      
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-   aria-labelledby="myModalLabel">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"
-               aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">${boarddto.ID}</h4>
-         </div>
-         <div class="modal-body">
-            <div class="product-tab">
-               <ul class="nav nav-tabs">
-                  <li class="active"><a href="#localInfo">지역정보</a></li>
-                  <li><a href="#localImg">관련사진</a></li>
-                  <li><a href="#review">여행후기</a></li>
-               </ul>
-               <!-- .nav-tabs -->
-               <div class="tab-content">
-                  <div class="tab-pane active" id="localInfo">
-                  <table class="table table-bordered">
-           <thead>
-              <tr>
-                 <th colspan="6" class=""><span id="local_name"></span><spring:message code="travel.inca2.5"/></th>
-              </tr>
-           </thead>
-           
-           <tbody>
-              <!--1번 -->
-              <tr>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInLeft">
-                    <div class="icon">
-                     <div class="livicon" data-n="phone" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca3"/></td>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInUp">
-                    <div class="icon">
-                     <div class="livicon" data-n="truck" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca4"/></td>
-              
-              </tr>
-              <tr>
-                   <td><span id="local_code"></span></td>
-                  <td><span id="bus_fee"></span></td>
-              </tr>
-              
-              
-              
-              
-              
-              <!--2번 -->
-              <tr>
-              
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInRight">
-                    <div class="icon">
-                     <div class="livicon" data-n="car" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca5"/></td> 
-              
-              
-              <td rowspan="2">
-                 <div data-appear-animation="bounceInRight">
-                    <div class="icon">
-                     <div class="livicon" data-n="pacman" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca6"/></td> 
-              </tr>
-              
-              
-              
-              
-              
-              
-              
-              
-              <tr>
-                 <td><span id="taxi_fee"></span></td>
-                 <td><span id="famous_food"></span></td>
-                 
-              </tr>
-              
-              
-              
-              
-              <!--3번 -->
-              <tr>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInLeft">
-                    <div class="icon">
-                     <div class="livicon" data-n="camera" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca7"/></td>
-                 <td rowspan="2">
-                 <div data-appear-animation="bounceInDown">
-                    <div class="icon">
-                     <div class="livicon" data-n="plane-up" data-s="42" data-c="000" data-hc="0"></div>
-                    </div>
-                 </div>
-                 </td>
-                 <td><spring:message code="travel.inca8"/></td>
-                 
-              </tr>
-              <tr>
-                 <td><span id="attraction"></span></td>
-                 <td><span id="airport"></span></td>
-                 
-              </tr>
-           </tbody>
-        </table>
-            </div>
+   
+ 
 
-              <div class="tab-pane" align="center" id="localImg">
-              	<div data-appear-animation="bounceInUp">
-               	<div class="row">
-      <div class="content gallery col-sm-12 col-md-12">
-      <div class="row">
-        <!-- 여행정도 사진1 -->
-        <div class="images-box col-sm-3 col-md-3">
-         <a class="gallery-images" rel="fancybox" id="local_img1">
-           <img class="replace-2x img-list2 local_img1" alt="" width="120" height="100">
-           <span class="bg-images"><i class="fa fa-search"></i></span>
-         </a>
-        </div><!-- .images-box -->
-        <!-- 여행정도 사진2 -->
-        <div class="images-box col-sm-3 col-md-3">
-         <a class="gallery-images" rel="fancybox" id="local_img2">
-           <img class="replace-2x img-list2 local_img2" alt="" width="120" height="100">
-           <span class="bg-images"><i class="fa fa-search"></i></span>
-         </a>
-        </div>
-        <!-- 여행정도 사진3 -->
-        <div class="images-box col-sm-3 col-md-3">
-         <a class="gallery-images" rel="fancybox" id="local_img3">
-           <img class="replace-2x img-list2 local_img3" alt="" width="120" height="100">
-           <span class="bg-images"><i class="fa fa-search"></i></span>
-         </a>
-        </div>
-        <!-- 여행정도 사진4 -->
-        <div class="images-box col-sm-3 col-md-3">
-         <a class="gallery-images" rel="fancybox" id="local_img4">
-           <img class="replace-2x img-list2 local_img4" alt=""width="120" height="100">
-           <span class="bg-images"><i class="fa fa-search"></i></span>
-         </a>
-        </div>
-        
-        
-        
+
+   var geocoder;
+   var map;
+   var markers = Array();
+   var infos = Array();
+
+   function initialize() {
+      // prepare Geocoder
+      geocoder = new google.maps.Geocoder();
+
+      // set initial position (기본으로 삼성역)
+      var myLatlng = new google.maps.LatLng(37.5088652, 127.0609603);
+
+      var myOptions = { // default map options
+         zoom : 17,
+         center : myLatlng,
+         mapTypeId : google.maps.MapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById('gmap_canvas'),
+            myOptions);
+   }
+
+   // clear overlays function
+   function clearOverlays() {
+      if (markers) {
+         for (i in markers) {
+            markers[i].setMap(null);
+         }
+         markers = [];
+         infos = [];
+      }
+   }
+
+   // clear infos function
+   function clearInfos() {
+      if (infos) {
+         for (i in infos) {
+            if (infos[i].getMap()) {
+               infos[i].close();
+            }
+         }
+      }
+   }
+
+   // find address function
+   function findAddress() {
+      var address = document.getElementById("gmap_where").value;
+
+      // script uses our 'geocoder' in order to find location by address name
+      geocoder
+            .geocode(
+                  {
+                     'address' : address
+                  },
+                  function(results, status) {
+                     clearOverlays();
+                     if (status == google.maps.GeocoderStatus.OK) { // and, if everything is ok
+
+                        // we will center map
+                        var addrLocation = results[0].geometry.location;
+                        map.setCenter(addrLocation);
+
+                        // store current coordinates into hidden variables
+                        document.getElementById('lat').value = results[0].geometry.location
+                              .lat();
+                        document.getElementById('lng').value = results[0].geometry.location
+                              .lng();
+                       /*  var lat = document.getElementById('lat').value;
+                        var lng = document.getElementById('lng').value;
+                        var latlng = lat + ', ' + lng; */
+                        	/* image = '${pageContext.request.contextPath}/resources/img/flag_marker.png'; */
+
+                        // and then - add new custom marker
+                       /*  var addrMarker = new google.maps.Marker({
+                           position : addrLocation,
+                           map : map,
+                           title : results[0].formatted_address,
+                           icon: image
+                        });
+                        markers.push(addrMarker); */
+
+                        findPlace();
+
+                     } else {
+                        alert('Geocode was not successful for the following reason: '
+                              + status);
+                     }
+                  });
+
+   }
+   function findPlace() {
+      var lat = document.getElementById('lat').value;
+      var lng = document.getElementById('lng').value;
+      var cur_location = new google.maps.LatLng(lat, lng);
+
+      var request = {
+         radius : 1,
+         location : cur_location,
+
+      };
+      service = new google.maps.places.PlacesService(map);
+      service.search(request, createMarkers);
+   }
+
+   // find custom places function
+   function findPlaces() {
+
+      // prepare variables (filter)
+      var type = document.getElementById('gmap_type').value;
+      var radius = document.getElementById('gmap_radius').value;
+
+      var lat = document.getElementById('lat').value;
+      var lng = document.getElementById('lng').value;
+      var cur_location = new google.maps.LatLng(lat, lng);
+
+      // prepare request to Places
+      var request = {
+         location : cur_location,
+         radius : radius,
+         types : [ type ]
+      };
+
+      // send request
+      service = new google.maps.places.PlacesService(map);
+      service.search(request, createMarkers);
+   }
+
+   // create markers (from 'findPlaces' function)
+   function createMarkers(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+         // if we have found something - clear map (overlays)
+         clearOverlays();
+
+         // and create new markers by search result
+         for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+         }
+      } else if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+         alert('Sorry, nothing is found');
+      }
+   }
+
+   // creare single marker function
+   function createMarker(obj) {
+	   var image;
+	   var type = document.getElementById('gmap_type').value;
+	   if(type == 'art_gallery'){
+		   image = '${pageContext.request.contextPath}/resources/img/art_gallery_marker.png';
+	   }else if(type == 'atm'){
+		   image = '${pageContext.request.contextPath}/resources/img/atm_marker.png';
+	   }else if(type == 'bank'){
+		   image = '${pageContext.request.contextPath}/resources/img/bank_marker.png';
+	   }else if(type == 'bar'){
+		   image = '${pageContext.request.contextPath}/resources/img/bar_marker.png';
+	   }else if(type == 'cafe'){
+		   image = '${pageContext.request.contextPath}/resources/img/cafe_marker.png';
+	   }else if(type == 'food'){
+		   image = '${pageContext.request.contextPath}/resources/img/food_marker.png';
+	   }else if(type == 'store'){
+		   image = '${pageContext.request.contextPath}/resources/img/store_marker.png';
+	   }else if(type == 'subway_station'){
+		   image = '${pageContext.request.contextPath}/resources/img/subway_station_marker.png';
+	   }else{
+		   image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
+	   }
+      // prepare new Marker object
+      
+      
+      var mark = new google.maps.Marker({
+         position : obj.geometry.location,
+         map : map,
+         title : obj.name,
+         icon: image
+      });
+      markers.push(mark);
+
+      // prepare info window
+      var infowindow = new google.maps.InfoWindow(
+            {
+               content : '<img src="' + obj.icon + '" /><font style="color:#000;">'
+                     + obj.name
+                     + '<br />Rating: '
+                     + obj.rating
+                     + '<br />Vicinity: '
+                     + obj.vicinity
+                     + '<br />latlng: '
+                     + obj.geometry.location.lat()
+                     + ', ' + obj.geometry.location.lng() + '</font>'
+            });
+
+      // add event handler to current marker
+      google.maps.event.addListener(mark, 'click', function() {
+         clearInfos();
+         infowindow.open(map, mark);
+         document.getElementById('lat').value = obj.geometry.location.lat();
+         document.getElementById('lng').value = obj.geometry.location.lng();
+         document.getElementById('meeting_place').value = obj.name;
+         document.getElementById('meeting_address').value = obj.vicinity;
+         
+
+      });
+      infos.push(infowindow);
+
+   }
+
+   // initialization
+   google.maps.event.addDomListener(window, 'load', initialize);
+   
+   
+
+   
+   
+         
+   
+   
+</script>
+<section id="main">
+   <header class="page-header">
+      <div class="container">
+         <h1 class="title"><spring:message code="board.traveler_writeform1"/></h1>
       </div>
-      </div><!-- .content -->
-    </div>
-           </div>
-          </div>
+   </header>
 
-                  <div class="tab-pane"id="review">
-                  <div class="title-box">
-         <a href="${pageContext.request.contextPath}/travel_review/review_list.htm" class="btn">More <span class="glyphicon glyphicon-arrow-right"></span></a>
-        </div>
-        <ul class="latest-posts" id="review_list">
-            <c:forEach var="i" begin="0" end="2" step="1">
-            <li>
-                 <a href="#" id="review_imglink${i}"><img class="image img-circle replace-2x" id="review_img${i}" src="content/img/product-1-84.jpg" alt="" title="" width="84" height="84" data-appear-animation="rotateIn"></a>
-                 <div class="meta">
-                  <a href="#" id="review_titlelink${i}"><span class="daekyu" id="review_title${i}"></span></a>
-                 </div>
-                 <div class="description">
-                  <a href="#" id="review_content${i}">
-                  </a>
-                 </div>
-            </li>
-            </c:forEach>
-        </ul>
-                  </div>
-                  <!-- #reviews -->
-               </div>
-               <!-- .tab-content -->
-            </div>
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-         </div>
+   <article class="content">
+      <div class="container">
+         <form action="" id="bofom" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="user_num" value="${sessionScope.user_num}">
+            <table class="table center">
+               <tr>
+                  <td><h6><spring:message code="board.traveler_writeform2"/></h6></td>
+                  <td colspan="5"><input class="form-control" type="text" id="title_text"
+                     name="board_title"></td>
+               </tr>
+               <tr>
+                  <td><h6><spring:message code="board.traveler_writeform3"/></h6></td>
+
+                  <td><input class="form-control" type="text" id="datepicker" name="board_date"></td>
+
+                  <td><h6><spring:message code="board.traveler_writeform4"/></h6></td>
+                  <td><select id="selectoption">
+                       <option value="KRW">KRW</option>
+                       <option value="JPY">JPY</option>
+                       <option value="USD">USD</option>
+                    
+                  </select></td>
+                  <td><input class="form-control" id="before" type="text" name="#" placeholder="작성후 수정 불가"></td>
+                  <td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.traveler_writeform13"/></button></td>
+                  <td><input class="form-control" id="after" type="text" name="price" placeholder="작성후 수정 불가"></td>
+                  
+
+                  <%-- <td><input class="form-control" type="text"></td>
+
+                  <td><spring:message code="board.traveler_writeform4"/></td>
+                  <td><input class="form-control" type="text" name="price"></td> --%>
+
+               </tr>
+               <tr>
+                  <td><h6><spring:message code="board.traveler_writeform5"/></h6></td>
+                  <td colspan="5">
+                     <!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
+                     <!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
+                     <textarea name="board_content" id="ckeditor"></textarea> <script
+                        type="text/javascript">
+                        CKEDITOR.replace('ckeditor', {
+                           width : '90%',
+                           height : '400px'
+
+                        });
+                     </script>
+                  </td>
+               </tr>
+
+               <tr>
+                  <td><h6><spring:message code="board.traveler_writeform6"/></h6></td>
+                  <!-- <td id="addPic" colspan="4"> -->
+                  <td>
+                     <input type="file" id="pic1" name="pic" >
+                     <input type="file" id="pic2" name="pic" >
+                     <input type="file" id="pic3" name="pic" >
+                     <input type="file" id="pic4" name="pic" >
+                     <input type="file" id="pic5" name="pic" >
+                  </td>
+                  <td align="center">
+                     <button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>
+                     <button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="board.traveler_writeform10"/></button>
+                  </td>
+               </tr>
+
+
+
+
+               <tr>
+                  <td><h6>Meeting Point</h6></td>
+                  <td colspan="5">
+                     <div id="container" class="row">
+                        <div id="gmap_canvas" style="height: 400px;width:auto"></div>
+                        <div class="actions">
+                           <div class="button">
+                              <label for="gmap_where"><spring:message code="board.traveler_writeform10.1"/></label> 
+                              <input id="gmap_where"
+                                 class="form-control" type="text" name="gmap_where">
+                           </div>
+                           <div id="button2" class="btn btn-success"
+                              onclick="findAddress(); return false;"><spring:message code="board.traveler_writeform10.12"/></div>
+                           <div class="button">
+                              <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> <select id="gmap_type">
+                              	 <option value="--">--</option> 
+                                 <option value="art_gallery"><spring:message code="board.traveler_writeform10.4"/></option>
+                                 <option value="atm"><spring:message code="board.traveler_writeform10.5"/></option>
+                                 <option value="bank"><spring:message code="board.traveler_writeform10.6"/></option>
+                                 <option value="bar"><spring:message code="board.traveler_writeform10.7"/></option>
+                                 <option value="cafe"><spring:message code="board.traveler_writeform10.8"/></option>
+                                 <option value="food"><spring:message code="board.traveler_writeform10.9"/></option>
+                                 <option value="store"><spring:message code="board.traveler_writeform10.10"/></option>
+                                 <option value="subway_station"><spring:message code="board.traveler_writeform10.11"/></option>
+                              </select>
+                           </div>
+                           <div class="button">
+                              <label for="gmap_radius"><spring:message code="board.traveler_writeform10.3"/></label> <select
+                                 id="gmap_radius">
+                                 <option value="500">500</option>
+                                 <option value="1000">1000</option>
+                                 <option value="1500">1500</option>
+                                 <option value="5000">5000</option>
+                              </select>
+                           </div>
+                           <input type="hidden" id="lat" name="board_latitude" /> <input
+                               type="hidden" id="lng" name="board_longitude" /> <input
+                               type="hidden" id="meeting_place" name="meeting_place" /> <input
+                              type="hidden" id="meeting_address" name="meeting_address" />
+                           <div id="button1" class="btn btn-success"
+                              onclick="findPlaces(); return false;"><spring:message code="board.traveler_writeform10.13"/></div>
+                        </div>
+                     </div>
+
+                  </td>
+               </tr>
+
+               <tr>
+                  <td colspan="6" align="center"><input type="submit"
+                     id="success" class="btn btn-success" value="<spring:message code="board.traveler_writeform11"/>"> <input
+                     type="reset" class="btn btn-danger" value="<spring:message code="board.traveler_writeform12"/>"></td>
+               </tr>
+            </table>
+         </form>
       </div>
-   </div>
-</div>
+   </article>
+   <!-- .content -->
+
+
+
+</section>
+<!-- #main -->

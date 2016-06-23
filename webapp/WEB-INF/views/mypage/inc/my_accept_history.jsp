@@ -4,9 +4,9 @@
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
 		$(function(){
-			if(('#check1').val() == 1){
+			if($('#check1').val() == 1){
 				alert("최대인원을 넘었습니다.");
-			}
+			};
 			$('#delete').click(function(){
 				if(confirm("해당 요청을 취소 하시겠습니까?") == true){
 				location.href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1";
@@ -31,7 +31,7 @@
   <header class="page-header">
     <div class="container">
       <h1 class="title">받은 요청</h1>
-      <input type="text" id="check1" value="${check1}">
+      <input type="hidden" id="check1" value="${check1}">
     </div>	
   </header>
   <div class="container">

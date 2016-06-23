@@ -323,6 +323,7 @@ public class MyPageController {
 				System.out.println("pull : " + pull);
 				if(count >= pull){
 					//여행자 구함의 경우 인원 초과하면 신청하지 못하게 해야함
+					check=1;
 				}else{
 					mypageservice.acceptRequest(participantdto);
 				}

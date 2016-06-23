@@ -15,6 +15,7 @@
       <!-- Favicon -->
       <link rel="shortcut icon" href=".././resources/img/favicon.ico">
       
+      
       <!-- Font -->
       <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
       
@@ -33,6 +34,9 @@
       <link rel="stylesheet" href=".././resources/css/ladda.min.css">
       <link rel="stylesheet" href=".././resources/css/datepicker.css">
       <link rel="stylesheet" href=".././resources/css/jquery.scrollbar.css">
+      
+      
+      
       
       <!-- Theme CSS -->
       <link rel="stylesheet" href=".././resources/css/style.css">
@@ -56,7 +60,7 @@
    <body class="fixed-header hidden-top">
       <div class="page-box">
          <div class="page-box-content">
-            
+            <jsp:include page="../inc/notificationCheck.jsp"></jsp:include>
             <!-- 로그인/회원가입 들어갈 수 있는 버튼 나와있는 부분 -->
             <jsp:include page="../inc/top-box.jsp"></jsp:include>
             <!-- 상단 메뉴 -->

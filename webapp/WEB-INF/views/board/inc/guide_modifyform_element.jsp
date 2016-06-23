@@ -362,9 +362,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
                        <option value="USD">USD</option>
                     
                   </select></td>
-                  <td><input class="form-control" id="before" type="text" name="#" value="${boarddto.PRICE }"></td>
+                  <td><input class="form-control" id="before" type="text" name="#" value="${boarddto.PRICE }" readonly></td>
                   <td><button type="button" id="convert" class="btn btn-success">변환</button></td>
-                  <td><input class="form-control" id="after" type="text" name="price" value="${boarddto.PRICE }"></td>
+                  <td><input class="form-control" id="after" type="text" name="price" value="${boarddto.PRICE }" readonly></td>
                   
 					</tr>
 					<tr>

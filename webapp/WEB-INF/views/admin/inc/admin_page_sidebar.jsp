@@ -12,6 +12,7 @@
 				<a href="${pageContext.request.contextPath}/admin/stats_list.htm"><i class="fa fa-bar-chart-o item-icon"></i>통계</a>
 			  </li>
 			  <li>
+			  
 				<a href="${pageContext.request.contextPath}/admin/member_list.htm"><i class="fa fa-users item-icon"></i>회원 목록</a>
 			  </li>
 			  <li>

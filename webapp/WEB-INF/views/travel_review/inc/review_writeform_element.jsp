@@ -14,7 +14,9 @@ $(function() {
 	$('#table_pic4').hide();
 	$('#table_pic5').hide(); 
 	
+	
 	var index=1;
+	
 	
 	$('#addBtn').click(function() {
 		if(index<=5) {
@@ -125,7 +127,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" name="review_picture"></td>
+											<td><input type="file" id=pic1 name="review_picture"></td>
 										</tr>
 										
 										<tr>

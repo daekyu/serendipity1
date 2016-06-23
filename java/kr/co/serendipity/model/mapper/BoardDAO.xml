@@ -4,18 +4,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.serendipity.model.BoardDAO">
-	<insert id="write">
-	 INSERT INTO board(board_num, user_num, board_title, board_content, board_picture1, board_picture2, 
-	 board_picture3, board_picture4, board_picture5,
-	 board_capacity, board_date, board_latitude, board_longitude, local_code, category_num, price, 
-	 meeting_Place, meeting_Address) 
-	 VALUES( board_seq.NEXTVAL, #{user_num}, #{board_title}, #{board_content}, #{board_picture1},
-	 #{board_picture2}, #{board_picture3}, #{board_picture4}, #{board_picture5},
-	 1, #{board_date}, #{board_latitude}, #{board_longitude}, '02', 1, #{price}, 
-	 #{meeting_place}, #{meeting_address})
-	</insert>
-	
-	<select id="getBoardList" resultType="hashmap">
+   <insert id="write">
+    INSERT INTO board(board_num, user_num, board_title, board_content, board_picture1, board_picture2, 
+    board_picture3, board_picture4, board_picture5,
+    board_capacity, board_date, board_latitude, board_longitude, local_code, category_num, price, 
+    meeting_Place, meeting_Address) 
+    VALUES( board_seq.NEXTVAL, #{user_num}, #{board_title}, #{board_content}, #{board_picture1},
+    #{board_picture2}, #{board_picture3}, #{board_picture4}, #{board_picture5},
+    1, #{board_date}, #{board_latitude}, #{board_longitude}, '02', 1, #{price}, 
+    #{meeting_place}, #{meeting_address})
+   </insert>
+   
+   
+   
+   
+   <select id="getBoardList" resultType="hashmap">
      SELECT * FROM
                ( SELECT ROWNUM NUM, N.* FROM 
                      ( SELECT b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name  FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=1 order by ${param3} desc
@@ -32,17 +35,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <insert id="Gwrite">
-	 INSERT INTO board(board_num, user_num, board_title, board_content, board_picture1, board_picture2, 
-	 board_picture3, board_picture4, board_picture5,
-	 board_capacity, board_date, board_latitude, board_longitude, local_code, category_num, price, 
-	 meeting_place,meeting_address)
-	 VALUES( board_seq.NEXTVAL, #{user_num}, #{board_title}, #{board_content},  #{board_picture1},
-	 #{board_picture2}, #{board_picture3}, #{board_picture4}, #{board_picture5}, 
-	 #{board_capacity}, #{board_date} , #{board_latitude}, #{board_longitude}, '02', 2, #{price}, 
-	 #{meeting_place}, #{meeting_address})
-	</insert>
+    INSERT INTO board(board_num, user_num, board_title, board_content, board_picture1, board_picture2, 
+    board_picture3, board_picture4, board_picture5,
+    board_capacity, board_date, board_latitude, board_longitude, local_code, category_num, price, 
+    meeting_place,meeting_address)
+    VALUES( board_seq.NEXTVAL, #{user_num}, #{board_title}, #{board_content},  #{board_picture1},
+    #{board_picture2}, #{board_picture3}, #{board_picture4}, #{board_picture5}, 
+    #{board_capacity}, #{board_date} , #{board_latitude}, #{board_longitude}, '02', 2, #{price}, 
+    #{meeting_place}, #{meeting_address})
+   </insert>
 
-	<select id="getGBoardList" resultType="hashmap">
+   <select id="getGBoardList" resultType="hashmap">
      SELECT * FROM
                ( SELECT ROWNUM NUM, N.* FROM 
                      ( SELECT b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name  FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=2 ORDER BY ${param3} DESC) N
@@ -57,44 +60,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        DELETE board WHERE board_num=#{board_num}
     </delete>
 
- 	<select id="getIndexTravelerRecent" resultType="hashmap">
- 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM (select b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name  FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=1 ORDER BY BOARD_NUM DESC) N) WHERE NUM <![CDATA[ <= ]]>4
- 	</select>
- 	
- 	<select id="getIndexGuideRecent" resultType="hashmap">
- 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM (select b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name  FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=2 ORDER BY BOARD_NUM DESC) N) WHERE NUM <![CDATA[ <= ]]>4
- 	</select>
- 	
- 	<update id="update">
-	 update board set user_num=#{user_num}, 
-	 board_title=#{board_title}, board_content=#{board_content}, 
-	 board_capacity=1, board_date=#{board_date}, board_latitude=#{board_latitude},
-	 meeting_place=#{meeting_place}, meeting_address=#{meeting_address}, 
-	 board_longitude=#{board_longitude}, local_code='02', category_num=1, price=#{price} 
-	 where board_num=#{board_num}
-	</update>
-	
-	<update id="picUpdate1">
-		update board set board_picture1=#{board_picture1} where board_num=#{board_num}
-	</update>
-	
-	<update id="picUpdate2">
-		update board set board_picture2=#{board_picture2} where board_num=#{board_num}
-	</update>
-	
-	<update id="picUpdate3">
-		update board set board_picture3=#{board_picture3} where board_num=#{board_num}
-	</update>
-	
-	<update id="picUpdate4">
-		update board set board_picture4=#{board_picture4} where board_num=#{board_num}
-	</update>
-	
-	<update id="picUpdate5">
-		update board set board_picture5=#{board_picture5} where board_num=#{board_num}
-	</update>
-	
-	<select id="picSearch" resultType="kr.co.serendipity.model.BoardDTO">
+    <select id="getIndexTravelerRecent" resultType="hashmap">
+       SELECT * FROM( SELECT ROWNUM NUM, N.* FROM (select b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name  FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=1 ORDER BY BOARD_NUM DESC) N) WHERE NUM <![CDATA[ <= ]]>4
+    </select>
+    
+    <select id="getIndexGuideRecent" resultType="hashmap">
+       SELECT * FROM( SELECT ROWNUM NUM, N.* FROM (select b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name  FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=2 ORDER BY BOARD_NUM DESC) N) WHERE NUM <![CDATA[ <= ]]>4
+    </select>
+    
+    <update id="update">
+    update board set user_num=#{user_num}, 
+    board_title=#{board_title}, board_content=#{board_content}, 
+    board_capacity=1, board_date=#{board_date}, board_latitude=#{board_latitude},
+    meeting_place=#{meeting_place}, meeting_address=#{meeting_address}, 
+    board_longitude=#{board_longitude}, local_code='02', category_num=1, price=#{price} 
+    where board_num=#{board_num}
+   </update>
+   
+   <update id="picUpdate1">
+      update board set board_picture1=#{board_picture1} where board_num=#{board_num}
+   </update>
+   
+   <update id="picUpdate2">
+      update board set board_picture2=#{board_picture2} where board_num=#{board_num}
+   </update>
+   
+   <update id="picUpdate3">
+      update board set board_picture3=#{board_picture3} where board_num=#{board_num}
+   </update>
+   
+   <update id="picUpdate4">
+      update board set board_picture4=#{board_picture4} where board_num=#{board_num}
+   </update>
+   
+   <update id="picUpdate5">
+      update board set board_picture5=#{board_picture5} where board_num=#{board_num}
+   </update>
+   
+   <select id="picSearch" resultType="kr.co.serendipity.model.BoardDTO">
        SELECT * FROM board where board_num=#{board_num}
     </select>
 	
@@ -136,5 +139,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getBoardCapacity" resultType="Integer">
        select board_capacity from board where board_num = #{board_num}
     </select>
-	
 </mapper>

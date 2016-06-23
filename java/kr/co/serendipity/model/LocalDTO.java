@@ -12,7 +12,11 @@ public class LocalDTO {
 	private String local_name;
 	private String local_latitude;
 	private String local_longitude;
-	private String local_img;
+	private String local_img1;
+	private String local_img2;
+	private String local_img3;
+	private String local_img4;
+	
 	
 	public String getLocal_latitude() {
 		return local_latitude;
@@ -38,11 +42,29 @@ public class LocalDTO {
 	public void setLocal_name(String local_name) {
 		this.local_name = local_name;
 	}
-	public String getLocal_img() {
-		return local_img;
+	public String getLocal_img1() {
+		return local_img1;
 	}
-	public void setLocal_img(String local_img) {
-		this.local_img = local_img;
+	public void setLocal_img1(String local_img1) {
+		this.local_img1 = local_img1;
+	}
+	public String getLocal_img2() {
+		return local_img2;
+	}
+	public void setLocal_img2(String local_img2) {
+		this.local_img2 = local_img2;
+	}
+	public String getLocal_img3() {
+		return local_img3;
+	}
+	public void setLocal_img3(String local_img3) {
+		this.local_img3 = local_img3;
+	}
+	public String getLocal_img4() {
+		return local_img4;
+	}
+	public void setLocal_img4(String local_img4) {
+		this.local_img4 = local_img4;
 	}
 	
 	

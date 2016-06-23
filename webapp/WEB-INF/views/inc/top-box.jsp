@@ -11,11 +11,12 @@
 	
 	function doPop2(){
 		var value=<%= session.getAttribute("user_num")%>;
-		 window.open('${pageContext.request.contextPath}/chatting/chatting.htm', '', 'width=500, height=400, top=100, left=450, resizable=no, location=no, menubar=no, scrollbars=yes, status=no, directories=no');
+		 window.open('${pageContext.request.contextPath}/chatting/chatting.htm', '', 'width=435, height=300, top=100, left=450, resizable=no, location=no, menubar=no, scrollbars=yes, status=no, directories=no');
 	}
 </script>
 
 <!-- Header보다 상단에 위치해 언어선택/로그인/회원가입 등을 할 수 있는 부분 -->
+
 
 <div id="top-box">
   <div class="top-box-wrapper">

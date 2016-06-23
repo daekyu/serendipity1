@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+	
 	<header class="header header-two">
   <div class="header-wrapper">
 	<div class="container">
@@ -18,9 +19,12 @@
 						</c:otherwise>
 					</c:choose>
 					
+					
+					
 				</a>
 		  </div>
 		</div><!-- .logo-box -->
+		
 		
 		<div class="col-xs-6 col-md-10 col-lg-9 right-box">
 		  <div class="right-box-wrapper">

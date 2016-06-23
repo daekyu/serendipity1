@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.co.serendipity.model.MemberDAO">
 	<insert id="joinMember" parameterType="kr.co.serendipity.model.MemberDTO">
-		insert into member(user_num,country_code,local_code,name,id,pw,gender,age,hp,email)
-		values(member_seq.nextval,#{country_code},#{local_code},#{name},#{id},#{pw},#{gender},#{age},#{hp},#{email})
+		insert into member(user_num,country_code,local_code,name,id,pw,gender,age,hp,email,join_date)
+		values(member_seq.nextval,#{country_code},#{local_code},#{name},#{id},#{pw},#{gender},#{age},#{hp},#{email},sysdate)
 	</insert>
 	
 	<select id="localList" resultType="kr.co.serendipity.model.LocalDTO">

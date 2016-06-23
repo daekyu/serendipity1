@@ -9,6 +9,7 @@
 	   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 	};
 	
+	
 	function isLike(index) {
 		$.ajax({
 			type : "post",
@@ -17,6 +18,7 @@
 				"user_num" : '${sessionScope.user_num}',
 				"review_num" : $('#review_num_'+index).val()
 			},
+			
 			success : function(data) {
 				if(data>0) {
 					$('#btn_like_'+index).hide();
@@ -87,10 +89,11 @@
 		<div class="row">
 			<div id="catalog" class="content col-sm-12 col-md-12">
 				<div class="category-img">
-					<img class="replace-2x" src="content/img/category-img.jpg"
+					<img class="replace-2x" src=".././resources/img/1.jpg"
 						width="870" height="370" alt="">
-					<div class="description">Automation &amp; Integration
-						technology to fit any lifestyle</div>
+					<div class="description">Automation &amp; 
+					Go
+					</div>
 				</div>
 
 				<div class="toolbar clearfix">
@@ -107,14 +110,14 @@
 							<a class="btn dropdown-toggle btn-default" role="button"
 								data-toggle="dropdown" href="#">지역:전체 <span></span></a>
 							<ul class="dropdown-menu">
-							<li><a href="review_list.htm">전체</a></li>
+							<li><a href="review_list.htm?order=review_num">전체</a></li>
 							<c:forEach var="i" items="${local_list}">
 								<%-- <li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li> --%>
 								<c:choose>
 									<c:when test="${i.local_code == '-' }"></c:when>
 									
 									<c:otherwise>
-										<li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li>
+										<li><a href="review_list.htm?order=review_num">${i.local_name}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>

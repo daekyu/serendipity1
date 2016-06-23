@@ -16,7 +16,49 @@ href=".././resources/js/sweetalert.css">
 <script type="text/javascript"
    src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="jquery.numberformatter.js"></script>
-   
+   <style>
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+</style>
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 <script type="text/javascript">
    window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
@@ -49,14 +91,14 @@ href=".././resources/js/sweetalert.css">
                      swal('<spring:message code="board.traveler_writeform_ef1"/>');
                      $('#datepicker').focus();
                      return false;
-                  }  else if(!reg_number.test($('#before').val()) == true){
+                  /* }  else if(!reg_number.test($('#before').val()) == true){
                     swal('<spring:message code="board.traveler_writeform_ef2"/>');
                     $('#before').focus();
                      return false;
                  } else if(!reg_number.test($('#after').val()) == true){
                        swal('<spring:message code="board.traveler_writeform_ef3"/>');
                        $('#before').focus();
-                    return false; 
+                    return false;  */
                   } else if($('#pic1').val()==''){
                      swal("<spring:message code="board.traveler_writeform_ef4"/>");
                      $('#pic1').focus();
@@ -100,7 +142,7 @@ href=".././resources/js/sweetalert.css">
          }
       });
       
-      $('#gmap_where').keydown(function (e) {
+      $('#pac-input').keydown(function (e) {
           if(e.keyCode == 13)
           {
               $('#button2').trigger('click');
@@ -180,7 +222,6 @@ href=".././resources/js/sweetalert.css">
                           
                           //$('#after').val($('#before').val() * )
                           if($('#selectoption').val()=='KRW'){
-                             
                               $('#after').val(formatNumber($('#before').val())+'원');
                               $('#before').val(formatNumber($('#before').val())+'원' );
                             }else if($('#selectoption').val()=='JPY'){
@@ -191,12 +232,12 @@ href=".././resources/js/sweetalert.css">
                                });
                             /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
                             $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
-                            $('#before').val(formatNumber($('#before').val())+'원');
+                            $('#before').val(formatNumber($('#before').val())+'¥');
                         
                             }else if($('#selectoption').val()=='USD'){
                                swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
                                $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
-                               $('#before').val(formatNumber($('#before').val())+'원');
+                               $('#before').val(formatNumber($('#before').val())+'$');
                             }
                       }
                   });
@@ -218,227 +259,292 @@ href=".././resources/js/sweetalert.css">
    
       
       // set endpoint and your access key
-      
-
    
- 
-
-
+   var autocomplete;
+   var place;
    var geocoder;
    var map;
    var markers = Array();
    var infos = Array();
+   
 
    function initialize() {
       // prepare Geocoder
       geocoder = new google.maps.Geocoder();
+      
 
       // set initial position (기본으로 삼성역)
       var myLatlng = new google.maps.LatLng(37.5088652, 127.0609603);
-
+      
       var myOptions = { // default map options
-         zoom : 17,
-         center : myLatlng,
-         mapTypeId : google.maps.MapTypeId.ROADMAP
-      };
+ 	         zoom : 17,
+ 	         center : myLatlng,
+ 	         mapTypeId : google.maps.MapTypeId.ROADMAP
+ 	      };
+
+      var image = '${pageContext.request.contextPath}/resources/img/flag_marker.png'; 
+      
       map = new google.maps.Map(document.getElementById('gmap_canvas'),
             myOptions);
-   }
-
-   // clear overlays function
-   function clearOverlays() {
-      if (markers) {
-         for (i in markers) {
-            markers[i].setMap(null);
-         }
-         markers = [];
-         infos = [];
-      }
-   }
-
-   // clear infos function
-   function clearInfos() {
-      if (infos) {
-         for (i in infos) {
-            if (infos[i].getMap()) {
-               infos[i].close();
-            }
-         }
-      }
-   }
-
-   // find address function
-   function findAddress() {
-      var address = document.getElementById("gmap_where").value;
-
-      // script uses our 'geocoder' in order to find location by address name
-      geocoder
-            .geocode(
-                  {
-                     'address' : address
-                  },
-                  function(results, status) {
-                     clearOverlays();
-                     if (status == google.maps.GeocoderStatus.OK) { // and, if everything is ok
-
-                        // we will center map
-                        var addrLocation = results[0].geometry.location;
-                        map.setCenter(addrLocation);
-
-                        // store current coordinates into hidden variables
-                        document.getElementById('lat').value = results[0].geometry.location
-                              .lat();
-                        document.getElementById('lng').value = results[0].geometry.location
-                              .lng();
-                       /*  var lat = document.getElementById('lat').value;
-                        var lng = document.getElementById('lng').value;
-                        var latlng = lat + ', ' + lng; */
-                        	/* image = '${pageContext.request.contextPath}/resources/img/flag_marker.png'; */
-
-                        // and then - add new custom marker
-                       /*  var addrMarker = new google.maps.Marker({
-                           position : addrLocation,
-                           map : map,
-                           title : results[0].formatted_address,
-                           icon: image
-                        });
-                        markers.push(addrMarker); */
-
-                        findPlace();
-
-                     } else {
-                        alert('Geocode was not successful for the following reason: '
-                              + status);
-                     }
-                  });
-
-   }
-   function findPlace() {
-      var lat = document.getElementById('lat').value;
-      var lng = document.getElementById('lng').value;
-      var cur_location = new google.maps.LatLng(lat, lng);
-
-      var request = {
-         radius : 1,
-         location : cur_location,
-
-      };
-      service = new google.maps.places.PlacesService(map);
-      service.search(request, createMarkers);
-   }
-
-   // find custom places function
-   function findPlaces() {
-
-      // prepare variables (filter)
-      var type = document.getElementById('gmap_type').value;
-      var radius = document.getElementById('gmap_radius').value;
-
-      var lat = document.getElementById('lat').value;
-      var lng = document.getElementById('lng').value;
-      var cur_location = new google.maps.LatLng(lat, lng);
-
-      // prepare request to Places
-      var request = {
-         location : cur_location,
-         radius : radius,
-         types : [ type ]
-      };
-
-      // send request
-      service = new google.maps.places.PlacesService(map);
-      service.search(request, createMarkers);
-   }
-
-   // create markers (from 'findPlaces' function)
-   function createMarkers(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-
-         // if we have found something - clear map (overlays)
-         clearOverlays();
-
-         // and create new markers by search result
-         for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-         }
-      } else if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
-         alert('Sorry, nothing is found');
-      }
-   }
-
-   // creare single marker function
-   function createMarker(obj) {
-	   var image;
-	   var type = document.getElementById('gmap_type').value;
-	   if(type == 'art_gallery'){
-		   image = '${pageContext.request.contextPath}/resources/img/art_gallery_marker.png';
-	   }else if(type == 'atm'){
-		   image = '${pageContext.request.contextPath}/resources/img/atm_marker.png';
-	   }else if(type == 'bank'){
-		   image = '${pageContext.request.contextPath}/resources/img/bank_marker.png';
-	   }else if(type == 'bar'){
-		   image = '${pageContext.request.contextPath}/resources/img/bar_marker.png';
-	   }else if(type == 'cafe'){
-		   image = '${pageContext.request.contextPath}/resources/img/cafe_marker.png';
-	   }else if(type == 'food'){
-		   image = '${pageContext.request.contextPath}/resources/img/food_marker.png';
-	   }else if(type == 'store'){
-		   image = '${pageContext.request.contextPath}/resources/img/store_marker.png';
-	   }else if(type == 'subway_station'){
-		   image = '${pageContext.request.contextPath}/resources/img/subway_station_marker.png';
-	   }else{
-		   image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
-	   }
-      // prepare new Marker object
       
-      
-      var mark = new google.maps.Marker({
-         position : obj.geometry.location,
-         map : map,
-         title : obj.name,
-         icon: image
+      // Create the search box and link it to the UI element.
+      var input = document.getElementById('pac-input');
+      var searchBox = new google.maps.places.SearchBox(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+      // Bias the SearchBox results towards current map's viewport.
+      map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
       });
-      markers.push(mark);
+      searchBox.addListener('places_changed', function() {
+    	    var places = searchBox.getPlaces();
 
-      // prepare info window
-      var infowindow = new google.maps.InfoWindow(
-            {
-               content : '<img src="' + obj.icon + '" /><font style="color:#000;">'
-                     + obj.name
-                     + '<br />Rating: '
-                     + obj.rating
-                     + '<br />Vicinity: '
-                     + obj.vicinity
-                     + '<br />latlng: '
-                     + obj.geometry.location.lat()
-                     + ', ' + obj.geometry.location.lng() + '</font>'
-            });
+    	    if (places.length == 0) {
+    	      return;
+    	    }
 
-      // add event handler to current marker
-      google.maps.event.addListener(mark, 'click', function() {
-         clearInfos();
-         infowindow.open(map, mark);
-         document.getElementById('lat').value = obj.geometry.location.lat();
-         document.getElementById('lng').value = obj.geometry.location.lng();
-         document.getElementById('meeting_place').value = obj.name;
-         document.getElementById('meeting_address').value = obj.vicinity;
-         
+    	    // Clear out the old markers.
+    	    markers.forEach(function(marker) {
+    	      marker.setMap(null);
+    	    });
+    	    markers = [];
 
-      });
-      infos.push(infowindow);
+    	    // For each place, get the icon, name and location.
+    	    var bounds = new google.maps.LatLngBounds();
+    	    places.forEach(function(place) {
+    	    	
+    	    	
+    	    	
+    	    	var mar = new google.maps.Marker({
+      	          map: map,
+      	          title: place.name,
+      	          position: place.geometry.location,
+      	          animation: google.maps.Animation.DROP,
+      	          icon: image
+      	        });
+    	        // Create a marker for each place.
+    	        markers.push(mar);
+    	        var info = new google.maps.InfoWindow(
+    					{
+    						content : '<img src="' + place.icon + '" /><font style="color:#000;">'
+    								+ place.name
+    								+ '<br />Rating: '
+    								+ place.rating
+    								+ '<br />Vicinity: '
+    								+ place.formatted_address
+    								+ '<br />latlng: '
+    								+ place.geometry.location.lat()
+    								+ ', ' + place.geometry.location.lng() + '</font>'
+    					});
 
-   }
+    	        if (place.geometry.viewport) {
+    	          // Only geocodes have viewport.
+    	          bounds.union(place.geometry.viewport);
+    	          google.maps.event.addListener(mar, 'click', function() {
+    	    			info.open(map, mar);
+      	      });
+    	        } else {
+    	          bounds.extend(place.geometry.location);
+    	          google.maps.event.addListener(mar, 'click', function() {
+    	    			info.open(map, mar);
+    	        });
+    	         document.getElementById('lat').value = place.geometry.location.lat();
+				document.getElementById('lng').value = place.geometry.location.lng();
+				document.getElementById('meeting_place').value = place.name;
+				document.getElementById('meeting_address').value = place.formatted_address;
+    		}
+    	    });
+    	    
+    	    map.fitBounds(bounds);
+    	    map.setZoom(16);
+    	    });
+     
+			
 
-   // initialization
-   google.maps.event.addDomListener(window, 'load', initialize);
-   
-   
+	}
 
-   
-   
-         
-   
-   
+	// clear overlays function
+	function clearOverlays() {
+		if (markers) {
+			for (i in markers) {
+				markers[i].setMap(null);
+			}
+			markers = [];
+			infos = [];
+		}
+	}
+
+	// clear infos function
+	function clearInfos() {
+		if (infos) {
+			for (i in infos) {
+				if (infos[i].getMap()) {
+					infos[i].close();
+				}
+			}
+		}
+	}
+
+	/* // find address function
+	function findAddress() {
+		var address = document.getElementById("gmap_where").value;
+
+		// script uses our 'geocoder' in order to find location by address name
+		geocoder
+				.geocode(
+						{
+							'address' : address
+						},
+						function(results, status) {
+							clearOverlays();
+							if (status == google.maps.GeocoderStatus.OK) { // and, if everything is ok
+
+								// we will center map
+								var addrLocation = results[0].geometry.location;
+								map.setCenter(addrLocation);
+
+								// store current coordinates into hidden variables
+								document.getElementById('lat').value = results[0].geometry.location
+										.lat();
+								document.getElementById('lng').value = results[0].geometry.location
+										.lng();
+								  var lat = document.getElementById('lat').value;
+								 var lng = document.getElementById('lng').value;
+								 var latlng = lat + ', ' + lng; 
+								 image = '${pageContext.request.contextPath}/resources/img/flag_marker.png'; 
+
+								// and then - add new custom marker
+								  var addrMarker = new google.maps.Marker({
+								    position : addrLocation,
+								    map : map,
+								    title : results[0].formatted_address,
+								    icon: image
+								 });
+								 markers.push(addrMarker); 
+
+								findPlace();
+
+							} else {
+								alert('Geocode was not successful for the following reason: '
+										+ status);
+							}
+						});
+
+	} */
+	function findPlace() {
+		var lat = document.getElementById('lat').value;
+		var lng = document.getElementById('lng').value;
+		var cur_location = new google.maps.LatLng(lat, lng);
+
+		var request = {
+			radius : 1,
+			location : cur_location
+		};
+		service = new google.maps.places.PlacesService(map);
+		service.search(request, createMarkers);
+	}
+
+	// find custom places function
+	function findPlaces() {
+
+		// prepare variables (filter)
+		var type = document.getElementById('gmap_type').value;
+		var radius = document.getElementById('gmap_radius').value;
+
+		var lat = document.getElementById('lat').value;
+		var lng = document.getElementById('lng').value;
+		var cur_location = new google.maps.LatLng(lat, lng);
+
+		// prepare request to Places
+		var request = {
+			location : cur_location,
+			radius : radius,
+			types : [ type ]
+		};
+
+		// send request
+		service = new google.maps.places.PlacesService(map);
+		service.search(request, createMarkers);
+	}
+
+	// create markers (from 'findPlaces' function)
+	function createMarkers(results, status) {
+		if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+			// if we have found something - clear map (overlays)
+			clearOverlays();
+
+			// and create new markers by search result
+			for (var i = 0; i < results.length; i++) {
+				createMarker(results[i]);
+			}
+		} else if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+			alert('Sorry, nothing is found');
+		}
+	}
+
+	// creare single marker function
+	function createMarker(obj) {
+		var image;
+		var type = document.getElementById('gmap_type').value;
+		if (type == 'art_gallery') {
+			image = '${pageContext.request.contextPath}/resources/img/art_gallery_marker.png';
+		} else if (type == 'atm') {
+			image = '${pageContext.request.contextPath}/resources/img/atm_marker.png';
+		} else if (type == 'bank') {
+			image = '${pageContext.request.contextPath}/resources/img/bank_marker.png';
+		} else if (type == 'bar') {
+			image = '${pageContext.request.contextPath}/resources/img/bar_marker.png';
+		} else if (type == 'cafe') {
+			image = '${pageContext.request.contextPath}/resources/img/cafe_marker.png';
+		} else if (type == 'food') {
+			image = '${pageContext.request.contextPath}/resources/img/food_marker.png';
+		} else if (type == 'store') {
+			image = '${pageContext.request.contextPath}/resources/img/store_marker.png';
+		} else if (type == 'subway_station') {
+			image = '${pageContext.request.contextPath}/resources/img/subway_station_marker.png';
+		}
+		// prepare new Marker object
+
+		var mark = new google.maps.Marker({
+			position : obj.geometry.location,
+			map : map,
+			title : obj.name,
+			animation: google.maps.Animation.DROP,
+			icon : image
+		});
+		markers.push(mark);
+
+		// prepare info window
+		var infowindow = new google.maps.InfoWindow(
+				{
+					content : '<img src="' + obj.icon + '" /><font style="color:#000;">'
+							+ obj.name
+							+ '<br />Rating: '
+							+ obj.rating
+							+ '<br />Vicinity: '
+							+ obj.vicinity
+							+ '<br />latlng: '
+							+ obj.geometry.location.lat()
+							+ ', ' + obj.geometry.location.lng() + '</font>'
+				});
+
+		// add event handler to current marker
+		google.maps.event.addListener(mark, 'click', function() {
+			clearInfos();
+			infowindow.open(map, mark);
+			document.getElementById('lat').value = obj.geometry.location.lat();
+			document.getElementById('lng').value = obj.geometry.location.lng();
+			document.getElementById('meeting_place').value = obj.name;
+			document.getElementById('meeting_address').value = obj.vicinity;
+
+		});
+		infos.push(infowindow);
+
+	}
+
+	// initialization
+	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 <section id="main">
    <header class="page-header">
@@ -519,16 +625,17 @@ href=".././resources/js/sweetalert.css">
                   <td><h6>Meeting Point</h6></td>
                   <td colspan="5">
                      <div id="container" class="row">
+                     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                         <div id="gmap_canvas" style="height: 400px;width:auto"></div>
                         <div class="actions">
-                           <div class="button">
+                           <%-- <div class="button">
                               <label for="gmap_where"><spring:message code="board.traveler_writeform10.1"/></label> 
-                              <input id="gmap_where"
+                               <input id="gmap_where"
                                  class="form-control" type="text" name="gmap_where">
                            </div>
                            <div id="button2" class="btn btn-success"
                               onclick="findAddress(); return false;"><spring:message code="board.traveler_writeform10.12"/></div>
-                           <div class="button">
+                           <div class="button"> --%>
                               <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> <select id="gmap_type">
                               	 <option value="--">--</option> 
                                  <option value="art_gallery"><spring:message code="board.traveler_writeform10.4"/></option>

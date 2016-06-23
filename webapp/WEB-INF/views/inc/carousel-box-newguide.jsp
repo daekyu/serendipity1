@@ -23,7 +23,7 @@
 				 </c:when>
 				<c:otherwise>
 					<c:forEach var="i" items="${guide_list}">
-						<div class="col-sm-3 col-md-3 rotation employee">
+						<div class="col-sm-2 col-md-2 rotation employee">
 							<div class="default">
 								<div class="image">
 									<img class="replace-2x img-list" src="${pageContext.request.contextPath}/resources/img/board_picture/${i.BOARD_PICTURE1}" alt=""

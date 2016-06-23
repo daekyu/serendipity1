@@ -71,7 +71,7 @@
 	}
 	
 	function openPopup(roomId) {
-		var popOptions = "width= 400, height= 555, resizable=yes, status= no, scrollbar= yes"; 
+		var popOptions = "width= 400, height= 580, resizable=yes, status= no, scrollbar= yes"; 
 		var targetTitle = random(roomId); //두명의 사용자가 다른 팝업으로 뜨기 위해서 targetTitle을 랜덤으로 만들어준다.
 		popupPost("<c:url value='/chatting/chattingPopup.htm'/>", targetTitle, popOptions);
 	}

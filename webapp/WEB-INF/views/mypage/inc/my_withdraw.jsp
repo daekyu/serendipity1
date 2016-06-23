@@ -66,8 +66,8 @@ swal({   title: "정말로 탈퇴하시겠습니까?",
               
               
                  회원 탈퇴하시겠습니까?<br><br>
-                 <button type="button" class="btn btn-danger" id="deleteMember" name="deleteMember">Yes</button>   
-                 <button type="button" class="btn btn-success">No</button>
+                 <button type="button" class="btn btn-success" id="deleteMember" name="deleteMember">Yes</button>   
+               
               
               
               </th>

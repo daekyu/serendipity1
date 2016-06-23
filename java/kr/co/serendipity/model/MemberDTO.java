@@ -14,7 +14,7 @@ public class MemberDTO {
 	private String profile_picture;
 	private String profile_description;
 	private int report_count;
-	
+
 	public int getUser_num() {
 		return user_num;
 	}

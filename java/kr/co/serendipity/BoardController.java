@@ -385,7 +385,7 @@ public class BoardController {
 	public ModelAndView guideParty(HttpServletRequest request, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		System.out.println("guideParty entrance");
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		int user_num1 = Integer.parseInt(request.getParameter("user_num1"));
+		int user_num1 = Integer.parseInt(request.getParameter("user_num"));
 		int many = Integer.parseInt(request.getParameter("many"));
 		int check = 0;
 		System.out.println("board_num : " + board_num);

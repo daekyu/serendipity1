@@ -104,7 +104,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${page-1}">
+										href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${page-1}&user_num=${sessionScope.user_num}">
 											<i class="fa fa-angle-left"></i>
 									</a></li>
 								</c:otherwise>
@@ -117,7 +117,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${a}">
+											href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${a}&user_num=${sessionScope.user_num}">
 												${a}</a></li>
 									</c:otherwise>
 								</c:choose>
@@ -129,7 +129,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${page+1}">
+										href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${page+1}&user_num=${sessionScope.user_num}">
 											<i class="fa fa-angle-right"></i>
 									</a></li>
 								</c:otherwise>

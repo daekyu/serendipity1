@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.ReviewDAO;
 import kr.co.serendipity.model.ReviewDTO;
+import kr.co.serendipity.model.VisitDAO;
+import kr.co.serendipity.model.VisitDTO;
 
 @Service
 public class IndexService {
@@ -46,5 +48,10 @@ public class IndexService {
 	public int getReviewListCount() throws ClassNotFoundException, SQLException{
 		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
 		return dao.getReviewListCount();
+	}
+	
+	public void setVisitTotalCount(){
+		VisitDAO dao = sqlsession.getMapper(VisitDAO.class);
+		dao.setVisitTotalCount();
 	}
 }

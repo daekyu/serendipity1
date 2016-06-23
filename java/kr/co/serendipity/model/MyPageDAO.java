@@ -76,7 +76,7 @@ public interface MyPageDAO {
 	public void deleteSendHistory(ParticipantDTO participantdto);
 	
 	//받은 요청 리스트
-	public List<HashMap<String, Object>> acceptHistory(MemberDTO memberdto, int page);
+	public List<HashMap<String, Object>> acceptHistory(int un, int page);
 	
 	//받은 요청 수락
 	public void acceptRequest(ParticipantDTO participantdto);

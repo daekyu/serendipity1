@@ -69,9 +69,9 @@
 								data-toggle="dropdown" href="#">Show: <span>${basicshow}</span> <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=3&sort=${basicsort}">3</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=6&sort=${basicsort}">6</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=9&sort=${basicsort}">9</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=4&sort=${basicsort}">4</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=8&sort=${basicsort}">8</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=12&sort=${basicsort}">12</a></li>
 							</ul>
 						</div>
 						<!-- .show -->
@@ -94,7 +94,7 @@
 
 				<div class="products grid row">
 					<c:forEach var="i" items="${board_list}">
-						<div class="col-sm-3 col-md-3 product rotation">
+						<div class="col-sm-2 col-md-2 product rotation">
 							<div class="default">
 								<span class="sale top"></span> <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}"
 									class="product-image"> <img class="replace-2x"
@@ -129,7 +129,20 @@
 									<li>관심사: 맛집, 술, 술</li>
 									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>
-								<br> <span class="">하고싶은 여행: <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">${i.BOARD_CONTENT}</a></span>
+								<br> <span class="">하고싶은 여행: <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">
+								<c:choose>
+									<c:when test="${i.BOARD_CONTENT.length() >=20}">
+										${i.BOARD_CONTENT.substring(0,20)}.....
+									</c:when>
+									<c:when test="${empty i.BOARD_CONTENT}">
+										<br>
+										내용 없음
+									</c:when>
+									<c:otherwise>
+										${i.BOARD_CONTENT}
+									</c:otherwise>
+								</c:choose>
+								</a></span>
 							</div>
 							<!-- .product-hover -->
 						</div>

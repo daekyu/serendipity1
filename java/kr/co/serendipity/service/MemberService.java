@@ -1,15 +1,20 @@
 package kr.co.serendipity.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.serendipity.model.BoardDAO;
+import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.CountryDTO;
 import kr.co.serendipity.model.LocalDTO;
 import kr.co.serendipity.model.MemberDAO;
 import kr.co.serendipity.model.MemberDTO;
+import kr.co.serendipity.model.ReviewDAO;
+import kr.co.serendipity.model.ReviewDTO;
 
 @Service
 public class MemberService {
@@ -61,4 +66,16 @@ public class MemberService {
 		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
 		dao.changeToTempPw(memberdto);
 	}
+	
+	public void deleteMember(MemberDTO memberdto) throws ClassNotFoundException, SQLException{
+		MemberDAO memberdao = sqlsession.getMapper(MemberDAO.class);
+		memberdao.deleteMember(memberdto);
+	}
+	
+	
+	public MemberDTO selectPicture(MemberDTO memberdto) throws ClassNotFoundException, SQLException{
+		MemberDAO memberdao = sqlsession.getMapper(MemberDAO.class);
+		return memberdao.selectPicture(memberdto);
+	}
+	
 }

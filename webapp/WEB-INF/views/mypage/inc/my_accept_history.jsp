@@ -3,11 +3,12 @@
 <!-- my account - 내가 신청한 내역 -->
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
+		//$('button[name^="reNo-"]').click(function() {
 		$(function(){
-			if(('#check1').val() == 1){
+			if($('#check1').val() == 1){
 				alert("최대인원을 넘었습니다.");
-			}
-			$('#delete').click(function(){
+			};
+			$('.delete').click(function(){
 				if(confirm("해당 요청을 취소 하시겠습니까?") == true){
 				location.href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1";
 				}else{
@@ -15,7 +16,7 @@
 				}
 			});
 			
-			$('#accept').click(function(){
+			$('.accept').click(function(){
 				if(confirm("수락 하시겠습니까?") == true){
 				location.href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}";
 				}else{
@@ -31,7 +32,7 @@
   <header class="page-header">
     <div class="container">
       <h1 class="title">받은 요청</h1>
-      <input type="text" id="check1" value="${check1}">
+      <input type="hidden" id="check1" value="${check1}">
     </div>	
   </header>
   <div class="container">
@@ -88,8 +89,8 @@
 									승낙 대기중
 								</td>
 								<td>
-									<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&board_num=${i.BOARD_NUM}&ctn=${i.CATEGORY_NUM}&pc=${i.PARTI_CAPACITY}" class="btn btn-success" id="accept">수락</a>
-									<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger" id="delete">거절</a>
+									<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&board_num=${i.BOARD_NUM}&ctn=${i.CATEGORY_NUM}&pc=${i.PARTI_CAPACITY}" class="btn btn-success accept">수락</a>
+									<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger delete">거절</a>
 								</td>
 							</c:when>
 							<c:otherwise>
@@ -124,8 +125,8 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm?pg=${page-1}">
-											<i class="fa fa-angle-left"></i>
+										href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm?pg=${page-1}&user_num=${sessionScope.user_num}">
+											<i class="fa fa-angle-left"></i>													
 									</a></li>
 								</c:otherwise>
 							</c:choose>
@@ -137,7 +138,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm?pg=${a}">
+											href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm?pg=${a}&user_num=${sessionScope.user_num}">
 												${a}</a></li>
 									</c:otherwise>
 								</c:choose>
@@ -149,7 +150,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm?pg=${page+1}">
+										href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm?pg=${page+1}&user_num=${sessionScope.user_num}">
 											<i class="fa fa-angle-right"></i>
 									</a></li>
 								</c:otherwise>

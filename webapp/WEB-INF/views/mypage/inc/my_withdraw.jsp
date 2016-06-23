@@ -10,8 +10,7 @@ href=".././resources/js/sweetalert.css">
 <script type="text/javascript">
 
 $(function() {
-   $('#withdraw').click(function() {
-
+   $('#deleteMember').click(function() {
 swal({   title: "정말로 탈퇴하시겠습니까?",   
       text: "한번탈퇴하면 복구할 수 없습니다!",   
       type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   
@@ -24,7 +23,8 @@ swal({   title: "정말로 탈퇴하시겠습니까?",
             
          
          swal("탈퇴되었습니다.", "관련된 모든 정보가 삭제되었습니다.", "success");   
-       location.href="${pageContext.request.contextPath}/index.htm?user_num=${dto.user_num}";  
+      /*  location.href="${pageContext.request.contextPath}/index.htm?user_num=${dto.user_num}";  */ 
+       location.href = "${pageContext.request.contextPath}/mypage/my_page_withdraw2.htm?user_num=${sessionScope.user_num}"; 
       
       
       }else{     swal("취소되었습니다.", "감사합니다. :)", "error");   } });
@@ -66,7 +66,7 @@ swal({   title: "정말로 탈퇴하시겠습니까?",
               
               
                  회원 탈퇴하시겠습니까?<br><br>
-                 <button type="button" class="btn btn-danger" id="withdraw"  href="${pageContext.request.contextPath}/mypage/my_page_withdraw.htm?user_num=${dto.user_num}">Yes</button>   
+                 <button type="button" class="btn btn-danger" id="deleteMember" name="deleteMember">Yes</button>   
                  <button type="button" class="btn btn-success">No</button>
               
               

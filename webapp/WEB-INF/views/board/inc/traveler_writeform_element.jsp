@@ -60,6 +60,7 @@ href=".././resources/js/sweetalert.css">
 }
 </style>
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
+
 <script type="text/javascript">
    window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 
@@ -67,11 +68,10 @@ href=".././resources/js/sweetalert.css">
    function formatNumber (num) {
        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
    }
-   
-   
+
 
    
-   
+  
    $(function(){
       
       
@@ -117,6 +117,8 @@ href=".././resources/js/sweetalert.css">
       $('#pic4').hide();
       $('#pic5').hide(); 
       
+
+    
       var index = 2;
       $('#addBtn')
             .click(
@@ -151,6 +153,7 @@ href=".././resources/js/sweetalert.css">
           }
       });
       
+
       
       
       
@@ -238,6 +241,7 @@ href=".././resources/js/sweetalert.css">
                                swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
                                $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
                                $('#before').val(formatNumber($('#before').val())+'$');
+
                             }
                       }
                   });
@@ -257,7 +261,6 @@ href=".././resources/js/sweetalert.css">
        $("#datepicker").datepicker({startDate:new Date()}).datetimepicker('update', new Date());
           });
    
-      
       // set endpoint and your access key
    
    var autocomplete;
@@ -606,11 +609,13 @@ href=".././resources/js/sweetalert.css">
                   <td><h6><spring:message code="board.traveler_writeform6"/></h6></td>
                   <!-- <td id="addPic" colspan="4"> -->
                   <td>
+              		
                      <input type="file" id="pic1" name="pic" >
                      <input type="file" id="pic2" name="pic" >
                      <input type="file" id="pic3" name="pic" >
                      <input type="file" id="pic4" name="pic" >
                      <input type="file" id="pic5" name="pic" >
+                    
                   </td>
                   <td align="center">
                      <button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.traveler_writeform9"/></button>

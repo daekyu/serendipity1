@@ -3,7 +3,7 @@
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
 		$(function(){
-			$('#delete').click(function(){
+			$('.delete').click(function(){
 				if(confirm("해당 요청을 취소 하시겠습니까?") == true){
 				location.href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1";
 				}else{
@@ -33,6 +33,7 @@
 				  <th>신청한 날짜</th>
 				  <th><span class="nobr">글 제목</span></th>
 				  <th>신청받은 사람 아이디</th>
+				  <th>인원</th>
 				  <th>상태</th>
 				  <th>Actions</th>
 				</tr>
@@ -60,13 +61,14 @@
 					<td>${i.PARTI_DATE}</td>
 					<td>${i.BOARD_TITLE}</td>
 					<td>${i.ID}</td>
+					<td>${i.PARTI_CAPACITY}</td>
 						<c:choose>
 							<c:when test="${i.STATE eq 'wait'}">
 								<td>
 									승낙 대기중
 								</td>
 								<td>
-								<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1" class="btn btn-danger" id="delete">취소</a>
+								<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1" class="btn btn-danger delete">취소</a>
 								</td>
 							</c:when>
 							<c:otherwise>
@@ -102,7 +104,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${page-1}">
+										href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${page-1}&user_num=${sessionScope.user_num}">
 											<i class="fa fa-angle-left"></i>
 									</a></li>
 								</c:otherwise>
@@ -115,7 +117,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${a}">
+											href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${a}&user_num=${sessionScope.user_num}">
 												${a}</a></li>
 									</c:otherwise>
 								</c:choose>
@@ -127,7 +129,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${page+1}">
+										href="${pageContext.request.contextPath}/mypage/my_page_send_history.htm?pg=${page+1}&user_num=${sessionScope.user_num}">
 											<i class="fa fa-angle-right"></i>
 									</a></li>
 								</c:otherwise>

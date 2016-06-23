@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script>
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -48,12 +49,12 @@
 		<div class="col-sm-12 col-md-6">
 		  <div class="title-box">
 			<a href="${pageContext.request.contextPath}/travel_review/review_list.htm" class="btn">More <span class="glyphicon glyphicon-arrow-right"></span></a>
-			<h2 class="title">인기 여행후기</h2>
+			<h2 class="title"><spring:message code="index.inc.travel-review-information"/></h2>
 		  </div>
 		  <ul class="latest-posts">
 		  	<c:choose>
 		  		<c:when test="${Rlist_count eq 0}">
-				 	글이 존재하지 않습니다.
+				 	<spring:message code="index.inc.travel-review-information1"/>
 				 </c:when>
 				 <c:otherwise>
 				 	<c:forEach var="i" items="${review_list}">

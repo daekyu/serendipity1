@@ -35,7 +35,7 @@ public class BoardController {
 	@RequestMapping("traveler_list.htm")
 	public ModelAndView travelerList(String pg, String show, String sort) throws ClassNotFoundException, SQLException {
 		int page = 1;
-		int basicshow = 6;
+		int basicshow = 8;
 		String basicsort= "board_num"; 
 		int startpage = 0;
 		int endpage = 0;
@@ -88,7 +88,7 @@ public class BoardController {
 	@RequestMapping("guide_list.htm")
 	public ModelAndView guideList(String pg, String show, String sort) throws ClassNotFoundException, SQLException {
 		int page = 1;
-		int basicshow = 6;
+		int basicshow = 8;
 		String basicsort = "board_num";
 		int startpage = 0;
 		int endpage = 0;
@@ -174,7 +174,10 @@ public class BoardController {
 		if(check != null){
 			check1 = Integer.parseInt(check);
 		}
+		
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
+		//총 수락된 인원의 수를 가져와야함
+		mav.addObject("accept", boardservice.acceptCount(boarddto));
 		mav.addObject("language",boardservice.getLanguages(boarddto));
 		mav.addObject("hobby", boardservice.getHobbies(boarddto));
 		mav.addObject("check1", check1);
@@ -382,7 +385,7 @@ public class BoardController {
 	public ModelAndView guideParty(HttpServletRequest request, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		System.out.println("guideParty entrance");
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		int user_num1 = Integer.parseInt(request.getParameter("user_num1"));
+		int user_num1 = Integer.parseInt(request.getParameter("user_num"));
 		int many = Integer.parseInt(request.getParameter("many"));
 		int check = 0;
 		System.out.println("board_num : " + board_num);

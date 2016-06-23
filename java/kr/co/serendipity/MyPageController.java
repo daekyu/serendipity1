@@ -11,10 +11,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,9 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.ParticipantDTO;
+import kr.co.serendipity.model.ReviewDTO;
 import kr.co.serendipity.service.MyPageService;
+import kr.co.serendipity.service.MemberService;
 
 @Controller
 @RequestMapping("/mypage/")
@@ -37,6 +41,9 @@ public class MyPageController {
 
 	@Autowired
 	private MyPageService mypageservice;
+	
+	@Autowired
+	private MemberService memberservice;
 
 	@RequestMapping("my_page.htm")
 	public String myPage(MemberDTO memberdto, Model model) throws IOException {
@@ -73,11 +80,13 @@ public class MyPageController {
 		System.out.println("acceptHistory entrance");
 		System.out.println("user_num : " + memberdto.getUser_num());
 		
+		int un = memberdto.getUser_num();
 		int page = 1;
 		int startpage = 0;
 		int endpage = 0;
 		int maxpage = 0;
 		int check1 = 0;
+		System.out.println("un : " + un);
 		
 		if (pg != null) {
 			page = Integer.parseInt(pg);
@@ -85,8 +94,9 @@ public class MyPageController {
 		if(check != null){
 			check1 = Integer.parseInt(check);
 		}
+		System.out.println("page : " + page);
 		
-		List<HashMap<String, Object>> participantdto = mypageservice.acceptHistory(memberdto, page);
+		List<HashMap<String, Object>> participantdto = mypageservice.acceptHistory(un, page);
 		System.out.println("participantdto 완");
 		int listCount = mypageservice.getAcceptListCount(memberdto);
 		System.out.println("listCount : " + listCount);
@@ -153,11 +163,27 @@ public class MyPageController {
 	public String showNotification() {
 		return "/mypage/my_page_notification";
 	}
-
+	
 	@RequestMapping("my_page_withdraw.htm")
-	public String withdraw() {
+	public String withdrawForm() {
 		return "/mypage/my_page_withdraw";
 	}
+	
+	@RequestMapping("my_page_withdraw2.htm")
+	public String deleteMember(MemberDTO memberdto,HttpServletRequest request, HttpSession session)throws ClassNotFoundException, SQLException {
+	
+		memberservice.deleteMember(memberdto);
+		session.invalidate();
+		return "redirect:/index.htm";
+	}
+	@RequestMapping("my_page_withdraw3.htm")
+	public String deleteMember2(MemberDTO memberdto,HttpServletRequest request, HttpSession session)throws ClassNotFoundException, SQLException {
+	
+		memberservice.deleteMember(memberdto);
+		return "redirect:/admin/member_list.htm";
+	}
+	
+	
 
 	@RequestMapping(value = "InfoModify.htm", method = RequestMethod.POST)
 	public String infoModify(MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
@@ -282,9 +308,10 @@ public class MyPageController {
 	public String acceptRequest(ParticipantDTO participantdto, HttpSession session, BoardDTO boarddto, String ctn, String pc) {
 		System.out.println("acceptRequest entrance");
 		System.out.println("parti_num : " + participantdto.getParti_num());
+		System.out.println("board_num : " + boarddto.getBoard_num());
 		//System.out.println("bn : " + bn);
 		System.out.println("ctn : " + ctn);
-		System.out.println("pc : " + pc);
+		System.out.println("particapacity : " + pc);
 		//int bn1=0;
 		int ctn1=0;
 		int pc1 = 0;
@@ -309,17 +336,23 @@ public class MyPageController {
 			//여기가 에러다
 			//List<HashMap<String, Object>> acceptList = mypageservice.acceptCount(participantdto);
 			//int ac = mypageservice.acceptCount(participantdto);
-			System.out.println("mypageservice.acceptCount(boarddto) (count) : " + mypageservice.acceptCount(boarddto));
+			
+			
 			if(mypageservice.acceptCount(boarddto) == null){
-				System.out.println("boarddto = null 임");
-				mypageservice.acceptRequest(participantdto);
+					System.out.println("boarddto = null 임");
+					mypageservice.acceptRequest(participantdto);
 			}else{
 				int count = mypageservice.acceptCount(boarddto);
 				int pull = mypageservice.getBoardCapacity(participantdto);
 				System.out.println("count : " + count);
 				System.out.println("pull : " + pull);
+				int mi = pull-count;
 				if(count >= pull){
 					//여행자 구함의 경우 인원 초과하면 신청하지 못하게 해야함
+					check=1;
+				}else if(mi <= pc1){
+					//여행자 구함의 경우 인원 초과하면 신청하지 못하게 해야함
+					check=1;
 				}else{
 					mypageservice.acceptRequest(participantdto);
 				}

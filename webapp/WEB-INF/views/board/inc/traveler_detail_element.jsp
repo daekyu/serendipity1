@@ -59,8 +59,8 @@
 										if (isConfirm == true) {
 
 											swal("삭제되었습니다.");
-											location.href = "${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=1";
-											location.href = "${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=1"
+											/* location.href = "${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=1";  */
+											location.href = "${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=1"; 
 
 										} else {
 

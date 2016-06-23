@@ -42,9 +42,9 @@
 			  <span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu">
-				<li><a href="${pageContext.request.contextPath}/locale/changeLocale.htm?locale=ko"><img src="./resources/img/kor-flag.png">한국어<span class="locale"></span></a></li>
-				<li><a href="${pageContext.request.contextPath}/locale/changeLocale.htm?locale=en"><img src="./resources/img/eng-flag.png">English<span class="locale1"></span></a></li>
-				<li><a href="${pageContext.request.contextPath}/locale/changeLocale.htm?locale=ja"><img src="./resources/img/jap-flag.png">日本語<span class="locale2"></span></a></li>
+				<li><a href="${pageContext.request.contextPath}/locale/changeLocale.htm?locale=ko"><img src="${pageContext.request.contextPath}/resources/img/kor-flag.png">한국어<span class="locale"></span></a></li>
+				<li><a href="${pageContext.request.contextPath}/locale/changeLocale.htm?locale=en"><img src="${pageContext.request.contextPath}/resources/img/eng-flag.png">English<span class="locale1"></span></a></li>
+				<li><a href="${pageContext.request.contextPath}/locale/changeLocale.htm?locale=ja"><img src="${pageContext.request.contextPath}/resources/img/jap-flag.png">日本語<span class="locale2"></span></a></li>
 			</ul>
 		  </div>
 		</div>

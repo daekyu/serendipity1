@@ -149,7 +149,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page-1}&show=${basicshow}&sort=${basicsort}">
+										href="${pageContext.request.contextPath}/board/guide_list.htm?pg=${page-1}&show=${basicshow}&sort=${basicsort}">
 											<i class="fa fa-angle-left"></i>
 									</a></li>
 								</c:otherwise>
@@ -162,7 +162,7 @@
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${a}&show=${basicshow}&sort=${basicsort}">
+											href="${pageContext.request.contextPath}/board/guide_list.htm?pg=${a}&show=${basicshow}&sort=${basicsort}">
 												${a}</a></li>
 									</c:otherwise>
 								</c:choose>
@@ -174,7 +174,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page+1}&show=${basicshow}&sort=${basicsort}">
+										href="${pageContext.request.contextPath}/board/guide_list.htm?pg=${page+1}&show=${basicshow}&sort=${basicsort}">
 											<i class="fa fa-angle-right"></i>
 									</a></li>
 								</c:otherwise>

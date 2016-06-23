@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.serendipity.model.AdminDAO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.ReportDAO;
+import kr.co.serendipity.model.VisitDAO;
 
 @Service
 public class AdminService {
@@ -54,5 +55,15 @@ public class AdminService {
 	public int monthReviewCount(int month) throws ClassNotFoundException, SQLException{
 		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
 		return dao.monthReviewCount(month);
+	}
+	
+	public int getVisitTotalCount(){
+		VisitDAO dao = sqlsession.getMapper(VisitDAO.class);
+		return dao.getVisitTotalCount();
+	}
+	
+	public int getVisitTodayCount(){
+		VisitDAO dao = sqlsession.getMapper(VisitDAO.class);
+		return dao.getVisitTodayCount();
 	}
 }

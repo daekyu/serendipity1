@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -142,9 +143,9 @@
    <body>
       <div class="product-tab">
         <ul class="nav nav-tabs">
-         <li class="active"><a href="#msg_receive">받은 쪽지함</a></li>
-         <li><a href="#msg_write">쪽지 보내기</a></li>
-         <li><a href="#msg_send">보낸 쪽지함</a></li>
+         <li class="active"><a href="#msg_receive"><spring:message code="message.message.in"/></a></li>
+         <li><a href="#msg_write"><spring:message code="message.message.in1"/></a></li>
+         <li><a href="#msg_send"><spring:message code="message.message.in2"/></a></li>
         </ul><!-- .nav-tabs -->   
         
         <div class="tab-content">
@@ -153,10 +154,10 @@
             <table class="table table-responsive">
                <thead>
                   <tr>
-                     <th>보낸 사람</th>
-                     <th>제목</th>
-                     <th>보낸 날짜</th>
-                     <th>삭제</th>
+                     <th><spring:message code="message.message.in3"/></th>
+                     <th><spring:message code="message.message.in4"/></th>
+                     <th><spring:message code="message.message.in5"/></th>
+                     <th><spring:message code="message.message.in6"/></th>
                   </tr>
                </thead>
                
@@ -176,7 +177,7 @@
                         
                         <td>${i.MESSAGE_DATE}</td>
                         <td>
-                           <a class="btn btn-danger" href="${pageContext.request.contextPath}/message/deleteReceiveMessage.htm?message_num=${i.MESSAGE_NUM}">삭제</a>
+                           <a class="btn btn-danger" href="${pageContext.request.contextPath}/message/deleteReceiveMessage.htm?message_num=${i.MESSAGE_NUM}"><spring:message code="message.message.in8"/></a>
                         </td>
                      </tr>
 
@@ -191,7 +192,7 @@
               <table class="table table-responsive">
                  <tr>
                     <th>
-                       받는 사람: 
+                      <spring:message code="message.message.send"/> 
                     </th>
                     
                     <td>
@@ -203,14 +204,14 @@
                  </tr>
                  
                  <tr>
-                    <th>제목: </th>
+                    <th><spring:message code="message.message.send1"/> </th>
                     <td>
                        <input type="text" class="form-control" name="message_title">
                     </td>
                  </tr>
                  <tr>
                     <th>
-                       내용: 
+                      <spring:message code="message.message.send2"/> 
                     </th>
                     
                     <td>
@@ -218,7 +219,7 @@
                     </td>
                  </tr>
                  <tr>
-                    <td colspan="2"><input type="submit" class="btn btn-danger" value="전송"></td>
+                    <td colspan="2"><input type="submit" class="btn btn-danger" value=" <spring:message code="message.message.send3"/> "></td>
                  </tr>
               </table>
            </form>
@@ -228,10 +229,10 @@
            <table class="table table-responsive">
               <thead>
                  <tr>
-                    <th>받는 사람</th>
-                    <th>제목</th>
-                    <th>보낸 시간</th>
-                    <th>삭제</th>
+                    <th><spring:message code="message.message.send_le"/></th>
+                    <th><spring:message code="message.message.send_le1"/></th>
+                    <th><spring:message code="message.message.send_le2"/></th>
+                    <th><spring:message code="message.message.send_le3"/></th>
                  </tr>
               </thead>
               
@@ -243,14 +244,14 @@
                            ${i.RECEIVER}
                         </td>
                         
-                        <td>
+                       <td>
                            
                            <a onclick="getSendMessageDetail(${i.MESSAGE_NUM})" data-toggle="modal" data-target="#msg_content">${i.MESSAGE_TITLE}</a>
                         </td>
                         
                         <td>${i.MESSAGE_DATE}</td>
                         <td>
-                           <a class="btn btn-danger" href="${pageContext.request.contextPath}/message/deleteSendMessage.htm?message_num=${i.MESSAGE_NUM}">삭제</a>
+                           <a class="btn btn-danger" href="${pageContext.request.contextPath}/message/deleteSendMessage.htm?message_num=${i.MESSAGE_NUM}"><spring:message code="message.message.send_le5"/></a>
                         </td>
                      </tr>
 
@@ -274,7 +275,7 @@
                  
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="message.message.get"/></button>
             </div>
           </div>
         </div>

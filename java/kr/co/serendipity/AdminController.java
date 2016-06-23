@@ -87,4 +87,22 @@ public class AdminController {
 		boardCount.put("review", reviewCount);
 		return boardCount;
 	}
+	
+	@RequestMapping("visit_total_count.htm")
+	public @ResponseBody JSONObject totalVisitCount(){
+		JSONObject visitCount = new JSONObject();
+		ArrayList<Integer> totalCount = new ArrayList<Integer>();
+		totalCount.add(adminservice.getVisitTotalCount());
+		visitCount.put("visitCount", totalCount);
+		return visitCount;
+	}
+	
+	@RequestMapping("visit_today_count.htm")
+	public @ResponseBody JSONObject todayVisitCount(){
+		JSONObject visitCount = new JSONObject();
+		ArrayList<Integer> todayCount = new ArrayList<Integer>();
+		todayCount.add(adminservice.getVisitTodayCount());
+		visitCount.put("visitCount", todayCount);
+		return visitCount;
+	}
 }

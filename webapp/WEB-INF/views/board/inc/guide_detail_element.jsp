@@ -26,7 +26,6 @@
 	value="${boarddto.MEETING_PLACE}" />
 <input type="hidden" id="meeting_address"
 	value="${boarddto.MEETING_ADDRESS}" />
-<input type="text" id="check" value="${check1}"/>
 <script type="text/javascript">
 	/* $(function(){
 		$('#delete').click(function(){
@@ -39,9 +38,6 @@
 	}); */
 
 	$(function() {
-		if($('check').val == 1){
-			alert('최대 인원을 초과합니다.')
-		}
 		$('#delete')
 				.click(
 						function() {
@@ -74,8 +70,6 @@
 						});
 	});
 
-
-	
 	var map;
 	var marker;
 	var myLatlng;
@@ -264,7 +258,7 @@
 						<div class="description"></div>
 
 						<div class="price-box">
-							<span class="price">${boarddto.PRICE} / a day / ${boarddto.BOARD_DATE}</span>
+							<span class="price">${boarddto.PRICE} / a day</span>
 						</div>
 						<c:choose>
 							<c:when test="${sessionScope.user_num == boarddto.USER_NUM}">
@@ -284,14 +278,16 @@
 								<form
 									action="${pageContext.request.contextPath}/board/guideParty.htm"
 									class="form-inline add-cart-form" method="post">
-									현재 명 신청 가능 <br><br>
+									<select>
+										<option>16.06.02 - 2명남음</option>
+									</select>
 									<%-- ${pageContext.request.contextPath} --%>
 									<c:if test="${!empty sessionScope.user_num}">
 										<input type="hidden" name="board_num"
 											value="${boarddto.BOARD_NUM}">
-										<input type="hidden" name="user_num1"
+										<input type="hidden" name="user_num"
 											value="${sessionScope.user_num}">
-										<input type="submit" class="btn-default btn-lg" value="신청하기"> &nbsp; &nbsp;
+										<input type="submit" class="btn-default btn-lg" value="신청하기">
 										<!-- 이 클래스 속성 먹이면 버튼이 안눌림; btn add-cart -->
 										<div class="number">
 

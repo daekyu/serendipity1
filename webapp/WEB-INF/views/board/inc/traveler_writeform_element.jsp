@@ -25,7 +25,7 @@ href=".././resources/js/sweetalert.css">
    function formatNumber (num) {
        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
    }
- 
+
 
       $('#pic2').hide();
       $('#pic3').hide();
@@ -62,15 +62,11 @@ href=".././resources/js/sweetalert.css">
           {
               $('#button2').trigger('click');
 
-              return false;
-          }
-      });
+   
+  
+   $(function(){
       
       
-      
-      $(function(){
-          
-          
           var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
             
             
@@ -107,12 +103,53 @@ href=".././resources/js/sweetalert.css">
                     	 swal("<spring:message code="board.traveler_writeform_ef6"/>")
                   }
                }); 
-      
-    
-      
-      
+
+      $('#pic2').hide();
+      $('#pic3').hide();
+      $('#pic4').hide();
+      $('#pic5').hide(); 
       
 
+    
+      var index = 2;
+      $('#addBtn')
+            .click(
+                  function() {
+                     if (index <= 5) {
+                        /* $('#addPic')
+                              .append(
+                                    '<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
+                        $('#pic'+index).show();
+                        index++;
+                     } else {
+                        swal('더 이상 추가할 수 없습니다');
+                     }
+                  });
+      $('#minusBtn').click(function() {
+         if (index > 2) {
+            index--;
+            $('#pic'+index).val("");
+            $('#pic'+index).hide();
+            /* $('#pic' + index).remove(); */
+         } else {
+            swal('더 이상 삭제할 수 없습니다.');
+         }
+      });
+      
+      $('#gmap_where').keydown(function (e) {
+          if(e.keyCode == 13)
+          {
+              $('#button2').trigger('click');
+
+              return false;
+          }
+      });
+      
+
+      
+      
+      
+   });
 
    $('#ckeditor').keyup(function() {
       console.log($('#ckeditor').val());

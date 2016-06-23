@@ -13,7 +13,6 @@
 </script> 
 <link rel="stylesheet" type="text/css" href=".././resources/js/sweetalert.css">  
 
-
 <script src="http://maps.google.com/maps/api/js?sensor=false&language=${sessionScope.locale}" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
@@ -23,7 +22,6 @@
 </div>
 
 <div class="clearfix"></div>
-
 
 <section id="main">
   <header class="page-header">
@@ -118,7 +116,7 @@
                               
                             
                             //infowindow.open(map, marker);
-                            console.log(locations[i][5]);
+                            console.log(locations[i][4]);
                             
                             
                             
@@ -450,7 +448,7 @@
            </tbody>
         </table>
             </div>
-
+			<!-- 사진추가부분 2-->
               <div class="tab-pane" align="center" id="localImg">
               	<div data-appear-animation="bounceInUp">
                	<div class="row">

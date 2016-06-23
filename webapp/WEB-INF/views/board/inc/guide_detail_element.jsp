@@ -70,6 +70,8 @@
 						});
 	});
 
+
+	
 	var map;
 	var marker;
 	var myLatlng;

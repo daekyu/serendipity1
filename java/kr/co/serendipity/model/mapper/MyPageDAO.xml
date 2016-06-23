@@ -131,6 +131,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
      <select id="getBoardCapacity" resultType="Integer">
        select board_capacity from participant p join board b on p.board_num = b.board_num where parti_num = #{parti_num}
-    </select>
+     </select>
+     
+     <delete id="deleteMember" >
+       DELETE member WHERE user_num=#{user_num}
+     </delete>
 	
 </mapper>

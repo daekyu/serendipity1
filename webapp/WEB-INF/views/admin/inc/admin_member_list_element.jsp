@@ -46,7 +46,7 @@
 			  		<td>${i.country_code}</td>
 			  		<td>${i.email}</td>
 			  		<td>${i.report_count}</td>
-			  		<td><a class="btn btn-danger" href="">탈퇴</a>
+			  		<td><a class="btn btn-danger" href="${pageContext.request.contextPath}/mypage/my_page_withdraw3.htm?user_num=${i.user_num}">탈퇴</a>
 			  	</tr>
 			  </c:forEach>
 			  </tbody>

@@ -41,5 +41,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from member where id=#{id}
 	</select>
 	
+	<delete id="deleteMember" >
+       DELETE from member WHERE user_num=#{user_num}
+    </delete>
+    
+    <select id="selectPicture" resultType="kr.co.serendipity.model.MemberDTO">
+		select profile_picture from member where user_num=#{user_num}
+	</select>
+	
 
 </mapper>

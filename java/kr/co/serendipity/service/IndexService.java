@@ -54,14 +54,4 @@ public class IndexService {
 		VisitDAO dao = sqlsession.getMapper(VisitDAO.class);
 		dao.setVisitTotalCount();
 	}
-	
-	public int getVisitTotalCount(){
-		VisitDAO dao = sqlsession.getMapper(VisitDAO.class);
-		return dao.getVisitTotalCount();
-	}
-	
-	public int getVisitTodayCount(){
-		VisitDAO dao = sqlsession.getMapper(VisitDAO.class);
-		return dao.getVisitTodayCount();
-	}
 }

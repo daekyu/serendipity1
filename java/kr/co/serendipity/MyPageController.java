@@ -73,11 +73,13 @@ public class MyPageController {
 		System.out.println("acceptHistory entrance");
 		System.out.println("user_num : " + memberdto.getUser_num());
 		
+		int un = memberdto.getUser_num();
 		int page = 1;
 		int startpage = 0;
 		int endpage = 0;
 		int maxpage = 0;
 		int check1 = 0;
+		System.out.println("un : " + un);
 		
 		if (pg != null) {
 			page = Integer.parseInt(pg);
@@ -85,8 +87,9 @@ public class MyPageController {
 		if(check != null){
 			check1 = Integer.parseInt(check);
 		}
+		System.out.println("page : " + page);
 		
-		List<HashMap<String, Object>> participantdto = mypageservice.acceptHistory(memberdto, page);
+		List<HashMap<String, Object>> participantdto = mypageservice.acceptHistory(un, page);
 		System.out.println("participantdto 완");
 		int listCount = mypageservice.getAcceptListCount(memberdto);
 		System.out.println("listCount : " + listCount);

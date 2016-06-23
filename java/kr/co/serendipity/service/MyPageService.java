@@ -63,9 +63,9 @@ public class MyPageService {
 		return dao.sendHistory(memberdto, page);
 	}
 	
-	public List<HashMap<String, Object>> acceptHistory(MemberDTO memberdto, int page){
+	public List<HashMap<String, Object>> acceptHistory(int un, int page){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		return dao.acceptHistory(memberdto, page);
+		return dao.acceptHistory(un, page);
 	}
 	
 	public int getAcceptListCount(MemberDTO memberdto) throws ClassNotFoundException, SQLException {

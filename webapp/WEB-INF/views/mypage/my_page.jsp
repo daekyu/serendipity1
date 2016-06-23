@@ -11,6 +11,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Insert title here</title>
 		
+		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href=".././resources/img/favicon.ico">
 		

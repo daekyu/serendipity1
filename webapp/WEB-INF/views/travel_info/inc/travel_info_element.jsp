@@ -13,6 +13,7 @@
 </script> 
 <link rel="stylesheet" type="text/css" href=".././resources/js/sweetalert.css">  
 
+
 <script src="http://maps.google.com/maps/api/js?sensor=false&language=${sessionScope.locale}" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
@@ -116,7 +117,7 @@
                               
                             
                             //infowindow.open(map, marker);
-                            console.log(locations[i][4]);
+                            console.log(locations[i][5]);
                             
                             
                             

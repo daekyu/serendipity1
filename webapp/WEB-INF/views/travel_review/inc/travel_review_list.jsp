@@ -9,6 +9,7 @@
 	   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 	};
 	
+	
 	function isLike(index) {
 		$.ajax({
 			type : "post",

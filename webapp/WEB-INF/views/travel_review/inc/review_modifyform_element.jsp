@@ -11,6 +11,7 @@ $(function() {
 	$('#table_pic4').hide();
 	$('#table_pic5').hide();  */
 	
+	
 	var index=1;
 	
 	$('#addBtn').click(function() {

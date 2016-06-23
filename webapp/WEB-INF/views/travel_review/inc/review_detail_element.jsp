@@ -27,6 +27,7 @@
 		
 		isLike();
 		
+		
 		$('#btn_like').click(function() {
 			$.ajax({
 				type : "post",

@@ -18,6 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where msg.receiver=m1.user_num and msg.sender=m2.user_num and msg.sender=#{user_num}
 	</select>
 	
+	
+	
 	<select id="getReceiveMsgList" resultType="map">
 		select rm.message_num, rm.message_content, rm.message_date, rm.message_title, m1.id as receiver, m2.id as sender
 		from rcv_message rm, member m1, member m2 

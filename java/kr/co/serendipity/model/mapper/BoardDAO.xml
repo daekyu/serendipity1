@@ -129,4 +129,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select m.id from participant p join board b on p.board_num=b.board_num join member m on p.user_num=m.user_num where b.board_num=#{board_num} and p.state='accept'
 	</select>
 	
+	<select id="acceptCount" resultType="Integer">
+       select sum(parti_capacity) from participant where board_num = #{board_num} and state='accept'
+    </select>
+    
+    <select id="getBoardCapacity" resultType="Integer">
+       select board_capacity from board where board_num = #{board_num}
+    </select>
+	
 </mapper>

@@ -87,6 +87,10 @@ public interface MyPageDAO {
 	//받은 요청 페이징 총 받은 요청 수 send
 	public int getSendListCount(MemberDTO memberdto) throws ClassNotFoundException, SQLException;
 	
-	//받은 요청 수락 인원 증가
-	public void upCapacity(int bn1);
+	
+	//여행자 구함 글의 경우 수락한 인원수를 가져오기
+	public Integer acceptCount(BoardDTO boarddto);
+	
+	//여행자 구함에서 해당글의 신청 가능 인원 수 불러오기
+	public int getBoardCapacity(ParticipantDTO participantdto);
 }

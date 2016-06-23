@@ -167,11 +167,17 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "guide_detail.htm")
-	public ModelAndView guideDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+	public ModelAndView guideDetail(BoardDTO boarddto, String check) throws ClassNotFoundException, SQLException {
 		ModelAndView mav = new ModelAndView("/board/guide_detail");
+		int check1 = 0;
+		
+		if(check != null){
+			check1 = Integer.parseInt(check);
+		}
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
 		mav.addObject("language",boardservice.getLanguages(boarddto));
 		mav.addObject("hobby", boardservice.getHobbies(boarddto));
+		mav.addObject("check1", check1);
 		return mav;
 	}
 
@@ -376,11 +382,31 @@ public class BoardController {
 	public ModelAndView guideParty(HttpServletRequest request, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		System.out.println("guideParty entrance");
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		int user_num = Integer.parseInt(request.getParameter("user_num"));
+		int user_num1 = Integer.parseInt(request.getParameter("user_num1"));
 		int many = Integer.parseInt(request.getParameter("many"));
+		int check = 0;
+		System.out.println("board_num : " + board_num);
+		System.out.println("user_num1 : " + user_num1);
+		System.out.println("many : " + many);
 		boarddto.setBoard_num(board_num);
-		boardservice.guideParty(board_num, user_num, many);
-		ModelAndView mav = new ModelAndView("redirect:/board/traveler_detail.htm?board_num=" + boarddto.getBoard_num());
+		System.out.println("boardservice.acceptCount(boarddto) (count) : " + boardservice.acceptCount(boarddto));
+		if(boardservice.acceptCount(boarddto) == null){
+			System.out.println("boarddto = null 임");
+			boardservice.guideParty(board_num, user_num1, many);
+		}else{
+			int count = boardservice.acceptCount(boarddto);
+			int pull = boardservice.getBoardCapacity(boarddto);
+			System.out.println("count : " + count);
+			System.out.println("pull : " + pull);
+			if(count >= pull){
+				//여행자 구함의 경우 인원 초과하면 신청하지 못하게 해야함
+				//스크립트로 경고창
+				check=1;
+			}else{
+				boardservice.guideParty(board_num, user_num1, many);
+			}
+		}
+		ModelAndView mav = new ModelAndView("redirect:/board/guide_detail.htm?board_num=" + boarddto.getBoard_num() + "&check=" + check);
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
 		return mav;
 	}

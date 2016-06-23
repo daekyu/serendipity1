@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.serendipity.model.BoardDAO;
+import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.HobbyDTO;
 import kr.co.serendipity.model.LanguageDTO;
 import kr.co.serendipity.model.MemberDTO;
@@ -160,8 +161,13 @@ public class MyPageService {
 		dao.acceptRequest(participantdto);
 	}
 	
-	public void upCapacity(int bn1){
+	public Integer acceptCount(BoardDTO boarddto){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		dao.upCapacity(bn1);
+		return dao.acceptCount(boarddto);
+	}
+	
+	public int getBoardCapacity(ParticipantDTO participantdto){
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		return dao.getBoardCapacity(participantdto);
 	}
 }

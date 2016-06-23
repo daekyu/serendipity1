@@ -362,7 +362,6 @@
 										<input type="submit" class="btn-default btn-lg" value="신청하기" id="sm">
 										<!-- 이 클래스 속성 먹이면 버튼이 안눌림; btn add-cart -->
 										<div class="number">
-
 											<label>인원수:</label> <input type="text" value="1"
 												class="form-control" name="many" id="many">
 											<div class="regulator">
@@ -370,8 +369,8 @@
 												<a href="#" class="number-down"><i
 													class="fa fa-angle-down"></i></a>
 											</div>
-											</form>
 										</div>
+											</form>
 										</c:otherwise>
 										</c:choose>
 									</c:if>

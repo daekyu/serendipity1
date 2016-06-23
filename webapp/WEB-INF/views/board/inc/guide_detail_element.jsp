@@ -26,6 +26,9 @@
 	value="${boarddto.MEETING_PLACE}" />
 <input type="hidden" id="meeting_address"
 	value="${boarddto.MEETING_ADDRESS}" />
+<input type="hidden" id=cp value="${boarddto.BOARD_CAPACITY}"/>
+<input type="hidden" id=ac value="${accept}"/>
+
 <script type="text/javascript">
 	/* $(function(){
 		$('#delete').click(function(){
@@ -38,6 +41,20 @@
 	}); */
 
 	$(function() {
+		
+		$('#sm').click(function(){
+			if($('#ac').val() == null){
+				$('#ac').val(0);
+			}
+			var mi = $('#cp').val() - $('#ac').val();
+			if(mi < $('#many').val()){
+				alert("최대 신청 인원수를 초과 합니다! 신청할 수 없습니다!");
+				return false;
+			}else{
+				return true;
+			}
+		});
+		
 		$('#delete')
 				.click(
 						function() {

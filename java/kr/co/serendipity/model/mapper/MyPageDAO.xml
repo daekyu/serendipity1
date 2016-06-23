@@ -98,7 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- select * from participant where user_num=#{user_num} -->
 		SELECT * FROM
 		( SELECT ROWNUM NUM, N.* FROM
-			(select * from participant p join board b on p.board_num = b.board_num join member m on b.USER_NUM = m.USER_NUM where p.user_num=#{0.user_num}) n
+			(select * from participant p join board b on p.board_num = b.board_num join member m on b.USER_NUM = m.USER_NUM where p.user_num=#{0.user_num} order by p.parti_num desc) n
 		) WHERE NUM BETWEEN 1 + (#{1}-1)*10 AND 10 + (#{1}-1)*10
 	</select>
 	
@@ -109,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="acceptHistory" resultType="hashmap">
 	SELECT * FROM
 		( SELECT ROWNUM NUM, N.* FROM 
-			(select * from participant p join board b on p.board_num = b.board_num join member m on p.USER_NUM = m.USER_NUM where b.user_num=#{param1}) n
+			(select * from participant p join board b on p.board_num = b.board_num join member m on p.USER_NUM = m.USER_NUM where b.user_num=#{param1} order by p.parti_num desc) n
 		) WHERE NUM BETWEEN 1 + (#{param2}-1)*10 AND 10 + (#{param2}-1)*10
 	</select>
 	

@@ -3,7 +3,7 @@
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
 		$(function(){
-			$('#delete').click(function(){
+			$('.delete').click(function(){
 				if(confirm("해당 요청을 취소 하시겠습니까?") == true){
 				location.href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1";
 				}else{
@@ -68,7 +68,7 @@
 									승낙 대기중
 								</td>
 								<td>
-								<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1" class="btn btn-danger" id="delete">취소</a>
+								<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1" class="btn btn-danger delete">취소</a>
 								</td>
 							</c:when>
 							<c:otherwise>

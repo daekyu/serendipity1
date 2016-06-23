@@ -69,6 +69,24 @@
 
 						});
 	});
+	
+	/* $('#sm').click(function(){
+		var cp = ('#cp').val();
+		var ac = ('#ac').val();
+		var many = ('#many').val();
+		var mi = cp-ac;
+		console.log("cp : " + cp);
+		console.log("ac : " + ac);
+		console.log("many : " + many);
+		console.log("mi : " + mi);
+		if(many > mi){
+			alert('인원 초과! 신청할수 없습니다.');
+			return false;
+		}else{
+		$('#form1').submit;
+		}
+	}); */
+	
 
 	var map;
 	var marker;
@@ -135,7 +153,7 @@
 	<header class="page-header">
 		<div class="container">
 			<h1 class="title">
-				<spring:message code="board.traveler_detail" />
+				<spring:message code="board.guide_detail" />
 			</h1>
 		</div>
 	</header>
@@ -301,7 +319,7 @@
 								<c:otherwise>
 								<form
 									action="${pageContext.request.contextPath}/board/guideParty.htm"
-									class="form-inline add-cart-form" method="post">
+									class="form-inline add-cart-form" method="post" id="form1">
 									<c:choose>
 										<c:when test="${empty accept}">
 										현재 ${boarddto.BOARD_CAPACITY}명 신청 가능 <br>
@@ -311,20 +329,20 @@
 										</c:otherwise>
 									</c:choose>
 									<br>
-									capacity : ${boarddto.BOARD_CAPACITY}<br>
-									accept : ${accept}
 									<%-- ${pageContext.request.contextPath} --%>
 									<c:if test="${!empty sessionScope.user_num}">
 										<input type="hidden" name="board_num"
 											value="${boarddto.BOARD_NUM}">
 										<input type="hidden" name="user_num"
 											value="${sessionScope.user_num}">
-										<input type="submit" class="btn-default btn-lg" value="신청하기">
+										<%-- <input type="hidden" id="cp" value="${boarddto.BOARD_CAPACITY}">
+										<input type="hidden" id="ac" value="${accept}"> --%>
+										<input type="submit" class="btn-default btn-lg" value="신청하기" id="sm">
 										<!-- 이 클래스 속성 먹이면 버튼이 안눌림; btn add-cart -->
 										<div class="number">
 
 											<label>인원수:</label> <input type="text" value="1"
-												class="form-control" name="many">
+												class="form-control" name="many" id="many">
 											<div class="regulator">
 												<a href="#" class="number-up"><i class="fa fa-angle-up"></i></a>
 												<a href="#" class="number-down"><i

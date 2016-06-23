@@ -11,10 +11,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,9 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.ParticipantDTO;
+import kr.co.serendipity.model.ReviewDTO;
 import kr.co.serendipity.service.MyPageService;
+import kr.co.serendipity.service.MemberService;
 
 @Controller
 @RequestMapping("/mypage/")
@@ -37,6 +41,9 @@ public class MyPageController {
 
 	@Autowired
 	private MyPageService mypageservice;
+	
+	@Autowired
+	private MemberService memberservice;
 
 	@RequestMapping("my_page.htm")
 	public String myPage(MemberDTO memberdto, Model model) throws IOException {
@@ -156,11 +163,27 @@ public class MyPageController {
 	public String showNotification() {
 		return "/mypage/my_page_notification";
 	}
-
+	
 	@RequestMapping("my_page_withdraw.htm")
-	public String withdraw() {
+	public String withdrawForm() {
 		return "/mypage/my_page_withdraw";
 	}
+	
+	@RequestMapping("my_page_withdraw2.htm")
+	public String deleteMember(MemberDTO memberdto,HttpServletRequest request, HttpSession session)throws ClassNotFoundException, SQLException {
+	
+		memberservice.deleteMember(memberdto);
+		session.invalidate();
+		return "redirect:/index.htm";
+	}
+	@RequestMapping("my_page_withdraw3.htm")
+	public String deleteMember2(MemberDTO memberdto,HttpServletRequest request, HttpSession session)throws ClassNotFoundException, SQLException {
+	
+		memberservice.deleteMember(memberdto);
+		return "redirect:/admin/member_list.htm";
+	}
+	
+	
 
 	@RequestMapping(value = "InfoModify.htm", method = RequestMethod.POST)
 	public String infoModify(MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {

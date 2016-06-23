@@ -88,7 +88,7 @@ href=".././resources/js/sweetalert.css">
                         $('#pic'+index).show();
                         index++;
                      } else {
-                        swal('더 이상 추가할 수 없습니다');
+                        swal('더 이상 추가할 수 없습니다!');
                      }
                   });
       $('#minusBtn').click(function() {
@@ -98,7 +98,7 @@ href=".././resources/js/sweetalert.css">
             $('#pic'+index).hide();
             /* $('#pic' + index).remove(); */
          } else {
-            swal('더 이상 삭제할 수 없습니다.');
+            swal('더 이상 삭제할 수 없습니다!');
          }
       });
       
@@ -137,7 +137,7 @@ href=".././resources/js/sweetalert.css">
       $("#convert").click(function(){
              
             if ($('#before').val() == ''){
-               swal("값을 입력해주세요");
+               swal("값을 입력해주세요!");
                $("#before").focus();
                return false;
             }else{
@@ -471,9 +471,9 @@ href=".././resources/js/sweetalert.css">
                        <option value="USD">USD</option>
                     
                   </select></td>
-                  <td><input class="form-control" id="before" type="text" name="#" placeholder="작성후 수정 불가"></td>
+                  <td><input class="form-control" id="before" type="text" name="#" placeholder="등록후 수정 불가"></td>
                   <td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.traveler_writeform13"/></button></td>
-                  <td><input class="form-control" id="after" type="text" name="price" placeholder="작성후 수정 불가"></td>
+                  <td><input class="form-control" id="after" type="text" name="price" placeholder="등록후 수정 불가"></td>
                   
 
                   <%-- <td><input class="form-control" type="text"></td>

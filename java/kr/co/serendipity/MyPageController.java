@@ -308,9 +308,10 @@ public class MyPageController {
 	public String acceptRequest(ParticipantDTO participantdto, HttpSession session, BoardDTO boarddto, String ctn, String pc) {
 		System.out.println("acceptRequest entrance");
 		System.out.println("parti_num : " + participantdto.getParti_num());
+		System.out.println("board_num : " + boarddto.getBoard_num());
 		//System.out.println("bn : " + bn);
 		System.out.println("ctn : " + ctn);
-		System.out.println("pc : " + pc);
+		System.out.println("particapacity : " + pc);
 		//int bn1=0;
 		int ctn1=0;
 		int pc1 = 0;
@@ -335,16 +336,21 @@ public class MyPageController {
 			//여기가 에러다
 			//List<HashMap<String, Object>> acceptList = mypageservice.acceptCount(participantdto);
 			//int ac = mypageservice.acceptCount(participantdto);
-			System.out.println("mypageservice.acceptCount(boarddto) (count) : " + mypageservice.acceptCount(boarddto));
+			
+			
 			if(mypageservice.acceptCount(boarddto) == null){
-				System.out.println("boarddto = null 임");
-				mypageservice.acceptRequest(participantdto);
+					System.out.println("boarddto = null 임");
+					mypageservice.acceptRequest(participantdto);
 			}else{
 				int count = mypageservice.acceptCount(boarddto);
 				int pull = mypageservice.getBoardCapacity(participantdto);
 				System.out.println("count : " + count);
 				System.out.println("pull : " + pull);
+				int mi = pull-count;
 				if(count >= pull){
+					//여행자 구함의 경우 인원 초과하면 신청하지 못하게 해야함
+					check=1;
+				}else if(mi <= pc1){
 					//여행자 구함의 경우 인원 초과하면 신청하지 못하게 해야함
 					check=1;
 				}else{

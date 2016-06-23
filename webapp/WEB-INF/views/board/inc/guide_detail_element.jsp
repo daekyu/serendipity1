@@ -293,7 +293,7 @@
 						<div class="description"></div>
 
 						<div class="price-box">
-							<span class="price">${boarddto.PRICE} / a day</span>
+							<span class="price">${boarddto.PRICE} / a day / ${boarddto.BOARD_DATE}</span>
 						</div>
 						총 모집 인원 : ${boarddto.BOARD_CAPACITY}<br>
 						<c:choose>
@@ -334,9 +334,6 @@
 									(신청 마감)
 								</c:when>
 								<c:otherwise>
-								<form
-									action="${pageContext.request.contextPath}/board/guideParty.htm"
-									class="form-inline add-cart-form" method="post" id="form1">
 									<c:choose>
 										<c:when test="${empty accept}">
 										현재 ${boarddto.BOARD_CAPACITY}명 신청 가능 <br>
@@ -348,6 +345,14 @@
 									<br>
 									<%-- ${pageContext.request.contextPath} --%>
 									<c:if test="${!empty sessionScope.user_num}">
+										<c:choose>
+											<c:when test="${realcheck eq 1}">
+												이미 신청한 여행 입니다.
+											</c:when>
+										<c:otherwise>
+										<form
+										action="${pageContext.request.contextPath}/board/guideParty.htm"
+										class="form-inline add-cart-form" method="post" id="form1">
 										<input type="hidden" name="board_num"
 											value="${boarddto.BOARD_NUM}">
 										<input type="hidden" name="user_num"
@@ -365,9 +370,12 @@
 												<a href="#" class="number-down"><i
 													class="fa fa-angle-down"></i></a>
 											</div>
+											</form>
 										</div>
+										</c:otherwise>
+										</c:choose>
 									</c:if>
-								</form>
+								
 								</c:otherwise>
 							</c:choose>
 							</c:otherwise>

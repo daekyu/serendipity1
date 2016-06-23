@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDTO;
+import kr.co.serendipity.model.ParticipantDTO;
 import kr.co.serendipity.service.BoardService;
 
 @Controller
@@ -157,22 +159,44 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "traveler_detail.htm")
-	public ModelAndView travelerDetail(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
+	public ModelAndView travelerDetail(BoardDTO boarddto, HttpSession session) throws ClassNotFoundException, SQLException {
 		ModelAndView mav = new ModelAndView("/board/travel_detail");
+		List<ParticipantDTO> participantdto = boardservice.detailParticipant(boarddto);
+		int user_num = (Integer)session.getAttribute("user_num");
+		System.out.println("(session)user_num : " + user_num);
+		int check=0;
+		for(int i=0; i<participantdto.size(); i++){
+			ParticipantDTO pd = participantdto.get(i);
+			if(pd.getUser_num() == user_num){
+				check=1;
+			}
+		}
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
 		mav.addObject("language",boardservice.getLanguages(boarddto));
 		mav.addObject("hobby", boardservice.getHobbies(boarddto));
 		mav.addObject("guide", boardservice.getGuide(boarddto));
+		mav.addObject("check", check);
 		return mav;
 	}
 
 	@RequestMapping(value = "guide_detail.htm")
-	public ModelAndView guideDetail(BoardDTO boarddto, String check) throws ClassNotFoundException, SQLException {
+	public ModelAndView guideDetail(BoardDTO boarddto, String check, HttpSession session) throws ClassNotFoundException, SQLException {
 		ModelAndView mav = new ModelAndView("/board/guide_detail");
 		int check1 = 0;
 		
 		if(check != null){
 			check1 = Integer.parseInt(check);
+		}
+		
+		List<ParticipantDTO> participantdto = boardservice.detailParticipant(boarddto);
+		int user_num = (Integer)session.getAttribute("user_num");
+		System.out.println("(session)user_num : " + user_num);
+		int realcheck=0;
+		for(int i=0; i<participantdto.size(); i++){
+			ParticipantDTO pd = participantdto.get(i);
+			if(pd.getUser_num() == user_num){
+				realcheck=1;
+			}
 		}
 		
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
@@ -181,6 +205,7 @@ public class BoardController {
 		mav.addObject("language",boardservice.getLanguages(boarddto));
 		mav.addObject("hobby", boardservice.getHobbies(boarddto));
 		mav.addObject("check1", check1);
+		mav.addObject("realcheck", realcheck);
 		return mav;
 	}
 

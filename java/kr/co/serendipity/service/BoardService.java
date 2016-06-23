@@ -251,4 +251,9 @@ public class BoardService {
 		return dao.getBoardCapacity(boarddto);
 	}
 	
+	public List<ParticipantDTO> detailParticipant(BoardDTO boarddto){
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.detailParticipant(boarddto);
+	}
+	
 }

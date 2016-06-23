@@ -290,8 +290,15 @@
 										<c:when test="${boarddto.BOARD_CAPACITY eq 1}">
 											가이드 구하는 중<br><br>
 											<c:if test="${!empty sessionScope.user_num}">
+												<c:choose>
+													<c:when test="${check eq 1}">
+														이미 신청한 여행 입니다.
+													</c:when>
+												<c:otherwise>
 												<a class="btn add-cart btn-default btn-lg"
 												href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}">신청하기</a>
+												</c:otherwise>
+												</c:choose>
 											</c:if>
 										</c:when>
 										<c:otherwise>

@@ -92,4 +92,7 @@ public interface BoardDAO {
 	//여행자 구함에서 해당글의 신청 가능 인원 수 불러오기
 	public int getBoardCapacity(BoardDTO boarddto);
 	
+	//글 상세에서 중복 신청이 불가능하도록 신청자 목록 불러오기
+	public List<ParticipantDTO> detailParticipant(BoardDTO boarddto);
+	
 }

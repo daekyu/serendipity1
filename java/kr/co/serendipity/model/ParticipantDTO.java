@@ -4,9 +4,16 @@ public class ParticipantDTO {
 	int parti_num;
 	int board_num;
 	int user_num;
+	int parti_capacity;
 	String state;
 	String parti_date;
 	
+	public int getParti_capacity() {
+		return parti_capacity;
+	}
+	public void setParti_capacity(int parti_capacity) {
+		this.parti_capacity = parti_capacity;
+	}
 	public String getParti_date() {
 		return parti_date;
 	}

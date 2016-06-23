@@ -28,7 +28,7 @@ href=".././resources/js/sweetalert.css">
  
 
       $('#pic2').hide();
-      $('#pic3').hide();a
+      $('#pic3').hide();
       $('#pic4').hide();
       $('#pic5').hide(); 
       
@@ -108,8 +108,7 @@ href=".././resources/js/sweetalert.css">
                   }
                }); 
       
-      
-      
+    
       
       
       

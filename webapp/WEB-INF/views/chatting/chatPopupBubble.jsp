@@ -142,6 +142,7 @@
 		} else {
 		    $('#chat').append(data.name+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
 		}
+		document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
 	}
 
 	function processError(message) {
@@ -157,12 +158,11 @@
 	<div class="container">
 	<div align="center">
 	<img src=".././resources/img/main_logo.png">
+	       <div id="ids"></div>
 	</div>
 	<div class="chat form-group" id="chat">
-	    <p>
-	       <div id="ids"></div>
-	    </p>
-	    <hr/>
+	    즐거운 대화 하세염
+	    <hr>
 	</div>
 	<br/>
 	<!-- <div class="top-padding">

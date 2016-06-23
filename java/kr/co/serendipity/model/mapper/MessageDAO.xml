@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	@Desc : MessageDAO의 Mapper / 실제 DB연동을 위한 Query가 들어가는 부분
  -->
 
+
 <mapper namespace="kr.co.serendipity.model.MessageDAO">
 	<select id="getSendMsgList" resultType="map">
 		select msg.message_num, msg.message_content, msg.message_date, msg.message_title, m1.id as receiver, m2.id as sender

@@ -18,6 +18,7 @@
 		<!-- Font -->
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
 		
+		
 		<!-- Plugins CSS -->
 		<link rel="stylesheet" href=".././resources/css/bootstrap.css">
 		<link rel="stylesheet" href=".././resources/css/font-awesome.min.css">

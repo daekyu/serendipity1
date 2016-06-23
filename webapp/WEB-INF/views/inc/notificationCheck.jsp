@@ -17,6 +17,7 @@ function getContextPath() {
 
 
 
+
 $(function() {
 	setInterval(function() {
 		if('${sessionScope.user_num}' != ''){

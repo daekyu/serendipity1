@@ -11,6 +11,7 @@
       
       
       <div class="modal-body">
+      
         <div class="product-tab">
 		  <ul class="nav nav-tabs">
 		  	<li class="active"><a href="#profile">프로필보기</a></li>

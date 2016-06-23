@@ -13,6 +13,7 @@
 					"user_num" : '${sessionScope.user_num}',
 					"review_num" : '${param.review_num}'
 				},
+				
 				success : function(data) {
 					if(data>0) {
 						$('#btn_like').hide();

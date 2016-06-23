@@ -18,6 +18,7 @@
 				"user_num" : '${sessionScope.user_num}',
 				"review_num" : $('#review_num_'+index).val()
 			},
+			
 			success : function(data) {
 				if(data>0) {
 					$('#btn_like_'+index).hide();

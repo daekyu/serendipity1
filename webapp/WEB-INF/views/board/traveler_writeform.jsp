@@ -17,6 +17,7 @@
 		<!-- Favicon -->
 		<link rel="shortcut icon" href=".././resources/img/favicon.ico">
 		
+		
 		<!-- Font -->
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
 	

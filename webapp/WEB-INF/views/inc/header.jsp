@@ -25,6 +25,7 @@
 		  </div>
 		</div><!-- .logo-box -->
 		
+		
 		<div class="col-xs-6 col-md-10 col-lg-9 right-box">
 		  <div class="right-box-wrapper">
 			

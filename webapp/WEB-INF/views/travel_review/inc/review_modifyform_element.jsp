@@ -14,6 +14,7 @@ $(function() {
 	
 	var index=1;
 	
+	
 	$('#addBtn').click(function() {
 		if(index<=5) {
 			$('#table_pic'+index).show();

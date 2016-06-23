@@ -448,7 +448,7 @@
            </tbody>
         </table>
             </div>
-
+			<!-- 사진추가부분 -->
               <div class="tab-pane" align="center" id="localImg">
               	<div data-appear-animation="bounceInUp">
                	<div class="row">

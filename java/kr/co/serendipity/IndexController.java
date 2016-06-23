@@ -28,6 +28,11 @@ public class IndexController {
 	@RequestMapping("index.htm")
 	public ModelAndView index(HttpSession session) throws ClassNotFoundException, SQLException {
 		
+		if(session.getAttribute("visit") == null) {
+			indexservice.setVisitTotalCount();
+			session.setAttribute("visit", "visit");
+		}
+		
 		System.out.println("index entrance");
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("index", "index");

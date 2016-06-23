@@ -25,11 +25,10 @@ href=".././resources/js/sweetalert.css">
    function formatNumber (num) {
        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
    }
-   
-   
+
 
    
-   
+  
    $(function(){
       
       
@@ -75,6 +74,8 @@ href=".././resources/js/sweetalert.css">
       $('#pic4').hide();
       $('#pic5').hide(); 
       
+
+    
       var index = 2;
       $('#addBtn')
             .click(
@@ -109,6 +110,7 @@ href=".././resources/js/sweetalert.css">
           }
       });
       
+
       
       
       

@@ -174,7 +174,10 @@ public class BoardController {
 		if(check != null){
 			check1 = Integer.parseInt(check);
 		}
+		
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
+		//총 수락된 인원의 수를 가져와야함
+		mav.addObject("accept", boardservice.acceptCount(boarddto));
 		mav.addObject("language",boardservice.getLanguages(boarddto));
 		mav.addObject("hobby", boardservice.getHobbies(boarddto));
 		mav.addObject("check1", check1);

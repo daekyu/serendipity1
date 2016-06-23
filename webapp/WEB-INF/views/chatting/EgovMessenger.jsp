@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <head>
@@ -42,12 +44,12 @@
 </div>
 <form name="msgForm" id="msgForm" action="<c:url value='  '/>" method="post">
 	<c:if test="${id != null}">
-		${id}님, 메신저에 접속 합니다. <br>
-		<input class="btn btn-primary" type="button" id="connectMsgBtn" name="connectMsgBtn" value="메신저 접속"/>  <button class="btn btn-danger">나가기</button>
+		${id}<spring:message code="board.chatting.EgovMessenger"/><br>
+		<input class="btn btn-primary" type="button" id="connectMsgBtn" name="connectMsgBtn" value="<spring:message code="board.chatting.EgovMessenger0.1"/>"/>  <button class="btn btn-danger"><spring:message code="board.chatting.EgovMessenger0.2"/></button>
 	</c:if>
 	<c:if test="${id == null}">
-		접속 후 가능한 메뉴입니다. <br/>
-		로그인 후 이용해주시기 바랍니다.
+		<spring:message code="board.chatting.EgovMessenger1"/> <br/>
+		<spring:message code="board.chatting.EgovMessenger2"/>
 	</c:if>
 </form>
 </div>

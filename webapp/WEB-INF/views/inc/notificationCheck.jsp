@@ -15,6 +15,9 @@ function getContextPath() {
    return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 };
 
+
+
+
 $(function() {
 	setInterval(function() {
 		if('${sessionScope.user_num}' != ''){

@@ -25,53 +25,10 @@ href=".././resources/js/sweetalert.css">
    function formatNumber (num) {
        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
    }
-   
-   
-
-   
-   
-   $(function(){
-      
-      
-          var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
-            
-            
-            
-            //게시판 유효성 검증 
-            
-             $('#success').click(function() {
-                       
-                  if($('#title_text').val() == '') {
-                	  swal('<spring:message code="board.traveler_writeform_ef"/>');
-                     $('#title_text').focus();
-                     return false;
-                  } else if($('#datepicker').val() == '') {
-                     swal('<spring:message code="board.traveler_writeform_ef1"/>');
-                     $('#datepicker').focus();
-                     return false;
-                  }  else if(!reg_number.test($('#before').val()) == true){
-                    swal('<spring:message code="board.traveler_writeform_ef2"/>');
-                    $('#before').focus();
-                     return false;
-                 } else if(!reg_number.test($('#after').val()) == true){
-                       swal('<spring:message code="board.traveler_writeform_ef3"/>');
-                       $('#before').focus();
-                    return false; 
-                  } else if($('#pic1').val()==''){
-                     swal("<spring:message code="board.traveler_writeform_ef4"/>");
-                     $('#pic1').focus();
-                     return false;
-                  } else if($('#meeting_place').val() == '') {
-                        swal('<spring:message code="board.traveler_writeform_ef5"/>');
-                        $('#gmap_where').focus();
-                        return false;
-                     }else{
-                    	 swal("<spring:message code="board.traveler_writeform_ef6"/>")
-                  }
-               }); 
+ 
 
       $('#pic2').hide();
-      $('#pic3').hide();
+      $('#pic3').hide();a
       $('#pic4').hide();
       $('#pic5').hide(); 
       
@@ -111,8 +68,52 @@ href=".././resources/js/sweetalert.css">
       
       
       
+      $(function(){
+          
+          
+          var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
+            
+            
+            
+            //게시판 유효성 검증 
+            
+             $('#success').click(function() {
+                       
+                  if($('#title_text').val() == '') {
+                	  swal('<spring:message code="board.traveler_writeform_ef"/>');
+                     $('#title_text').focus();
+                     return false;
+                  } else if($('#datepicker').val() == '') {
+                     swal('<spring:message code="board.traveler_writeform_ef1"/>');
+                     $('#datepicker').focus();
+                     return false;
+                  }  else if(!reg_number.test($('#before').val()) == true){
+                    swal('<spring:message code="board.traveler_writeform_ef2"/>');
+                    $('#before').focus();
+                     return false;
+                 } else if(!reg_number.test($('#after').val()) == true){
+                       swal('<spring:message code="board.traveler_writeform_ef3"/>');
+                       $('#before').focus();
+                    return false; 
+                  } else if($('#pic1').val()==''){
+                     swal("<spring:message code="board.traveler_writeform_ef4"/>");
+                     $('#pic1').focus();
+                     return false;
+                  } else if($('#meeting_place').val() == '') {
+                        swal('<spring:message code="board.traveler_writeform_ef5"/>');
+                        $('#gmap_where').focus();
+                        return false;
+                     }else{
+                    	 swal("<spring:message code="board.traveler_writeform_ef6"/>")
+                  }
+               }); 
       
-   });
+      
+      
+      
+      
+      
+
 
    $('#ckeditor').keyup(function() {
       console.log($('#ckeditor').val());

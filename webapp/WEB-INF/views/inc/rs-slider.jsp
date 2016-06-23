@@ -14,8 +14,11 @@
 			</div>
 		  </div>
 		  
+		  
+		  
 		  <img class="replace-2x" src="./resources/img/background_img/설악산.jpg" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
 		</li>
+		
 		
 		<li>
 		  <div class="elements">

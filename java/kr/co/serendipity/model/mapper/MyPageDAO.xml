@@ -125,8 +125,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update participant set state='accept' where parti_num=#{parti_num}
 	</update>
 	
-	<update id="upCapacity">
-		update board set board_capacity='2' where board_num=#{param2}
-	</update>
+	 <select id="acceptCount" resultType="Integer">
+       select sum(parti_capacity) from participant where board_num = #{board_num} and state='accept'
+    </select>
+    
+     <select id="getBoardCapacity" resultType="Integer">
+       select board_capacity from participant p join board b on p.board_num = b.board_num where parti_num = #{parti_num}
+    </select>
 	
 </mapper>

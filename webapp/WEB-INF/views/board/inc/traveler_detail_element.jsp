@@ -269,7 +269,7 @@
 						<c:choose>
 							<c:when test="${sessionScope.user_num == boarddto.USER_NUM}">
 								<c:choose>
-									<c:when test="${boarddto.BOARD_CAPACITY eq 1}">
+									<c:when test="${empty guide}">
 										<a class="btn btn-default btn-sm"
 											href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
 											class="livicon shadowed" data-s="24" data-n="pen"
@@ -287,7 +287,7 @@
 							<c:otherwise>
 								<td>
 									<c:choose>
-										<c:when test="${boarddto.BOARD_CAPACITY eq 1}">
+										<c:when test="${empty guide}">
 											가이드 구하는 중<br><br>
 											<c:if test="${!empty sessionScope.user_num}">
 												<a class="btn add-cart btn-default btn-lg"

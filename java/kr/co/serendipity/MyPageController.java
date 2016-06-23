@@ -9,16 +9,15 @@ package kr.co.serendipity;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.HobbyDTO;
-import kr.co.serendipity.model.LanguageDTO;
+import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.ParticipantDTO;
 import kr.co.serendipity.service.MyPageService;
@@ -71,7 +69,7 @@ public class MyPageController {
 	}
 
 	@RequestMapping("my_page_accept_history.htm")
-	public String acceptHistory(MemberDTO memberdto, Model model, String pg) throws ClassNotFoundException, SQLException {
+	public String acceptHistory(MemberDTO memberdto, Model model, String pg, String check) throws ClassNotFoundException, SQLException {
 		System.out.println("acceptHistory entrance");
 		System.out.println("user_num : " + memberdto.getUser_num());
 		
@@ -79,9 +77,13 @@ public class MyPageController {
 		int startpage = 0;
 		int endpage = 0;
 		int maxpage = 0;
+		int check1 = 0;
 		
 		if (pg != null) {
 			page = Integer.parseInt(pg);
+		}
+		if(check != null){
+			check1 = Integer.parseInt(check);
 		}
 		
 		List<HashMap<String, Object>> participantdto = mypageservice.acceptHistory(memberdto, page);
@@ -104,6 +106,7 @@ public class MyPageController {
 		model.addAttribute("startpage", startpage);
 		model.addAttribute("endpage", endpage);
 		model.addAttribute("listCount", listCount);
+		model.addAttribute("check1", check1);
 		
 		return "/mypage/my_page_accept_history";
 	}
@@ -276,19 +279,56 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("acceptRequest.htm")
-	public String acceptRequest(ParticipantDTO participantdto, HttpSession session, String bn) {
+	public String acceptRequest(ParticipantDTO participantdto, HttpSession session, BoardDTO boarddto, String ctn, String pc) {
 		System.out.println("acceptRequest entrance");
 		System.out.println("parti_num : " + participantdto.getParti_num());
-		System.out.println("bn : " + bn);
-		int bn1=0;
-		
-		if(bn != null){
+		//System.out.println("bn : " + bn);
+		System.out.println("ctn : " + ctn);
+		System.out.println("pc : " + pc);
+		//int bn1=0;
+		int ctn1=0;
+		int pc1 = 0;
+		int check=0;
+		/*if(bn != null){
 			bn1 = Integer.parseInt(bn);
+		}*/
+		
+		if(ctn != null){
+			ctn1 = Integer.parseInt(ctn);
 		}
 		
-		mypageservice.acceptRequest(participantdto);
-		mypageservice.upCapacity(bn1);
-		return "redirect:/mypage/my_page_accept_history.htm?user_num=" + session.getAttribute("user_num");
+		if(!pc.isEmpty()){
+			pc1 = Integer.parseInt(pc);
+		}else{
+			pc1=0;
+		}
+		System.out.println("ctn1 : " + ctn1);
+		
+		if(ctn1 == 2){
+			System.out.println("여길 안타니?");
+			//여기가 에러다
+			//List<HashMap<String, Object>> acceptList = mypageservice.acceptCount(participantdto);
+			//int ac = mypageservice.acceptCount(participantdto);
+			System.out.println("mypageservice.acceptCount(boarddto) (count) : " + mypageservice.acceptCount(boarddto));
+			if(mypageservice.acceptCount(boarddto) == null){
+				System.out.println("boarddto = null 임");
+				mypageservice.acceptRequest(participantdto);
+			}else{
+				int count = mypageservice.acceptCount(boarddto);
+				int pull = mypageservice.getBoardCapacity(participantdto);
+				System.out.println("count : " + count);
+				System.out.println("pull : " + pull);
+				if(count >= pull){
+					//여행자 구함의 경우 인원 초과하면 신청하지 못하게 해야함
+				}else{
+					mypageservice.acceptRequest(participantdto);
+				}
+			}
+		}else{
+			mypageservice.acceptRequest(participantdto);
+		}
+		
+		return "redirect:/mypage/my_page_accept_history.htm?user_num=" + session.getAttribute("user_num") + "&check=" + check;
 	}
 
 }

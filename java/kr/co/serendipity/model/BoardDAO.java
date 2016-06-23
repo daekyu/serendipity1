@@ -86,4 +86,10 @@ public interface BoardDAO {
 	//글 쓴 사람의 취미 선택한거
 	public List<HashMap<String, Object>> getHobbies(BoardDTO boarddto) throws ClassNotFoundException, SQLException;
 	
+	//여행자 구함 글의 경우 수락한 인원수를 가져오기
+	public Integer acceptCount(BoardDTO boarddto);
+	
+	//여행자 구함에서 해당글의 신청 가능 인원 수 불러오기
+	public int getBoardCapacity(BoardDTO boarddto);
+	
 }

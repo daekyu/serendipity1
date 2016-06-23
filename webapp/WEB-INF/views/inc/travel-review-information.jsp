@@ -8,7 +8,10 @@
   js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.6&appId=1189771741041986";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+
 </script>
+
 <div class="container">
 	  <div class="row">
 	  <br>

@@ -33,6 +33,7 @@
 				  <th>신청한 날짜</th>
 				  <th><span class="nobr">글 제목</span></th>
 				  <th>신청받은 사람 아이디</th>
+				  <th>인원</th>
 				  <th>상태</th>
 				  <th>Actions</th>
 				</tr>
@@ -60,6 +61,7 @@
 					<td>${i.PARTI_DATE}</td>
 					<td>${i.BOARD_TITLE}</td>
 					<td>${i.ID}</td>
+					<td>${i.PARTI_CAPACITY}</td>
 						<c:choose>
 							<c:when test="${i.STATE eq 'wait'}">
 								<td>

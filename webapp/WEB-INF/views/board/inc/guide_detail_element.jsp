@@ -266,8 +266,26 @@
 						<div class="price-box">
 							<span class="price">${boarddto.PRICE} / a day / ${boarddto.BOARD_DATE}</span>
 						</div>
+						총 모집 인원 : ${boarddto.BOARD_CAPACITY}<br>
+						<c:choose>
+										<c:when test="${empty accept}">
+										현재 수락된 (참여) 인원 : 0명<br>
+										</c:when>
+										<c:otherwise>
+											현재 수락된 (참여)인원 : ${accept}<br>
+										</c:otherwise>
+						</c:choose>
 						<c:choose>
 							<c:when test="${sessionScope.user_num == boarddto.USER_NUM}">
+								<c:choose>
+										<c:when test="${empty accept}">
+										현재 ${boarddto.BOARD_CAPACITY}명 신청 가능 <br>
+										</c:when>
+										<c:otherwise>
+											현재 ${boarddto.BOARD_CAPACITY - accept}명 신청 가능 <br>
+										</c:otherwise>
+									</c:choose>
+							
 								<a class="btn btn-default btn-sm"
 									href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
 									class="livicon shadowed" data-s="24" data-n="pen"
@@ -281,10 +299,26 @@
 							</c:when>
 
 							<c:otherwise>
+							<c:choose>
+								<c:when test="${boarddto.BOARD_CAPACITY <= accept}">
+									신청 인원이 가득 찼습니다.
+									(신청 마감)
+								</c:when>
+								<c:otherwise>
 								<form
 									action="${pageContext.request.contextPath}/board/guideParty.htm"
 									class="form-inline add-cart-form" method="post">
-									현재 명 신청 가능 <br><br>
+									<c:choose>
+										<c:when test="${empty accept}">
+										현재 ${boarddto.BOARD_CAPACITY}명 신청 가능 <br>
+										</c:when>
+										<c:otherwise>
+											현재 ${boarddto.BOARD_CAPACITY - accept}명 신청 가능 <br>
+										</c:otherwise>
+									</c:choose>
+									<br>
+									capacity : ${boarddto.BOARD_CAPACITY}<br>
+									accept : ${accept}
 									<%-- ${pageContext.request.contextPath} --%>
 									<c:if test="${!empty sessionScope.user_num}">
 										<input type="hidden" name="board_num"
@@ -305,6 +339,8 @@
 										</div>
 									</c:if>
 								</form>
+								</c:otherwise>
+							</c:choose>
 							</c:otherwise>
 						</c:choose>
 

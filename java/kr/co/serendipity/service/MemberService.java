@@ -56,6 +56,11 @@ public class MemberService {
 		return dao.EmailCheck(memberdto);
 	}
 	
+	public void ConfirmPassword(MemberDTO memberdto) {
+		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
+		dao.ConfirmPassword(memberdto);
+	}
+	
 	public MemberDTO checkFindIdEmailInfo(MemberDTO memberdto) {
 		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
 		return dao.checkFindIdEmailInfo(memberdto);

@@ -75,6 +75,12 @@ public class MemberController {
 	public @ResponseBody int EmailCheck(MemberDTO memberdto){
 		return memberservice.EmailCheck(memberdto);
 	}
+	@RequestMapping("ConfirmPassword.htm")
+	public @ResponseBody void ConfirmPassword(MemberDTO memberdto){
+		memberservice.ConfirmPassword(memberdto);
+	}
+	
+	
 	
 	@RequestMapping("recover_id_pw.htm")
 	public String recoverAccount() {

@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.ReplyDTO;
 import kr.co.serendipity.model.ReviewDTO;
@@ -123,29 +124,7 @@ public class TravelReviewController {
 		mav.addObject("local_list", travelreviewservice.localList());
 		return mav;
 	}
-	
-	/*@RequestMapping(value="review_like.htm", method=RequestMethod.POST)
-	public ModelAndView reviewLike(ReviewLikeDTO dto, HttpSession session) throws ClassNotFoundException, SQLException{
-		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
-		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
-		int user_num = (Integer)session.getAttribute("user_num");
-		ReviewDTO reviewdto = new ReviewDTO();
-		reviewdto.setReview_num(dto.getReview_num());
-		reviewdto.setUser_num(user_num);
-		ReviewDTO reviewdetail = reviewdao.reviewDetail(reviewdto);
-		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
-		likedao.likeInsert(dto);
-		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
-		List<ReplyDTO> replylist = replydao.replyList();
-		int result = likedao.isLike(dto);
-		int count = likedao.reviewLikeCount(dto.getReview_num());
-		mav.addObject("reviewdetail",reviewdetail);
-		mav.addObject("replylist",replylist);
-		mav.addObject("result",result);
-		mav.addObject("count",count);
-		return mav;
-	}*/
-	
+
 	//좋아요 누르기
 	@RequestMapping(value="review_like.htm", method=RequestMethod.POST)
 	public @ResponseBody int reviewLike(ReviewLikeDTO reviewlikedto) throws ClassNotFoundException, SQLException{
@@ -155,28 +134,6 @@ public class TravelReviewController {
 		travelreviewservice.likeInsert(reviewlikedto);
 		return travelreviewservice.reviewLikeCount(reviewdto);
 	}
-	
-	/*@RequestMapping(value="delete_review_like.htm", method=RequestMethod.POST)
-	public ModelAndView likeDelete(ReviewLikeDTO dto, HttpSession session) throws ClassNotFoundException, SQLException{
-		ModelAndView mav = new ModelAndView("/travel_review/review_detail");
-		ReviewLikeDAO likedao = sqlsession.getMapper(ReviewLikeDAO.class);
-		ReviewDAO reviewdao = sqlsession.getMapper(ReviewDAO.class);
-		int user_num = (Integer)session.getAttribute("user_num");
-		ReviewDTO reviewdto = new ReviewDTO();
-		reviewdto.setReview_num(dto.getReview_num());
-		reviewdto.setUser_num(user_num);
-		ReviewDTO reviewdetail = reviewdao.reviewDetail(reviewdto);
-		likedao.likeDelete(dto);
-		ReplyDAO replydao = sqlsession.getMapper(ReplyDAO.class);
-		List<ReplyDTO> replylist = replydao.replyList();
-		int result = likedao.isLike(dto);
-		int count = likedao.reviewLikeCount(dto.getReview_num());
-		mav.addObject("reviewdetail",reviewdetail);
-		mav.addObject("replylist",replylist);
-		mav.addObject("result",result);
-		mav.addObject("count",count);
-		return mav;
-	}*/
 	
 	//좋아요 취소
 	@RequestMapping(value="delete_review_like.htm", method=RequestMethod.POST)
@@ -306,7 +263,7 @@ public class TravelReviewController {
 		return mav;
 	}
 	
-	@RequestMapping("review_update.htm")
+	/*@RequestMapping("review_update.htm")
 	public String updateReview(ReviewDTO dto, MultipartHttpServletRequest mrequest, HttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		
 		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
@@ -373,6 +330,99 @@ public class TravelReviewController {
         dto.setReview_picture5(filenames.get(4)); 
 		
 		travelreviewservice.reviewUpdate(dto);
+		return "redirect:/travel_review/review_list.htm";
+	}*/
+	
+	@RequestMapping("review_update.htm")
+	public String updateReview(ReviewDTO reviewdto, MultipartHttpServletRequest mrequest, HttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
+		List<MultipartFile> flist = mrequest.getFiles("review_picture");
+
+		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
+
+		//if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
+
+		//} else {
+			for (int i = 0; i < 5; i++) {
+
+				String saveFileName = null;
+				if (flist.get(i).getOriginalFilename().equals("")) {
+					//filenames.add("no_picture");
+				} else { // 이미지가 있으면
+					String genId = UUID.randomUUID().toString();
+					String originalfileName = flist.get(i).getOriginalFilename();
+
+					saveFileName = genId + "_" + originalfileName;
+
+					String savePath = realFolder + "\\" + saveFileName;
+
+					flist.get(i).transferTo(new File(savePath));
+					ReviewDTO searchDto = travelreviewservice.selectPicture(reviewdto);
+					if(i == 0){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getReview_picture1();
+						System.out.println("before1 : "+beforeFile);
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
+						reviewdto.setReview_picture1(saveFileName);
+						travelreviewservice.reviewPic1Update(reviewdto);
+					}else if(i == 1){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getReview_picture2();
+						System.out.println("before2 : "+beforeFile);
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
+						reviewdto.setReview_picture2(saveFileName);
+						travelreviewservice.reviewPic2Update(reviewdto);
+					}else if(i == 2){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getReview_picture3();
+						System.out.println("before3 : "+beforeFile);
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
+						reviewdto.setReview_picture3(saveFileName);
+						travelreviewservice.reviewPic3Update(reviewdto);
+					}else if(i == 3){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getReview_picture4();
+						System.out.println("before4 : "+beforeFile);
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
+						reviewdto.setReview_picture4(saveFileName);
+						travelreviewservice.reviewPic4Update(reviewdto);
+					}else if(i == 4){
+						//업데이트 전 프로필 사진 삭제
+						String beforeFile = searchDto.getReview_picture5();
+						System.out.println("before5 : "+beforeFile);
+						if(beforeFile != null){
+							File file = new File(realFolder+"\\"+beforeFile);
+						    if(file.exists()){
+						    	file.delete();
+						    }
+						}
+						reviewdto.setReview_picture5(saveFileName);
+						travelreviewservice.reviewPic5Update(reviewdto);
+					}
+				}
+			}
+		//}
+		
+		travelreviewservice.reviewUpdate(reviewdto);
 		return "redirect:/travel_review/review_list.htm";
 	}
 	

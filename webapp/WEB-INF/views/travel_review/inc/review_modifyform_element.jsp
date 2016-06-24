@@ -95,7 +95,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" name="review_picture"></td>
+											<td><input type="file" name="review_picture">수정전 파일 : <input type="text" readonly="readonly" value="${reviewdto.REVIEW_PICTURE1}" size="80" ></td>
 										</tr>
 										
 										<tr>
@@ -112,7 +112,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic2" name="review_picture"></td>
+											<td><input type="file" id="pic2" name="review_picture">수정전 파일 : <input type="text" readonly="readonly" value="${reviewdto.REVIEW_PICTURE2}" size="80"></td>
 										</tr>
 										
 										<tr>
@@ -129,7 +129,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic3" name="review_picture"></td>
+											<td><input type="file" id="pic3" name="review_picture">수정전 파일 : <input type="text" readonly="readonly" value="${reviewdto.REVIEW_PICTURE3}" size="80"></td>
 										</tr>
 										
 										<tr>
@@ -146,7 +146,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic4" name="review_picture"></td>
+											<td><input type="file" id="pic4" name="review_picture">수정전 파일 : <input type="text" readonly="readonly" value="${reviewdto.REVIEW_PICTURE4}" size="80"></td>
 										</tr>
 										
 										<tr>
@@ -163,7 +163,7 @@ $(function() {
 										</tr>
 										<tr>
 											<td>사진</td>
-											<td><input type="file" id="pic5" name="review_picture"></td>
+											<td><input type="file" id="pic5" name="review_picture">수정전 파일 : <input type="text" readonly="readonly" value="${reviewdto.REVIEW_PICTURE5}" size="80"></td>
 										</tr>
 
 										<tr>

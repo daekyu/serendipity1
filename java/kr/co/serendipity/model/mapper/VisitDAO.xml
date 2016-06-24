@@ -17,6 +17,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getVisitDate" resultType="String">
-		select to_char(sysdate-#{param1}, 'yy/MM/dd') as day from dual
+		select to_char(sysdate-#{param1}, 'yyyy-MM-dd') as day from dual
 	</select>
 </mapper>

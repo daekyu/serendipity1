@@ -7,9 +7,9 @@
 
 package kr.co.serendipity;
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,10 +53,13 @@ public class AdminController {
 	public @ResponseBody JSONObject monthReportCount() throws ClassNotFoundException, SQLException{
 		JSONObject monthCount = new JSONObject();
 		ArrayList<Integer> count = new ArrayList<Integer>();
-		for(int i=1; i<11; i++){
+		ArrayList<String> day = new ArrayList<String>();
+		for(int i=0; i<7; i++){
 			count.add(adminservice.monthReportCount(i));
+			day.add(adminservice.getVisitDate(i));
 		}
-		monthCount.put("data", count);
+		monthCount.put("count", count);
+		monthCount.put("day", day);
 		return monthCount;
 	}
 	
@@ -64,10 +67,13 @@ public class AdminController {
 	public @ResponseBody JSONObject monthJoinCount() throws ClassNotFoundException, SQLException{
 		JSONObject joinCount = new JSONObject();
 		ArrayList<Integer> count = new ArrayList<Integer>();
-		for(int i=1; i<11; i++){
+		ArrayList<String> day = new ArrayList<String>();
+		for(int i=0; i<7; i++){
 			count.add(adminservice.monthJoinCount(i));
+			day.add(adminservice.getVisitDate(i));
 		}
-		joinCount.put("data", count);
+		joinCount.put("count", count);
+		joinCount.put("day", day);
 		return joinCount;
 	}
 	
@@ -77,7 +83,7 @@ public class AdminController {
 		ArrayList<Integer> guideCount = new ArrayList<Integer>();
 		ArrayList<Integer> travelerCount = new ArrayList<Integer>();
 		ArrayList<Integer> reviewCount = new ArrayList<Integer>();
-		for(int i=1; i<11; i++){
+		for(int i=1; i<13; i++){
 			guideCount.add(adminservice.monthGuideCount(i));
 			travelerCount.add(adminservice.monthTravelerCount(i));
 			reviewCount.add(adminservice.monthReviewCount(i));
@@ -88,21 +94,17 @@ public class AdminController {
 		return boardCount;
 	}
 	
-	@RequestMapping("visit_total_count.htm")
-	public @ResponseBody JSONObject totalVisitCount(){
-		JSONObject visitCount = new JSONObject();
-		ArrayList<Integer> totalCount = new ArrayList<Integer>();
-		totalCount.add(adminservice.getVisitTotalCount());
-		visitCount.put("visitCount", totalCount);
-		return visitCount;
-	}
-	
 	@RequestMapping("visit_today_count.htm")
 	public @ResponseBody JSONObject todayVisitCount(){
 		JSONObject visitCount = new JSONObject();
 		ArrayList<Integer> todayCount = new ArrayList<Integer>();
-		todayCount.add(adminservice.getVisitTodayCount());
+		ArrayList<String> day = new ArrayList<String>();
+		for(int i=0; i<7; i++){
+			todayCount.add(adminservice.getVisitTodayCount(i));
+			day.add(adminservice.getVisitDate(i));
+		}
 		visitCount.put("visitCount", todayCount);
+		visitCount.put("day", day);
 		return visitCount;
 	}
 }

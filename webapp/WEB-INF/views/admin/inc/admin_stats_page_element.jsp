@@ -29,20 +29,7 @@ $(function () {
 		            text: '월별 게시판 게시글수'
 		        },
 		        xAxis: {
-		            categories: [
-		                'Jan',
-		                'Feb',
-		                'Mar',
-		                'Apr',
-		                'May',
-		                'Jun',
-		                'Jul',
-		                'Aug',
-		                'Sep',
-		                'Oct',
-		                'Nov',
-		                'Dec'
-		            ],
+		        	categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
 		            crosshair: true
 		        },
 		        yAxis: {
@@ -144,12 +131,11 @@ $(function () {
 		        	enabled : false
 		        },
 				title: {
-		            text: '월별 신고 횟수',
+		            text: '최근 일주일간 신고 횟수',
 		            x: -20 //center
 		        },
 		        xAxis: {
-		            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-		                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		        	categories: [data.day[6], data.day[5], data.day[4], data.day[3], data.day[2], data.day[1], data.day[0]]
 		        },
 		        yAxis: {
 		            title: {
@@ -172,7 +158,7 @@ $(function () {
 		        },
 		        series: [{
 		            name: '신고',
-		            data: [data.data[0], data.data[1], data.data[2], data.data[3], data.data[4], data.data[5], data.data[6], data.data[7], data.data[8], data.data[9], data.data[10], data.data[11]]
+		            data: [data.count[6], data.count[5], data.count[4], data.count[3], data.count[2], data.count[1], data.count[0]]
 		        }]
 			});
 		}
@@ -191,12 +177,11 @@ $(function () {
 		        	enabled : false
 		        },
 				title: {
-		            text: '월별 가입자수',
+		            text: '최근 일주일간 가입자수',
 		            x: -20 //center
 		        },
 		        xAxis: {
-		            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-		                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		            categories: [data.day[6], data.day[5], data.day[4], data.day[3], data.day[2], data.day[1], data.day[0]]
 		        },
 		        yAxis: {
 		            title: {
@@ -219,7 +204,53 @@ $(function () {
 		        },
 		        series: [{
 		            name: '가입',
-		            data: [data.data[0], data.data[1], data.data[2], data.data[3], data.data[4], data.data[5], data.data[6], data.data[7], data.data[8], data.data[9], data.data[10], data.data[11]]
+		            data: [data.count[6], data.count[5], data.count[4], data.count[3], data.count[2], data.count[1], data.count[0]]
+		        }]
+			});
+		}
+	});
+	$.ajax({
+		type:'post',
+		url:'visit_today_count.htm',
+		dataType:'JSON',
+		success:function(data){
+			var chart = new Highcharts.Chart({
+				chart: {
+		            type: 'line',
+		            renderTo : 'chart5'
+		        },
+		        credits:{
+		        	enabled : false
+		        },
+				title: {
+		            text: '최근 일주일간 방문자수',
+		            x: -20 //center
+		        },
+		        xAxis: {
+		            categories: [data.day[6], data.day[5], data.day[4], data.day[3], data.day[2], data.day[1],data.day[0]]
+		        },
+		        yAxis: {
+		            title: {
+		                text: '방문자 수'
+		            },
+		            plotLines: [{
+		                value: 0,
+		                width: 1,
+		                color: '#808080'
+		            }]
+		        },
+		        tooltip: {
+		            valueSuffix: '명'
+		        },
+		        legend: {
+		            layout: 'vertical',
+		            align: 'right',
+		            verticalAlign: 'middle',
+		            borderWidth: 0
+		        },
+		        series: [{
+		            name: '방문',
+		            data: [data.visitCount[6], data.visitCount[5], data.visitCount[4], data.visitCount[3], data.visitCount[2], data.visitCount[1], data.visitCount[0]]
 		        }]
 			});
 		}

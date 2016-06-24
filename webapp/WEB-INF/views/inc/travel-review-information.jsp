@@ -48,7 +48,7 @@
 		
 		<div class="col-sm-12 col-md-6">
 		  <div class="title-box">
-			<a href="${pageContext.request.contextPath}/travel_review/review_list.htm" class="btn">More <span class="glyphicon glyphicon-arrow-right"></span></a>
+			<a href="${pageContext.request.contextPath}/travel_review/review_list.htm" class="btn"><spring:message code="index.inc.travel-review-information2"/> <span class="glyphicon glyphicon-arrow-right"></span></a>
 			<h2 class="title"><spring:message code="index.inc.travel-review-information"/></h2>
 		  </div>
 		  <ul class="latest-posts">

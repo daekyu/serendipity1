@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!-- 가이드구함 새 글을 보여주는 부분 -->
 <div class="full-width-box bottom-padding cm-padding-bottom-36">
 	<div class="fwb-bg fwb-fixed band-5">
@@ -10,16 +10,15 @@
 
 	<div class="container">
 		<div class="title-box title-white">
-			<a href="board/guide_list.htm" class="btn">More <span
+			<a href="board/guide_list.htm" class="btn"><spring:message code="index.inc.carousel-box-newguide"/> <span
 				class="glyphicon glyphicon-arrow-right"></span></a>
-			<h1 class="title no-top-padding" style="color: black;">여행자가
-				필요해~~</h1>
+			<h1 class="title no-top-padding" style="color: black;"><spring:message code="index.inc.carousel-box-newguide1"/></h1>
 		</div>
 
 		<div class="row text-center">
 			<c:choose>
 				<c:when test="${GlistCount eq 0}">
-				 	글이 존재하지 않습니다.
+				 <spring:message code="index.inc.carousel-box-newguide2"/>
 				 </c:when>
 				<c:otherwise>
 					<c:forEach var="i" items="${guide_list}">
@@ -32,15 +31,15 @@
 								<div class="description">
 									<div class="vertical">
 										<h3 class="name">${i.BOARD_TITLE}</h3>
-										<div class="role">여행자 아이디 : ${i.ID}</div>
+										<div class="role"><spring:message code="index.inc.carousel-box-newguide3"/> ${i.ID}</div>
 									</div>
 								</div>
 							</div>
 							<a href="board/traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">
 								<div class="employee-hover">
 									<h3 class="name">${i.BOARD_TITLE}</h3>
-									<h3 class="name">여행자 아이디 : ${i.ID}</h3>
-									<h3 class="name">지역 : ${i.LOCAL_NAME}</h3>
+									<h3 class="name"><spring:message code="index.inc.carousel-box-newguide4"/> ${i.ID}</h3>
+									<h3 class="name"><spring:message code="index.inc.carousel-box-newguide5"/> ${i.LOCAL_NAME}</h3>
 									<div class="image">
 										<!-- 가이드 프로필 사진을 넣어주자 -->
 										<img class="replace-2x" src="${pageContext.request.contextPath}/resources/img/profile_picture/${i.PROFILE_PICTURE}" alt=""
@@ -49,17 +48,17 @@
 									<div>
 										<p>${i.BOARD_CONTENT}</p>
 										<div class="contact">
-											<b>사용언어: </b>한국어, 영어
+											<b><spring:message code="index.inc.carousel-box-newguide6"/> </b>한국어, 영어
 										</div>
 										<div class="contact">
-											<b>관심사: </b>맛집, 야경
+											<b><spring:message code="index.inc.carousel-box-newguide7"/></b>맛집, 야경
 										</div>
 										<div class="contact">
-											<b>가격: </b>${i.PRICE} / a hour
+											<b><spring:message code="index.inc.carousel-box-newguide8"/></b>${i.PRICE} / <spring:message code="index.inc.carousel-box-newguide9"/>
 										</div>
 										
 										<div class="contact" align="center">
-											<a class="btn btn-warning btn-lg btn-block">상세보기</a>
+											<a class="btn btn-warning btn-lg btn-block"><spring:message code="index.inc.carousel-box-newguide10"/></a>
 										</div>
 										
 									</div>

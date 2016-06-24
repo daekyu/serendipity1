@@ -9,7 +9,7 @@
 				alert("최대인원을 넘었습니다.");
 			};
 			$('.delete').click(function(){
-				if(confirm("해당 요청을 취소 하시겠습니까?") == true){
+				if(confirm("해당 요청을 거절 하시겠습니까?") == true){
 				location.href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1";
 				}else{
 				    return false;
@@ -91,6 +91,22 @@
 								<td>
 									<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&board_num=${i.BOARD_NUM}&ctn=${i.CATEGORY_NUM}&pc=${i.PARTI_CAPACITY}" class="btn btn-success accept">수락</a>
 									<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger delete">거절</a>
+								</td>
+							</c:when>
+							<c:when test="${i.STATE eq 'refuse'}">
+								<td>
+									신청 거절
+								</td>
+								<td>
+								처리완료
+								</td>
+							</c:when>
+							<c:when test="${i.STATE eq 'cansel'}">
+								<td>
+									신청 취소
+								</td>
+								<td>
+									처리완료
 								</td>
 							</c:when>
 							<c:otherwise>

@@ -102,9 +102,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) WHERE NUM BETWEEN 1 + (#{1}-1)*10 AND 10 + (#{1}-1)*10
 	</select>
 	
-	<delete id="deleteSendHistory" >
-		delete from participant where parti_num=#{parti_num}
-	</delete>
+	<update id="updateSendHistory" >
+		<!-- delete from participant where parti_num=#{parti_num} -->
+		update participant set state='refuse' where parti_num=#{parti_num}
+	</update>
+	
+	<update id="updateSendHistory2" >
+		<!-- delete from participant where parti_num=#{parti_num} -->
+		update participant set state='cansel' where parti_num=#{parti_num}
+	</update>
 	
 	<select id="acceptHistory" resultType="hashmap">
 	SELECT * FROM

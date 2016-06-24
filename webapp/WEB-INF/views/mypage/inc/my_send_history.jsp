@@ -71,6 +71,22 @@
 								<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1" class="btn btn-danger delete">취소</a>
 								</td>
 							</c:when>
+							<c:when test="${i.STATE eq 'refuse'}">
+								<td>
+									신청 거절
+								</td>
+								<td>
+									처리완료
+								</td>
+							</c:when>
+							<c:when test="${i.STATE eq 'cansel'}">
+								<td>
+									신청 취소
+								</td>
+								<td>
+									처리완료
+								</td>
+							</c:when>
 							<c:otherwise>
 								<td>
 									승낙!

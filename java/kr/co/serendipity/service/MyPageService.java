@@ -151,9 +151,14 @@ public class MyPageService {
 		return wn;
 	}
 	
-	public void deleteSendHistory(ParticipantDTO participantdto){
+	public void updateSendHistory(ParticipantDTO participantdto){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		dao.deleteSendHistory(participantdto);
+		dao.updateSendHistory(participantdto);
+	}
+	
+	public void updateSendHistory2(ParticipantDTO participantdto){
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		dao.updateSendHistory2(participantdto);
 	}
 	
 	public void acceptRequest(ParticipantDTO participantdto){

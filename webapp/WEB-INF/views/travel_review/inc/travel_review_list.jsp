@@ -108,9 +108,9 @@
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">지역:전체 <span></span></a>
+								data-toggle="dropdown" href="#"><spring:message code="board.review1"/> <span></span></a>
 							<ul class="dropdown-menu">
-							<li><a href="review_list.htm?order=review_num">전체</a></li>
+							<li><a href="review_list.htm?order=review_num"><spring:message code="board.review2"/></a></li>
 							<c:forEach var="i" items="${local_list}">
 								<c:choose>
 									<c:when test="${i.local_code == '-' }"></c:when>
@@ -133,12 +133,12 @@
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Sort by: <span>${orderName}</span>
+								data-toggle="dropdown" href="#"><spring:message code="board.review3"/> <span>${orderName}</span>
 								<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="review_list.htm?order=review_num">최신순</a></li>
-								<li><a href="review_list.htm?order=like_count">좋아요순</a></li>
-								<li><a href="review_list.htm?order=reply_count">댓글순</a></li>
+								<li><a href="review_list.htm?order=review_num"><spring:message code="board.review4"/></a></li>
+								<li><a href="review_list.htm?order=like_count"><spring:message code="board.review5"/></a></li>
+								<li><a href="review_list.htm?order=reply_count"><spring:message code="board.review6"/></a></li>
 							</ul>
 						</div>
 						<!-- .sort-by -->
@@ -155,7 +155,7 @@
 				<div class="products list row">
 				<c:choose>
 					<c:when test="${sessionScope.user_num == null}">
-						<p>로그인 후 사용하세요</p>
+						<p><spring:message code="board.review7"/></p>
 					</c:when>
 					<c:otherwise>
 					<c:forEach var="i" items="${review_list}" varStatus="j">
@@ -177,16 +177,16 @@
 									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_TITLE}</a>
 								</h3>
 								<div class="excerpt">
-									<span>ID : ${i.ID}</span><br> 
-									<span>지역:${i.LOCAL_NAME}</span><br> 
-									<span>작성일 : ${i.REVIEW_DATE}</span><br>
-									<span>댓글 수 : ${i.REPLY_COUNT}</span>
+									<span><spring:message code="board.review8"/> ${i.ID}</span><br> 
+									<span><spring:message code="board.review9"/>${i.LOCAL_NAME}</span><br> 
+									<span><spring:message code="board.review10"/> ${i.REVIEW_DATE}</span><br>
+									<span><spring:message code="board.review11"/> ${i.REPLY_COUNT}</span>
 								</div>
 								<div class="excerpt">
 									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_CONTENT}</a>
 								</div>
 								<div class="price-box">
-									<span class="excerpt" id="likeCount_${j.index}">${i.LIKE_COUNT}</span> Like(s)
+									 <spring:message code="board.review13"/>&nbsp;&nbsp;<span class="excerpt" id="likeCount_${j.index}">${i.LIKE_COUNT}</span>
 								</div>
 								<div class="actions">
 								
@@ -326,7 +326,7 @@
 					<c:choose>
 						<c:when test="${sessionScope.user_num != null}">
 							<a href="${pageContext.request.contextPath}/travel_review/review_writeform.htm?user_num=${sessionScope.user_num}"
-								class="btn btn-default">후기작성</a>
+								class="btn btn-default"><spring:message code="board.review12"/></a>
 						</c:when>
 					</c:choose>
 					</div>

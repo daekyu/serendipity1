@@ -42,6 +42,7 @@ public class MemberController {
 	@RequestMapping(value="joinMember.htm", method=RequestMethod.POST)
 	public String joinMember(MemberDTO memberdto) {
 		memberservice.joinMember(memberdto);
+		memberservice.giveMemberRole(memberdto);
 		return "/member/join_login";
 	}
 	

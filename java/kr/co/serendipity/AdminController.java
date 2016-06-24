@@ -1,7 +1,7 @@
 /*
  * @Class : MainController
  * @Date : 16.06.10
- * @Author : 강대규
+ * @Author : 이소라
  * @Desc : 관리자의 기능을 처리하는 컨트롤러
  */
 

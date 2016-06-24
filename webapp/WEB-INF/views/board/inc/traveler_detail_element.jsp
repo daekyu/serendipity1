@@ -37,8 +37,33 @@
 				}
 			});
 		}); */
-
+		
+		function getTimeStamp() {
+		    var d = new Date();
+		 
+		    var s =
+		        leadingZeros(d.getMonth() + 1, 2) + '/' +
+		        leadingZeros(d.getDate(), 2) + '/' +
+		        leadingZeros(d.getFullYear(), 4);
+		 
+		    return s;
+		}
+		 
+		function leadingZeros(n, digits) {
+		    var zero = '';
+		    n = n.toString();
+		 
+		    if (n.length < digits) {
+		        for (i = 0; i < digits - n.length; i++)
+		            zero += '0';
+		    }
+		    return zero + n;
+		}
+		
 	$(function() {
+		
+		$('#date').val(new date);
+		$('#cd').val(getTimeStamp()-$('#wd').val());
 		$('#delete')
 				.click(
 						function() {
@@ -141,6 +166,9 @@
 	<header class="page-header">
 		<div class="container">
 			<h1 class="title">가이드구함</h1>
+			<input type="text" id="date">
+			<input type="text" id="wd" value="${boarddto.BOARD_DATE}">
+			<input type="text" id="cd">
 		</div>
 	</header>
 
@@ -234,7 +262,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>${boarddto.ID}</td>
+									<td><a data-toggle="modal" data-target="#myModal">${boarddto.ID}</a></td>
 									<td><c:choose>
 											<c:when test="${empty language}">
 									없음
@@ -267,6 +295,9 @@
 						</div>
 
 						<c:choose>
+							<c:when test="${boarddto.BOARD_DATE}">
+							
+							</c:when>
 							<c:when test="${sessionScope.user_num == boarddto.USER_NUM}">
 								<c:choose>
 									<c:when test="${boarddto.BOARD_CAPACITY eq 1}">
@@ -351,3 +382,147 @@
 	</div>
 </div>
 <!-- #main -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">${boarddto.ID}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="product-tab">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#profile">프로필보기</a></li>
+						<li><a href="#sendMessage">쪽지보내기</a></li>
+						<li><a href="#chatting">채팅신청하기</a></li>
+						<li><a href="#reporting">신고하기</a></li>
+					</ul>
+					<!-- .nav-tabs -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="profile">
+							<div class="bottom-padding">
+								<div class="row">
+									<div class="images-box col-xs-9 col-sm-6 col-md-4">
+										<div class="carousel-box load" data-carousel-pagination="true"
+											data-carousel-nav="false" data-carousel-one="true"
+											data-autoplay-disable="true">
+											<div class="carousel">
+												<div class="image">
+													<img class="replace-2x"
+														src=".././content/img/team-big-1.jpg" alt="" title=""
+														width="768" height="768">
+												</div>
+											</div>
+											<div class="clearfix"></div>
+											<div class="pagination switches"></div>
+										</div>
+									</div>
+
+									<div class="employee-description col-sm-8 col-md-8">
+										<h3 class="name">${boarddto.NAME}</h3>
+										<div class="role"></div>
+										<div>
+											<p>${boarddto.PROFILE_DESCRIPTION}</p>
+										</div>
+										<div class="social">
+											<!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>
+				<a class="icon rounded icon-twitter" href="#"><i class="fa fa-twitter"></i></a>
+				<a class="icon rounded icon-google" href="#"><i class="fa fa-google"></i></a>
+				<a class="icon rounded icon-linkedin" href="#"><i class="fa fa-linkedin"></i></a> -->
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<br> <br>
+								<div class="table-responsive">
+									<table class="table table-bordered">
+
+										<tr>
+											<th class="danger" colspan="2">Information</th>
+										</tr>
+
+										<tr>
+											<th class="danger">지역</th>
+											<td>${boarddto.LOCAL_NAME}</td>
+										</tr>
+
+										<tr>
+											<th class="danger">언어</th>
+											<td><c:forEach var="i" items="${language}">
+							${i.LANGUAGE_NAME} 
+						</c:forEach></td>
+										</tr>
+
+										<tr>
+											<th class="danger">취미</th>
+											<td><c:forEach var="j" items="${hobby}">
+							${j.HOBBY_NAME} 
+						</c:forEach></td>
+										</tr>
+
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<div class="tab-pane" id="sendMessage">
+							<form>
+								<table class="table center">
+									<tr>
+										<td><textarea class="form-control"
+												style="resize: none; height: 100px;" wrap="soft" name=""></textarea>
+										</td>
+									</tr>
+
+									<tr>
+										<td><input class="btn btn-success" type="submit"
+											value="전송"></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+
+						<div class="tab-pane" id="chatting"></div>
+						<!-- #reviews -->
+
+						<div class="tab-pane" id="reporting">
+							<form
+								action="${pageContext.request.contextPath}/report/report_write2.htm?reporter=${sessionScope.user_num}&villain=${boarddto.USER_NUM}&board_num=${boarddto.BOARD_NUM}"
+								method="post">
+								<table class="table center">
+									<tr>
+										<td><input type="text" class="form-control"
+											placeholder="제목을 입력해주세요" name="report_title"></td>
+									</tr>
+
+									<tr>
+										<td><textarea class="form-control"
+												placeholder="상세한 이유를 작성해주세요" name="report_content"
+												style="resize: none; height: 100px;" wrap="soft" name=""></textarea>
+										</td>
+									</tr>
+
+									<tr>
+										<td><input type="submit" class="btn btn-success"
+											value="전송"></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+						<!-- #reviews -->
+					</div>
+					<!-- .tab-content -->
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>

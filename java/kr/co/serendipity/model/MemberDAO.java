@@ -22,4 +22,5 @@ public interface MemberDAO {
 	void changeToTempPw(MemberDTO memberdto);
 	void deleteMember(MemberDTO memberdto);
 	MemberDTO selectPicture(MemberDTO memberdto) throws ClassNotFoundException, SQLException;
+	void giveMemberRole(MemberDTO memberdto); // 권한부여하는 메소드
 }

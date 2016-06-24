@@ -49,4 +49,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select profile_picture from member where user_num=#{user_num}
 	</select>
 	
+	<insert id="giveMemberRole" parameterType="kr.co.serendipity.model.MemberDTO">
+		insert into user_roles 
+		<choose>
+			<when test="country_code == 82">
+				values(user_role_id.nextval, (select user_num from member where id=#{id}), 'role_guide')
+			</when>
+			<otherwise>
+				values(user_role_id.nextval, (select user_num from member where id=#{id}), 'role_traveler')
+			</otherwise>
+		</choose>
+	</insert>
 </mapper>

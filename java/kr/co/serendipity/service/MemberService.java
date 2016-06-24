@@ -78,4 +78,8 @@ public class MemberService {
 		return memberdao.selectPicture(memberdto);
 	}
 	
+	public void giveMemberRole(MemberDTO memberdto) {
+		MemberDAO memberdao = sqlsession.getMapper(MemberDAO.class);
+		memberdao.giveMemberRole(memberdto);
+	}
 }

@@ -37,18 +37,15 @@
 				}
 			});
 		}); */
-		
+		//시간차에 따른 버튼 처리
 		function getTimeStamp() {
 		    var d = new Date();
-		 
 		    var s =
 		        leadingZeros(d.getMonth() + 1, 2) + '/' +
 		        leadingZeros(d.getDate(), 2) + '/' +
 		        leadingZeros(d.getFullYear(), 4);
-		 
 		    return s;
 		}
-		 
 		function leadingZeros(n, digits) {
 		    var zero = '';
 		    n = n.toString();
@@ -61,9 +58,20 @@
 		}
 		
 	$(function() {
-		
-		$('#date').val(new date);
-		$('#cd').val(getTimeStamp()-$('#wd').val());
+		var today = new Date();
+		var dateString = $('#wd').val();
+		var dateArray = dateString.split("/");  
+		var dateObj = new Date(dateArray[2], Number(dateArray[0])-1, dateArray[1]);
+		var betweenDay = (dateObj.getTime()-today.getTime())/1000/60/60/24;
+		if(betweenDay <= 0){
+			$('#beforeDate').remove();
+			$('#afterDate').append("마감된 글입니다.");
+		}
+		$('#date').val(today);
+		$('#date2').val(today.getTime());
+		$('#wd').val(dateString);
+		$('#cd').val(dateObj.getTime());
+		$('#mi').val(betweenDay);
 		$('#delete')
 				.click(
 						function() {
@@ -166,9 +174,12 @@
 	<header class="page-header">
 		<div class="container">
 			<h1 class="title">가이드구함</h1>
-			<input type="text" id="date">
-			<input type="text" id="wd" value="${boarddto.BOARD_DATE}">
-			<input type="text" id="cd">
+			지우지 마세요. 일단위로 체크해야 하는 항목입니다. - 민규<br>
+			현재 시간 : <input type="text" id="date"><br>
+			현재 시간 변환 : <input type="text" id="date2"><br>
+			글 마감 시간 : <input type="text" id="wd" value="${boarddto.BOARD_DATE}"><br>
+			글 마감 시간 변환 : <input type="text" id="cd"><br>
+			현재 시간과 마감 시간의 차이 : <input type="text" id="mi">
 		</div>
 	</header>
 
@@ -293,11 +304,9 @@
 							<span class="price">${boarddto.PRICE} / a day /
 								${boarddto.BOARD_DATE}</span>
 						</div>
-
+						
+						<div id="beforeDate">
 						<c:choose>
-							<c:when test="${boarddto.BOARD_DATE}">
-							
-							</c:when>
 							<c:when test="${sessionScope.user_num == boarddto.USER_NUM}">
 								<c:choose>
 									<c:when test="${boarddto.BOARD_CAPACITY eq 1}">
@@ -340,6 +349,8 @@
 								</td>
 							</c:otherwise>
 						</c:choose>
+						</div>
+						<div id="afterDate"></div>
 					</div>
 				</div>
 

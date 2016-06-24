@@ -51,6 +51,10 @@ public class MemberService {
 		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
 		return dao.IdCheck(memberdto);
 	}
+	public int EmailCheck(MemberDTO memberdto) {
+		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
+		return dao.EmailCheck(memberdto);
+	}
 	
 	public MemberDTO checkFindIdEmailInfo(MemberDTO memberdto) {
 		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);

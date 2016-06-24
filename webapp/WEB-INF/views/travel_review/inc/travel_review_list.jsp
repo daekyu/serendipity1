@@ -112,7 +112,6 @@
 							<ul class="dropdown-menu">
 							<li><a href="review_list.htm?order=review_num">전체</a></li>
 							<c:forEach var="i" items="${local_list}">
-								<%-- <li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li> --%>
 								<c:choose>
 									<c:when test="${i.local_code == '-' }"></c:when>
 									

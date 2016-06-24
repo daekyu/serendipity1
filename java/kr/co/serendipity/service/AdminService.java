@@ -17,7 +17,7 @@ public class AdminService {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	public List<MemberDTO> memberList(){
+	public List<HashMap<String, Object>> memberList(){
 		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
 		return dao.getMemberList();
 	}

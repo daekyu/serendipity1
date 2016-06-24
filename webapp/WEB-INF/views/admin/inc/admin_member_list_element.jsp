@@ -40,13 +40,13 @@
 			  <tbody>
 			  <c:forEach var="i" items="${member_list}">
 			  	<tr>
-			  		<td>${i.id}</td>
-			  		<td>${i.name}</td>
-			  		<td>${i.age}</td>
-			  		<td>${i.country_code}</td>
-			  		<td>${i.email}</td>
-			  		<td>${i.report_count}</td>
-			  		<td><a class="btn btn-danger" href="${pageContext.request.contextPath}/mypage/my_page_withdraw3.htm?user_num=${i.user_num}">탈퇴</a>
+			  		<td>${i.ID}</td>
+			  		<td>${i.NAME}</td>
+			  		<td>${i.AGE}</td>
+			  		<td>${i.COUNTRY_NAME}</td>
+			  		<td>${i.EMAIL}</td>
+			  		<td>${i.REPORT_COUNT}</td>
+			  		<td><a class="btn btn-danger" href="${pageContext.request.contextPath}/mypage/my_page_withdraw3.htm?user_num=${i.USER_NUM}">탈퇴</a>
 			  	</tr>
 			  </c:forEach>
 			  </tbody>

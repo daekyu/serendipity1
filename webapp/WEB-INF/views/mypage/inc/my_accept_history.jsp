@@ -2,14 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- my account - 내가 신청한 내역 -->
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="toDay" class="java.util.Date" />
+<fmt:formatDate value="${toDay}" pattern="yy/MM/dd"/>
+				<fmt:parseNumber value="${toDay.time/(1000*60*60*24)}" integerOnly="true" var="nowDays" scope="request"/>
 <script type="text/javascript">
-		//$('button[name^="reNo-"]').click(function() {
-		$(function(){
+			$(function(){
 			if($('#check1').val() == 1){
 				alert("최대인원을 넘었습니다.");
 			};
+			
 			$('.delete').click(function(){
-				if(confirm("해당 요청을 취소 하시겠습니까?") == true){
+				if(confirm("해당 요청을 거절 하시겠습니까?") == true){
 				location.href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1";
 				}else{
 				    return false;
@@ -61,6 +65,8 @@
 			  </c:when>
 			  <c:otherwise>
 			  <c:forEach var="i" items="${participantdto}">
+				<fmt:parseDate var="bd" value="${i.BOARD_DATE}" pattern="MM/dd/yyyy" />
+				<fmt:parseNumber value="${bd.time/(1000*60*60*24)}" integerOnly="true" var="boardDays" scope="request"/>
 				<tr>
 					<td>
 						<c:choose>
@@ -89,8 +95,31 @@
 									승낙 대기중
 								</td>
 								<td>
-									<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&board_num=${i.BOARD_NUM}&ctn=${i.CATEGORY_NUM}&pc=${i.PARTI_CAPACITY}" class="btn btn-success accept">수락</a>
-									<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger delete">거절</a>
+								<c:choose>
+									<c:when test="${nowDays <= boardDays}">
+										<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&board_num=${i.BOARD_NUM}&ctn=${i.CATEGORY_NUM}&pc=${i.PARTI_CAPACITY}" class="btn btn-success accept">수락</a>
+										<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger delete">거절</a>
+									</c:when>
+								<c:otherwise>
+									마감
+								</c:otherwise>
+								</c:choose>
+								</td>
+							</c:when>
+							<c:when test="${i.STATE eq 'refuse'}">
+								<td>
+									신청 거절
+								</td>
+								<td>
+								처리완료
+								</td>
+							</c:when>
+							<c:when test="${i.STATE eq 'cansel'}">
+								<td>
+									신청 취소
+								</td>
+								<td>
+									처리완료
 								</td>
 							</c:when>
 							<c:otherwise>
@@ -102,6 +131,7 @@
 								</td>
 							</c:otherwise>
 						</c:choose>
+						
 				</tr>
 				</c:forEach>
 				</c:otherwise>

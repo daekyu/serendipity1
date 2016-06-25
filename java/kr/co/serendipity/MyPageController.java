@@ -296,10 +296,12 @@ public class MyPageController {
 		System.out.println("parti_num : " + participantdto.getParti_num());
 		System.out.println("check : " + check);
 		int check2 = Integer.parseInt(check);
-		mypageservice.deleteSendHistory(participantdto);
+		
 		if(check2 == 2){
+			mypageservice.updateSendHistory(participantdto);
 			return "redirect:/mypage/my_page_accept_history.htm?user_num=" + participantdto.getUser_num();
 		}else{
+			mypageservice.updateSendHistory2(participantdto);
 			return "redirect:/mypage/my_page_send_history.htm?user_num=" + participantdto.getUser_num();
 		}
 	}

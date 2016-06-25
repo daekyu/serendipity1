@@ -1,6 +1,7 @@
 package kr.co.serendipity.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import kr.co.serendipity.model.AdminDAO;
 import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.ReportDAO;
 import kr.co.serendipity.model.VisitDAO;
 
 @Service
@@ -17,7 +17,7 @@ public class AdminService {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	public List<MemberDTO> memberList(){
+	public List<HashMap<String, Object>> memberList(){
 		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
 		return dao.getMemberList();
 	}
@@ -32,38 +32,43 @@ public class AdminService {
 		return dao.getMemberCountFemale();
 	}
 	
-	public int monthReportCount(int month) throws ClassNotFoundException, SQLException{
+	public int monthReportCount(int day) throws ClassNotFoundException, SQLException{
 		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
-		return dao.monthReportCount(month);
+		return dao.monthReportCount(day);
 	}
 	
-	public int monthJoinCount(int month) throws ClassNotFoundException, SQLException{
+	public int monthJoinCount(int day) throws ClassNotFoundException, SQLException{
 		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
-		return dao.monthJoinCount(month);
+		return dao.monthJoinCount(day);
 	}
 	
-	public int monthGuideCount(int month) throws ClassNotFoundException, SQLException{
+	public int monthGuideCount(int day) throws ClassNotFoundException, SQLException{
 		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
-		return dao.monthGuideCount(month);
+		return dao.monthGuideCount(day);
 	}
 	
-	public int monthTravelerCount(int month) throws ClassNotFoundException, SQLException{
+	public int monthTravelerCount(int day) throws ClassNotFoundException, SQLException{
 		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
-		return dao.monthTravelerCount(month);
+		return dao.monthTravelerCount(day);
 	}
 	
-	public int monthReviewCount(int month) throws ClassNotFoundException, SQLException{
+	public int monthReviewCount(int day) throws ClassNotFoundException, SQLException{
 		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
-		return dao.monthReviewCount(month);
+		return dao.monthReviewCount(day);
 	}
 	
-	public int getVisitTotalCount(){
+	public int getVisitTotalCount(int day){
 		VisitDAO dao = sqlsession.getMapper(VisitDAO.class);
-		return dao.getVisitTotalCount();
+		return dao.getVisitTotalCount(day);
 	}
 	
-	public int getVisitTodayCount(){
+	public int getVisitTodayCount(int day){
 		VisitDAO dao = sqlsession.getMapper(VisitDAO.class);
-		return dao.getVisitTodayCount();
+		return dao.getVisitTodayCount(day);
+	}
+	
+	public String getVisitDate(int day){
+		VisitDAO dao = sqlsession.getMapper(VisitDAO.class);
+		return dao.getVisitDate(day);
 	}
 }

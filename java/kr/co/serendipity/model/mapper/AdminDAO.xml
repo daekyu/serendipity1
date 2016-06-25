@@ -6,14 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 
 	@Project : Serendipity
 	@File name : AdminDAO.xml
-	@Author : 강대규
+	@Author : 이소라
 	@Date : 16.06.10
 	@Desc : AdminDAO의 Mapper / 실제 DB연동을 위한 Query가 들어가는 부분
  -->
 
 <mapper namespace="kr.co.serendipity.model.AdminDAO">
-	<select id="getMemberList" resultType="kr.co.serendipity.model.MemberDTO">
-		select * from member
+	<select id="getMemberList" resultType="hashmap">
+		select m.user_num,m.id,m.name,m.age,m.country_code,c.country_name, m.email,m.report_count from member m, country c where m.country_code=c.country_code
 	</select>
 	
 	<select id="getMemberCountMale" resultType="Integer">
@@ -25,22 +25,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="monthReportCount" resultType="Integer">
-		select count(*) from report where substr(report_date,5,1) = #{param1}
+		select count(*) from report where substr(to_char(report_date), 1, 9) = to_date(sysdate-#{param1}, 'yy/MM/dd')
 	</select>
 	
 	<select id="monthJoinCount" resultType="Integer">
-		select count(*) from member where substr(join_date,5,1) = #{param1}
+		select count(*) from member where substr(to_char(join_date), 1, 9) = to_date(sysdate-#{param1}, 'yy/MM/dd')
 	</select>
 	
 	<select id="monthGuideCount" resultType="Integer">
-		select count(*) from board where substr(board_date,2,1) = #{param1} and category_num = 2
+		select count(*) from board where substr(board_date, 1, 2) = #{param1} and category_num = 2
 	</select>
 	
 	<select id="monthTravelerCount" resultType="Integer">
-		select count(*) from board where substr(board_date,2,1) = #{param1} and category_num = 1
+		select count(*) from board where substr(board_date, 1, 2) = #{param1} and category_num = 2
 	</select>
 	
 	<select id="monthReviewCount" resultType="Integer">
-		select count(*) from review where substr(review_date,5,1) = #{param1}
+		select count(*) from review where substr(review_date, 4, 2) = #{param1}
+	</select>
+	
+	<select id="getVisitDate" resultType="String">
+		select to_char(sysdate-#{param1}, 'yyyy-MM-dd') as day from dual
 	</select>
 </mapper>

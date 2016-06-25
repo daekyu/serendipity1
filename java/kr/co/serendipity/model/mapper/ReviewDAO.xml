@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="reviewDetail" resultType="hashmap">
-		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content, r.review_content1, r.review_content2, r.review_content3, r.review_content4, r.review_content5,r.review_picture1, r.review_picture2, r.review_picture3, r.review_picture4, r.review_picture5, r.like_count,l.local_name from review r, local l, member m where r.local_code=l.local_code and r.user_num=m.user_num and review_num=#{review_num}
+		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content, r.review_content1, r.review_content2, r.review_content3, r.review_content4, r.review_content5,r.review_picture1, r.review_picture2, r.review_picture3, r.review_picture4, r.review_picture5, r.like_count,r.local_code,l.local_name from review r, local l, member m where r.local_code=l.local_code and r.user_num=m.user_num and review_num=#{review_num}
 	</select>
 	
 	<select id="getReviewListCount" resultType="Integer">
@@ -33,7 +33,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<update id="reviewUpdate">
-		update review set review_title=#{review_title}, review_content=#{review_content}, review_content1=#{review_content1}, review_content2=#{review_content2}, review_content3=#{review_content3}, review_content4=#{review_content4}, review_content5=#{review_content5}, review_picture1=#{review_picture1}, review_picture2=#{review_picture2}, review_picture3=#{review_picture3}, review_picture4=#{review_picture4}, review_picture5=#{review_picture5}, review_date=sysdate where review_num=#{review_num}
+		update review set review_title=#{review_title}, review_content=#{review_content}, review_content1=#{review_content1}, review_content2=#{review_content2}, review_content3=#{review_content3}, review_content4=#{review_content4}, review_content5=#{review_content5}, review_date=sysdate where review_num=#{review_num}
+	</update>
+	
+	<update id="reviewPic1Update">
+		update review set review_picture1=#{review_picture1} where review_num=#{review_num}
+	</update>
+	
+	<update id="reviewPic2Update">
+		update review set review_picture2=#{review_picture2} where review_num=#{review_num}
+	</update>
+	
+	<update id="reviewPic3Update">
+		update review set review_picture3=#{review_picture3} where review_num=#{review_num}
+	</update>
+	
+	<update id="reviewPic4Update">
+		update review set review_picture4=#{review_picture4} where review_num=#{review_num}
+	</update>
+	
+	<update id="reviewPic5Update">
+		update review set review_picture5=#{review_picture5} where review_num=#{review_num}
 	</update>
 	
 	<select id="selectPicture" resultType="kr.co.serendipity.model.ReviewDTO">

@@ -72,8 +72,11 @@ public interface MyPageDAO {
 	//마이페이지 보낸 요청 글쓴이 이름 조인
 	public String writerName(int board_num);
 	
-	//보낸 요청 삭제
-	public void deleteSendHistory(ParticipantDTO participantdto);
+	//보낸 요청 받는 사람이 거절
+	public void updateSendHistory(ParticipantDTO participantdto);
+	
+	//보낸 요청 보낸사람이 취소
+	public void updateSendHistory2(ParticipantDTO participantdto);
 	
 	//받은 요청 리스트
 	public List<HashMap<String, Object>> acceptHistory(int un, int page);

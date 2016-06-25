@@ -17,9 +17,12 @@ public interface MemberDAO {
 	MemberDTO login(MemberDTO memberdto); // 로그인할 때 실행되는 메소드
 	int loginCheck(MemberDTO memberdto); // 로그인할때 아이디/비밀번호 맞는지 체크
 	int IdCheck(MemberDTO memberdto);
+	int EmailCheck(MemberDTO memberdto);
+	void ConfirmPassword(MemberDTO memberdto);
 	MemberDTO checkFindIdEmailInfo(MemberDTO memberdto); // 아이디 찾을 때 이름, 이메일이 있는지 체크
 	MemberDTO checkFindPwEmailInfo(MemberDTO memberdto); //비번 찾을 때 이름, 이메일, 아이디가 있는지 체크
 	void changeToTempPw(MemberDTO memberdto);
 	void deleteMember(MemberDTO memberdto);
 	MemberDTO selectPicture(MemberDTO memberdto) throws ClassNotFoundException, SQLException;
+	void giveMemberRole(MemberDTO memberdto); // 권한부여하는 메소드
 }

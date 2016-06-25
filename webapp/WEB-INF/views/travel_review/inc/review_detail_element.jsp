@@ -108,7 +108,7 @@
 							<img class="replace-2x slid-img" src="content/img/slide-4.jpg" width="620" height="550" alt="">
 						</c:when>
 						<c:otherwise>
-							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REVIEW_PICTURE2}" width="620" height="550" alt="">
+							<img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${review_detail.REVIEW_PICTURE2}" width="620" height="550" alt="">
 						</c:otherwise>
 					</c:choose>
 					</div>
@@ -194,9 +194,8 @@
 		  
 		<div class="row">
 		  <div class="portfolio-tags bottom-padding col-sm-4 col-md-4">
-			<p><b><spring:message code="board.review_detail1"/></b><span>자연경관, 야경, 맛집....</span></p>
 			<p><b><spring:message code="board.review_detail2"/></b><span>${review_detail.LOCAL_NAME}</span></p>
-			<p><b><spring:message code="board.review_detail3"/></b><span>${revie_wdetail.REVIEW_DATE}</span></p><br>
+			<p><b><spring:message code="board.review_detail3"/></b><span>${review_detail.REVIEW_DATE}</span></p><br>
 			<h4><span id="likeCount">${count}</span> Like(s)</h4>
 			
 			<div class="icon circle bg icon-40"data-s="48" data-op="0" data-c="#c10841" data-hc="0" id="btn_like"><i class="fa fa-heart-o"></i></div><div class="icon circle bg icon-40"data-s="48" data-op="0" data-c="#c10841" data-hc="0" id="btn_like2"><i class="fa fa-heart"></i></div><br><br>
@@ -209,7 +208,7 @@
 		  </div>
 		  
 		  <div class="bottom-padding col-sm-8 col-md-8">
-			<p>${review_detail.REVIEW_CONTENT}</p>
+			<p>전체적인 설명 : ${review_detail.REVIEW_CONTENT}</p>
 		  </div>
 		</div>
 		  

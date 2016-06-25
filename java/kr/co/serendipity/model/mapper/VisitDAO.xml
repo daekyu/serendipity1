@@ -13,6 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getVisitTodayCount" resultType="Integer">
-		select count(*) from visit where substr(to_char(v_date), 1, 9) = to_date(sysdate, 'yy/MM/dd')
+		select count(*) as count from visit where substr(to_char(visit_date), 1, 9) = to_date(sysdate-#{param1}, 'yy/MM/dd')
+	</select>
+	
+	<select id="getVisitDate" resultType="String">
+		select to_char(sysdate-#{param1}, 'yyyy-MM-dd') as day from dual
 	</select>
 </mapper>

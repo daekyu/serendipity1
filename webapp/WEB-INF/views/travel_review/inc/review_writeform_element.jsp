@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
 </script> 
 <link rel="stylesheet" type="text/css" 
@@ -70,7 +70,7 @@ $(function() {
 <section id="main">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">여행 후기</h1>
+			<h1 class="title"><spring:message code="travel_review_inc_writefom"/></h1>
 		</div>
 	</header>
 
@@ -79,15 +79,15 @@ $(function() {
 			<form action="" id="bofom" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
 				<table class="table center">
 					<tr>
-						<td><h6>글 제목</h6></td>
+						<td><h6><spring:message code="travel_review_inc_writefom1"/></h6></td>
 						<td colspan="4"><input class="form-control" type="text" name="review_title"></td>
 						<td>
-							<button type="button" id="addBtn" class="btn btn-success">사진추가</button>
-							<button type="button" id="minusBtn" class="btn btn-danger">사진빼기</button>
+							<button type="button" id="addBtn" class="btn btn-success"><spring:message code="travel_review_inc_writefom2"/></button>
+							<button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="travel_review_inc_writefom3"/></button>
 						</td>
 					</tr>
 					<tr>
-						<td>지역</td>
+						<td><spring:message code="travel_review_inc_writefom4"/></td>
 						<td><!-- <input class="form-control" type="text" name="local_code"> -->
 							<select class="form-group" name="local_code">
                 				<option value="-">--</option>
@@ -102,8 +102,8 @@ $(function() {
 						<td colspan="6">
 						<div class="product-tab">
 							<ul class="nav nav-tabs" id="">
-								<li class="active"><a href="#description">전체적인 설명</a></li> 
-								<li id="menu_pic"><a href="#tab_pic">사진</a></li>
+								<li class="active"><a href="#description"><spring:message code="travel_review_inc_writefom5"/></a></li> 
+								<li id="menu_pic"><a href="#tab_pic"><spring:message code="travel_review_inc_writefom6"/></a></li>
 							</ul>
 							<!-- .nav-tabs -->
 
@@ -126,16 +126,16 @@ $(function() {
 									<table class="table" id="table_pic1">
 										<tr>
 											<th colspan="2">
-												사진 1
+												<spring:message code="travel_review_inc_writefom7"/>
 											</th>
 										</tr>
 										<tr>
-											<td>사진</td>
+											<td><spring:message code="travel_review_inc_writefom8"/></td>
 											<td><input type="file" id=pic1 name="review_picture"></td>
 										</tr>
 										
 										<tr>
-											<td>설명 : </td>
+											<td><spring:message code="travel_review_inc_writefom9"/> </td>
 											<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="review_content1"></textarea></td>
 										</tr>
 									</table>
@@ -143,16 +143,16 @@ $(function() {
 									<table class="table" id="table_pic2">
 										<tr>
 											<th colspan="2">
-												사진 2
+												<spring:message code="travel_review_inc_writefom10"/>
 											</th>
 										</tr>
 										<tr>
-											<td>사진</td>
+											<td><spring:message code="travel_review_inc_writefom11"/></td>
 											<td><input type="file" id="pic2" name="review_picture"></td>
 										</tr>
 										
 										<tr>
-											<td>설명 : </td>
+											<td><spring:message code="travel_review_inc_writefom12"/> </td>
 											<td><textarea name="review_content2" id="desc_pic2" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
 										</tr>
 									</table>
@@ -160,16 +160,16 @@ $(function() {
 									<table class="table" id="table_pic3">
 										<tr>
 											<th colspan="2">
-												사진 3
+												<spring:message code="travel_review_inc_writefom13"/>
 											</th>
 										</tr>
 										<tr>
-											<td>사진</td>
+											<td><spring:message code="travel_review_inc_writefom14"/></td>
 											<td><input type="file" id="pic3" name="review_picture"></td>
 										</tr>
 										
 										<tr>
-											<td>설명 : </td>
+											<td><spring:message code="travel_review_inc_writefom15"/> </td>
 											<td><textarea name="review_content3" id="desc_pic3" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
 										</tr>
 									</table>
@@ -177,16 +177,16 @@ $(function() {
 									<table class="table" id="table_pic4">
 										<tr>
 											<th colspan="2">
-												사진 4
+												<spring:message code="travel_review_inc_writefom16"/>
 											</th>
 										</tr>
 										<tr>
-											<td>사진</td>
+											<td><spring:message code="travel_review_inc_writefom17"/></td>
 											<td><input type="file" id="pic4" name="review_picture"></td>
 										</tr>
 										
 										<tr>
-											<td>설명 : </td>
+											<td><spring:message code="travel_review_inc_writefom18"/></td>
 											<td><textarea name="review_content4" id="desc_pic4" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
 										</tr>
 									</table>
@@ -194,16 +194,16 @@ $(function() {
 									<table class="table" id="table_pic5">
 										<tr>
 											<th colspan="2">
-												사진 5
+												<spring:message code="travel_review_inc_writefom19"/>
 											</th>
 										</tr>
 										<tr>
-											<td>사진</td>
+											<td><spring:message code="travel_review_inc_writefom20"/></td>
 											<td><input type="file" id="pic5" name="review_picture"></td>
 										</tr>
 
 										<tr>
-											<td>설명 : </td>
+											<td><spring:message code="travel_review_inc_writefom21"/> </td>
 											<td><textarea name="review_content5" id="desc_pic5" class="form-control" style="resize:none; height:100px;" wrap="soft"></textarea></td>
 										</tr>
 									</table>
@@ -217,8 +217,8 @@ $(function() {
 					
 					<tr>
 						<td colspan="6" align="center">
-							<input type="submit" class="btn btn-success" value="등록">
-							<input type="reset" class="btn btn-danger" value="취소">
+							<input type="submit" class="btn btn-success" value="<spring:message code="travel_review_inc_writefom22"/>">
+							<input type="reset" class="btn btn-danger" value="<spring:message code="travel_review_inc_writefom23"/>">
 						</td>
 					</tr>
 				</table>

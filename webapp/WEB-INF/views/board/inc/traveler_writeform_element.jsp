@@ -594,7 +594,8 @@ href=".././resources/js/sweetalert.css">
                   <td colspan="5">
                      <!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
                      <!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
-                     <textarea name="board_content" id="ckeditor"></textarea> <script
+                     <textarea name="board_content" id="ckeditor"></textarea> 
+                     <script
                         type="text/javascript">
                         CKEDITOR.replace('ckeditor', {
                            width : '90%',
@@ -669,7 +670,7 @@ href=".././resources/js/sweetalert.css">
                            <div id="button1" class="btn btn-success"
                               onclick="findPlaces(); return false;"><spring:message code="board.traveler_writeform10.13"/></div>
                         </div>
-                     </div>
+                   
 
                   </td>
                </tr>

@@ -31,6 +31,7 @@ href=".././resources/js/sweetalert.css">
 	}
 	
 
+	
 	$(function() {
 		
 		
@@ -38,40 +39,44 @@ href=".././resources/js/sweetalert.css">
 		
 		
 		 var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
-         
+         var reg_ca = /^[0-9]{1,2}$/;
          
          
          //게시판 유효성 검증 
          
-          $('#success').click(function() {
+         $('#success').click(function() {
             
             
-               if($('#title_text').val() == '') {
-                  swal('글제목을 입력해주세요!')
-                  $('#title_text').focus();
+               if($('#board_title').val() == '') {
+                  swal('글제목을 입력해주세요')
+                  $('#board_title').focus();
                   return false;
-               } else if($('#datepicker').val() == '') {
-                  swal('날짜를 입력해주세요!');
+               } else if(!reg_ca.test($('#board_capacity').val()) == true) {
+                   swal('인원수를 숫자로 입력해주세요');
+                   $('#board_capacity').focus();
+                   return false;
+                } else if($('#datepicker').val() == '') {
+                  swal('날짜를 입력해주세요');
                   $('#datepicker').focus();
                   return false;
                }  else if(!reg_number.test($('#before').val()) == true){
-                 swal('지불할 가격을 숫자로 입력해 주세요!');
+                 swal('지불할 가격을 숫자로 입력해 주세요');
                  $('#before').focus();
                   return false;
-              } else if($('#after').val() == ''){
-                    swal('변환 버튼을 눌러 주세요!');
-                    $('#before').focus();
-                 return false; 
+              } else if(!reg_number.test($('#after').val()) == true){
+                  swal('변환 버튼을 눌러주세요');
+                  $('#before').focus();
+                   return false;
                } else if($('#pic1').val()==''){
-                  swal("사진을 1개 이상 등록해 주세요!");
+                  swal("사진을 1개 이상 등록해 주세요");
                   $('#pic1').focus();
                   return false;
                } else if($('#meeting_place').val() == '') {
-                     alert('meeting point를 지도에서 선택해주세요!');
+                     swal('meeting point를 지도에서 선택해주세요');
                      $('#gmap_where').focus();
                      return false;
                   }else{
-                  swal('글작성 완료!','','success');
+                  swal('글작성 완료','','success');
                }
                
                         
@@ -80,7 +85,7 @@ href=".././resources/js/sweetalert.css">
 		
 		
 		
-		
+
 		
 		
 		
@@ -459,19 +464,19 @@ href=".././resources/js/sweetalert.css">
 					<tr>
 						<td><h5><spring:message code="board.guide_writeform2"/></h5></td>
 						<td colspan="5"><input class="form-control" type="text"
-							name="board_title"></td>
+							name="board_title" id="board_title"></td>
 					</tr>
 					<tr>
 						<td><spring:message code="board.guide_writeform3"/></td>
 						<td><input class="form-control" type="text"
-							name="board_capacity"></td>
+							name="board_capacity" id="board_capacity"></td>
 						<td><spring:message code="board.guide_writeform4"/></td>
 						<td><input class="form-control" type="text" id="datepicker"
 							name="board_date"></td>
 					<%-- 	<td><spring:message code="board.guide_writeform5"/></td>
 						<td><input class="form-control" type="text" name="price"></td> --%>
 						
-							<td>가격</td>
+							<td><spring:message code="board.guide_writeform5"/></td>
 						<td><select id="selectoption">
   							<option value="KRW">KRW</option>
   							<option value="JPY">JPY</option>
@@ -479,7 +484,7 @@ href=".././resources/js/sweetalert.css">
   						
 						</select></td>
 						<td><input class="form-control" id="before" type="text" name="#" placeholder="작성 후 수정 불가"></td>
-						<td><button type="button" id="convert" class="btn btn-success">변환</button></td>
+						<td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.guide_writeform5.1"/></button></td>
 						
 				
 						

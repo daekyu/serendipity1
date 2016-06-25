@@ -342,12 +342,14 @@ href=".././resources/js/sweetalert.css">
 		  </div>
 		  <!-- 로그인 form태그 끝 -->
 		  
+	
+		  
 		  
 		  <!-- 회원가입 Form태그 -->
 		  <div id="joinDiv" class="col-xs-12 col-sm-6 col-md-6 box register">
 			
-			  <h3 class="title">Registered customers</h3>
-			  <p>If you have an account with us, please log in.</p>
+			  <h3 class="title"><spring:message code="member.join_login_re0.1"/></h3>
+			  <p><spring:message code="member.join_login_re0.2"/></p>
 			  
 			<form class="form-box register-form form-validator" action="joinMember.htm" method="post" id="joinMember">
 			  <div class="form-group">
@@ -355,10 +357,10 @@ href=".././resources/js/sweetalert.css">
 			    <input type="text" name="email" class="form-control" id="email">		  
 			  </div>  
 			  <div class="form-group">
-			  	인증번호: 
+			  	<spring:message code="member.join_login_re0.3"/> 
 			    <input type="text" class="form-control" id="confirm_number">
 			    <input type="hidden" id="confirm_val" value="0">
-			    	<a id="req_confirm_num" class="btn btn-danger">인증번호 요청</a> <a id="confirm" class="btn btn-danger">인증번호 확인</a>		  
+			    	<a id="req_confirm_num" class="btn btn-danger"><spring:message code="member.join_login_re0.4"/></a> <a id="confirm" class="btn btn-danger"><spring:message code="member.join_login_re0.5"/></a>		  
 			  </div> 
 			  
 			  <div class="form-group">

@@ -18,7 +18,7 @@ public class AdminService {
 	private SqlSession sqlsession;
 	
 	public List<HashMap<String, Object>> memberList(){
-		AdminDAO dao = sqlsession.getMapper(AdminDAO.class);
+		AdminDAO dao = sqlsession.getMapper(AdminDAO.class); //AdminDAO.xml
 		return dao.getMemberList();
 	}
 	

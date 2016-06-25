@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(SELECT ROWNUM NUM, n.* FROM 
 			(select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name, r.reply_count from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code order by ${param2} desc) n
 		) WHERE NUM BETWEEN 1 + (#{param1}-1)*5 AND 5 + (#{param1}-1)*5
-	</select>
+	</select> 
 	
 	<select id="reviewDetail" resultType="hashmap">
 		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content, r.review_content1, r.review_content2, r.review_content3, r.review_content4, r.review_content5,r.review_picture1, r.review_picture2, r.review_picture3, r.review_picture4, r.review_picture5, r.like_count,r.local_code,l.local_name from review r, local l, member m where r.local_code=l.local_code and r.user_num=m.user_num and review_num=#{review_num}
@@ -62,6 +62,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="filteringReviewList" resultType="hashmap">
 		select r.review_num,r.user_num,m.id,r.review_title, r.review_date, r.review_content,r.review_picture1,r.like_count,l.local_name,r.reply_count from review r, local l, member m where r.user_num=m.user_num and l.local_code=r.local_code and r.local_code=#{local_code} order by review_num
+	</select>
+	
+	<select id="getLocalName" resultType="String">
+		select local_name from local where local_code=#{local_code}
 	</select>
 	
 	<select id="getIndexReview" resultType="kr.co.serendipity.model.ReviewDTO">

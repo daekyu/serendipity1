@@ -108,7 +108,7 @@
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#"><spring:message code="board.review1"/> <span></span></a>
+								data-toggle="dropdown" href="#"><spring:message code="board.review1"/>${local_name}<span></span></a>
 							<ul class="dropdown-menu">
 							<li><a href="review_list.htm?order=review_num"><spring:message code="board.review2"/></a></li>
 							<c:forEach var="i" items="${local_list}">
@@ -116,7 +116,7 @@
 									<c:when test="${i.local_code == '-' }"></c:when>
 									
 									<c:otherwise>
-										<li><a href="review_list.htm?order=review_num">${i.local_name}</a></li>
+										<li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>

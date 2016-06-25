@@ -175,4 +175,9 @@ public class MyPageService {
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		return dao.getBoardCapacity(participantdto);
 	}
+	
+	public String country(MemberDTO memberdto){
+		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
+		return dao.country(memberdto);
+	}
 }

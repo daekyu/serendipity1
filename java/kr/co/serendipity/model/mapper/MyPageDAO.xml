@@ -142,5 +142,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      <delete id="deleteMember" >
        DELETE member WHERE user_num=#{user_num}
      </delete>
+     
+     <select id="country" resultType="String">
+       select country_name from member m join country c on m.country_code = c.country_code where m.id=#{id}
+     </select>
 	
 </mapper>

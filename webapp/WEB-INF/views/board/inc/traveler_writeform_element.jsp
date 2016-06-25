@@ -391,6 +391,8 @@ href=".././resources/js/sweetalert.css">
      // Because path is an MVCArray, we can simply append a new coordinate
      // and it will automatically appear.
      path.push(event.latLng);
+     alert(event.address);
+     console.log(path);
 
      // Add a new marker at the new plotted point on the polyline.
      var marker = new google.maps.Marker({
@@ -399,8 +401,11 @@ href=".././resources/js/sweetalert.css">
        map: map
      });
      local_route.push(event.latLng);
-     console.log(local_route);
-
+     
+     google.maps.event.addListener(marker, 'click', function() {
+    	 
+     });
+	
    }
 
    // clear overlays function

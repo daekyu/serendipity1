@@ -68,7 +68,7 @@
 		var dateArray = dateString.split("/");  
 		var dateObj = new Date(dateArray[2], Number(dateArray[0])-1, dateArray[1]);
 		var betweenDay = (dateObj.getTime()-today.getTime())/1000/60/60/24;
-		if(betweenDay <= 0){
+		if(betweenDay < 1){
 			$('#beforeDate').remove();
 			$('#afterDate').append("마감된 글입니다.");
 		}
@@ -208,12 +208,12 @@
 			<h1 class="title">
 				<spring:message code="board.guide_detail" />
 			</h1>
-			지우지 마세요. 일단위로 체크해야 하는 항목입니다. - 민규<br>
-			현재 시간 : <input type="text" id="date"><br>
-			현재 시간 변환 : <input type="text" id="date2"><br>
-			글 마감 시간 : <input type="text" id="wd" value="${boarddto.BOARD_DATE}"><br>
-			글 마감 시간 변환 : <input type="text" id="cd"><br>
-			현재 시간과 마감 시간의 차이 : <input type="text" id="mi">
+			<!-- 지우지 마세요. 일단위로 체크해야 하는 항목입니다. - 민규<br> -->
+			<!-- 현재 시간 : --> <input type="hidden" id="date">
+			<!-- 현재 시간 변환 : --> <input type="hidden" id="date2">
+			<!-- 글 마감 시간 : --> <input type="hidden" id="wd" value="${boarddto.BOARD_DATE}">
+			<!-- 글 마감 시간 변환 :  --><input type="hidden" id="cd">
+			<!-- 현재 시간과 마감 시간의 차이 :  --><input type="hidden" id="mi">
 		</div>
 	</header>
 

@@ -195,8 +195,6 @@
 	                	<input class="form-control" value="여자" readonly>
                 	</c:otherwise>
                 </c:choose>
-                	
-                </select>
               </div>
               
               <div class="form-group">

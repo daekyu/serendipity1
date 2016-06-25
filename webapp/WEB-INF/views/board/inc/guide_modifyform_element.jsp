@@ -326,6 +326,16 @@ function createMarker(obj) {
                   + obj.geometry.location.lat()
                   + ', ' + obj.geometry.location.lng() + '</font>'
          });
+   		google.maps.event.addListener(mark, 'click', function() {
+		clearInfos();
+		infowindow.open(map, mark);
+		document.getElementById('latitude').value = obj.geometry.location.lat();
+		document.getElementById('longitude').value = obj.geometry.location.lng();
+		document.getElementById('meeting_place').value = obj.name;
+		document.getElementById('meeting_address').value = obj.vicinity;
+
+
+	});
 
     infos.push(infowindow);
     

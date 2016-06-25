@@ -267,12 +267,14 @@ href=".././resources/js/sweetalert.css">
    
       // set endpoint and your access key
    
+   var poly;
    var autocomplete;
    var place;
    var geocoder;
    var map;
    var markers = Array();
    var infos = Array();
+   var local_route = Array();
    
 
    function initialize() {
@@ -293,7 +295,13 @@ href=".././resources/js/sweetalert.css">
       
       map = new google.maps.Map(document.getElementById('gmap_canvas'),
             myOptions);
-      
+      poly = new google.maps.Polyline({
+    	    strokeColor: '#FF0000',
+    	    strokeOpacity: 1.0,
+    	    strokeWeight: 3
+    	  });
+      poly.setMap(map);
+      map.addListener('click', addLatLng);
       // Create the search box and link it to the UI element.
       var input = document.getElementById('pac-input');
       var searchBox = new google.maps.places.SearchBox(input);
@@ -349,24 +357,49 @@ href=".././resources/js/sweetalert.css">
                  bounds.union(place.geometry.viewport);
                  google.maps.event.addListener(mar, 'click', function() {
                     info.open(map, mar);
+                    document.getElementById('lat').value = place.geometry.location.lat();
+                    document.getElementById('lng').value = place.geometry.location.lng();
+                    document.getElementById('meeting_place').value = place.name;
+                    document.getElementById('meeting_address').value = place.formatted_address;
                });
                } else {
                  bounds.extend(place.geometry.location);
                  google.maps.event.addListener(mar, 'click', function() {
                     info.open(map, mar);
+                    document.getElementById('lat').value = place.geometry.location.lat();
+                    document.getElementById('lng').value = place.geometry.location.lng();
+                    document.getElementById('meeting_place').value = place.name;
+                    document.getElementById('meeting_address').value = place.formatted_address;
                });
-                document.getElementById('lat').value = place.geometry.location.lat();
-            document.getElementById('lng').value = place.geometry.location.lng();
-            document.getElementById('meeting_place').value = place.name;
-            document.getElementById('meeting_address').value = place.formatted_address;
+            
           }
            });
            
            map.fitBounds(bounds);
            map.setZoom(16);
+          
            });
      
          
+
+   }
+   
+// Handles click events on a map, and adds a new point to the Polyline.
+   function addLatLng(event) {
+     var path = poly.getPath();
+
+     // Because path is an MVCArray, we can simply append a new coordinate
+     // and it will automatically appear.
+     path.push(event.latLng);
+
+     // Add a new marker at the new plotted point on the polyline.
+     var marker = new google.maps.Marker({
+       position: event.latLng,
+       title: '#' + path.getLength(),
+       map: map
+     });
+     local_route.push(event.latLng);
+     console.log(local_route);
 
    }
 

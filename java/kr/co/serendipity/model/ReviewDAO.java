@@ -31,6 +31,21 @@ public interface ReviewDAO {
 	//여행후기 수정
 	public void reviewUpdate(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 	
+	//여행후기 사진1수정
+	public void reviewPic1Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException;
+	
+	//여행후기 사진2수정
+	public void reviewPic2Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException;
+	
+	//여행후기 사진3수정
+	public void reviewPic3Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException;
+	
+	//여행후기 사진4수정
+	public void reviewPic4Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException;
+	
+	//여행후기 사진5수정
+	public void reviewPic5Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException;
+	
 	//여행후기 삭제
 	public void reviewDelete(ReviewDTO dto) throws ClassNotFoundException, SQLException;
 

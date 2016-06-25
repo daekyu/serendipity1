@@ -118,6 +118,31 @@ public class TravelReviewService {
 		dao.reviewUpdate(reviewdto);
 	}
 	
+	public void reviewPic1Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException{
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		dao.reviewPic1Update(reviewdto);
+	}
+	
+	public void reviewPic2Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException{
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		dao.reviewPic2Update(reviewdto);
+	}
+	
+	public void reviewPic3Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException{
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		dao.reviewPic3Update(reviewdto);
+	}
+	
+	public void reviewPic4Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException{
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		dao.reviewPic4Update(reviewdto);
+	}
+	
+	public void reviewPic5Update(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException{
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		dao.reviewPic5Update(reviewdto);
+	}
+	
 	public List<HashMap<String, Object>> replyNotificationCheck(MemberDTO memberdto) throws ClassNotFoundException, SQLException{
 		ReplyDAO dao = sqlsession.getMapper(ReplyDAO.class);
 		return dao.replyNotificationCheck(memberdto);

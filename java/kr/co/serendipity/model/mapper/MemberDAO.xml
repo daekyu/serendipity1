@@ -40,6 +40,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="IdCheck" resultType="Integer">
 		select count(*) from member where id=#{id}
 	</select>
+	<select id="EmailCheck" resultType="Integer">
+		select count(*) from member where email=#{email}
+	</select>
+	
+	<update id="ConfirmPassword">
+		update member set fail = 0 where id=#{id} and pw=#{pw}
+	</update>
 	
 	<delete id="deleteMember" >
        DELETE from member WHERE user_num=#{user_num}

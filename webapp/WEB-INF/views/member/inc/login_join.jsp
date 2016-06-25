@@ -35,27 +35,48 @@ href=".././resources/js/sweetalert.css">
 			if($('#email').val() == '') {
 			/* 	alert('E-mail주소를 입력해주세요'); */
 				swal("E-mail 주소를 입력해주세요")
-			} else {
+			 }
+				else{
 				/* alert('입력하신 E-mail주소로 인증번호가 발송됩니다.'); */
-				swal("입력하신 E-mail 주소로 인증번호가 발송됩니다.")
 				$.ajax({
-		        	  type : "post",
-		        	  url : getContextPath() + "/email/confirm_email.htm",
-		        	  data : {"receiver" : $('#email').val()},
-		        	  success : function(data) {
-		        		  swal("인증번호를 발송했습니다!", "메일을 확인해주세요!")
-		        		  $('#confirm').click(function() {
-		        			  console.log(data);
-		        			  if($('#confirm_number').val() != data) {
-		        				  swal("인증정보가 정확하지 않습니다!")
-		        				 
-		        			  } else {
-		        				  swal("인증정보가 확인되었습니다!")
-		        				  $('#confirm_val').val('1');
-		        			  }
-		        		  })
+					type: "post",
+					url : getContextPath()+"/member/EmailCheck.htm",
+					data : {"email" : $('#email').val()},
+					success : function(data) {
+		        		  console.log(data);
+		        		  if(data == 1) {
+		        			  swal("이미 같은 메일이 존재합니다!");
+		        			 /*  alert("비밀번호가 틀렸거나 존재하지 않는 아이디입니다."); */
+		        			  $('#email').focus();
+		        			  return false;
+		        		  } else {
+		        			  swal("입력하신 E-mail 주소로 인증번호가 발송됩니다.");
+		      				$.ajax({
+		      		        	  type : "post",
+		      		        	  url : getContextPath() + "/email/confirm_email.htm",
+		      		        	  data : {"receiver" : $('#email').val()},
+		      		        	  success : function(data) {
+		      		        		  swal("인증번호를 발송했습니다!", "메일을 확인해주세요!")
+		      		        		  $('#confirm').click(function() {
+		      		        			  console.log(data);
+		      		        			  if($('#confirm_number').val() != data) {
+		      		        				  swal("인증정보가 정확하지 않습니다!")
+		      		        				 
+		      		        			  } else {
+		      		        				  swal("인증정보가 확인되었습니다!")
+		      		        				  $('#confirm_val').val('1');
+		      		        			  }
+		      		        		  })
+		      		        	  }
+		      		          });
+		        		  }
 		        	  }
-		          });
+				})
+				
+				
+				
+				
+				
 			}
 		});
 		
@@ -84,9 +105,7 @@ href=".././resources/js/sweetalert.css">
 				$('#pw_login').focus();
 				return false;
 			} else if ($('#id_login').val() != '' && $('#pw_login').val() != ''){
-				
-				
-				
+			
 				// 로그인 아이디, 비밀번호 비교하는거 비동기로 검사하기
 				$.ajax({
 		        	  type : "post",
@@ -98,9 +117,43 @@ href=".././resources/js/sweetalert.css">
 		        			  swal("비밀번호가 틀렸거나 존재하지 않는 아이디입니다.")
 		        			 /*  alert("비밀번호가 틀렸거나 존재하지 않는 아이디입니다."); */
 		        			  $('#id_login').focus();
+		        			
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
+		        			 
 		        			  return false;
 		        		  } else {
 		        			  $('#login_form').submit();
+		        				$.ajax({
+			      		        	  type : "post",
+			      		        	  url : getContextPath() + "/member/ConfirmPassword.htm",
+			      		        	  data : {"receiver" : $('#email').val()},
+			      		        	  success : function(data) {
+			      		        		  
+			      		        		  $('#confirm').click(function() {
+			      		        			  console.log(data);
+			      		        			  if($('#confirm_number').val() != data) {
+			      		        				  swal("인증정보가 정확하지 않습니다!")
+			      		        				 
+			      		        			  } else {
+			      		        				  swal("인증정보가 확인되었습니다!")
+			      		        				  $('#confirm_val').val('1');
+			      		        			  }
+			      		        		  })
+			      		        	  }
+			      		          });
 		        		  }
 		        	  }
 		          });

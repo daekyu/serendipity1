@@ -17,7 +17,6 @@ public class MessageDTO {
 	private String message_content;
 	private Date message_date;
 	
-	
 	public int getMessage_num() {
 		return message_num;
 	}

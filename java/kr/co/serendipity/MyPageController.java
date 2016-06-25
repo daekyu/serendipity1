@@ -67,11 +67,15 @@ public class MyPageController {
 	@RequestMapping("my_page_modifyform.htm")
 	public ModelAndView modifyAccount(MemberDTO memberdto) {
 		System.out.println("myPage_modifyform entrance");
+		String country = mypageservice.country(memberdto);
 
 		ModelAndView mav = new ModelAndView("/mypage/my_page_modifyform");
 		mav.addObject("hobby_list", mypageservice.getHobbyList());
 		mav.addObject("language_list", mypageservice.getLanguageList());
 		mav.addObject("member_info", mypageservice.getMemberInfo(memberdto));
+		System.out.println("country : " + country);
+		mav.addObject("country", country);
+		
 		return mav;
 	}
 

@@ -225,7 +225,7 @@ href=".././resources/js/sweetalert.css">
 			
 	$(function() {
 		$("#datepicker").datepicker({
-			startDate : new Date()
+			startDate :new Date((new Date()).valueOf() + 1000*3600*24)
 		}).datetimepicker('update', new Date());
 	});
 	

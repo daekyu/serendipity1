@@ -68,7 +68,7 @@
 		var dateArray = dateString.split("/");  
 		var dateObj = new Date(dateArray[2], Number(dateArray[0])-1, dateArray[1]);
 		var betweenDay = (dateObj.getTime()-today.getTime())/1000/60/60/24;
-		if(betweenDay < 1){
+		if(betweenDay < 0){
 			$('#beforeDate').remove();
 			$('#afterDate').append("마감된 글입니다.");
 		}

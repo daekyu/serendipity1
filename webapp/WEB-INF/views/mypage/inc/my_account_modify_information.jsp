@@ -187,26 +187,24 @@
 			  
 			  <div class="form-group">
 				<label>성별: <span class="required">*</span></label>
-                <select class="form-group" name="gender" disabled>
-                	<option value="-">--</option>
-                	<option value="M">남자</option>
-                	<option value="F">여자</option>
-                </select>
+                <c:choose>
+                	<c:when test="${member_info.gender == 'M'}">
+                		<input class="form-control" value="남자" readonly>
+                	</c:when>
+                	<c:otherwise>
+	                	<input class="form-control" value="여자" readonly>
+                	</c:otherwise>
+                </c:choose>
               </div>
               
               <div class="form-group">
 				<label>나이: <span class="required">*</span></label>
-                <input class="form-control" id="age" type="text" value="${member_info.age}">
+                <input class="form-control" id="age" type="text" value="${member_info.age}" readonly>
               </div>
               
               <div class="form-group">
 				<label>국적: <span class="required">*</span></label>
-                <select class="form-group" name="country_code" id="country" disabled>
-                	<option value="-">--</option>
-                	<c:forEach var="i" items="${country_list}">
-                		<option value="${i.country_code}">${i.country_name}</option>
-                	</c:forEach>
-                </select>
+                <input class="form-control" id="age" type="text" value="${country}" readonly>
               </div>
               
               <!-- 한국 어느지역 사람인지 나타내주는 코드. 외국인일경우 숨기고, 한국인이면 보여주게하자. 그리고 한국인이 입력안하면 넘어가지 못하게 하자 -->

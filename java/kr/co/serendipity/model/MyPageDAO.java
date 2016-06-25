@@ -96,4 +96,7 @@ public interface MyPageDAO {
 	
 	//여행자 구함에서 해당글의 신청 가능 인원 수 불러오기
 	public int getBoardCapacity(ParticipantDTO participantdto);
+	
+	//마이페이지 정보수정 국적 출력
+	public String country(MemberDTO memberdto);
 }

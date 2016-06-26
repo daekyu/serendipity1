@@ -193,11 +193,6 @@
 								</c:otherwise>
 							</c:choose>
 						</ul>
-						<br>임시 출력창
-						<br>page: ${page}<br> nowpage: ${nowpage}<br>
-						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
-						endpage: ${endpage}<br> listCount: ${listCount}<br> 
-
 						<c:if test="${!empty sessionScope.user_num}">
 							<a href="${pageContext.request.contextPath}/board/guide_writeform.htm?user_num=${sessionScope.user_num}"
 							class="btn btn-default"><spring:message code="board.traveler1"/>

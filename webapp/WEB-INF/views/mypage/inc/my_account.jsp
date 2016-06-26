@@ -21,17 +21,7 @@
 			  <div class="carousel-box load" data-carousel-pagination="true" data-carousel-nav="false" data-carousel-one="true" data-autoplay-disable="true">
 				  <div class="carousel">
 					<div class="image">
-					<%-- <c:set var="i" value="${dto.profile_picture}" />
-					<c:choose>
-					    <c:when test="${empty i}">
-					       <img class="replace-2x" src="content/img/team-big-1.jpg" alt="" title="" width="768" height="768">
-					    </c:when>
-					    <c:otherwise>
-					       <img class="replace-2x" src="${i}" alt="" title="" width="768" height="768">
-					    </c:otherwise>
-					</c:choose> --%>
 					  <img class="replace-2x img-profile" src="${pageContext.request.contextPath}/resources/img/profile_picture/${memberdto.profile_picture}" alt="프로필사진" title="프로필사진" width="768" height="768">
-					  
 					</div>
 				  </div>
 				<div class="clearfix"></div>
@@ -46,10 +36,6 @@
 				<p>${memberdto.profile_description}</p>
 			  </div>
 			  <div class="social">
-<!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>
-				<a class="icon rounded icon-twitter" href="#"><i class="fa fa-twitter"></i></a>
-				<a class="icon rounded icon-google" href="#"><i class="fa fa-google"></i></a>
-				<a class="icon rounded icon-linkedin" href="#"><i class="fa fa-linkedin"></i></a> -->
 			  </div>
 			</div>
 			<div class="clearfix"></div>
@@ -93,7 +79,7 @@
 		  </div>
 		
 		</div>
-      </article><!-- .content -->
+      </article>
 	  
 	  <jsp:include page="my_page_sidebar.jsp"></jsp:include>
     </div>

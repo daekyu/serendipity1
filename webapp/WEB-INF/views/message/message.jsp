@@ -74,14 +74,12 @@
                      }
                      
                      $('#receiver').focusout(function() {
-                         //$('#div_view').empty();
                          $.ajax({
                                  type : "post",
                                  url : getContextPath() + "/message/getReceiverNum.htm",
                                  data : {"id" : $('#receiver').val()},
                                  success : function(data) {
                                     if(data == ""){
-                                       // 뭔가 추가하자...
                                     } else {
                                        $('#receiver_num').val(data.user_num);
                                     }

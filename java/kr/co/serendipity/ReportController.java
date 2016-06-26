@@ -1,23 +1,19 @@
 package kr.co.serendipity;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.ReportDTO;
 import kr.co.serendipity.service.ReportService;
-import net.sf.json.JSONObject;
 
 /*
  * @Class : ReportController
@@ -48,7 +44,6 @@ public class ReportController {
 	// 관리자 페이지에서 신고하는 글 상세보기
 	@RequestMapping("report_detail.htm")
 	public @ResponseBody HashMap<String, Object> reportDetail(ReportDTO reportdto, HttpSession session) throws ClassNotFoundException, SQLException {
-		System.out.println("REPORT_NUM : " + reportdto.getReport_num());
 		return reportservice.reportDetail(reportdto);
 	}
 	

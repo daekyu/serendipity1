@@ -1,6 +1,4 @@
 package kr.co.serendipity;
-import java.net.HttpCookie;
-import java.net.HttpURLConnection;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;

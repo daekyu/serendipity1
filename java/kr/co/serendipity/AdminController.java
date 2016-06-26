@@ -9,7 +9,6 @@ package kr.co.serendipity;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -42,8 +41,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping("stats_list.htm")
-	public String statsList() {
-		return "/admin/admin_stats_page";
+	public String statsList(HttpSession session) {
+		if(!session.getAttribute("id").equals("admin")) {
+			return "/inc/hasNoAuthority";
+		} else {
+			return "/admin/admin_stats_page";
+		}
 	}
 	
 	@RequestMapping("member_gender_rate.htm")

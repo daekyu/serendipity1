@@ -70,9 +70,9 @@
 								data-toggle="dropdown" href="#">Show: <span>${basicshow}</span> <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=4&sort=${basicsort}">3</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=8&sort=${basicsort}">6</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=12&sort=${basicsort}">9</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=4&sort=${basicsort}">4</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=8&sort=${basicsort}">8</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=12&sort=${basicsort}">12</a></li>
 							</ul>
 						</div>
 						<!-- .show -->

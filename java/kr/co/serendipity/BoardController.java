@@ -285,6 +285,7 @@ public class BoardController {
 						flist.get(i).transferTo(new File(savePath));
 						BoardDTO searchDto = boardservice.picSearch(boarddto);
 						if(i == 0){
+							System.out.println("pic1 입니다 옵니까?");
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getBoard_picture1();
 							if(beforeFile != null){
@@ -295,6 +296,7 @@ public class BoardController {
 							}
 							boardservice.picUpdate1(saveFileName, boarddto);
 						}else if(i == 1){
+							System.out.println("pic2 입니다 옵니까?");
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getBoard_picture2();
 							if(beforeFile != null){
@@ -305,6 +307,7 @@ public class BoardController {
 							}
 							boardservice.picUpdate2(saveFileName, boarddto);
 						}else if(i == 2){
+							System.out.println("pic3 입니다 옵니까?");
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getBoard_picture3();
 							if(beforeFile != null){

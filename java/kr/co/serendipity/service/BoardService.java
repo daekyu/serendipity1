@@ -188,7 +188,7 @@ public class BoardService {
 	
 	public void picUpdate2(String saveFileName, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
-		dao.picUpdate1(saveFileName, boarddto);
+		dao.picUpdate2(saveFileName, boarddto);
 	}
 	
 	public void picUpdate3(String saveFileName, BoardDTO boarddto) throws ClassNotFoundException, SQLException {

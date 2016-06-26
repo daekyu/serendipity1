@@ -78,23 +78,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </update>
    
    <update id="picUpdate1">
-      update board set board_picture1=#{board_picture1} where board_num=#{board_num}
+      update board set board_picture1=#{0} where board_num=#{1.board_num}
    </update>
    
    <update id="picUpdate2">
-      update board set board_picture2=#{board_picture2} where board_num=#{board_num}
+      update board set board_picture2=#{0} where board_num=#{1.board_num}
    </update>
    
    <update id="picUpdate3">
-      update board set board_picture3=#{board_picture3} where board_num=#{board_num}
+      update board set board_picture3=#{0} where board_num=#{1.board_num}
    </update>
    
    <update id="picUpdate4">
-      update board set board_picture4=#{board_picture4} where board_num=#{board_num}
+      update board set board_picture4=#{0} where board_num=#{1.board_num}
    </update>
    
    <update id="picUpdate5">
-      update board set board_picture5=#{board_picture5} where board_num=#{board_num}
+      update board set board_picture5=#{0} where board_num=#{1.board_num}
    </update>
    
    <select id="picSearch" resultType="kr.co.serendipity.model.BoardDTO">

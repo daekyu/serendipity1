@@ -363,9 +363,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					</tr>
 					<tr>
 						<td>인원수</td>
-						<td><input class="form-control" type="text" name="board_Capacity" value="${boarddto.BOARD_CAPACITY}"></td>
+						<td><input class="form-control" type="text" name="board_capacity" value="${boarddto.BOARD_CAPACITY}"></td>
 						<td>날짜</td>
-						<td><input class="form-control" type="text" name="board_Date"  id="datepicker"  value="${boarddto.BOARD_DATE}"></td>
+						<td><input class="form-control" type="text" name="board_date"  id="datepicker"  value="${boarddto.BOARD_DATE}"></td>
 						<td>지불할 가격</td>
 						  
                      <td><select id="selectoption">
@@ -386,7 +386,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
 
 
-							<textarea name="board_Content" id="ckeditor" >${boarddto.BOARD_CONTENT}</textarea> 
+							<textarea name="board_content" id="ckeditor" >${boarddto.BOARD_CONTENT}</textarea> 
 							<script	type="text/javascript">
 								CKEDITOR.replace('ckeditor', {
 									width : '90%',

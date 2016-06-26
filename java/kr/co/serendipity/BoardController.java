@@ -250,6 +250,9 @@ public class BoardController {
 
 					flist.get(i).transferTo(new File(savePath));
 					BoardDTO searchDto = boardservice.picSearch(boarddto);
+					System.out.println("pic1 : " + searchDto.getBoard_picture1());
+					System.out.println("searchBoard_num : " + searchDto.getBoard_num());
+					System.out.println("boardPic1 : " + boarddto.getBoard_picture1());
 					if(i == 0){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_picture1();
@@ -259,7 +262,9 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						boardservice.picUpdate1(saveFileName, boarddto);
+						System.out.println("여긴오지?");
+						boardservice.picUpdate1(saveFileName, searchDto);
+						System.out.println("여기는여");
 					}else if(i == 1){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_picture2();
@@ -269,7 +274,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						boardservice.picUpdate2(saveFileName, boarddto);
+						boardservice.picUpdate2(saveFileName, searchDto);
 					}else if(i == 2){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_picture3();
@@ -279,7 +284,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						boardservice.picUpdate3(saveFileName, boarddto);
+						boardservice.picUpdate3(saveFileName, searchDto);
 					}else if(i == 3){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_picture4();
@@ -289,7 +294,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						boardservice.picUpdate4(saveFileName, boarddto);
+						boardservice.picUpdate4(saveFileName, searchDto);
 					}else if(i == 4){
 						//업데이트 전 프로필 사진 삭제
 						String beforeFile = searchDto.getBoard_picture5();
@@ -299,7 +304,7 @@ public class BoardController {
 						    	file.delete();
 						    }
 						}
-						boardservice.picUpdate5(saveFileName, boarddto);
+						boardservice.picUpdate5(saveFileName, searchDto);
 					}
 				}
 			}

@@ -303,7 +303,7 @@ public class MyPageController {
 		
 	}
 
-	@RequestMapping(value = "InfoModify2.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "InfoModify2.htm", method = {RequestMethod.POST,RequestMethod.GET})
 	public String infoModify2(MemberDTO memberdto, HttpSession session) throws ClassNotFoundException, SQLException {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";

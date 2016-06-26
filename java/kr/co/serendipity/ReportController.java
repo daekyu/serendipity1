@@ -53,7 +53,7 @@ public class ReportController {
 	}
 	
 	// 신고하는 글쓰기(여행자가 신고)
-	@RequestMapping(value = "report_write1.htm", method = RequestMethod.POST)
+	@RequestMapping("report_write1.htm")
 	public String ReportWriteTravler(ReportDTO reportdto, BoardDTO boarddto, HttpSession session) throws ClassNotFoundException, SQLException {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
@@ -66,7 +66,7 @@ public class ReportController {
 	}
 	
 	// 신고하는 글쓰기(가이드가 신고)
-	@RequestMapping(value = "report_write2.htm", method = RequestMethod.POST)
+	@RequestMapping("report_write2.htm")
 	public String ReportWriteGuide(ReportDTO reportdto, BoardDTO boarddto, HttpSession session) throws ClassNotFoundException, SQLException {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";

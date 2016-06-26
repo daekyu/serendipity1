@@ -55,9 +55,10 @@
 		  
 		  <!-- 로그인하는 Form태그가 있는 부분 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
-			<form class="form-box" action="InfoModify.htm?user_num=${sessionScope.user_num}" method="post" enctype="multipart/form-data">
+			<form class="form-box" action="InfoModify.htm" method="post" enctype="multipart/form-data">
 			<%-- <input type="hidden" name="user_name" value="${sessionScope.user_num}"> --%>
 			  <h3 class="title">추가정보 수정</h3>
+			  <input type="hidden" name="user_num" value="${sessionScope.user_num}">
 		<!-- 	  <p>요 밑에 테이블 이상하게 보이는건 나중에 수정해보자...</p> -->
 			  
              <%--  <table class="table">

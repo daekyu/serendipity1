@@ -18,17 +18,12 @@
 							<img src=".././resources/img/main_logo.png" class="logo-img" alt="">
 						</c:otherwise>
 					</c:choose>
-					
-					
-					
 				</a>
 		  </div>
 		</div><!-- .logo-box -->
 		
-		
 		<div class="col-xs-6 col-md-10 col-lg-9 right-box">
 		  <div class="right-box-wrapper">
-			
 			
 			<div class="primary">
 			  <div class="navbar navbar-default" role="navigation">
@@ -38,9 +33,6 @@
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
-				
-				
-	  
 				<nav class="collapse collapsing navbar-collapse">
 				  <ul class="nav navbar-nav navbar-center">
 				  
@@ -76,8 +68,6 @@
 						  <a href="${pageContext.request.contextPath}/admin/member_list.htm"><spring:message code="index.header5"/></a>
 						</li>
 					</c:if>
-
-					
 				  </ul>
 				</nav>
 			  </div>

@@ -204,19 +204,10 @@
 							<span
 							class="glyphicon glyphicon-arrow-right"></span></a>
 						</c:if>
-
-
-							<%-- <a href="${pageContext.request.contextPath}/board/guide_writeform.htm"
-							class="btn btn-default"> <spring:message code="board.traveler1"/><span
-							class="glyphicon glyphicon-arrow-right"></span></a>
- --%>
-						
 				</div>
 				<!-- .pagination-box -->
-				
 			</div>
 			<!-- .content -->
-
 		</div>
 	</div>
 	<!-- .container -->

@@ -11,11 +11,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Insert title here</title>
 		
-		
-		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href=".././resources/img/favicon.ico">
-		
 		
 		<!-- Font -->
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
@@ -42,9 +39,6 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href=".././resources/css/customizer/pages.css">
 		<link rel="stylesheet" href=".././resources/css/customizer/home-pages-customizer.css">
-		
-		<!-- IE Styles-->
-		<!-- <link rel='stylesheet' href="../css/ie/ie.css"> -->
 	</head>
 
 

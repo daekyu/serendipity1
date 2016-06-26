@@ -11,11 +11,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Insert title here</title>
 		
-		
-		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href=".././resources/img/favicon.ico">
-		
 		
 		<!-- Font -->
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
@@ -42,9 +39,6 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href=".././resources/css/customizer/pages.css">
 		<link rel="stylesheet" href=".././resources/css/customizer/home-pages-customizer.css">
-		
-		<!-- IE Styles-->
-		<!-- <link rel='stylesheet' href="../css/ie/ie.css"> -->
 	</head>
 
 
@@ -70,14 +64,7 @@
 		
 		
 		<!-- 각종 Javascript -->
-		
-		<!--[if (!IE)|(gt IE 8)]><!-->
 		<script src=".././resources/js/jquery-2.1.3.min.js"></script>
-		<!--<![endif]-->
-		
-		<!--[if lte IE 8]>
-		<script src="js/jquery-1.9.1.min.js"></script>
-		<![endif]-->
 		<script src=".././resources/js/bootstrap.min.js"></script>
 		<script src=".././resources/js/price-regulator/jshashtable-2.1_src.js"></script>
 		<script src=".././resources/js/price-regulator/jquery.numberformatter-1.2.3.js"></script>

@@ -56,11 +56,9 @@
 
 		websocket.onmessage = function(message) {
 			processMessage(message);
-			//console.log(message); //나중에 지우자
 		};
 		
 		websocket.onclose = function() {
-			//console.log('Info: WebSocket closed.');
 		};
 		
 		websocket.onerror = function(message) {
@@ -88,12 +86,8 @@
 	function processMessage(message) {
 		
 		var jsonData = JSON.parse(message.data);
-		
-		//alert("jsonData: " + jsonData.messageType + "," + jsonData.name +  "," + jsonData.message + "," + jsonData.users  );
 		if (jsonData.messageType == "ChatMessageDTO") {
 			message = jsonData.name + " : "+ jsonData.message + '\n';
-			//display(message);
-			
 			displaybubble(jsonData);
 		} else if (jsonData.messageType == "UsersMessageDTO") {
 			var other = "";
@@ -133,12 +127,8 @@
 	}
 	
 	function displaybubble(data) {
-		console.log(data);
-		//message = jsonData.name + " : "+ jsonData.message + '\n';
 		if (data.name == "${id}") {
-			
 			$('#chat').append(data.name+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
-	      	    
 		} else {
 		    $('#chat').append(data.name+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
 		}
@@ -165,26 +155,6 @@
 	    <hr>
 	</div>
 	<br/>
-	<!-- <div class="top-padding">
-		<input class="form-control" id="textMessage" type="text" style="width: 300px" />
-		<input type="button" class="btn" id="sendBtn" name="sendBtn" value="Send"/>
-		<input type="button" class="btn" id="leaveBtn" name="leaveBtn" value="Leave"/>
-	</div> -->
-	<!-- <table>
-	<tr>
-		<td>
-			<div class="top-padding center">
-			<input class="form-control" id="textMessage" type="text" style="width: 300px" />
-			</div>
-		</td>
-		<td>
-			<input type="button" class="btn" id="sendBtn" name="sendBtn" value="Send"/><br>
-		</td>
-		<td>
-			<input type="button" class="btn" id="leaveBtn" name="leaveBtn" value="Leave"/><br>
-		</td>
-	</tr>
-	</table> -->
 	<table>
 	<tr>
 		<td>
@@ -200,14 +170,7 @@
 	</table>
 	</div>
 	<!-- 각종 Javascript -->
-		
-		<!--[if (!IE)|(gt IE 8)]><!-->
 		<script src=".././resources/js/jquery-2.1.3.min.js"></script>
-		<!--<![endif]-->
-		
-		<!--[if lte IE 8]>
-		<script src="js/jquery-1.9.1.min.js"></script>
-		<![endif]-->
 		<script src=".././resources/js/bootstrap.min.js"></script>
 		<script src=".././resources/js/price-regulator/jshashtable-2.1_src.js"></script>
 		<script src=".././resources/js/price-regulator/jquery.numberformatter-1.2.3.js"></script>

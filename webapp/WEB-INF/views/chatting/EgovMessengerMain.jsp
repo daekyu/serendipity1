@@ -9,8 +9,6 @@
 <title>messenger</title>
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<!-- <script src="resource/js/json2.js"></script>-->
 <script>
 	//chat 팝업창을 여러개 띄우기 위함	
 	var webSocket = null;
@@ -25,9 +23,6 @@
 		webSocket.onerror = function(message) { processError(message); };
 		
 	});
-	//var webSocket = new WebSocket('ws://' + window.location.host + '/egov-messenger/usersServerEndpoint');
-	
-	
 	function connection(url) {
 		var webSocket = null;
 		if ('WebSocket' in window) {
@@ -100,8 +95,6 @@
 				id = userList[i];
 			}
 			$.newTr = $("<tr><td id='"+userList[i]+"' onclick='tdClick(this)'>"+ id +"</td></tr>");
-			//$.newTr = $("<div id='"+userList[i]+"' class='row'><div class='icon circle icon-40' style='color: green'><i class='fa fa-bell'></i></div><div class='icon icon-40 border text-warning'><img clas='replace-2x' src='' width='40' height='40'></div><a id="+userList[i]+" class='title' onclick='tdClick(this)'>" + userList[i] + "</a></div>");
-			//append
 			$("#ids").last().append($.newTr);
 		}
 	} // 아이콘 색바꾸기
@@ -125,7 +118,6 @@
 	}
 	
 	function processError(message) {
-		/* messagesTextArea.value += "error...\n"; */
 	}
 
 	window.onbeforeunload = function() {
@@ -177,19 +169,6 @@
 </style>
 </head>
 <body>
-	<!-- <form name="usersForm">
-		<input type="hidden" id="roomId" name="roomId"/>
-		<input type="hidden" id="id" name="id"/>
-	<br/>
-	<div>Serendipity Messenger</div>
-	본인 외의 대화상태를 선택하면 대화창이 뜹니다. <br/>
-	List
-	<table id="ids" name="ids" cellspacing='0'>cellspacing='0' is important, must stay
-    	<tr><th>Web Messenger Users</th></tr>Table Header
-    	<tr><td>There is no one to chat</td></tr>
-    </table>
-	</form> -->
-	
 	<div class="dk-box2" align="center">
 		<img src=".././resources/img/main_logo.png">
 		<div class="dk-font title-box text-center">
@@ -215,14 +194,7 @@
 		</form>
 	</div>
 			<!-- 각종 Javascript -->
-		
-		<!--[if (!IE)|(gt IE 8)]><!-->
 		<script src=".././resources/js/jquery-2.1.3.min.js"></script>
-		<!--<![endif]-->
-		
-		<!--[if lte IE 8]>
-		<script src="js/jquery-1.9.1.min.js"></script>
-		<![endif]-->
 		<script src=".././resources/js/bootstrap.min.js"></script>
 		<script src=".././resources/js/price-regulator/jshashtable-2.1_src.js"></script>
 		<script src=".././resources/js/price-regulator/jquery.numberformatter-1.2.3.js"></script>

@@ -68,7 +68,6 @@
 						<jsp:include page="inc/carousel-box-recommended-guide.jsp"></jsp:include>					
 						<jsp:include page="inc/carousel-box-newguide.jsp"></jsp:include>
 						<jsp:include page="inc/carousel-box-newtraveler.jsp"></jsp:include>
-						<jsp:include page="inc/user_modal.jsp"></jsp:include>
 					</article>
 				</section><!-- #main -->
 			</div><!-- .page-box-content -->

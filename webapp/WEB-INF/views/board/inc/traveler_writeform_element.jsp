@@ -59,26 +59,14 @@ href=".././resources/js/sweetalert.css">
   font-weight: 300;
 }
 </style>
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 
 <script type="text/javascript">
    window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
-
-   
    function formatNumber (num) {
        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
    }
-
-
-   
-  
    $(function(){
-      
-      
           var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
-            
-            
-            
             //게시판 유효성 검증 
             
              $('#success').click(function() {
@@ -91,14 +79,6 @@ href=".././resources/js/sweetalert.css">
                      swal('<spring:message code="board.traveler_writeform_ef1"/>');
                      $('#datepicker').focus();
                      return false;
-                  /* }  else if(!reg_number.test($('#before').val()) == true){
-                    swal('<spring:message code="board.traveler_writeform_ef2"/>');
-                    $('#before').focus();
-                     return false;
-                 } else if(!reg_number.test($('#after').val()) == true){
-                       swal('<spring:message code="board.traveler_writeform_ef3"/>');
-                       $('#before').focus();
-                    return false;  */
                   } else if($('#pic1').val()==''){
                      swal("<spring:message code="board.traveler_writeform_ef4"/>");
                      $('#pic1').focus();
@@ -116,17 +96,11 @@ href=".././resources/js/sweetalert.css">
       $('#pic3').hide();
       $('#pic4').hide();
       $('#pic5').hide(); 
-      
-
-    
       var index = 2;
       $('#addBtn')
             .click(
                   function() {
                      if (index <= 5) {
-                        /* $('#addPic')
-                              .append(
-                                    '<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
                         $('#pic'+index).show();
                         index++;
                      } else {
@@ -138,7 +112,6 @@ href=".././resources/js/sweetalert.css">
             index--;
             $('#pic'+index).val("");
             $('#pic'+index).hide();
-            /* $('#pic' + index).remove(); */
          } else {
             swal('더 이상 삭제할 수 없습니다!');
          }
@@ -151,12 +124,7 @@ href=".././resources/js/sweetalert.css">
 
               return false;
           }
-      });
-      
-
-      
-      
-      
+      }); 
    });
 
    $('#ckeditor').keyup(function() {
@@ -173,8 +141,6 @@ href=".././resources/js/sweetalert.css">
       // 강제 서브밋
       $('#bofom').submit();
    });
-
-
    $(function(){   
       $("#convert").click(function(){
              
@@ -183,24 +149,6 @@ href=".././resources/js/sweetalert.css">
                $("#before").focus();
                return false;
             }else{
-               /* $.ajax({
-                      type : "post",
-                      url : "traveler_writeform.htm",
-                      data : {"before" : $('#before').val()},
-                      success : function(data) {
-                         if($('#selecoption').val()=='KRW'){
-                            
-                         }else if($('#selecoption').val()=='JPY'){
-                            
-                         }else($('#selecoption').val()=='USD'){
-                            
-                         }
-                         
-                         }
-                      
-            
-                   }); */
-                   
                   var endpoint = 'live'
                   var access_key = '56370edf846ec46335b07809733c304e';
 
@@ -210,20 +158,6 @@ href=".././resources/js/sweetalert.css">
                       dataType: 'jsonp',
                       success: function(json) {
                         console.log(json);
-                        
-                          // exchange rata data is stored in json.quotes
-                         /*  alert('한화 달러');
-                          alert(json.quotes.JPYUSD);
-                          alert(json.quotes.USDGBP);
-                          alert(json.quotes.USDJPY);
-                          alert(json.quotes.USDKRW);
-                          // source currency is stored in json.source
-                          alert(json.source);
-                          
-                          // timestamp can be accessed in json.timestamp
-                          alert(json.timestamp); */
-                          
-                          //$('#after').val($('#before').val() * )
                           if($('#selectoption').val()=='KRW'){
                               $('#after').val(formatNumber($('#before').val())+'원');
                               $('#before').val(formatNumber($('#before').val())+'원' );
@@ -233,8 +167,7 @@ href=".././resources/js/sweetalert.css">
                                   imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
                                     
                                });
-                            /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
-                            $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
+                           $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
                             $('#before').val(formatNumber($('#before').val())+'¥');
                         
                             }else if($('#selectoption').val()=='USD'){
@@ -244,27 +177,16 @@ href=".././resources/js/sweetalert.css">
 
                             }
                       }
-                  });
-               
-               
-               
-            
-                   
+                  });    
             }
+         }); 
          });
-         
-         });
-         
-
-   
    $(function() {
 
 		$("#datepicker").datepicker({
 			startDate :new Date((new Date()).valueOf() + 1000*3600*24)
 		}).datetimepicker('update', new Date());
 	});
-	
-   
       // set endpoint and your access key
    
    var poly;
@@ -275,12 +197,9 @@ href=".././resources/js/sweetalert.css">
    var markers = Array();
    var infos = Array();
    var local_route = Array();
-   
-
    function initialize() {
       // prepare Geocoder
       geocoder = new google.maps.Geocoder();
-      
 
       // set initial position (기본으로 삼성역)
       var myLatlng = new google.maps.LatLng(37.5088652, 127.0609603);
@@ -327,9 +246,6 @@ href=".././resources/js/sweetalert.css">
            // For each place, get the icon, name and location.
            var bounds = new google.maps.LatLngBounds();
            places.forEach(function(place) {
-              
-              
-              
               var mar = new google.maps.Marker({
                    map: map,
                    title: place.name,
@@ -379,9 +295,6 @@ href=".././resources/js/sweetalert.css">
            map.setZoom(16);
           
            });
-     
-         
-
    }
    
 // Handles click events on a map, and adds a new point to the Polyline.
@@ -429,53 +342,6 @@ href=".././resources/js/sweetalert.css">
          }
       }
    }
-
-   /* // find address function
-   function findAddress() {
-      var address = document.getElementById("gmap_where").value;
-
-      // script uses our 'geocoder' in order to find location by address name
-      geocoder
-            .geocode(
-                  {
-                     'address' : address
-                  },
-                  function(results, status) {
-                     clearOverlays();
-                     if (status == google.maps.GeocoderStatus.OK) { // and, if everything is ok
-
-                        // we will center map
-                        var addrLocation = results[0].geometry.location;
-                        map.setCenter(addrLocation);
-
-                        // store current coordinates into hidden variables
-                        document.getElementById('lat').value = results[0].geometry.location
-                              .lat();
-                        document.getElementById('lng').value = results[0].geometry.location
-                              .lng();
-                          var lat = document.getElementById('lat').value;
-                         var lng = document.getElementById('lng').value;
-                         var latlng = lat + ', ' + lng; 
-                         image = '${pageContext.request.contextPath}/resources/img/flag_marker.png'; 
-
-                        // and then - add new custom marker
-                          var addrMarker = new google.maps.Marker({
-                            position : addrLocation,
-                            map : map,
-                            title : results[0].formatted_address,
-                            icon: image
-                         });
-                         markers.push(addrMarker); 
-
-                        findPlace();
-
-                     } else {
-                        alert('Geocode was not successful for the following reason: '
-                              + status);
-                     }
-                  });
-
-   } */
    function findPlace() {
       var lat = document.getElementById('lat').value;
       var lng = document.getElementById('lng').value;
@@ -623,13 +489,6 @@ href=".././resources/js/sweetalert.css">
                   <td><input class="form-control" id="before" type="text" name="#" placeholder="등록후 수정 불가"></td>
                   <td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.traveler_writeform13"/></button></td>
                   <td><input class="form-control" id="after" type="text" name="price" placeholder="등록후 수정 불가"></td>
-                  
-
-                  <%-- <td><input class="form-control" type="text"></td>
-
-                  <td><spring:message code="board.traveler_writeform4"/></td>
-                  <td><input class="form-control" type="text" name="price"></td> --%>
-
                </tr>
                <tr>
                   <td><h6><spring:message code="board.traveler_writeform5"/></h6></td>
@@ -665,10 +524,6 @@ href=".././resources/js/sweetalert.css">
                      <button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="board.traveler_writeform10"/></button>
                   </td>
                </tr>
-
-
-
-
                <tr>
                   <td><h6>Meeting Point</h6></td>
                   <td colspan="5">
@@ -676,14 +531,6 @@ href=".././resources/js/sweetalert.css">
                      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                         <div id="gmap_canvas" style="height: 400px;width:auto"></div>
                         <div class="actions">
-                           <%-- <div class="button">
-                              <label for="gmap_where"><spring:message code="board.traveler_writeform10.1"/></label> 
-                               <input id="gmap_where"
-                                 class="form-control" type="text" name="gmap_where">
-                           </div>
-                           <div id="button2" class="btn btn-success"
-                              onclick="findAddress(); return false;"><spring:message code="board.traveler_writeform10.12"/></div>
-                           <div class="button"> --%>
                               <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> <select id="gmap_type">
                                   <option value="--">--</option> 
                                  <option value="art_gallery"><spring:message code="board.traveler_writeform10.4"/></option>
@@ -712,8 +559,6 @@ href=".././resources/js/sweetalert.css">
                            <div id="button1" class="btn btn-success"
                               onclick="findPlaces(); return false;"><spring:message code="board.traveler_writeform10.13"/></div>
                         </div>
-                   
-
                   </td>
                </tr>
 
@@ -727,8 +572,5 @@ href=".././resources/js/sweetalert.css">
       </div>
    </article>
    <!-- .content -->
-
-
-
 </section>
 <!-- #main -->

@@ -23,7 +23,6 @@
     //websocket 과 연결을 끊고 싶을때 실행하는 메소드
     sock.onclose = onClose;
     
-    
     function sendMessage(){
         
             //websocket으로 메시지를 보내겠다.

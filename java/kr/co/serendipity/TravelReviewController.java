@@ -28,7 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.ReplyDTO;
 import kr.co.serendipity.model.ReviewDTO;
@@ -263,90 +262,17 @@ public class TravelReviewController {
 		return mav;
 	}
 	
-	/*@RequestMapping("review_update.htm")
-	public String updateReview(ReviewDTO dto, MultipartHttpServletRequest mrequest, HttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
-		
-		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
-		ReviewDTO beforePic = travelreviewservice.selectPicture(dto);
-		List<String> beforePics = new ArrayList<String>();
-		beforePics.add(beforePic.getReview_picture1());
-		beforePics.add(beforePic.getReview_picture2());
-		beforePics.add(beforePic.getReview_picture3());
-		beforePics.add(beforePic.getReview_picture4());
-		beforePics.add(beforePic.getReview_picture5());
-		
-		for(int i=0; i<beforePics.size(); i++){
-			System.out.println("before pics: "+beforePics.get(i));
-				File file = new File(realFolder+"\\"+beforePics.get(i));
-			    if(file.exists()){
-			    	file.delete();
-			}
-		}
-		
-		List<MultipartFile> mflist = mrequest.getFiles("review_picture");
-		List<String> filenames = new ArrayList<String>();
-		
-		System.out.println("0번째: "+mflist.get(0).getOriginalFilename());
-		System.out.println("1번째: "+mflist.get(1).getOriginalFilename());
-		System.out.println("2번째: "+mflist.get(2).getOriginalFilename());
-		System.out.println("3번째: "+mflist.get(3).getOriginalFilename());
-		System.out.println("4번째: "+mflist.get(4).getOriginalFilename());
-		
-		
-        if (mflist.size()==1 && mflist.get(0).getOriginalFilename().equals("")) {
-             
-        } else {
-            for (int i = 0; i < 5; i++){
-            	
-            		String saveFileName = null;
-            		if(mflist.get(i).getOriginalFilename().equals("")){
-            			filenames.add("사진없음");
-            		}
-            		else{
-            		
-                    String genId = UUID.randomUUID().toString(); 
-                    
-                    String originalfileName = mflist.get(i).getOriginalFilename(); 
-                    
-                    System.out.println("filename : "+originalfileName);
-                     
-                    saveFileName = genId + "_" + originalfileName;
-     
-                    String savePath = realFolder +"\\"+ saveFileName; 
-     
-                    mflist.get(i).transferTo(new File(savePath));
-                    filenames.add(saveFileName); 
-            	}
-            }
-        }
-         
-        for(int i=0; i<filenames.size(); i++){
-        	System.out.println("filename : "+filenames.get(i));
-        }
-        dto.setReview_picture1(filenames.get(0)); 
-        dto.setReview_picture2(filenames.get(1)); 
-        dto.setReview_picture3(filenames.get(2)); 
-        dto.setReview_picture4(filenames.get(3)); 
-        dto.setReview_picture5(filenames.get(4)); 
-		
-		travelreviewservice.reviewUpdate(dto);
-		return "redirect:/travel_review/review_list.htm";
-	}*/
-	
 	@RequestMapping("review_update.htm")
 	public String updateReview(ReviewDTO reviewdto, MultipartHttpServletRequest mrequest, HttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		List<MultipartFile> flist = mrequest.getFiles("review_picture");
 
 		String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
 
-		//if (flist.size() == 1 && flist.get(0).getOriginalFilename().equals("")) {
-
-		//} else {
 			for (int i = 0; i < 5; i++) {
 
 				String saveFileName = null;
 				if (flist.get(i).getOriginalFilename().equals("")) {
-					//filenames.add("no_picture");
+					
 				} else { // 이미지가 있으면
 					String genId = UUID.randomUUID().toString();
 					String originalfileName = flist.get(i).getOriginalFilename();
@@ -420,7 +346,6 @@ public class TravelReviewController {
 					}
 				}
 			}
-		//}
 		
 		travelreviewservice.reviewUpdate(reviewdto);
 		return "redirect:/travel_review/review_list.htm";
@@ -443,6 +368,7 @@ public class TravelReviewController {
 		mav.addObject("review_list", travelreviewservice.filteringReviewList(local_code));
 		mav.addObject("local_list", travelreviewservice.localList());
 		mav.addObject("local_code", local_code);
+		mav.addObject("local_name", travelreviewservice.getLocalName(local_code));
 		return mav;
 	}
 	

@@ -391,6 +391,8 @@ href=".././resources/js/sweetalert.css">
      // Because path is an MVCArray, we can simply append a new coordinate
      // and it will automatically appear.
      path.push(event.latLng);
+     alert(event.address);
+     console.log(path);
 
      // Add a new marker at the new plotted point on the polyline.
      var marker = new google.maps.Marker({
@@ -399,8 +401,11 @@ href=".././resources/js/sweetalert.css">
        map: map
      });
      local_route.push(event.latLng);
-     console.log(local_route);
-
+     
+     google.maps.event.addListener(marker, 'click', function() {
+    	 
+     });
+	
    }
 
    // clear overlays function
@@ -631,7 +636,8 @@ href=".././resources/js/sweetalert.css">
                   <td colspan="5">
                      <!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
                      <!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
-                     <textarea name="board_content" id="ckeditor"></textarea> <script
+                     <textarea name="board_content" id="ckeditor"></textarea> 
+                     <script
                         type="text/javascript">
                         CKEDITOR.replace('ckeditor', {
                            width : '90%',
@@ -706,7 +712,7 @@ href=".././resources/js/sweetalert.css">
                            <div id="button1" class="btn btn-success"
                               onclick="findPlaces(); return false;"><spring:message code="board.traveler_writeform10.13"/></div>
                         </div>
-                     </div>
+                   
 
                   </td>
                </tr>

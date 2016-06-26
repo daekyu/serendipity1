@@ -134,9 +134,11 @@ public class BoardController {
 
 	@RequestMapping(value = "guide_writeform.htm", method = RequestMethod.GET)
 	public String guideWriteform(BoardDTO boarddto, HttpSession session) {
-		if(session.getAttribute("country_code").equals("82")) {
+		if(!session.getAttribute("country_code").equals("82")) {
+			System.out.println("aaaaaaaaaaaaaaa11111");
 			return "/board/guide_writeform";
 		} else {
+			System.out.println("bbbbbbbbbbbbbbbb11111");
 			return "/inc/hasNoAuthority";
 		}
 		
@@ -150,7 +152,7 @@ public class BoardController {
 
 	@RequestMapping(value = "traveler_writeform.htm", method = RequestMethod.GET)
 	public ModelAndView travelerWriteform(BoardDTO boarddto, HttpSession session) {
-		if(!session.getAttribute("country_code").equals("82")) {
+		if(session.getAttribute("country_code").equals("82")) {
 			ModelAndView mav = new ModelAndView("/board/traveler_writeform");
 			mav.addObject("user_num", boarddto.getUser_num());
 			return mav;
@@ -244,7 +246,7 @@ public class BoardController {
 		if(session.getAttribute("id") == null) {
 			ModelAndView mav = new ModelAndView("/member/join_login");
 			return mav;
-		} else if(!session.getAttribute("country_code").equals("82")) {
+		} else if(session.getAttribute("country_code").equals("82")) {
 			ModelAndView mav = new ModelAndView("/inc/hasNoAuthority");
 			return mav;
 		} else {
@@ -346,7 +348,7 @@ public class BoardController {
 		if(session.getAttribute("id") == null) {
 			ModelAndView mav = new ModelAndView("/member/join_login");
 			return mav;
-		} else if(session.getAttribute("country_code").equals("82")) {
+		} else if(!session.getAttribute("country_code").equals("82")) {
 			ModelAndView mav = new ModelAndView("/inc/hasNoAuthority");
 			return mav;
 		} else {

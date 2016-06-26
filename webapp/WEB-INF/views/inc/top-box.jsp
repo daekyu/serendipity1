@@ -57,14 +57,13 @@
   
 			<nav class="collapse collapsing navbar-collapse">
 			  <ul class="nav navbar-nav navbar-right">
-				<li><a href="javascript:doPop()"><spring:message code="index.top-box"/></a></li>
-				<li><a href="javascript:doPop2()"><spring:message code="index.top-box1"/></a></li>
-				<li><a href="#"><spring:message code="index.top-box2"/><span class="count">2</span></a></li>
 				<c:choose>
 					<c:when test="${empty sessionScope.id}">
 						<li><a href="${pageContext.request.contextPath}/member/join_login.htm"><spring:message code="index.top-box3"/><i class="fa fa-lock after"></i></a></li>
 					</c:when>	
 					<c:otherwise>
+						<li><a href="javascript:doPop()"><spring:message code="index.top-box"/></a></li>
+						<li><a href="javascript:doPop2()"><spring:message code="index.top-box1"/></a></li>
 						<li><a href="${pageContext.request.contextPath}/member/logout.htm"><spring:message code="index.top-box4"/><i class="fa fa-lock after"></i></a></li>
 					</c:otherwise>
 				</c:choose>

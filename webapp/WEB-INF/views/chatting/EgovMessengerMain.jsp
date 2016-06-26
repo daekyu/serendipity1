@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>messenger</title>
+<title>Serendipity :: 채팅</title>
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -125,7 +125,7 @@
 	};
 </script>
 <!-- Favicon -->
-		<link rel="shortcut icon" href=".././resources/img/favicon.ico">
+		<link rel="shortcut icon" href=".././resources/img/main_ico.png">
 		
 		<!-- Font -->
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>

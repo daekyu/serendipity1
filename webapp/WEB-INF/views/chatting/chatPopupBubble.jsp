@@ -8,9 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="<c:url value='.././resources/css/bubbleChat.css'/>"/>
 
-<title>WebSocket messenger</title>
+<title>Serendipity :: 채팅</title>
 <!-- Favicon -->
-		<link rel="shortcut icon" href=".././resources/img/favicon.ico">
+		<link rel="shortcut icon" href=".././resources/img/main_ico.png">
 		
 		<!-- Font -->
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>

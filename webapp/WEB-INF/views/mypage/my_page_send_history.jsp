@@ -9,11 +9,11 @@
 		<meta name="author" content="itembridge.com">
 		<meta class="viewport" name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Insert title here</title>
+		<title>Serendipity :: 보낸 요청</title>
 		
 		
 		<!-- Favicon -->
-		<link rel="shortcut icon" href=".././resources/img/favicon.ico">
+		<link rel="shortcut icon" href=".././resources/img/main_ico.png">
 		
 		
 		<!-- Font -->

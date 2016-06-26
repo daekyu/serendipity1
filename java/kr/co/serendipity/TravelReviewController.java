@@ -48,7 +48,6 @@ public class TravelReviewController {
 			ModelAndView mav = new ModelAndView("/member/join_login");
 			return mav;
 		} else {
-			System.out.println("reviewList entrance");
 			ModelAndView mav = new ModelAndView("/travel_review/review_list");
 
 			int page = 1;
@@ -213,7 +212,6 @@ public class TravelReviewController {
 			beforePics.add(beforePic.getReview_picture5());
 			
 			for(int i=0; i<beforePics.size(); i++){
-				System.out.println("before pics: "+beforePics.get(i));
 					File file = new File(realFolder+"\\"+beforePics.get(i));
 				    if(file.exists()){
 				    	file.delete();
@@ -230,16 +228,8 @@ public class TravelReviewController {
 		if(session.getAttribute("id") == null) {
 			return "/member/join_login";
 		} else {
-			System.out.println("들어오니");
-			
 			List<MultipartFile> mflist = mrequest.getFiles("review_picture");
 			List<String> filenames = new ArrayList<String>();
-			
-			System.out.println("0번째 : "+mflist.get(0).getOriginalFilename());
-			System.out.println("1번째 : "+mflist.get(1).getOriginalFilename());
-			System.out.println("2번째 : "+mflist.get(2).getOriginalFilename());
-			System.out.println("3번째 : "+mflist.get(3).getOriginalFilename());
-			System.out.println("4번째 : "+mflist.get(4).getOriginalFilename());
 			
 			String realFolder = mrequest.getSession().getServletContext().getRealPath("resources/img/review_upload");
 	        if (mflist.size()==1 && mflist.get(0).getOriginalFilename().equals("")) {
@@ -256,9 +246,7 @@ public class TravelReviewController {
 	                    String genId = UUID.randomUUID().toString(); 
 	                   
 	                    String originalfileName = mflist.get(i).getOriginalFilename(); 
-	                    
-	                    System.out.println("filename : "+originalfileName);
-	                     
+
 	                    saveFileName = genId + "_" + originalfileName;
 	                    
 	     
@@ -269,10 +257,7 @@ public class TravelReviewController {
 	            	}
 	            }
 	        }
-	         
-	        for(int i=0; i<filenames.size(); i++){
-	        	System.out.println("filename : "+filenames.get(i));
-	        }
+
 	        dto.setReview_picture1(filenames.get(0)); // 파일명1
 	        dto.setReview_picture2(filenames.get(1)); // 파일명2
 	        dto.setReview_picture3(filenames.get(2)); // 파일명3
@@ -324,7 +309,6 @@ public class TravelReviewController {
 						if(i == 0){
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getReview_picture1();
-							System.out.println("before1 : "+beforeFile);
 							if(beforeFile != null){
 								File file = new File(realFolder+"\\"+beforeFile);
 							    if(file.exists()){
@@ -336,7 +320,6 @@ public class TravelReviewController {
 						}else if(i == 1){
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getReview_picture2();
-							System.out.println("before2 : "+beforeFile);
 							if(beforeFile != null){
 								File file = new File(realFolder+"\\"+beforeFile);
 							    if(file.exists()){
@@ -348,7 +331,6 @@ public class TravelReviewController {
 						}else if(i == 2){
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getReview_picture3();
-							System.out.println("before3 : "+beforeFile);
 							if(beforeFile != null){
 								File file = new File(realFolder+"\\"+beforeFile);
 							    if(file.exists()){
@@ -360,7 +342,6 @@ public class TravelReviewController {
 						}else if(i == 3){
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getReview_picture4();
-							System.out.println("before4 : "+beforeFile);
 							if(beforeFile != null){
 								File file = new File(realFolder+"\\"+beforeFile);
 							    if(file.exists()){
@@ -372,7 +353,6 @@ public class TravelReviewController {
 						}else if(i == 4){
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getReview_picture5();
-							System.out.println("before5 : "+beforeFile);
 							if(beforeFile != null){
 								File file = new File(realFolder+"\\"+beforeFile);
 							    if(file.exists()){

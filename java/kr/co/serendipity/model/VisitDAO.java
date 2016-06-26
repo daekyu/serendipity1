@@ -1,7 +1,5 @@
 package kr.co.serendipity.model;
 
-import java.util.HashMap;
-
 public interface VisitDAO {
 	//전체 방문자 증가
 	public void setVisitTotalCount();

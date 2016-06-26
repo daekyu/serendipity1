@@ -9,9 +9,7 @@ package kr.co.serendipity;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -31,9 +29,8 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.ParticipantDTO;
-import kr.co.serendipity.model.ReviewDTO;
-import kr.co.serendipity.service.MyPageService;
 import kr.co.serendipity.service.MemberService;
+import kr.co.serendipity.service.MyPageService;
 
 @Controller
 @RequestMapping("/mypage/")
@@ -49,12 +46,9 @@ public class MyPageController {
 	public String myPage(MemberDTO memberdto, Model model, HttpSession session) throws IOException {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
-		}else{
-			System.out.println("myPage entrance");
-			
+		}else{		
 			MemberDTO dto = mypageservice.myPageGetMemberInfo(memberdto);
 			String pic = dto.getProfile_picture();
-			System.out.println("원본 사진명 : " + pic);
 			String Slocal = mypageservice.parseLocal(dto);
 			List Slang = mypageservice.parseLang(dto);
 			List Shobby = mypageservice.parseHobby(dto);
@@ -74,14 +68,12 @@ public class MyPageController {
 			ModelAndView mav = new ModelAndView("/member/join_login");
 			return mav;
 		}else{
-			System.out.println("myPage_modifyform entrance");
 			String country = mypageservice.country(memberdto);
 
 			ModelAndView mav = new ModelAndView("/mypage/my_page_modifyform");
 			mav.addObject("hobby_list", mypageservice.getHobbyList());
 			mav.addObject("language_list", mypageservice.getLanguageList());
 			mav.addObject("member_info", mypageservice.getMemberInfo(memberdto));
-			System.out.println("country : " + country);
 			mav.addObject("country", country);
 			
 			return mav;
@@ -93,29 +85,24 @@ public class MyPageController {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
 		}else{
-			System.out.println("acceptHistory entrance");
-			System.out.println("user_num : " + memberdto.getUser_num());
-			
 			int un = memberdto.getUser_num();
 			int page = 1;
 			int startpage = 0;
 			int endpage = 0;
 			int maxpage = 0;
 			int check1 = 0;
-			System.out.println("un : " + un);
-			
+
 			if (pg != null) {
 				page = Integer.parseInt(pg);
 			}
 			if(check != null){
 				check1 = Integer.parseInt(check);
 			}
-			System.out.println("page : " + page);
-			
+
 			List<HashMap<String, Object>> participantdto = mypageservice.acceptHistory(un, page);
-			System.out.println("participantdto 완");
+
 			int listCount = mypageservice.getAcceptListCount(memberdto);
-			System.out.println("listCount : " + listCount);
+
 			maxpage = (int) ((double) listCount / 10 + 0.95);
 			startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 			endpage = startpage + 10 - 1;
@@ -143,9 +130,6 @@ public class MyPageController {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
 		}else{
-			System.out.println("sendHistory entrance");
-			System.out.println("user_num : " + memberdto.getUser_num());
-			
 			int page = 1;
 			int startpage = 0;
 			int endpage = 0;
@@ -156,9 +140,9 @@ public class MyPageController {
 			}
 			
 			List<HashMap<String, Object>> participantdto = mypageservice.sendHistory(memberdto, page);
-			System.out.println("participantdto 완");
+
 			int listCount = mypageservice.getSendListCount(memberdto);
-			System.out.println("listCount : " + listCount);
+
 			maxpage = (int) ((double) listCount / 10 + 0.95);
 			startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 			endpage = startpage + 10 - 1;
@@ -224,7 +208,6 @@ public class MyPageController {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
 		}else{
-			System.out.println("InfoModify.htm POST entrance");
 			int user_num = Integer.parseInt(request.getParameter("user_num"));
 			String[] hobbies = request.getParameterValues("hobby_code");
 			String[] languages = request.getParameterValues("language_code");
@@ -264,7 +247,7 @@ public class MyPageController {
 			
 			if(!request.getFile("profile_picture").isEmpty()){
 				MultipartFile mf = request.getFile("profile_picture");
-				System.out.println("mf.getSize() : " + mf.getSize());
+
 				if(mf.getSize()!=0) {
 					
 					String uploadPath = request.getSession().getServletContext().getRealPath("resources/img/profile_picture");
@@ -308,8 +291,6 @@ public class MyPageController {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
 		}else{
-			System.out.println("InfoModify2.htm POST entrance");
-
 			if (memberdto.getPw().equals("")) {
 				
 			} else {
@@ -337,10 +318,6 @@ public class MyPageController {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
 		}else{
-			System.out.println("deleteSendHistory entrance");
-			System.out.println("user_num : " + participantdto.getUser_num());
-			System.out.println("parti_num : " + participantdto.getParti_num());
-			System.out.println("check : " + check);
 			int check2 = Integer.parseInt(check);
 			
 			if(check2 == 2){
@@ -358,19 +335,9 @@ public class MyPageController {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
 		}else{
-			System.out.println("acceptRequest entrance");
-			System.out.println("parti_num : " + participantdto.getParti_num());
-			System.out.println("board_num : " + boarddto.getBoard_num());
-			//System.out.println("bn : " + bn);
-			System.out.println("ctn : " + ctn);
-			System.out.println("particapacity : " + pc);
-			//int bn1=0;
 			int ctn1=0;
 			int pc1 = 0;
 			int check=0;
-			/*if(bn != null){
-				bn1 = Integer.parseInt(bn);
-			}*/
 			
 			if(ctn != null){
 				ctn1 = Integer.parseInt(ctn);
@@ -381,23 +348,14 @@ public class MyPageController {
 			}else{
 				pc1=0;
 			}
-			System.out.println("ctn1 : " + ctn1);
-			
+
 			if(ctn1 == 2){
-				System.out.println("여길 안타니?");
-				//여기가 에러다
-				//List<HashMap<String, Object>> acceptList = mypageservice.acceptCount(participantdto);
-				//int ac = mypageservice.acceptCount(participantdto);
-				
-				
 				if(mypageservice.acceptCount(boarddto) == null){
-						System.out.println("boarddto = null 임");
 						mypageservice.acceptRequest(participantdto);
 				}else{
 					int count = mypageservice.acceptCount(boarddto);
 					int pull = mypageservice.getBoardCapacity(participantdto);
-					System.out.println("count : " + count);
-					System.out.println("pull : " + pull);
+
 					int mi = pull-count;
 					if(count >= pull){
 						//여행자 구함의 경우 인원 초과하면 신청하지 못하게 해야함

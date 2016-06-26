@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.HobbyDTO;
 import kr.co.serendipity.model.LanguageDTO;
@@ -90,10 +89,7 @@ public class MyPageService {
 	
 	public void insertHobby(int user_num, String hobbies){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
-		System.out.println("wkwkwkwkwkwkw : " + user_num);
-		System.out.println("asdasdasdads" + hobbies);
 		dao.insertHobby(user_num, hobbies);
-		System.out.println("aaaaaaasswwwwwwwwwwwwwwwwwww");
 	}
 	
 	public int countLanguage(int user_num){

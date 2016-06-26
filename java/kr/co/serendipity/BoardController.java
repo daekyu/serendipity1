@@ -53,10 +53,7 @@ public class BoardController {
 		if (sort != null) {
 			basicsort = sort;
 		}
-		
-		System.out.println("show : " + show);
-		System.out.println("basicshow : " + basicshow);
-		System.out.println("sort : " + basicsort);
+
 		List<HashMap<String, Object>> board_list = boardservice.getBoardList(page, basicshow, basicsort);
 		
 		/*if(basicsort.equals("price")){
@@ -107,7 +104,6 @@ public class BoardController {
 		if (sort != null) {
 			basicsort = sort;
 		}
-		System.out.println("basicsort : " + basicsort);
 
 		List<HashMap<String, Object>> board_list = boardservice.getGBoardList(page,basicshow, basicsort);
 		int listCount = boardservice.getGListCount();
@@ -175,7 +171,6 @@ public class BoardController {
 			ModelAndView mav = new ModelAndView("/board/travel_detail");
 			List<ParticipantDTO> participantdto = boardservice.detailParticipant(boarddto);
 			int user_num = (Integer)session.getAttribute("user_num");
-			System.out.println("(session)user_num : " + user_num);
 			int check=0;
 			for(int i=0; i<participantdto.size(); i++){
 				ParticipantDTO pd = participantdto.get(i);
@@ -206,7 +201,6 @@ public class BoardController {
 			}
 			List<ParticipantDTO> participantdto = boardservice.detailParticipant(boarddto);
 			int user_num = (Integer)session.getAttribute("user_num");
-			System.out.println("(session)user_num : " + user_num);
 			int realcheck=0;
 			for(int i=0; i<participantdto.size(); i++){
 				ParticipantDTO pd = participantdto.get(i);
@@ -271,7 +265,7 @@ public class BoardController {
 
 					String saveFileName = null;
 					if (flist.get(i).getOriginalFilename().equals("")) {
-						//filenames.add("no_picture");
+						
 					} else { // 이미지가 있으면
 						String genId = UUID.randomUUID().toString();
 						String originalfileName = flist.get(i).getOriginalFilename();
@@ -283,7 +277,6 @@ public class BoardController {
 						flist.get(i).transferTo(new File(savePath));
 						BoardDTO searchDto = boardservice.picSearch(boarddto);
 						if(i == 0){
-							System.out.println("pic1 입니다 옵니까?");
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getBoard_picture1();
 							if(beforeFile != null){
@@ -294,7 +287,6 @@ public class BoardController {
 							}
 							boardservice.picUpdate1(saveFileName, boarddto);
 						}else if(i == 1){
-							System.out.println("pic2 입니다 옵니까?");
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getBoard_picture2();
 							if(beforeFile != null){
@@ -305,7 +297,6 @@ public class BoardController {
 							}
 							boardservice.picUpdate2(saveFileName, boarddto);
 						}else if(i == 2){
-							System.out.println("pic3 입니다 옵니까?");
 							//업데이트 전 프로필 사진 삭제
 							String beforeFile = searchDto.getBoard_picture3();
 							if(beforeFile != null){
@@ -447,7 +438,6 @@ public class BoardController {
 	
 	@RequestMapping(value = "travelerParty.htm")
 	public ModelAndView travelerParty(BoardDTO boarddto) throws ClassNotFoundException, SQLException {
-		System.out.println("travelerParty entrance");
 		boardservice.travelerParty(boarddto);
 		ModelAndView mav = new ModelAndView("redirect:/board/traveler_detail.htm?board_num=" + boarddto.getBoard_num());
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
@@ -461,19 +451,12 @@ public class BoardController {
 		int user_num1 = Integer.parseInt(request.getParameter("user_num"));
 		int many = Integer.parseInt(request.getParameter("many"));
 		int check = 0;
-		System.out.println("board_num : " + board_num);
-		System.out.println("user_num1 : " + user_num1);
-		System.out.println("many : " + many);
 		boarddto.setBoard_num(board_num);
-		System.out.println("boardservice.acceptCount(boarddto) (count) : " + boardservice.acceptCount(boarddto));
 		if(boardservice.acceptCount(boarddto) == null){
-			System.out.println("boarddto = null 임");
 			boardservice.guideParty(board_num, user_num1, many);
 		}else{
 			int count = boardservice.acceptCount(boarddto);
 			int pull = boardservice.getBoardCapacity(boarddto);
-			System.out.println("count : " + count);
-			System.out.println("pull : " + pull);
 			if(count >= pull){
 				//여행자 구함의 경우 인원 초과하면 신청하지 못하게 해야함
 				//스크립트로 경고창

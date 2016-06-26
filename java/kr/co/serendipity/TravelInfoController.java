@@ -9,7 +9,6 @@ package kr.co.serendipity;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.serendipity.model.LocalDTO;
 import kr.co.serendipity.model.ReviewDTO;
-import kr.co.serendipity.model.TravelInfoDAO;
 import kr.co.serendipity.model.TravelInfoDTO;
 import kr.co.serendipity.service.TravelInfoService;
 

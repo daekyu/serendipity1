@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 	/*
@@ -37,7 +37,8 @@
 <section id="main" class="login-register">
   <header class="page-header">
     <div class="container">
-      <h1 class="title">개인정보 수정</h1>
+      <h1 class="title">
+<spring:message code="mypage.my_account_modify_information"/></h1>
     </div>	
   </header>
   <div class="container">
@@ -46,9 +47,9 @@
 		<div class="row filter-elements hidden">
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
 			<div class="info-box">
-			  <h3 class="title">기본정보 수정</h3>
-			  <p class="descriptions">기본 정보 수정은 아래 버튼을 클릭해 주세요.</p>
-			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register">기본 정보 수정</button>
+			  <h3 class="title"><spring:message code="mypage.my_account_modify_information1"/></h3>
+			  <p class="descriptions"><spring:message code="mypage.my_account_modify_information2"/></p>
+			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register"><spring:message code="mypage.my_account_modify_information3"/></button>
 			</div>
 		  </div>
 		  
@@ -57,11 +58,11 @@
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
 			<form class="form-box" action="InfoModify.htm" method="post" enctype="multipart/form-data">
 			<%-- <input type="hidden" name="user_name" value="${sessionScope.user_num}"> --%>
-			  <h3 class="title">추가정보 수정</h3>
+			  <h3 class="title"><spring:message code="mypage.my_account_modify_information4"/></h3>
 			  <input type="hidden" name="user_num" value="${sessionScope.user_num}">
               <table class="table">
               	<tr >
-              		<th>언어: </th>
+              		<th><spring:message code="mypage.my_account_modify_information5"/> </th>
               		<td >
               			<c:forEach var="i" items="${language_list}" varStatus="j"> 
 						  	<input type="checkbox" name="language_code" value="${i.language_code}">${i.language_name}<br>
@@ -70,7 +71,7 @@
               	</tr>
               	
               	<tr>
-              		<th>취미:</th>
+              		<th><spring:message code="mypage.my_account_modify_information6"/></th>
               		<td >
               			<c:forEach var="i" items="${hobby_list}" varStatus="j">
 						  	<input type="checkbox" name="hobby_code" value="${i.hobby_code}">${i.hobby_name}<br>
@@ -79,19 +80,19 @@
               	</tr>
               	
               	<tr>
-              		<th>사진: </th>
+              		<th><spring:message code="mypage.my_account_modify_information7"/> </th>
               		<td><input type="file" name="profile_picture"></td>
               	</tr>
               	
               	<tr>
-              		<th>소개: </th>
+              		<th><spring:message code="mypage.my_account_modify_information8"/> </th>
               		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="profile_description">${member_info.profile_description}</textarea></td>
               	</tr>
               </table> 
 			  
 			  <div class="buttons-box clearfix">
 				<!-- <button class="btn btn-default">Login</button> -->
-				<input type="submit" class="btn btn-default" value="수정하기">
+				<input type="submit" class="btn btn-default" value="<spring:message code="mypage.my_account_modify_information8.1"/>">
 			  </div>
 			</form><!-- .form-box -->
 		  </div>
@@ -101,54 +102,54 @@
 		  <!-- 기본정보수정 Form태그 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
 			<form name="mo" class="form-box register-form form-validator" action="InfoModify2.htm?user_num=${sessionScope.user_num}" method="post">
-			  <h3 class="title">기본정보 수정</h3>
-			  <p>여기는 그냥 회원가입/로그인하고 그냥 같음</p>
+			  <h3 class="title"><spring:message code="mypage.my_account_modify_information9"/></h3>
+			  
 			  
 			  <div class="form-group">
-				<label>이름: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information10"/> <span class="required">*</span></label>
 				<input type="text" class="form-control" name="name" value="${member_info.name}" readonly>
                 <!-- <input type="text" class="form-control" name="name" data-bv-trigger="keyup" required data-bv-notempty-message="The name is required and cannot be empty"> -->
               </div>
 
 			  <div class="form-group">
-				<label>아이디: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information11"/> <span class="required">*</span></label>
 				<input type="text" class="form-control" name="id" value="${member_info.id}" readonly>
 			  </div>
 				
 			  <div class="form-group">
-				<label>비밀번호: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information12"/> <span class="required">*</span></label>
                 <input class="form-control" name="pw" id="pw" type="password">              
               </div>
 			  
 			  <div class="form-group">
-				<label>비밀번호 확인: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information13"/> <span class="required">*</span></label>
                 <input class="form-control" id="confirm_pw" type="password">
               </div>
 			  
 			  <div class="form-group">
-				<label>성별: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information14"/> <span class="required">*</span></label>
                 <c:choose>
                 	<c:when test="${member_info.gender == 'M'}">
-                		<input class="form-control" value="남자" readonly>
+                		<input class="form-control" value="<spring:message code="mypage.my_account_modify_information14.1"/>" readonly>
                 	</c:when>
                 	<c:otherwise>
-	                	<input class="form-control" value="여자" readonly>
+	                	<input class="form-control" value="<spring:message code="mypage.my_account_modify_information14.2"/>" readonly>
                 	</c:otherwise>
                 </c:choose>
               </div>
               
               <div class="form-group">
-				<label>나이: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information15"/><span class="required">*</span></label>
                 <input class="form-control" id="age" type="text" value="${member_info.age}" readonly>
               </div>
               
               <div class="form-group">
-				<label>국적: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information16"/> <span class="required">*</span></label>
                 <input class="form-control" id="age" type="text" value="${country}" readonly>
               </div>
               
               <div class="form-group" id="local">
-				<label>거주지역: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information17"/> <span class="required">*</span></label>
                 <select class="form-group" name="local_code">
                 	<option value="-">--</option>
                 	<c:forEach var="i" items="${local_list}">
@@ -158,17 +159,17 @@
               </div>
               
               <div class="form-group">
-				<label>전화번호: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information18"/> <span class="required">*</span></label>
                 <input class="form-control" id="hp" name="hp" type="text" placeholder="01012345678과 같이 '-'를 뺀 형식으로 입력하세요." value="${member_info.hp}">
               </div>
 			  
 			  <div class="form-group">
-				<label>Email: <span class="required">*</span></label>
+				<label><spring:message code="mypage.my_account_modify_information19"/> <span class="required">*</span></label>
 				<input class="form-control" name="email" type="email" required data-bv-emailaddress-message="The input is not a valid email address" value="${member_info.email}">
               </div>
 
 			  <div class="buttons-box clearfix">
-				<input type="button" class="btn btn-default" value="정보 수정" id="btnSubmit">
+				<input type="button" class="btn btn-default" value="<spring:message code="mypage.my_account_modify_information20"/>" id="btnSubmit">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>
 			</form><!-- .form-box -->
@@ -177,9 +178,9 @@
 
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
 			<div class="info-box">
-			  <h3 class="title">추가 정보 수정</h3>
-			  <p class="descriptions">추가 정보를 수정하려면 아래 버튼을 클릭해 주세요.</p>
-			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login">추가 정보 수정</button>
+			  <h3 class="title"><spring:message code="mypage.my_account_modify_information21"/></h3>
+			  <p class="descriptions"><spring:message code="mypage.my_account_modify_information22"/></p>
+			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login"><spring:message code="mypage.my_account_modify_information23"/></button>
 			</div>
 		  </div>
 		</div>

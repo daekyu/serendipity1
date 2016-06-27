@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:useBean id="toDay" class="java.util.Date" />
 <fmt:formatDate value="${toDay}" pattern="yy/MM/dd"/>
 <fmt:parseNumber value="${toDay.time/(1000*60*60*24)}" integerOnly="true" var="nowDays" scope="request"/>

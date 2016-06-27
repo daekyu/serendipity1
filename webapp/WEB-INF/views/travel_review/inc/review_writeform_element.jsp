@@ -79,7 +79,7 @@ $(function() {
 							<select class="form-group" name="local_code">
                 				<option value="-">--</option>
                 				<c:forEach var="i" items="${local_list}">
-                					<option value="${i.local_code}">${i.local_name} / ${i.local_code}</option>
+                					<option value="${i.local_code}">${i.local_name}</option>
                 				</c:forEach>
                 			</select>
 						</td>

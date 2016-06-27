@@ -14,6 +14,7 @@ href=".././resources/js/sweetalert.css">
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
 
+
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
  <style>
 .controls {
@@ -58,6 +59,8 @@ href=".././resources/js/sweetalert.css">
   font-weight: 300;
 }
 </style>
+
+
 
 
 <script type="text/javascript">
@@ -428,6 +431,7 @@ href=".././resources/js/sweetalert.css">
 										.lat();
 								document.getElementById('lng').value = results[0].geometry.location
 										.lng();
+
 								 var image = '${pageContext.request.contextPath}/resources/img/candy_marker.png';
 								var lat = document.getElementById('lat').value;
 								var lng = document.getElementById('lng').value;
@@ -442,12 +446,18 @@ href=".././resources/js/sweetalert.css">
 								});
 								markers.push(addrMarker); 
 
+
 								findPlace();
 							} else {
 								alert('Geocode was not successful for the following reason: '
 										+ status);
 							}
 						});
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ea23dbf87bbd6d6197fc431a6bda72fe1784ebee
 
 	} */
 	function findPlace() {
@@ -587,10 +597,10 @@ href=".././resources/js/sweetalert.css">
   							<option value="JPY">JPY</option>
   							<option value="USD">USD</option>
 						</select></td>
-						<td><input class="form-control" id="before" type="text" name="#" placeholder="작성 후 수정 불가"></td>
+						<td><input class="form-control" id="before" type="text" name="#" placeholder="등록 후 수정 불가"></td>
 						<td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.guide_writeform5.1"/></button></td>
 						<td>
-							<input class="form-control" id="after" type="text" name="price" placeholder="작성 후 수정 불가">
+							<input class="form-control" id="after" type="text" name="price" placeholder="등록 후 수정 불가">
 						</td>
 					</tr>
 					<tr>

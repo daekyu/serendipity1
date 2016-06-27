@@ -77,14 +77,6 @@
 					</div>
 					<!-- .sort-catalog -->
 
-					<div class="price-regulator pull-right">
-						<b>Price:</b>
-						<div class="layout-slider">
-							<input id="Slider2" type="slider" name="price"
-								value="20000;120000" class="form-control">
-						</div>
-					</div>
-					<!-- .price-regulator -->
 				</div>
 				<!-- 검색 조건 끝 .-->
 
@@ -94,7 +86,7 @@
 					<c:forEach var="i" items="${board_list}">
 						<div class="col-sm-2 col-md-2 product rotation">
 							<div class="default">
-								<span class="sale top"></span> <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}"
+								<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}"
 									class="product-image"> <img class="replace-2x"
 									src="${pageContext.request.contextPath}/resources/img/board_picture/${i.BOARD_PICTURE1}" alt="" title="" width="270"
 									height="270">

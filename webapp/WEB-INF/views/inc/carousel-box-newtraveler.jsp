@@ -42,7 +42,7 @@
 									<div class="image">
 										<!-- 여행자 프로필 사진을 넣어주자 -->
 										<img class="replace-2x" src="${pageContext.request.contextPath}/resources/img/profile_picture/${i.PROFILE_PICTURE}" alt=""
-											title="" width="270" height="270">
+											title="" width="70" height="70">
 									</div>
 									<div>
 										<div class="contact">

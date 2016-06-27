@@ -64,8 +64,7 @@
 				<div class="clearfix"></div>
 				
 				<section id="main">
-					<article class="content">
-						<jsp:include page="inc/carousel-box-recommended-guide.jsp"></jsp:include>					
+					<article class="content">					
 						<jsp:include page="inc/carousel-box-newguide.jsp"></jsp:include>
 						<jsp:include page="inc/carousel-box-newtraveler.jsp"></jsp:include>
 					</article>

@@ -181,7 +181,7 @@
 					  <polygon fill-rule="evenodd" clip-rule="evenodd" fill="#838383" points="8,15.999 9,14.999 2,8 9,1.001 8,0.001 0,8 "></polygon>
 					</svg>
 				  </a>
-				  <div class="pagination switches"></div>	
+				  <div class="pagination switches"></div>
 				</div>
 			  </div>
 			</div>

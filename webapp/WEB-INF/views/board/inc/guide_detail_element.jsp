@@ -52,6 +52,28 @@
 	}
 	
 	$(function() {
+		$('#msg_btn').click(function() {
+			$.ajax({
+				type : "post",
+				url : getContextPath() + "/message/sendMessageFromBoard.htm",
+				data : {
+					"receiver" : $('#receiver').val(),
+					"sender" : $('#sender').val(),
+					"message_title" : $('#message_title').val(),
+					"message_content" : $('#message_content').val()
+				},
+				success : function(data) {
+					if(data == 1) {
+						swal("메세지 전송이 완료되었습니다.");
+						$('#receiver').val("");
+						$('#sender').val("");
+						$('#message_title').val("");
+						$('#message_content').val("");
+					}
+				}
+			});
+		});
+		
 		
 		var today = new Date();
 		var dateString = $('#wd').val();
@@ -355,6 +377,11 @@
 												이미 신청한 여행 입니다.
 											</c:when>
 										<c:otherwise>
+										<c:choose>
+										<c:when test="${sessionScope.country_code eq 82}">
+											외국인만 여행 참가 신청이 가능합니다.
+										</c:when>
+										<c:otherwise>
 										<form
 										action="${pageContext.request.contextPath}/board/guideParty.htm"
 										class="form-inline add-cart-form" method="post" id="form1">
@@ -362,7 +389,7 @@
 											value="${boarddto.BOARD_NUM}">
 										<input type="hidden" name="user_num"
 											value="${sessionScope.user_num}">
-										<input type="hidden" id="ac" value="${accept}"> --%>
+										<input type="hidden" id="ac" value="${accept}">
 										<input type="submit" class="btn-default btn-lg" value="신청하기" id="sm">
 										<div class="number">
 											<label>인원수:</label> <input type="text" value="1"
@@ -374,6 +401,8 @@
 											</div>
 										</div>
 											</form>
+											</c:otherwise>
+											</c:choose>
 										</c:otherwise>
 										</c:choose>
 									</c:if>
@@ -442,7 +471,6 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#profile">프로필보기</a></li>
 						<li><a href="#sendMessage">쪽지보내기</a></li>
-						<li><a href="#chatting">채팅신청하기</a></li>
 						<li><a href="#reporting">신고하기</a></li>
 					</ul>
 					<!-- .nav-tabs -->
@@ -511,24 +539,25 @@
 						</div>
 
 						<div class="tab-pane" id="sendMessage">
-							<form>
 								<table class="table center">
 									<tr>
+										<td>
+											<input type="hidden" name="sender" id="sender" value="${sessionScope.user_num}">
+											<input type="hidden" name="receiver" id="receiver" value="${boarddto.USER_NUM}">
+											<input type="text" class="form-control" id="message_title" name="message_title" placeholder="메세지 제목 입력">
+										</td>
+									</tr>
+									<tr>
 										<td><textarea class="form-control"
-												style="resize: none; height: 100px;" wrap="soft" name=""></textarea>
+												style="resize: none; height: 100px;" wrap="soft" id="message_content" name="message_content" placeholder="메세지 내용 입력"></textarea>
 										</td>
 									</tr>
 
 									<tr>
-										<td><input class="btn btn-success" type="submit"
-											value="전송"></td>
+										<td><button class="btn btn-success" id="msg_btn">전송</button></td>
 									</tr>
 								</table>
-							</form>
 						</div>
-
-						<div class="tab-pane" id="chatting"></div>
-						<!-- #reviews -->
 
 						<div class="tab-pane" id="reporting">
 							<form

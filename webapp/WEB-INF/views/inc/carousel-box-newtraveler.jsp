@@ -35,9 +35,8 @@
 									</div>
 								</div>
 							</div>
-							<a href="board/traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">
 								<div class="employee-hover">
-									<h3 class="name">${i.BOARD_TITLE}</h3>
+									<h3 class="name">제목 : ${i.BOARD_TITLE}</h3>
 									<h3 class="name"><spring:message code="index.inc.carousel-box-newtraveler4"/> ${i.ID}</h3>
 									<h3 class="name"><spring:message code="index.inc.carousel-box-newtraveler5"/> ${i.LOCAL_NAME}</h3>
 									<div class="image">
@@ -46,16 +45,15 @@
 											title="" width="270" height="270">
 									</div>
 									<div>
-										<p>${i.BOARD_CONTENT}</p>
 										<div class="contact">
-											<b><spring:message code="index.inc.carousel-box-newtraveler6"/> </b>한국어, 영어
+											<b><spring:message code="index.inc.carousel-box-newguide8"/></b>${i.PRICE} / <spring:message code="index.inc.carousel-box-newguide9"/>
 										</div>
-										<div class="contact">
-											<b><spring:message code="index.inc.carousel-box-newtraveler7"/> </b>맛집, 야경
+										<br><br><br><br><br><br>
+										<div class="contact" align="center">
+											<a href="board/traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}" class="btn btn-warning btn-lg btn-block"><spring:message code="index.inc.carousel-box-newguide10"/></a>
 										</div>
 									</div>
 								</div>
-							</a>
 							<!-- .employee-hover -->
 						</div>
 						<!-- .employee -->

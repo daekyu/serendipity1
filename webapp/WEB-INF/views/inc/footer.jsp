@@ -14,7 +14,7 @@ function initialize() {
 
 	// set initial position
 	myLatlng = new google.maps.LatLng(37.40239107, 127.107033);
-	viewLatlng = new google.maps.LatLng(37.4038007, 127.189033);
+	viewLatlng = new google.maps.LatLng(37.5831007, 127.189033);
 	var myOptions = { // default map options
 		zoom : 16,
 		center : viewLatlng,
@@ -37,7 +37,7 @@ function initialize() {
 				'</font>'
 	}).open(map,marker);
 	
-	google.maps.event.addListener(map, 'click', function() {     
+	google.maps.event.addListener(map,'click', function() {     
 		  infowindow.open(map,marker);
 		 });
 	

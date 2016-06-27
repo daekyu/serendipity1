@@ -10,6 +10,7 @@ var viewLatlng;
 var map;
 var marker;
 var infowindow;
+
 function initialize() {
 
 	// set initial position
@@ -40,8 +41,6 @@ function initialize() {
 	google.maps.event.addListener(map,'click', function() {     
 		  infowindow.open(map,marker);
 		 });
-	
-	
 }
 
 // initialization

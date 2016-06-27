@@ -77,14 +77,6 @@
 					</div>
 					<!-- .sort-catalog -->
 
-					<div class="price-regulator pull-right">
-						<b>Price:</b>
-						<div class="layout-slider">
-							<input id="Slider2" type="slider" name="price"
-								value="20000;120000" class="form-control">
-						</div>
-					</div>
-					<!-- .price-regulator -->
 				</div>
 				<!-- 검색 조건 끝 .-->
 

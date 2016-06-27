@@ -342,12 +342,10 @@
 								<a class="btn btn-default btn-sm"
 									href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
 									class="livicon shadowed" data-s="24" data-n="pen"
-									data-c="white" data-hc="0"></i> <spring:message
-										code="board.traveler_detail5" /></a>
+									data-c="white" data-hc="0"></i> Modify</a>
 								<a class="btn btn-danger btn-sm" id="delete"><i
 									class="livicon shadowed"
-									data-s="24" data-n="trash" data-c="white" data-hc="0"></i> <spring:message
-										code="board.traveler_detail6" /></a>
+									data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
 							</c:when>
 
 							<c:otherwise>

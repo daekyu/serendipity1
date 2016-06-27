@@ -29,6 +29,11 @@
 			  		<i class="livicon" data-n="instagram"></i>
 				</a>
 			</li>
+			<li>
+				<a href="#currency">
+			  		<i class="livicon" data-n="money"></i>
+				</a>
+			</li>
 		  </ul><!-- .nav-tabs -->	
 		  
 		  <div class="tab-content">
@@ -39,6 +44,10 @@
 			<div class="tab-pane" id="our_instagram">
 				<img src="./resources/img/instagram.JPG">
 				<!-- LightWidget WIDGET --><script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/d10f6547bade57488202e5fe79a00a33.html" id="lightwidget_d10f6547ba" name="lightwidget_d10f6547ba"  scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 80%; border: 0; overflow: hidden;"></iframe>
+			</div><!-- #reviews -->
+			
+			<div class="tab-pane" id="currency">
+				<iframe src="http://keisanki.kr/" allowtransparency="true" class="lightwidget-widget" width="550px" height="350px" style="width: 80%; border: 0; overflow: hidden;"></iframe>
 			</div><!-- #reviews -->
 		  </div><!-- .tab-content -->
 		</div>

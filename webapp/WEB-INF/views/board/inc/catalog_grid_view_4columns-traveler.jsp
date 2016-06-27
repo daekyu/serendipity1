@@ -25,13 +25,6 @@
 				</div>
 
 				<div class="toolbar clearfix">
-					<div class="grid-list">
-						<span class="grid"> <span
-							class="glyphicon glyphicon-th-large"></span>
-						</span> <a href="shop-catalog-list.html" class="list"> <span
-							class="glyphicon glyphicon-th-list"></span>
-						</a>
-					</div>
 
 					<!-- 검색조건. 추후 수정해보자 -->
 					<div class="sort-catalog">

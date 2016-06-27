@@ -471,22 +471,10 @@
 						<div class="tab-pane active" id="profile">
 							<div class="bottom-padding">
 								<div class="row">
-									<div class="images-box col-xs-9 col-sm-6 col-md-4">
-										<div class="carousel-box load" data-carousel-pagination="true"
-											data-carousel-nav="false" data-carousel-one="true"
-											data-autoplay-disable="true">
-											<div class="carousel">
-												<div class="image">
-													<img class="replace-2x img-profile img-circle"
-														src="${pageContext.request.contextPath}/resources/img/profile_picture/${boarddto.PROFILE_PICTURE}" alt="" title=""
-														width="768" height="768" data-appear-animation="rotateIn">
-												</div>
-											</div>
-											<div class="clearfix"></div>
-											<div class="pagination switches"></div>
-										</div>
-									</div>
-
+									<a class="img-thumbnail img-polaroid lightbox" rel="fancybox" href="${pageContext.request.contextPath}/resources/img/profile_picture/${boarddto.PROFILE_PICTURE}">
+											  <img class="avatar replace-2x animated rotateIn" src="${pageContext.request.contextPath}/resources/img/profile_picture/${boarddto.PROFILE_PICTURE}" alt="" title="" width="150px" height="150px">
+											  <span class="bg-images"><i class="fa fa-search"></i></span>
+									</a>
 									<div class="employee-description col-sm-8 col-md-8">
 										<h3 class="name">${boarddto.NAME}</h3>
 										<div class="role"></div>
@@ -504,7 +492,7 @@
 									<table class="table table-bordered">
 
 										<tr>
-											<th class="danger" colspan="2">Information</th>
+											<th class="danger" align="center" colspan="2">Information</th>
 										</tr>
 
 										<tr>

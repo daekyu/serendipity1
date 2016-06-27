@@ -14,7 +14,7 @@ function initialize() {
 
 	// set initial position
 	myLatlng = new google.maps.LatLng(37.40239107, 127.107033);
-	viewLatlng = new google.maps.LatLng(37.4038007, 127.118033);
+	viewLatlng = new google.maps.LatLng(37.4038007, 127.189033);
 	var myOptions = { // default map options
 		zoom : 16,
 		center : viewLatlng,
@@ -33,18 +33,20 @@ function initialize() {
 		icon : image
 	});
 	infowindow = new google.maps.InfoWindow({
-		content : '<font style="color:#000;">'+'경기도 성남시 분당구 대왕판교로 670 유스페이스B동 8층'+
+		content : '<font style="color:#000;">'+'경기도 성남시 분당구<br/>대왕판교로 670 <br/>유스페이스B동 8층'+
 				'</font>'
 	}).open(map,marker);
+	
+	google.maps.event.addListener(map, 'click', function() {     
+		  infowindow.open(map,marker);
+		 });
 	
 	
 }
 
 // initialization
 google.maps.event.addDomListener(window, 'load', initialize);
-google.maps.event.addListener(marker, 'click', function(mouseEvent) {     
-	  infowindow.open(map,marker);
-	 });
+
 </script>
  
 <footer id="footer">
@@ -58,9 +60,7 @@ google.maps.event.addListener(marker, 'click', function(mouseEvent) {
 		  <p><spring:message code="index.footer2"/></p>
 		  <div class="social-list">
 			<a class="icon rounded icon-facebook" href="https://www.facebook.com/serendipity112th"><i class="fa fa-facebook"></i></a>
-			<a class="icon rounded icon-instagram" href="https://www.instagram.com/daekyu_kang"><i class="fa fa-instagram"></i></a>
-			<a class="icon rounded icon-google" href="#"><i class="fa fa-google"></i></a>
-			<a class="icon rounded icon-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+			<a class="icon rounded icon-instagram" href="https://www.instagram.com/serendipity112th"><i class="fa fa-instagram"></i></a>
 		  </div>
 		  <div class="clearfix"></div>
         </aside>
@@ -87,15 +87,7 @@ google.maps.event.addListener(marker, 'click', function(mouseEvent) {
 		  <div class="title-block">
 			<h3 class="title"><spring:message code="index.footer5"/></h3>
 		  </div>
-		  <div id="map" style="height:250px;width:250px">
-		  <%-- <nav>
-			<ul>
-			  <li><a href="#"><spring:message code="index.footer6"/></a></li>
-			  <li><a href="#"><spring:message code="index.footer7"/></a></li>
-			  <li><a href="#"><spring:message code="index.footer8"/></a></li>
-			  <li><a href="#"><spring:message code="index.footer9"/></a></li>
-			</ul>
-		  </nav> --%>
+		  <div id="map" style="height:210px;width:250px">
 		  </div>
         </aside>
 		

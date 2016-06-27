@@ -9,7 +9,8 @@ package kr.co.serendipity;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,15 +29,24 @@ public class AdminController {
 	private AdminService adminservice;
 	
 	@RequestMapping("member_list.htm")
-	public ModelAndView memberList() {
-		ModelAndView mav = new ModelAndView("/admin/admin_member_list_page");
-		mav.addObject("member_list", adminservice.memberList());
-		return mav;
+	public ModelAndView memberList(HttpSession session) {
+		if(!session.getAttribute("id").equals("admin")) {
+			ModelAndView mav = new ModelAndView("/inc/hasNoAuthority");
+			return mav;
+		} else {
+			ModelAndView mav = new ModelAndView("/admin/admin_member_list_page");
+			mav.addObject("member_list", adminservice.memberList());
+			return mav;
+		}
 	}
 	
 	@RequestMapping("stats_list.htm")
-	public String statsList() {
-		return "/admin/admin_stats_page";
+	public String statsList(HttpSession session) {
+		if(!session.getAttribute("id").equals("admin")) {
+			return "/inc/hasNoAuthority";
+		} else {
+			return "/admin/admin_stats_page";
+		}
 	}
 	
 	@RequestMapping("member_gender_rate.htm")

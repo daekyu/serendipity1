@@ -38,8 +38,6 @@
 						"review_num" : <%= request.getParameter("review_num")%>		
 				},
 				success : function(data) {
-					
-					console.log("user_num1 : "+data);
 					$('#likeCount').text(data);
 					$('#btn_like').hide();
 					$('#btn_like2').show();
@@ -57,8 +55,6 @@
 						"review_num" : <%= request.getParameter("review_num")%>		
 				},
 				success : function(data) {
-					
-					console.log("user_num2 : "+data);
 					$('#likeCount').text(data);
 					$('#btn_like2').hide();
 					$('#btn_like').show();
@@ -231,12 +227,11 @@
 					</c:when>
 					<c:otherwise>
 						<img class="image avatar img-circle replace-2x animated rotateIn" width="84" height="84" src="${pageContext.request.contextPath}/resources/img/profile_picture/${i.PROFILE_PICTURE}" alt="">
-						<%-- <img class="replace-2x slid-img" src="${pageContext.request.contextPath}/resources/img/review_upload/${reviewdetail.REVIEW_PICTURE5}" width="620" height="550" alt=""> --%>
 					</c:otherwise>
 				 </c:choose>
 			<div class="meta">
 			  <span><b>${i.ID}</b></span>, 
-			  <span class="time"><b>${i.REPLY_DATE}</b><!-- &nbsp;&nbsp;&nbsp; -->
+			  <span class="time"><b>${i.REPLY_DATE}</b>
 			  	<c:choose>
 				<c:when test="${sessionScope.user_num == i.USER_NUM}">
 			  		<a href="reply_delete.htm?reply_num=${i.REPLY_NUM}&review_num=${review_detail.REVIEW_NUM}"><spring:message code="board.review_detail7"/></a>
@@ -244,11 +239,7 @@
 			  </c:choose>
 			  </span>
 			</div>
-			
-			
 			  ${i.REPLY_CONTENT}
-			
-			
 			<div class="meta">&nbsp;&nbsp;&nbsp;</div>
 			<div class="meta">&nbsp;&nbsp;&nbsp;</div>
 			</div>

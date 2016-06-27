@@ -55,58 +55,19 @@
 		  
 		  <!-- 로그인하는 Form태그가 있는 부분 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
-			<form class="form-box" action="InfoModify.htm?user_num=${sessionScope.user_num}" method="post" enctype="multipart/form-data">
+			<form class="form-box" action="InfoModify.htm" method="post" enctype="multipart/form-data">
 			<%-- <input type="hidden" name="user_name" value="${sessionScope.user_num}"> --%>
 			  <h3 class="title">추가정보 수정</h3>
-		<!-- 	  <p>요 밑에 테이블 이상하게 보이는건 나중에 수정해보자...</p> -->
-			  
-             <%--  <table class="table">
-              	<tr >
-              		<td width="150" >언어       / </td>
-              		<td width="150">취미/관심사</td>
-              		
-              	</tr>
-              	<tr>
-              		
-              		<td >
-              			<c:forEach var="i" items="${language_list}" varStatus="j">
-						  	<input type="checkbox" name="language_code" value="${i.language_code}">${i.language_name}<br>
-						</c:forEach>
-              		</td> 
-              		
-              		<td>
-              			<c:forEach var="i" items="${hobby_list}" varStatus="j">
-						  	<input type="checkbox" name="hobby_code" value="${i.hobby_code}">${i.hobby_name}<br>
-						</c:forEach>
-              		</td>
-              		
-              		
-              		
-              	</tr>
-              	
-              	<tr>
-              		<th>사진: </th>
-              		<td><input type="file" name="profile_picture"></td>
-              	</tr>
-              	
-              	<tr>
-              		<th>자기소개: </th>
-              		<td><textarea class="form-control" style="resize:none; height:100px;" wrap="soft" name="profile_description">${member_info.profile_description}</textarea></td>
-              	</tr>
-              </table> --%>
+			  <input type="hidden" name="user_num" value="${sessionScope.user_num}">
               <table class="table">
               	<tr >
               		<th>언어: </th>
-              		<!-- <td width="300" >언어</td> -->
-              		<!-- <td width="150">취미/관심사</td> -->
               		<td >
               			<c:forEach var="i" items="${language_list}" varStatus="j"> 
 						  	<input type="checkbox" name="language_code" value="${i.language_code}">${i.language_name}<br>
 						</c:forEach>
               		</td> 
-              		
               	</tr>
-              	
               	
               	<tr>
               		<th>취미:</th>
@@ -117,22 +78,6 @@
               		</td> 
               	</tr>
               	
-              	
-              	<%-- 
-              		<tr>
-              		<td width="300">취미/관심사</td>
-              		</tr>
-              		<tr>
-              		<td>
-              			<c:forEach var="i" items="${hobby_list}" varStatus="j">
-						  	<input type="checkbox" name="hobby_code" value="${i.hobby_code}">${i.hobby_name}<br>
-						</c:forEach>
-              		</td>
-              		</tr>
-              		
-              		
-              	</tr>
-              	 --%>
               	<tr>
               		<th>사진: </th>
               		<td><input type="file" name="profile_picture"></td>
@@ -168,16 +113,11 @@
 			  <div class="form-group">
 				<label>아이디: <span class="required">*</span></label>
 				<input type="text" class="form-control" name="id" value="${member_info.id}" readonly>
-				<!-- <input type="text" class="form-control" name="id"
-				  data-bv-trigger="blur"
-				  data-bv-message="The username is not valid"
-				  required data-bv-notempty-message="The ID is required and cannot be empty"
-				  pattern="[a-zA-Z0-9]+" data-bv-regexp-message="The ID can only consist of alphabetical, number"> -->
 			  </div>
 				
 			  <div class="form-group">
 				<label>비밀번호: <span class="required">*</span></label>
-                <input class="form-control" name="pw" id="pw" type="password"><!-- 속성에 required를 이용해보자 -->
+                <input class="form-control" name="pw" id="pw" type="password">              
               </div>
 			  
 			  <div class="form-group">
@@ -207,7 +147,6 @@
                 <input class="form-control" id="age" type="text" value="${country}" readonly>
               </div>
               
-              <!-- 한국 어느지역 사람인지 나타내주는 코드. 외국인일경우 숨기고, 한국인이면 보여주게하자. 그리고 한국인이 입력안하면 넘어가지 못하게 하자 -->
               <div class="form-group" id="local">
 				<label>거주지역: <span class="required">*</span></label>
                 <select class="form-group" name="local_code">
@@ -229,8 +168,6 @@
               </div>
 
 			  <div class="buttons-box clearfix">
-				<!-- <button class="btn btn-default">Create my account</button> -->
-				<!-- <input type="submit" class="btn btn-default" value="정보 수정"> -->
 				<input type="button" class="btn btn-default" value="정보 수정" id="btnSubmit">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>

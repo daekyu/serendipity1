@@ -158,6 +158,11 @@ public class TravelReviewService {
 		return dao.filteringReviewList(local_code);
 	}
 	
+	public String getLocalName(String local_code) throws ClassNotFoundException, SQLException{
+		ReviewDAO dao = sqlsession.getMapper(ReviewDAO.class);
+		return dao.getLocalName(local_code);
+	}
+	
 	public List<HashMap<String,Object>> likeNotificationCheck(ReviewDTO reviewdto) throws ClassNotFoundException, SQLException {
 		ReviewLikeDAO dao = sqlsession.getMapper(ReviewLikeDAO.class);
 		return dao.likeNotificationCheck(reviewdto);

@@ -55,6 +55,9 @@ public interface ReviewDAO {
 	//여행후기 게시판 지역별로 필터링
 	public List<HashMap<String, Object>> filteringReviewList(String local_code) throws ClassNotFoundException, SQLException;
 	
+	//해당 지역 리턴
+	public String getLocalName(String local_code) throws ClassNotFoundException, SQLException;
+	
 	//index 페이지 인기여행기 상위 3개 보여주기
 	public List<ReviewDTO> getIndexReview() throws ClassNotFoundException, SQLException;
 	

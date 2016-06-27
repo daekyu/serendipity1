@@ -16,8 +16,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.serendipity.model.BoardDAO;
 import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.MyPageDAO;
 import kr.co.serendipity.model.ParticipantDTO;
 
 @Service
@@ -131,7 +129,6 @@ public class BoardService {
 		BoardDAO boarddao = sqlsession.getMapper(BoardDAO.class);
 		HashMap<String, Object> boarddto1 = boarddao.getBoardDetail(boarddto);
 		String realFolder = "C:\\Kosta_112th\\Project_3rd\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Serendipity\\resources\\img\\board_picture";
-		//String realFolder = request.getSession().getServletContext().getRealPath("resources/img/board_picture");
 		if(boarddto1.get("BOARD_PICTURE1").equals("") ){
 			
 		}else{
@@ -188,7 +185,7 @@ public class BoardService {
 	
 	public void picUpdate2(String saveFileName, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
-		dao.picUpdate1(saveFileName, boarddto);
+		dao.picUpdate2(saveFileName, boarddto);
 	}
 	
 	public void picUpdate3(String saveFileName, BoardDTO boarddto) throws ClassNotFoundException, SQLException {

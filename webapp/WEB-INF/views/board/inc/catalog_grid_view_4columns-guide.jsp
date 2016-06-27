@@ -70,9 +70,9 @@
 								data-toggle="dropdown" href="#">Show: <span>${basicshow}</span> <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=4&sort=${basicsort}">3</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=8&sort=${basicsort}">6</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=12&sort=${basicsort}">9</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=4&sort=${basicsort}">4</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=8&sort=${basicsort}">8</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=12&sort=${basicsort}">12</a></li>
 							</ul>
 						</div>
 						<!-- .show -->
@@ -193,30 +193,16 @@
 								</c:otherwise>
 							</c:choose>
 						</ul>
-						<br>임시 출력창
-						<br>page: ${page}<br> nowpage: ${nowpage}<br>
-						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
-						endpage: ${endpage}<br> listCount: ${listCount}<br> 
-
 						<c:if test="${!empty sessionScope.user_num}">
 							<a href="${pageContext.request.contextPath}/board/guide_writeform.htm?user_num=${sessionScope.user_num}"
 							class="btn btn-default"><spring:message code="board.traveler1"/>
 							<span
 							class="glyphicon glyphicon-arrow-right"></span></a>
 						</c:if>
-
-
-							<%-- <a href="${pageContext.request.contextPath}/board/guide_writeform.htm"
-							class="btn btn-default"> <spring:message code="board.traveler1"/><span
-							class="glyphicon glyphicon-arrow-right"></span></a>
- --%>
-						
 				</div>
 				<!-- .pagination-box -->
-				
 			</div>
 			<!-- .content -->
-
 		</div>
 	</div>
 	<!-- .container -->

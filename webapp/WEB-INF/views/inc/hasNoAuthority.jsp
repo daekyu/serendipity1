@@ -10,8 +10,11 @@
 		<meta class="viewport" name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Insert title here</title>
-		
-		
+		<script type="text/javascript">
+			function historyBack() {
+				history.back();
+			}
+		</script>
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href=".././resources/img/favicon.ico">
@@ -42,37 +45,44 @@
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href=".././resources/css/customizer/pages.css">
 		<link rel="stylesheet" href=".././resources/css/customizer/home-pages-customizer.css">
-		
 	</head>
 
 
 	<!-- Body 시작 -->
 	<body class="fixed-header hidden-top">
-		<div class="page-box">
-			<div class="page-box-content">
-				<jsp:include page="../inc/notificationCheck.jsp"></jsp:include>
-				<!-- 로그인/회원가입 들어갈 수 있는 버튼 나와있는 부분 -->
-				<jsp:include page="../inc/top-box.jsp"></jsp:include>
-				<!-- 상단 메뉴 -->
-				<jsp:include page="../inc/header.jsp"></jsp:include>
-				<div class="clearfix"></div>
-				
-				<jsp:include page="inc/my_notification.jsp"></jsp:include>
-			</div><!-- .page-box-content -->
-		</div><!-- .page-box -->
-		
-		<!-- Footer -->
-		<jsp:include page="../inc/footer.jsp"/>
-		
-		<div class="clearfix"></div>
+		<div class="breadcrumb-box breadcrumb-none"></div>
+
+<section id="main" class="page ">
+  <header class="page-header">
+    <div class="container">
+      <h1 class="title">Caution!</h1>
+    </div>   
+  </header>
+  <div class="container">
+    <div class="row">
+      <article class="col-sm-9 col-md-9 content">
+      <div class="my-account">
+        <div class="table-responsive">
+         <table class="table table-striped table-bordered text-center my-orders-table">
+          <thead>
+            <tr class="first last">
+              <th>
+                 접근할 수 없는 페이지입니다.<br><br>
+                 <button type="button" class="btn btn-danger" onclick="historyBack()">돌아가기</button>   
+              </th>
+            </tr>
+           </thead> 
+         </table>
+        </div>
+      </div>
+      </article><!-- .content -->
+    </div>
+  </div>
+</section><!-- #main -->
 		
 		
 		<!-- 각종 Javascript -->
-		
-		<!--[if (!IE)|(gt IE 8)]><!-->
 		<script src=".././resources/js/jquery-2.1.3.min.js"></script>
-		<!--<![endif]-->
-		
 		<script src=".././resources/js/bootstrap.min.js"></script>
 		<script src=".././resources/js/price-regulator/jshashtable-2.1_src.js"></script>
 		<script src=".././resources/js/price-regulator/jquery.numberformatter-1.2.3.js"></script>

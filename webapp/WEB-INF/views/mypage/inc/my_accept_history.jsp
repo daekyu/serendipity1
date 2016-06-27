@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="toDay" class="java.util.Date" />
 <fmt:formatDate value="${toDay}" pattern="yy/MM/dd"/>
-				<fmt:parseNumber value="${toDay.time/(1000*60*60*24)}" integerOnly="true" var="nowDays" scope="request"/>
+<fmt:parseNumber value="${toDay.time/(1000*60*60*24)}" integerOnly="true" var="nowDays" scope="request"/>
 <script type="text/javascript">
 			$(function(){
 			if($('#check1').val() == 1){
@@ -143,22 +143,16 @@
 		  </div>
 		  <div class="pagination-box">
 			<ul class="pagination">
-			 <!--  <li class="disabled"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-			  <li class="active"><span>1</span></li>
-			  <li><a href="#">2</a></li>
-			  <li><a href="#">3</a></li>
-			  <li class="disabled"><a href="#">...</a></li>
-			  <li><a href="#">9</a></li>
-			  <li><a href="#"><i class="fa fa-angle-right"></i></a></li> -->
-			  
-			  <c:choose>
+
+							<c:choose>
 								<c:when test="${page<=1}">
-									<li class="disabled"><span><i class="fa fa-angle-left"></i></span></li>
+									<li class="disabled"><span><i
+											class="fa fa-angle-left"></i></span></li>
 								</c:when>
 								<c:otherwise>
 									<li class="active"><a
 										href="${pageContext.request.contextPath}/mypage/my_page_accept_history.htm?pg=${page-1}&user_num=${sessionScope.user_num}">
-											<i class="fa fa-angle-left"></i>													
+											<i class="fa fa-angle-left"></i>
 									</a></li>
 								</c:otherwise>
 							</c:choose>
@@ -188,10 +182,6 @@
 								</c:otherwise>
 							</c:choose>
 						</ul>
-						<br>임시 출력창
-						<br>page: ${page}<br> 
-						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
-						endpage: ${endpage}<br> listCount: ${listCount}<br>
 			</ul>
 			<i class="pagination-text">Displaying 1 to 10 (of 100 posts)</i>
 		  </div>

@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 public interface MyPageDAO {
 	List<HobbyDTO> getHobbyList();
 	List<LanguageDTO> getLanguageList();

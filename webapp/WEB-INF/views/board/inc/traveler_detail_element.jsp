@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-
-
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css">
-<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
-	
-</script>
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href=".././resources/js/sweetalert.css">
 <script type="text/javascript"
@@ -28,15 +22,6 @@
 <input type="hidden" id="meeting_address"
 	value="${boarddto.MEETING_ADDRESS}" />
 <script type="text/javascript">
-	/* 	$(function(){
-			$('#delete').click(function(){
-				if(confirm("글을 삭제 하시겠습니까?") == true){
-				location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=1";
-				}else{
-				    return false;
-				}
-			});
-		}); */
 		//시간차에 따른 버튼 처리
 		function getTimeStamp() {
 		    var d = new Date();
@@ -56,7 +41,6 @@
 		    }
 		    return zero + n;
 		}
-		
 	$(function() {
 		var today = new Date();
 		var dateString = $('#wd').val();
@@ -245,11 +229,7 @@
 										<img class="replace-2x" alt=""
 										src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}"
 										width="100" height="100">
-									<!-- </a> <a href="#" data-image="content/img/single-3.jpg"
-										data-zoom-image="content/img/single-3.jpg"> <img
-										class="replace-2x" alt="" src="content/img/single-3.jpg"
-										width="100" height="100">
-									</a> -->
+									</a>
 								</div>
 								<!-- #thumblist -->
 							</div>
@@ -323,7 +303,6 @@
 									</c:otherwise>
 								</c:choose>
 							</c:when>
-							<%-- href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=1" --%>
 							<c:otherwise>
 								<td>
 									<c:choose>
@@ -377,11 +356,8 @@
 						<!-- 지도 끝 -->
 
 						<div class="tab-pane" id="description">
-							${boarddto.BOARD_CONTENT}<br> <br> <br> <br>
-							추가사항 강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~
+							${boarddto.BOARD_CONTENT}<br>
 						</div>
-
-
 					</div>
 					<!-- .tab-content -->
 				</div>
@@ -442,10 +418,6 @@
 											<p>${boarddto.PROFILE_DESCRIPTION}</p>
 										</div>
 										<div class="social">
-											<!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>
-				<a class="icon rounded icon-twitter" href="#"><i class="fa fa-twitter"></i></a>
-				<a class="icon rounded icon-google" href="#"><i class="fa fa-google"></i></a>
-				<a class="icon rounded icon-linkedin" href="#"><i class="fa fa-linkedin"></i></a> -->
 										</div>
 									</div>
 									<div class="clearfix"></div>
@@ -453,16 +425,13 @@
 								<br> <br>
 								<div class="table-responsive">
 									<table class="table table-bordered">
-
 										<tr>
 											<th class="danger" colspan="2">Information</th>
 										</tr>
-
 										<tr>
 											<th class="danger">지역</th>
 											<td>${boarddto.LOCAL_NAME}</td>
 										</tr>
-
 										<tr>
 											<th class="danger">언어</th>
 											<td><c:forEach var="i" items="${language}">
@@ -490,7 +459,6 @@
 												style="resize: none; height: 100px;" wrap="soft" name=""></textarea>
 										</td>
 									</tr>
-
 									<tr>
 										<td><input class="btn btn-success" type="submit"
 											value="전송"></td>
@@ -498,7 +466,6 @@
 								</table>
 							</form>
 						</div>
-
 						<div class="tab-pane" id="chatting"></div>
 						<!-- #reviews -->
 

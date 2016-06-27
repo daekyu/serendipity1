@@ -87,7 +87,6 @@ public class ChatServerEndPoint {
 			if (id != null) {
 				userSession.getUserProperties().put("id", id);
 			}
-
 			synchronized (chatroomUsers) {
 				for (Session session : chatroomUsers){
 					session.getBasicRemote().sendObject(new UsersMessageDTO(getIds()));

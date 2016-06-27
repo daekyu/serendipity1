@@ -39,7 +39,6 @@
 					"review_num" : $('#review_num_'+index).val()		
 			},
 			success : function(data) {
-				console.log("user_num1 : "+data);
 				$('#likeCount_'+index).text(data);
 				$('#btn_like_'+index).hide();
 				$('#btn_like2_'+index).show();
@@ -57,8 +56,6 @@
 					"review_num" : $('#review_num_'+index).val()		
 			},
 			success : function(data) {
-				
-				console.log("user_num2 : "+data);
 				$('#likeCount_'+index).text(data);
 				$('#btn_like2_'+index).hide();
 				$('#btn_like_'+index).show();
@@ -108,7 +105,7 @@
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#"><spring:message code="board.review1"/> <span></span></a>
+								data-toggle="dropdown" href="#"><spring:message code="board.review1"/>${local_name}<span></span></a>
 							<ul class="dropdown-menu">
 							<li><a href="review_list.htm?order=review_num"><spring:message code="board.review2"/></a></li>
 							<c:forEach var="i" items="${local_list}">
@@ -116,7 +113,7 @@
 									<c:when test="${i.local_code == '-' }"></c:when>
 									
 									<c:otherwise>
-										<li><a href="review_list.htm?order=review_num">${i.local_name}</a></li>
+										<li><a href="filteringReviewList.htm?local_code=${i.local_code}">${i.local_name}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -129,7 +126,6 @@
 					<c:set value="reply_count" var="replyCount"/>
 					<c:set value="review_num" var="reviewNum"/>
 
-					<!-- 정렬기준을 바꾸는곳. 정해지면 바꾸자. -->
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
 							<a class="btn dropdown-toggle btn-default" role="button"
@@ -148,7 +144,6 @@
 					</div>
 					<!-- .price-regulator -->
 				</div>
-				<!-- 정렬기준 끝 -->
 
 				<div class="clearfix"></div>
 
@@ -161,7 +156,7 @@
 					<c:forEach var="i" items="${review_list}" varStatus="j">
 						<div class="product">
 							<div class="col-sm-4 col-md-4">
-								<a href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image"> <!-- <span class="sale"></span> -->
+								<a href="review_detail.htm?review_num=${i.REVIEW_NUM}" class="product-image">
 									<c:choose>
 										<c:when test="${i.REVIEW_PICTURE1 eq '사진없음'}">
 											<img class="replace-2x review-list" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
@@ -203,80 +198,6 @@
 					</c:forEach>
 					</c:otherwise>
 				</c:choose>
-					<!-- <div class="product">
-			<div class="col-sm-4 col-md-4">
-			  <a href="shop-product-view.html" class="product-image">
-				<span class="sale"></span>
-				<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
-			  </a>
-			</div>
-			<div class="col-sm-8 col-md-8">
-			  <h3 class="price">
-				<a href="#">ABCD</a>
-			  </h3>
-			  <div class="excerpt">
-				<span>이름: 조인성</span><br>
-				<span>장소: 발리</span><br>
-			  	<span>작성일 : 16.06.01</span>
-			  </div>
-			  <div class="excerpt">
-				<a href="#">간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 </a>
-			  </div>
-			  <div class="price-box">
-				<a href="#" class="add-review"><span class="excerpt">5 Like(s)</span></a>
-			  </div>	
-			  <div class="actions">
-			  	좋아요버튼
-				<a href="#" class="add-wishlist">
-				  <svg x="0" y="0" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
-				  <path fill="#1e1e1e" d="M11.335,0C10.026,0,8.848,0.541,8,1.407C7.153,0.541,5.975,0,4.667,0C2.088,0,0,2.09,0,4.667C0,12,8,16,8,16
-					s8-4,8-11.333C16.001,2.09,13.913,0,11.335,0z M8,13.684C6.134,12.49,2,9.321,2,4.667C2,3.196,3.197,2,4.667,2C6,2,8,4,8,4
-					s2-2,3.334-2c1.47,0,2.666,1.196,2.666,2.667C14.001,9.321,9.867,12.49,8,13.684z"></path>
-				  </svg>
-				</a>
-				좋아요버튼 끝
-			  </div>.actions
-			</div>
-		  </div>.product
-		  
-		  <div class="product">
-			<div class="col-sm-4 col-md-4">
-			  <a href="shop-product-view.html" class="product-image">
-				<span class="sale"></span>
-				<img class="replace-2x" src="content/img/product-1.jpg" alt="" title="" width="270" height="270">
-			  </a>
-			</div>
-			<div class="col-sm-8 col-md-8">
-			  <h3 class="price">
-				<a href="#">ABCD</a>
-			  </h3>
-			  <div class="excerpt">
-				<span>이름: 조인성</span><br>
-				<span>장소: 발리</span><br>
-			  	<span>작성일 : 16.06.01</span>
-			  </div>
-			  <div class="excerpt">
-				<a href="#">간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 간단한 설명 </a>
-			  </div>
-			  <div class="price-box">
-				<a href="#" class="add-review"><span class="excerpt">5 Like(s)</span></a>
-			  </div>	
-			  <div class="actions">
-			  	좋아요버튼
-				<a href="#" class="add-wishlist">
-				  <svg x="0" y="0" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
-				  <path fill="#1e1e1e" d="M11.335,0C10.026,0,8.848,0.541,8,1.407C7.153,0.541,5.975,0,4.667,0C2.088,0,0,2.09,0,4.667C0,12,8,16,8,16
-					s8-4,8-11.333C16.001,2.09,13.913,0,11.335,0z M8,13.684C6.134,12.49,2,9.321,2,4.667C2,3.196,3.197,2,4.667,2C6,2,8,4,8,4
-					s2-2,3.334-2c1.47,0,2.666,1.196,2.666,2.667C14.001,9.321,9.867,12.49,8,13.684z"></path>
-				  </svg>
-				</a>
-				좋아요버튼 끝
-			  </div>.actions
-			</div>
-		  </div>.product -->
-
-
-
 					<div class="pagination-box">
 						<div align="center">
 						<ul class="pagination">

@@ -29,7 +29,6 @@ $(function() {
 		} else {
 		swal('더 이상 추가할 수 없습니다!');
 		}
-		console.log(index);
 	});
 	$('#minusBtn').click(function() {
 		if(index>1) {
@@ -41,30 +40,18 @@ $(function() {
 		} else {
 			swal('더 이상 삭제할 수 없습니다!');
 		}
-		console.log(index);
 	});
-	
-	//SUBMIT했을 때 사진의 확장자를 찾아서 이미지파일이 아니면 전송하지 못하게 하자. 이건 좀 나중에 ㅎㅎㅎ
 	
 	$('#ckeditor').keyup(function() {
 		console.log($('#ckeditor').val());
 	});
 
 	$('#submit3').click(function() {
-		// ckeditor 내용 추출
 		var sendNoteData = CKEDITOR.instances.ckeditor.getData();
 		console.log(CKEDITOR.instances.ckeditor.getData());
-		// 히든 인풋에 추출한 내용 삽입.
 		$('#board_Content').val(sendNoteData);
-
-		// 강제 서브밋
 		$('#bofom').submit();
 	});
-	
-	
-	
-	
-	
 });
 </script>
 <section id="main">
@@ -76,7 +63,7 @@ $(function() {
 
 	<article class="content">
 		<div class="container">
-			<form action="" id="bofom" method="post" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
+			<form action="" id="bofom" method="post" enctype="multipart/form-data">
 				<table class="table center">
 					<tr>
 						<td><h6><spring:message code="travel_review_inc_writefom1"/></h6></td>
@@ -88,7 +75,7 @@ $(function() {
 					</tr>
 					<tr>
 						<td><spring:message code="travel_review_inc_writefom4"/></td>
-						<td><!-- <input class="form-control" type="text" name="local_code"> -->
+						<td>
 							<select class="form-group" name="local_code">
                 				<option value="-">--</option>
                 				<c:forEach var="i" items="${local_list}">
@@ -114,10 +101,9 @@ $(function() {
 									<script type="text/javascript">
 							
 
-									CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
+									CKEDITOR.replace('ckeditor', {
 										width : '100%',
 										height : '400px',
-										//filebrowserImageUploadUrl : '' //여기 경로로 파일을 전달하여 업로드 시킨다.
 									});
 									</script>
 								</div>

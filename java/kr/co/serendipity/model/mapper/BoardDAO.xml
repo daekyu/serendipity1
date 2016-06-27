@@ -21,8 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="getBoardList" resultType="hashmap">
      SELECT * FROM
                ( SELECT ROWNUM NUM, N.* FROM 
-                     ( SELECT b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=1 order by ${param3} desc
-                     <!-- <trim prefix="ORDER BY" ><if test="#{param3} == 'board_num'"> board_num desc </if></trim> -->) N
+                     ( SELECT b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code,b.category_num, b.price, b.meeting_place, b.meeting_address,m.id,m.profile_picture,l.local_name FROM BOARD b, local l, member m where b.local_code=l.local_code and b.user_num=m.user_num and category_num=1 order by ${param3} desc) N
                 ) WHERE NUM BETWEEN 1 + (#{param1}-1)*#{param2} AND #{param2} + (#{param1}-1)*#{param2}
     </select>
     
@@ -78,23 +77,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </update>
    
    <update id="picUpdate1">
-      update board set board_picture1=#{board_picture1} where board_num=#{board_num}
+      update board set board_picture1=#{0} where board_num=#{1.board_num}
    </update>
    
    <update id="picUpdate2">
-      update board set board_picture2=#{board_picture2} where board_num=#{board_num}
+      update board set board_picture2=#{0} where board_num=#{1.board_num}
    </update>
    
    <update id="picUpdate3">
-      update board set board_picture3=#{board_picture3} where board_num=#{board_num}
+      update board set board_picture3=#{0} where board_num=#{1.board_num}
    </update>
    
    <update id="picUpdate4">
-      update board set board_picture4=#{board_picture4} where board_num=#{board_num}
+      update board set board_picture4=#{0} where board_num=#{1.board_num}
    </update>
    
    <update id="picUpdate5">
-      update board set board_picture5=#{board_picture5} where board_num=#{board_num}
+      update board set board_picture5=#{0} where board_num=#{1.board_num}
    </update>
    
    <select id="picSearch" resultType="kr.co.serendipity.model.BoardDTO">

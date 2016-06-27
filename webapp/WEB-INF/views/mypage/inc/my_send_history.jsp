@@ -116,14 +116,6 @@
 					</div>
 					<div class="pagination-box">
 						<ul class="pagination">
-							<!-- <li class="disabled"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-			  <li class="active"><span>1</span></li>
-			  <li><a href="#">2</a></li>
-			  <li><a href="#">3</a></li>
-			  <li class="disabled"><a href="#">...</a></li>
-			  <li><a href="#">9</a></li>
-			  <li><a href="#"><i class="fa fa-angle-right"></i></a></li> -->
-
 							<c:choose>
 								<c:when test="${page<=1}">
 									<li class="disabled"><span><i
@@ -163,16 +155,10 @@
 								</c:otherwise>
 							</c:choose>
 						</ul>
-						<br>임시 출력창 <br>page: ${page}<br> maxpage:
-						${maxpage}<br> startpage: ${startpage}<br> endpage:
-						${endpage}<br> listCount: ${listCount}<br>
-
-						</ul>
 						<i class="pagination-text">Displaying 1 to 10 (of 100 posts)</i>
 					</div>
 				</div>
 			</article>
-			<!-- .content -->
 
 			<jsp:include page="my_page_sidebar.jsp"></jsp:include>
 		</div>

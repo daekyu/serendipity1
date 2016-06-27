@@ -30,15 +30,6 @@
 <input type="hidden" id=ac value="${accept}"/>
 
 <script type="text/javascript">
-	/* $(function(){
-		$('#delete').click(function(){
-			if(confirm("글을 삭제 하시겠습니까?") == true){
-			location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=2";
-			}else{
-			    return false;
-			}
-		});
-	}); */
 	
 	//시간차에 따른 버튼 처리
 	function getTimeStamp() {
@@ -60,7 +51,6 @@
 	    return zero + n;
 	}
 	
-
 	$(function() {
 		
 		var today = new Date();
@@ -123,24 +113,6 @@
 						});
 	});
 	
-	/* $('#sm').click(function(){
-		var cp = ('#cp').val();
-		var ac = ('#ac').val();
-		var many = ('#many').val();
-		var mi = cp-ac;
-		console.log("cp : " + cp);
-		console.log("ac : " + ac);
-		console.log("many : " + many);
-		console.log("mi : " + mi);
-		if(many > mi){
-			alert('인원 초과! 신청할수 없습니다.');
-			return false;
-		}else{
-		$('#form1').submit;
-		}
-	}); */
-	
-
 	var map;
 	var marker;
 	var myLatlng;
@@ -198,9 +170,7 @@
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
-
 <div class="breadcrumb-box breadcrumb-none"></div>
-
 
 <div id="main" class="page">
 	<header class="page-header">
@@ -231,8 +201,6 @@
 									width="500" height="500">
 							</div>
 							<!-- .general-img -->
-
-
 							<div class="thumblist-box load">
 								<a href="#" class="prev"> <svg x="0" y="0" width="9px"
 										height="16px" viewBox="0 0 9 16"
@@ -279,10 +247,6 @@
 										<img class="replace-2x" alt=""
 										src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}"
 										width="100" height="100">
-									<!-- </a> <a href="#" data-image="content/img/single-3.jpg"
-										data-zoom-image="content/img/single-3.jpg"> <img
-										class="replace-2x" alt="" src="content/img/single-3.jpg"
-										width="100" height="100"> -->
 									</a>
 								</div>
 								<!-- #thumblist -->
@@ -364,7 +328,6 @@
 									data-c="white" data-hc="0"></i> <spring:message
 										code="board.traveler_detail5" /></a>
 								<a class="btn btn-danger btn-sm" id="delete"><i
-									<%-- 					href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=2" --%>
 									class="livicon shadowed"
 									data-s="24" data-n="trash" data-c="white" data-hc="0"></i> <spring:message
 										code="board.traveler_detail6" /></a>
@@ -386,7 +349,6 @@
 										</c:otherwise>
 									</c:choose>
 									<br>
-									<%-- ${pageContext.request.contextPath} --%>
 									<c:if test="${!empty sessionScope.user_num}">
 										<c:choose>
 											<c:when test="${realcheck eq 1}">
@@ -400,10 +362,8 @@
 											value="${boarddto.BOARD_NUM}">
 										<input type="hidden" name="user_num"
 											value="${sessionScope.user_num}">
-										<%-- <input type="hidden" id="cp" value="${boarddto.BOARD_CAPACITY}">
 										<input type="hidden" id="ac" value="${accept}"> --%>
 										<input type="submit" class="btn-default btn-lg" value="신청하기" id="sm">
-										<!-- 이 클래스 속성 먹이면 버튼이 안눌림; btn add-cart -->
 										<div class="number">
 											<label>인원수:</label> <input type="text" value="1"
 												class="form-control" name="many" id="many">
@@ -452,8 +412,7 @@
 						<!-- #reviews -->
 						<!-- 지도 끝 -->
 						<div class="tab-pane" id="description">
-							${boarddto.BOARD_CONTENT}<br> <br> <br> <br>
-							추가사항 강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~
+							${boarddto.BOARD_CONTENT}<br>
 						</div>
 
 					</div>
@@ -514,10 +473,7 @@
 											<p>${boarddto.PROFILE_DESCRIPTION}</p>
 										</div>
 										<div class="social">
-											<!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>
-				<a class="icon rounded icon-twitter" href="#"><i class="fa fa-twitter"></i></a>
-				<a class="icon rounded icon-google" href="#"><i class="fa fa-google"></i></a>
-				<a class="icon rounded icon-linkedin" href="#"><i class="fa fa-linkedin"></i></a> -->
+										
 										</div>
 									</div>
 									<div class="clearfix"></div>

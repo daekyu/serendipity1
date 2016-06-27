@@ -53,10 +53,6 @@ import org.slf4j.LoggerFactory;
 public class UsersServerEndPoint {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UsersServerEndPoint.class);
 	private static Set<Session> connectedAllUsers = Collections.synchronizedSet(new HashSet<Session>());
-	//Spring bean과 연동하기 위해서는 ServerAppConfig를 configurator로 등록해주면 된다.
-	/*
-	 * @Resource(name="TestService") TestService testService;
-	 */
 
 	/**
 	 * Handshaking 함수

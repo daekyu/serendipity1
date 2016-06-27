@@ -9,11 +9,10 @@
 		<meta name="author" content="itembridge.com">
 		<meta class="viewport" name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Insert title here</title>
+		<title>Serendipity :: ${boarddto.BOARD_TITLE}</title>
 		
 		<!-- Favicon -->
-		<link rel="shortcut icon" href=".././resources/img/favicon.ico">
-		
+		<link rel="shortcut icon" href=".././resources/img/main_ico.png">
 		
 		<!-- Font -->
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
@@ -41,10 +40,7 @@
 		<link rel="stylesheet" href=".././resources/css/customizer/pages.css">
 		<link rel="stylesheet" href=".././resources/css/customizer/home-pages-customizer.css">
 		
-		<!-- IE Styles-->
-		<!-- <link rel='stylesheet' href="../css/ie/ie.css"> -->
 	</head>
-
 
 	<!-- Body 시작 -->
 	<body class="fixed-header hidden-top">
@@ -70,14 +66,7 @@
 		
 		
 		<!-- 각종 Javascript -->
-		
-		<!--[if (!IE)|(gt IE 8)]><!-->
 		<script src=".././resources/js/jquery-2.1.3.min.js"></script>
-		<!--<![endif]-->
-		
-		<!--[if lte IE 8]>
-		<script src="js/jquery-1.9.1.min.js"></script>
-		<![endif]-->
 		<script src=".././resources/js/bootstrap.min.js"></script>
 		<script src=".././resources/js/price-regulator/jshashtable-2.1_src.js"></script>
 		<script src=".././resources/js/price-regulator/jquery.numberformatter-1.2.3.js"></script>
@@ -132,6 +121,5 @@
 		<script src=".././resources/js/jplayer/jplayer.playlist.min.js"></script>
 		<script src=".././resources/js/jquery.scrollbar.min.js"></script>
 		<script src=".././resources/js/main.js"></script>
-	
 	</body>
 </html>

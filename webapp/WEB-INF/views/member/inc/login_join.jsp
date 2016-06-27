@@ -26,18 +26,13 @@ href=".././resources/js/sweetalert.css">
 		   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
 		   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 	};
-		
-		
 	$(function() {
 		var check;
-		
 		$('#req_confirm_num').click(function() {
 			if($('#email').val() == '') {
-			/* 	alert('E-mail주소를 입력해주세요'); */
 				swal("E-mail 주소를 입력해주세요")
 			 }
 				else{
-				/* alert('입력하신 E-mail주소로 인증번호가 발송됩니다.'); */
 				$.ajax({
 					type: "post",
 					url : getContextPath()+"/member/EmailCheck.htm",
@@ -46,7 +41,6 @@ href=".././resources/js/sweetalert.css">
 		        		  console.log(data);
 		        		  if(data == 1) {
 		        			  swal("이미 같은 메일이 존재합니다!");
-		        			 /*  alert("비밀번호가 틀렸거나 존재하지 않는 아이디입니다."); */
 		        			  $('#email').focus();
 		        			  return false;
 		        		  } else {
@@ -61,7 +55,6 @@ href=".././resources/js/sweetalert.css">
 		      		        			  console.log(data);
 		      		        			  if($('#confirm_number').val() != data) {
 		      		        				  swal("인증정보가 정확하지 않습니다!")
-		      		        				 
 		      		        			  } else {
 		      		        				  swal("인증정보가 확인되었습니다!")
 		      		        				  $('#confirm_val').val('1');
@@ -72,11 +65,6 @@ href=".././resources/js/sweetalert.css">
 		        		  }
 		        	  }
 				})
-				
-				
-				
-				
-				
 			}
 		});
 		
@@ -117,22 +105,6 @@ href=".././resources/js/sweetalert.css">
 		        			  swal("비밀번호가 틀렸거나 존재하지 않는 아이디입니다.")
 		        			 /*  alert("비밀번호가 틀렸거나 존재하지 않는 아이디입니다."); */
 		        			  $('#id_login').focus();
-		        			
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
-		        			 
 		        			  return false;
 		        		  } else {
 		        			  $('#login_form').submit();
@@ -172,77 +144,58 @@ href=".././resources/js/sweetalert.css">
 
 			if (!reg_name.test(name.val()) == true) {
 				swal("이름을 입력해주세요")
-				/* alert("이름을 입력해주세요"); */
 				name.focus();
 				return false;
 				
 			} else if (!reg_id.test(id.val()) == true) {
 				swal("아이디는 4-12자 이여야 하며 \n"
 						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.")
-				/* alert("아이디는 4-12자 이여야 하며 \n"
-						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다."); */
-				id.focus();
 				return false;
 			 }else if (!reg_pw.test(pw_1.val()) == true) { //비밀번호 검사
 					swal("비밀번호를 다시 입력해주세요.(최소 4자리 이상)")
-				 /* alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)'); */
 				pw_1.focus();
 				return false;
 			} else if ($('#pw_1').val()!=$('#confirm_pw').val()){ // 비밀번호 확인 검사
-				/* alert('비밀번호가 일치하지 않습니다'); */
 				swal("비밀번호가 일치하지 않습니다")
 				confirm_pw.focus();
 				return false;
 			} else if (gender.val() == "") { // 이름 검사
-				/* alert('성별 선택해 주세요.'); */
 				swal("성별 선택해 주세요.")
 				gender.focus();
 				return false;
 			} else if (!reg_age.test(age.val()) == true) {
-				/* alert("나이를 숫자로 입력해주세요"); */
 				swal("나이를 숫자로 입력해주세요")
 				age.focus();
 				return false;
 			}else if (country_code.val() == "") { // 이름 검사
-				/* alert('국적을 선택해 주세요.'); */
 				swal("국적을 선택해 주세요.")
 				country_code.focus();
 				return false;
 			} else if (!reg_hp.test(hp.val()) == true) { //휴대폰 유효성
-				/* alert('휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)'); */
 				swal("휴대폰 번호를 잘못입력하셨습니다.(최소 10자리 이상)")
 				hp.focus();
 				return false;
 			} else if (!reg_email.test(email.val()) == true) {
-				/* alert('이메일 주소는 @와.를 입력해야합니다.'); */
 				swal("이메일 주소는 @와.를 입력해야합니다.")
 				email.focus();
 				return false;
 			} else if($('#confirm_val').val() == '0') {
-				/* alert('E-mail 인증이 완료되지 않았습니다.'); */
 				swal("E-mail 인증이 완료되지 않았습니다.")
 				return false;
 			} else if($('#id_check_val').val() == '0') {
-				/* alert('아이디 중복검사를 먼저 해주시기 바랍니다.'); */
 				swal("아이디 중복검사를 먼저 해주시기 바랍니다.")
 				return false;
 			} else{
-				/* alert("회원가입 성공"); */
 				swal("회원가입이 되었습니다!","성공","success")
-			} 
-
-			
-			
+			}
 		});
 		
 		$("#id_button").click(function(){
 		    
 			if ($('#id_1').val() == ''){
-			/* 	alert("ID를 입력해주세요"); */
 				swal("ID를 입력해주세요.")
 				$("#id_1").focus();
 				return false;
-				
 			}else{
 				$.ajax({
 		        	  type : "post",
@@ -251,17 +204,14 @@ href=".././resources/js/sweetalert.css">
 		        	  success : function(data) {
 		        		  console.log(data);
 		        		  if(data == 0) {
-		        			 /*  alert("사용가능한 아이디입니다."); */
 		        			  swal("사용가능한 아이디입니다.")
 		        			  $('#id_check_val').val('1');
 		        		  } else {
-		        			 /*  alert("이미 존재하는 아이디입니다."); */
 		        			  swal("이미 존재하는 아이디입니다.")
 		        			  $('#id_1').focus();
 		        		  }
 		        	  }
 		          });
-				
 			}
 		});
 		
@@ -273,23 +223,17 @@ href=".././resources/js/sweetalert.css">
 			
 			
     		if (!reg_id.test(id_login.val()) == true) {
-				/* alert("아이디는 4-12자 이여야 하며 \n"
-						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다."); */
 				swal("아이디는 4-12자 이여야 하며 \n"
 						+ "마침표,'-', '_'를 제외한 문자는 사용할 수 없습니다.")
 				id_login.focus();
 				return false;
 			}else if (!reg_pw.test(password.val()) == true) { //비밀번호 검사
-			/* 	alert('비밀번호를 다시 입력해주세요.(최소 4자리 이상)'); */
 				swal("비밀번호를 다시 입력해주세요.(최소 4자리 이상)")
 				password.focus();
 				return false;
 			}
 
 		});
-		
-		
-		
 	});
 	
 </script>
@@ -312,7 +256,6 @@ href=".././resources/js/sweetalert.css">
 			  <button id="new-costumers" class="btn btn-default filter-buttons" data-filter=".register"><spring:message code="member.join_login3"/></button>
 			</div>
 		  </div>
-		  
 		  
 		  <!-- 로그인하는 Form태그가 있는 부분 -->
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
@@ -341,10 +284,6 @@ href=".././resources/js/sweetalert.css">
 			</form><!-- .form-box -->
 		  </div>
 		  <!-- 로그인 form태그 끝 -->
-		  
-	
-		  
-		  
 		  <!-- 회원가입 Form태그 -->
 		  <div id="joinDiv" class="col-xs-12 col-sm-6 col-md-6 box register">
 			
@@ -435,7 +374,6 @@ href=".././resources/js/sweetalert.css">
               </div>
 
 			  <div class="buttons-box clearfix">
-				<!-- <button class="btn btn-default">Create my account</button> -->
 				<input type="submit" class="btn btn-default" id="loginbutton" value="<spring:message code="member.join_login_re11"/>">
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>

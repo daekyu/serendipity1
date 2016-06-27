@@ -12,7 +12,7 @@
 		<div class="title-box title-white">
 			<a href="board/guide_list.htm" class="btn"><spring:message code="index.inc.carousel-box-newguide"/> <span
 				class="glyphicon glyphicon-arrow-right"></span></a>
-			<h1 class="title no-top-padding" style="color: black;"><spring:message code="index.inc.carousel-box-newguide1"/></h1>
+			<h1 class="title no-top-padding" style="color: black;"><spring:message code="index.inc.carousel-box-newtraveler1"/></h1>
 		</div>
 
 		<div class="row text-center">

@@ -124,20 +124,11 @@
 									<li>가격상한: ${i.PRICE}</li>
 									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>
-								<br> <span class="">하고싶은 여행: <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">
-								<c:choose>
-									<c:when test="${i.BOARD_CONTENT.length() >=20}">
-										${i.BOARD_CONTENT.substring(0,20)}.....
-									</c:when>
-									<c:when test="${empty i.BOARD_CONTENT}">
-										<br>
-										내용 없음
-									</c:when>
-									<c:otherwise>
-										${i.BOARD_CONTENT}
-									</c:otherwise>
-								</c:choose>
-								</a></span>
+								
+								<br>
+										<div class="contact" align="center">
+											<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}"class="btn btn-warning btn-lg btn-block"><spring:message code="index.inc.carousel-box-newguide10"/></a>
+										</div>
 							</div>
 							<!-- .product-hover -->
 						</div>

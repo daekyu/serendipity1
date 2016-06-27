@@ -42,7 +42,7 @@
 			<h3 class="title"><spring:message code="index.footer5"/></h3>
 		  </div>
 		  <div>
-		   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.47523260899!2d127.10460781483823!3d37.402240741278746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca7f4fbef1ba9%3A0x82868987866c3252!2z7ZWc6rWt7IaM7ZSE7Yq47Juo7Ja06riw7Iig7KeE7Z2l7ZiR7ZqM!5e0!3m2!1sko!2skr!4v1467028148843" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
+		   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.47523260899!2d127.10460781483823!3d37.402240741278746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca7f4fbef1ba9%3A0x82868987866c3252!2z7ZWc6rWt7IaM7ZSE7Yq47Juo7Ja06riw7Iig7KeE7Z2l7ZiR7ZqM!5e0!3m2!1sko!2skr!4v1467028148843&language=${sessionScope.locale}" width="300" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
 		  <!-- <div id="map" style="height:200px;width:250px"> -->
 		  </div>
         </aside>

@@ -101,4 +101,7 @@ public interface BoardDAO {
 	//가장 최근 board_num 가져오기
 	public int selectBoardNum();
 	
+	//지역 가져오기 (여행자 구함) - 내국인용
+	public String selectLocal(BoardDTO boarddto);
+	
 }

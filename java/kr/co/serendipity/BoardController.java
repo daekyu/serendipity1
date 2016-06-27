@@ -141,6 +141,10 @@ public class BoardController {
 
 	@RequestMapping(value = "guide_writeform.htm", method = RequestMethod.POST)
 	public String guideWriteform(BoardDTO boarddto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
+		System.out.println("들어옴?");
+		String local = boardservice.selectLocal(boarddto);
+		System.out.println("local : " + local);
+		boarddto.setLocal_code(local);
 		boardservice.guideWriteFormPost(boarddto, request);
 		return "redirect:/board/guide_list.htm";
 	}

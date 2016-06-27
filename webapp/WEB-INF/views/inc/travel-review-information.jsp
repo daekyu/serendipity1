@@ -63,9 +63,7 @@
 							<a href="${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=${i.review_num}"><span class="daekyu">${i.review_title}</span></a>
 			  			</div>
 			  			<div class="description">
-							<a href="${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=${i.review_num}">
-				  				${i.review_content}
-							</a>
+							<a href="${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num=${i.review_num}">Read more</a>
 			  			</div>
 					</li>
 					</c:forEach>

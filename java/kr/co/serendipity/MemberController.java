@@ -81,8 +81,6 @@ public class MemberController {
 		memberservice.ConfirmPassword(memberdto);
 	}
 	
-	
-	
 	@RequestMapping("recover_id_pw.htm")
 	public String recoverAccount() {
 		return "/member/recover_id_pw";
@@ -90,7 +88,6 @@ public class MemberController {
 	
 	@RequestMapping("sendFindIdEmail.htm")
 	public @ResponseBody MemberDTO sendFindIdEmail(MemberDTO memberdto) throws MessagingException {
-		
 		if(memberservice.checkFindIdEmailInfo(memberdto) == null) {
 			return null;
 		} else {

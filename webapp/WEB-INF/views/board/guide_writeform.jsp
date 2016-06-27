@@ -38,7 +38,9 @@
 		<script src="//code.jquery.com/jquery.min.js"></script>
 		
 		<!-- ckeditor -->
-		<script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script> 
+		<!-- <script type="text/javascript" src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script> -->
+		<script type="text/javascript"
+   src=".././resources/ckeditor/ckeditor.js"></script>    
    </head>
 
    <!-- Body 시작 -->

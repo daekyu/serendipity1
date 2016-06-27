@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href=".././resources/js/sweetalert.css">   
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js"></script>
 <script type="text/javascript">
 	function getContextPath() {
 		   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
@@ -8,11 +10,13 @@
 	$(function() {
 		$('#find_id_btn').click(function() {
 			if($('#find_id_name').val() == '') {
-				alert('아이디를 입력해주세요');
+				swal('이름을 입력해주세요');
 				$('#find_id_name').focus();
+				return false;
 			} else if($('#find_id_email').val() == '') {
-				alert('이메일을 입력해주세요');
+				swal('이메일을 입력해주세요');
 				$('#find_id_email').focus();
+				return false;
 			} else {
 				$.ajax({
 					type : "post", 
@@ -85,10 +89,9 @@
 		  </div>
 
 		  <div class="col-xs-12 col-sm-6 col-md-6 box login">
-			<form class="form-box login-form form-validator">
+			<form class="form-box login-form form-validator" action="" method="">
 			  <h3 class="title">아이디 찾기</h3>
 			  <p>가입한 계정의 이름과 이메일주소를 입력해주세요.</p>
-			  
 			  <div class="form-group">
 				<label>이름: <span class="required">*</span></label>
 				<input class="form-control" id="find_id_name" type="text">

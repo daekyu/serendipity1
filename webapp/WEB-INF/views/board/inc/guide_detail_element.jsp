@@ -176,8 +176,7 @@
 			icon : image
 		});
 		var infowindow = new google.maps.InfoWindow({
-			content : '<font style="color:#000;">' + meeting_place
-					+ '<br />주소: ' + meeting_address + '</font>'
+			content : '<font style="color:#000;">'+'주소: '+ meeting_address + '</font>'
 		});
 
 		infowindow.open(map, marker);
@@ -219,7 +218,7 @@
 							<div class="general-img">
 								<img class="replace-2x" alt=""
 									src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}"
-									data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}"
+									<%-- data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}" --%>
 									width="500" height="500">
 							</div>
 							<!-- .general-img -->
@@ -484,7 +483,7 @@
 											<div class="carousel">
 												<div class="image">
 													<img class="replace-2x"
-														src=".././content/img/team-big-1.jpg" alt="" title=""
+														src="${pageContext.request.contextPath}/resources/img/profile_picture/${boarddto.PROFILE_PICTURE}" alt="" title=""
 														width="768" height="768">
 												</div>
 											</div>

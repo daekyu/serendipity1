@@ -86,10 +86,9 @@
 		<div class="row">
 			<div id="catalog" class="content col-sm-12 col-md-12">
 				<div class="category-img">
-					<img class="replace-2x" src=".././resources/img/1.jpg"
+					<img class="replace-2x" src=".././resources/img/background_img/KLIVEK-PopHologramHall.jpg"
 						width="870" height="370" alt="">
-					<div class="description">Automation &amp; 
-					Go
+					<div class="description">소중했던 여행경험을 함께 공유하세요.
 					</div>
 				</div>
 
@@ -178,7 +177,7 @@
 									<span><spring:message code="board.review11"/> ${i.REPLY_COUNT}</span>
 								</div>
 								<div class="excerpt">
-									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_CONTENT}</a>
+									
 								</div>
 								<div class="price-box">
 									 <spring:message code="board.review13"/>&nbsp;&nbsp;<span class="excerpt" id="likeCount_${j.index}">${i.LIKE_COUNT}</span>

@@ -20,10 +20,9 @@
 		<div class="row">
 			<div id="catalog" class="content col-sm-12 col-md-12">
 				<div class="category-img">
-					<img class="replace-2x" src="content/img/category-img.jpg"
+					<img class="replace-2x" src=".././resources/img/background_img/에버랜드사진.PNG"
 						width="870" height="370" alt="">
-					<div class="description">Automation &amp; Integration
-						technology to fit any lifestyle</div>
+					<div class="description">함께 여행하고 싶은 여행자를 찾아보세요!</div>
 				</div>
 
 				<div class="toolbar clearfix">

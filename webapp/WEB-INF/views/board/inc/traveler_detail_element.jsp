@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -59,7 +60,7 @@
 				},
 				success : function(data) {
 					if(data == 1) {
-						swal("메세지 전송이 완료되었습니다.");
+						swal("<spring:message code="board.traveler_detail0.1"/>");
 						$('#receiver').val("");
 						$('#sender').val("");
 						$('#message_title').val("");
@@ -75,7 +76,7 @@
 		var betweenDay = (dateObj.getTime()-today.getTime())/1000/60/60/24;
 		if(betweenDay < 0){
 			$('#beforeDate').remove();
-			$('#afterDate').append("마감된 글입니다.");
+			$('#afterDate').append("<spring:message code="board.traveler_detail0.2"/>");
 		}
 	$('#date').val(today);
 		$('#date2').val(today.getTime());
@@ -88,26 +89,26 @@
 
 							swal(
 									{
-										title : "정말로 삭제하시겠습니까?",
+										title : "<spring:message code="board.traveler_detail0.3"/>",
 
 										type : "warning",
 										showCancelButton : true,
 										confirmButtonColor : "#DD6B55",
-										confirmButtonText : "삭제",
-										cancelButtonText : "취소",
+										confirmButtonText : "<spring:message code="board.traveler_detail0.4"/>",
+										cancelButtonText : "<spring:message code="board.traveler_detail0.5"/>",
 										closeOnConfirm : false,
 										closeOnCancel : false
 									},
 									function(isConfirm) {
 										if (isConfirm == true) {
 
-											swal("삭제되었습니다.");
+											swal("<spring:message code="board.traveler_detail0.6"/>");
 											/* location.href = "${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=1";  */
 											location.href = "${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=1"; 
 
 										} else {
 
-											swal("취소되었습니다 :)");
+											swal("<spring:message code="board.traveler_detail0.7"/>");
 										}
 									});
 
@@ -187,7 +188,7 @@
 <div id="main" class="page">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title">가이드구함</h1>
+			<h1 class="title"><spring:message code="board.traveler_detail"/></h1>
 			<%-- 지우지 마세요. 일단위로 체크해야 하는 항목입니다. - 민규<br> --%>
 			<!-- 현재 시간 :  --><input type="hidden" id="date">
 			<!-- 현재 시간 변환 :  --><input type="hidden" id="date2">
@@ -274,9 +275,9 @@
 							class="table table-striped table-bordered text-center my-orders-table">
 							<thead>
 								<tr class="first last">
-									<th>작성자</th>
-									<th>언어</th>
-									<th>관심사</th>
+									<th><spring:message code="board.traveler_detail1"/></th>
+									<th><spring:message code="board.traveler_detail2"/></th>
+									<th><spring:message code="board.traveler_detail3"/></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -284,7 +285,7 @@
 									<td><a data-toggle="modal" id="callModal" data-target="#myModal">${boarddto.ID}</a></td>
 									<td><c:choose>
 											<c:when test="${empty language}">
-									없음
+									<spring:message code="board.traveler_detail4"/>
 								</c:when>
 											<c:otherwise>
 												<c:forEach var="i" items="${language}">
@@ -294,7 +295,7 @@
 										</c:choose></td>
 									<td><c:choose>
 											<c:when test="${empty hobby}">
-									없음
+									<spring:message code="board.traveler_detail5"/>
 								</c:when>
 											<c:otherwise>
 												<c:forEach var="j" items="${hobby}">
@@ -323,7 +324,7 @@
 											data-c="white" data-hc="0"></i> Delete</a>
 									</c:when>
 									<c:otherwise>
-										신청 수락을 했기 때문에 글 삭제 및 수정이 불가 합니다.
+										<spring:message code="board.traveler_detail6"/>
 									</c:otherwise>
 								</c:choose>
 							</c:when>
@@ -331,22 +332,22 @@
 								<td>
 									<c:choose>
 										<c:when test="${boarddto.BOARD_CAPACITY eq 1}">
-											가이드 구하는 중<br><br>
+											<spring:message code="board.traveler_detail7"/><br><br>
 											<c:if test="${!empty sessionScope.user_num}">
 												<c:choose>
 													<c:when test="${check eq 1}">
-														이미 신청한 여행 입니다.
+														<spring:message code="board.traveler_detail8"/>
 													</c:when>
 												<c:otherwise>
 													<c:choose>
 														<c:when test="${sessionScope.country_code eq 82}">
 															<a class="btn add-cart btn-default btn-lg"
-															href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}">신청하기</a>
+															href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}"><spring:message code="board.traveler_detail9"/></a>
 															<br>
 															
 														</c:when>
 														<c:otherwise>
-															외국인은 가이드 신청이 불가 합니다.<br>
+															<spring:message code="board.traveler_detail10"/><br>
 														</c:otherwise>
 														</c:choose>
 												</c:otherwise>
@@ -354,8 +355,8 @@
 											</c:if>
 										</c:when>
 										<c:otherwise>
-											가이드 이미 구함(마감) <br>
-											가이드 : ${guide}
+											<spring:message code="board.traveler_detail11"/> <br>
+											<spring:message code="board.traveler_detail12"/> ${guide}
 										</c:otherwise>
 									</c:choose>
 								</td>
@@ -368,8 +369,8 @@
 
 				<div class="product-tab">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#reviews">Meeting Point</a></li>
-						<li><a href="#description">Description</a></li>
+						<li class="active"><a href="#reviews"><spring:message code="board.traveler_detail13"/></a></li>
+						<li><a href="#description"><spring:message code="board.traveler_detail14"/></a></li>
 
 					</ul>
 					<!-- .nav-tabs -->
@@ -418,9 +419,9 @@
 			<div class="modal-body">
 				<div class="product-tab">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#profile">프로필보기</a></li>
-						<li><a href="#sendMessage">쪽지보내기</a></li>
-						<li><a href="#reporting">신고하기</a></li>
+						<li class="active"><a href="#profile"><spring:message code="board.traveler_detail15"/></a></li>
+						<li><a href="#sendMessage"><spring:message code="board.traveler_detail16"/></a></li>
+						<li><a href="#reporting"><spring:message code="board.traveler_detail17"/></a></li>
 					</ul>
 					<!-- .nav-tabs -->
 					<div class="tab-content">
@@ -449,23 +450,23 @@
 									<table class="table table-bordered">
 
 										<tr>
-											<th class="danger" colspan="2">Information</th>
+											<th class="danger" colspan="2"><spring:message code="board.traveler_detail18"/></th>
 										</tr>
 
 										<tr>
-											<th class="danger">국적</th>
+											<th class="danger"><spring:message code="board.traveler_detail19"/></th>
 											<td>${country}</td>
 										</tr>
 
 										<tr>
-											<th class="danger">언어</th>
+											<th class="danger"><spring:message code="board.traveler_detail20"/></th>
 											<td><c:forEach var="i" items="${language}">
 							${i.LANGUAGE_NAME} 
 						</c:forEach></td>
 										</tr>
 
 										<tr>
-											<th class="danger">취미</th>
+											<th class="danger"><spring:message code="board.traveler_detail21"/></th>
 											<td><c:forEach var="j" items="${hobby}">
 							${j.HOBBY_NAME} 
 						</c:forEach></td>
@@ -492,7 +493,7 @@
 									</tr>
 
 									<tr>
-										<td><button class="btn btn-success" id="msg_btn">전송</button></td>
+										<td><button class="btn btn-success" id="msg_btn"><spring:message code="board.traveler_detail22"/></button></td>
 									</tr>
 								</table>
 						</div>
@@ -516,7 +517,7 @@
 
 									<tr>
 										<td><input type="submit" class="btn btn-success"
-											value="전송"></td>
+											value="<spring:message code="board.traveler_detail22.1"/>"></td>
 									</tr>
 								</table>
 							</form>
@@ -527,7 +528,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="board.traveler_detail23"/></button>
 			</div>
 		</div>
 	</div>

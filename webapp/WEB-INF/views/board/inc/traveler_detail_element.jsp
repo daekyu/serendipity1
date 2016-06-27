@@ -266,7 +266,7 @@
 
 					<div class="col-sm-7 col-md-7">
 						<div class="reviews-box table-responsive">
-							<a href="#reviews" class="add-review">${boarddto.BOARD_TITLE}</a>
+							<div class="price-box"><span class="entry-title">${boarddto.BOARD_TITLE}</span></div>
 						</div>
 						<table
 							class="table table-striped table-bordered text-center my-orders-table">
@@ -307,10 +307,7 @@
 						</table>
 						<div class="description"></div>
 
-						<div class="price-box">
-							<span class="price">${boarddto.PRICE} / a day /
-								${boarddto.BOARD_DATE}</span>
-						</div>
+						<h4 class="entry-title">${boarddto.PRICE} / a hour<br>${boarddto.BOARD_DATE}</h4>
 						
 						<div id="beforeDate">
 						<c:choose>

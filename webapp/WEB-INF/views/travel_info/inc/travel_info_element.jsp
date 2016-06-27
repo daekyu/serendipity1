@@ -34,7 +34,7 @@
     <article class="content">
      <div class="content portfolio portfolio4 col-sm-12 col-md-12">
      <div class="map-box bottom-padding">
-         <div id="map" style="height: 700px;"></div>
+         <div id="map_info" style="height: 700px;"></div>
     <script type="text/javascript">
     
     var locations = [];
@@ -58,7 +58,7 @@
                       locations[index] = loc;
                   });
                   
-                  var map = new google.maps.Map(document.getElementById('map'), {
+                  var map = new google.maps.Map(document.getElementById('map_info'), {
                         zoom: 7,
                         scrollwheel : false,
                         center: new google.maps.LatLng(36, 127.1),

@@ -45,11 +45,6 @@
 								<!-- <li><a href="#">Price</a></li> -->
 							</ul>
 						</div>
-						<!-- .sort-by -->
-						<button type="button" class="btn up-down btn-default"
-							data-toggle="button">
-							<span></span>
-						</button>
 					</div>
 					<!-- .sort-catalog -->
 

@@ -47,11 +47,6 @@
 								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?sort=board_num&show=${basicshow}&sort=board_num">Date</a></li>
 							</ul>
 						</div>
-						<!-- .sort-by -->
-						<button type="button" class="btn up-down btn-default"
-							data-toggle="button">
-							<span></span>
-						</button>
 					</div>
 					<!-- .sort-catalog -->
 

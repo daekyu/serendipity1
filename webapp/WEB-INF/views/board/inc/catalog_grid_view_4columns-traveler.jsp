@@ -86,7 +86,7 @@
 					<c:forEach var="i" items="${board_list}">
 						<div class="col-sm-2 col-md-2 product rotation">
 							<div class="default">
-								<span class="sale top"></span> <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}"
+								<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}"
 									class="product-image"> <img class="replace-2x"
 									src="${pageContext.request.contextPath}/resources/img/board_picture/${i.BOARD_PICTURE1}" alt="" title="" width="270"
 									height="270">

@@ -482,9 +482,9 @@
 											data-autoplay-disable="true">
 											<div class="carousel">
 												<div class="image">
-													<img class="replace-2x"
+													<img class="replace-2x img-profile img-circle"
 														src="${pageContext.request.contextPath}/resources/img/profile_picture/${boarddto.PROFILE_PICTURE}" alt="" title=""
-														width="768" height="768">
+														width="768" height="768" data-appear-animation="rotateIn">
 												</div>
 											</div>
 											<div class="clearfix"></div>

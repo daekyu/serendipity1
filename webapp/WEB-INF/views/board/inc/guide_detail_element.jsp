@@ -22,10 +22,8 @@
 
 <input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}" />
 <input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}" />
-<input type="hidden" id="meeting_place"
-	value="${boarddto.MEETING_PLACE}" />
-<input type="hidden" id="meeting_address"
-	value="${boarddto.MEETING_ADDRESS}" />
+<input type="hidden" id="meeting_place" value="${boarddto.MEETING_PLACE}" />
+<input type="hidden" id="meeting_address" value="${boarddto.MEETING_ADDRESS}" />
 <input type="hidden" id=cp value="${boarddto.BOARD_CAPACITY}"/>
 <input type="hidden" id=ac value="${accept}"/>
 
@@ -404,7 +402,6 @@
 										</c:otherwise>
 										</c:choose>
 									</c:if>
-								
 								</c:otherwise>
 							</c:choose>
 							</c:otherwise>
@@ -420,7 +417,6 @@
 									code="board.traveler_detail7" /></a></li>
 						<li><a href="#description"><spring:message
 									code="board.traveler_detail8" /></a></li>
-
 					</ul>
 					<!-- .nav-tabs -->
 					<div class="tab-content">
@@ -431,7 +427,7 @@
 								data-appear-animation="fadeInRight">
 								<div class="entry-content">
 									<div class="map-box not-margin">
-										<div id="gmap_detail" style="height: 400px"></div>
+										<div id="gmap_detail" style="height: 400px;width:auto"></div>
 									</div>
 								</div>
 							</div>

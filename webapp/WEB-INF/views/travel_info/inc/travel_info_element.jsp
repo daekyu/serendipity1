@@ -120,6 +120,7 @@
                                 success : function(data) {
                                    var list = "";
                                     $.each(data, function(index, item) {
+                                    	console.log("item : "+item.review_content);
                                         $('#review_title'+index).text(item.review_title);
                                          $('#review_content'+index).text(item.review_content);
                                          $('#review_content'+index).attr('href','${pageContext.request.contextPath}/travel_review/review_detail.htm?review_num='+item.review_num);

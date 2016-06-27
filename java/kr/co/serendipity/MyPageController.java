@@ -46,7 +46,7 @@ public class MyPageController {
 	public String myPage(MemberDTO memberdto, Model model, HttpSession session) throws IOException {
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
-		}else{		
+		}else if(((Integer)session.getAttribute("country_code") == 82)){		
 			MemberDTO dto = mypageservice.myPageGetMemberInfo(memberdto);
 			String pic = dto.getProfile_picture();
 			String Slocal = mypageservice.parseLocal(dto);
@@ -55,6 +55,19 @@ public class MyPageController {
 			
 			model.addAttribute("memberdto", dto);
 			model.addAttribute("Slocal", Slocal);
+			model.addAttribute("Slang", Slang);
+			model.addAttribute("Shobby", Shobby);
+
+			return "/mypage/my_page";
+		}else{
+			MemberDTO dto = mypageservice.myPageGetMemberInfo(memberdto);
+			String pic = dto.getProfile_picture();
+			String Scountry = mypageservice.country(dto);
+			List Slang = mypageservice.parseLang(dto);
+			List Shobby = mypageservice.parseHobby(dto);
+			
+			model.addAttribute("memberdto", dto);
+			model.addAttribute("Slocal", Scountry);
 			model.addAttribute("Slang", Slang);
 			model.addAttribute("Shobby", Shobby);
 

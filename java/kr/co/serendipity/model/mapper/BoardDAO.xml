@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     meeting_Place, meeting_Address) 
     VALUES( board_seq.NEXTVAL, #{user_num}, #{board_title}, #{board_content}, #{board_picture1},
     #{board_picture2}, #{board_picture3}, #{board_picture4}, #{board_picture5},
-    1, #{board_date}, #{board_latitude}, #{board_longitude}, '#{local_code}', 1, #{price}, 
+    1, #{board_date}, #{board_latitude}, #{board_longitude}, '02', 1, #{price}, 
     #{meeting_place}, #{meeting_address})
    </insert>
    

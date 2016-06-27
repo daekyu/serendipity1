@@ -111,7 +111,6 @@
 									title="" width="70" height="70">
 								</a>
 								<ul>
-									<li>지역: ${i.LOCAL_NAME}</li>
 									<li>가격상한: ${i.PRICE}</li>
 									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>

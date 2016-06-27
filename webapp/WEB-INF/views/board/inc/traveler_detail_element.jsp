@@ -314,8 +314,17 @@
 														이미 신청한 여행 입니다.
 													</c:when>
 												<c:otherwise>
-												<a class="btn add-cart btn-default btn-lg"
-												href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}">신청하기</a>
+													<c:choose>
+														<c:when test="${sessionScope.country_code eq 82}">
+															<a class="btn add-cart btn-default btn-lg"
+															href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}">신청하기</a>
+															<br>
+															
+														</c:when>
+														<c:otherwise>
+															외국인은 가이드 신청이 불가 합니다.<br>
+														</c:otherwise>
+														</c:choose>
 												</c:otherwise>
 												</c:choose>
 											</c:if>

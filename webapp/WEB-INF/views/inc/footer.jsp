@@ -52,7 +52,7 @@
 		  </div>
 		  <nav>
 			<ul>
-			  <li><a href="#"><spring:message code="index.footer11"/></a></li>
+			  <li><a href="${pageContext.request.contextPath}/member/team_list.htm"><spring:message code="index.footer11"/></a></li>
 			  <li><a href="#"><spring:message code="index.footer12"/></a></li>
 			  <li><a href="#"><spring:message code="index.footer13"/></a></li>
 			  <li><a href="#"><spring:message code="index.footer14"/></a></li>

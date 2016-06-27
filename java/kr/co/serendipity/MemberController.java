@@ -112,6 +112,11 @@ public class MemberController {
 			return memberservice.checkFindPwEmailInfo(memberdto);
 		}
 	}
+	
+	@RequestMapping("team_list.htm")
+	public String team_list() {
+		return "/member/team-list";
+	}
 
 
 }

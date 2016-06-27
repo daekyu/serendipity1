@@ -117,7 +117,7 @@
 
 							<div class="product-hover">
 								<h3 class="product-name">
-									<a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">${i.BOARD_TITLE}</a>
+									<a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">제목 : ${i.BOARD_TITLE}</a>
 								</h3>
 								<div class="price">가이드 아이디 : ${i.ID}</div>
 								<a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}" class="product-image"> <img
@@ -127,8 +127,6 @@
 								<ul>
 									<li>지역: ${i.LOCAL_NAME}</li>
 									<li>가격상한: ${i.PRICE}</li>
-									<li>언어: 영어, 한국어</li>
-									<li>관심사: 맛집, 술, 술</li>
 									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>
 								<br> <span class="">여행 계획: <a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">

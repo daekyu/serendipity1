@@ -112,7 +112,7 @@
 
 							<div class="product-hover">
 								<h3 class="product-name">
-									<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">${i.BOARD_TITLE}</a>
+									<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">제목 : ${i.BOARD_TITLE}</a>
 								</h3>
 								<div class="price">여행자 아이디 : ${i.ID}</div>
 								<a href="traveler_detail.htm?board_num=${i.board_num}&user_num=${i.USER_NUM}" class="product-image"> <img
@@ -122,10 +122,6 @@
 								<ul>
 									<li>지역: ${i.LOCAL_NAME}</li>
 									<li>가격상한: ${i.PRICE}</li>
-									<li>
-										언어: 
-									</li>
-									<li>관심사: 맛집, 술, 술</li>
 									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>
 								<br> <span class="">하고싶은 여행: <a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">

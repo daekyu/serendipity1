@@ -23,4 +23,6 @@ public interface MessageDAO {
 	public void changeNotificationState(RCV_MessageDTO rcv_messagedto);
 	public RCV_MessageDTO getRcvMessageDetail(RCV_MessageDTO rcv_messagedto);
 	public MessageDTO getSendMessageDetail(MessageDTO messagedto);
+	public int sendMessageFromBoard_1(MessageDTO messagedto);
+	public int sendMessageFromBoard_2(MessageDTO messagedto);
 }

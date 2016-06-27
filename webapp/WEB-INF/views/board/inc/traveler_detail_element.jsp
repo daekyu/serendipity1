@@ -22,6 +22,11 @@
 <input type="hidden" id="meeting_address"
 	value="${boarddto.MEETING_ADDRESS}" />
 <script type="text/javascript">
+		function getContextPath() {
+			   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+			   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+		};
+
 		//시간차에 따른 버튼 처리
 		function getTimeStamp() {
 		    var d = new Date();
@@ -42,6 +47,28 @@
 		    return zero + n;
 		}
 	$(function() {
+		
+		$('#msg_btn').click(function() {
+			$.ajax({
+				type : "post",
+				url : getContextPath() + "/message/sendMessageFromBoard.htm",
+				data : {
+					"receiver" : $('#receiver').val(),
+					"sender" : $('#sender').val(),
+					"message_title" : $('#message_title').val(),
+					"message_content" : $('#message_content').val()
+				},
+				success : function(data) {
+					if(data == 1) {
+						swal("메세지 전송이 완료되었습니다.");
+						$('#receiver').val("");
+						$('#sender').val("");
+						$('#message_title').val("");
+						$('#message_content').val("");
+					}
+				}
+			});
+		});
 		var today = new Date();
 		var dateString = $('#wd').val();
 		var dateArray = dateString.split("/");  
@@ -387,7 +414,6 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#profile">프로필보기</a></li>
 						<li><a href="#sendMessage">쪽지보내기</a></li>
-						<li><a href="#chatting">채팅신청하기</a></li>
 						<li><a href="#reporting">신고하기</a></li>
 					</ul>
 					<!-- .nav-tabs -->
@@ -418,6 +444,7 @@
 											<p>${boarddto.PROFILE_DESCRIPTION}</p>
 										</div>
 										<div class="social">
+										
 										</div>
 									</div>
 									<div class="clearfix"></div>
@@ -425,13 +452,16 @@
 								<br> <br>
 								<div class="table-responsive">
 									<table class="table table-bordered">
+
 										<tr>
 											<th class="danger" colspan="2">Information</th>
 										</tr>
+
 										<tr>
 											<th class="danger">지역</th>
 											<td>${boarddto.LOCAL_NAME}</td>
 										</tr>
+
 										<tr>
 											<th class="danger">언어</th>
 											<td><c:forEach var="i" items="${language}">
@@ -452,22 +482,25 @@
 						</div>
 
 						<div class="tab-pane" id="sendMessage">
-							<form>
 								<table class="table center">
 									<tr>
-										<td><textarea class="form-control"
-												style="resize: none; height: 100px;" wrap="soft" name=""></textarea>
+										<td>
+											<input type="hidden" name="sender" id="sender" value="${sessionScope.user_num}">
+											<input type="hidden" name="receiver" id="receiver" value="${boarddto.USER_NUM}">
+											<input type="text" class="form-control" id="message_title" name="message_title" placeholder="메세지 제목 입력">
 										</td>
 									</tr>
 									<tr>
-										<td><input class="btn btn-success" type="submit"
-											value="전송"></td>
+										<td><textarea class="form-control"
+												style="resize: none; height: 100px;" wrap="soft" id="message_content" name="message_content" placeholder="메세지 내용 입력"></textarea>
+										</td>
+									</tr>
+
+									<tr>
+										<td><button class="btn btn-success" id="msg_btn">전송</button></td>
 									</tr>
 								</table>
-							</form>
 						</div>
-						<div class="tab-pane" id="chatting"></div>
-						<!-- #reviews -->
 
 						<div class="tab-pane" id="reporting">
 							<form

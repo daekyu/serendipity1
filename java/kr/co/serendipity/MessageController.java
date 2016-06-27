@@ -104,4 +104,9 @@ public class MessageController {
 	public @ResponseBody MessageDTO getSendMessageDetail(MessageDTO messagedto) {
 		return messageservice.getSendMessageDetail(messagedto);
 	}
+	
+	@RequestMapping("sendMessageFromBoard.htm")
+	public @ResponseBody int sendMessageFromBoard(MessageDTO messagedto) {
+		return messageservice.sendMessageFromBoard(messagedto);
+	}
 }

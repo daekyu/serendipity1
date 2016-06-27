@@ -1,7 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDWka6sHvhTjjLZRCb289fsAD-U_LN-WL8
+	&sensor=false&language=${sessionScope.locale}"></script>
+<script>
+var myLatlng;
+var viewLatlng;
+var map;
+var marker;
+var infowindow;
+function initialize() {
 
+	// set initial position
+	myLatlng = new google.maps.LatLng(37.40239107, 127.107033);
+	viewLatlng = new google.maps.LatLng(37.4038007, 127.118033);
+	var myOptions = { // default map options
+		zoom : 16,
+		center : viewLatlng,
+		icon : marker,
+		scrollwheel : false
+	};
+
+	map = new google.maps.Map(document.getElementById('map'),
+			myOptions);
+	
+	var image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
+	
+	marker = new google.maps.Marker({
+		position : myLatlng,
+		map : map,
+		icon : image
+	});
+	infowindow = new google.maps.InfoWindow({
+		content : '<font style="color:#000;">'+'경기도 성남시 분당구 대왕판교로 670 유스페이스B동 8층'+
+				'</font>'
+	}).open(map,marker);
+	
+	
+}
+
+// initialization
+google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addListener(marker, 'click', function(mouseEvent) {     
+	  infowindow.open(map,marker);
+	 });
+</script>
  
 <footer id="footer">
   <div class="footer-top">
@@ -39,17 +83,20 @@
 		</aside><!-- .newsletter -->
 		
 		<aside class="col-xs-12 col-sm-6 col-md-3 widget links">
+			
 		  <div class="title-block">
 			<h3 class="title"><spring:message code="index.footer5"/></h3>
 		  </div>
-		  <nav>
+		  <div id="map" style="height:250px;width:250px">
+		  <%-- <nav>
 			<ul>
 			  <li><a href="#"><spring:message code="index.footer6"/></a></li>
 			  <li><a href="#"><spring:message code="index.footer7"/></a></li>
 			  <li><a href="#"><spring:message code="index.footer8"/></a></li>
 			  <li><a href="#"><spring:message code="index.footer9"/></a></li>
 			</ul>
-		  </nav>
+		  </nav> --%>
+		  </div>
         </aside>
 		
 		<aside class="col-xs-12 col-sm-6 col-md-3 widget links">

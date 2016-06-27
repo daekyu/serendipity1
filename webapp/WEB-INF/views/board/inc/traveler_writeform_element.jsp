@@ -830,7 +830,7 @@ href=".././resources/js/sweetalert.css">
                      <input type="hidden" id="click-input">
                         <div id="gmap_canvas" style="height: 400px;width:auto"></div>
                         <div class="actions">
-<<<<<<< HEAD
+
                            <%-- <div class="button">
                               <label for="gmap_where"><spring:message code="board.traveler_writeform10.1"/></label> 
                                <input id="gmap_where"
@@ -841,9 +841,7 @@ href=".././resources/js/sweetalert.css">
                            <div class="button"> --%>
                               <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> 
                               <select id="gmap_type">
-=======
-                              <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> <select id="gmap_type">
->>>>>>> 99602077a0469be7b0b3e6918fd47679999fce98
+
                                   <option value="--">--</option> 
                                  <option value="art_gallery"><spring:message code="board.traveler_writeform10.4"/></option>
                                  <option value="atm"><spring:message code="board.traveler_writeform10.5"/></option>

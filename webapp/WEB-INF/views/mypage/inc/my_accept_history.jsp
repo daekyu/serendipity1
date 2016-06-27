@@ -15,7 +15,7 @@
 			};
 			
 			$('.delete').click(function(){
-				if(confirm("해당 요청을 거절 하시겠습니까?") == true){
+				if(confirm("<spring:message code="mypage.my_accept_history1"/>") == true){
 				location.href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=1";
 				}else{
 				    return false;
@@ -23,7 +23,7 @@
 			});
 			
 			$('.accept').click(function(){
-				if(confirm("수락 하시겠습니까?") == true){
+				if(confirm("<spring:message code="mypage.my_accept_history2"/>") == true){
 				location.href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}";
 				}else{
 				    return false;
@@ -37,7 +37,7 @@
 <section id="main" class="page ">
   <header class="page-header">
     <div class="container">
-      <h1 class="title">받은 요청</h1>
+      <h1 class="title"><spring:message code="mypage.my_accept_history3"/></h1>
       <input type="hidden" id="check1" value="${check1}">
     </div>	
   </header>
@@ -49,20 +49,20 @@
 			<table class="table table-striped table-bordered text-center my-orders-table">
 			  <thead>
 				<tr class="first last">
-				  <th>분류</th>
-				  <th>Date(요청받은 날짜)</th>
-				  <th><span class="nobr">글 제목</span></th>
-				  <th>신청한 사람 아이디</th>
-				  <th>인원</th>
-				  <th>상태</th>
-				  <th>Actions</th>
+				  <th><spring:message code="mypage.my_accept_history4"/></th>
+				  <th><spring:message code="mypage.my_accept_history5"/></th>
+				  <th><span class="nobr"><spring:message code="mypage.my_accept_history6"/></span></th>
+				  <th><spring:message code="mypage.my_accept_history7"/></th>
+				  <th><spring:message code="mypage.my_accept_history8"/></th>
+				  <th><spring:message code="mypage.my_accept_history9"/></th>
+				  <th><spring:message code="mypage.my_accept_history10"/></th>
 				</tr>
 			  </thead>
 			  <tbody>
 			  <c:choose>
 			  <c:when test="${empty participantdto}">
 			  		<tr>
-			  		<td colspan="6">받은 요청이 없습니다.</td>
+			  		<td colspan="6"><spring:message code="mypage.my_accept_history11"/></td>
 			  		</tr>
 			  </c:when>
 			  <c:otherwise>
@@ -73,10 +73,10 @@
 					<td>
 						<c:choose>
 						<c:when test="${i.CATEGORY_NUM eq 1}">
-							가이드 구함
+							<spring:message code="mypage.my_accept_history12"/>
 						</c:when>
 						<c:otherwise>
-							여행자 구함
+							<spring:message code="mypage.my_accept_history13"/>
 						</c:otherwise>
 					</c:choose>
 					</td>
@@ -94,42 +94,42 @@
 						<c:choose>
 							<c:when test="${i.STATE eq 'wait'}">
 								<td>
-									승낙 대기중
+									<spring:message code="mypage.my_accept_history14"/>
 								</td>
 								<td>
 								<c:choose>
 									<c:when test="${nowDays <= boardDays}">
-										<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&board_num=${i.BOARD_NUM}&ctn=${i.CATEGORY_NUM}&pc=${i.PARTI_CAPACITY}" class="btn btn-success accept">수락</a>
-										<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger delete">거절</a>
+										<a href="${pageContext.request.contextPath}/mypage/acceptRequest.htm?parti_num=${i.PARTI_NUM}&board_num=${i.BOARD_NUM}&ctn=${i.CATEGORY_NUM}&pc=${i.PARTI_CAPACITY}" class="btn btn-success accept"><spring:message code="mypage.my_accept_history15"/></a>
+										<a href="${pageContext.request.contextPath}/mypage/delete_send_history.htm?user_num=${sessionScope.user_num}&parti_num=${i.PARTI_NUM}&check=2" class="btn btn-danger delete"><spring:message code="mypage.my_accept_history16"/></a>
 									</c:when>
 								<c:otherwise>
-									마감
+									<spring:message code="mypage.my_accept_history17"/>
 								</c:otherwise>
 								</c:choose>
 								</td>
 							</c:when>
 							<c:when test="${i.STATE eq 'refuse'}">
 								<td>
-									신청 거절
+									<spring:message code="mypage.my_accept_history18"/>
 								</td>
 								<td>
-								처리완료
+								<spring:message code="mypage.my_accept_history19"/>
 								</td>
 							</c:when>
 							<c:when test="${i.STATE eq 'cansel'}">
 								<td>
-									신청 취소
+									<spring:message code="mypage.my_accept_history20"/>
 								</td>
 								<td>
-									처리완료
+									<spring:message code="mypage.my_accept_history21"/>
 								</td>
 							</c:when>
 							<c:otherwise>
 								<td>
-									승낙!
+									<spring:message code="mypage.my_accept_history22"/>
 								</td>
 								<td>
-								처리완료
+								<spring:message code="mypage.my_accept_history23"/>
 								</td>
 							</c:otherwise>
 						</c:choose>

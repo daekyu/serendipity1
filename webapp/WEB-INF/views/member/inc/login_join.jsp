@@ -383,9 +383,9 @@ href=".././resources/js/sweetalert.css">
 
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
 			<div class="info-box">
-			  <h3 class="title">My Account</h3>
-			  <p class="descriptions">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login">Login an Account</button>
+			  <h3 class="title"><spring:message code="member.join_login_re12"/></h3>
+			  <p class="descriptions"><spring:message code="member.join_login_re13"/></p>
+			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login"><spring:message code="member.join_login_re14"/></button>
 			</div>
 		  </div>
 		</div>

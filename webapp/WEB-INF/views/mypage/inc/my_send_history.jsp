@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:useBean id="toDay" class="java.util.Date" />
-<fmt:formatDate value="${toDay}" pattern="yy/MM/dd"/>
+<p class="white"><fmt:formatDate value="${toDay}" pattern="yy/MM/dd"/></p>
 <fmt:parseNumber value="${toDay.time/(1000*60*60*24)}" integerOnly="true" var="nowDays" scope="request"/>
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
@@ -51,7 +51,7 @@
 								<c:choose>
 									<c:when test="${empty participantdto}">
 										<tr>
-											<td colspan="6">보낸 요청이 없습니다.</td>
+											<td colspan="7">보낸 요청이 없습니다.</td>
 										</tr>
 									</c:when>
 									<c:otherwise>

@@ -93,13 +93,13 @@
 				</div>
 
 				<div class="toolbar clearfix">
-					<div class="grid-list">
+					<!-- <div class="grid-list">
 						<a href="shop-catalog-grid.html" class="grid"> <span
 							class="glyphicon glyphicon-th-large"></span>
 						</a> <span class="grid"> <span
 							class="glyphicon glyphicon-th-list"></span>
 						</span>
-					</div>
+					</div> -->
 					
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">

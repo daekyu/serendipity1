@@ -13,6 +13,53 @@ href=".././resources/js/sweetalert.css">
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
+
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
+ <style>
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+</style>
+
+
 <script type="text/javascript">
 	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	
@@ -207,6 +254,20 @@ href=".././resources/js/sweetalert.css">
 										.lat();
 								document.getElementById('lng').value = results[0].geometry.location
 										.lng();
+								 var image = '${pageContext.request.contextPath}/resources/img/candy_marker.png';
+								var lat = document.getElementById('lat').value;
+								var lng = document.getElementById('lng').value;
+								var latlng = lat + ', ' + lng;
+
+								// and then - add new custom marker
+								var addrMarker = new google.maps.Marker({
+									position : addrLocation,
+									map : map,
+									title : results[0].formatted_address,
+									icon: image
+								});
+								markers.push(addrMarker); 
+
 								findPlace();
 							} else {
 								alert('Geocode was not successful for the following reason: '
@@ -214,6 +275,10 @@ href=".././resources/js/sweetalert.css">
 							}
 						});
 	}
+
+
+
+
 	function findPlace() {
 		var lat = document.getElementById('lat').value;
 		var lng = document.getElementById('lng').value;

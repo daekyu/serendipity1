@@ -6,7 +6,7 @@
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="toDay" class="java.util.Date" />
-<fmt:formatDate value="${toDay}" pattern="yy/MM/dd"/>
+<p class="white"><fmt:formatDate value="${toDay}" pattern="yy/MM/dd"/></p>
 <fmt:parseNumber value="${toDay.time/(1000*60*60*24)}" integerOnly="true" var="nowDays" scope="request"/>
 <script type="text/javascript">
 			$(function(){
@@ -62,7 +62,7 @@
 			  <c:choose>
 			  <c:when test="${empty participantdto}">
 			  		<tr>
-			  		<td colspan="6"><spring:message code="mypage.my_accept_history11"/></td>
+			  		<td colspan="7"><spring:message code="mypage.my_accept_history11"/></td>
 			  		</tr>
 			  </c:when>
 			  <c:otherwise>
@@ -133,7 +133,6 @@
 								</td>
 							</c:otherwise>
 						</c:choose>
-						
 				</tr>
 				</c:forEach>
 				</c:otherwise>

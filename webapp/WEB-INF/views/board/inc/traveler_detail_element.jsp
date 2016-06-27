@@ -203,7 +203,6 @@
 				<div class="row">
 					<div class="col-sm-5 col-md-5">
 						<div class="image-box">
-							<span class="sale top"></span>
 							<div class="general-img">
 								<img class="replace-2x" alt=""
 									src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}"

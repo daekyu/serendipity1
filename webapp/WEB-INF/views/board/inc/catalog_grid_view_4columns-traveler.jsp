@@ -22,7 +22,6 @@
 				<div class="category-img">
 					<img class="replace-2x" src=".././resources/img/background_img/에버랜드사진.PNG"
 						width="870" height="370" alt="">
-					<div class="description">함께 여행하고 싶은 여행자를 찾아보세요!</div>
 				</div>
 
 				<div class="toolbar clearfix">

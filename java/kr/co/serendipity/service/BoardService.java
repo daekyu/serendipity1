@@ -268,4 +268,9 @@ public class BoardService {
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		return dao.selectLocal(boarddto);
 	}
+	
+	public String selectCountry(BoardDTO boarddto){
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.selectCountry(boarddto);
+	}
 }

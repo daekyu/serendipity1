@@ -453,8 +453,8 @@
 										</tr>
 
 										<tr>
-											<th class="danger">지역</th>
-											<td>${boarddto.LOCAL_NAME}</td>
+											<th class="danger">국적</th>
+											<td>${country}</td>
 										</tr>
 
 										<tr>

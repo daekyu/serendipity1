@@ -155,4 +155,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	select m.local_code from local l join member m on m.LOCAL_CODE = l.LOCAL_CODE where m.USER_NUM=#{user_num}
     </select>
     
+    <select id="selectCountry" resultType="String">
+    	select c.country_name from country c join member m on m.COUNTRY_CODE = c.COUNTRY_CODE where m.USER_NUM=#{user_num}
+    </select>
+    
 </mapper>

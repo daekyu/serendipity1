@@ -174,6 +174,7 @@ public class BoardController {
 		} else {
 			ModelAndView mav = new ModelAndView("/board/travel_detail");
 			List<ParticipantDTO> participantdto = boardservice.detailParticipant(boarddto);
+			String country  =boardservice.selectCountry(boarddto);
 			int user_num = (Integer)session.getAttribute("user_num");
 			int check=0;
 			for(int i=0; i<participantdto.size(); i++){
@@ -182,11 +183,13 @@ public class BoardController {
 					check=1;
 				}
 			}
+			
 			mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
 			mav.addObject("language",boardservice.getLanguages(boarddto));
 			mav.addObject("hobby", boardservice.getHobbies(boarddto));
 			mav.addObject("guide", boardservice.getGuide(boarddto));
 			mav.addObject("check", check);
+			mav.addObject("country", country);
 			return mav;
 		}	
 	}

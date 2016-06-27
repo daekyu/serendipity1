@@ -219,7 +219,7 @@
 							<div class="general-img">
 								<img class="replace-2x" alt=""
 									src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}"
-									data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}"
+									<%-- data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}" --%>
 									width="500" height="500">
 							</div>
 							<!-- .general-img -->

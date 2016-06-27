@@ -284,7 +284,7 @@
 									<th><spring:message code="board.traveler_detail1" /></th>
 									<th><spring:message code="board.traveler_detail2" /></th>
 									<th><spring:message code="board.traveler_detail3" /></th>
-									<th><spring:message code="board.traveler_detail4" /></th>
+									<th><spring:message code="index.inc.carousel-box-recommended12" /></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -342,10 +342,12 @@
 								<a class="btn btn-default btn-sm"
 									href="${pageContext.request.contextPath}/board/guide_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
 									class="livicon shadowed" data-s="24" data-n="pen"
-									data-c="white" data-hc="0"></i> Modify</a>
+									data-c="white" data-hc="0"></i> <spring:message
+									code="board.review_detail4"/></a>
 								<a class="btn btn-danger btn-sm" id="delete"><i
 									class="livicon shadowed"
-									data-s="24" data-n="trash" data-c="white" data-hc="0"></i> Delete</a>
+									data-s="24" data-n="trash" data-c="white" data-hc="0"></i><spring:message
+									code="board.traveler_detail0.4"/></a>
 							</c:when>
 
 							<c:otherwise>
@@ -413,7 +415,7 @@
 						<li class="active"><a href="#reviews"><spring:message
 									code="board.traveler_detail13" /></a></li>
 						<li><a href="#description"><spring:message
-									code="board.traveler_detail4" /></a></li>
+									code="board.traveler_writeform5" /></a></li>
 					</ul>
 					<!-- .nav-tabs -->
 					<div class="tab-content">

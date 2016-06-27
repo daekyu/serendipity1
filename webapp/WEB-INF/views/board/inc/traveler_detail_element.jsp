@@ -318,10 +318,12 @@
 										<a class="btn btn-default btn-sm"
 											href="${pageContext.request.contextPath}/board/traveler_modify.htm?board_num=${boarddto.BOARD_NUM}"><i
 											class="livicon shadowed" data-s="24" data-n="pen"
-											data-c="white" data-hc="0"></i> Modify</a>
+											data-c="white" data-hc="0"></i><spring:message
+									code="board.review_detail4"/></a>
 										<a class="btn btn-danger btn-sm" id="delete"><i
 											class="livicon shadowed" data-s="24" data-n="trash"
-											data-c="white" data-hc="0"></i> Delete</a>
+											data-c="white" data-hc="0"></i><spring:message
+									code="board.traveler_detail0.4"/></a>
 									</c:when>
 									<c:otherwise>
 										<spring:message code="board.traveler_detail6"/>

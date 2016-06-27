@@ -19,6 +19,7 @@ import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.MemberDTO;
 import kr.co.serendipity.model.MyPageDAO;
 import kr.co.serendipity.model.ParticipantDTO;
+import kr.co.serendipity.model.RouteDTO;
 
 @Service
 public class BoardService {
@@ -254,6 +255,16 @@ public class BoardService {
 	public List<ParticipantDTO> detailParticipant(BoardDTO boarddto){
 		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
 		return dao.detailParticipant(boarddto);
+	}
+	
+	public void insertRoutes(RouteDTO routedto){
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		dao.insertRoutes(routedto);
+	}
+	
+	public int selectBoardNum(){
+		BoardDAO dao = sqlsession.getMapper(BoardDAO.class);
+		return dao.selectBoardNum();
 	}
 	
 }

@@ -8,12 +8,57 @@
 href=".././resources/js/sweetalert.css"> 
 
 <script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
+	src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDWka6sHvhTjjLZRCb289fsAD-U_LN-WL8
+	&sensor=false&language=${sessionScope.locale}"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
 <input type="hidden" id="latitude" value="${boarddto.BOARD_LATITUDE}" />
 <input type="hidden" id="longitude" value="${boarddto.BOARD_LONGITUDE}"/>
+<style>
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+</style>
+
 <script type="text/javascript">
 window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 $(function() {
@@ -44,7 +89,7 @@ $(function() {
 			alert('더 이상 삭제할 수 없습니다.');
 		}
 	});
-	$('#gmap_where').keydown(function (e) {
+	$('#pac-input').keydown(function (e) {
 	    if(e.keyCode == 13)
 	    {
 	        $('#button2').trigger('click');
@@ -144,9 +189,11 @@ $(function() {
 var geocoder;
 var map;
 var markers = Array();
+var markers2= Array();
 var infos = Array();
 var latitude = document.getElementById('latitude').value;
 var longitude = document.getElementById('longitude').value;
+var MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker';
 
 function initialize() {
     // prepare Geocoder
@@ -160,8 +207,145 @@ function initialize() {
         center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
+    var image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
     map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+    
+    google.maps.event.addListener(map, 'click', function (mouseEvent) {     
+  	  getAddress(mouseEvent.latLng);
+  	 });
+    
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+    });
+    searchBox.addListener('places_changed', function() {
+         var places = searchBox.getPlaces();
+
+         if (places.length == 0) {
+           return;
+         }
+
+         
+
+         // For each place, get the icon, name and location.
+         var bounds = new google.maps.LatLngBounds();
+         places.forEach(function(place) {
+            
+      /*       var mar = new google.maps.Marker({
+                 map: map,
+                 title: place.name,
+                 position: place.geometry.location,
+                 animation: google.maps.Animation.DROP,
+                 icon: image
+               });
+             // Create a marker for each place.
+             markers.push(mar);
+             var info = new google.maps.InfoWindow(
+                 {
+                    content : '<img src="' + place.icon + '" /><font style="color:#000;">'
+                          + place.name
+                          + '<br />Rating: '
+                          + place.rating
+                          + '<br />Vicinity: '
+                          + place.formatted_address
+                          + '<br />latlng: '
+                          + place.geometry.location.lat()
+                          + ', ' + place.geometry.location.lng() + '</font>'
+                 }); */
+
+             if (place.geometry.viewport) {
+               // Only geocodes have viewport.
+               bounds.union(place.geometry.viewport);
+               /* google.maps.event.addListener(mar, 'click', function() {
+                  info.open(map, mar);
+                  document.getElementById('lat').value = place.geometry.location.lat();
+                  document.getElementById('lng').value = place.geometry.location.lng();
+                  document.getElementById('meeting_place').value = place.name;
+                  document.getElementById('meeting_address').value = place.formatted_address;
+             }); */
+             } else {
+               bounds.extend(place.geometry.location);
+               /* google.maps.event.addListener(mar, 'click', function() {
+                  info.open(map, mar);
+                  document.getElementById('lat').value = place.geometry.location.lat();
+                  document.getElementById('lng').value = place.geometry.location.lng();
+                  document.getElementById('meeting_place').value = place.name;
+                  document.getElementById('meeting_address').value = place.formatted_address;
+             }); */
+          
+        }
+         });
+         
+         map.fitBounds(bounds);
+         map.setZoom(16);
+        
+         });
 }
+
+function getAddress(latlng) {
+	 
+	  var geocoder = new google.maps.Geocoder();
+	  var image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
+	  geocoder.geocode({
+	   latLng: latlng
+	  }, function(results, status) {
+	   if (status == google.maps.GeocoderStatus.OK) {
+	       if (results[0].geometry) {
+	 
+	           var address = results[0].formatted_address;
+	           
+	        // Clear out the old markers.
+	           markers.forEach(function(marker) {
+	             marker.setMap(null);
+	           });
+	           markers = [];
+	 
+	           var marker = new google.maps.Marker({
+	               position: latlng,
+	               map: map,
+	               icon:image
+	           });
+	           markers.push(marker);
+	           
+	         var info =  new google.maps.InfoWindow({
+	  	         content:address
+	  	     });
+	 
+	     new google.maps.InfoWindow({
+	         content:address
+
+	     }).open(map,marker);
+	     document.getElementById('lat').value = results[0].geometry.location.lat();
+ 	  	 document.getElementById('lng').value = results[0].geometry.location.lng();
+ 	  	 document.getElementById('meeting_address').value = results[0].formatted_address;
+	     
+	     google.maps.event.addListener(marker, 'click', function (mouseEvent) {     
+	    	  info.open(map,marker);
+	    	 });
+	 
+	     //markersArray.push(marker);
+	    }
+	   } else if (status == google.maps.GeocoderStatus.ERROR) {
+	    alert("통신중 에러발생！");
+	   } else if (status == google.maps.GeocoderStatus.INVALID_REQUEST) {
+	    alert("요청에 문제발생！");
+	   } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+	    alert("단시간에 쿼리 과다송신！");
+	   } else if (status == google.maps.GeocoderStatus.REQUEST_DENIED) {
+	    alert("이 페이지에는 지오코더 이용 불가!");
+	   } else if (status == google.maps.GeocoderStatus.UNKNOWN_ERROR) {
+	    alert("서버에 문제가 발생한거 같아요. 다시 한번 해보세요.");
+	   } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+	    alert("존재하지 않습니다.");
+	   } else {
+	    alert("??");
+	   }
+	  });
+	 }
 
 // clear overlays function
 function clearOverlays() {
@@ -419,16 +603,18 @@ google.maps.event.addDomListener(window, 'load', initialize);
 						<td>Meeting Point</td>
 					<td colspan="5">
 						<div id="container" class="row">
-							<div id="gmap_canvas" style="height: 500px"></div>
+						<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+							<div id="gmap_canvas" style="height: 500px;width:auto"></div>
 							<div class="actions">
-								<div class="button">
+								<!-- <div class="button">
 									<label for="gmap_where">Where:</label> <input id="gmap_where"
 										class="form-control" type="text" name="gmap_where">
 								</div>
 								<div id="button2" class="btn btn-success"
-									onclick="findAddress(); return false;">Search for address</div>
+									onclick="findAddress(); return false;">Search for address</div> -->
 								<div class="button">
-									<label for="gmap_type">Type:</label> <select id="gmap_type">
+									<label for="gmap_type">Type:</label> 
+									<select id="gmap_type">
 										<option value="--">--</option>
 										<option value="art_gallery">art_gallery</option>
 										<option value="atm">atm</option>

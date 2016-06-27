@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.serendipity.model.BoardDTO;
 import kr.co.serendipity.model.ParticipantDTO;
+import kr.co.serendipity.model.RouteDTO;
 import kr.co.serendipity.service.BoardService;
 
 @Controller
@@ -148,6 +149,7 @@ public class BoardController {
 		System.out.println("traveler_writeform entrance");
 		ModelAndView mav = new ModelAndView("/board/traveler_writeform");
 		mav.addObject("user_num", boarddto.getUser_num());
+		mav.addObject("board_num",boardservice.selectBoardNum());
 		return mav;
 	} // 여행자글쓰기, 가이드글쓰기 왜 서로 다른지...?
 
@@ -437,5 +439,22 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView("redirect:/board/guide_detail.htm?board_num=" + boarddto.getBoard_num() + "&check=" + check);
 		mav.addObject("boarddto", boardservice.getBoardDetail(boarddto));
 		return mav;
+	}
+	
+	@RequestMapping(value = "insertRoutes.htm")
+	public void insertRoutes(Object routes, int board_num){
+		System.out.println("aaaaaaaaaaaaaaaaaaaaa");
+		/*for(int i=0; i<routes.size(); i++) {
+			System.out.println("경로 : " + routes.get(i));
+		}
+		
+		for(int i=0; i<routes.size(); i++){
+			RouteDTO routedto = new RouteDTO();
+			routedto.setBoard_num(board_num);
+			routedto.setRoute_latlag((String)routes.get(i));
+			routedto.setRoute_seq(i);
+			boardservice.insertRoutes(routedto);
+		}*/
+		System.out.println("aaaaaaaaa : " + routes);
 	}
 }

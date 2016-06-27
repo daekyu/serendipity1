@@ -182,8 +182,7 @@
 			icon : image
 		});
 		var infowindow = new google.maps.InfoWindow({
-			content : '<font style="color:#000;">' + meeting_place
-					+ '<br />주소: ' + meeting_address + '</font>'
+			content : '<font style="color:#000;">'+'주소: '+ meeting_address + '</font>'
 		});
 
 		infowindow.open(map, marker);

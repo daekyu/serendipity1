@@ -377,6 +377,11 @@
 												이미 신청한 여행 입니다.
 											</c:when>
 										<c:otherwise>
+										<c:choose>
+										<c:when test="${sessionScope.country_code eq 82}">
+											외국인만 여행 참가 신청이 가능합니다.
+										</c:when>
+										<c:otherwise>
 										<form
 										action="${pageContext.request.contextPath}/board/guideParty.htm"
 										class="form-inline add-cart-form" method="post" id="form1">
@@ -384,7 +389,7 @@
 											value="${boarddto.BOARD_NUM}">
 										<input type="hidden" name="user_num"
 											value="${sessionScope.user_num}">
-										<input type="hidden" id="ac" value="${accept}"> --%>
+										<input type="hidden" id="ac" value="${accept}">
 										<input type="submit" class="btn-default btn-lg" value="신청하기" id="sm">
 										<div class="number">
 											<label>인원수:</label> <input type="text" value="1"
@@ -396,6 +401,8 @@
 											</div>
 										</div>
 											</form>
+											</c:otherwise>
+											</c:choose>
 										</c:otherwise>
 										</c:choose>
 									</c:if>

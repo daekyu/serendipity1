@@ -416,10 +416,10 @@ href=".././resources/js/sweetalert.css">
   							<option value="JPY">JPY</option>
   							<option value="USD">USD</option>
 						</select></td>
-						<td><input class="form-control" id="before" type="text" name="#" placeholder="작성 후 수정 불가"></td>
+						<td><input class="form-control" id="before" type="text" name="#" placeholder="등록 후 수정 불가"></td>
 						<td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.guide_writeform5.1"/></button></td>
 						<td>
-							<input class="form-control" id="after" type="text" name="price" placeholder="작성 후 수정 불가">
+							<input class="form-control" id="after" type="text" name="price" placeholder="등록 후 수정 불가">
 						</td>
 					</tr>
 					<tr>

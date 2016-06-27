@@ -23,10 +23,19 @@ public class BoardDTO {
 	private String board_latitude;
 	private String board_longitude;
 	private String local_code;
+	private String country_code;
 	private int category_num;
 	private String price;
 	private String meeting_place;
 	private String meeting_address;
+	
+	
+	public String getCountry_code() {
+		return country_code;
+	}
+	public void setCountry_code(String country_code) {
+		this.country_code = country_code;
+	}
 	public int getBoard_num() {
 		return board_num;
 	}

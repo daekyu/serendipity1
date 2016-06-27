@@ -277,7 +277,6 @@
 									<th>작성자</th>
 									<th>언어</th>
 									<th>관심사</th>
-									<th>지역</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -303,7 +302,6 @@
 							</c:forEach>
 											</c:otherwise>
 										</c:choose></td>
-									<td>${boarddto.LOCAL_NAME}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -455,8 +453,8 @@
 										</tr>
 
 										<tr>
-											<th class="danger">지역</th>
-											<td>${boarddto.LOCAL_NAME}</td>
+											<th class="danger">국적</th>
+											<td>${country}</td>
 										</tr>
 
 										<tr>

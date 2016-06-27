@@ -13,7 +13,7 @@ href=".././resources/js/sweetalert.css">
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-<<<<<<< HEAD
+
 
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
  <style>
@@ -63,8 +63,7 @@ href=".././resources/js/sweetalert.css">
 
 
 
-=======
->>>>>>> 99602077a0469be7b0b3e6918fd47679999fce98
+
 <script type="text/javascript">
 	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	
@@ -459,9 +458,7 @@ href=".././resources/js/sweetalert.css">
 <<<<<<< HEAD
 
 	} */
-=======
-	}
->>>>>>> 99602077a0469be7b0b3e6918fd47679999fce98
+
 	function findPlace() {
 		var lat = document.getElementById('lat').value;
 		var lng = document.getElementById('lng').value;

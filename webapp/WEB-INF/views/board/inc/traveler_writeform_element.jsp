@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 
-<script src="resources/js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="resources/js/sweetalert.css">   
+<!-- <script src="resources/js/sweetalert.min.js"></script> <link rel="stylesheet" type="text/css" href="resources/js/sweetalert.css">    -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <script type="text/javascript" src=".././resources/js/sweetalert.min.js">
@@ -17,7 +17,7 @@ href=".././resources/js/sweetalert.css">
    src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script> -->
 <script type="text/javascript"
    src=".././resources/ckeditor/ckeditor.js"></script>   
-<script type="text/javascript" src="jquery.numberformatter.js"></script>
+<!-- <script type="text/javascript" src="jquery.numberformatter.js"></script> -->
    <style>
 .controls {
   margin-top: 10px;

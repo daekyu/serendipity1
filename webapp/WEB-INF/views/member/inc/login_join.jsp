@@ -135,7 +135,7 @@ href=".././resources/js/sweetalert.css">
 		$("#loginbutton").click(function(){
 			
 			var reg_name = /^[a-zA-Z가-힣]/g; //한글10자, 영문20자, 한글,영문,숫자 사용가능
-			var reg_id = /^[a-z0-9_-]{4,12}$/;
+			var reg_id = /^[a-zA-Z0-9_-]{4,12}$/;
 			var reg_email = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
 			var reg_pw = /^[a-z0-9_-]{4,12}$/; // 비밀번호 검사식
 			var reg_hp = /^[a-z0-9_-]{10,20}$/;

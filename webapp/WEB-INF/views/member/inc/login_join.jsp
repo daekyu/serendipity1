@@ -277,7 +277,6 @@ href=".././resources/js/sweetalert.css">
 				<input type="submit" id="btn_login_form" class="btn btn-default" value="Login">
 				
 				<!-- 각종 SNS로 로그인하는 버튼 만드는 부분 -->
-				<button class="btn btn-info"><i class="fa fa-twitter"></i> Login with Twitter</button>
 				<a href="${pageContext.request.contextPath}/member/recover_id_pw.htm" class="forgot">아이디/비밀번호를 잊으셨나요?</a>
 				<span class="required"><b>*</b> Required Field</span>
 			  </div>

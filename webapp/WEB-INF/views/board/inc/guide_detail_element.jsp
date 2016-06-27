@@ -484,7 +484,7 @@
 											<div class="carousel">
 												<div class="image">
 													<img class="replace-2x"
-														src=".././content/img/team-big-1.jpg" alt="" title=""
+														src="${pageContext.request.contextPath}/resources/img/profile_picture/${boarddto.PROFILE_PICTURE}" alt="" title=""
 														width="768" height="768">
 												</div>
 											</div>

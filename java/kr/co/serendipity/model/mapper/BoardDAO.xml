@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="getBoardDetail" resultType="hashmap">
-       SELECT b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code, b.price, b.meeting_place, b.meeting_address,m.id,m.name,m.profile_description,l.local_name FROM board b, member m, local l where b.user_num=m.user_num and b.local_code=l.local_code and board_num=#{board_num}
+       SELECT b.board_num, b.user_num, b.board_title, b.board_content, b.board_picture1, b.board_picture2, b.board_picture3, b.board_picture4, b.board_picture5, b.board_capacity, b.board_date, b.board_latitude, b.board_longitude, b.local_code, b.price, b.meeting_place, b.meeting_address,m.id,m.name,m.profile_description,m.profile_picture,l.local_name FROM board b, member m, local l where b.user_num=m.user_num and b.local_code=l.local_code and board_num=#{board_num}
     </select>
     
     <insert id="Gwrite">

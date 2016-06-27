@@ -13,8 +13,10 @@ href=".././resources/js/sweetalert.css">
 <script type="text/javascript"
    src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
+<!-- <script type="text/javascript"
+   src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script> -->
 <script type="text/javascript"
-   src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
+   src=".././resources/ckeditor/ckeditor.js"></script>   
 <script type="text/javascript" src="jquery.numberformatter.js"></script>
    <style>
 .controls {

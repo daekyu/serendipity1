@@ -73,7 +73,6 @@ public class EmailSender {
 		messageHelper.setTo(memberdto.getEmail()); 
 		messageHelper.setSubject("Serendipity : 회원님의 임시 비밀번호입니다.");
 		messageHelper.setText("회원님의 임시 비밀번호는 " + temppw + "입니다.<br>로그인 후 꼭 비밀번호를 변경하세요!");
-		
 		mailSender.send(messagedto);
 		
 		return temppw;

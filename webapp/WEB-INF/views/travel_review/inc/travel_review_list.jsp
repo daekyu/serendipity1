@@ -177,7 +177,7 @@
 									<span><spring:message code="board.review11"/> ${i.REPLY_COUNT}</span>
 								</div>
 								<div class="excerpt">
-									<a href="review_detail.htm?review_num=${i.REVIEW_NUM}">${i.REVIEW_CONTENT}</a>
+									
 								</div>
 								<div class="price-box">
 									 <spring:message code="board.review13"/>&nbsp;&nbsp;<span class="excerpt" id="likeCount_${j.index}">${i.LIKE_COUNT}</span>

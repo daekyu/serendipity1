@@ -143,4 +143,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        select * from participant where board_num = #{board_num}
     </select>
     
+    <insert id="insertRoutes">
+    	insert into route(board_num, route_latlag, route_seq) values(#{board_num}, #{route_latlag}, #{route_seq})
+    </insert>
+    
+    <select id="selectBoardNum" resultType="Integer">
+    	select max(board_num) as board_num from board
+    </select>
+    
 </mapper>

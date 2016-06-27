@@ -95,4 +95,10 @@ public interface BoardDAO {
 	//글 상세에서 중복 신청이 불가능하도록 신청자 목록 불러오기
 	public List<ParticipantDTO> detailParticipant(BoardDTO boarddto);
 	
+	//경로 입력
+	public void insertRoutes(RouteDTO routedto);
+	
+	//가장 최근 board_num 가져오기
+	public int selectBoardNum();
+	
 }

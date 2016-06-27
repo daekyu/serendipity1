@@ -178,7 +178,7 @@ $(function () {
 		        },
 				title: {
 		            text: '최근 일주일간 가입자수',
-		            x: -20 //center
+		            x: -20
 		        },
 		        xAxis: {
 		            categories: [data.day[6], data.day[5], data.day[4], data.day[3], data.day[2], data.day[1], data.day[0]]

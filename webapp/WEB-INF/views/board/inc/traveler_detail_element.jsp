@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-
-
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="http://localhost:8090/serendipity/resources/ckeditor/sweetalert.css">
-<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
-	
-</script>
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href=".././resources/js/sweetalert.css">
 <script type="text/javascript"
@@ -28,15 +22,11 @@
 <input type="hidden" id="meeting_address"
 	value="${boarddto.MEETING_ADDRESS}" />
 <script type="text/javascript">
-	/* 	$(function(){
-			$('#delete').click(function(){
-				if(confirm("글을 삭제 하시겠습니까?") == true){
-				location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=1";
-				}else{
-				    return false;
-				}
-			});
-		}); */
+		function getContextPath() {
+			   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+			   return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+		};
+
 		//시간차에 따른 버튼 처리
 		function getTimeStamp() {
 		    var d = new Date();
@@ -56,8 +46,29 @@
 		    }
 		    return zero + n;
 		}
-		
 	$(function() {
+		
+		$('#msg_btn').click(function() {
+			$.ajax({
+				type : "post",
+				url : getContextPath() + "/message/sendMessageFromBoard.htm",
+				data : {
+					"receiver" : $('#receiver').val(),
+					"sender" : $('#sender').val(),
+					"message_title" : $('#message_title').val(),
+					"message_content" : $('#message_content').val()
+				},
+				success : function(data) {
+					if(data == 1) {
+						swal("메세지 전송이 완료되었습니다.");
+						$('#receiver').val("");
+						$('#sender').val("");
+						$('#message_title').val("");
+						$('#message_content').val("");
+					}
+				}
+			});
+		});
 		var today = new Date();
 		var dateString = $('#wd').val();
 		var dateArray = dateString.split("/");  
@@ -244,11 +255,7 @@
 										<img class="replace-2x" alt=""
 										src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}"
 										width="100" height="100">
-									<!-- </a> <a href="#" data-image="content/img/single-3.jpg"
-										data-zoom-image="content/img/single-3.jpg"> <img
-										class="replace-2x" alt="" src="content/img/single-3.jpg"
-										width="100" height="100">
-									</a> -->
+									</a>
 								</div>
 								<!-- #thumblist -->
 							</div>
@@ -258,7 +265,7 @@
 
 					<div class="col-sm-7 col-md-7">
 						<div class="reviews-box table-responsive">
-							<a href="#reviews" class="add-review">${boarddto.BOARD_TITLE}</a>
+							<div class="price-box"><span class="entry-title">${boarddto.BOARD_TITLE}</span></div>
 						</div>
 						<table
 							class="table table-striped table-bordered text-center my-orders-table">
@@ -299,10 +306,7 @@
 						</table>
 						<div class="description"></div>
 
-						<div class="price-box">
-							<span class="price">${boarddto.PRICE} / a day /
-								${boarddto.BOARD_DATE}</span>
-						</div>
+						<h4 class="entry-title">${boarddto.PRICE} / a hour<br>${boarddto.BOARD_DATE}</h4>
 						
 						<div id="beforeDate">
 						<c:choose>
@@ -322,7 +326,6 @@
 									</c:otherwise>
 								</c:choose>
 							</c:when>
-							<%-- href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=1" --%>
 							<c:otherwise>
 								<td>
 									<c:choose>
@@ -334,8 +337,17 @@
 														이미 신청한 여행 입니다.
 													</c:when>
 												<c:otherwise>
-												<a class="btn add-cart btn-default btn-lg"
-												href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}">신청하기</a>
+													<c:choose>
+														<c:when test="${sessionScope.country_code eq 82}">
+															<a class="btn add-cart btn-default btn-lg"
+															href="${pageContext.request.contextPath}/board/travelerParty.htm?board_num=${boarddto.BOARD_NUM}&user_num=${sessionScope.user_num}">신청하기</a>
+															<br>
+															
+														</c:when>
+														<c:otherwise>
+															외국인은 가이드 신청이 불가 합니다.<br>
+														</c:otherwise>
+														</c:choose>
 												</c:otherwise>
 												</c:choose>
 											</c:if>
@@ -376,11 +388,8 @@
 						<!-- 지도 끝 -->
 
 						<div class="tab-pane" id="description">
-							${boarddto.BOARD_CONTENT}<br> <br> <br> <br>
-							추가사항 강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~
+							${boarddto.BOARD_CONTENT}<br>
 						</div>
-
-
 					</div>
 					<!-- .tab-content -->
 				</div>
@@ -410,7 +419,6 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#profile">프로필보기</a></li>
 						<li><a href="#sendMessage">쪽지보내기</a></li>
-						<li><a href="#chatting">채팅신청하기</a></li>
 						<li><a href="#reporting">신고하기</a></li>
 					</ul>
 					<!-- .nav-tabs -->
@@ -441,10 +449,7 @@
 											<p>${boarddto.PROFILE_DESCRIPTION}</p>
 										</div>
 										<div class="social">
-											<!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>
-				<a class="icon rounded icon-twitter" href="#"><i class="fa fa-twitter"></i></a>
-				<a class="icon rounded icon-google" href="#"><i class="fa fa-google"></i></a>
-				<a class="icon rounded icon-linkedin" href="#"><i class="fa fa-linkedin"></i></a> -->
+										
 										</div>
 									</div>
 									<div class="clearfix"></div>
@@ -482,24 +487,25 @@
 						</div>
 
 						<div class="tab-pane" id="sendMessage">
-							<form>
 								<table class="table center">
 									<tr>
+										<td>
+											<input type="hidden" name="sender" id="sender" value="${sessionScope.user_num}">
+											<input type="hidden" name="receiver" id="receiver" value="${boarddto.USER_NUM}">
+											<input type="text" class="form-control" id="message_title" name="message_title" placeholder="메세지 제목 입력">
+										</td>
+									</tr>
+									<tr>
 										<td><textarea class="form-control"
-												style="resize: none; height: 100px;" wrap="soft" name=""></textarea>
+												style="resize: none; height: 100px;" wrap="soft" id="message_content" name="message_content" placeholder="메세지 내용 입력"></textarea>
 										</td>
 									</tr>
 
 									<tr>
-										<td><input class="btn btn-success" type="submit"
-											value="전송"></td>
+										<td><button class="btn btn-success" id="msg_btn">전송</button></td>
 									</tr>
 								</table>
-							</form>
 						</div>
-
-						<div class="tab-pane" id="chatting"></div>
-						<!-- #reviews -->
 
 						<div class="tab-pane" id="reporting">
 							<form

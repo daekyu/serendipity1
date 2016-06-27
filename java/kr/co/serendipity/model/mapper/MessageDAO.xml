@@ -68,4 +68,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getSendMessageDetail" resultType="kr.co.serendipity.model.MessageDTO">
 		select * from message where message_num=#{message_num}
 	</select>
+	
+	<insert id="sendMessageFromBoard_1">
+		insert into rcv_message(message_num, sender, receiver, message_content, message_title, message_date, msg_alarm)
+		values(message_seq.nextval, #{sender}, #{receiver}, #{message_content}, #{message_title}, sysdate, 0)
+	</insert>
+	
+	<insert id="sendMessageFromBoard_2">
+		insert into message(message_num, sender, receiver, message_content, message_title, message_date)
+		values(message_seq.nextval, #{sender}, #{receiver}, #{message_content}, #{message_title}, sysdate)
+	</insert>
 </mapper>

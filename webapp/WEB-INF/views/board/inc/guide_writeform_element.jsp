@@ -11,9 +11,9 @@ href=".././resources/js/sweetalert.css">
 	src="https://www.google.com/jsapi?language=${sessionScope.locale}"></script>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=${sessionScope.locale}"></script>
-
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
+<<<<<<< HEAD
 
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
  <style>
@@ -63,32 +63,21 @@ href=".././resources/js/sweetalert.css">
 
 
 
+=======
+>>>>>>> 99602077a0469be7b0b3e6918fd47679999fce98
 <script type="text/javascript">
 	window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
-	
-	
 	
 	function formatNumber (num) {
 	    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 	}
 	
-
-	
-	$(function() {
-		
-		
-		
-		
-		
+	$(function() {	
 		 var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
          var reg_ca = /^[0-9]{1,2}$/;
          
-         
          //게시판 유효성 검증 
-         
          $('#success').click(function() {
-            
-            
                if($('#board_title').val() == '') {
                   swal('글제목을 입력해주세요')
                   $('#board_title').focus();
@@ -120,23 +109,7 @@ href=".././resources/js/sweetalert.css">
                   }else{
                   swal('글작성 완료','','success');
                }
-               
-                        
-               
             }); 
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		$('#pic2').hide();
 		$('#pic3').hide();
 		$('#pic4').hide();
@@ -145,9 +118,6 @@ href=".././resources/js/sweetalert.css">
 		var index = 2;
 		$('#addBtn').click(function() {
 			if (index <= 5) {
-				/* $('#addPic')
-						.append(
-								'<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
 				$('#pic' + index).show();
 				index++;
 			} else {
@@ -159,7 +129,6 @@ href=".././resources/js/sweetalert.css">
 				index--;
 				$('#pic' + index).val("");
 				$('#pic' + index).hide();
-				/* $('#pic' + index).remove(); */
 			} else {
 				swal('더 이상 삭제할 수 없습니다!')
 			}
@@ -167,7 +136,6 @@ href=".././resources/js/sweetalert.css">
 		$('#pac-input').keydown(function(e) {
 			if (e.keyCode == 13) {
 				$('#button2').trigger('click');
-
 				return false;
 			}
 		});
@@ -176,46 +144,23 @@ href=".././resources/js/sweetalert.css">
 	$('#ckeditor').keyup(function() {
 		console.log($('#ckeditor').val());
 	});
-
 	$('#submit3').click(function() {
 		// ckeditor 내용 추출
 		var sendNoteData = CKEDITOR.instances.ckeditor.getData();
 		console.log(CKEDITOR.instances.ckeditor.getData());
 		// 히든 인풋에 추출한 내용 삽입.
 		$('#board_Content').val(sendNoteData);
-
 		// 강제 서브밋
 		$('#bofom').submit();
 	});
 
-	
-	
 	$(function(){	
 		$("#convert").click(function(){
-			    
 				if ($('#before').val() == ''){
 					swal("값을 입력해주세요!");
 					$("#before").focus();
 					return false;
 				}else{
-					/* $.ajax({
-			        	  type : "post",
-			        	  url : "traveler_writeform.htm",
-			        	  data : {"before" : $('#before').val()},
-			        	  success : function(data) {
-			        		  if($('#selecoption').val()=='KRW'){
-			        			  
-			        		  }else if($('#selecoption').val()=='JPY'){
-			        			  
-			        		  }else($('#selecoption').val()=='USD'){
-			        			  
-			        		  }
-			        		  
-			        		  }
-			        	  
-				
-			          }); */
-			          
 						var endpoint = 'live'
 						var access_key = '56370edf846ec46335b07809733c304e';
 
@@ -225,22 +170,7 @@ href=".././resources/js/sweetalert.css">
 						    dataType: 'jsonp',
 						    success: function(json) {
 								console.log(json);
-								
-						        // exchange rata data is stored in json.quotes
-						       /*  alert('한화 달러');
-						        alert(json.quotes.JPYUSD);
-						        alert(json.quotes.USDGBP);
-						        alert(json.quotes.USDJPY);
-						        alert(json.quotes.USDKRW);
-						        // source currency is stored in json.source
-						        alert(json.source);
-						        
-						        // timestamp can be accessed in json.timestamp
-						        alert(json.timestamp); */
-						        
-						        //$('#after').val($('#before').val() * )
 								 if($('#selectoption').val()=='KRW'){
-							        	
 						        	 $('#after').val(formatNumber($('#before').val())+'원');
 						        	 $('#before').val(formatNumber($('#before').val())+'원');
 				        		  }else if($('#selectoption').val()=='JPY'){
@@ -249,27 +179,18 @@ href=".././resources/js/sweetalert.css">
 				        				  imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
 				        					 
 				        			  });
-									 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
 									 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
 									 $('#before').val(formatNumber($('#before').val())+'엔');
-								
 				        		  }else if($('#selectoption').val()=='USD'){
 				        			  swal({   title: "실시간 환율 정보",   text: '  $1= ￦'+json.quotes.USDKRW,   imageUrl: ".././resources/img/dollar.png",confirmButtonColor: "#DD6B55" });
 				        			  $('#after').val(formatNumber(Math.floor($('#before').val() * json.quotes.USDKRW))+'원');
 				        			  $('#before').val(formatNumber($('#before').val())+'달러');
 				        		  }
 						    }
-						});
-					
-					
-					
-				
-			          
+						}); 
 				}
 			});
-			
 			});
-			
 	$(function() {
 		$("#datepicker").datepicker({
 			startDate :new Date((new Date()).valueOf() + 1000*3600*24)
@@ -287,10 +208,8 @@ href=".././resources/js/sweetalert.css">
 	function initialize() {
 		// prepare Geocoder
 		geocoder = new google.maps.Geocoder();
-
 		// set initial position (삼성역)
 		var myLatlng = new google.maps.LatLng(37.5088652, 127.0609603);
-
 		var myOptions = { // default map options
 			zoom : 17,
 			center : myLatlng,
@@ -480,7 +399,6 @@ href=".././resources/js/sweetalert.css">
 			infos = [];
 		}
 	}
-
 	// clear infos function
 	function clearInfos() {
 		if (infos) {
@@ -496,7 +414,6 @@ href=".././resources/js/sweetalert.css">
 	function findAddress() {
 		clearOverlays();
 		var address = document.getElementById("gmap_where").value;
-
 		// script uses our 'geocoder' in order to find location by address name
 		geocoder
 				.geocode(
@@ -516,6 +433,7 @@ href=".././resources/js/sweetalert.css">
 										.lat();
 								document.getElementById('lng').value = results[0].geometry.location
 										.lng();
+<<<<<<< HEAD
 								 var image = '${pageContext.request.contextPath}/resources/img/candy_marker.png';
 								var lat = document.getElementById('lat').value;
 								var lng = document.getElementById('lng').value;
@@ -530,32 +448,33 @@ href=".././resources/js/sweetalert.css">
 								});
 								markers.push(addrMarker); 
 
+=======
+>>>>>>> 99602077a0469be7b0b3e6918fd47679999fce98
 								findPlace();
-
 							} else {
 								alert('Geocode was not successful for the following reason: '
 										+ status);
 							}
 						});
+<<<<<<< HEAD
 
 	} */
+=======
+	}
+>>>>>>> 99602077a0469be7b0b3e6918fd47679999fce98
 	function findPlace() {
 		var lat = document.getElementById('lat').value;
 		var lng = document.getElementById('lng').value;
 		var cur_location = new google.maps.LatLng(lat, lng);
-
 		var request = {
 			radius : 1,
 			location : cur_location,
-
 		};
 		service = new google.maps.places.PlacesService(map);
 		service.search(request, createMarkers);
 	}
-
 	// find custom places function
 	function findPlaces() {
-
 		// prepare variables (filter)
 		var type = document.getElementById('gmap_type').value;
 		var radius = document.getElementById('gmap_radius').value;
@@ -563,26 +482,21 @@ href=".././resources/js/sweetalert.css">
 		var lat = document.getElementById('lat').value;
 		var lng = document.getElementById('lng').value;
 		var cur_location = new google.maps.LatLng(lat, lng);
-
 		// prepare request to Places
 		var request = {
 			location : cur_location,
 			radius : radius,
 			types : [ type ]
 		};
-
 		// send request
 		service = new google.maps.places.PlacesService(map);
 		service.search(request, createMarkers);
 	}
-
 	// create markers (from 'findPlaces' function)
 	function createMarkers(results, status) {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
-
 			// if we have found something - clear map (overlays)
 			clearOverlays();
-
 			// and create new markers by search result
 			for (var i = 0; i < results.length; i++) {
 				createMarker(results[i]);
@@ -591,7 +505,6 @@ href=".././resources/js/sweetalert.css">
 			alert('Sorry, nothing is found');
 		}
 	}
-
 	// creare single marker function
 	function createMarker(obj) {
 	   var image;
@@ -616,8 +529,6 @@ href=".././resources/js/sweetalert.css">
 		   image = '${pageContext.request.contextPath}/resources/img/flag_marker.png';
 	   }
       // prepare new Marker object
-      
-      
       var mark = new google.maps.Marker({
          position : obj.geometry.location,
          map : map,
@@ -665,9 +576,6 @@ href=".././resources/js/sweetalert.css">
 			<h1 class="title"><spring:message code="board.guide_writeform1"/></h1>
 		</div>
 	</header>
-
-
-
 	<article class="content">
 		<div class="container form-group">
 			<form action="" id="bofom" method="post" enctype="multipart/form-data">
@@ -685,61 +593,39 @@ href=".././resources/js/sweetalert.css">
 						<td><spring:message code="board.guide_writeform4"/></td>
 						<td><input class="form-control" type="text" id="datepicker"
 							name="board_date"></td>
-					<%-- 	<td><spring:message code="board.guide_writeform5"/></td>
-						<td><input class="form-control" type="text" name="price"></td> --%>
-						
-							<td><spring:message code="board.guide_writeform5"/></td>
+						<td><spring:message code="board.guide_writeform5"/></td>
 						<td><select id="selectoption">
   							<option value="KRW">KRW</option>
   							<option value="JPY">JPY</option>
   							<option value="USD">USD</option>
-  						
 						</select></td>
 						<td><input class="form-control" id="before" type="text" name="#" placeholder="작성 후 수정 불가"></td>
 						<td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.guide_writeform5.1"/></button></td>
-						
-				
-						
-						
 						<td>
-						
-						<input class="form-control" id="after" type="text" name="price" placeholder="작성 후 수정 불가">
-						
+							<input class="form-control" id="after" type="text" name="price" placeholder="작성 후 수정 불가">
 						</td>
-						
-						
 					</tr>
 					<tr>
 						<td><spring:message code="board.guide_writeform6"/></td>
 						<td colspan="5">
-							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
-
 							<textarea name="board_content" id="ckeditor"></textarea> 
 							<script type="text/javascript">
-							
-
-									CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
+							CKEDITOR.replace('ckeditor', {//해당 이름으로 된 textarea에 에디터를 적용
 										width : '100%',
 										height : '400px',
 										//filebrowserImageUploadUrl : '' //여기 경로로 파일을 전달하여 업로드 시킨다.
 									});
 									</script>
-								
-							
-
 						</td>
 					</tr>
 					<tr>
 						<td><spring:message code="board.guide_writeform9"/></td>
-						<!-- <td id="addPic" colspan="4"> -->
 						<td>
-						
 							<input type="file" id="pic1" name="pic">
 							<input type="file" id="pic2" name="pic">
 							<input type="file" id="pic3" name="pic">
 							<input type="file" id="pic4" name="pic">
 							<input type="file" id="pic5" name="pic">
-							
 						</td>
 						<td align="center">
 							<button type="button" id="addBtn" class="btn btn-success"><spring:message code="board.guide_writeform10"/></button>

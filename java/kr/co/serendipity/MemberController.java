@@ -53,6 +53,7 @@ public class MemberController {
 		} else {
 			session.setAttribute("id", memberservice.login(memberdto).getId());
 			session.setAttribute("user_num", memberservice.login(memberdto).getUser_num());
+			session.setAttribute("country_code", memberservice.login(memberdto).getCountry_code());
 		}
 		return "redirect:/index.htm";
 	}

@@ -12,8 +12,6 @@ href=".././resources/js/sweetalert.css">
 <script src="../js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="http://localhost:8090/serendipity/resources/ckeditor/ckeditor.js"></script>
-
-
 <input type="hidden" id="latitude" value="${boarddto.BOARD_LATITUDE}" />
 <input type="hidden" id="longitude" value="${boarddto.BOARD_LONGITUDE}"/>
 <style>
@@ -71,9 +69,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 		var index = 2;
 		$('#addBtn').click(function() {
 			if (index <= 5) {
-				/* $('#addPic')
-						.append(
-								'<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
 				$('#pic' + index).show();
 				index++;
 			} else {
@@ -85,7 +80,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 				index--;
 				$('#pic' + index).val("");
 				$('#pic' + index).hide();
-				/* $('#pic' + index).remove(); */
 			} else {
 				alert('더 이상 삭제할 수 없습니다.');
 			}
@@ -108,24 +102,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	               $("#before").focus();
 	               return false;
 	            }else{
-	               /* $.ajax({
-	                      type : "post",
-	                      url : "traveler_writeform.htm",
-	                      data : {"before" : $('#before').val()},
-	                      success : function(data) {
-	                         if($('#selecoption').val()=='KRW'){
-	                            
-	                         }else if($('#selecoption').val()=='JPY'){
-	                            
-	                         }else($('#selecoption').val()=='USD'){
-	                            
-	                         }
-	                         
-	                         }
-	                      
-	            
-	                   }); */
-	                   
 	                  var endpoint = 'live'
 	                  var access_key = '56370edf846ec46335b07809733c304e';
 
@@ -135,20 +111,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	                      dataType: 'jsonp',
 	                      success: function(json) {
 	                        console.log(json);
-	                        
-	                          // exchange rata data is stored in json.quotes
-	                         /*  alert('한화 달러');
-	                          alert(json.quotes.JPYUSD);
-	                          alert(json.quotes.USDGBP);
-	                          alert(json.quotes.USDJPY);
-	                          alert(json.quotes.USDKRW);
-	                          // source currency is stored in json.source
-	                          alert(json.source);
-	                          
-	                          // timestamp can be accessed in json.timestamp
-	                          alert(json.timestamp); */
-	                          
-	                          //$('#after').val($('#before').val() * )
 	                          if($('#selectoption').val()=='KRW'){
 	                             
 	                              $('#after').val(formatNumber($('#before').val())+'원');
@@ -159,7 +121,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	                                  imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
 	                                    
 	                               });
-	                            /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
 	                            $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
 	                            $('#before').val(formatNumber($('#before').val())+'원');
 	                        
@@ -169,21 +130,11 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 	                               $('#before').val(formatNumber($('#before').val())+'원');
 	                            }
 	                      }
-	                  });
-	               
-	               
-	               
-	            
-	                   
+	                  });    
 	            }
 	         });
 	         
 	         });
-	         
-	
-	
-	
-
 	  $(function() {
 			$("#datepicker").datepicker({
 				startDate :new Date((new Date()).valueOf() + 1000*3600*24)
@@ -398,20 +349,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 										.lat();
 								document.getElementById('lng').value = results[0].geometry.location
 										.lng();
-								/* var lat = document.getElementById('lat').value;
-								var lng = document.getElementById('lng').value;
-								var latlng = lat + ', ' + lng;
-								var image = '${pageContext.request.contextPath}/resources/img/candy_marker.png';
-
-								// and then - add new custom marker
-								var addrMarker = new google.maps.Marker({
-									position : addrLocation,
-									map : map,
-									title : results[0].formatted_address,
-									icon: image
-								});
-								markers.push(addrMarker); */
-
 								findPlace();
 
 							} else {
@@ -499,7 +436,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 		   }
 	      // prepare new Marker object
 	      
-	      
 	      var mark = new google.maps.Marker({
 	         position : obj.geometry.location,
 	         map : map,
@@ -531,8 +467,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 			document.getElementById('longitude').value = obj.geometry.location.lng();
 			document.getElementById('meeting_place').value = obj.name;
 			document.getElementById('meeting_address').value = obj.vicinity;
-
-
 		});
 		infos.push(infowindow);
 
@@ -574,11 +508,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
                   <td><input class="form-control" id="before" type="text" name="#" value="${boarddto.PRICE }" readonly></td>
                   <td><button type="button" id="convert" class="btn btn-success">변환</button></td>
                   <td><input class="form-control" id="after" type="text" name="price" value="${boarddto.PRICE }" readonly></td>
-                  
-					</tr>
-					
-					
-					
+				</tr>	
 					<tr>
 						<td>설명</td>
 						<td colspan="5">
@@ -593,12 +523,8 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 							</script>
 						</td>
 					</tr>
-					
-					
-					
 					<tr>
 						<td>사진</td>
-						<!-- <td id="addPic" colspan="4"> -->
 						<td>
 							<input type="file" id="pic1" name="pic"> 수정전 파일 : <input type="text" readonly="readonly" value="${boarddto.BOARD_PICTURE1}">
 							<input type="file" id="pic2" name="pic">
@@ -611,11 +537,6 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 							<button type="button" id="minusBtn" class="btn btn-danger">빼기</button>
 						</td>
 					</tr>
-					
-					
-					
-					
-					
 					<tr>
 						<td>Meeting Point</td>
 						<td colspan="5">

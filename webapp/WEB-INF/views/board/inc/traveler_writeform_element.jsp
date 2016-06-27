@@ -59,26 +59,14 @@ href=".././resources/js/sweetalert.css">
   font-weight: 300;
 }
 </style>
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"> --%>
 
 <script type="text/javascript">
    window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
-
-   
    function formatNumber (num) {
        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
    }
-
-
-   
-  
    $(function(){
-      
-      
           var reg_number = /^[0-9_+,-]+[가-힣]{1,2}$/;
-            
-            
-            
             //게시판 유효성 검증 
             
              $('#success').click(function() {
@@ -91,14 +79,6 @@ href=".././resources/js/sweetalert.css">
                      swal('<spring:message code="board.traveler_writeform_ef1"/>');
                      $('#datepicker').focus();
                      return false;
-                  /* }  else if(!reg_number.test($('#before').val()) == true){
-                    swal('<spring:message code="board.traveler_writeform_ef2"/>');
-                    $('#before').focus();
-                     return false;
-                 } else if(!reg_number.test($('#after').val()) == true){
-                       swal('<spring:message code="board.traveler_writeform_ef3"/>');
-                       $('#before').focus();
-                    return false;  */
                   } else if($('#pic1').val()==''){
                      swal("<spring:message code="board.traveler_writeform_ef4"/>");
                      $('#pic1').focus();
@@ -116,17 +96,11 @@ href=".././resources/js/sweetalert.css">
       $('#pic3').hide();
       $('#pic4').hide();
       $('#pic5').hide(); 
-      
-
-    
       var index = 2;
       $('#addBtn')
             .click(
                   function() {
                      if (index <= 5) {
-                        /* $('#addPic')
-                              .append(
-                                    '<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
                         $('#pic'+index).show();
                         index++;
                      } else {
@@ -138,7 +112,6 @@ href=".././resources/js/sweetalert.css">
             index--;
             $('#pic'+index).val("");
             $('#pic'+index).hide();
-            /* $('#pic' + index).remove(); */
          } else {
             swal('더 이상 삭제할 수 없습니다!');
          }
@@ -151,12 +124,7 @@ href=".././resources/js/sweetalert.css">
 
               return false;
           }
-      });
-      
-
-      
-      
-      
+      }); 
    });
 
    $('#ckeditor').keyup(function() {
@@ -173,8 +141,6 @@ href=".././resources/js/sweetalert.css">
       // 강제 서브밋
       $('#bofom').submit();
    });
-
-
    $(function(){   
       $("#convert").click(function(){
              
@@ -183,24 +149,6 @@ href=".././resources/js/sweetalert.css">
                $("#before").focus();
                return false;
             }else{
-               /* $.ajax({
-                      type : "post",
-                      url : "traveler_writeform.htm",
-                      data : {"before" : $('#before').val()},
-                      success : function(data) {
-                         if($('#selecoption').val()=='KRW'){
-                            
-                         }else if($('#selecoption').val()=='JPY'){
-                            
-                         }else($('#selecoption').val()=='USD'){
-                            
-                         }
-                         
-                         }
-                      
-            
-                   }); */
-                   
                   var endpoint = 'live'
                   var access_key = '56370edf846ec46335b07809733c304e';
 
@@ -210,20 +158,6 @@ href=".././resources/js/sweetalert.css">
                       dataType: 'jsonp',
                       success: function(json) {
                         console.log(json);
-                        
-                          // exchange rata data is stored in json.quotes
-                         /*  alert('한화 달러');
-                          alert(json.quotes.JPYUSD);
-                          alert(json.quotes.USDGBP);
-                          alert(json.quotes.USDJPY);
-                          alert(json.quotes.USDKRW);
-                          // source currency is stored in json.source
-                          alert(json.source);
-                          
-                          // timestamp can be accessed in json.timestamp
-                          alert(json.timestamp); */
-                          
-                          //$('#after').val($('#before').val() * )
                           if($('#selectoption').val()=='KRW'){
                               $('#after').val(formatNumber($('#before').val())+'원');
                               $('#before').val(formatNumber($('#before').val())+'원' );
@@ -233,8 +167,7 @@ href=".././resources/js/sweetalert.css">
                                   imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
                                     
                                });
-                            /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
-                            $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
+                           $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
                             $('#before').val(formatNumber($('#before').val())+'¥');
                         
                             }else if($('#selectoption').val()=='USD'){
@@ -244,27 +177,16 @@ href=".././resources/js/sweetalert.css">
 
                             }
                       }
-                  });
-               
-               
-               
-            
-                   
+                  });    
             }
+         }); 
          });
-         
-         });
-         
-
-   
    $(function() {
 
 		$("#datepicker").datepicker({
 			startDate :new Date((new Date()).valueOf() + 1000*3600*24)
 		}).datetimepicker('update', new Date());
 	});
-	
-   
       // set endpoint and your access key
    
    var poly;
@@ -283,7 +205,6 @@ href=".././resources/js/sweetalert.css">
    function initialize() {
       // prepare Geocoder
       geocoder = new google.maps.Geocoder();
-      
 
       // set initial position (기본으로 삼성역)
       var myLatlng = new google.maps.LatLng(37.5088652, 127.0609603);
@@ -341,6 +262,7 @@ href=".././resources/js/sweetalert.css">
         	   
               
               /* var mar = new google.maps.Marker({
+              var mar = new google.maps.Marker({
                    map: map,
                    title: place.name,
                    position: place.geometry.location,
@@ -451,7 +373,162 @@ href=".././resources/js/sweetalert.css">
 		  });
 		 }
    
-// Handles click events on a map, and adds a new point to the Polyline.
+/* // Handles click events on a map, and adds a new point to the Polyline.
+   function addLatLng(event) {
+     var path = poly.getPath();
+
+     // Because path is an MVCArray, we can simply append a new coordinate
+     // and it will automatically appear.
+     path.push(event.latLng);
+     alert(event.address);
+     console.log(path);
+
+     // Add a new marker at the new plotted point on the polyline.
+     var marker = new google.maps.Marker({
+       position: event.latLng,
+       title: '#' + path.getLength(),
+       map: map
+     });
+     local_route.push(event.latLng);
+     
+     google.maps.event.addListener(marker, 'click', function() {
+    	 
+     });
+	
+   } */
+
+   // clear overlays function
+   function clearOverlays() {
+      if (markers) {
+         for (i in markers) {
+            markers[i].setMap(null);
+         }
+         markers = [];
+         infos = [];
+      }
+   }
+
+   // clear infos function
+   function clearInfos() {
+      if (infos) {
+         for (i in infos) {
+            if (infos[i].getMap()) {
+               infos[i].close();
+            }
+         }
+      }
+   }
+   function findPlace() {
+      var lat = document.getElementById('lat').value;
+      var lng = document.getElementById('lng').value;
+      var cur_location = new google.maps.LatLng(lat, lng);
+
+      var request = {
+         radius : 1,
+         location : cur_location
+      };
+      service = new google.maps.places.PlacesService(map);
+      service.search(request, createMarkers);
+   }
+
+   // find custom places function
+   function findPlaces() {
+
+      // prepare variables (filter)
+      var type = document.getElementById('gmap_type').value;
+      var radius = document.getElementById('gmap_radius').value;
+
+      var lat = document.getElementById('lat').value;
+      var lng = document.getElementById('lng').value;
+      var cur_location = new google.maps.LatLng(lat, lng);
+
+      // prepare request to Places
+      var request = {
+         location : cur_location,
+         radius : radius,
+         types : [ type ]
+      };
+
+      // send request
+      service = new google.maps.places.PlacesService(map);
+      service.search(request, createMarkers);
+   }
+
+   // create markers (from 'findPlaces' function)
+   function createMarkers(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+         // if we have found something - clear map (overlays)
+         clearOverlays();
+
+         // and create new markers by search result
+         for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+         }
+      } else if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+         alert('Sorry, nothing is found');
+      }
+   }
+
+   // creare single marker function
+   function createMarker(obj) {
+      var image;
+      var type = document.getElementById('gmap_type').value;
+      if (type == 'art_gallery') {
+         image = '${pageContext.request.contextPath}/resources/img/art_gallery_marker.png';
+      } else if (type == 'atm') {
+         image = '${pageContext.request.contextPath}/resources/img/atm_marker.png';
+      } else if (type == 'bank') {
+         image = '${pageContext.request.contextPath}/resources/img/bank_marker.png';
+      } else if (type == 'bar') {
+         image = '${pageContext.request.contextPath}/resources/img/bar_marker.png';
+      } else if (type == 'cafe') {
+         image = '${pageContext.request.contextPath}/resources/img/cafe_marker.png';
+      } else if (type == 'food') {
+         image = '${pageContext.request.contextPath}/resources/img/food_marker.png';
+      } else if (type == 'store') {
+         image = '${pageContext.request.contextPath}/resources/img/store_marker.png';
+      } else if (type == 'subway_station') {
+         image = '${pageContext.request.contextPath}/resources/img/subway_station_marker.png';
+      }
+      // prepare new Marker object
+
+      var mark = new google.maps.Marker({
+         position : obj.geometry.location,
+         map : map,
+         title : obj.name,
+         animation: google.maps.Animation.DROP,
+         icon : image
+      });
+      markers.push(mark);
+
+      // prepare info window
+      var infowindow = new google.maps.InfoWindow(
+            {
+               content : '<img src="' + obj.icon + '" /><font style="color:#000;">'
+                     + obj.name
+                     + '<br />Rating: '
+                     + obj.rating
+                     + '<br />Vicinity: '
+                     + obj.vicinity
+                     + '<br />latlng: '
+                     + obj.geometry.location.lat()
+                     + ', ' + obj.geometry.location.lng() + '</font>'
+            });
+
+      // add event handler to current marker
+      google.maps.event.addListener(mark, 'click', function() {
+         clearInfos();
+         infowindow.open(map, mark);
+         document.getElementById('lat').value = obj.geometry.location.lat();
+         document.getElementById('lng').value = obj.geometry.location.lng();
+         document.getElementById('meeting_place').value = obj.name;
+         document.getElementById('meeting_address').value = obj.vicinity;
+
+      });
+      infos.push(infowindow);
+
+   }
 
 	/* function addLatLng(event) {
 		var path = poly.getPath();
@@ -708,13 +785,6 @@ href=".././resources/js/sweetalert.css">
                   <td><input class="form-control" id="before" type="text" name="#" placeholder="등록후 수정 불가"></td>
                   <td><button type="button" id="convert" class="btn btn-success"><spring:message code="board.traveler_writeform13"/></button></td>
                   <td><input class="form-control" id="after" type="text" name="price" placeholder="등록후 수정 불가"></td>
-                  
-
-                  <%-- <td><input class="form-control" type="text"></td>
-
-                  <td><spring:message code="board.traveler_writeform4"/></td>
-                  <td><input class="form-control" type="text" name="price"></td> --%>
-
                </tr>
                <tr>
                   <td><h6><spring:message code="board.traveler_writeform5"/></h6></td>
@@ -750,10 +820,6 @@ href=".././resources/js/sweetalert.css">
                      <button type="button" id="minusBtn" class="btn btn-danger"><spring:message code="board.traveler_writeform10"/></button>
                   </td>
                </tr>
-
-
-
-
                <tr>
                   <td><h6>Meeting Point</h6></td>
                   <td colspan="5">
@@ -762,6 +828,7 @@ href=".././resources/js/sweetalert.css">
                      <input type="hidden" id="click-input">
                         <div id="gmap_canvas" style="height: 400px;width:auto"></div>
                         <div class="actions">
+<<<<<<< HEAD
                            <%-- <div class="button">
                               <label for="gmap_where"><spring:message code="board.traveler_writeform10.1"/></label> 
                                <input id="gmap_where"
@@ -772,6 +839,9 @@ href=".././resources/js/sweetalert.css">
                            <div class="button"> --%>
                               <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> 
                               <select id="gmap_type">
+=======
+                              <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> <select id="gmap_type">
+>>>>>>> 99602077a0469be7b0b3e6918fd47679999fce98
                                   <option value="--">--</option> 
                                  <option value="art_gallery"><spring:message code="board.traveler_writeform10.4"/></option>
                                  <option value="atm"><spring:message code="board.traveler_writeform10.5"/></option>
@@ -799,8 +869,6 @@ href=".././resources/js/sweetalert.css">
                            <div id="button1" class="btn btn-success"
                               onclick="findPlaces(); return false;"><spring:message code="board.traveler_writeform10.13"/></div>
                         </div>
-                   
-
                   </td>
                </tr>
 
@@ -814,8 +882,5 @@ href=".././resources/js/sweetalert.css">
       </div>
    </article>
    <!-- .content -->
-
-
-
 </section>
 <!-- #main -->

@@ -63,7 +63,7 @@
 			<i class="pagination-text">Displaying 1 to 10 (of 100 posts)</i>
 		  </div>
 		</div>
-      </article><!-- .content -->
+      </article>
 	  
 	  <jsp:include page="my_page_sidebar.jsp"></jsp:include>
     </div>

@@ -33,7 +33,6 @@ public class IndexController {
 			session.setAttribute("visit", "visit");
 		}
 		
-		System.out.println("index entrance");
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("index", "index");
 		mav.addObject("traveler_list", indexservice.getIndexTravelerRecent());

@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="monthGuideCount" resultType="Integer">
-		select count(*) from board where substr(board_date, 1, 2) = #{param1} and category_num = 2
+		select count(*) from board where substr(board_date, 1, 2) = #{param1} and category_num = 1
 	</select>
 	
 	<select id="monthTravelerCount" resultType="Integer">

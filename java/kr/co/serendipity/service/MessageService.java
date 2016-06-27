@@ -74,4 +74,11 @@ public class MessageService {
 		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
 		return dao.getSendMessageDetail(messagedto);
 	}
+	
+	public int sendMessageFromBoard(MessageDTO messagedto) {
+		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
+		dao.sendMessage_1(messagedto);
+		dao.sendMessage_2(messagedto);
+		return 1;
+	}
 }

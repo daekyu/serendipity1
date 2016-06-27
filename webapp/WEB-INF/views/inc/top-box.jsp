@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-
 <script type="text/javascript">
 	function doPop(){
 		var value=<%= session.getAttribute("user_num")%>;
@@ -16,7 +15,6 @@
 </script>
 
 <!-- Header보다 상단에 위치해 언어선택/로그인/회원가입 등을 할 수 있는 부분 -->
-
 
 <div id="top-box">
   <div class="top-box-wrapper">
@@ -59,21 +57,13 @@
   
 			<nav class="collapse collapsing navbar-collapse">
 			  <ul class="nav navbar-nav navbar-right">
-				<li><a href="javascript:doPop()"><spring:message code="index.top-box"/></a></li>
-				<li><a href="javascript:doPop2()"><spring:message code="index.top-box1"/></a></li>
-			   
-				
-				<li><a href="#"><spring:message code="index.top-box2"/><span class="count">2</span></a></li>
-				
-				<%-- <li><a href="${pageContext.request.contextPath}/member/join_login.htm">Log in / Join us <i class="fa fa-lock after"></i></a></li>
-				<li><a href="#">Logout<i class="fa fa-lock after"></i></a></li> --%>
-				
 				<c:choose>
 					<c:when test="${empty sessionScope.id}">
 						<li><a href="${pageContext.request.contextPath}/member/join_login.htm"><spring:message code="index.top-box3"/><i class="fa fa-lock after"></i></a></li>
-					</c:when>
-					
+					</c:when>	
 					<c:otherwise>
+						<li><a href="javascript:doPop()"><spring:message code="index.top-box"/></a></li>
+						<li><a href="javascript:doPop2()"><spring:message code="index.top-box1"/></a></li>
 						<li><a href="${pageContext.request.contextPath}/member/logout.htm"><spring:message code="index.top-box4"/><i class="fa fa-lock after"></i></a></li>
 					</c:otherwise>
 				</c:choose>

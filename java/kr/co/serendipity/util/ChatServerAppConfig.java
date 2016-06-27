@@ -45,14 +45,11 @@ public class ChatServerAppConfig extends Configurator{
 	@SuppressWarnings("unchecked")
 	@Override
      public <T> T getEndpointInstance(Class<T> endpointClass) throws InstantiationException {
-
 		 ChatServerEndPoint endpoint = endpointMap.get(currentUri);
-
 		 if(endpoint == null) {
 			 endpoint = new ChatServerEndPoint();
 			 endpointMap.put(currentUri, endpoint);
 		 }
-
 		 return (T)endpoint;
      }
 

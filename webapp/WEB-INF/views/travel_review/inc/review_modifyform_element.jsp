@@ -5,16 +5,7 @@
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	/* $('#table_pic1').hide();
-	$('#table_pic2').hide();
-	$('#table_pic3').hide();
-	$('#table_pic4').hide();
-	$('#table_pic5').hide();  */
-	
-	
 	var index=1;
-	
-	
 	$('#addBtn').click(function() {
 		if(index<=5) {
 			$('#table_pic'+index).show();
@@ -22,7 +13,6 @@ $(function() {
 		} else {
 			alert('더 이상 추가할 수 없습니다');
 		}
-		console.log(index);
 	});
 	$('#minusBtn').click(function() {
 		if(index>1) {
@@ -34,10 +24,7 @@ $(function() {
 		} else {
 			alert('더 이상 삭제할 수 없습니다.');
 		}
-		console.log(index);
 	});
-	
-	//SUBMIT했을 때 사진의 확장자를 찾아서 이미지파일이 아니면 전송하지 못하게 하자. 이건 좀 나중에 ㅎㅎㅎ
 });
 </script>
 <section id="main">
@@ -61,7 +48,7 @@ $(function() {
 					</tr>
 					<tr>
 						<td>지역</td>
-						<td><!-- <input class="form-control" type="text" name="local_code"> -->
+						<td>
 							<select class="form-group" name="local_code">
                 				<option value="-">--</option>
                 				<c:forEach var="i" items="${local_list}">

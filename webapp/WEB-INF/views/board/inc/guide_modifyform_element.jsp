@@ -70,9 +70,6 @@ $(function() {
 	var index = 2;
 	$('#addBtn').click(function() {
 		if (index <= 5) {
-			/* $('#addPic')
-					.append(
-							'<input type="file" id="pic' + index + '" name="board_Picture' + index + '">'); */
 			$('#pic' + index).show();
 			index++;
 		} else {
@@ -84,7 +81,6 @@ $(function() {
 			index--;
 			$('#pic' + index).val("");
 			$('#pic' + index).hide();
-			/* $('#pic' + index).remove(); */
 		} else {
 			alert('더 이상 삭제할 수 없습니다.');
 		}
@@ -93,7 +89,6 @@ $(function() {
 	    if(e.keyCode == 13)
 	    {
 	        $('#button2').trigger('click');
-
 	        return false;
 	    }
 	});
@@ -109,24 +104,6 @@ $(function(){
 				$("#before").focus();
 				return false;
 			}else{
-				/* $.ajax({
-		        	  type : "post",
-		        	  url : "traveler_writeform.htm",
-		        	  data : {"before" : $('#before').val()},
-		        	  success : function(data) {
-		        		  if($('#selecoption').val()=='KRW'){
-		        			  
-		        		  }else if($('#selecoption').val()=='JPY'){
-		        			  
-		        		  }else($('#selecoption').val()=='USD'){
-		        			  
-		        		  }
-		        		  
-		        		  }
-		        	  
-			
-		          }); */
-		          
 					var endpoint = 'live'
 					var access_key = '56370edf846ec46335b07809733c304e';
 
@@ -136,20 +113,6 @@ $(function(){
 					    dataType: 'jsonp',
 					    success: function(json) {
 							console.log(json);
-							
-					        // exchange rata data is stored in json.quotes
-					       /*  alert('한화 달러');
-					        alert(json.quotes.JPYUSD);
-					        alert(json.quotes.USDGBP);
-					        alert(json.quotes.USDJPY);
-					        alert(json.quotes.USDKRW);
-					        // source currency is stored in json.source
-					        alert(json.source);
-					        
-					        // timestamp can be accessed in json.timestamp
-					        alert(json.timestamp); */
-					        
-					        //$('#after').val($('#before').val() * )
 							 if($('#selectoption').val()=='KRW'){
 						        	
 					        	 $('#after').val(formatNumber($('#before').val())+'원');
@@ -160,8 +123,7 @@ $(function(){
 			        				  imageUrl: ".././resources/img/yen.png" ,confirmButtonColor: "#DD6B55"
 			        					 
 			        			  });
-								 /* alert('실시간 환율 정보 JYP->KRW:'+json.quotes.USDKRW/json.quotes.USDJPY); */
-								 $('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
+								$('#after').val(formatNumber(Math.floor($('#before').val()* json.quotes.USDKRW/json.quotes.USDJPY))+'원');
 								 $('#before').val(formatNumber($('#before').val())+'원');
 							
 			        		  }else if($('#selectoption').val()=='USD'){
@@ -171,11 +133,6 @@ $(function(){
 			        		  }
 					    }
 					});
-				
-				
-				
-			
-		          
 			}
 		});
 });
@@ -386,38 +343,19 @@ function findAddress() {
             // store current coordinates into hidden variables
             document.getElementById('lat').value = results[0].geometry.location.lat();
             document.getElementById('lng').value = results[0].geometry.location.lng();
-            /* var lat = document.getElementById('lat').value;
-            var lng = document.getElementById('lng').value;
-            var latlng = lat+', '+lng;
-            var image = '${pageContext.request.contextPath}/resources/img/candy_marker.png';
-
-            // and then - add new custom marker
-            var addrMarker = new google.maps.Marker({
-                position: addrLocation,
-                map: map,
-                title: results[0].formatted_address,
-                icon: image
-            });
-            markers.push(addrMarker); */
-            
             findPlace();
-           
-            
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
-    
 }
 function findPlace(){
 	var lat = document.getElementById('lat').value;
     var lng = document.getElementById('lng').value;
     var cur_location = new google.maps.LatLng(lat, lng);
-    
     var request = {
     		radius: 1,
 	        location: cur_location,
-	       
 	    };
     service = new google.maps.places.PlacesService(map);
     service.search(request, createMarkers);
@@ -547,9 +485,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					</tr>
 					<tr>
 						<td>인원수</td>
-						<td><input class="form-control" type="text" name="board_Capacity" value="${boarddto.BOARD_CAPACITY}"></td>
+						<td><input class="form-control" type="text" name="board_capacity" value="${boarddto.BOARD_CAPACITY}"></td>
 						<td>날짜</td>
-						<td><input class="form-control" type="text" name="board_Date"  id="datepicker"  value="${boarddto.BOARD_DATE}"></td>
+						<td><input class="form-control" type="text" name="board_date"  id="datepicker"  value="${boarddto.BOARD_DATE}"></td>
 						<td>지불할 가격</td>
 						  
                      <td><select id="selectoption">
@@ -566,11 +504,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					<tr>
 								<td>설명</td>
 						<td colspan="5">
-							<!-- <textarea class="form-control" style="resize:none; height:400px;" wrap="soft" name="board_Content"></textarea> -->
-							<!--  <textarea cols="80" id="contents" name="contents" rows="10"></textarea> -->
-
-
-							<textarea name="board_Content" id="ckeditor" >${boarddto.BOARD_CONTENT}</textarea> 
+							<textarea name="board_content" id="ckeditor" >${boarddto.BOARD_CONTENT}</textarea> 
 							<script	type="text/javascript">
 								CKEDITOR.replace('ckeditor', {
 									width : '90%',
@@ -583,9 +517,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 					</tr>
 					<tr>
 						<td>사진</td>
-						<!-- <td id="addPic" colspan="4"> -->
 						<td>
-							<input type="file" id="pic1" name="pic"> 수정전 파일 : <input type="text" readonly="readonly" value="${boarddto.BOARD_PICTURE1}">
+							<input type="file" id="pic1" name="pic">
 							<input type="file" id="pic2" name="pic">
 							<input type="file" id="pic3" name="pic">
 							<input type="file" id="pic4" name="pic">

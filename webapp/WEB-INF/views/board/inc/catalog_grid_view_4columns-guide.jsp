@@ -22,10 +22,9 @@
 		<div class="row">
 			<div id="catalog" class="content col-sm-12 col-md-12">
 				<div class="category-img">
-					<img class="replace-2x" src="content/img/category-img.jpg"
+					<img class="replace-2x" src=".././resources/img/background_img/NSeoulTower,NamsanTower.jpg"
 						width="870" height="370" alt="">
-					<div class="description">Automation &amp; Integration
-						technology to fit any lifestyle</div>
+					<div class="description">마음에 드는 가이드를 찾아 함께 여행하세요!</div>
 				</div>
 
 				<div class="toolbar clearfix">
@@ -70,9 +69,9 @@
 								data-toggle="dropdown" href="#">Show: <span>${basicshow}</span> <span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=4&sort=${basicsort}">3</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=8&sort=${basicsort}">6</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=12&sort=${basicsort}">9</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=4&sort=${basicsort}">4</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=8&sort=${basicsort}">8</a></li>
+								<li><a href="${pageContext.request.contextPath}/board/guide_list.htm?show=12&sort=${basicsort}">12</a></li>
 							</ul>
 						</div>
 						<!-- .show -->
@@ -117,7 +116,7 @@
 
 							<div class="product-hover">
 								<h3 class="product-name">
-									<a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">${i.BOARD_TITLE}</a>
+									<a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">제목 : ${i.BOARD_TITLE}</a>
 								</h3>
 								<div class="price">가이드 아이디 : ${i.ID}</div>
 								<a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}" class="product-image"> <img
@@ -127,24 +126,12 @@
 								<ul>
 									<li>지역: ${i.LOCAL_NAME}</li>
 									<li>가격상한: ${i.PRICE}</li>
-									<li>언어: 영어, 한국어</li>
-									<li>관심사: 맛집, 술, 술</li>
 									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>
-								<br> <span class="">여행 계획: <a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">
-									<c:choose>
-									<c:when test="${i.BOARD_CONTENT.length() >=20}">
-										${i.BOARD_CONTENT.substring(0,20)}.....
-									</c:when>
-									<c:when test="${empty i.BOARD_CONTENT}">
-										<br>
-										내용 없음
-									</c:when>
-									<c:otherwise>
-										${i.BOARD_CONTENT}
-									</c:otherwise>
-								</c:choose>
-								</a></span>
+								<br>
+										<div class="contact" align="center">
+											<a href="guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}" class="btn btn-warning btn-lg btn-block"><spring:message code="index.inc.carousel-box-newguide10"/></a>
+										</div>
 							</div>
 							<!-- .product-hover -->
 						</div>
@@ -193,30 +180,16 @@
 								</c:otherwise>
 							</c:choose>
 						</ul>
-						<br>임시 출력창
-						<br>page: ${page}<br> nowpage: ${nowpage}<br>
-						maxpage: ${maxpage}<br> startpage: ${startpage}<br>
-						endpage: ${endpage}<br> listCount: ${listCount}<br> 
-
 						<c:if test="${!empty sessionScope.user_num}">
 							<a href="${pageContext.request.contextPath}/board/guide_writeform.htm?user_num=${sessionScope.user_num}"
 							class="btn btn-default"><spring:message code="board.traveler1"/>
 							<span
 							class="glyphicon glyphicon-arrow-right"></span></a>
 						</c:if>
-
-
-							<%-- <a href="${pageContext.request.contextPath}/board/guide_writeform.htm"
-							class="btn btn-default"> <spring:message code="board.traveler1"/><span
-							class="glyphicon glyphicon-arrow-right"></span></a>
- --%>
-						
 				</div>
 				<!-- .pagination-box -->
-				
 			</div>
 			<!-- .content -->
-
 		</div>
 	</div>
 	<!-- .container -->

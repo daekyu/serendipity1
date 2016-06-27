@@ -30,15 +30,6 @@
 <input type="hidden" id=ac value="${accept}"/>
 
 <script type="text/javascript">
-	/* $(function(){
-		$('#delete').click(function(){
-			if(confirm("글을 삭제 하시겠습니까?") == true){
-			location.href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${dto.board_Num}&check=2";
-			}else{
-			    return false;
-			}
-		});
-	}); */
 	
 	//시간차에 따른 버튼 처리
 	function getTimeStamp() {
@@ -60,8 +51,29 @@
 	    return zero + n;
 	}
 	
-
 	$(function() {
+		$('#msg_btn').click(function() {
+			$.ajax({
+				type : "post",
+				url : getContextPath() + "/message/sendMessageFromBoard.htm",
+				data : {
+					"receiver" : $('#receiver').val(),
+					"sender" : $('#sender').val(),
+					"message_title" : $('#message_title').val(),
+					"message_content" : $('#message_content').val()
+				},
+				success : function(data) {
+					if(data == 1) {
+						swal("메세지 전송이 완료되었습니다.");
+						$('#receiver').val("");
+						$('#sender').val("");
+						$('#message_title').val("");
+						$('#message_content').val("");
+					}
+				}
+			});
+		});
+		
 		
 		var today = new Date();
 		var dateString = $('#wd').val();
@@ -123,24 +135,6 @@
 						});
 	});
 	
-	/* $('#sm').click(function(){
-		var cp = ('#cp').val();
-		var ac = ('#ac').val();
-		var many = ('#many').val();
-		var mi = cp-ac;
-		console.log("cp : " + cp);
-		console.log("ac : " + ac);
-		console.log("many : " + many);
-		console.log("mi : " + mi);
-		if(many > mi){
-			alert('인원 초과! 신청할수 없습니다.');
-			return false;
-		}else{
-		$('#form1').submit;
-		}
-	}); */
-	
-
 	var map;
 	var marker;
 	var myLatlng;
@@ -197,9 +191,7 @@
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
-
 <div class="breadcrumb-box breadcrumb-none"></div>
-
 
 <div id="main" class="page">
 	<header class="page-header">
@@ -226,12 +218,10 @@
 							<div class="general-img">
 								<img class="replace-2x" alt=""
 									src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}"
-									data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}"
+									<%-- data-zoom-image="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}" --%>
 									width="500" height="500">
 							</div>
 							<!-- .general-img -->
-
-
 							<div class="thumblist-box load">
 								<a href="#" class="prev"> <svg x="0" y="0" width="9px"
 										height="16px" viewBox="0 0 9 16"
@@ -278,10 +268,6 @@
 										<img class="replace-2x" alt=""
 										src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE5}"
 										width="100" height="100">
-									<!-- </a> <a href="#" data-image="content/img/single-3.jpg"
-										data-zoom-image="content/img/single-3.jpg"> <img
-										class="replace-2x" alt="" src="content/img/single-3.jpg"
-										width="100" height="100"> -->
 									</a>
 								</div>
 								<!-- #thumblist -->
@@ -292,7 +278,7 @@
 
 					<div class="col-sm-7 col-md-7">
 						<div class="reviews-box table-responsive">
-							<a href="#reviews" class="add-review">${boarddto.BOARD_TITLE}</a>
+							<div class="price-box"><span class="entry-title">${boarddto.BOARD_TITLE}</span></div>
 						</div>
 						<table
 							class="table table-striped table-bordered text-center my-orders-table">
@@ -333,9 +319,8 @@
 						</table>
 						<div class="description"></div>
 
-						<div class="price-box">
-							<span class="price">${boarddto.PRICE} / a day / ${boarddto.BOARD_DATE}</span>
-						</div>
+							<h4 class="entry-title">${boarddto.PRICE} / a hour<br>${boarddto.BOARD_DATE}</h4>
+
 						<div id="beforeDate">
 						총 모집 인원 : ${boarddto.BOARD_CAPACITY}<br>
 						<c:choose>
@@ -363,7 +348,6 @@
 									data-c="white" data-hc="0"></i> <spring:message
 										code="board.traveler_detail5" /></a>
 								<a class="btn btn-danger btn-sm" id="delete"><i
-									<%-- 					href="${pageContext.request.contextPath}/board/board_delete.htm?board_num=${boarddto.BOARD_NUM}&check=2" --%>
 									class="livicon shadowed"
 									data-s="24" data-n="trash" data-c="white" data-hc="0"></i> <spring:message
 										code="board.traveler_detail6" /></a>
@@ -385,12 +369,16 @@
 										</c:otherwise>
 									</c:choose>
 									<br>
-									<%-- ${pageContext.request.contextPath} --%>
 									<c:if test="${!empty sessionScope.user_num}">
 										<c:choose>
 											<c:when test="${realcheck eq 1}">
 												이미 신청한 여행 입니다.
 											</c:when>
+										<c:otherwise>
+										<c:choose>
+										<c:when test="${sessionScope.country_code eq 82}">
+											외국인만 여행 참가 신청이 가능합니다.
+										</c:when>
 										<c:otherwise>
 										<form
 										action="${pageContext.request.contextPath}/board/guideParty.htm"
@@ -399,10 +387,8 @@
 											value="${boarddto.BOARD_NUM}">
 										<input type="hidden" name="user_num"
 											value="${sessionScope.user_num}">
-										<%-- <input type="hidden" id="cp" value="${boarddto.BOARD_CAPACITY}">
-										<input type="hidden" id="ac" value="${accept}"> --%>
+										<input type="hidden" id="ac" value="${accept}">
 										<input type="submit" class="btn-default btn-lg" value="신청하기" id="sm">
-										<!-- 이 클래스 속성 먹이면 버튼이 안눌림; btn add-cart -->
 										<div class="number">
 											<label>인원수:</label> <input type="text" value="1"
 												class="form-control" name="many" id="many">
@@ -413,6 +399,8 @@
 											</div>
 										</div>
 											</form>
+											</c:otherwise>
+											</c:choose>
 										</c:otherwise>
 										</c:choose>
 									</c:if>
@@ -451,8 +439,7 @@
 						<!-- #reviews -->
 						<!-- 지도 끝 -->
 						<div class="tab-pane" id="description">
-							${boarddto.BOARD_CONTENT}<br> <br> <br> <br>
-							추가사항 강 : 스마트에디터를 써보자 이곳에~~~~~~~~~~~~~~~
+							${boarddto.BOARD_CONTENT}<br>
 						</div>
 
 					</div>
@@ -482,7 +469,6 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#profile">프로필보기</a></li>
 						<li><a href="#sendMessage">쪽지보내기</a></li>
-						<li><a href="#chatting">채팅신청하기</a></li>
 						<li><a href="#reporting">신고하기</a></li>
 					</ul>
 					<!-- .nav-tabs -->
@@ -513,10 +499,7 @@
 											<p>${boarddto.PROFILE_DESCRIPTION}</p>
 										</div>
 										<div class="social">
-											<!-- 				<a class="icon rounded icon-facebook" href="#"><i class="fa fa-facebook"></i></a>
-				<a class="icon rounded icon-twitter" href="#"><i class="fa fa-twitter"></i></a>
-				<a class="icon rounded icon-google" href="#"><i class="fa fa-google"></i></a>
-				<a class="icon rounded icon-linkedin" href="#"><i class="fa fa-linkedin"></i></a> -->
+										
 										</div>
 									</div>
 									<div class="clearfix"></div>
@@ -554,24 +537,25 @@
 						</div>
 
 						<div class="tab-pane" id="sendMessage">
-							<form>
 								<table class="table center">
 									<tr>
+										<td>
+											<input type="hidden" name="sender" id="sender" value="${sessionScope.user_num}">
+											<input type="hidden" name="receiver" id="receiver" value="${boarddto.USER_NUM}">
+											<input type="text" class="form-control" id="message_title" name="message_title" placeholder="메세지 제목 입력">
+										</td>
+									</tr>
+									<tr>
 										<td><textarea class="form-control"
-												style="resize: none; height: 100px;" wrap="soft" name=""></textarea>
+												style="resize: none; height: 100px;" wrap="soft" id="message_content" name="message_content" placeholder="메세지 내용 입력"></textarea>
 										</td>
 									</tr>
 
 									<tr>
-										<td><input class="btn btn-success" type="submit"
-											value="전송"></td>
+										<td><button class="btn btn-success" id="msg_btn">전송</button></td>
 									</tr>
 								</table>
-							</form>
 						</div>
-
-						<div class="tab-pane" id="chatting"></div>
-						<!-- #reviews -->
 
 						<div class="tab-pane" id="reporting">
 							<form

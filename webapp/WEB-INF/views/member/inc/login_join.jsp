@@ -108,7 +108,7 @@ href=".././resources/js/sweetalert.css">
 		        			  return false;
 		        		  } else {
 		        			  $('#login_form').submit();
-		        				$.ajax({
+		        				/* $.ajax({
 			      		        	  type : "post",
 			      		        	  url : getContextPath() + "/member/ConfirmPassword.htm",
 			      		        	  data : {"receiver" : $('#email').val()},
@@ -125,7 +125,7 @@ href=".././resources/js/sweetalert.css">
 			      		        			  }
 			      		        		  })
 			      		        	  }
-			      		          });
+			      		          }); */
 		        		  }
 		        	  }
 		          });

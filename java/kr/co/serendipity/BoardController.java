@@ -38,7 +38,7 @@ public class BoardController {
 	@RequestMapping("traveler_list.htm")
 	public ModelAndView travelerList(String pg, String show, String sort) throws ClassNotFoundException, SQLException {
 		int page = 1;
-		int basicshow = 8;
+		int basicshow = 12;
 		String basicsort= "board_num"; 
 		int startpage = 0;
 		int endpage = 0;
@@ -88,7 +88,7 @@ public class BoardController {
 	@RequestMapping("guide_list.htm")
 	public ModelAndView guideList(String pg, String show, String sort) throws ClassNotFoundException, SQLException {
 		int page = 1;
-		int basicshow = 8;
+		int basicshow = 12;
 		String basicsort = "board_num";
 		int startpage = 0;
 		int endpage = 0;

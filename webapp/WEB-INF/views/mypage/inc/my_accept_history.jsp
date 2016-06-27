@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!-- my account - 내가 신청한 내역 -->
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -9,7 +11,7 @@
 <script type="text/javascript">
 			$(function(){
 			if($('#check1').val() == 1){
-				alert("최대인원을 넘었습니다.");
+				alert("<spring:message code="mypage.my_accept_history"/>");
 			};
 			
 			$('.delete').click(function(){

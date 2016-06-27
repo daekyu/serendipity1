@@ -24,7 +24,6 @@
 				<div class="category-img">
 					<img class="replace-2x" src=".././resources/img/background_img/NSeoulTower,NamsanTower.jpg"
 						width="870" height="370" alt="">
-					<div class="description">마음에 드는 가이드를 찾아 함께 여행하세요!</div>
 				</div>
 
 				<div class="toolbar clearfix">

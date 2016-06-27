@@ -169,11 +169,16 @@
 	// initialization
 	google.maps.event.addDomListener(window, 'load', initialize);
 	/* 	google.maps.disableScrollWheelZoom();  */
-
+	
 	$(function() {
 		$("#datepicker").datepicker({
 			startDate : new Date()
 		}).datetimepicker('update', new Date());
+		
+		$('#callModal').click(function() {
+			 	$('#profile_pic').attr('width', '95%');
+			 	$('#profile_pic').attr('width', '100%');
+		});
 	});
 </script>
 
@@ -198,7 +203,6 @@
 				<div class="row">
 					<div class="col-sm-5 col-md-5">
 						<div class="image-box">
-							<span class="sale top"></span>
 							<div class="general-img">
 								<img class="replace-2x" alt=""
 									src="${pageContext.request.contextPath}/resources/img/board_picture/${boarddto.BOARD_PICTURE1}"
@@ -278,7 +282,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><a data-toggle="modal" data-target="#myModal">${boarddto.ID}</a></td>
+									<td><a data-toggle="modal" id="callModal" data-target="#myModal">${boarddto.ID}</a></td>
 									<td><c:choose>
 											<c:when test="${empty language}">
 									없음
@@ -425,21 +429,10 @@
 						<div class="tab-pane active" id="profile">
 							<div class="bottom-padding">
 								<div class="row">
-									<div class="images-box col-xs-9 col-sm-6 col-md-4">
-										<div class="carousel-box load" data-carousel-pagination="true"
-											data-carousel-nav="false" data-carousel-one="true"
-											data-autoplay-disable="true">
-											<div class="carousel">
-												<div class="image">
-													<img class="replace-2x"
-														src=".././content/img/team-big-1.jpg" alt="" title=""
-														width="768" height="768">
-												</div>
-											</div>
-											<div class="clearfix"></div>
-											<div class="pagination switches"></div>
-										</div>
-									</div>
+									<a class="img-thumbnail img-polaroid lightbox" rel="fancybox" href="${pageContext.request.contextPath}/resources/img/profile_picture/${boarddto.PROFILE_PICTURE}">
+											  <img class="avatar replace-2x animated rotateIn" src="${pageContext.request.contextPath}/resources/img/profile_picture/${boarddto.PROFILE_PICTURE}" alt="" title="" width="150px" height="150px">
+											  <span class="bg-images"><i class="fa fa-search"></i></span>
+									</a>
 
 									<div class="employee-description col-sm-8 col-md-8">
 										<h3 class="name">${boarddto.NAME}</h3>

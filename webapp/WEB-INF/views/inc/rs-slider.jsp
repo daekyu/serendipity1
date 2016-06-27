@@ -20,7 +20,7 @@
 			</div>
 		  </div>
 		  
-		  <img class="replace-2x" src="content/img/slider/img/Everland,EverlandKorea.jpg" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+		  <img class="replace-2x" src="./resources/img/background_img/Everland,EverlandKorea.jpg" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
 		</li>
 		
 		<li class="slid2">
@@ -40,7 +40,7 @@
 			</div>
 		  </div>
 		  
-		  <img class="replace-2x" src="./resources/img/background_img/경복궁.jps" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+		  <img class="replace-2x" src="./resources/img/background_img/경복궁.jpg" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
 		</li>
 	  </ul>
 	  <div class="tp-bannertimer"></div>

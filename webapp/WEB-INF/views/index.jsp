@@ -63,10 +63,13 @@
 				
 				<div class="clearfix"></div>
 				
-				<section id="main">
-					<article class="content">					
+				<section id="">
+					<article class="content">	
+						<hr>	
 						<jsp:include page="inc/carousel-box-newguide.jsp"></jsp:include>
+						<hr>
 						<jsp:include page="inc/carousel-box-newtraveler.jsp"></jsp:include>
+						<hr>
 					</article>
 				</section><!-- #main -->
 			</div><!-- .page-box-content -->

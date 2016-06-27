@@ -6,7 +6,7 @@
 <!-- 여행자구함 새 글을 보여주는 부분 -->
 <div class="full-width-box bottom-padding cm-padding-bottom-36">
 	<div class="fwb-bg fwb-fixed band-5">
-		<div class="overlay"></div>
+		<div class=""></div>
 	</div>
 
 	<div class="container">

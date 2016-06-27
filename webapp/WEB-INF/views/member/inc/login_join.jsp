@@ -135,7 +135,7 @@ href=".././resources/js/sweetalert.css">
 		$("#loginbutton").click(function(){
 			
 			var reg_name = /^[a-zA-Z가-힣]/g; //한글10자, 영문20자, 한글,영문,숫자 사용가능
-			var reg_id = /^[a-z0-9_-]{4,12}$/;
+			var reg_id = /^[a-zA-Z0-9_-]{4,12}$/;
 			var reg_email = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
 			var reg_pw = /^[a-z0-9_-]{4,12}$/; // 비밀번호 검사식
 			var reg_hp = /^[a-z0-9_-]{10,20}$/;
@@ -382,9 +382,9 @@ href=".././resources/js/sweetalert.css">
 
 		  <div class="col-xs-12 col-sm-6 col-md-6 box register">
 			<div class="info-box">
-			  <h3 class="title">My Account</h3>
-			  <p class="descriptions">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login">Login an Account</button>
+			  <h3 class="title"><spring:message code="member.join_login_re12"/></h3>
+			  <p class="descriptions"><spring:message code="member.join_login_re13"/></p>
+			  <button id="login-account" class="btn btn-default filter-buttons active-form" data-filter=".login"><spring:message code="member.join_login_re14"/></button>
 			</div>
 		  </div>
 		</div>

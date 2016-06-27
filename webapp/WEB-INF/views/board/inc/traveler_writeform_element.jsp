@@ -841,8 +841,7 @@ href=".././resources/js/sweetalert.css">
                            <div class="button"> --%>
                               <label for="gmap_type"><spring:message code="board.traveler_writeform10.2"/></label> 
                               <select id="gmap_type">
-
-                                  <option value="--">--</option> 
+                                 <option value="--">--</option> 
                                  <option value="art_gallery"><spring:message code="board.traveler_writeform10.4"/></option>
                                  <option value="atm"><spring:message code="board.traveler_writeform10.5"/></option>
                                  <option value="bank"><spring:message code="board.traveler_writeform10.6"/></option>

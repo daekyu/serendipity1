@@ -15,12 +15,11 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
+
 <input type="hidden" id="lat" value="${boarddto.BOARD_LATITUDE}" />
 <input type="hidden" id="lng" value="${boarddto.BOARD_LONGITUDE}" />
-<input type="hidden" id="meeting_place"
-	value="${boarddto.MEETING_PLACE}" />
-<input type="hidden" id="meeting_address"
-	value="${boarddto.MEETING_ADDRESS}" />
+<input type="hidden" id="meeting_place" value="${boarddto.MEETING_PLACE}" />
+<input type="hidden" id="meeting_address" value="${boarddto.MEETING_ADDRESS}" />
 <script type="text/javascript">
 		function getContextPath() {
 			   var hostIndex = location.href.indexOf( location.host ) + location.host.length;
@@ -384,7 +383,7 @@
 								data-appear-animation="fadeInRight">
 								<div class="entry-content">
 									<div class="map-box not-margin">
-										<div id="gmap_detail" style="height: 400px"></div>
+										<div id="gmap_detail" style="height: 400px;width:auto"></div>
 									</div>
 								</div>
 							</div>

@@ -411,9 +411,9 @@
 				<div class="product-tab">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#reviews"><spring:message
-									code="board.traveler_detail7" /></a></li>
+									code="board.traveler_detail13" /></a></li>
 						<li><a href="#description"><spring:message
-									code="board.traveler_detail8" /></a></li>
+									code="board.traveler_detail4" /></a></li>
 					</ul>
 					<!-- .nav-tabs -->
 					<div class="tab-content">

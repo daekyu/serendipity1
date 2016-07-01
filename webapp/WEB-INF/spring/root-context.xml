@@ -24,7 +24,16 @@
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
        <constructor-arg index="0" ref="sqlSessionFactoryBean"></constructor-arg>
     </bean>
-    
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+	      <property name="favorPathExtension" value="false" />
+	      <property name="favorParameter" value="true" />
+	      <property name="mediaTypes" >
+	           <value>
+	                json=application/json
+	                xml=application/xml
+	           </value>
+	      </property>
+	 </bean>
     
     <!-- 공통빈 -->
    <!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

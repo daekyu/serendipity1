@@ -50,7 +50,7 @@
 										</div>
 										<br><br><br><br><br><br>
 										<div class="contact" align="center">
-											<a href="board/traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}" class="btn btn-warning btn-lg btn-block"><spring:message code="index.inc.carousel-box-newguide10"/></a>
+											<a href="board/guide_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}" class="btn btn-warning btn-lg btn-block"><spring:message code="index.inc.carousel-box-newguide10"/></a>
 										</div>
 										
 									</div>

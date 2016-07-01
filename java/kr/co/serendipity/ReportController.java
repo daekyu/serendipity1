@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.ReportDTO;
+import kr.co.serendipity.model.dto.BoardDTO;
+import kr.co.serendipity.model.dto.ReportDTO;
 import kr.co.serendipity.service.ReportService;
 
 /*

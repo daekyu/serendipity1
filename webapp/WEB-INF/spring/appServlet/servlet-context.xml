@@ -14,7 +14,18 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	<annotation-driven content-negotiation-manager="contentNegotiationManager"/> 
+	<beans:bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<beans:property name="favorPathExtension" value="false" />
+		<beans:property name="favorParameter" value="true" />
+		<beans:property name="mediaTypes" >
+			<beans:value>
+				json=application/json
+				xml=application/xml
+			</beans:value>
+		</beans:property>
+	</beans:bean>
+	 
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />

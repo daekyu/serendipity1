@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import kr.co.serendipity.model.BoardDAO;
-import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.ParticipantDTO;
-import kr.co.serendipity.model.RouteDTO;
+import kr.co.serendipity.model.dao.BoardDAO;
+import kr.co.serendipity.model.dto.BoardDTO;
+import kr.co.serendipity.model.dto.ParticipantDTO;
+import kr.co.serendipity.model.dto.RouteDTO;
 
 @Service
 public class BoardService {

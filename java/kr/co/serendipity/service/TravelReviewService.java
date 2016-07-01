@@ -8,14 +8,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.serendipity.model.LocalDTO;
-import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.ReplyDAO;
-import kr.co.serendipity.model.ReplyDTO;
-import kr.co.serendipity.model.ReviewDAO;
-import kr.co.serendipity.model.ReviewDTO;
-import kr.co.serendipity.model.ReviewLikeDAO;
-import kr.co.serendipity.model.ReviewLikeDTO;
+import kr.co.serendipity.model.dao.ReplyDAO;
+import kr.co.serendipity.model.dao.ReviewDAO;
+import kr.co.serendipity.model.dao.ReviewLikeDAO;
+import kr.co.serendipity.model.dto.LocalDTO;
+import kr.co.serendipity.model.dto.MemberDTO;
+import kr.co.serendipity.model.dto.ReplyDTO;
+import kr.co.serendipity.model.dto.ReviewDTO;
+import kr.co.serendipity.model.dto.ReviewLikeDTO;
 
 @Service
 public class TravelReviewService {

@@ -5,7 +5,7 @@
 <script type="text/javascript">
 	function doPop(){
 		var value=<%= session.getAttribute("user_num")%>;
-		 window.open('${pageContext.request.contextPath}/message/message.htm?user_num=' + value, '', 'width=500, height=400, top=100, left=450, resizable=no, location=no, menubar=no, scrollbars=yes, status=no, directories=no');
+		 window.open('${pageContext.request.contextPath}/message/message.htm?user_num=' + value, '', 'width=550, height=400, top=100, left=450, resizable=no, location=no, menubar=no, scrollbars=yes, status=no, directories=no');
 	}
 	
 	function doPop2(){

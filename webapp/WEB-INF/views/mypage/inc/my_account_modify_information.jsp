@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
+</script> 
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css"> 
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 	/*
@@ -23,7 +27,7 @@
 		
 		$('#btnSubmit').click(function(){
 			if($('#pw').val() != $('#confirm_pw').val()){
-				alert("비밀번호와 확인 입력값이 일치하지 않습니다.");
+				swal("비밀번호와 확인 입력값이 일치하지 않습니다.");
 				return false;
 			}else{
 				mo.submit();

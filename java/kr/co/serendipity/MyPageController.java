@@ -26,9 +26,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.ParticipantDTO;
+import kr.co.serendipity.model.dto.BoardDTO;
+import kr.co.serendipity.model.dto.MemberDTO;
+import kr.co.serendipity.model.dto.ParticipantDTO;
 import kr.co.serendipity.service.MemberService;
 import kr.co.serendipity.service.MyPageService;
 
@@ -50,8 +50,8 @@ public class MyPageController {
 			MemberDTO dto = mypageservice.myPageGetMemberInfo(memberdto);
 			String pic = dto.getProfile_picture();
 			String Slocal = mypageservice.parseLocal(dto);
-			List Slang = mypageservice.parseLang(dto);
-			List Shobby = mypageservice.parseHobby(dto);
+			List<String> Slang = mypageservice.parseLang(dto);
+			List<String> Shobby = mypageservice.parseHobby(dto);
 			
 			model.addAttribute("memberdto", dto);
 			model.addAttribute("Slocal", Slocal);
@@ -63,8 +63,8 @@ public class MyPageController {
 			MemberDTO dto = mypageservice.myPageGetMemberInfo(memberdto);
 			String pic = dto.getProfile_picture();
 			String Scountry = mypageservice.country(dto);
-			List Slang = mypageservice.parseLang(dto);
-			List Shobby = mypageservice.parseHobby(dto);
+			List<String> Slang = mypageservice.parseLang(dto);
+			List<String> Shobby = mypageservice.parseHobby(dto);
 			
 			model.addAttribute("memberdto", dto);
 			model.addAttribute("Slocal", Scountry);

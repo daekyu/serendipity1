@@ -14,9 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.serendipity.model.LocalDTO;
-import kr.co.serendipity.model.ReviewDTO;
-import kr.co.serendipity.model.TravelInfoDTO;
+import kr.co.serendipity.model.dto.LocalDTO;
+import kr.co.serendipity.model.dto.ReviewDTO;
+import kr.co.serendipity.model.dto.TravelInfoDTO;
 import kr.co.serendipity.service.TravelInfoService;
 
 

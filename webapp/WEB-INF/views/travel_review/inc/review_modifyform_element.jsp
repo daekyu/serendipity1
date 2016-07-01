@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
+	<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
+</script> 
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css"> 
 <script src=".././resources/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -11,7 +14,7 @@ $(function() {
 			$('#table_pic'+index).show();
 			index++;
 		} else {
-			alert('더 이상 추가할 수 없습니다');
+			swal('더 이상 추가할 수 없습니다');
 		}
 	});
 	$('#minusBtn').click(function() {
@@ -22,7 +25,7 @@ $(function() {
 			$('#desc_pic'+index).val("");
 			$('#table_pic'+index).hide();
 		} else {
-			alert('더 이상 삭제할 수 없습니다.');
+			swal('더 이상 삭제할 수 없습니다.');
 		}
 	});
 });

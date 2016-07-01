@@ -37,9 +37,9 @@ import javax.websocket.server.ServerEndpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.co.serendipity.model.ChatMessageDTO;
-import kr.co.serendipity.model.Message;
-import kr.co.serendipity.model.UsersMessageDTO;
+import kr.co.serendipity.model.dto.ChatMessageDTO;
+import kr.co.serendipity.model.dto.Message;
+import kr.co.serendipity.model.dto.UsersMessageDTO;
 
 /**
 * @Class Name : ChatServerEndPoint.java

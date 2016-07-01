@@ -8,8 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.serendipity.model.AdminDAO;
-import kr.co.serendipity.model.VisitDAO;
+import kr.co.serendipity.model.dao.AdminDAO;
+import kr.co.serendipity.model.dao.VisitDAO;
 
 @Service
 public class AdminService {

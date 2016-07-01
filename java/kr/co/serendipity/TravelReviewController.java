@@ -28,10 +28,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.ReplyDTO;
-import kr.co.serendipity.model.ReviewDTO;
-import kr.co.serendipity.model.ReviewLikeDTO;
+import kr.co.serendipity.model.dto.MemberDTO;
+import kr.co.serendipity.model.dto.ReplyDTO;
+import kr.co.serendipity.model.dto.ReviewDTO;
+import kr.co.serendipity.model.dto.ReviewLikeDTO;
 import kr.co.serendipity.service.TravelReviewService;
 
 @Controller

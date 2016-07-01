@@ -49,6 +49,7 @@
 	<body class="fixed-header hidden-top">
 		<div class="page-box">
 			<div class="page-box-content">
+				<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 				<jsp:include page="../inc/notificationCheck.jsp"></jsp:include>
 				<!-- 로그인/회원가입 들어갈 수 있는 버튼 나와있는 부분 -->
 				<jsp:include page="../inc/top-box.jsp"></jsp:include>

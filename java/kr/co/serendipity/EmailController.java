@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.serendipity.model.EmailDTO;
+import kr.co.serendipity.model.dto.EmailDTO;
 import kr.co.serendipity.util.EmailSender;
 
 /*

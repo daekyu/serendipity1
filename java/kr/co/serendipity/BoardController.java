@@ -24,9 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.ParticipantDTO;
-import kr.co.serendipity.model.RouteDTO;
+import kr.co.serendipity.model.dto.BoardDTO;
+import kr.co.serendipity.model.dto.ParticipantDTO;
 import kr.co.serendipity.service.BoardService;
 
 @Controller

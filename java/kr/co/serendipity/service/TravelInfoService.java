@@ -6,10 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.serendipity.model.LocalDTO;
-import kr.co.serendipity.model.ReviewDTO;
-import kr.co.serendipity.model.TravelInfoDAO;
-import kr.co.serendipity.model.TravelInfoDTO;
+import kr.co.serendipity.model.dao.TravelInfoDAO;
+import kr.co.serendipity.model.dto.LocalDTO;
+import kr.co.serendipity.model.dto.ReviewDTO;
+import kr.co.serendipity.model.dto.TravelInfoDTO;
 
 @Service
 public class TravelInfoService {

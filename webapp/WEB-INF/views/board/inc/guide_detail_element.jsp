@@ -94,7 +94,7 @@
 			}
 			var mi = $('#cp').val() - $('#ac').val();
 			if(mi < $('#many').val()){
-				alert("최대 신청 인원수를 초과 합니다! 신청할 수 없습니다!");
+				swal("최대 신청 인원수를 초과 합니다! 신청할 수 없습니다!");
 				return false;
 			}else{
 				return true;

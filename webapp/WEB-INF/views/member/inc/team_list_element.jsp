@@ -82,7 +82,7 @@
 		  <div class="col-sm-3 col-md-3 product rotation">
 			<div class="default">
 			  <a href="shop-product-view.html" class="product-image">
-				<img class="replace-2x" src=".././resources/img/profile_picture/14670294581469290ee4d-39b3-4deb-984e-9572c9e68e3aprofile.jpg" alt="" title="" width="270" height="270">
+				<img class="replace-2x" src=".././resources/img/profile.jpg" alt="" title="" width="270" height="270">
 			  </a>
 			  <div class="product-description">
 				<div class="vertical">

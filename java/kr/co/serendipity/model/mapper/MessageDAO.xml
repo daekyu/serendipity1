@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  -->
 
 
-<mapper namespace="kr.co.serendipity.model.MessageDAO">
+<mapper namespace="kr.co.serendipity.model.dao.MessageDAO">
 	<select id="getSendMsgList" resultType="map">
 		select msg.message_num, msg.message_content, msg.message_date, msg.message_title, m1.id as receiver, m2.id as sender
 		from message msg, member m1, member m2 
@@ -27,11 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rm.receiver=m1.user_num and rm.sender=m2.user_num and rm.receiver=#{user_num}
 	</select>
 	
-	<select id="getMemberList" resultType="kr.co.serendipity.model.MemberDTO">
+	<select id="getMemberList" resultType="kr.co.serendipity.model.dto.MemberDTO">
 		select * from member where id like '%${id}%'
 	</select>
 	
-	<select id="getReceiverNum" resultType="kr.co.serendipity.model.MemberDTO">
+	<select id="getReceiverNum" resultType="kr.co.serendipity.model.dto.MemberDTO">
 		select * from member where id = #{id}
 	</select>
 	
@@ -61,11 +61,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update rcv_message set msg_alarm=1 where message_num=#{message_num} and receiver=#{receiver}
 	</update>
 	
-	<select id="getRcvMessageDetail" resultType="kr.co.serendipity.model.RCV_MessageDTO">
+	<select id="getRcvMessageDetail" resultType="kr.co.serendipity.model.dto.RCV_MessageDTO">
 		select * from rcv_message where message_num=#{message_num}
 	</select>
 	
-	<select id="getSendMessageDetail" resultType="kr.co.serendipity.model.MessageDTO">
+	<select id="getSendMessageDetail" resultType="kr.co.serendipity.model.dto.MessageDTO">
 		select * from message where message_num=#{message_num}
 	</select>
 	

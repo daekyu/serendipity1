@@ -28,9 +28,9 @@
 					success : function(data) {
 						console.log(data);
 						if(data == '') {
-							alert('회원님의 이름과 이메일 주소를 다시 확인해주세요');
+							swal('회원님의 이름과 이메일 주소를 다시 확인해주세요');
 						} else {
-							alert('회원님의 이메일 주소로 아이디가 전송되었습니다.');
+							swal('회원님의 이메일 주소로 아이디가 전송되었습니다.');
 						}
 					}
 				})
@@ -39,13 +39,13 @@
 		
 		$('#find_pw_btn').click(function() {
 			if($('#find_pw_name').val() == '') {
-				alert('이름을 입력해주세요');
+				swal('이름을 입력해주세요');
 				$('#find_pw_name').focus();
 			} else if($('#find_pw_id').val() == '') {
-				alert('아이디를 입력해주세요');
+				swal('아이디를 입력해주세요');
 				$('#find_pw_id').focus();
 			} else if($('#find_pw_email').val() == '') {
-				alert('이메일을 입력해주세요');
+				swal('이메일을 입력해주세요');
 				$('#find_pw_email').focus();
 			} else {
 				$.ajax({
@@ -59,9 +59,9 @@
 					success : function(data) {
 						console.log(data);
 						if(data == '') {
-							alert('회원님의 이름과 아이디, 이메일 주소를 다시 확인해주세요');
+							swal('회원님의 이름과 아이디, 이메일 주소를 다시 확인해주세요');
 						} else {
-							alert('회원님의 이메일 주소로 임시 비밀번호가 전송되었습니다.');
+							swal('회원님의 이메일 주소로 임시 비밀번호가 전송되었습니다.');
 						}
 					}
 				})

@@ -72,7 +72,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 				$('#pic' + index).show();
 				index++;
 			} else {
-				alert('더 이상 추가할 수 없습니다');
+				swal('더 이상 추가할 수 없습니다');
 			}
 		});
 		$('#minusBtn').click(function() {
@@ -81,7 +81,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 				$('#pic' + index).val("");
 				$('#pic' + index).hide();
 			} else {
-				alert('더 이상 삭제할 수 없습니다.');
+				swal('더 이상 삭제할 수 없습니다.');
 			}
 		});
 		$('#pac-input').keydown(function(e) {
@@ -285,19 +285,19 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 		     //markersArray.push(marker);
 		    }
 		   } else if (status == google.maps.GeocoderStatus.ERROR) {
-		    alert("통신중 에러발생！");
+		    swal("통신중 에러발생！");
 		   } else if (status == google.maps.GeocoderStatus.INVALID_REQUEST) {
-		    alert("요청에 문제발생！");
+		    swal("요청에 문제발생！");
 		   } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-		    alert("단시간에 쿼리 과다송신！");
+		    swal("단시간에 쿼리 과다송신！");
 		   } else if (status == google.maps.GeocoderStatus.REQUEST_DENIED) {
-		    alert("이 페이지에는 지오코더 이용 불가!");
+		    swal("이 페이지에는 지오코더 이용 불가!");
 		   } else if (status == google.maps.GeocoderStatus.UNKNOWN_ERROR) {
-		    alert("서버에 문제가 발생한거 같아요. 다시 한번 해보세요.");
+		    swal("서버에 문제가 발생한거 같아요. 다시 한번 해보세요.");
 		   } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-		    alert("존재하지 않습니다.");
+		    swal("존재하지 않습니다.");
 		   } else {
-		    alert("??");
+		    swal("??");
 		   }
 		  });
 		 }
@@ -352,7 +352,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 								findPlace();
 
 							} else {
-								alert('Geocode was not successful for the following reason: '
+								swal('Geocode was not successful for the following reason: '
 										+ status);
 							}
 						});
@@ -407,7 +407,7 @@ window.CKEDITOR_BASEPATH = 'http://example.com/path/to/libs/ckeditor/';
 				createMarker(results[i]);
 			}
 		} else if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
-			alert('Sorry, nothing is found');
+			swal('Sorry, nothing is found');
 		}
 	}
 

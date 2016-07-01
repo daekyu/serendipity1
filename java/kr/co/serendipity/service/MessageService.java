@@ -8,10 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.MessageDAO;
-import kr.co.serendipity.model.MessageDTO;
-import kr.co.serendipity.model.RCV_MessageDTO;
+import kr.co.serendipity.model.dao.MessageDAO;
+import kr.co.serendipity.model.dto.MemberDTO;
+import kr.co.serendipity.model.dto.MessageDTO;
+import kr.co.serendipity.model.dto.RCV_MessageDTO;
 
 @Service
 public class MessageService {
@@ -40,6 +40,7 @@ public class MessageService {
 	}
 	
 	public void sendMessage(MessageDTO messagedto) {
+		System.out.println("***************" + messagedto.getMessage_content() + "/" + messagedto.getMessage_title());
 		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
 		dao.sendMessage_1(messagedto);
 		dao.sendMessage_2(messagedto);

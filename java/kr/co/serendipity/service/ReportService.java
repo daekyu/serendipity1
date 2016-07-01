@@ -8,8 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.serendipity.model.ReportDAO;
-import kr.co.serendipity.model.ReportDTO;
+import kr.co.serendipity.model.dao.ReportDAO;
+import kr.co.serendipity.model.dto.ReportDTO;
 
 @Service
 public class ReportService {

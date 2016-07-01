@@ -26,8 +26,8 @@ import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
-import kr.co.serendipity.model.ChatMessageDTO;
-import kr.co.serendipity.model.Message;
+import kr.co.serendipity.model.dto.ChatMessageDTO;
+import kr.co.serendipity.model.dto.Message;
 
 
 
@@ -43,16 +43,13 @@ import kr.co.serendipity.model.Message;
 */
 public class MessageDecoder implements Decoder.Text<Message> {
 
-	@Override
 	public void destroy() {}
 
-	@Override
 	public void init(EndpointConfig arg0) {}
 
 	/**
 	 * 화면에서 넘어오는 데이터를 decoding하는 함수
 	 */
-	@Override
 	public Message decode(String message) throws DecodeException {
 		ChatMessageDTO chatMessage = new ChatMessageDTO();
 
@@ -63,7 +60,6 @@ public class MessageDecoder implements Decoder.Text<Message> {
 		return chatMessage;
 	}
 
-	@Override
 	public boolean willDecode(String message) {
 		boolean flag = true;
 

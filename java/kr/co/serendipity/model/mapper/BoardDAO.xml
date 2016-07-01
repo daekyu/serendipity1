@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kr.co.serendipity.model.BoardDAO">
+<mapper namespace="kr.co.serendipity.model.dao.BoardDAO">
    <insert id="write">
     INSERT INTO board(board_num, user_num, board_title, board_content, board_picture1, board_picture2, 
     board_picture3, board_picture4, board_picture5,
@@ -14,9 +14,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     1, #{board_date}, #{board_latitude}, #{board_longitude}, '02', 1, #{price}, 
     #{meeting_place}, #{meeting_address})
    </insert>
-   
-   
-   
    
    <select id="getBoardList" resultType="hashmap">
      SELECT * FROM
@@ -96,7 +93,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       update board set board_picture5=#{0} where board_num=#{1.board_num}
    </update>
    
-   <select id="picSearch" resultType="kr.co.serendipity.model.BoardDTO">
+   <select id="picSearch" resultType="kr.co.serendipity.model.dto.BoardDTO">
        SELECT * FROM board where board_num=#{board_num}
     </select>
 	
@@ -139,7 +136,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        select board_capacity from board where board_num = #{board_num}
     </select>
     
-     <select id="detailParticipant" resultType="kr.co.serendipity.model.ParticipantDTO">
+     <select id="detailParticipant" resultType="kr.co.serendipity.model.dto.ParticipantDTO">
        select * from participant where board_num = #{board_num}
     </select>
     

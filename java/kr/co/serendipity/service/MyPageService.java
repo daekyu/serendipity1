@@ -9,12 +9,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.serendipity.model.BoardDTO;
-import kr.co.serendipity.model.HobbyDTO;
-import kr.co.serendipity.model.LanguageDTO;
-import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.MyPageDAO;
-import kr.co.serendipity.model.ParticipantDTO;
+import kr.co.serendipity.model.dao.MyPageDAO;
+import kr.co.serendipity.model.dto.BoardDTO;
+import kr.co.serendipity.model.dto.HobbyDTO;
+import kr.co.serendipity.model.dto.LanguageDTO;
+import kr.co.serendipity.model.dto.MemberDTO;
+import kr.co.serendipity.model.dto.ParticipantDTO;
 
 @Service
 public class MyPageService {
@@ -32,12 +32,12 @@ public class MyPageService {
 		return dao.parseLocal(memberdto);
 	}
 	
-	public List parseLang(MemberDTO memberdto){
+	public List<String> parseLang(MemberDTO memberdto){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		return dao.parseLang(memberdto);
 	}
 	
-	public List parseHobby(MemberDTO memberdto){
+	public List<String> parseHobby(MemberDTO memberdto){
 		MyPageDAO dao = sqlsession.getMapper(MyPageDAO.class);
 		return dao.parseHobby(memberdto);
 	}

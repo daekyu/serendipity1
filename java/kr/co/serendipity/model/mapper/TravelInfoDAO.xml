@@ -11,16 +11,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	@Desc : TravelInfoDAO의 Mapper / 실제 DB연동을 위한 Query가 들어가는 부분
  -->
 
-<mapper namespace="kr.co.serendipity.model.TravelInfoDAO">	
-	<select id="getLocalList" resultType="kr.co.serendipity.model.LocalDTO">
+<mapper namespace="kr.co.serendipity.model.dao.TravelInfoDAO">	
+	<select id="getLocalList" resultType="kr.co.serendipity.model.dto.LocalDTO">
 		select * from local
 	</select>
 	
-	<select id="getLocalInfo" resultType="kr.co.serendipity.model.TravelInfoDTO">
+	<select id="getLocalInfo" resultType="kr.co.serendipity.model.dto.TravelInfoDTO">
 		select * from travel_info where local_code=#{local_code}
 	</select>
 	
-	<select id="getLocalReviewList" resultType="kr.co.serendipity.model.ReviewDTO">
+	<select id="getLocalReviewList" resultType="kr.co.serendipity.model.dto.ReviewDTO">
 		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
 		( select * from review where local_code=#{local_code} ORDER BY LIKE_COUNT DESC) N) 
 		WHERE NUM <![CDATA[ <= ]]>3

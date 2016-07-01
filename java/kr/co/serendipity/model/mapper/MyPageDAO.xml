@@ -11,20 +11,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	@Desc : MyPageDAO의 Mapper / 실제 DB연동을 위한 Query가 들어가는 부분
  -->
 
-<mapper namespace="kr.co.serendipity.model.MyPageDAO">
-	<select id="getHobbyList" resultType="kr.co.serendipity.model.HobbyDTO">
+<mapper namespace="kr.co.serendipity.model.dao.MyPageDAO">
+	<select id="getHobbyList" resultType="kr.co.serendipity.model.dto.HobbyDTO">
 		select * from hobby order by hobby_code asc
 	</select>
 	
-	<select id="getLanguageList" resultType="kr.co.serendipity.model.LanguageDTO">
+	<select id="getLanguageList" resultType="kr.co.serendipity.model.dto.LanguageDTO">
 		select * from language order by language_code asc
 	</select>
 	
-	<select id="getMemberInfo" resultType="kr.co.serendipity.model.MemberDTO">
+	<select id="getMemberInfo" resultType="kr.co.serendipity.model.dto.MemberDTO">
 		select * from member where id=#{id}
 	</select>
 	
-	<select id="myPageGetMemberInfo" resultType="kr.co.serendipity.model.MemberDTO">
+	<select id="myPageGetMemberInfo" resultType="kr.co.serendipity.model.dto.MemberDTO">
 		select * from member where user_num=#{user_num}
 	</select>
 	

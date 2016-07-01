@@ -30,9 +30,9 @@ import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 
-import kr.co.serendipity.model.ChatMessageDTO;
-import kr.co.serendipity.model.Message;
-import kr.co.serendipity.model.UsersMessageDTO;
+import kr.co.serendipity.model.dto.ChatMessageDTO;
+import kr.co.serendipity.model.dto.Message;
+import kr.co.serendipity.model.dto.UsersMessageDTO;
 
 
 
@@ -48,18 +48,15 @@ import kr.co.serendipity.model.UsersMessageDTO;
 */
 public class MessageEncoder implements Encoder.Text<Message>{
 
-	@Override
 	public void destroy() {
 	}
 
-	@Override
 	public void init(EndpointConfig arg0) {
 	}
 
 	/**
 	 * 서버에서 클라이언트로 전달되는 메시지를 encoding하는 함수
 	 */
-	@Override
 	public String encode(Message message) throws EncodeException {
 		String result = null;
 		if (message instanceof ChatMessageDTO) {

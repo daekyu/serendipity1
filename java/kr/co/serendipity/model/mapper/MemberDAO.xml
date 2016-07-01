@@ -11,21 +11,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	@Desc : MemberDAO의 Mapper / 실제 DB연동을 위한 Query가 들어가는 부분
  -->
 
-<mapper namespace="kr.co.serendipity.model.MemberDAO">
-	<insert id="joinMember" parameterType="kr.co.serendipity.model.MemberDTO">
+<mapper namespace="kr.co.serendipity.model.dao.MemberDAO">
+	<insert id="joinMember" parameterType="kr.co.serendipity.model.dto.MemberDTO">
 		insert into member(user_num,country_code,local_code,name,id,pw,gender,age,hp,email,join_date,report_count, profile_picture)
 		values(member_seq.nextval,#{country_code},#{local_code},#{name},#{id},#{pw},#{gender},#{age},#{hp},#{email},sysdate,0,'default_profile.jpg')
 	</insert>
 	
-	<select id="localList" resultType="kr.co.serendipity.model.LocalDTO">
+	<select id="localList" resultType="kr.co.serendipity.model.dto.LocalDTO">
 		select local_code, local_name from local order by local_code asc
 	</select>
 	
-	<select id="countryList" resultType="kr.co.serendipity.model.CountryDTO">
+	<select id="countryList" resultType="kr.co.serendipity.model.dto.CountryDTO">
 		select country_code, country_name from country order by country_name asc
 	</select>
 	
-	<select id="login" parameterType="kr.co.serendipity.model.MemberDTO" resultType="kr.co.serendipity.model.MemberDTO">
+	<select id="login" parameterType="kr.co.serendipity.model.dto.MemberDTO" resultType="kr.co.serendipity.model.dto.MemberDTO">
 		select * from member where id=#{id} and pw=#{pw}
 	</select>
 
@@ -52,11 +52,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        DELETE from member WHERE user_num=#{user_num}
     </delete>
     
-    <select id="selectPicture" resultType="kr.co.serendipity.model.MemberDTO">
+    <select id="selectPicture" resultType="kr.co.serendipity.model.dto.MemberDTO">
 		select profile_picture from member where user_num=#{user_num}
 	</select>
 	
-	<insert id="giveMemberRole" parameterType="kr.co.serendipity.model.MemberDTO">
+	<insert id="giveMemberRole" parameterType="kr.co.serendipity.model.dto.MemberDTO">
 		insert into user_roles 
 		<choose>
 			<when test="country_code == 82">
@@ -68,11 +68,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose>
 	</insert>
 	
-	<select id="checkFindIdEmailInfo" resultType="kr.co.serendipity.model.MemberDTO">
+	<select id="checkFindIdEmailInfo" resultType="kr.co.serendipity.model.dto.MemberDTO">
 		select * from member where name=#{name} and email=#{email}
 	</select>
 	
-	<select id="checkFindPwEmailInfo" resultType="kr.co.serendipity.model.MemberDTO">
+	<select id="checkFindPwEmailInfo" resultType="kr.co.serendipity.model.dto.MemberDTO">
 		select * from member where name=#{name} and email=#{email} and id=#{id}
 	</select>
 	

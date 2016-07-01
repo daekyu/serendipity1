@@ -3,13 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kr.co.serendipity.model.ReviewDAO">
+<mapper namespace="kr.co.serendipity.model.dao.ReviewDAO">
 	<insert id="reviewWrite">
 		insert into review(review_num, user_num, review_title, review_content, review_content1, review_content2, review_content3, review_content4, review_content5, review_picture1, review_picture2, review_picture3, review_picture4, review_picture5, like_count, review_date, local_code, reply_count)
 		values(review_seq.nextval, #{user_num}, #{review_title}, #{review_content}, #{review_content1}, #{review_content2}, #{review_content3}, #{review_content4}, #{review_content5}, #{review_picture1}, #{review_picture2}, #{review_picture3}, #{review_picture4}, #{review_picture5}, 0, SYSDATE,#{local_code},0)
 	</insert>
 	
-	<select id="localList" resultType="kr.co.serendipity.model.LocalDTO">
+	<select id="localList" resultType="kr.co.serendipity.model.dto.LocalDTO">
 		select local_code, local_name from local order by local_code asc
 	</select>
 	
@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update review set review_picture5=#{review_picture5} where review_num=#{review_num}
 	</update>
 	
-	<select id="selectPicture" resultType="kr.co.serendipity.model.ReviewDTO">
+	<select id="selectPicture" resultType="kr.co.serendipity.model.dto.ReviewDTO">
 		select review_picture1, review_picture2, review_picture3, review_picture4, review_picture5 from review where review_num=#{review_num}
 	</select>
 	
@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select local_name from local where local_code=#{local_code}
 	</select>
 	
-	<select id="getIndexReview" resultType="kr.co.serendipity.model.ReviewDTO">
+	<select id="getIndexReview" resultType="kr.co.serendipity.model.dto.ReviewDTO">
  		SELECT * FROM( SELECT ROWNUM NUM, N.* FROM 
 		( SELECT * FROM REVIEW ORDER BY LIKE_COUNT DESC) N) 
 		WHERE NUM <![CDATA[ <= ]]>3

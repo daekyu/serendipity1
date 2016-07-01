@@ -10,8 +10,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import kr.co.serendipity.model.EmailDTO;
-import kr.co.serendipity.model.MemberDTO;
+import kr.co.serendipity.model.dto.EmailDTO;
+import kr.co.serendipity.model.dto.MemberDTO;
 
 @Component
 public class EmailSender {
@@ -54,6 +54,7 @@ public class EmailSender {
 	}
 	
 	public void sendFindIDEmail(MemberDTO memberdto) throws MessagingException {
+		System.out.println("aaaaaaaaaaaaaa");
 		MimeMessage messagedto = mailSender.createMimeMessage();
 		MimeMessageHelper messageHelper = new MimeMessageHelper(messagedto, true, "UTF-8");
 		

@@ -3,6 +3,10 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!-- my account - 내가 신청한 내역 -->
+<script type="text/javascript" src=".././resources/js/sweetalert.min.js">
+</script> 
+<link rel="stylesheet" type="text/css" 
+href=".././resources/js/sweetalert.css"> 
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:useBean id="toDay" class="java.util.Date" />
@@ -11,7 +15,7 @@
 <script type="text/javascript">
 			$(function(){
 			if($('#check1').val() == 1){
-				alert("<spring:message code="mypage.my_accept_history"/>");
+				swal("<spring:message code="mypage.my_accept_history"/>");
 			};
 			
 			$('.delete').click(function(){

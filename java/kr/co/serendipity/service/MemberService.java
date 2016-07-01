@@ -7,10 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.serendipity.model.CountryDTO;
-import kr.co.serendipity.model.LocalDTO;
-import kr.co.serendipity.model.MemberDAO;
-import kr.co.serendipity.model.MemberDTO;
+import kr.co.serendipity.model.dao.MemberDAO;
+import kr.co.serendipity.model.dto.CountryDTO;
+import kr.co.serendipity.model.dto.LocalDTO;
+import kr.co.serendipity.model.dto.MemberDTO;
 
 @Service
 public class MemberService {

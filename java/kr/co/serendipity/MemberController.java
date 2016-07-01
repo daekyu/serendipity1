@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.MemberDTO;
+import kr.co.serendipity.model.dto.MemberDTO;
 import kr.co.serendipity.service.MemberService;
 import kr.co.serendipity.util.EmailSender;
 
@@ -92,6 +92,7 @@ public class MemberController {
 			return null;
 		} else {
 			MemberDTO member = new MemberDTO();
+			System.out.println("QQQQ : " + memberservice.checkFindIdEmailInfo(memberdto).getEmail() + "/" + memberservice.checkFindIdEmailInfo(memberdto).getId());
 			member.setEmail(memberservice.checkFindIdEmailInfo(memberdto).getEmail());
 			member.setId(memberservice.checkFindIdEmailInfo(memberdto).getId());
 			emailsender.sendFindIDEmail(member);

@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.serendipity.model.MemberDTO;
-import kr.co.serendipity.model.MessageDTO;
-import kr.co.serendipity.model.RCV_MessageDTO;
+import kr.co.serendipity.model.dto.MemberDTO;
+import kr.co.serendipity.model.dto.MessageDTO;
+import kr.co.serendipity.model.dto.RCV_MessageDTO;
 import kr.co.serendipity.service.MessageService;
 
 @Controller
@@ -56,6 +56,7 @@ public class MessageController {
 	
 	@RequestMapping("sendMessage.htm")
 	public String sendMessage(MessageDTO messagedto, HttpSession session) {
+		System.out.println(messagedto.getMessage_content() + "//////////////////");
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
 		}else{

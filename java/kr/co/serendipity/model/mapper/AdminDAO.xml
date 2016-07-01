@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	@Desc : AdminDAO의 Mapper / 실제 DB연동을 위한 Query가 들어가는 부분
  -->
 
-<mapper namespace="kr.co.serendipity.model.AdminDAO">
+<mapper namespace="kr.co.serendipity.model.dao.AdminDAO">
 	<select id="getMemberList" resultType="hashmap">
 		select m.user_num,m.id,m.name,m.age,m.country_code,c.country_name, m.email,m.report_count from member m, country c where m.country_code=c.country_code
 	</select>

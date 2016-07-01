@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <!-- 
-
 	@Author : 강대규
 	@File name : admin_member_list_element.jsp
 	@Date : 16.06.10

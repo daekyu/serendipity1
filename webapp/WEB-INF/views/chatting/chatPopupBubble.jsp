@@ -1,20 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="<c:url value='.././resources/css/bubbleChat.css'/>"/>
-
-<title>Serendipity :: 채팅</title>
-<!-- Favicon -->
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link type="text/css" rel="stylesheet" href="<c:url value='.././resources/css/bubbleChat.css'/>" />
+		<title>Serendipity :: 채팅</title>
+		<!-- Favicon -->
 		<link rel="shortcut icon" href=".././resources/img/main_ico.png">
-		
 		<!-- Font -->
-		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
-		
+		<link rel='stylesheet'href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic'>
 		<!-- Plugins CSS -->
 		<link rel="stylesheet" href=".././resources/css/bootstrap.css">
 		<link rel="stylesheet" href=".././resources/css/font-awesome.min.css">
@@ -30,146 +26,144 @@
 		<link rel="stylesheet" href=".././resources/css/ladda.min.css">
 		<link rel="stylesheet" href=".././resources/css/datepicker.css">
 		<link rel="stylesheet" href=".././resources/css/jquery.scrollbar.css">
-		
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href=".././resources/css/style.css">
-		
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href=".././resources/css/customizer/pages.css">
 		<link rel="stylesheet" href=".././resources/css/customizer/home-pages-customizer.css">
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-	var websocket = null;
-	var first = "true";
-	$('#sendBtn').attr("disabled", true);
-	
-	
-	$(document).ready(function() {
-		//var url = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/'+'${roomId}'; // 원본
-		var url = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/'+'${roomId}';
-		websocket = connection(url);
-		
-		websocket.onopen = function(){
-			send('${id}');
-			$('#sendBtn').attr("disabled", false);
-		};
-
-		websocket.onmessage = function(message) {
-			processMessage(message);
-		};
-		
-		websocket.onclose = function() {
-		};
-		
-		websocket.onerror = function(message) {
-			processError(message);
-		};
-		
-		$('#sendBtn').click(function() {
-			send(textMessage.value);
-			textMessage.value = "";
-		});
-		
-		$('#textMessage').keypress(function(e) {
-			if(e.which==13) {
-				send(textMessage.value);
-				textMessage.value = "";
-			}
-		});
-		
-		$('#leaveBtn').click(function() {
-			websocket.close();
-			window.close();
-		});
-	});
-
-	function processMessage(message) {
-		
-		var jsonData = JSON.parse(message.data);
-		if (jsonData.messageType == "ChatMessageDTO") {
-			message = jsonData.name + " : "+ jsonData.message + '\n';
-			displaybubble(jsonData);
-		} else if (jsonData.messageType == "UsersMessageDTO") {
-			var other = "";
-			for(var i = 0; i<jsonData.ids.length; i++) {
-				if ("${id}"!=jsonData.ids[i]) {
-					$('#ids').append(jsonData.ids[i]+"님과 대화중입니다.");
-					other = jsonData.ids[i];
-					first = "false";
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+			var websocket = null;
+			var first = "true";
+			$('#sendBtn').attr("disabled", true);
+				
+				
+			$(document).ready(function() {
+				//var url = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/'+'${roomId}'; // 원본
+				var url = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/'+'${roomId}';
+				websocket = connection(url);
+				
+				websocket.onopen = function(){
+					send('${id}');
+					$('#sendBtn').attr("disabled", false);
+				};
+				
+				websocket.onmessage = function(message) {
+					processMessage(message);
+				};
+				
+				websocket.onclose = function() {
+				};
+				
+				websocket.onerror = function(message) {
+					processError(message);
+				};
+				
+				$('#sendBtn').click(function() {
+					send(textMessage.value);
+					textMessage.value = "";
+				});
+				
+				$('#textMessage').keypress(function(e) {
+					if(e.which==13) {
+						send(textMessage.value);
+						textMessage.value = "";
+					}
+				});
+				
+				$('#leaveBtn').click(function() {
+					websocket.close();
+					window.close();
+				});
+			});
+			
+			function processMessage(message) {
+				
+				var jsonData = JSON.parse(message.data);
+				if (jsonData.messageType == "ChatMessageDTO") {
+					message = jsonData.name + " : "+ jsonData.message + '\n';
+					displaybubble(jsonData);
+				} else if (jsonData.messageType == "UsersMessageDTO") {
+					var other = "";
+					for(var i = 0; i<jsonData.ids.length; i++) {
+						if ("${id}"!=jsonData.ids[i]) {
+							$('#ids').append(jsonData.ids[i]+"님과 대화중입니다.");
+							other = jsonData.ids[i];
+							first = "false";
+						}
+					}
+					if(first=="false" && other=="") {
+						$('#ids').empty();
+						$('#ids').append("대화상대가 아무도 없습니다.");
+					} 
 				}
 			}
-			if(first=="false" && other=="") {
-				$('#ids').empty();
-				$('#ids').append("대화상대가 아무도 없습니다.");
-			} 
-		}
-	}
+				
+			function connection(url) {
+				var websocket = null;
+				if ('WebSocket' in window) {
+					websocket = new WebSocket(url);
+				} else if ('MozWebSocket' in window) {
+					websocket = new MozWebSocket(url);
+				} else {
+					Console.log('Error: WebSocket is not supported by this browser.');
+			           return null;
+				}
+				return websocket;
+			}
+			
+			function send(message) {
+				websocket.send(JSON.stringify({ 'message' : message , 'room' : "${roomId}"}));
+			}
+				
+			function display(message) {
+				
+			}
+				
+			function displaybubble(data) {
+				if (data.name == "${id}") {
+					$('#chat').append(data.name+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
+				} else {
+				    $('#chat').append(data.name+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
+				}
+				document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+			}
+			
+			function processError(message) {
+			}
+			
+				window.onbeforeunload = function() {
+				websocket.close();
+			};  
+		</script>
+	</head>
 	
-	function connection(url) {
-		var websocket = null;
-		if ('WebSocket' in window) {
-			websocket = new WebSocket(url);
-		} else if ('MozWebSocket' in window) {
-			websocket = new MozWebSocket(url);
-		} else {
-			Console.log('Error: WebSocket is not supported by this browser.');
-            return null;
-		}
-		return websocket;
-	}
-
-	function send(message) {
-		websocket.send(JSON.stringify({ 'message' : message , 'room' : "${roomId}"}));
-	}
 	
-	function display(message) {
-		
-	}
-	
-	function displaybubble(data) {
-		if (data.name == "${id}") {
-			$('#chat').append(data.name+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
-		} else {
-		    $('#chat').append(data.name+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
-		}
-		document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
-	}
-
-	function processError(message) {
-	}
-
- 	window.onbeforeunload = function() {
-		websocket.close();
-		
-	};  
-</script>
-</head>
-<body>
-	<div class="container">
-	<div align="center">
-	<img src=".././resources/img/main_logo.png">
-	       <div id="ids"></div>
-	</div>
-	<div class="chat form-group" id="chat">
-	    즐거운 대화 하세염
-	    <hr>
-	</div>
-	<br/>
-	<table>
-	<tr>
-		<td>
-			<div class="top-padding center">
-			<input class="form-control" id="textMessage" type="text" style="width: 300px" />
+	<body>
+		<div class="container">
+			<div align="center">
+				<img src=".././resources/img/main_logo.png">
+				<div id="ids"></div>
 			</div>
-		</td>
-		<td style="padding-bottom: 20px">
-		<!-- 	&nbsp;&nbsp;<div class="livicon block" id="sendBtn" data-n="message-out" data-s="32" data-op="0" data-c="#738d00" data-hc="0"></div> -->
-			&nbsp;<button class="btn btn-danger" id="sendBtn">Send</button>
-		</td>
-	</tr>
-	</table>
-	</div>
-	<!-- 각종 Javascript -->
+			<div class="chat form-group" id="chat">
+				즐거운 대화 하세염
+				<hr>
+			</div>
+			<br />
+			<table>
+				<tr>
+					<td>
+						<div class="top-padding center">
+							<input class="form-control" id="textMessage" type="text" style="width: 300px" />
+						</div>
+					</td>
+					<td style="padding-bottom: 20px">
+						&nbsp;<button class="btn btn-danger" id="sendBtn">Send</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!-- 각종 Javascript -->
 		<script src=".././resources/js/jquery-2.1.3.min.js"></script>
 		<script src=".././resources/js/bootstrap.min.js"></script>
 		<script src=".././resources/js/price-regulator/jshashtable-2.1_src.js"></script>
@@ -208,8 +202,8 @@
 		<script src=".././resources/js/revolution/jquery.themepunch.tools.min.js"></script>
 		<script src=".././resources/js/revolution/jquery.themepunch.revolution.min.js"></script>
 		<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
-		(Load Extensions only on Local File Systems !
-		The following part can be removed on Server for On Demand Loading) -->	
+			(Load Extensions only on Local File Systems !
+			The following part can be removed on Server for On Demand Loading) -->
 		<script src=".././resources/js/revolution/extensions/revolution.extension.actions.min.js"></script>
 		<script src=".././resources/js/revolution/extensions/revolution.extension.carousel.min.js"></script>
 		<script src=".././resources/js/revolution/extensions/revolution.extension.kenburn.min.js"></script>
@@ -225,5 +219,5 @@
 		<script src=".././resources/js/jplayer/jplayer.playlist.min.js"></script>
 		<script src=".././resources/js/jquery.scrollbar.min.js"></script>
 		<script src=".././resources/js/main.js"></script>
-</body>
+	</body>
 </html>

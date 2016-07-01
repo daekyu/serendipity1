@@ -52,33 +52,34 @@
 	<body class="fixed-header hidden-top">
 		<div class="breadcrumb-box breadcrumb-none"></div>
 
-<section id="main" class="page ">
-  <header class="page-header">
-    <div class="container">
-      <h1 class="title">Caution!</h1>
-    </div>   
-  </header>
-  <div class="container">
-    <div class="row">
-      <article class="col-sm-9 col-md-9 content">
-      <div class="my-account">
-        <div class="table-responsive">
-         <table class="table table-striped table-bordered text-center my-orders-table">
-          <thead>
-            <tr class="first last">
-              <th>
-                 접근할 수 없는 페이지입니다.<br><br>
-                 <button type="button" class="btn btn-danger" onclick="historyBack()">돌아가기</button>   
-              </th>
-            </tr>
-           </thead> 
-         </table>
-        </div>
-      </div>
-      </article><!-- .content -->
-    </div>
-  </div>
-</section><!-- #main -->
+		<section id="main" class="page ">
+			<header class="page-header">
+				<div class="container">
+					<h1 class="title">Caution!</h1>
+				</div>
+			</header>
+			<div class="container">
+				<div class="row">
+					<article class="col-sm-9 col-md-9 content">
+						<div class="my-account">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered text-center my-orders-table">
+									<thead>
+										<tr class="first last">
+											<th>접근할 수 없는 페이지입니다.<br>
+											<br>
+												<button type="button" class="btn btn-danger" onclick="historyBack()">돌아가기</button>
+											</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</article>
+					<!-- .content -->
+				</div>
+			</div>
+		</section><!-- #main -->
 		
 		
 		<!-- 각종 Javascript -->

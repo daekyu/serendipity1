@@ -19,27 +19,27 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="3" language="java" name="kr.co.serendipity.model.ReportDAO" project="Serendipity" 
-    file="/Serendipity/src/main/java/kr/co/serendipity/model/ReportDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="324" y="309"/>    
+  <interface id="3" language="java" name="kr.co.serendipity.model.dao.ReportDAO" project="Serendipity" 
+    file="/Serendipity/src/main/java/kr/co/serendipity/model/dao/ReportDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="209" y="283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="4" language="java" name="kr.co.serendipity.model.MemberDTO" project="Serendipity" 
-    file="/Serendipity/src/main/java/kr/co/serendipity/model/MemberDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="662" y="614"/>    
+  <class id="4" language="java" name="kr.co.serendipity.model.dto.MemberDTO" project="Serendipity" 
+    file="/Serendipity/src/main/java/kr/co/serendipity/model/dto/MemberDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="482" y="599"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="kr.co.serendipity.model.ReportDTO" project="Serendipity" 
-    file="/Serendipity/src/main/java/kr/co/serendipity/model/ReportDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="370" y="590"/>    
+  <class id="5" language="java" name="kr.co.serendipity.model.dto.ReportDTO" project="Serendipity" 
+    file="/Serendipity/src/main/java/kr/co/serendipity/model/dto/ReportDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="714" y="386"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,8 +48,12 @@
   </class>  
   <association id="6">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="7" name="reportservice"/>      
-      <multiplicity id="8" minimum="0" maximum="1"/>    
+      <attribute id="7" name="reportservice">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="8" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

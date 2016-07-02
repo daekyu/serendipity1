@@ -13,7 +13,7 @@
   <class id="2" language="java" name="kr.co.serendipity.service.TravelReviewService" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/service/TravelReviewService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="747" y="221"/>    
+    <position height="-1" width="-1" x="743" y="219"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -88,10 +88,10 @@
   <association id="10">    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="11" name="travelreviewservice">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-4" y="-2"/>      
       </attribute>      
       <multiplicity id="12" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-4" y="-2"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    

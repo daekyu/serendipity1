@@ -39,7 +39,7 @@
   </interface>  
   <interface id="5" language="java" name="kr.co.serendipity.model.dao.VisitDAO" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/model/dao/VisitDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="493" y="719"/>    
+    <position height="-1" width="-1" x="267" y="888"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,8 +48,8 @@
   </interface>  
   <class id="6" language="java" name="kr.co.serendipity.model.dto.BoardDTO" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/model/dto/BoardDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="737" y="1203"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="1107" width="195" x="377" y="640"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="kr.co.serendipity.model.dto.ReviewDTO" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/model/dto/ReviewDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="506" y="1327"/>    
+    <position height="-1" width="-1" x="836" y="555"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="kr.co.serendipity.model.dto.VisitDTO" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/model/dto/VisitDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="261" y="891"/>    
+    <position height="-1" width="-1" x="105" y="889"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

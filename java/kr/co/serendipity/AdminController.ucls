@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="kr.co.serendipity.AdminController" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/AdminController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="184" y="114"/>    
+    <position height="-1" width="-1" x="187" y="142"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="kr.co.serendipity.service.AdminService" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/service/AdminService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="297" width="240" x="473" y="-31"/>    
+    <position height="-1" width="-1" x="629" y="145"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <interface id="4" language="java" name="kr.co.serendipity.model.dao.VisitDAO" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/model/dao/VisitDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="493" y="392"/>    
+    <position height="-1" width="-1" x="450" y="363"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </interface>  
   <class id="5" language="java" name="kr.co.serendipity.model.dto.MemberDTO" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/model/dto/MemberDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="474" y="875"/>    
+    <position height="-1" width="-1" x="454" y="831"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="kr.co.serendipity.model.dto.ReportDTO" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/model/dto/ReportDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="478" y="1461"/>    
+    <position height="-1" width="-1" x="664" y="540"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="kr.co.serendipity.model.dto.BoardDTO" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/model/dto/BoardDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="736" y="860"/>    
+    <position height="-1" width="-1" x="863" y="612"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="kr.co.serendipity.model.dto.VisitDTO" project="Serendipity" 
     file="/Serendipity/src/main/java/kr/co/serendipity/model/dto/VisitDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="712" y="1504"/>    
+    <position height="-1" width="-1" x="670" y="835"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -85,10 +85,10 @@
   <association id="10">    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="11" name="adminservice">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="30" y="5"/>      
       </attribute>      
       <multiplicity id="12" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="30" y="5"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    

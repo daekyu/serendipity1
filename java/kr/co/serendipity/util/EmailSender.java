@@ -53,7 +53,6 @@ public class EmailSender {
 	}
 	
 	public void sendFindIDEmail(MemberDTO memberdto) throws MessagingException {
-		System.out.println("aaaaaaaaaaaaaa");
 		MimeMessage messagedto = mailSender.createMimeMessage();
 		MimeMessageHelper messageHelper = new MimeMessageHelper(messagedto, true, "UTF-8");
 		

@@ -141,7 +141,6 @@ public class BoardController {
 	@RequestMapping(value = "guide_writeform.htm", method = RequestMethod.POST)
 	public String guideWriteform(BoardDTO boarddto, MultipartHttpServletRequest request) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		String local = boardservice.selectLocal(boarddto);
-		System.out.println("local : " + local);
 		boarddto.setLocal_code(local);
 		boardservice.guideWriteFormPost(boarddto, request);
 		return "redirect:/board/guide_list.htm";
@@ -452,7 +451,6 @@ public class BoardController {
 	
 	@RequestMapping(value = "guideParty.htm")
 	public ModelAndView guideParty(HttpServletRequest request, BoardDTO boarddto) throws ClassNotFoundException, SQLException {
-		System.out.println("guideParty entrance");
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		int user_num1 = Integer.parseInt(request.getParameter("user_num"));
 		int many = Integer.parseInt(request.getParameter("many"));
@@ -478,18 +476,5 @@ public class BoardController {
 	
 	@RequestMapping(value = "insertRoutes.htm")
 	public void insertRoutes(Object routes, int board_num){
-		System.out.println("aaaaaaaaaaaaaaaaaaaaa");
-		/*for(int i=0; i<routes.size(); i++) {
-			System.out.println("경로 : " + routes.get(i));
-		}
-		
-		for(int i=0; i<routes.size(); i++){
-			RouteDTO routedto = new RouteDTO();
-			routedto.setBoard_num(board_num);
-			routedto.setRoute_latlag((String)routes.get(i));
-			routedto.setRoute_seq(i);
-			boardservice.insertRoutes(routedto);
-		}*/
-		System.out.println("aaaaaaaaa : " + routes);
 	}
 }

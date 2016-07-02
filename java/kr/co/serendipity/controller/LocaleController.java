@@ -29,7 +29,6 @@ public class LocaleController {
 			Locale locale = new Locale(request.getParameter("locale"));
 			localeResolver.setLocale(request, response, locale);
 			session.setAttribute("locale", request.getParameter("locale"));
-			System.out.println("1111" + request.getLocale().getLanguage());
 			return "redirect:/index.htm";
 		}
 	}

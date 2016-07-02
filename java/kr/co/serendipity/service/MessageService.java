@@ -40,7 +40,6 @@ public class MessageService {
 	}
 	
 	public void sendMessage(MessageDTO messagedto) {
-		System.out.println("***************" + messagedto.getMessage_content() + "/" + messagedto.getMessage_title());
 		MessageDAO dao = sqlsession.getMapper(MessageDAO.class);
 		dao.sendMessage_1(messagedto);
 		dao.sendMessage_2(messagedto);

@@ -27,7 +27,6 @@ public class IndexController {
 	
 	@RequestMapping("index.htm")
 	public ModelAndView index(HttpSession session) throws ClassNotFoundException, SQLException {
-		System.out.println("aaaaa");
 		if(session.getAttribute("visit") == null) {
 			indexservice.setVisitTotalCount();
 			session.setAttribute("visit", "visit");

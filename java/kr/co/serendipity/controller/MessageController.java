@@ -56,7 +56,6 @@ public class MessageController {
 	
 	@RequestMapping("sendMessage.htm")
 	public String sendMessage(MessageDTO messagedto, HttpSession session) {
-		System.out.println(messagedto.getMessage_content() + "//////////////////");
 		if(session.getAttribute("id") == null){
 			return "/member/join_login";
 		}else{

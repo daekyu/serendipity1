@@ -92,7 +92,6 @@ public class MemberController {
 			return null;
 		} else {
 			MemberDTO member = new MemberDTO();
-			System.out.println("QQQQ : " + memberservice.checkFindIdEmailInfo(memberdto).getEmail() + "/" + memberservice.checkFindIdEmailInfo(memberdto).getId());
 			member.setEmail(memberservice.checkFindIdEmailInfo(memberdto).getEmail());
 			member.setId(memberservice.checkFindIdEmailInfo(memberdto).getId());
 			emailsender.sendFindIDEmail(member);

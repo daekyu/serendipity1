@@ -48,15 +48,14 @@ public class TravelInfoController {
 		for(int i =0; i < reviewdtolist.size(); i++){
 			ReviewDTO reviewdto = reviewdtolist.get(i);
 			String review_content = reviewdto.getReview_content();
-			System.out.println("-----------P처리 전 : " + review_content);
+			//p처리 전
 			review_content = review_content.replaceAll("<p>", "");
 			review_content = review_content.replaceAll("</p>", "");
-			System.out.println("-----------P처리 후 : " + review_content);
+			//p처리 후
 			reviewdto.setReview_content(review_content);
 			reviewdtolist.set(i, reviewdto);
 		}
 		ReviewDTO r = reviewdtolist.get(0);
-		System.out.println("-------get : " + r.getReview_content());
 		return reviewdtolist;
 	}
 }

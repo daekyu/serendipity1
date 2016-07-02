@@ -5,7 +5,7 @@
  * @Desc : 로그인, 회원가입, 신고기능을 처리하기 위한 컨트롤러
  */
 
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;

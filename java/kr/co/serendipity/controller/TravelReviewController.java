@@ -5,7 +5,7 @@
  * @Desc : 여행후기 게시판 컨트롤러
  */
 
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 
 import java.io.File;
 import java.io.IOException;

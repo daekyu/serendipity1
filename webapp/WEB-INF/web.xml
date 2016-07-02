@@ -10,20 +10,22 @@
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/WEB-INF/views/inc/404.jsp</location>
+		<location>/WEB-INF/views/inc/500.jsp</location>
 	</error-page>
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/WEB-INF/views/inc/hasNoAuthority.jsp</location>
+	</error-page>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
-	<error-page>
-		<exception-type>java.lang.NullPointerException</exception-type>
-		<location>/WEB-INF/views/inc/hasNoAuthority.jsp</location>
-	</error-page>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

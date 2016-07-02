@@ -5,7 +5,7 @@
  * @Desc : 관리자의 기능을 처리하는 컨트롤러
  */
 
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

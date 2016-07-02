@@ -4,7 +4,7 @@
  * @Author : 源�誘쇨퇋
  * @Desc : �뿬�뻾�옄媛� 媛��씠�뱶 援ы븯�뒗 寃뚯떆�뙋 湲��벐湲�
  */
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 
 import java.io.File;
 import java.io.IOException;

@@ -18,7 +18,6 @@ public class EmailSender {
 	
 	@Autowired
 	private JavaMailSender mailSender;
-	
 	public static String temporaryPassword() {
 		StringBuffer buffer = new StringBuffer();
 		Random random = new Random();

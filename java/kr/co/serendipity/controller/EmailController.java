@@ -1,4 +1,4 @@
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

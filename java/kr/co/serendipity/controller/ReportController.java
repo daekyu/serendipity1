@@ -1,4 +1,4 @@
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 
 import java.sql.SQLException;
 import java.util.HashMap;

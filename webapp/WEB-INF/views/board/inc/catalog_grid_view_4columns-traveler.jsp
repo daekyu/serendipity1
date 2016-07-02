@@ -13,15 +13,16 @@
 <section id="main">
 	<header class="page-header">
 		<div class="container">
-			<h1 class="title"><spring:message code="board.guide"/></h1>
+			<h1 class="title">
+				<spring:message code="board.guide" />
+			</h1>
 		</div>
 	</header>
 	<div class="container">
 		<div class="row">
 			<div id="catalog" class="content col-sm-12 col-md-12">
 				<div class="category-img">
-					<img class="replace-2x" src=".././resources/img/background_img/에버랜드사진.PNG"
-						width="870" height="370" alt="">
+					<img class="replace-2x" src=".././resources/img/background_img/에버랜드사진.PNG" width="870" height="370" alt="">
 				</div>
 
 				<div class="toolbar clearfix">
@@ -29,20 +30,26 @@
 					<!-- 검색조건. 추후 수정해보자 -->
 					<div class="sort-catalog">
 						<div class="btn-group sort-by btn-select">
-							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Sort by: <span>
-								<c:choose>
-								<c:when test="${basicsort eq 'board_num'}">
-									Date
-								</c:when>
-								<c:otherwise>
-									other
-								</c:otherwise>
-								</c:choose></span>
-								<span class="caret"></span></a>
+							<a class="btn dropdown-toggle btn-default" role="button" data-toggle="dropdown" href="#">
+								Sort by: 
+								<span> 
+									<c:choose>
+										<c:when test="${basicsort eq 'board_num'}">
+											Date
+										</c:when>
+										<c:otherwise>
+											other
+										</c:otherwise>
+									</c:choose>
+								</span> 
+								<span class="caret"></span>
+							</a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?sort=board_num&show=${basicshow}">Date</a></li>
-								<!-- <li><a href="#">Price</a></li> -->
+								<li>
+									<a href="${pageContext.request.contextPath}/board/traveler_list.htm?sort=board_num&show=${basicshow}">
+										Date
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -50,13 +57,20 @@
 
 					<div class="sort-catalog">
 						<div class="btn-group show-by btn-select">
-							<a class="btn dropdown-toggle btn-default" role="button"
-								data-toggle="dropdown" href="#">Show: <span>${basicshow}</span> <span
-								class="caret"></span></a>
+							<a class="btn dropdown-toggle btn-default" role="button" data-toggle="dropdown" href="#">
+								Show: <span>${basicshow}</span>
+								<span class="caret"></span>
+							</a>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=4&sort=${basicsort}">4</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=8&sort=${basicsort}">8</a></li>
-								<li><a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=12&sort=${basicsort}">12</a></li>
+								<li>
+									<a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=4&sort=${basicsort}">4</a>
+								</li>
+								<li>
+									<a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=8&sort=${basicsort}">8</a>
+								</li>
+								<li>
+									<a href="${pageContext.request.contextPath}/board/traveler_list.htm?show=12&sort=${basicsort}">12</a>
+								</li>
 							</ul>
 						</div>
 						<!-- .show -->
@@ -73,10 +87,8 @@
 					<c:forEach var="i" items="${board_list}">
 						<div class="col-sm-2 col-md-2 product rotation">
 							<div class="default">
-								<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}"
-									class="product-image"> <img class="replace-2x"
-									src="${pageContext.request.contextPath}/resources/img/board_picture/${i.BOARD_PICTURE1}" alt="" title="" width="270"
-									height="270">
+								<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}" class="product-image"> 
+									<img class="replace-2x" src="${pageContext.request.contextPath}/resources/img/board_picture/${i.BOARD_PICTURE1}" alt="" title="" width="270" height="270">
 								</a>
 								<div class="product-description">
 									<div class="vertical">
@@ -90,22 +102,25 @@
 
 							<div class="product-hover">
 								<h3 class="product-name">
-									<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">제목 : ${i.BOARD_TITLE}</a>
+									<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}">
+										제목 : ${i.BOARD_TITLE}
+									</a>
 								</h3>
 								<div class="price">여행자 아이디 : ${i.ID}</div>
-								<a href="traveler_detail.htm?board_num=${i.board_num}&user_num=${i.USER_NUM}" class="product-image"> <img
-									class="replace-2x" src="${pageContext.request.contextPath}/resources/img/profile_picture/${i.PROFILE_PICTURE}" alt=""
-									title="" width="70" height="70">
+								<a href="traveler_detail.htm?board_num=${i.board_num}&user_num=${i.USER_NUM}" class="product-image"> 
+									<img class="replace-2x" src="${pageContext.request.contextPath}/resources/img/profile_picture/${i.PROFILE_PICTURE}" alt="" title="" width="70" height="70">
 								</a>
 								<ul>
 									<li>가격상한: ${i.PRICE}</li>
 									<li>여행 일시 : ${i.BOARD_DATE}</li>
 								</ul>
-								
+
 								<br>
-										<div class="contact" align="center">
-											<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}"class="btn btn-warning btn-lg btn-block"><spring:message code="index.inc.carousel-box-newguide10"/></a>
-										</div>
+								<div class="contact" align="center">
+									<a href="traveler_detail.htm?board_num=${i.BOARD_NUM}&user_num=${i.USER_NUM}" class="btn btn-warning btn-lg btn-block">
+										<spring:message code="index.inc.carousel-box-newguide10" />
+									</a>
+								</div>
 							</div>
 							<!-- .product-hover -->
 						</div>
@@ -115,46 +130,55 @@
 						<ul class="pagination">
 							<c:choose>
 								<c:when test="${page<=1}">
-									<li class="disabled"><span><i class="fa fa-angle-left"></i></span></li>
+									<li class="disabled">
+										<span><i class="fa fa-angle-left"></i></span>
+									</li>
 								</c:when>
 								<c:otherwise>
-									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page-1}&show=${basicshow}&sort=${basicsort}">
+									<li class="active">
+										<a href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page-1}&show=${basicshow}&sort=${basicsort}">
 											<i class="fa fa-angle-left"></i>
-									</a></li>
+										</a>
+									</li>
 								</c:otherwise>
 							</c:choose>
 
 							<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
 								<c:choose>
 									<c:when test="${a==page}">
-										<li class="active"><span>${a}</span></li>
+										<li class="active">
+											<span>${a}</span>
+										</li>
 									</c:when>
 									<c:otherwise>
-										<li><a
-											href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${a}&show=${basicshow}&sort=${basicsort}">
-												${a}</a></li>
+										<li>
+											<a href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${a}&show=${basicshow}&sort=${basicsort}">${a}</a>
+										</li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 
 							<c:choose>
 								<c:when test="${page>=maxpage}">
-									<li class="disabled"><span><i class="fa fa-angle-right"></i></span></li>
+									<li class="disabled">
+										<span><i class="fa fa-angle-right"></i></span>
+									</li>
 								</c:when>
 								<c:otherwise>
-									<li class="active"><a
-										href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page+1}&show=${basicshow}&sort=${basicsort}">
+									<li class="active">
+										<a href="${pageContext.request.contextPath}/board/traveler_list.htm?pg=${page+1}&show=${basicshow}&sort=${basicsort}">
 											<i class="fa fa-angle-right"></i>
-									</a></li>
+										</a>
+									</li>
 								</c:otherwise>
 							</c:choose>
 						</ul>
-						
+
 						<c:if test="${!empty sessionScope.user_num}">
-						 	<a href="${pageContext.request.contextPath}/board/traveler_writeform.htm?user_num=${sessionScope.user_num}"
-								class="btn btn-default"><spring:message code="board.guide2"/><span
-								class="glyphicon glyphicon-arrow-right"></span></a>
+							<a href="${pageContext.request.contextPath}/board/traveler_writeform.htm?user_num=${sessionScope.user_num}" class="btn btn-default">
+								<spring:message code="board.guide2" />
+								<span class="glyphicon glyphicon-arrow-right"></span>
+							</a>
 						</c:if>
 					</div>
 					<!-- .pagination-box -->
@@ -163,6 +187,6 @@
 			</div>
 		</div>
 		<!-- .container -->
-		</div>
+	</div>
 </section>
 <!-- #main -->

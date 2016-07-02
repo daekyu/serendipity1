@@ -5,7 +5,7 @@
  * @Desc : index화면으로 가기 위한 컨트롤러
  */
 
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 
 import java.sql.SQLException;
 

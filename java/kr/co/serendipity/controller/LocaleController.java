@@ -1,4 +1,4 @@
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;

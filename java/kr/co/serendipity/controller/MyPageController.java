@@ -5,7 +5,7 @@
  * @Desc : 마이페이지를 구성하는 컨트롤러
  */
 
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 
 import java.io.File;
 import java.io.IOException;

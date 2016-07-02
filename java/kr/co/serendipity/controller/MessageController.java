@@ -5,7 +5,7 @@
  * @Desc : 履쎌� 湲곕뒫�쓣 泥섎━�븯�뒗 而⑦듃濡ㅻ윭
  */
 
-package kr.co.serendipity;
+package kr.co.serendipity.controller;
 
 import java.util.HashMap;
 import java.util.List;

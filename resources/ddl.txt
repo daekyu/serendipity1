@@ -616,3 +616,431 @@ ALTER TABLE TRAVEL_INFO
 			LOCAL_CODE
 		)
 		ON DELETE CASCADE;
+		
+=====================================================================
+[시퀀스생성]
+CREATE SEQUENCE "MEMBER_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "BOARD_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "HOBBY_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "LANG_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "INFO_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "LIKE_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "MESSAGE_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "PARTI_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "REPLY_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "REVIEW_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ 
+ CREATE SEQUENCE "REPORT_SEQ"
+ MINVALUE 1
+ MAXVALUE 999999999999999999999999999
+ INCREMENT BY 1
+ START WITH 1
+ NOCACHE
+ NOORDER
+ NOCYCLE;
+ ===========================================================
+ [백데이터]
+insert into member(user_num,country_code, local_code, name, id, pw, gender, age,profile_picture,report_count,join_date) values(member_seq.nextval,82,'-','관리자','admin','1004','M',0,'default_profile.jpg',0,sysdate);
+ 
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'등산');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'음악감상');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'독서');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'영화관람');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'산책/걷기');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'외식');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'댄스');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'게임');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'운동');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'사진찍기');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'악기연주');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'콘서트');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'익사이팅스포츠');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'정신수양');
+insert into hobby(hobby_code, hobby_name) values(HOBBY_SEQ.nextval,'기타');
+
+
+
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'korean');
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'english');
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'japanese');
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'chinese');
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'french');
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'german');
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'spanish');
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'italian');
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'russian');
+insert into language(LANGUAGE_CODE,LANGUAGE_NAME) values(LANG_SEQ.nextval,'portuguese');
+
+
+insert into CATEGORY(CATEGORY_NUM,CATEGORY_NAME) values('1','가이드구함');
+insert into CATEGORY(CATEGORY_NUM,CATEGORY_NAME) values('2','여행자구함');
+
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('02','서울','37.5579728','126.9866419','NSeoulTower,NamsanTower.jpg','서울광화문.PNG','서울북촌한옥마을.PNG','서울청계천.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('032','인천','37.4561099','126.7030724','인천대교.PNG','인천대교_기념관.PNG','인천월미도.PNG','인천연안부두.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('031','경기','37.2741446','127.0066761','Everland,EverlandKorea.jpg','경기가평.PNG','경기가평펜션.PNG','경기일산킨텍스.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('033','강원','37.8848055','127.7275455','설악산.jpg','강원도스키장.PNG','강원동행.PNG','강원인피니티풀.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('041','충남','36.6588327','126.6706662','충남곡교천은행나무길.PNG','충남공남지.PNG','충남부여.PNG','충남보령머드축제.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('042','대전','36.3516773','127.3845503','대전엑스포과학공원.PNG','대전추동자연생태습지공원.PNG','대전국립현충원.PNG','대전골프테마파크.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('043','충북','36.6354092','127.489273','충북청풍문화재단지.PNG','충북소백산국립공원.PNG','충북청풍랜드.PNG','충북청주.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('044','세종','36.4785586','127.2866261','세종호수야경.PNG','세종국립도서관.PNG','세종금강수목원.PNG','세종비암사.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('051','부산','35.179559','129.0734528','부산도시.PNG','부산수영요트경기장.PNG','부산감천문화마을.PNG','부산해운대.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('052','울산','35.5389237','129.3091428','울산대왕암공원.PNG','울산장미축제.PNG','울산대공원.PNG','울산고래축제.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('053','대구','35.8718571','128.5977158','대구이월드.PNG','대구수성못축제.PNG','대구cw.PNG','대구우방랜드.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('054','경북','36.5760896','128.5035504','경주불국사.jpg','경북경주안압지.PNG','경북경주석굴암.PNG','경북청도프로방스.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('055','경남','35.2383528','128.6659082','경남진주수목원.PNG','경남지리산국립공원.PNG','경남통영벽화마을.PNG','경남진주유등축제.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('061','전남','34.811174','126.455422','전남순천만.PNG','전남함평나비축제.PNG','전남여수엑스포.PNG','전남곡성기차마을.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('062','광주','35.1598483','126.8496344','광주오미.PNG','광주빛축제.PNG','광주김치축제.PNG','광주상무지구야경.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('063','전북','35.8202213','127.1063508','전북전주한옥마을.PNG','전북장수승마체험장.PNG','전북순창.PNG','전북미륵사지9층석탑.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude, local_img1, local_img2, local_img3, local_img4) values('064','제주','33.4888512','126.4893249','제주도 폭포.jpg','제주성산일출봉.PNG','제주한라산.PNG','제주섭지코지.PNG');
+insert into local(local_code, local_name, local_latitude, local_longitude) values('-','-','-','-');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(1, '02', '카드기준 1200원', '기본요금 3000원', '설렁탕,명동칼국수,떡볶이', '북촌한옥마을,경복궁,신사동가로수길,남산타워', '인천국제공항,김포국제공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(2, '031', '카드기준 1250원', '기본요금 2800원', '바지락칼국수,유황오리구이,포천이동갈비,부대찌개', '제부도,헤이리마을,쁘띠프랑스,임직각관광지', '인천국제공항,김포국제공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(3, '032', '카드기준 1250원', '기본요금 2800원', '짠지떡,밴댕이회,자장면', '차이나타운,월미도,백령도,을왕리해수욕장', '인천국제공항,김포국제공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(4, '033', '카드기준 1150원', '기본요금 2800원', '한우등심구이,산천어회,닭갈비', '환선굴,국립 삼봉자연휴양림,망상해변,경포대', '양양공항,원주공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(5, '041', '카드기준 1350원', '기본요금 2800원', '새조개 샤브샤브,게국지,병천 순대국밥', '안면도,온양온천지구,대천해수욕장,천안 남산 중앙시장', '군산공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(6, '042', '카드기준 1100원', '기본요금 2800원', '도토리묵말이,튀김소보루,닭발', '대전엑스포과학공원,화폐박물관,대전월드컵경기장', '청주공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(7, '043', '카드기준 1200원', '기본요금 2800원', '청주해장국,꿩회,도리뱅뱅이', '단양팔경,충주호,산막이옛길,속리산 국립공원', '청주공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(8, '044', '카드기준 1150원', '기본요금 2800원', '통돼지갈비,민물새우탕', '베어트리파크,세종호수공원,고복자연공원,운주산성', '청주공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(9, '051', '카드기준 1200원', '기본요금 2800원', '짚불구이,꼼장어,동래파전,부산어묵,돼지국밥', '해운대,해동용궁사,요륙도,자갈치시장,감천문화마을', 김해공항);
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(10, '052', '카드기준 1100원', '기본요금 2800원', '언양 한우불고기,고래고기모둠,해물산적', '간절곶등대,자수정동굴나라,신불산국립공원', '울산공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(11, '053', '카드기준 1100원', '기본요금 2800원', '납작만두,찜갈비,대구막창', '동성로,대구앞산공원,수성못,김광석거리', '대구공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(12, '054', '카드기준 950원', '기본요금 2800원', '과메기,한우물회,찜닭,간고등어,물회', '하회마을,불국사,독도,회룡포,문경새재도립공원', '대구공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(13, '055', '카드기준 1250원', '기본요금 2800원', '소고기국밥,연잎밥,충무김밥,육회비빔밥', '외도 보타니아,욕지도,거제도,소매물도', '김해공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(14, '061', '카드기준 1200원', '기본요금 2800원', '간장게장,서대회무침,떡갈비,나주곰탕,벌교꼬막', '순천 낙안읍성,순천만,보성녹차밭,섬진강 기차마을,오동도', '여수공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(15, '062', '카드기준 1100원', '기본요금 2800원', '육전,송정떡갈비,오리탕', '광주공원,충장로,무등산 국립공원,선사유적지', '광주공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(16, '063', '카드기준 1250원', '기본요금 2800원', '전주비빔밥,콩나물국밥,메기탕,추어탕,풍천장어구이', '전주한옥마을,선유도,변산반도국립공원,대아수목원', '광주공항');
+
+insert into travel_info
+ (info_num, local_code, bus_fee, texi_fee, famous_food, attraction, airport)
+ value(17, '064', '카드기준 1150원', '기본요금 2800원', '옥돔구이,흑돼지구이,갈치회,전복뚝배기', '섭지코지,천지연폭포,한라산국립공원,쇠소깍,우도', '제주공항');
+ 
+INSERT INTO country VALUES('+1','Canada');
+INSERT INTO country VALUES('+39','Italy');
+INSERT INTO country VALUES('1','U.S.A');
+INSERT INTO country VALUES('1+242','Bahamas');
+INSERT INTO country VALUES('1+246','Barbados');
+INSERT INTO country VALUES('1+441','Bermuda Islands');
+INSERT INTO country VALUES('1+664','Monsterrat');
+INSERT INTO country VALUES('1+758','St. Lucia');
+INSERT INTO country VALUES('1+787','Puerto Rico');
+INSERT INTO country VALUES('1+808','Hawaii');
+INSERT INTO country VALUES('1+809','Anguilla');
+INSERT INTO country VALUES('1+809.','Dominica');
+INSERT INTO country VALUES('20','Eqypt');
+INSERT INTO country VALUES('212','Morocco');
+INSERT INTO country VALUES('213','Algerie');
+INSERT INTO country VALUES('216','Tunisia');
+INSERT INTO country VALUES('218','Libya');
+INSERT INTO country VALUES('220','Gambia');
+INSERT INTO country VALUES('221','Senegal');
+INSERT INTO country VALUES('222','Mauritania');
+INSERT INTO country VALUES('223','Mali Republic');
+INSERT INTO country VALUES('224','Guinea(R.P)');
+INSERT INTO country VALUES('225','Cote Divoire');
+INSERT INTO country VALUES('226','Burkina Fasso');
+INSERT INTO country VALUES('227','Niger');
+INSERT INTO country VALUES('228','Togo');
+INSERT INTO country VALUES('229','Benin');
+INSERT INTO country VALUES('230','Mauritius');
+INSERT INTO country VALUES('231','Liberia');
+INSERT INTO country VALUES('232','Sierra Leona');
+INSERT INTO country VALUES('233','Ghana')
+INSERT INTO country VALUES('234','Nigeria');
+INSERT INTO country VALUES('235','Chad');
+INSERT INTO country VALUES('236','Central African Rep.');
+INSERT INTO country VALUES('237','Cameroon');
+INSERT INTO country VALUES('238','Cape Verd');
+INSERT INTO country VALUES('239', 'Sao Tome ve Principe');
+INSERT INTO country VALUES('240','Equatorial Guinea');
+INSERT INTO country VALUES('241', 'Gabon');
+INSERT INTO country VALUES('242', 'Congo');
+INSERT INTO country VALUES('242','Zaire');
+INSERT INTO country VALUES('244','Angloa');
+INSERT INTO country VALUES('245','Guinea-Bissau');
+INSERT INTO country VALUES('246','Diego Garcia');
+INSERT INTO country VALUES('247','Ascension');
+INSERT INTO country VALUES('248','Seychelles');
+INSERT INTO country VALUES('249','Sudan');
+INSERT INTO country VALUES('250','Rwanda');
+INSERT INTO country VALUES('251','Ethiopia');
+INSERT INTO country VALUES('252','Somalia');
+INSERT INTO country VALUES('255','Kenya');
+INSERT INTO country VALUES('256','Uganda');
+INSERT INTO country VALUES('257','Burundi');
+INSERT INTO country VALUES('258','Mozambique')
+INSERT INTO country VALUES('260','Zambia');
+INSERT INTO country VALUES('261','Madagascar');
+INSERT INTO country VALUES('262','Reunion Is.')
+INSERT INTO country VALUES('263','Zimbabwe');
+INSERT INTO country VALUES('264','Namibia');
+INSERT INTO country VALUES('265','Malawi');
+INSERT INTO country VALUES('266','Lesotho');
+INSERT INTO country VALUES('267','Botswana');
+INSERT INTO country VALUES('268','Swaziland');
+INSERT INTO country VALUES('269','Comoros');
+INSERT INTO country VALUES('30','Greece');
+INSERT INTO country VALUES('31','Netherlands');
+INSERT INTO country VALUES('32','Belgium');
+INSERT INTO country VALUES('33','France');
+INSERT INTO country VALUES('34','Spain');
+INSERT INTO country VALUES('350','Gibraltar');
+INSERT INTO country VALUES('351','Portugal');
+INSERT INTO country VALUES('352','Luxembourg');
+INSERT INTO country VALUES('353','Ireland');
+INSERT INTO country VALUES('354','Iceland');
+INSERT INTO country VALUES('355','Albania');
+INSERT INTO country VALUES('357','Cyprus');
+INSERT INTO country VALUES('358','Finland');
+INSERT INTO country VALUES('359','Bulgaria');
+INSERT INTO country VALUES('36','Hungary');
+INSERT INTO country VALUES('370','Lithuania');
+INSERT INTO country VALUES('371','Latvia');
+INSERT INTO country VALUES('372','Esstonia');
+INSERT INTO country VALUES('373','Moldova');
+INSERT INTO country VALUES('374','Armenia');
+INSERT INTO country VALUES('375','Belarus');
+INSERT INTO country VALUES('376','Andrra');
+INSERT INTO country VALUES('377','Monaco');
+INSERT INTO country VALUES('381','Yugoslavia');
+INSERT INTO country VALUES('385','Croatia');
+INSERT INTO country VALUES('386','Slovenia');
+INSERT INTO country VALUES('387','Bosina Herzegovina');
+INSERT INTO country VALUES('389','Macedonia, Republic of');
+INSERT INTO country VALUES('39','San Marino');
+INSERT INTO country VALUES('39+6','Vatican City');
+INSERT INTO country VALUES('40','Rumania');
+INSERT INTO country VALUES('41','Switzerland');
+INSERT INTO country VALUES('42','Czech');
+INSERT INTO country VALUES('423','Liechtenstein');
+INSERT INTO country VALUES('43','Austria');
+INSERT INTO country VALUES('44','United Kingdom');
+INSERT INTO country VALUES('45','Denmark');
+INSERT INTO country VALUES('46','Sweden');
+INSERT INTO country VALUES('47','Norway');
+INSERT INTO country VALUES('48','Poland');
+INSERT INTO country VALUES('49','Germany');
+INSERT INTO country VALUES('500','Falkland Islands');
+INSERT INTO country VALUES('501','Belize');
+INSERT INTO country VALUES('502','Guatemala');
+INSERT INTO country VALUES('503','El Slavador');
+INSERT INTO country VALUES('504','Honduras');
+INSERT INTO country VALUES('505','Nicaragua');
+INSERT INTO country VALUES('506','Costa Rica');
+INSERT INTO country VALUES('507','Panama');
+INSERT INTO country VALUES('509','Haiti');
+INSERT INTO country VALUES('51','Peru');
+INSERT INTO country VALUES('52','Mexico');
+INSERT INTO country VALUES('53','Cuba');
+INSERT INTO country VALUES('54','Argentina');
+INSERT INTO country VALUES('55','Brazil');
+INSERT INTO country VALUES('56','Chile');
+INSERT INTO country VALUES('57','Colombia');
+INSERT INTO country VALUES('58','Venezuela');
+INSERT INTO country VALUES('590','Guadelloup Is.');
+INSERT INTO country VALUES('591','Bolivia');
+INSERT INTO country VALUES('592','Guyana');
+INSERT INTO country VALUES('593','Ecuador');
+INSERT INTO country VALUES('594','Guiana(French)');
+INSERT INTO country VALUES('595','Paraguay');
+INSERT INTO country VALUES('597','Surinam');
+INSERT INTO country VALUES('598','Uruguay');
+INSERT INTO country VALUES('599','Netherlands Antilles');
+INSERT INTO country VALUES('60','Malaysia');
+INSERT INTO country VALUES('61','Austalia');
+INSERT INTO country VALUES('61+916','Cocos Islands');
+INSERT INTO country VALUES('61+94','Christmas Island');
+INSERT INTO country VALUES('62','Indonesia');
+INSERT INTO country VALUES('63','Philippines');
+INSERT INTO country VALUES('64','New Zealand');
+INSERT INTO country VALUES('65','Singapore');
+INSERT INTO country VALUES('66','Thailand');
+INSERT INTO country VALUES('670','Saipan');
+INSERT INTO country VALUES('671','Guam');
+INSERT INTO country VALUES('672','Norfolk Is.');
+INSERT INTO country VALUES('673','Brunei');
+INSERT INTO country VALUES('674','Nauru');
+INSERT INTO country VALUES('675','Papua New Guinea');
+INSERT INTO country VALUES('676','Tonga');
+INSERT INTO country VALUES('677','Solomon Island');
+INSERT INTO country VALUES('678','Vanuatu');
+INSERT INTO country VALUES('679','Fiji');
+INSERT INTO country VALUES('680','Palau');
+INSERT INTO country VALUES('682','Cook Island');
+INSERT INTO country VALUES('683','Niue Is.');
+INSERT INTO country VALUES('684','American Samoa');
+INSERT INTO country VALUES('685','Western Samoa');
+INSERT INTO country VALUES('686','Kiribati');
+INSERT INTO country VALUES('687','New Caledonia');
+INSERT INTO country VALUES('688','Tuvalu');
+INSERT INTO country VALUES('689','Tahiti');
+INSERT INTO country VALUES('691','Micronesia');
+INSERT INTO country VALUES('692','Marshall Islands');
+INSERT INTO country VALUES('7','Russia');
+INSERT INTO country VALUES('81','Japan');
+INSERT INTO country VALUES('82','Korea, South');
+INSERT INTO country VALUES('84','Vietnam');
+INSERT INTO country VALUES('850','Korea, North');
+INSERT INTO country VALUES('852','Hong Kong');
+INSERT INTO country VALUES('853','Macao');
+INSERT INTO country VALUES('855','Cambodia');
+INSERT INTO country VALUES('856','Laos');
+INSERT INTO country VALUES('86','China(P.R.C)');
+INSERT INTO country VALUES('871','Marisat (Atlantic)');
+INSERT INTO country VALUES('872','Marisat (Pacific)');
+INSERT INTO country VALUES('873','Marisat (Indian)');
+INSERT INTO country VALUES('874','Marisat (Atlantic West)');
+INSERT INTO country VALUES('876','Jamaica');
+INSERT INTO country VALUES('880','Bangladesh');
+INSERT INTO country VALUES('886','Taiwan');
+INSERT INTO country VALUES('90','Turkey');
+INSERT INTO country VALUES('91','India');
+INSERT INTO country VALUES('92','Pakistan');
+INSERT INTO country VALUES('94','SriLanka');
+INSERT INTO country VALUES('95','Myanmar(Burma)');
+INSERT INTO country VALUES('960','Maldives');
+INSERT INTO country VALUES('961','Lebanon, Beirut');
+INSERT INTO country VALUES('962','Jordan');
+INSERT INTO country VALUES('963','Syria');
+INSERT INTO country VALUES('964','Iraq');
+INSERT INTO country VALUES('965','Kuwait');
+INSERT INTO country VALUES('966','Saudi Arabia');
+INSERT INTO country VALUES('967','Republic of Yemen(North Yemen)');
+INSERT INTO country VALUES('968','Oman');
+INSERT INTO country VALUES('969','Yemen(PDR)');
+INSERT INTO country VALUES('971','United Arb Emi-rates');
+INSERT INTO country VALUES('972','Israel');
+INSERT INTO country VALUES('973','Bahrain');
+INSERT INTO country VALUES('974','Qatar');
+INSERT INTO country VALUES('975','Bhutan');
+INSERT INTO country VALUES('976','Mongolia');
+INSERT INTO country VALUES('977','Nepal');
+INSERT INTO country VALUES('98','Iran');
+INSERT INTO country VALUES('994','Azerbaijan'); 
+===============================================================================================

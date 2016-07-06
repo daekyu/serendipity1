@@ -29,11 +29,13 @@ public class ReportService {
 		return dao.reportList();
 	}
 	
+	//신고글 작성
 	public void reportWrite(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
 		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
 		dao.reportWrite(reportdto);
 	}
 	
+	//사용자테이블에서 신고횟수 증가
 	public void updateReportCount(ReportDTO reportdto) throws ClassNotFoundException, SQLException {
 		ReportDAO dao = sqlsession.getMapper(ReportDAO.class);
 		dao.updateReportCount(reportdto);

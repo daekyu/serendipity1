@@ -269,6 +269,7 @@ public class TravelReviewController {
 		}
 	}
 	
+	//여행후기 수정폼
 	@RequestMapping("review_updateform.htm")
 	public ModelAndView updateReviewForm(ReviewDTO dto, HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException{
 		if(session.getAttribute("id") == null) {
@@ -282,6 +283,7 @@ public class TravelReviewController {
 		}
 	}
 	
+	//여행후기 수정
 	@RequestMapping("review_update.htm")
 	public String updateReview(ReviewDTO reviewdto, MultipartHttpServletRequest mrequest, HttpServletRequest request, HttpSession session) throws ClassNotFoundException, SQLException, IllegalStateException, IOException {
 		if(session.getAttribute("id") == null) {

@@ -1,883 +1,618 @@
-/* member */
-CREATE TABLE member (
-	user_num NUMBER NOT NULL, /* 사용자번호 */
-	country_code VARCHAR2(10) NOT NULL, /* 국가코드 */
-	local_code VARCHAR2(10), /* 지역코드 */
-	name VARCHAR2(50) NOT NULL, /* 이름 */
-	id VARCHAR2(24) NOT NULL, /* ID */
-	pw VARCHAR2(24) NOT NULL, /* PW */
-	gender VARCHAR2(2) NOT NULL, /* 성별 */
-	age NUMBER NOT NULL, /* 나이 */
-	hp VARCHAR2(30) NOT NULL, /* HP */
-	email VARCHAR2(50), /* 이메일 */
-	profile_picture VARCHAR2(255), /* 프로필사진 */
-	profile_description VARCHAR2(255) /* 프로필 소개 */
+/* 게시판 */
+CREATE TABLE BOARD (
+	BOARD_NUM NUMBER NOT NULL, /* 게시판번호 */
+	USER_NUM NUMBER NOT NULL, /* 사용자번호 */
+	BOARD_TITLE VARCHAR2(255) NOT NULL, /* 게시판제목 */
+	BOARD_CONTENT VARCHAR2(4000), /* 게시판내용 */
+	BOARD_PICTURE1 VARCHAR2(255) NOT NULL, /* 게시판사진1 */
+	BOARD_PICTURE2 VARCHAR2(255), /* 게시판사진2 */
+	BOARD_PICTURE3 VARCHAR2(255), /* 게시판사진3 */
+	BOARD_PICTURE4 VARCHAR2(255), /* 게시판사진4 */
+	BOARD_PICTURE5 VARCHAR2(255), /* 게시판사진5 */
+	BOARD_CAPACITY NUMBER NOT NULL, /* 게시판수용인원 */
+	BOARD_DATE VARCHAR2(50) NOT NULL, /* 게시판날짜 */
+	BOARD_LATITUDE VARCHAR2(100) NOT NULL, /* 위도 */
+	BOARD_LONGITUDE VARCHAR2(100) NOT NULL, /* 경도 */
+	LOCAL_CODE VARCHAR2(10) NOT NULL, /* 지역코드 */
+	CATEGORY_NUM NUMBER NOT NULL, /* 카테고리번호 */
+	PRICE VARCHAR2(255), /* 가격 */
+	MEETING_ADDRESS VARCHAR2(100) /* 만나는장소주소 */
 );
 
-CREATE UNIQUE INDEX PK_member
-	ON member (
-		user_num ASC
+CREATE UNIQUE INDEX PK_BOARD
+	ON BOARD (
+		BOARD_NUM ASC
 	);
 
-ALTER TABLE member
+ALTER TABLE BOARD
 	ADD
-		CONSTRAINT PK_member
+		CONSTRAINT PK_BOARD
 		PRIMARY KEY (
-			user_num
+			BOARD_NUM
 		);
 
-/* 여행 게시판 */
-CREATE TABLE board (
-	board_num NUMBER NOT NULL, /* 글번호 */
-	user_num NUMBER NOT NULL, /* 사용자번호(글쓴이) */
-	board_title VARCHAR2(50) NOT NULL, /* 제목 */
-	board_content VARCHAR2(4000), /* 여행 소개글 */
-	board_picture1 VARCHAR2(255) NOT NULL, /* 사진1 */
-	board_picture2 VARCHAR2(255), /* 사진2 */
-	board_picture3 VARCHAR2(255), /* 사진3 */
-	board_picture4 VARCHAR2(255), /* 사진4 */
-	board_picture5 VARCHAR2(255), /* 사진5 */
-	board_capacity NUMBER NOT NULL, /* 인원 */
-	board_date DATE NOT NULL, /* 여행날짜 */
-	board_latitude VARCHAR2(20) NOT NULL, /* 위도 */
-	board_longitude VARCHAR2(20) NOT NULL, /* 경도 */
-	local_code VARCHAR2(10) NOT NULL, /* 지역코드 */
-	category_num NUMBER NOT NULL /* 카테고리번호 */
+/* 카테고리 */
+CREATE TABLE CATEGORY (
+	CATEGORY_NUM NUMBER NOT NULL, /* 카테고리번호 */
+	CATEGORY_NAME VARCHAR2(50) NOT NULL /* 카테고리명 */
 );
 
-CREATE UNIQUE INDEX PK_board
-	ON board (
-		board_num ASC
+CREATE UNIQUE INDEX PK_CATEGORY
+	ON CATEGORY (
+		CATEGORY_NUM ASC
 	);
 
-ALTER TABLE board
+ALTER TABLE CATEGORY
 	ADD
-		CONSTRAINT PK_board
+		CONSTRAINT PK_CATEGORY
 		PRIMARY KEY (
-			board_num
+			CATEGORY_NUM
 		);
 
-/* 여행자 게시판 */
-CREATE TABLE TABLE3 (
-	COL <지정 되지 않음>, /* 제목 */
-	COL2 <지정 되지 않음>, /* 여행 내용 */
-	COL3 <지정 되지 않음>, /* 지불 비용 */
-	COL4 <지정 되지 않음>, /* 만나는 장소 */
-	COL5 <지정 되지 않음> /* 새 컬럼 */
+/* 국가 */
+CREATE TABLE COUNTRY (
+	COUNTRY_CODE VARCHAR2(10) NOT NULL, /* 국가코드 */
+	COUNTRY_NAME VARCHAR2(30) NOT NULL /* 국가이름 */
 );
+
+CREATE UNIQUE INDEX PK_COUNTRY
+	ON COUNTRY (
+		COUNTRY_CODE ASC
+	);
+
+ALTER TABLE COUNTRY
+	ADD
+		CONSTRAINT PK_COUNTRY
+		PRIMARY KEY (
+			COUNTRY_CODE
+		);
+
+
+/* 취미 */
+CREATE TABLE HOBBY (
+	HOBBY_CODE VARCHAR2(10) NOT NULL, /* 취미코드 */
+	HOBBY_NAME VARCHAR2(50) NOT NULL /* 취미이름 */
+);
+
+CREATE UNIQUE INDEX PK_HOBBY
+	ON HOBBY (
+		HOBBY_CODE ASC
+	);
+
+ALTER TABLE HOBBY
+	ADD
+		CONSTRAINT PK_HOBBY
+		PRIMARY KEY (
+			HOBBY_CODE
+		);
+
+/* 취미선택 */
+CREATE TABLE HOBBY_SELECT (
+	USER_NUM NUMBER NOT NULL, /* 사용자번호 */
+	HOBBY_CODE VARCHAR2(10) /* 취미코드 */
+);
+
+/* 언어 */
+CREATE TABLE LANGUAGE (
+	LANGUAGE_CODE VARCHAR2(10) NOT NULL, /* 언어코드 */
+	LANGUAGE_NAME VARCHAR2(50) NOT NULL /* 언어이름 */
+);
+
+CREATE UNIQUE INDEX PK_LANGUAGE
+	ON LANGUAGE (
+		LANGUAGE_CODE ASC
+	);
+
+ALTER TABLE LANGUAGE
+	ADD
+		CONSTRAINT PK_LANGUAGE
+		PRIMARY KEY (
+			LANGUAGE_CODE
+		);
+
+/* 언어선택 */
+CREATE TABLE LANG_SELECT (
+	USER_NUM NUMBER NOT NULL, /* 사용자번호 */
+	LANGUAGE_CODE VARCHAR2(10) NOT NULL /* 언어코드 */
+);
+
+/* 지역 */
+CREATE TABLE LOCAL (
+	LOCAL_CODE VARCHAR2(10) NOT NULL, /* 지역코드 */
+	LOCAL_NAME VARCHAR2(20) NOT NULL, /* 지역이름 */
+	LOCAL_LATITUDE VARCHAR2(50), /* 위도 */
+	LOCAL_LONGITUDE VARCHAR2(50), /* 경도 */
+	LOCAL_IMG1 VARCHAR2(255), /* 지역이미지1 */
+	LOCAL_IMG2 VARCHAR2(255), /* 지역이미지2 */
+	LOCAL_IMG3 VARCHAR2(255), /* 지역이미지3 */
+	LOCAL_IMG4 VARCHAR2(255) /* 지역이미지4 */
+);
+
+CREATE UNIQUE INDEX PK_LOCAL
+	ON LOCAL (
+		LOCAL_CODE ASC
+	);
+
+ALTER TABLE LOCAL
+	ADD
+		CONSTRAINT PK_LOCAL
+		PRIMARY KEY (
+			LOCAL_CODE
+		);
+
+/* 사용자 */
+CREATE TABLE MEMBER (
+	USER_NUM NUMBER NOT NULL, /* 사용자번호 */
+	COUNTRY_CODE VARCHAR2(10) NOT NULL, /* 국가코드 */
+	LOCAL_CODE VARCHAR2(10), /* 지역코드 */
+	NAME VARCHAR2(50) NOT NULL, /* 이름 */
+	ID VARCHAR2(24) NOT NULL, /* 아이디 */
+	PW VARCHAR2(24) NOT NULL, /* 비밀번호 */
+	GENDER VARCHAR2(5) NOT NULL, /* 성별 */
+	AGE NUMBER NOT NULL, /* 나이 */
+	HP VARCHAR2(30) NOT NULL, /* 핸드폰번호 */
+	EMAIL VARCHAR2(50), /* 이메일 */
+	PROFILE_PICTURE VARCHAR2(255), /* 프로필사진 */
+	PROFILE_DESCRIPTION VARCHAR2(255), /* 프로필소개글 */
+	REPORT_COUNT NUMBER, /* 신고횟수 */
+	JOIN_DATE DATE /* 가입날짜 */
+);
+
+CREATE UNIQUE INDEX PK_MEMBER
+	ON MEMBER (
+		USER_NUM ASC
+	);
+
+ALTER TABLE MEMBER
+	ADD
+		CONSTRAINT PK_MEMBER
+		PRIMARY KEY (
+			USER_NUM
+		);
+
+/* 보낸메시지 */
+CREATE TABLE MESSAGE (
+	MESSAGE_NUM NUMBER NOT NULL, /* 메시지번호 */
+	SENDER NUMBER NOT NULL, /* 보내는사람 */
+	RECEIVER NUMBER NOT NULL, /* 받는사람 */
+	MESSAGE_CONTENT VARCHAR2(4000) NOT NULL, /* 메시지내용 */
+	MESSAGE_TITLE VARCHAR2(100) NOT NULL, /* 메시지제목 */
+	MESSAGE_DATE DATE NOT NULL /* 메시지날짜 */
+);
+
+CREATE UNIQUE INDEX PK_MESSAGE
+	ON MESSAGE (
+		MESSAGE_NUM ASC
+	);
+
+ALTER TABLE MESSAGE
+	ADD
+		CONSTRAINT PK_MESSAGE
+		PRIMARY KEY (
+			MESSAGE_NUM
+		);
 
 /* 참가자 */
-CREATE TABLE participant (
-	parti_num NUMBER NOT NULL, /* 참가번호 */
-	board_num NUMBER NOT NULL, /* 글번호 */
-	user_num NUMBER NOT NULL, /* 사용자번호 */
-	state VARCHAR2(10) NOT NULL /* 상태 */
+CREATE TABLE PARTICIPANT (
+	PARTI_NUM NUMBER NOT NULL, /* 참가번호 */
+	BOARD_NUM NUMBER NOT NULL, /* 게시판번호 */
+	USER_NUM NUMBER NOT NULL, /* 사용자번호 */
+	STATE VARCHAR2(10) NOT NULL, /* 상태 */
+	PARTI_DATE VARCHAR2(30), /* 참가날짜 */
+	PARTI_CAPACITY NUMBER(30) /* 참가수용인원 */
 );
 
-CREATE UNIQUE INDEX PK_participant
-	ON participant (
-		parti_num ASC
+CREATE UNIQUE INDEX PK_PARTICIPANT
+	ON PARTICIPANT (
+		PARTI_NUM ASC
 	);
 
-ALTER TABLE participant
+ALTER TABLE PARTICIPANT
 	ADD
-		CONSTRAINT PK_participant
+		CONSTRAINT PK_PARTICIPANT
 		PRIMARY KEY (
-			parti_num
+			PARTI_NUM
+		);
+
+/* 받은메시지 */
+CREATE TABLE RCV_MESSAGE (
+	MESSAGE_NUM NUMBER NOT NULL, /* 메시지번호 */
+	SENDER NUMBER NOT NULL, /* 보내는사람 */
+	RECEIVER NUMBER NOT NULL, /* 받는사람 */
+	MESSAGE_CONTENT VARCHAR2(4000) NOT NULL, /* 메시지내용 */
+	MESSAGE_TITLE VARCHAR2(100) NOT NULL, /* 메시지제목 */
+	MESSAGE_DATE DATE NOT NULL, /* 메시지날짜 */
+	MSG_ALARM NUMBER /* 메시지알림 */
+);
+
+ALTER TABLE RCV_MESSAGE
+	ADD
+		CONSTRAINT SYS_C008250
+		PRIMARY KEY (
+			MESSAGE_NUM
+		);
+
+/* 댓글 */
+CREATE TABLE REPLY (
+	REPLY_NUM NUMBER NOT NULL, /* 댓글번호 */
+	USER_NUM NUMBER NOT NULL, /* 사용자번호 */
+	REVIEW_NUM NUMBER NOT NULL, /* 여행후기번호 */
+	REPLY_CONTENT VARCHAR2(4000) NOT NULL, /* 댓글내용 */
+	REPLY_DATE DATE NOT NULL, /* 댓글날짜 */
+	REPLY_ALARM NUMBER /* 댓글알림 */
+);
+
+CREATE UNIQUE INDEX PK_REPLY
+	ON REPLY (
+		REPLY_NUM ASC
+	);
+
+ALTER TABLE REPLY
+	ADD
+		CONSTRAINT PK_REPLY
+		PRIMARY KEY (
+			REPLY_NUM
 		);
 
 /* 신고 */
-CREATE TABLE report (
-	repoter NUMBER NOT NULL, /* 사용자번호(신고자) */
-	villain NUMBER NOT NULL, /* 사용자번호(가해자) */
-	report_title VARCHAR2(255) NOT NULL, /*  신고제목 */
-	report_content VARCHAR2(4000) NOT NULL /* 신고내용 */
+CREATE TABLE REPORT (
+	REPORTER NUMBER NOT NULL, /* 신고자 */
+	VILLAIN NUMBER NOT NULL, /* 가해자 */
+	REPORT_TITLE VARCHAR2(255) NOT NULL, /* 신고제목 */
+	REPORT_CONTENT VARCHAR2(4000) NOT NULL, /* 신고내용 */
+	REPORT_NUM NUMBER NOT NULL, /* 신고번호 */
+	REPORT_DATE DATE /* 신고날짜 */
 );
 
-/* 여행 후기 */
-CREATE TABLE review (
-	review_num NUMBER NOT NULL, /* 글번호 */
-	user_num NUMBER NOT NULL, /* 사용자번호(글쓴이) */
-	review_title VARCHAR2(255), /* 제목 */
-	review_content VARCHAR2(4000), /* 전체후기 */
-	review_content1 VARCHAR2(4000) NOT NULL, /* 후기1 */
-	review_content2 VARCHAR2(4000), /* 후기2 */
-	review_content3 VARCHAR2(4000), /* 후기3 */
-	review_content4 VARCHAR2(4000), /* 후기4 */
-	review_content5 VARCHAR2(4000), /* 후기5 */
-	review_picture1 VARCHAR2(255) NOT NULL, /* 사진1 */
-	review_picture2 VARCHAR2(255), /* 사진2 */
-	review_picture3 VARCHAR2(255), /* 사진3 */
-	review_picture4 VARCHAR2(255), /* 사진4 */
-	review_picture5 VARCHAR2(255), /* 사진5 */
-	like_count NUMBER, /* 좋아요 */
-	review_date DATE NOT NULL, /* 작성일시 */
-	local_code VARCHAR2(10) /* 지역코드 */
-);
-
-CREATE UNIQUE INDEX PK_review
-	ON review (
-		review_num ASC
-	);
-
-ALTER TABLE review
+ALTER TABLE REPORT
 	ADD
-		CONSTRAINT PK_review
+		CONSTRAINT SYS_C008262
 		PRIMARY KEY (
-			review_num
+			REPORT_NUM
 		);
 
-/* 쪽지 */
-CREATE TABLE message (
-	message_num NUMBER NOT NULL, /* 쪽지번호 */
-	sender NUMBER NOT NULL, /* 사용자번호(보낸이) */
-	receiver NUMBER NOT NULL, /* 사용자번호(받는이) */
-	message_content LONG NOT NULL, /* 내용 */
-	message_check VARCHAR2(10) /* 읽은 여부 */
+/* 여행후기 */
+CREATE TABLE REVIEW (
+	REVIEW_NUM NUMBER NOT NULL, /* 여행후기번호 */
+	USER_NUM NUMBER NOT NULL, /* 사용자번호 */
+	REVIEW_TITLE VARCHAR2(255), /* 여행후기제목 */
+	REVIEW_CONTENT VARCHAR2(4000), /* 여행후기전체내용 */
+	REVIEW_CONTENT1 VARCHAR2(4000) NOT NULL, /* 여행후기사진내용1 */
+	REVIEW_CONTENT2 VARCHAR2(4000), /* 여행후기사진내용2 */
+	REVIEW_CONTENT3 VARCHAR2(4000), /* 여행후기사진내용3 */
+	REVIEW_CONTENT4 VARCHAR2(4000), /* 여행후기사진내용4 */
+	REVIEW_CONTENT5 VARCHAR2(4000), /* 여행후기사진내용5 */
+	REVIEW_PICTURE1 VARCHAR2(255) NOT NULL, /* 여행후기사진1 */
+	REVIEW_PICTURE2 VARCHAR2(255), /* 여행후기사진2 */
+	REVIEW_PICTURE3 VARCHAR2(255), /* 여행후기사진3 */
+	REVIEW_PICTURE4 VARCHAR2(255), /* 여행후기사진4 */
+	REVIEW_PICTURE5 VARCHAR2(255), /* 여행후기사진5 */
+	LIKE_COUNT NUMBER, /* 좋아요수 */
+	REVIEW_DATE DATE NOT NULL, /* 여행후기날짜 */
+	LOCAL_CODE VARCHAR2(10), /* 지역코드 */
+	REPLY_COUNT NUMBER /* 댓글수 */
 );
 
-CREATE UNIQUE INDEX PK_message
-	ON message (
-		message_num ASC
+CREATE UNIQUE INDEX PK_REVIEW
+	ON REVIEW (
+		REVIEW_NUM ASC
 	);
 
-ALTER TABLE message
+ALTER TABLE REVIEW
 	ADD
-		CONSTRAINT PK_message
+		CONSTRAINT PK_REVIEW
 		PRIMARY KEY (
-			message_num
+			REVIEW_NUM
 		);
-
-/* 여행 정보 */
-CREATE TABLE travel_info (
-	info_num NUMBER NOT NULL, /* 여행정보번호 */
-	local_code VARCHAR2(10) NOT NULL, /* 지역코드 */
-	bus_fee VARCHAR2(255) NOT NULL, /* 버스요금 */
-	taxi_fee VARCHAR2(255) NOT NULL, /* 택시요금 */
-	famous_food VARCHAR2(255) NOT NULL, /* 유명한먹거리 */
-	attraction VARCHAR2(255) NOT NULL, /* 유명장소 */
-	airport VARCHAR2(255) NOT NULL, /* 가까운공항 */
-	info_latitude VARCHAR2(20) NOT NULL, /* 위도 */
-	info_longitude VARCHAR2(255) NOT NULL /* 경도 */
-);
-
-CREATE UNIQUE INDEX PK_travel_info
-	ON travel_info (
-		info_num ASC
-	);
-
-ALTER TABLE travel_info
-	ADD
-		CONSTRAINT PK_travel_info
-		PRIMARY KEY (
-			info_num
-		);
-
-/* 여행내역 */
-CREATE TABLE TABLE9 (
-	user_num2 NUMBER, /* 사용자번호 */
-	review_num NUMBER /* 글번호 */
-);
-
-/* 대기자 */
-CREATE TABLE TABLE10 (
-	board_num NUMBER, /* 글번호 */
-	user_num NUMBER /* 사용자번호 */
-);
-
-/* 후기 댓글 */
-CREATE TABLE reply (
-	reply_num NUMBER NOT NULL, /* 댓글번호 */
-	user_num NUMBER NOT NULL, /* 사용자번호(댓글단사람) */
-	review_num NUMBER NOT NULL, /* 글번호 */
-	reply_content VARCHAR2(4000) NOT NULL, /* 내용 */
-	reply_date DATE NOT NULL /* 작성일시 */
-);
-
-CREATE UNIQUE INDEX PK_reply
-	ON reply (
-		reply_num ASC
-	);
-
-ALTER TABLE reply
-	ADD
-		CONSTRAINT PK_reply
-		PRIMARY KEY (
-			reply_num
-		);
-
-/* 가이드 평가 */
-CREATE TABLE evaluation (
-	eval_num NUMBER NOT NULL, /* 평점번호 */
-	eval_user NUMBER NOT NULL, /* 사용자번호(점수 준 사람) */
-	guide NUMBER NOT NULL, /* 사용자번호(가이드 한 사람) */
-	eval_point NUMBER NOT NULL, /* 점수 */
-	eval_date DATE NOT NULL /* 평가일시 */
-);
-
-CREATE UNIQUE INDEX PK_evaluation
-	ON evaluation (
-		eval_num ASC
-	);
-
-ALTER TABLE evaluation
-	ADD
-		CONSTRAINT PK_evaluation
-		PRIMARY KEY (
-			eval_num
-		);
-
-/* 새 테이블 */
-CREATE TABLE TABLE13 (
-);
-
-/* 국가 */
-CREATE TABLE TABLE14 (
-);
-
-/* 국가 */
-CREATE TABLE country (
-	country_code VARCHAR2(10) NOT NULL, /* 국가코드 */
-	country_name VARCHAR2(20) NOT NULL /* 국가명 */
-);
-
-CREATE UNIQUE INDEX PK_country
-	ON country (
-		country_code ASC
-	);
-
-ALTER TABLE country
-	ADD
-		CONSTRAINT PK_country
-		PRIMARY KEY (
-			country_code
-		);
-
-/* 지역 */
-CREATE TABLE local (
-	local_code VARCHAR2(10) NOT NULL, /* 지역코드 */
-	local_name VARCHAR2(20) NOT NULL /* 지역명 */
-);
-
-CREATE UNIQUE INDEX PK_local
-	ON local (
-		local_code ASC
-	);
-
-ALTER TABLE local
-	ADD
-		CONSTRAINT PK_local
-		PRIMARY KEY (
-			local_code
-		);
-
-/* 언어 종류 */
-CREATE TABLE language (
-	language_code VARCHAR2(10) NOT NULL, /* 언어 코드 */
-	language_name VARCHAR2(50) NOT NULL /* 언어 이름 */
-);
-
-CREATE UNIQUE INDEX PK_language
-	ON language (
-		language_code ASC
-	);
-
-ALTER TABLE language
-	ADD
-		CONSTRAINT PK_language
-		PRIMARY KEY (
-			language_code
-		);
-
-/* 고른 언어 */
-CREATE TABLE lang_select (
-	user_num NUMBER NOT NULL, /* 사용자번호 */
-	language_code VARCHAR2(10) NOT NULL /* 언어 코드 */
-);
-
-/* 고른 테마 */
-CREATE TABLE theme_select (
-	user_num NUMBER NOT NULL, /* 사용자번호 */
-	theme_code VARCHAR2(20) NOT NULL /* 테마 코드 */
-);
-
-/* 테마 종류 */
-CREATE TABLE theme (
-	theme_code VARCHAR2(20) NOT NULL, /* 테마 코드 */
-	theme_name VARCHAR2(20) NOT NULL /* 테마 이름 */
-);
-
-CREATE UNIQUE INDEX PK_theme
-	ON theme (
-		theme_code ASC
-	);
-
-ALTER TABLE theme
-	ADD
-		CONSTRAINT PK_theme
-		PRIMARY KEY (
-			theme_code
-		);
-
-/* 고른 관심사 */
-CREATE TABLE hobby_select (
-	user_num NUMBER NOT NULL, /* 사용자번호 */
-	hobby_code VARCHAR2(10) /* 관심사 코드 */
-);
-
-/* 관심사 목록 */
-CREATE TABLE hobby (
-	hobby_code VARCHAR2(10) NOT NULL, /* 관심사 코드 */
-	hobby_name VARCHAR2(20) NOT NULL /* 관심사 이름 */
-);
-
-CREATE UNIQUE INDEX PK_hobby
-	ON hobby (
-		hobby_code ASC
-	);
-
-ALTER TABLE hobby
-	ADD
-		CONSTRAINT PK_hobby
-		PRIMARY KEY (
-			hobby_code
-		);
-
-/* 여행경로 */
-CREATE TABLE route (
-	board_num NUMBER NOT NULL, /* 글번호 */
-	route_latitude VARCHAR2(255) NOT NULL, /* 위도 */
-	route_longitude VARCHAR2(255) NOT NULL /* 경도 */
-);
 
 /* 좋아요 */
-CREATE TABLE review_like (
-	like_num NUMBER NOT NULL, /* 좋아요번호 */
-	review_num NUMBER NOT NULL, /* 글번호 */
-	user_num NUMBER NOT NULL /* 사용자번호 */
+CREATE TABLE REVIEW_LIKE (
+	LIKE_NUM NUMBER NOT NULL, /* 좋아요번호 */
+	REVIEW_NUM NUMBER NOT NULL, /* 여행후기번호 */
+	USER_NUM NUMBER NOT NULL, /* 사용자번호 */
+	LIKE_ALARM NUMBER /* 좋아요알림 */
 );
 
-CREATE UNIQUE INDEX PK_review_like
-	ON review_like (
-		like_num ASC
+CREATE UNIQUE INDEX PK_REVIEW_LIKE
+	ON REVIEW_LIKE (
+		LIKE_NUM ASC
 	);
 
-ALTER TABLE review_like
+ALTER TABLE REVIEW_LIKE
 	ADD
-		CONSTRAINT PK_review_like
+		CONSTRAINT PK_REVIEW_LIKE
 		PRIMARY KEY (
-			like_num
+			LIKE_NUM
 		);
 
-/* 알림 */
-CREATE TABLE alarm (
-	notice_code NUMBER NOT NULL, /* 알림종류 */
-	user_num NUMBER NOT NULL, /* 사용자번호 */
-	notice_primary NUMBER NOT NULL /* 기본키값 */
+/* 여행정보 */
+CREATE TABLE TRAVEL_INFO (
+	INFO_NUM NUMBER NOT NULL, /* 여행정보번호 */
+	LOCAL_CODE VARCHAR2(10) NOT NULL, /* 지역번호 */
+	BUS_FEE VARCHAR2(255) NOT NULL, /* 버스비 */
+	TAXI_FEE VARCHAR2(255) NOT NULL, /* 택시비 */
+	FAMOUS_FOOD VARCHAR2(255) NOT NULL, /* 유명한음식 */
+	ATTRACTION VARCHAR2(255) NOT NULL, /* 관광지 */
+	AIRPORT VARCHAR2(255) NOT NULL /* 가까운공항 */
 );
 
-/* 알림종류 */
-CREATE TABLE alarm_kind (
-	notice_code NUMBER NOT NULL, /* 알림종류 */
-	notice_name VARCHAR2(50) NOT NULL /* 알림이름 */
-);
-
-CREATE UNIQUE INDEX PK_alarm_kind
-	ON alarm_kind (
-		notice_code ASC
+CREATE UNIQUE INDEX PK_TRAVEL_INFO
+	ON TRAVEL_INFO (
+		INFO_NUM ASC
 	);
 
-ALTER TABLE alarm_kind
+ALTER TABLE TRAVEL_INFO
 	ADD
-		CONSTRAINT PK_alarm_kind
+		CONSTRAINT PK_TRAVEL_INFO
 		PRIMARY KEY (
-			notice_code
+			INFO_NUM
 		);
 
-/* 여행게시판-여행자 */
-CREATE TABLE travler_board (
-	board_num NUMBER NOT NULL, /* 글번호 */
-	user_num NUMBER NOT NULL, /* 사용자번호 */
-	board_title VARCHAR2(50) NOT NULL, /* 제목 */
-	board_content LONG, /* 여행소개글 */
-	board_picture1 VARCHAR2(255) NOT NULL, /* 사진1 */
-	board_picture2 VARCHAR2(255), /* 사진2 */
-	board_picture3 VARCHAR2(255), /* 사진3 */
-	board_picture4 VARCHAR2(255), /* 사진4 */
-	board_picture5 VARCHAR2(255), /* 사진5 */
-	participate_num NUMBER NOT NULL, /* 참가인원 */
-	board_date DATE NOT NULL, /* 여행날짜 */
-	board_latitude VARCHAR2(20) NOT NULL, /* 위도 */
-	board_longititude VARCHAR2(20) NOT NULL, /* 경도 */
-	local_code VARCHAR2(10) NOT NULL /* 지역코드 */
+/* 방문자 */
+CREATE TABLE VISIT (
+	VISIT_DATE DATE /* 방문날짜 */
 );
 
-CREATE UNIQUE INDEX PK_travler_board
-	ON travler_board (
-		board_num ASC
-	);
-
-ALTER TABLE travler_board
+ALTER TABLE BOARD
 	ADD
-		CONSTRAINT PK_travler_board
-		PRIMARY KEY (
-			board_num
-		);
-
-/* 참가가이드 */
-CREATE TABLE guide (
-	req_num NUMBER NOT NULL, /* 보낸요청번호 */
-	board_num NUMBER NOT NULL, /* 글번호 */
-	user_num NUMBER NOT NULL, /* 사용자번호 */
-	state VARCHAR2(10) NOT NULL /* 상태 */
-);
-
-CREATE UNIQUE INDEX PK_guide
-	ON guide (
-		req_num ASC
-	);
-
-ALTER TABLE guide
-	ADD
-		CONSTRAINT PK_guide
-		PRIMARY KEY (
-			req_num
-		);
-
-/* 게시판 카테고리 */
-CREATE TABLE category (
-	category_num NUMBER NOT NULL, /* 카테고리번호 */
-	category_name VARCHAR2(50) NOT NULL /* 카테고리이름 */
-);
-
-CREATE UNIQUE INDEX PK_category
-	ON category (
-		category_num ASC
-	);
-
-ALTER TABLE category
-	ADD
-		CONSTRAINT PK_category
-		PRIMARY KEY (
-			category_num
-		);
-
-ALTER TABLE member
-	ADD
-		CONSTRAINT FK_country_TO_member
+		CONSTRAINT FK_MEMBER_TO_BOARD
 		FOREIGN KEY (
-			country_code
+			USER_NUM
 		)
-		REFERENCES country (
-			country_code
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE member
+ALTER TABLE BOARD
 	ADD
-		CONSTRAINT FK_local_TO_member
+		CONSTRAINT FK_LOCAL_TO_BOARD
 		FOREIGN KEY (
-			local_code
+			LOCAL_CODE
 		)
-		REFERENCES local (
-			local_code
+		REFERENCES LOCAL (
+			LOCAL_CODE
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE board
+ALTER TABLE BOARD
 	ADD
-		CONSTRAINT FK_member_TO_board
+		CONSTRAINT FK_CATEGORY_TO_BOARD
 		FOREIGN KEY (
-			user_num
+			CATEGORY_NUM
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES CATEGORY (
+			CATEGORY_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE board
+ALTER TABLE HOBBY_SELECT
 	ADD
-		CONSTRAINT FK_local_TO_board
+		CONSTRAINT FK_MEMBER_TO_HOBBY_SELECT
 		FOREIGN KEY (
-			local_code
+			USER_NUM
 		)
-		REFERENCES local (
-			local_code
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE board
+ALTER TABLE HOBBY_SELECT
 	ADD
-		CONSTRAINT FK_category_TO_board
+		CONSTRAINT FK_HOBBY_TO_HOBBY_SELECT
 		FOREIGN KEY (
-			category_num
+			HOBBY_CODE
 		)
-		REFERENCES category (
-			category_num
+		REFERENCES HOBBY (
+			HOBBY_CODE
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE participant
+ALTER TABLE LANG_SELECT
 	ADD
-		CONSTRAINT FK_board_TO_participant
+		CONSTRAINT FK_LANGUAGE_TO_LANG_SELECT
 		FOREIGN KEY (
-			board_num
+			LANGUAGE_CODE
 		)
-		REFERENCES board (
-			board_num
+		REFERENCES LANGUAGE (
+			LANGUAGE_CODE
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE participant
+ALTER TABLE LANG_SELECT
 	ADD
-		CONSTRAINT FK_member_TO_participant
+		CONSTRAINT FK_MEMBER_TO_LANG_SELECT
 		FOREIGN KEY (
-			user_num
+			USER_NUM
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE report
+ALTER TABLE MEMBER
 	ADD
-		CONSTRAINT FK_member_TO_report2
+		CONSTRAINT FK_COUNTRY_TO_MEMBER
 		FOREIGN KEY (
-			repoter
+			COUNTRY_CODE
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES COUNTRY (
+			COUNTRY_CODE
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE report
+ALTER TABLE MEMBER
 	ADD
-		CONSTRAINT FK_member_TO_report
+		CONSTRAINT FK_LOCAL_TO_MEMBER
 		FOREIGN KEY (
-			villain
+			LOCAL_CODE
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES LOCAL (
+			LOCAL_CODE
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE review
+ALTER TABLE MESSAGE
 	ADD
-		CONSTRAINT FK_member_TO_review
+		CONSTRAINT FK_MEMBER_TO_MESSAGE2
 		FOREIGN KEY (
-			user_num
+			SENDER
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE review
+ALTER TABLE MESSAGE
 	ADD
-		CONSTRAINT FK_local_TO_review
+		CONSTRAINT FK_MEMBER_TO_MESSAGE
 		FOREIGN KEY (
-			local_code
+			RECEIVER
 		)
-		REFERENCES local (
-			local_code
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE message
+ALTER TABLE PARTICIPANT
 	ADD
-		CONSTRAINT FK_member_TO_message2
+		CONSTRAINT FK_BOARD_TO_PARTICIPANT
 		FOREIGN KEY (
-			sender
+			BOARD_NUM
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES BOARD (
+			BOARD_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE message
+ALTER TABLE PARTICIPANT
 	ADD
-		CONSTRAINT FK_member_TO_message
+		CONSTRAINT FK_MEMBER_TO_PARTICIPANT
 		FOREIGN KEY (
-			receiver
+			USER_NUM
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE travel_info
+ALTER TABLE RCV_MESSAGE
 	ADD
-		CONSTRAINT FK_local_TO_travel_info
+		CONSTRAINT RCV_MESSAGE_FK
 		FOREIGN KEY (
-			local_code
+			SENDER
 		)
-		REFERENCES local (
-			local_code
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE TABLE9
+ALTER TABLE RCV_MESSAGE
 	ADD
-		CONSTRAINT FK_member_TO_TABLE9
+		CONSTRAINT RCV_MESSAGE_RECEIVER_FK
 		FOREIGN KEY (
-			user_num2
+			RECEIVER
 		)
-		REFERENCES member (
-			user_num
-		);
-
-ALTER TABLE TABLE9
-	ADD
-		CONSTRAINT FK_review_TO_TABLE9
-		FOREIGN KEY (
-			review_num
-		)
-		REFERENCES review (
-			review_num
-		);
-
-ALTER TABLE TABLE10
-	ADD
-		CONSTRAINT FK_board_TO_TABLE10
-		FOREIGN KEY (
-			board_num
-		)
-		REFERENCES board (
-			board_num
-		);
-
-ALTER TABLE TABLE10
-	ADD
-		CONSTRAINT FK_member_TO_TABLE10
-		FOREIGN KEY (
-			user_num
-		)
-		REFERENCES member (
-			user_num
-		);
-
-ALTER TABLE reply
-	ADD
-		CONSTRAINT FK_review_TO_reply
-		FOREIGN KEY (
-			review_num
-		)
-		REFERENCES review (
-			review_num
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE reply
+ALTER TABLE REPLY
 	ADD
-		CONSTRAINT FK_member_TO_reply
+		CONSTRAINT FK_REVIEW_TO_REPLY
 		FOREIGN KEY (
-			user_num
+			REVIEW_NUM
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES REVIEW (
+			REVIEW_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE evaluation
+ALTER TABLE REPLY
 	ADD
-		CONSTRAINT FK_member_TO_evaluation
+		CONSTRAINT FK_MEMBER_TO_REPLY
 		FOREIGN KEY (
-			guide
+			USER_NUM
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE evaluation
+ALTER TABLE REPORT
 	ADD
-		CONSTRAINT FK_member_TO_evaluation2
+		CONSTRAINT FK_MEMBER_TO_REPORT2
 		FOREIGN KEY (
-			eval_user
+			REPORTER
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE lang_select
+ALTER TABLE REPORT
 	ADD
-		CONSTRAINT FK_language_TO_lang_select
+		CONSTRAINT FK_MEMBER_TO_REPORT
 		FOREIGN KEY (
-			language_code
+			VILLAIN
 		)
-		REFERENCES language (
-			language_code
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE lang_select
+ALTER TABLE REVIEW
 	ADD
-		CONSTRAINT FK_member_TO_lang_select
+		CONSTRAINT FK_MEMBER_TO_REVIEW
 		FOREIGN KEY (
-			user_num
+			USER_NUM
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE theme_select
+ALTER TABLE REVIEW
 	ADD
-		CONSTRAINT FK_member_TO_theme_select
+		CONSTRAINT FK_LOCAL_TO_REVIEW
 		FOREIGN KEY (
-			user_num
+			LOCAL_CODE
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES LOCAL (
+			LOCAL_CODE
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE theme_select
+ALTER TABLE REVIEW_LIKE
 	ADD
-		CONSTRAINT FK_theme_TO_theme_select
+		CONSTRAINT FK_REVIEW_TO_REVIEW_LIKE
 		FOREIGN KEY (
-			theme_code
+			REVIEW_NUM
 		)
-		REFERENCES theme (
-			theme_code
+		REFERENCES REVIEW (
+			REVIEW_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE hobby_select
+ALTER TABLE REVIEW_LIKE
 	ADD
-		CONSTRAINT FK_member_TO_hobby_select
+		CONSTRAINT FK_MEMBER_TO_REVIEW_LIKE
 		FOREIGN KEY (
-			user_num
+			USER_NUM
 		)
-		REFERENCES member (
-			user_num
+		REFERENCES MEMBER (
+			USER_NUM
 		)
 		ON DELETE CASCADE;
 
-ALTER TABLE hobby_select
+ALTER TABLE TRAVEL_INFO
 	ADD
-		CONSTRAINT FK_hobby_TO_hobby_select
+		CONSTRAINT FK_LOCAL_TO_TRAVEL_INFO
 		FOREIGN KEY (
-			hobby_code
+			LOCAL_CODE
 		)
-		REFERENCES hobby (
-			hobby_code
+		REFERENCES LOCAL (
+			LOCAL_CODE
 		)
 		ON DELETE CASCADE;
-
-ALTER TABLE route
-	ADD
-		CONSTRAINT FK_board_TO_route
-		FOREIGN KEY (
-			board_num
-		)
-		REFERENCES board (
-			board_num
-		);
-
-ALTER TABLE review_like
-	ADD
-		CONSTRAINT FK_review_TO_review_like
-		FOREIGN KEY (
-			review_num
-		)
-		REFERENCES review (
-			review_num
-		)
-		ON DELETE CASCADE;
-
-ALTER TABLE review_like
-	ADD
-		CONSTRAINT FK_member_TO_review_like
-		FOREIGN KEY (
-			user_num
-		)
-		REFERENCES member (
-			user_num
-		)
-		ON DELETE CASCADE;
-
-ALTER TABLE alarm
-	ADD
-		CONSTRAINT FK_alarm_kind_TO_alarm
-		FOREIGN KEY (
-			notice_code
-		)
-		REFERENCES alarm_kind (
-			notice_code
-		)
-		ON DELETE CASCADE;
-
-ALTER TABLE alarm
-	ADD
-		CONSTRAINT FK_member_TO_alarm
-		FOREIGN KEY (
-			user_num
-		)
-		REFERENCES member (
-			user_num
-		)
-		ON DELETE CASCADE;
-
-ALTER TABLE travler_board
-	ADD
-		CONSTRAINT FK_member_TO_travler_board
-		FOREIGN KEY (
-			user_num
-		)
-		REFERENCES member (
-			user_num
-		);
-
-ALTER TABLE travler_board
-	ADD
-		CONSTRAINT FK_local_TO_travler_board
-		FOREIGN KEY (
-			local_code
-		)
-		REFERENCES local (
-			local_code
-		);
-
-ALTER TABLE guide
-	ADD
-		CONSTRAINT FK_travler_board_TO_guide
-		FOREIGN KEY (
-			board_num
-		)
-		REFERENCES travler_board (
-			board_num
-		);
-
-ALTER TABLE guide
-	ADD
-		CONSTRAINT FK_member_TO_guide
-		FOREIGN KEY (
-			user_num
-		)
-		REFERENCES member (
-			user_num
-		);
-
-create table rcv_message(
-  message_num number primary key,
-  sender number not null,
-  receiver number not null,
-  message_content varchar2(4000) not null,
-  message_check varchar2(10)
-);
-
-alter table rcv_message add constraint rcv_message_receiver_fk foreign key(receiver) references member(user_num);
-
-alter table message add (message_title varchar2(100) not null);
-
-alter table rcv_message add (message_title varchar2(100) not null);
-
-alter table message drop (message_check);
-
-alter table rcv_message drop (message_check);
-
-alter table message add(message_date date not null);
-
-alter table rcv_message add(message_date date not null);
